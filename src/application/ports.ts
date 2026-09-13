@@ -1,3 +1,4 @@
+import type { Eleitorado } from '../domain/electorate.js';
 import type { Partido } from '../domain/party.js';
 import type { Pesquisa } from '../domain/poll.js';
 import type { Disputa } from '../domain/race.js';
@@ -27,11 +28,17 @@ export interface MetaRepository {
   atualizadoEm(): string;
 }
 
+export interface EleitoradoRepository {
+  todos(): readonly Eleitorado[];
+  porUf(uf: string): Eleitorado | undefined;
+}
+
 export interface Repositorios {
   polls: PollRepository;
   parties: PartyRepository;
   senateSeats: SenateSeatRepository;
   meta: MetaRepository;
+  electorate: EleitoradoRepository;
 }
 
 /** Relógio injetável — permite testes determinísticos dos casos de uso. */

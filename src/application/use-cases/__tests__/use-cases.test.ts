@@ -1,10 +1,12 @@
 import { beforeAll, describe, expect, it } from 'vitest';
+import { criarEleitorado, type Eleitorado } from '../../../domain/electorate.js';
 import { criarPartido, type Partido } from '../../../domain/party.js';
 import { criarPesquisa, type DadosPesquisa, type Pesquisa } from '../../../domain/poll.js';
 import { disputaId, type Disputa } from '../../../domain/race.js';
 import { criarCadeiraSenado, type CadeiraSenado } from '../../../domain/senate.js';
 import type {
   Clock,
+  EleitoradoRepository,
   MetaRepository,
   PartyRepository,
   PollRepository,
@@ -34,6 +36,13 @@ function senateSeatRepoFake(cadeiras: CadeiraSenado[]): SenateSeatRepository {
 
 function metaRepoFake(atualizadoEm: string): MetaRepository {
   return { atualizadoEm: () => atualizadoEm };
+}
+
+function electorateRepoFake(eleitorado: Eleitorado[]): EleitoradoRepository {
+  return {
+    todos: () => eleitorado,
+    porUf: (uf: string) => eleitorado.find((e) => e.uf === uf),
+  };
 }
 
 const CLOCK: Clock = { hoje: () => new Date('2026-09-15T00:00:00Z') };
@@ -134,6 +143,19 @@ beforeAll(() => {
         { candidato: 'Candidato J', partido: 'PL', pct: 20 },
       ],
     }),
+    p({
+      id: 'pres-sp-t1',
+      uf: 'SP',
+      cargo: 'presidente',
+      turno: 1,
+      dataInicio: '2026-09-05',
+      dataFim: '2026-09-08',
+      publicadoEm: '2026-09-09',
+      resultados: [
+        { candidato: 'Candidato A', partido: 'PT', pct: 41 },
+        { candidato: 'Candidato B', partido: 'PL', pct: 39 },
+      ],
+    }),
   ];
 
   const cadeiras: CadeiraSenado[] = [
@@ -193,11 +215,27 @@ beforeAll(() => {
     }),
   ];
 
+  const eleitorado: Eleitorado[] = [
+    criarEleitorado({
+      uf: 'SP',
+      eleitores: 34_000_000,
+      referencia: '2026-07',
+      fonte: { nome: 'TSE', url: 'https://exemplo.test' },
+    }),
+    criarEleitorado({
+      uf: 'RJ',
+      eleitores: 12_000_000,
+      referencia: '2026-07',
+      fonte: { nome: 'TSE', url: 'https://exemplo.test' },
+    }),
+  ];
+
   const repos: Repositorios = {
     polls: pollRepoFake(pesquisas),
     parties: partyRepoFake(PARTIDOS),
     senateSeats: senateSeatRepoFake(cadeiras),
     meta: metaRepoFake('2026-09-13'),
+    electorate: electorateRepoFake(eleitorado),
   };
 
   casos = criarCasosDeUso(repos, CLOCK);
@@ -303,6 +341,112 @@ describe('use-cases/projectSenate', () => {
     const fixaSp = projecao.assentos.find((a) => a.uf === 'SP' && a.origem === 'fixa')!;
     expect(fixaSp.ocupante).toBe('Fixo SP');
     expect(fixaSp.partido).toBe('PL');
+  });
+});
+
+describe('use-cases/getPresidentialTimeline', () => {
+  it('retorna série nacional do 1º turno com a mesma média do agregado pontual', () => {
+    const serie = casos.getPresidentialTimeline(1);
+    expect(serie.dias.length).toBeGreaterThan(0);
+    expect(serie.candidatos[0]).toBe('Candidato A');
+    const ultimoDia = serie.dias[serie.dias.length - 1]!;
+    expect(ultimoDia.data).toBe('2026-09-15');
+    expect(ultimoDia.valores['Candidato A']).toBeCloseTo(45, 6);
+  });
+
+  it('filtra o 2º turno por cenário, aceitando o rótulo de getPresidentialAggregate', () => {
+    const serie = casos.getPresidentialTimeline(2, '2º turno: Candidato A x Candidato B');
+    const ultimoDia = serie.dias[serie.dias.length - 1]!;
+    expect(ultimoDia.valores['Candidato A']).toBeCloseTo(52, 6);
+    expect(serie.candidatos).toEqual(expect.arrayContaining(['Candidato A', 'Candidato B']));
+    expect(serie.candidatos).not.toContain('Candidato C');
+  });
+
+  it('usa o cenário mais recente do 2º turno quando nenhum é informado', () => {
+    const serie = casos.getPresidentialTimeline(2);
+    expect(serie.candidatos).toEqual(expect.arrayContaining(['Candidato A', 'Candidato B']));
+  });
+
+  it('retorna série vazia quando o cenário pedido não existe', () => {
+    const serie = casos.getPresidentialTimeline(2, 'inexistente x nunca visto');
+    expect(serie.dias).toEqual([]);
+    expect(serie.candidatos).toEqual([]);
+  });
+});
+
+describe('use-cases/getPresidentialByState', () => {
+  it('inclui as 27 UFs', () => {
+    expect(casos.getPresidentialByState().ufs).toHaveLength(27);
+  });
+
+  it('agrega a pesquisa presidencial estadual de SP e usa o eleitorado cadastrado', () => {
+    const { ufs, eleitoradoNacional, eleitoradoComPesquisa } = casos.getPresidentialByState();
+    const sp = ufs.find((u) => u.uf === 'SP')!;
+    expect(sp.semDados).toBe(false);
+    expect(sp.lider).toBe('Candidato A');
+    expect(sp.partido).toBe('PT');
+    expect(sp.vantagem).toBeCloseTo(2, 6);
+    expect(sp.empateTecnico).toBe(true);
+    expect(sp.eleitores).toBe(34_000_000);
+    expect(sp.serie).not.toBeNull();
+    expect(sp.ultimaPesquisa?.id).toBe('pres-sp-t1');
+    expect(eleitoradoNacional).toBe(34_000_000 + 12_000_000);
+    expect(eleitoradoComPesquisa).toBe(34_000_000);
+  });
+
+  it('marca semDados e serie null para UF sem pesquisa presidencial estadual, mas mantém o eleitorado', () => {
+    const { ufs } = casos.getPresidentialByState();
+    const rj = ufs.find((u) => u.uf === 'RJ')!;
+    expect(rj.semDados).toBe(true);
+    expect(rj.agregado).toBeNull();
+    expect(rj.serie).toBeNull();
+    expect(rj.eleitores).toBe(12_000_000);
+  });
+
+  it('eleitores é null quando a UF não está em data/electorate.json', () => {
+    const { ufs } = casos.getPresidentialByState();
+    const ac = ufs.find((u) => u.uf === 'AC')!;
+    expect(ac.eleitores).toBeNull();
+    expect(ac.semDados).toBe(true);
+  });
+});
+
+describe('use-cases/getSenateByState', () => {
+  it('inclui as 27 UFs', () => {
+    expect(casos.getSenateByState()).toHaveLength(27);
+  });
+
+  it('traz a cadeira fixa e os 2 ocupantes atuais das cadeiras em disputa em SP', () => {
+    const sp = casos.getSenateByState().find((r) => r.uf === 'SP')!;
+    expect(sp.cadeiraFixa).toEqual({ senador: 'Fixo SP', partido: 'PL', mandatoFim: 2031 });
+    expect(sp.cadeirasAtuaisEmDisputa.map((o) => o.senador).sort()).toEqual(
+      ['Atual SP 1', 'Atual SP 2'].sort(),
+    );
+  });
+
+  it('projeta os 2 primeiros colocados do agregado com percentual e confiança', () => {
+    const sp = casos.getSenateByState().find((r) => r.uf === 'SP')!;
+    expect(sp.projetadas).toHaveLength(2);
+    expect(sp.projetadas[0]).toMatchObject({ candidato: 'Candidata H', partido: 'PT' });
+    expect(sp.projetadas[0]!.pct).toBeCloseTo(36, 6);
+    expect(sp.projetadas[1]).toMatchObject({ candidato: 'Candidato I', partido: 'PL' });
+    expect(sp.projetadas[1]!.pct).toBeCloseTo(34, 6);
+    expect(sp.fonte?.nome).toBe('Fonte Teste');
+  });
+
+  it('marca empate quando a vantagem entre o 1º e o 2º colocado é pequena', () => {
+    const sp = casos.getSenateByState().find((r) => r.uf === 'SP')!;
+    expect(sp.empate).toBe(true);
+  });
+
+  it('projetadas vazio e fonte null quando não há pesquisa de senador na UF', () => {
+    const rj = casos.getSenateByState().find((r) => r.uf === 'RJ')!;
+    expect(rj.projetadas).toEqual([]);
+    expect(rj.fonte).toBeNull();
+    expect(rj.empate).toBe(false);
+    expect(rj.cadeirasAtuaisEmDisputa.map((o) => o.senador).sort()).toEqual(
+      ['Atual RJ 1', 'Atual RJ 2'].sort(),
+    );
   });
 });
 

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { agregarPesquisas, classificarConfianca, MARGEM_REFERENCIA_PADRAO } from '../aggregate.js';
+import { agregarPesquisas, classificarConfianca, MARGEM_REFERENCIA_PADRAO, serieTemporal } from '../aggregate.js';
 import { criarPesquisa, type DadosPesquisa } from '../poll.js';
 
 const HOJE = new Date('2026-09-15T00:00:00Z');
@@ -246,5 +246,115 @@ describe('classificarConfianca — 3 faixas de docs/design-system.md', () => {
   it('classifica "folga" quando a vantagem é igual ou maior que o dobro da margem', () => {
     expect(classificarConfianca(6, 3)).toBe('folga');
     expect(classificarConfianca(30, 3)).toBe('folga');
+  });
+});
+
+describe('serieTemporal', () => {
+  it('retorna listas vazias quando não há nenhuma pesquisa', () => {
+    const serie = serieTemporal([], {}, HOJE);
+    expect(serie.dias).toEqual([]);
+    expect(serie.pontos).toEqual([]);
+    expect(serie.candidatos).toEqual([]);
+  });
+
+  it('a linha (média diária) passa perto dos pontos de uma única pesquisa', () => {
+    const p = pesquisa({
+      dataInicio: '2026-09-01',
+      dataFim: '2026-09-01',
+      publicadoEm: '2026-09-02',
+    });
+    const serie = serieTemporal([p], {}, new Date('2026-09-01T00:00:00Z'));
+
+    expect(serie.dias).toHaveLength(1);
+    expect(serie.dias[0]!.data).toBe('2026-09-01');
+    // Com uma única pesquisa no dia, a média ponderada é exatamente o valor da pesquisa.
+    expect(serie.dias[0]!.valores['Candidato A']).toBeCloseTo(40, 6);
+    expect(serie.dias[0]!.valores['Candidato B']).toBeCloseTo(30, 6);
+
+    const pontoA = serie.pontos.find((pt) => pt.candidato === 'Candidato A');
+    expect(pontoA?.pct).toBeCloseTo(40, 6);
+    expect(pontoA?.data).toBe('2026-09-01');
+    expect(pontoA?.instituto).toBe('Instituto Teste');
+  });
+
+  it('a linha do dia mais recente aproxima-se do valor da pesquisa mais recente (decaimento por recência)', () => {
+    const antiga = pesquisa({
+      dataInicio: '2026-08-01',
+      dataFim: '2026-08-01',
+      publicadoEm: '2026-08-02',
+      resultados: [
+        { candidato: 'Candidato A', partido: 'PT', pct: 20 },
+        { candidato: 'Candidato B', partido: 'PL', pct: 50 },
+      ],
+    });
+    const recente = pesquisa({
+      dataInicio: '2026-09-10',
+      dataFim: '2026-09-10',
+      publicadoEm: '2026-09-11',
+      resultados: [
+        { candidato: 'Candidato A', partido: 'PT', pct: 60 },
+        { candidato: 'Candidato B', partido: 'PL', pct: 20 },
+      ],
+    });
+    const hoje = new Date('2026-09-10T00:00:00Z');
+    const serie = serieTemporal([antiga, recente], { meiaVidaDias: 14, janelaDias: 90 }, hoje);
+
+    const ultimoDia = serie.dias[serie.dias.length - 1]!;
+    expect(ultimoDia.data).toBe('2026-09-10');
+    // O peso da pesquisa recente domina no último dia — fica bem mais perto de 60 que de 20.
+    expect(ultimoDia.valores['Candidato A']!).toBeGreaterThan(45);
+  });
+
+  it('ordena candidatos pela média final (hoje), líder primeiro', () => {
+    const p = pesquisa({
+      dataInicio: '2026-09-01',
+      dataFim: '2026-09-01',
+      publicadoEm: '2026-09-02',
+      resultados: [
+        { candidato: 'Candidato A', partido: 'PT', pct: 30 },
+        { candidato: 'Candidato B', partido: 'PL', pct: 45 },
+        { candidato: 'Brancos/nulos', partido: null, pct: 25 },
+      ],
+    });
+    const serie = serieTemporal([p], {}, new Date('2026-09-01T00:00:00Z'));
+    expect(serie.candidatos).toEqual(['Candidato B', 'Candidato A']);
+  });
+
+  it('nunca gera NaN, mesmo nos primeiros dias da série', () => {
+    const p = pesquisa({
+      dataInicio: '2026-09-01',
+      dataFim: '2026-09-01',
+      publicadoEm: '2026-09-02',
+    });
+    const serie = serieTemporal([p], {}, new Date('2026-09-10T00:00:00Z'));
+
+    expect(serie.dias.length).toBeGreaterThan(1);
+    for (const dia of serie.dias) {
+      for (const valor of Object.values(dia.valores)) {
+        expect(Number.isNaN(valor)).toBe(false);
+        expect(Number.isFinite(valor)).toBe(true);
+      }
+    }
+  });
+
+  it('respeita passoDias para espaçar os pontos da série, sempre incluindo hoje', () => {
+    const p = pesquisa({
+      dataInicio: '2026-09-01',
+      dataFim: '2026-09-01',
+      publicadoEm: '2026-09-02',
+    });
+    const hoje = new Date('2026-09-08T00:00:00Z');
+    const serie = serieTemporal([p], { passoDias: 3 }, hoje);
+
+    const datas = serie.dias.map((d) => d.data);
+    expect(datas[0]).toBe('2026-09-01');
+    expect(datas[datas.length - 1]).toBe('2026-09-08');
+  });
+
+  it('pontos incluem apenas linhas de candidato (exclui brancos/nulos/não sabe)', () => {
+    const p = pesquisa();
+    const serie = serieTemporal([p], {}, HOJE);
+    const nomes = serie.pontos.map((pt) => pt.candidato).sort();
+    expect(nomes).toEqual(['Candidato A', 'Candidato B']);
   });
 });

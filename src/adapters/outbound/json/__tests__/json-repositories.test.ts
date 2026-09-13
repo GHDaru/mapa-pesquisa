@@ -1,9 +1,11 @@
 import { describe, expect, it } from 'vitest';
+import type { DadosEleitorado } from '../../../../domain/electorate.js';
 import type { DadosPartido } from '../../../../domain/party.js';
 import type { DadosPesquisa } from '../../../../domain/poll.js';
 import { criarDisputa } from '../../../../domain/race.js';
 import type { DadosCadeiraSenado } from '../../../../domain/senate.js';
 import { carregarDados } from '../carregar-dados.js';
+import { criarEleitoradoRepositoryJson } from '../electorate-repository.js';
 import { criarMetaRepositoryJson } from '../meta-repository.js';
 import { criarPartyRepositoryJson } from '../party-repository.js';
 import { criarPollRepositoryJson } from '../poll-repository.js';
@@ -96,6 +98,31 @@ describe('adapters/outbound/json — meta-repository', () => {
   });
 });
 
+describe('adapters/outbound/json — electorate-repository', () => {
+  it('carrega eleitorado válido e busca por UF', () => {
+    const dados: DadosEleitorado[] = [
+      { uf: 'SP', eleitores: 34_667_793, referencia: '2026-07', fonte: { nome: 'TSE', url: 'https://exemplo.test' } },
+    ];
+    const repo = criarEleitoradoRepositoryJson(dados);
+    expect(repo.todos()).toHaveLength(1);
+    expect(repo.porUf('SP')?.eleitores).toBe(34_667_793);
+    expect(repo.porUf('AC')).toBeUndefined();
+  });
+
+  it('tolera lista vazia', () => {
+    const repo = criarEleitoradoRepositoryJson([]);
+    expect(repo.todos()).toHaveLength(0);
+    expect(repo.porUf('SP')).toBeUndefined();
+  });
+
+  it('rejeita eleitorado inválido com erro contendo a UF', () => {
+    const dados: DadosEleitorado[] = [
+      { uf: 'SP', eleitores: -1, referencia: '2026-07', fonte: { nome: 'TSE', url: 'https://exemplo.test' } },
+    ];
+    expect(() => criarEleitoradoRepositoryJson(dados)).toThrowError(/SP/);
+  });
+});
+
 describe('adapters/outbound/json — carregarDados', () => {
   it('carrega os dados reais de data/*.json sem lançar erro', () => {
     const repos = carregarDados();
@@ -103,6 +130,8 @@ describe('adapters/outbound/json — carregarDados', () => {
     expect(repos.polls.todas().length).toBeGreaterThan(0);
     expect(repos.senateSeats.todas().length).toBeGreaterThan(0);
     expect(repos.meta.atualizadoEm()).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    // data/electorate.json pode estar vazio até o agente publicar os números do TSE.
+    expect(repos.electorate.todos().length).toBeGreaterThanOrEqual(0);
   });
 
   it('inclui a pesquisa de senador de SP presente em data/polls.json', () => {

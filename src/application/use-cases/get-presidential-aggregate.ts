@@ -68,8 +68,9 @@ export function criarGetPresidentialAggregate(repos: Repositorios, clock: Clock)
  * Chave de agrupamento do 2º turno: o conjunto de candidatos (linhas que são
  * candidatos) em ordem alfabética, para que "Lula x Flávio" e "Flávio x Lula"
  * caiam no mesmo cenário mesmo com rótulos diferentes entre institutos.
+ * Exportada para reúso em get-presidential-timeline.ts.
  */
-function chaveDoCenario(p: Pesquisa): string {
+export function chaveDoCenario(p: Pesquisa): string {
   const nomes = p.resultados
     .map((r) => r.candidato)
     .filter((nome) => !ehLinhaNaoCandidato(nome, new Set()))

@@ -1,5 +1,5 @@
 import type { Disputa } from './race.js';
-import { type Pesquisa, dataReferencia } from './poll.js';
+import { type Pesquisa, type RegistroTSE, dataReferencia } from './poll.js';
 
 /**
  * Serviço de domínio: agregação ponderada de pesquisas de uma mesma Disputa.
@@ -228,4 +228,122 @@ export function agregarPesquisas(
     algumaNaoRegistrada,
     foraDaJanela,
   };
+}
+
+const UM_DIA_MS = 86_400_000;
+
+/** Data ISO (YYYY-MM-DD) de um instante em milissegundos, em UTC. */
+function dataIsoDoInstante(ms: number): string {
+  return new Date(ms).toISOString().slice(0, 10);
+}
+
+export interface OpcoesSerieTemporal extends OpcoesAgregacao {
+  /** Passo entre pontos consecutivos da série, em dias. Padrão 1 (diário). */
+  passoDias?: number;
+}
+
+/** Um resultado individual de uma pesquisa, para plotagem como ponto no gráfico. */
+export interface PontoSerieTemporal {
+  /** Data de referência da pesquisa (dataFim, ou publicadoEm/dataInicio na ausência). */
+  readonly data: string;
+  readonly candidato: string;
+  readonly partido: string | null;
+  readonly pct: number;
+  readonly amostra: number | null;
+  readonly instituto: string;
+  readonly registroTSE: RegistroTSE;
+  readonly pollId: string;
+}
+
+/** A média ponderada de cada candidato em um dia da série. */
+export interface DiaSerieTemporal {
+  readonly data: string;
+  /** Percentual médio ponderado por candidato nesse dia (chave = nome do candidato). */
+  readonly valores: Readonly<Record<string, number>>;
+}
+
+export interface SerieTemporal {
+  readonly dias: readonly DiaSerieTemporal[];
+  readonly pontos: readonly PontoSerieTemporal[];
+  /** Nomes dos candidatos (exclui brancos/nulos/etc.), ordenados pela média final (hoje) desc. */
+  readonly candidatos: readonly string[];
+}
+
+/**
+ * Serviço de domínio: série temporal da agregação ponderada de uma Disputa.
+ * Para cada dia entre a data da primeira pesquisa e `hoje` (passo de
+ * `opcoes.passoDias`, padrão 1), calcula a média ponderada por candidato
+ * usando o MESMO kernel de recência/amostra e a mesma janela de
+ * `agregarPesquisas` — apenas "avançando o relógio" dia a dia. Só considera
+ * candidatos (`ehLinhaNaoCandidato` exclui brancos/nulos/etc. do resultado,
+ * embora eles continuem pesando no denominador de `agregarPesquisas`).
+ * Retorna listas vazias quando não há nenhuma pesquisa.
+ */
+export function serieTemporal(
+  pesquisas: readonly Pesquisa[],
+  opcoes: OpcoesSerieTemporal = {},
+  hoje: Date = new Date(),
+): SerieTemporal {
+  if (pesquisas.length === 0) {
+    return { dias: [], pontos: [], candidatos: [] };
+  }
+
+  const { passoDias: passoDiasBruto, ...opcoesAgregacao } = opcoes;
+  const passoDias = Math.max(1, Math.trunc(passoDiasBruto ?? 1));
+
+  const excluidos = new Set(
+    (opcoes.excluirCandidatos ?? CANDIDATOS_EXCLUIDOS_PADRAO).map((s) => s.toLowerCase().trim()),
+  );
+
+  const primeiraDataIso = [...pesquisas].map((p) => dataReferencia(p)).sort()[0]!;
+  const primeiraDataMs = Date.parse(`${primeiraDataIso}T00:00:00Z`);
+  const hojeMs = Date.UTC(hoje.getUTCFullYear(), hoje.getUTCMonth(), hoje.getUTCDate());
+  const hojeIso = dataIsoDoInstante(hojeMs);
+
+  const dias: DiaSerieTemporal[] = [];
+  for (let ms = primeiraDataMs; ms <= hojeMs; ms += passoDias * UM_DIA_MS) {
+    const diaIso = dataIsoDoInstante(ms);
+    const diaData = new Date(ms);
+    const pesquisasAteDia = pesquisas.filter((p) => dataReferencia(p) <= diaIso);
+    const agregado = agregarPesquisas(pesquisasAteDia, opcoesAgregacao, diaData);
+    const valores: Record<string, number> = {};
+    if (agregado) {
+      for (const c of agregado.candidatos) valores[c.candidato] = c.pct;
+    }
+    dias.push({ data: diaIso, valores });
+  }
+
+  // Garante que "hoje" está sempre presente (o passo pode não cair exatamente
+  // nele) — é a partir dele que vem a ordenação final dos candidatos.
+  const pesquisasAteHoje = pesquisas.filter((p) => dataReferencia(p) <= hojeIso);
+  const agregadoFinal = agregarPesquisas(pesquisasAteHoje, opcoesAgregacao, hoje);
+  if (dias.length === 0 || dias[dias.length - 1]!.data !== hojeIso) {
+    const valores: Record<string, number> = {};
+    if (agregadoFinal) {
+      for (const c of agregadoFinal.candidatos) valores[c.candidato] = c.pct;
+    }
+    dias.push({ data: hojeIso, valores });
+  }
+
+  const pontos: PontoSerieTemporal[] = [];
+  for (const p of pesquisas) {
+    for (const r of p.resultados) {
+      if (ehLinhaNaoCandidato(r.candidato, excluidos)) continue;
+      pontos.push({
+        data: dataReferencia(p),
+        candidato: r.candidato,
+        partido: r.partido,
+        pct: r.pct,
+        amostra: p.amostra ?? null,
+        instituto: p.instituto,
+        registroTSE: p.registroTSE,
+        pollId: p.id,
+      });
+    }
+  }
+  pontos.sort((a, b) => a.data.localeCompare(b.data));
+
+  const candidatos = agregadoFinal ? agregadoFinal.candidatos.map((c) => c.candidato) : [];
+
+  return { dias, pontos, candidatos };
 }
