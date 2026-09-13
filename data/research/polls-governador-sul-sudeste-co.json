@@ -357,7 +357,7 @@
     "turno": 1,
     "instituto": "AtlasIntel",
     "registroTSE": "SC-02036/2026",
-    "contratante": "AtlasIntel (autofinanciada)",
+    "contratante": "TV O Estado Florianópolis Ltda. (Grupo ND)",
     "dataInicio": "2026-09-04",
     "dataFim": "2026-09-09",
     "publicadoEm": "2026-09-09",
@@ -534,14 +534,14 @@
     "dataFim": "2026-09-09",
     "publicadoEm": "2026-09-10",
     "amostra": 1600,
-    "margem": null,
+    "margem": 2.0,
     "cenario": "estimulada, 1º turno",
     "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senado-mato-grosso-do-sul-setembro-2026/" },
     "resultados": [
       { "candidato": "Eduardo Riedel", "partido": "PP", "pct": 42.0 },
       { "candidato": "Fábio Trad", "partido": "PT", "pct": 26.0 }
     ],
-    "observacao": "Margem de erro não informada no resumo consultado; percentual de Fábio Trad estimado a partir da diferença de 16 pontos citada na matéria (não confirmado literalmente)."
+    "observacao": "26% de Fábio Trad e margem de 2 pontos foram confirmados literalmente em múltiplas fontes (Infomoney, Metrópoles)."
   },
   {
     "id": "2026-08-25-quaest-df-governador-t1",

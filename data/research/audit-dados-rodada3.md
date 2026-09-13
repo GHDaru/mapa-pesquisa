@@ -89,3 +89,14 @@ Esta é a única pesquisa faltante identificada nesta rodada (as demais 20 pesqu
 **Publicável: SIM.**
 
 Maior lacuna única: a pesquisa Brasil Dados (RO, governador, campo 31/08–03/03/09) não está na base, então o site mostra a Quaest de 25/08 como "última pesquisa" de Rondônia quando já existe uma mais nova. Isso não altera o líder (Marcos Rogério segue à frente nas duas) nem inverte nenhuma data — é uma lacuna de atualização, não um erro de fato. Fora isso, todos os problemas desta rodada são menores: campos em branco preenchíveis (datas/amostra/partido em SE, publicadoEm em RN), contratante incorreto ou ausente (SC governador e SC senador) e uma margem de erro ausente (MS) — exatamente o tipo de erro que o critério de aceitação classifica como aceitável. Nenhum líder e nenhuma data de nenhuma das 21 pesquisas auditadas estava errado.
+
+## Aplicado
+
+Todas as correções recomendadas e a pesquisa faltante desta rodada foram aplicadas nos arquivos de origem em `data/research/`:
+
+- `polls-governador-norte-nordeste.json`: SE (`2026-09-10-atlasintel-se-governador-t1`) — `dataInicio`, `dataFim`, `amostra` e partido de Ricardo Marques preenchidos; RN (`2026-09-realtimebigdata-rn-governador-t1`) — `publicadoEm` preenchido; RO (`2026-09-avulso-brasildados-ro-governador-t1`) — percentuais e `contratante` preenchidos (pesquisa antes descartada do merge por falta de números).
+- `polls-governador-sul-sudeste-co.json`: SC governador (`2026-09-09-atlasintel-sc-governador-t1`) — `contratante` corrigido; MS governador (`2026-09-10-real-time-big-data-ms-governador-t1`) — `margem` preenchida e ressalva removida da `observacao`.
+- `polls-senador-bloco3.json`: SC senador (`2026-09-10-atlasintel-sc-senador-t1`) — `contratante` preenchido.
+- `polls-senador-bloco1.json`: AM senador (`2026-09-05-parana-pesquisas-am-senador-t1`) — 3º candidato (Plínio Valério, PSDB, 28,9%) adicionado e `observacao` atualizada.
+
+Após as correções: `npm run data:merge -- --date 2026-09-13`, `npm run data:validate` e `npm test` executados com sucesso (123 pesquisas únicas, validação sem erros estruturais, 112 testes passando).

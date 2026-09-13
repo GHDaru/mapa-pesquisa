@@ -39,9 +39,10 @@
     "fonte": { "nome": "Exame", "url": "https://exame.com/brasil/parana-pesquisas-eduardo-braga-lidera-disputa-ao-senado-no-amazonas-com-50/" },
     "resultados": [
       { "candidato": "Eduardo Braga", "partido": "MDB", "pct": 50.0 },
-      { "candidato": "Capitão Alberto Neto", "partido": "PL", "pct": 39.3 }
+      { "candidato": "Capitão Alberto Neto", "partido": "PL", "pct": 39.3 },
+      { "candidato": "Plínio Valério", "partido": "PSDB", "pct": 28.9 }
     ],
-    "observacao": "Apenas os dois primeiros colocados foram encontrados com percentual nas fontes consultadas nesta sessão; a pesquisa provavelmente testou mais candidatos (ex.: Plínio Valério) cujos percentuais não foram localizados."
+    "observacao": "Plínio Valério (PSDB) localizado com 28,9% (fonte: Exame/Fato Amazônico)."
   },
   {
     "id": "2026-09-08-real-time-big-data-ap-senador-t1",
