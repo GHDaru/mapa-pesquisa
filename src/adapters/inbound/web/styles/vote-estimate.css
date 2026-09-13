@@ -66,6 +66,13 @@
   color: var(--color-text-subtle);
   max-width: 72ch;
 }
+.ve-method {
+  margin: 0;
+  font: var(--text-body);
+  font-weight: var(--font-variation-nav);
+  color: var(--color-text);
+  max-width: 72ch;
+}
 
 .ve-stats {
   display: grid;
@@ -145,6 +152,13 @@
 .ve-legend-swatch--sem-pesquisa {
   background-color: color-mix(in srgb, var(--color-text-subtle) 25%, transparent);
 }
+.ve-legend-swatch--faixa {
+  background-color: color-mix(in srgb, var(--color-text-subtle) 20%, transparent);
+  border-left: 2px solid var(--color-text-subtle);
+  border-right: 2px solid var(--color-text-subtle);
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+}
 
 /* ================= Cartões por candidato ================= */
 
@@ -205,6 +219,11 @@
   color: var(--color-text-subtle);
   font-variant-numeric: tabular-nums;
 }
+.ve-card__composicao-rotulo {
+  margin: var(--space-1) 0 0;
+  font: var(--text-caption);
+  color: var(--color-text-subtle);
+}
 
 .ve-badge-partido {
   display: inline-block;
@@ -250,6 +269,91 @@
   width: 100%;
   background: var(--confidence-sem-dados-fill);
   background-image: var(--confidence-sem-dados-pattern);
+}
+
+/* ================= Gráfico de comparação (escala única + faixa) ================= */
+
+.ve-chart {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  background: var(--color-surface-1);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
+}
+.ve-chart-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.ve-chart-row:not(:last-child) {
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+.ve-chart-row__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+}
+.ve-chart-row__nome {
+  font: var(--text-body-sm);
+  font-weight: var(--font-variation-nav);
+  color: var(--color-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+.ve-chart-row__bar-line {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.ve-chart-track {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 20px;
+  background: var(--color-surface-3);
+  border-radius: var(--radius-xs);
+}
+.ve-chart-bar {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  min-width: 3px;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+}
+.ve-chart-bar--sem-dados {
+  width: 100%;
+  background: var(--confidence-sem-dados-fill);
+  background-image: var(--confidence-sem-dados-pattern);
+}
+/* Faixa de incerteza: banda translúcida entre votosMin e votosMax, com
+   traços verticais sólidos marcando os dois extremos — desenhada por cima
+   do fim da barra sólida (que termina em `votos`, o ponto central da faixa). */
+.ve-chart-whisker {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 28px;
+  background: color-mix(in srgb, var(--color-text) 12%, transparent);
+  border-left: 2px solid var(--color-text-subtle);
+  border-right: 2px solid var(--color-text-subtle);
+  pointer-events: none;
+}
+.ve-chart-value {
+  flex: 0 0 auto;
+  font: var(--text-caption);
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 /* ================= Tabelas (comparação e por UF) ================= */
@@ -312,32 +416,42 @@
   color: var(--color-text-subtle);
 }
 
-/* Tabela por UF vira lista de cards em telas estreitas — mesmo padrão usado
-   nas demais telas do app (tabela de partidos/pesquisas presidenciais). */
+/* Toda tabela do painel vira lista de cards em telas estreitas — mesmo
+   padrão usado nas demais telas do app (tabela de partidos/pesquisas
+   presidenciais). Aplica-se tanto à tabela "Detalhe por UF" quanto à
+   "Agregação estadual × média nacional": nenhuma tabela deste painel deve
+   ficar com rolagem horizontal interna sem indicação visual. */
 @media (max-width: 640px) {
-  .ve-uf-table-wrap {
+  .ve-stack-table-wrap {
     border: none;
     overflow: visible;
   }
-  .ve-uf-table-wrap table,
-  .ve-uf-table-wrap thead,
-  .ve-uf-table-wrap tbody,
-  .ve-uf-table-wrap tr,
-  .ve-uf-table-wrap td {
+  .ve-stack-table-wrap table,
+  .ve-stack-table-wrap thead,
+  .ve-stack-table-wrap tbody,
+  .ve-stack-table-wrap tr,
+  .ve-stack-table-wrap td {
     display: block;
     width: 100%;
   }
-  .ve-uf-table-wrap thead {
+  /* Vence a especificidade de `.ve-uf-table-wrap .ve-table { min-width: 640px }`
+     acima por vir depois no arquivo (mesma especificidade, ordem de fonte
+     decide) — sem isso a tabela por UF manteria um mínimo de 640px mesmo
+     "em cards", forçando rolagem horizontal interna (bug relatado). */
+  .ve-stack-table-wrap .ve-table {
+    min-width: 0;
+  }
+  .ve-stack-table-wrap thead {
     display: none;
   }
-  .ve-uf-table-wrap tr {
+  .ve-stack-table-wrap tr {
     background: var(--color-surface-1);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     padding: var(--space-3);
     margin-block-end: var(--space-3);
   }
-  .ve-uf-table-wrap td {
+  .ve-stack-table-wrap td {
     border: none;
     padding: var(--space-1) 0;
     display: flex;
@@ -347,7 +461,7 @@
     white-space: normal;
     text-align: right;
   }
-  .ve-uf-table-wrap td::before {
+  .ve-stack-table-wrap td::before {
     content: attr(data-rotulo);
     font: var(--text-caption);
     color: var(--color-text-subtle);

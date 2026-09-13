@@ -39,6 +39,18 @@ export interface CandidatoEstimado {
   readonly partido: string | null;
   /** Votos estimados somados de todas as UFs (eleitores × pct/100). */
   readonly votos: number;
+  /**
+   * Extremo inferior da faixa de incerteza: `votos` menos a margem de erro
+   * agregada, propagada UF a UF (eleitores × margem/100 de cada pesquisa —
+   * estadual ou nacional — usada naquela UF, somada entre as UFs). Nunca
+   * negativo.
+   */
+  readonly votosMin: number;
+  /**
+   * Extremo superior da faixa de incerteza: `votos` mais a mesma margem de
+   * erro agregada usada em `votosMin`. Ver `votosMin`.
+   */
+  readonly votosMax: number;
   /** Percentual sobre o eleitorado total (0..100). */
   readonly pctDoEleitorado: number;
   /** Percentual sobre a soma de votos atribuídos a candidatos (exclui `naoAtribuidos`). */
@@ -125,6 +137,8 @@ interface Acumulador {
   votosComPesquisa: number;
   votosSemPesquisa: number;
   votosComplementoNacional: number;
+  /** Soma, entre todas as UFs, de eleitores × (margem da pesquisa usada)/100 para este candidato. */
+  margemVotos: number;
 }
 
 interface Contribuicao {
@@ -132,6 +146,13 @@ interface Contribuicao {
   readonly partido: string | null;
   readonly pct: number;
   readonly origem: OrigemVotoCandidato;
+  /**
+   * Margem de erro (pontos percentuais, 0..100) do agregado que forneceu
+   * `pct` — o agregado estadual para origem 'estadual', o nacional para
+   * 'nacional' e 'complemento-nacional'. Usada para propagar a faixa de
+   * incerteza (`CandidatoEstimado.votosMin`/`votosMax`).
+   */
+  readonly margemPct: number;
 }
 
 /** Chave de comparação entre candidatos (não usada para exibição): trim + minúsculas. */
@@ -193,6 +214,7 @@ export function estimarVotos(
           partido: c.partido,
           pct: c.pct,
           origem: 'estadual',
+          margemPct: estadual.margemReferencia,
         }),
       );
 
@@ -207,6 +229,7 @@ export function estimarVotos(
             partido: cn.partido,
             pct: cn.pct,
             origem: 'complemento-nacional',
+            margemPct: agregadoNacional.margemReferencia,
           });
         }
       }
@@ -220,6 +243,7 @@ export function estimarVotos(
           partido: c.partido,
           pct: c.pct,
           origem: 'nacional',
+          margemPct: nacional.margemReferencia,
         }),
       );
     }
@@ -235,6 +259,11 @@ export function estimarVotos(
     for (const c of contribuicoes) {
       const pctFinal = c.pct * fatorNormalizacao;
       const votos = entrada.eleitores * (pctFinal / 100);
+      // A margem de erro é uma propriedade da pesquisa, não da parcela
+      // normalizada de espaço no eleitorado — não aplica `fatorNormalizacao`
+      // aqui, para não subestimar a incerteza justamente nas UFs onde o
+      // agregado bruto excedeu 100% (ver `ufsNormalizadas`).
+      const margemVotos = entrada.eleitores * (c.margemPct / 100);
       somaVotosAtribuidosUf += votos;
 
       votosPorCandidato[c.candidato] = { votos, origem: c.origem };
@@ -246,8 +275,10 @@ export function estimarVotos(
         votosComPesquisa: 0,
         votosSemPesquisa: 0,
         votosComplementoNacional: 0,
+        margemVotos: 0,
       };
       atual.votos += votos;
+      atual.margemVotos += margemVotos;
       if (c.origem === 'estadual') atual.votosComPesquisa += votos;
       else if (c.origem === 'nacional') atual.votosSemPesquisa += votos;
       else atual.votosComplementoNacional += votos;
@@ -274,6 +305,8 @@ export function estimarVotos(
     candidato: acc.candidato,
     partido: acc.partido,
     votos: acc.votos,
+    votosMin: Math.max(0, acc.votos - acc.margemVotos),
+    votosMax: acc.votos + acc.margemVotos,
     votosDeUfComPesquisa: acc.votosComPesquisa,
     votosDeUfSemPesquisa: acc.votosSemPesquisa,
     votosComplementoNacional: acc.votosComplementoNacional,

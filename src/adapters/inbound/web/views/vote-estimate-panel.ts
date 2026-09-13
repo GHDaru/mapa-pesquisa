@@ -48,6 +48,7 @@ export function renderVoteEstimate(container: HTMLElement, casos: CasosDeUso): v
   const partidos = casos.listParties();
 
   raiz.append(criarCabecalho(estimativa));
+  raiz.append(criarSecaoComparacaoBarras(estimativa, partidos));
   raiz.append(criarSecaoCards(estimativa, partidos));
   raiz.append(criarSecaoComparacao(estimativa));
   raiz.append(criarLinhaNaoAtribuidos(estimativa));
@@ -108,11 +109,19 @@ function criarCabecalho(e: EstimativaVotos): HTMLElement {
   return criarEl('header', { className: 've-header' }, [
     criarEl('h1', { className: 've-title', texto: 'Votos estimados por agregação estadual', attrs: { id: 've-titulo' } }),
     criarEl('p', {
+      className: 've-method',
+      texto:
+        'Método em uma frase: cada UF contribui com o seu eleitorado apto — o total de eleitores registrados no ' +
+        'TSE, sem descontar abstenção (em 2022 o comparecimento nacional foi de cerca de 79%) — multiplicado pelo ' +
+        'percentual da própria pesquisa presidencial estadual, ou pelo percentual do agregado nacional quando falta ' +
+        'pesquisa estadual.',
+    }),
+    criarEl('p', {
       className: 've-meta',
       texto:
-        'Cada estado contribui com o seu eleitorado multiplicado pelo percentual da própria pesquisa presidencial ' +
-        'estadual. Estados sem pesquisa estadual, e candidatos que não aparecem nas pesquisas estaduais (comum ' +
-        'quando a pesquisa testa só os primeiros colocados), usam o percentual do agregado nacional em seu lugar.',
+        'Candidatos que não aparecem na pesquisa estadual de uma UF (comum quando a pesquisa testa só os primeiros ' +
+        'colocados) recebem o percentual do agregado nacional aplicado ao eleitorado dessa UF, para não zerar ' +
+        'candidatos menores — marcado com "*" na tabela por UF, ao final da página.',
     }),
     criarEstatisticas(e, parcela),
   ]);
@@ -155,30 +164,60 @@ function criarBadgePartido(partido: string | null, espectro: Espectro): HTMLElem
   );
 }
 
-function criarLegendaBarra(): HTMLElement {
+function criarLegendaBarra(comFaixa: boolean): HTMLElement {
   const item = (classeExtra: string | null, texto: string): HTMLElement =>
     criarEl('span', { className: 've-bar-legend__item' }, [
       criarEl('span', { className: classeExtra ? `ve-legend-swatch ${classeExtra}` : 've-legend-swatch' }),
       texto,
     ]);
 
-  return criarEl('p', { className: 've-bar-legend' }, [
+  const itens = [
     item(null, 'Votos de UFs com pesquisa estadual'),
     item('ve-legend-swatch--complemento', 'Complemento nacional em UFs com pesquisa'),
     item('ve-legend-swatch--sem-pesquisa', 'Votos de UFs sem pesquisa estadual'),
-  ]);
+  ];
+  if (comFaixa) {
+    itens.push(item('ve-legend-swatch--faixa', 'Faixa = margem de erro agregada'));
+  }
+
+  return criarEl('p', { className: 've-bar-legend' }, itens);
 }
 
-function criarBarraSegmentada(candidato: CandidatoEstimado, espectro: Espectro): HTMLElement {
+/** Constrói os 3 `<span>` de segmento (estadual/complemento/sem-pesquisa) de um candidato, sem o track/wrapper. */
+function criarSegmentosBarra(candidato: CandidatoEstimado, espectro: Espectro): HTMLElement[] {
   const seg = montarSegmentosBarra(candidato);
   const corFill = tokenFillEspectro(espectro);
+
+  const segmento = (pct: number, classe: string): HTMLElement | null => {
+    if (pct <= 0) return null;
+    return criarEl('span', {
+      className: `ve-bar-seg ${classe}`,
+      attrs: { style: `width:${pct}%; --ve-cor-seg:${corFill};` },
+    });
+  };
+
+  return [
+    segmento(seg.pctEstadual, 've-bar-seg--estadual'),
+    segmento(seg.pctComplemento, 've-bar-seg--complemento'),
+    segmento(seg.pctSemPesquisa, 've-bar-seg--sem-pesquisa'),
+  ].filter((el): el is HTMLElement => el !== null);
+}
+
+/**
+ * Mini-barra de composição (100% = votos do PRÓPRIO candidato), usada como
+ * detalhe secundário de proveniência dentro do card — não compara magnitude
+ * entre candidatos (ver `criarSecaoComparacaoBarras` para o gráfico de
+ * comparação, com escala única e faixa de incerteza).
+ */
+function criarBarraSegmentada(candidato: CandidatoEstimado, espectro: Espectro): HTMLElement {
+  const seg = montarSegmentosBarra(candidato);
 
   const track = criarEl('div', {
     className: 've-bar-track',
     attrs: {
       role: 'img',
       'aria-label':
-        `Composição dos votos estimados de ${candidato.candidato}: ` +
+        `Composição da fonte dos votos estimados de ${candidato.candidato} (não é uma comparação de magnitude): ` +
         `${formatarPct(seg.pctEstadual)} de UFs com pesquisa estadual, ` +
         `${formatarPct(seg.pctComplemento)} de complemento nacional em UFs com pesquisa, ` +
         `${formatarPct(seg.pctSemPesquisa)} de UFs sem pesquisa estadual.`,
@@ -190,20 +229,7 @@ function criarBarraSegmentada(candidato: CandidatoEstimado, espectro: Espectro):
     return track;
   }
 
-  const segmento = (pct: number, classe: string): HTMLElement | null => {
-    if (pct <= 0) return null;
-    return criarEl('span', {
-      className: `ve-bar-seg ${classe}`,
-      attrs: { style: `width:${pct}%; --ve-cor-seg:${corFill};` },
-    });
-  };
-
-  const partes = [
-    segmento(seg.pctEstadual, 've-bar-seg--estadual'),
-    segmento(seg.pctComplemento, 've-bar-seg--complemento'),
-    segmento(seg.pctSemPesquisa, 've-bar-seg--sem-pesquisa'),
-  ].filter((el): el is HTMLElement => el !== null);
-  track.append(...partes);
+  track.append(...criarSegmentosBarra(candidato, espectro));
   return track;
 }
 
@@ -217,14 +243,21 @@ function criarCardCandidato(candidato: CandidatoEstimado, partidos: readonly Par
     ]),
     criarEl('p', { className: 've-card__votos', texto: formatarMilhoes(candidato.votos) }),
     criarEl('p', { className: 've-card__pct', texto: `${formatarPct(candidato.pctDoEleitorado)} do eleitorado` }),
+    criarEl('p', { className: 've-card__composicao-rotulo', texto: 'Proveniência dos dados (não comparável em tamanho):' }),
     criarBarraSegmentada(candidato, espectro),
   ]);
 }
 
 function criarSecaoCards(e: EstimativaVotos, partidos: readonly Partido[]): HTMLElement {
   const secao = criarEl('section', { attrs: { 'aria-labelledby': 've-cards-heading' } }, [
-    criarEl('h2', { className: 've-section-title', texto: 'Por candidato', attrs: { id: 've-cards-heading' } }),
-    criarLegendaBarra(),
+    criarEl('h2', { className: 've-section-title', texto: 'Detalhe por candidato', attrs: { id: 've-cards-heading' } }),
+    criarEl('p', {
+      className: 've-meta',
+      texto:
+        'Cada card detalha de onde vieram os votos estimados de um candidato — a barra abaixo do card mostra só a ' +
+        'proveniência (sempre 100% do próprio candidato), não a magnitude: para comparar candidatos entre si, veja ' +
+        'o gráfico "Comparação entre candidatos" acima.',
+    }),
   ]);
 
   const grid = criarEl(
@@ -234,6 +267,111 @@ function criarSecaoCards(e: EstimativaVotos, partidos: readonly Partido[]): HTML
   );
   secao.append(grid);
   return secao;
+}
+
+/* ============ Gráfico de comparação: barras proporcionais + faixa de incerteza ============ */
+
+export interface EscalaBarraComparacao {
+  /** % (0..100, relativo à maior `votosMax` entre os candidatos) do comprimento da barra sólida (`votos`). */
+  readonly pctBarra: number;
+  /** % (0..100) da posição do extremo inferior da faixa de incerteza (`votosMin`). */
+  readonly pctMin: number;
+  /** % (0..100) da posição do extremo superior da faixa de incerteza (`votosMax`). */
+  readonly pctMax: number;
+}
+
+/**
+ * Calcula, para uma escala única compartilhada por todos os candidatos
+ * (0 até `maiorVotosMax`), as posições (0..100%) do comprimento da barra e
+ * dos dois extremos da faixa de incerteza. `maiorVotosMax` deve ser o maior
+ * `votosMax` entre todos os candidatos exibidos, para que a faixa de
+ * ninguém extrapole a escala.
+ */
+export function calcularEscalaBarraComparacao(
+  candidato: Pick<CandidatoEstimado, 'votos' | 'votosMin' | 'votosMax'>,
+  maiorVotosMax: number,
+): EscalaBarraComparacao {
+  if (!(maiorVotosMax > 0)) {
+    return { pctBarra: 0, pctMin: 0, pctMax: 0 };
+  }
+  return {
+    pctBarra: (candidato.votos / maiorVotosMax) * 100,
+    pctMin: (candidato.votosMin / maiorVotosMax) * 100,
+    pctMax: (candidato.votosMax / maiorVotosMax) * 100,
+  };
+}
+
+function criarLinhaComparacaoBarra(
+  candidato: CandidatoEstimado,
+  partidos: readonly Partido[],
+  maiorVotosMax: number,
+): HTMLElement {
+  const espectro = resolverEspectro(candidato.partido, partidos);
+  const seg = montarSegmentosBarra(candidato);
+  const escala = calcularEscalaBarraComparacao(candidato, maiorVotosMax);
+
+  const rotuloAria =
+    `${candidato.candidato}: ${formatarMilhoes(candidato.votos)} de votos estimados, ` +
+    `${formatarPct(candidato.pctDoEleitorado)} do eleitorado. ` +
+    `Faixa de incerteza (margem de erro agregada): ${formatarMilhoes(candidato.votosMin)} a ` +
+    `${formatarMilhoes(candidato.votosMax)}. Composição: ${formatarPct(seg.pctEstadual)} de UFs com pesquisa ` +
+    `estadual, ${formatarPct(seg.pctComplemento)} de complemento nacional em UFs com pesquisa, ` +
+    `${formatarPct(seg.pctSemPesquisa)} de UFs sem pesquisa estadual.`;
+
+  const barra = criarEl('div', {
+    className: 've-chart-bar',
+    attrs: { style: `width:${escala.pctBarra}%` },
+  });
+  if (candidato.votos > 0) {
+    barra.append(...criarSegmentosBarra(candidato, espectro));
+  } else {
+    barra.classList.add('ve-chart-bar--sem-dados');
+  }
+
+  const whisker = criarEl('div', {
+    className: 've-chart-whisker',
+    attrs: { style: `left:${escala.pctMin}%; width:${Math.max(0, escala.pctMax - escala.pctMin)}%` },
+  });
+
+  const track = criarEl(
+    'div',
+    { className: 've-chart-track', attrs: { role: 'img', 'aria-label': rotuloAria } },
+    [barra, whisker],
+  );
+
+  const valor = criarEl('span', {
+    className: 've-chart-value',
+    texto: `${formatarMilhoes(candidato.votos)} · ${formatarPct(candidato.pctDoEleitorado)}`,
+  });
+
+  return criarEl('div', { className: 've-chart-row' }, [
+    criarEl('div', { className: 've-chart-row__head' }, [
+      criarBadgePartido(candidato.partido, espectro),
+      criarEl('span', { className: 've-chart-row__nome', texto: candidato.candidato, attrs: { title: candidato.candidato } }),
+    ]),
+    criarEl('div', { className: 've-chart-row__bar-line' }, [track, valor]),
+  ]);
+}
+
+function criarSecaoComparacaoBarras(e: EstimativaVotos, partidos: readonly Partido[]): HTMLElement {
+  const candidatos = e.candidatos; // já ordenados por votos desc.
+  const maiorVotosMax = candidatos.reduce((max, c) => Math.max(max, c.votosMax), 0);
+
+  const chart = criarEl(
+    'div',
+    { className: 've-chart' },
+    candidatos.map((c) => criarLinhaComparacaoBarra(c, partidos, maiorVotosMax)),
+  );
+
+  return criarEl('section', { attrs: { 'aria-labelledby': 've-chart-heading' } }, [
+    criarEl('h2', {
+      className: 've-section-title',
+      texto: 'Comparação entre candidatos',
+      attrs: { id: 've-chart-heading' },
+    }),
+    criarLegendaBarra(true),
+    chart,
+  ]);
 }
 
 /* ============ Comparação: agregação estadual × média nacional ============ */
@@ -263,7 +401,7 @@ function criarSecaoComparacao(e: EstimativaVotos): HTMLElement {
       ]);
     });
 
-  const wrap = criarEl('div', { className: 've-table-wrap' }, [
+  const wrap = criarEl('div', { className: 've-table-wrap ve-stack-table-wrap' }, [
     criarEl('table', { className: 've-table' }, [
       criarEl('thead', {}, [
         criarEl('tr', {}, [
@@ -284,6 +422,12 @@ function criarSecaoComparacao(e: EstimativaVotos): HTMLElement {
       attrs: { id: 've-compare-heading' },
     }),
     wrap,
+    criarEl('p', {
+      className: 've-meta',
+      texto:
+        'Diferença calculada sobre os valores exatos (não arredondados) de cada percentual — por isso pode ' +
+        'divergir em até 0,1 pt da subtração direta das duas colunas ao lado, já arredondadas para exibição.',
+    }),
   ]);
 }
 
@@ -291,8 +435,10 @@ function criarSecaoComparacao(e: EstimativaVotos): HTMLElement {
 
 function criarLinhaNaoAtribuidos(e: EstimativaVotos): HTMLElement {
   return criarEl('p', { className: 've-nao-atribuidos' }, [
-    criarEl('strong', { texto: 'Não atribuídos (brancos, nulos, indecisos, outros): ' }),
-    `${formatarMilhoes(e.naoAtribuidos.votos)} — ${formatarPct(e.naoAtribuidos.pct)} do eleitorado.`,
+    criarEl('strong', { texto: 'Não atribuídos (brancos, nulos, indecisos e candidatos fora do ranking): ' }),
+    `${formatarMilhoes(e.naoAtribuidos.votos)} — ${formatarPct(e.naoAtribuidos.pct)} do eleitorado. `,
+    'Inclui a abstenção: os percentuais das pesquisas são aplicados sobre o eleitorado apto, não sobre o ' +
+      'comparecimento (ver "Método em uma frase" no topo da página).',
   ]);
 }
 
@@ -347,7 +493,7 @@ function criarLinhaUf(uf: UfOrigemVotos): HTMLElement {
 function criarSecaoPorUf(e: EstimativaVotos): HTMLElement {
   const linhas = [...e.porUf].sort((a, b) => b.eleitores - a.eleitores).map(criarLinhaUf);
 
-  const wrap = criarEl('div', { className: 've-table-wrap ve-uf-table-wrap' }, [
+  const wrap = criarEl('div', { className: 've-table-wrap ve-stack-table-wrap ve-uf-table-wrap' }, [
     criarEl('table', { className: 've-table' }, [
       criarEl('thead', {}, [
         criarEl(

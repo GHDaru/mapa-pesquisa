@@ -302,4 +302,82 @@ describe('domain/vote-estimate', () => {
       expect(estimativa.ufsNormalizadas).toEqual([]);
     });
   });
+
+  describe('votosMin/votosMax (faixa de incerteza)', () => {
+    // NACIONAL_MARGEM3: nenhuma pesquisa informa `margem`, então o agregado
+    // usa o padrão MARGEM_REFERENCIA_PADRAO = 3.0 pontos.
+    const NACIONAL_MARGEM3 = NACIONAL;
+
+    const SP_MARGEM2 = agregarPesquisas(
+      [
+        pesquisa({
+          uf: 'SP',
+          margem: 2,
+          resultados: [
+            { candidato: 'Candidato A', partido: 'PT', pct: 60 },
+            { candidato: 'Candidato B', partido: 'PL', pct: 30 },
+            { candidato: 'Brancos/nulos', partido: null, pct: 10 },
+          ],
+        }),
+      ],
+      {},
+      HOJE,
+    )!;
+
+    it('UF sem pesquisa estadual propaga a margem do agregado nacional', () => {
+      const porUf: EstimativaVotosUfEntrada[] = [{ uf: 'RJ', eleitores: 1_000_000, agregado: null }];
+      const estimativa = estimarVotos(porUf, NACIONAL_MARGEM3);
+      const a = estimativa.candidatos.find((c) => c.candidato === 'Candidato A')!;
+      const margemEsperada = 1_000_000 * (NACIONAL_MARGEM3.margemReferencia / 100);
+      expect(a.votosMax - a.votos).toBeCloseTo(margemEsperada, 6);
+      expect(a.votos - a.votosMin).toBeCloseTo(margemEsperada, 6);
+    });
+
+    it('UF com pesquisa estadual propaga a margem do agregado estadual, não a do nacional', () => {
+      const porUf: EstimativaVotosUfEntrada[] = [{ uf: 'SP', eleitores: 1_000_000, agregado: SP_MARGEM2 }];
+      const estimativa = estimarVotos(porUf, NACIONAL_MARGEM3);
+      const a = estimativa.candidatos.find((c) => c.candidato === 'Candidato A')!;
+      const margemEsperada = 1_000_000 * (2 / 100);
+      expect(a.votosMax - a.votos).toBeCloseTo(margemEsperada, 6);
+      expect(a.votos - a.votosMin).toBeCloseTo(margemEsperada, 6);
+      // A margem estadual (2) é diferente da nacional (padrão 3) — se o
+      // código usasse a margem errada, este teste falharia.
+      expect(margemEsperada).not.toBeCloseTo(1_000_000 * (3 / 100), 6);
+    });
+
+    it('soma a margem de várias UFs para o mesmo candidato', () => {
+      const porUf: EstimativaVotosUfEntrada[] = [
+        { uf: 'SP', eleitores: 1_000_000, agregado: SP_MARGEM2 }, // margem 2% de 1_000_000 = 20_000
+        { uf: 'RJ', eleitores: 500_000, agregado: null }, // sem pesquisa: margem nacional 3% de 500_000 = 15_000
+      ];
+      const estimativa = estimarVotos(porUf, NACIONAL_MARGEM3);
+      const a = estimativa.candidatos.find((c) => c.candidato === 'Candidato A')!;
+      expect(a.votosMax - a.votos).toBeCloseTo(20_000 + 15_000, 6);
+      expect(a.votos - a.votosMin).toBeCloseTo(20_000 + 15_000, 6);
+    });
+
+    it('votosMin nunca fica negativo e votosMax nunca fica abaixo de votos', () => {
+      const porUf: EstimativaVotosUfEntrada[] = [{ uf: 'SP', eleitores: 1_000_000, agregado: SP_MARGEM2 }];
+      const estimativa = estimarVotos(porUf, NACIONAL_MARGEM3);
+      for (const c of estimativa.candidatos) {
+        expect(c.votosMin).toBeGreaterThanOrEqual(0);
+        expect(c.votosMin).toBeLessThanOrEqual(c.votos);
+        expect(c.votosMax).toBeGreaterThanOrEqual(c.votos);
+      }
+    });
+
+    it('candidato suprido por complemento nacional usa a margem do agregado nacional, mesmo em UF com pesquisa estadual', () => {
+      const porUf: EstimativaVotosUfEntrada[] = [{ uf: 'MG', eleitores: 1_000_000, agregado: MG_AB }];
+      const estimativa = estimarVotos(porUf, NACIONAL_ABC);
+      const c = estimativa.candidatos.find((cand) => cand.candidato === 'Candidato C')!;
+      const margemEsperada = 1_000_000 * (NACIONAL_ABC.margemReferencia / 100);
+      expect(c.votosMax - c.votos).toBeCloseTo(margemEsperada, 6);
+      expect(c.votos - c.votosMin).toBeCloseTo(margemEsperada, 6);
+    });
+
+    it('retorna votosMin/votosMax vazios (0) quando porUf está vazio', () => {
+      const estimativa = estimarVotos([], NACIONAL_MARGEM3);
+      expect(estimativa.candidatos).toEqual([]);
+    });
+  });
 });
