@@ -202,36 +202,6 @@ function criarSegmentosBarra(candidato: CandidatoEstimado, espectro: Espectro): 
   ].filter((el): el is HTMLElement => el !== null);
 }
 
-/**
- * Mini-barra de composição (100% = votos do PRÓPRIO candidato), usada como
- * detalhe secundário de proveniência dentro do card — não compara magnitude
- * entre candidatos (ver `criarSecaoComparacaoBarras` para o gráfico de
- * comparação, com escala única e faixa de incerteza).
- */
-function criarBarraSegmentada(candidato: CandidatoEstimado, espectro: Espectro): HTMLElement {
-  const seg = montarSegmentosBarra(candidato);
-
-  const track = criarEl('div', {
-    className: 've-bar-track',
-    attrs: {
-      role: 'img',
-      'aria-label':
-        `Composição da fonte dos votos estimados de ${candidato.candidato} (não é uma comparação de magnitude): ` +
-        `${formatarPct(seg.pctEstadual)} de UFs com pesquisa estadual, ` +
-        `${formatarPct(seg.pctComplemento)} de complemento nacional em UFs com pesquisa, ` +
-        `${formatarPct(seg.pctSemPesquisa)} de UFs sem pesquisa estadual.`,
-    },
-  });
-
-  if (candidato.votos <= 0) {
-    track.append(criarEl('span', { className: 've-bar-seg ve-bar-seg--sem-dados' }));
-    return track;
-  }
-
-  track.append(...criarSegmentosBarra(candidato, espectro));
-  return track;
-}
-
 /* ============ Gráfico de comparação: barras proporcionais + faixa de incerteza ============ */
 
 export interface EscalaBarraComparacao {
