@@ -1,0 +1,92 @@
+{
+  "consoleErrors": {
+    "mapa__1280x800__dark": [
+      "Failed to load resource: net::ERR_CONNECTION_RESET",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "mapa__400x800__dark": [
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    "mapa-mg__1280x800__dark": [
+      "Failed to load resource: net::ERR_CONNECTION_RESET",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "mapa-mg__400x800__dark": [
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    "presidente__1280x800__dark": [
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    "presidente__400x800__dark": [
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    "senado__1280x800__dark": [
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    "senado__400x800__dark": [
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    "partidos__1280x800__dark": [
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    "partidos__400x800__dark": [
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    "mapa__1280x800__light": [
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ],
+    "senado__1280x800__light": [
+      "Failed to load resource: net::ERR_CONNECTION_RESET"
+    ]
+  },
+  "scrollWidths": {
+    "mapa__1280x800__dark": {
+      "scrollWidth": 1280,
+      "viewportWidth": 1280
+    },
+    "mapa__400x800__dark": {
+      "scrollWidth": 400,
+      "viewportWidth": 400
+    },
+    "mapa-mg__1280x800__dark": {
+      "scrollWidth": 1280,
+      "viewportWidth": 1280
+    },
+    "mapa-mg__400x800__dark": {
+      "scrollWidth": 400,
+      "viewportWidth": 400
+    },
+    "presidente__1280x800__dark": {
+      "scrollWidth": 1280,
+      "viewportWidth": 1280
+    },
+    "presidente__400x800__dark": {
+      "scrollWidth": 400,
+      "viewportWidth": 400
+    },
+    "senado__1280x800__dark": {
+      "scrollWidth": 1280,
+      "viewportWidth": 1280
+    },
+    "senado__400x800__dark": {
+      "scrollWidth": 400,
+      "viewportWidth": 400
+    },
+    "partidos__1280x800__dark": {
+      "scrollWidth": 1280,
+      "viewportWidth": 1280
+    },
+    "partidos__400x800__dark": {
+      "scrollWidth": 400,
+      "viewportWidth": 400
+    },
+    "mapa__1280x800__light": {
+      "scrollWidth": 1280,
+      "viewportWidth": 1280
+    },
+    "senado__1280x800__light": {
+      "scrollWidth": 1280,
+      "viewportWidth": 1280
+    }
+  }
+}
