@@ -1,0 +1,175 @@
+[
+  {
+    "id": "2026-09-04-quaest-ce-governador-t1",
+    "uf": "CE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "CE-01149/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-31",
+    "dataFim": "2026-09-03",
+    "publicadoEm": "2026-09-04",
+    "amostra": 900,
+    "margem": 3.0,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "O Povo / Diário do Nordeste", "url": "https://www.opovo.com.br/noticias/politica/eleicoes/2026/09/04/pesquisa-quaest-para-governador-do-ceara-traz-ciro-com-45-e-elmano-com-34.html" },
+    "resultados": [
+      { "candidato": "Ciro Gomes", "partido": "PSDB", "pct": 45.0 },
+      { "candidato": "Elmano de Freitas", "partido": "PT", "pct": 34.0 }
+    ],
+    "observacao": "Atualiza com percentuais a mesma pesquisa (registro CE-01149/2026) já listada em polls-governador-norte-nordeste.json sem percentuais. Demais candidatos somam parcelas pequenas (ex.: Delegado Huggo 1%)."
+  },
+  {
+    "id": "2026-09-04-atlasintel-ce-governador-t1",
+    "uf": "CE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "CE-02357/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-28",
+    "dataFim": "2026-09-02",
+    "publicadoEm": "2026-09-04",
+    "amostra": 1834,
+    "margem": 2.0,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "CartaCapital", "url": "https://www.cartacapital.com.br/politica/atlasintel-ciro-tem-48-no-primeiro-turno-elmano-pontua-45/" },
+    "resultados": [
+      { "candidato": "Ciro Gomes", "partido": "PSDB", "pct": 48.4 },
+      { "candidato": "Elmano de Freitas", "partido": "PT", "pct": 45.8 }
+    ],
+    "observacao": "Registro TSE distinto do Quaest (CE-01149/2026); data de divulgação divergiu entre fontes (3 ou 4/set/2026), aqui adotado 4/9 por ser a data mais citada."
+  },
+
+  {
+    "id": "2026-09-08-anova-pb-governador-t1",
+    "uf": "PB",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Instituto Anova",
+    "registroTSE": "PB-01471/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-03",
+    "dataFim": "2026-09-05",
+    "publicadoEm": "2026-09-08",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "ND+ (ndmais.com.br)", "url": "https://ndmais.com.br/politica/pesquisa-anova-lucas-ribeiro-dispara-e-abre-vantagem-na-disputa-pelo-governo-da-paraiba/" },
+    "resultados": [
+      { "candidato": "Lucas Ribeiro", "partido": "PP", "pct": 43.4 },
+      { "candidato": "Cícero Lucena", "partido": "MDB", "pct": 18.2 },
+      { "candidato": "Efraim Filho", "partido": "PL", "pct": 12.1 }
+    ],
+    "observacao": "Também registrada como BR-02714/2026 no TSE; Lucas Ribeiro é o atual governador e concorre à reeleição."
+  },
+  {
+    "id": "2026-09-03-atlasintel-pb-governador-t1",
+    "uf": "PB",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "PB-01118/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-28",
+    "dataFim": "2026-09-02",
+    "publicadoEm": "2026-09-03",
+    "amostra": 1207,
+    "margem": 3.0,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Diário do Grande ABC / Terra", "url": "https://www.dgabc.com.br/Noticia/4345244/atlas-lucas-ribeiro-tem-42-2-das-intencoes-de-voto-ao-governo-da-pb-efraim-30-9-" },
+    "resultados": [
+      { "candidato": "Lucas Ribeiro", "partido": "PP", "pct": 42.4 },
+      { "candidato": "Efraim Filho", "partido": "PL", "pct": 30.9 },
+      { "candidato": "Cícero Lucena", "partido": "MDB", "pct": 19.8 }
+    ],
+    "observacao": "Atualiza com percentuais a mesma pesquisa (registro PB-01118/2026) já listada em polls-governador-norte-nordeste.json sem percentuais; o PDF original divulgado pela Poder360 estava embargado, dados obtidos via cobertura de outros veículos."
+  },
+
+  {
+    "id": "2026-09-09-realtimebigdata-ba-governador-t1",
+    "uf": "BA",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BA-01568/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-04",
+    "dataFim": "2026-09-08",
+    "publicadoEm": "2026-09-09",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Exame", "url": "https://exame.com/brasil/real-time-big-data-jeronimo-tem-45-e-acm-neto-44-no-1o-turno-na-bahia/" },
+    "resultados": [
+      { "candidato": "Jerônimo Rodrigues", "partido": "PT", "pct": 45.0 },
+      { "candidato": "ACM Neto", "partido": "União Brasil", "pct": 44.0 }
+    ],
+    "observacao": "Atualiza com percentuais a mesma pesquisa (registro BA-01568/2026) já listada em polls-governador-norte-nordeste.json sem percentuais; diferença de 1 ponto está dentro da margem de erro (empate técnico)."
+  },
+  {
+    "id": "2026-08-25-paranapesquisas-ba-governador-t1",
+    "uf": "BA",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "BA-07628/2026",
+    "contratante": "S2R Comunicação Ltda / Bahia Notícias",
+    "dataInicio": "2026-08-23",
+    "dataFim": "2026-08-25",
+    "publicadoEm": null,
+    "amostra": 1400,
+    "margem": 2.7,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Blog Nossa Voz", "url": "https://blognossavoz.com.br/bahia-acm-tem-486-e-jeronimo-401-no-1o-turno-diz-parana-pesquisas/" },
+    "resultados": [
+      { "candidato": "ACM Neto", "partido": "União Brasil", "pct": 48.6 },
+      { "candidato": "Jerônimo Rodrigues", "partido": "PT", "pct": 40.1 }
+    ],
+    "observacao": "Atualiza com percentuais a mesma pesquisa (registro BA-07628/2026) já listada em polls-governador-norte-nordeste.json sem percentuais; data exata de publicação não confirmada (fontes secundárias datam entre 27 e 29/08/2026)."
+  },
+
+  {
+    "id": "2026-09-11-atlasintel-rr-governador-t1",
+    "uf": "RR",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "RR-07280/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-04",
+    "dataFim": "2026-09-09",
+    "publicadoEm": "2026-09-11",
+    "amostra": 1200,
+    "margem": 3.0,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Roraima1", "url": "https://roraima1.com.br/atlasintel-aponta-arthur-henrique-com-607-na-disputa-pelo-governo-de-roraima/" },
+    "resultados": [
+      { "candidato": "Arthur Henrique", "partido": "PL", "pct": 60.7 },
+      { "candidato": "Soldado Sampaio", "partido": "Republicanos", "pct": 32.4 }
+    ],
+    "observacao": "Atualiza com percentuais a mesma pesquisa (registro RR-07280/2026) já listada em polls-governador-norte-nordeste.json sem percentuais; Soldado Sampaio é o atual governador (assumiu após inelegibilidade de Antonio Denarium) e concorre à reeleição."
+  },
+  {
+    "id": "2026-08-27-quaest-rr-governador-t1",
+    "uf": "RR",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "RR-04765/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-23",
+    "dataFim": "2026-08-26",
+    "publicadoEm": "2026-08-27",
+    "amostra": 804,
+    "margem": 3.0,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Poder360", "url": "https://www.poder360.com.br/poder-eleicoes-2026/arthur-henrique-tem-60-no-1o-turno-em-roraima-diz-quaest/" },
+    "resultados": [
+      { "candidato": "Arthur Henrique", "partido": "PL", "pct": 60.0 },
+      { "candidato": "Soldado Sampaio", "partido": "Republicanos", "pct": 27.0 }
+    ],
+    "observacao": "Atualiza com percentuais a mesma pesquisa (registro RR-04765/2026) já listada em polls-governador-norte-nordeste.json sem percentuais."
+  }
+]
