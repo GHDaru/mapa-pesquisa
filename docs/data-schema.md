@@ -49,3 +49,14 @@ Uma entrada por cadeira (81). Cadeiras eleitas em 2022 têm `mandatoFim: 2031` e
 ]
 ```
 Para as 54 cadeiras em disputa, também preencher `senador` e `partido` atuais (ocupante hoje), pois o mapa "atual" precisa deles.
+
+## data/electorate.json (eleitorado por UF)
+```json
+[
+  { "uf": "SP", "eleitores": 34667793, "referencia": "2026-07", "fonte": { "nome": "TSE — Estatísticas do eleitorado", "url": "https://..." } }
+]
+```
+27 entradas, uma por UF. `eleitores` é o número de eleitores aptos na referência mais recente do TSE para 2026 (ou, se indisponível, a mais recente publicada, com a data em `referencia`).
+
+## Pesquisas presidenciais por estado
+Mesmo esquema de `data/polls.json`, com `cargo: "presidente"` e `uf` igual à sigla do estado (não `BR`). Turno 1 e 2. Ficam em `data/research/polls-presidente-estados-*.json`.
