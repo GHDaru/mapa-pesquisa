@@ -243,14 +243,14 @@ describe('use-cases/getPresidentialAggregate', () => {
     const { turno2 } = casos.getPresidentialAggregate();
     expect(turno2).toHaveLength(2);
     const cenarios = turno2.map((c) => c.cenario).sort();
-    expect(cenarios).toEqual(['A x B', 'A x C']);
+    expect(cenarios).toEqual(['2º turno: Candidato A x Candidato B', '2º turno: Candidato A x Candidato C']);
   });
 
   it('cada cenário do 2º turno tem seu próprio líder', () => {
     const { turno2 } = casos.getPresidentialAggregate();
-    const ab = turno2.find((c) => c.cenario === 'A x B')!;
+    const ab = turno2.find((c) => c.cenario === '2º turno: Candidato A x Candidato B')!;
     expect(ab.agregado.lider?.pct).toBeCloseTo(52, 6);
-    const ac = turno2.find((c) => c.cenario === 'A x C')!;
+    const ac = turno2.find((c) => c.cenario === '2º turno: Candidato A x Candidato C')!;
     expect(ac.agregado.lider?.pct).toBeCloseTo(55, 6);
   });
 });
