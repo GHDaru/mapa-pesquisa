@@ -244,7 +244,7 @@
     "turno": 1,
     "instituto": "Instituto Brasil Dados",
     "registroTSE": "RO-08019/2026",
-    "contratante": null,
+    "contratante": "Brasil Dados Inteligência em Dados e Soluções e Pesquisas LTDA",
     "dataInicio": "2026-08-31",
     "dataFim": "2026-09-03",
     "publicadoEm": null,
@@ -253,11 +253,11 @@
     "cenario": "estimulada, primeiro turno",
     "fonte": { "nome": "Agência Rondônia", "url": "https://www.agenciarondonia.com/2026/09/marcos-rogerio-lidera-pesquisa-do.html" },
     "resultados": [
-      { "candidato": "Marcos Rogério", "partido": "PL", "pct": null },
-      { "candidato": "Adailton Fúria", "partido": "PSD", "pct": null },
-      { "candidato": "Hildon Chaves", "partido": "União Brasil", "pct": null }
+      { "candidato": "Marcos Rogério", "partido": "PL", "pct": 36.0 },
+      { "candidato": "Adailton Fúria", "partido": "PSD", "pct": 27.0 },
+      { "candidato": "Hildon Chaves", "partido": "União Brasil", "pct": 11.0 }
     ],
-    "observacao": "Fonte informou apenas a liderança de Marcos Rogério e o índice de indecisos (27%), sem detalhar percentuais individuais dos demais."
+    "observacao": "Mais recente que a pesquisa Quaest de 25/08/2026 (RO-05711/2026) atualmente tratada como última do estado — mesmo líder (Marcos Rogério), mas vantagem menor (9 pontos vs. 3 pontos antes). Data exata de publicação não confirmada nas fontes desta sessão (buscas indicam 'há 2-3 dias' a partir de 13/09/2026, i.e. provavelmente 10 ou 11/09/2026); usar null em publicadoEm até confirmação."
   },
   {
     "id": "2026-08-25-quaest-ro-governador-t1",
@@ -849,7 +849,7 @@
     "contratante": null,
     "dataInicio": "2026-09-05",
     "dataFim": "2026-09-09",
-    "publicadoEm": null,
+    "publicadoEm": "2026-09-10",
     "amostra": 1600,
     "margem": 2.0,
     "cenario": "estimulada, primeiro turno",
@@ -914,19 +914,19 @@
     "instituto": "AtlasIntel",
     "registroTSE": "SE-03800/2026",
     "contratante": null,
-    "dataInicio": null,
-    "dataFim": null,
+    "dataInicio": "2026-09-04",
+    "dataFim": "2026-09-09",
     "publicadoEm": "2026-09-10",
-    "amostra": null,
+    "amostra": 1260,
     "margem": 2.0,
     "cenario": "estimulada, primeiro turno",
     "fonte": { "nome": "Poder360", "url": "https://www.poder360.com.br/poder-eleicoes-2026/fabio-mitidieri-tem-413-contra-342-de-valmir-em-sergipe/" },
     "resultados": [
       { "candidato": "Fábio Mitidieri", "partido": "PSD", "pct": 41.3 },
       { "candidato": "Valmir de Francisquinho", "partido": "Republicanos", "pct": 34.2 },
-      { "candidato": "Ricardo Marques", "partido": null, "pct": 14.4 }
+      { "candidato": "Ricardo Marques", "partido": "PL", "pct": 14.4 }
     ],
-    "observacao": "Datas de campo e amostra não confirmadas na fonte consultada; partido de Ricardo Marques não confirmado (uma fonte associa a sigla Republicanos a Valmir de Francisquinho). 2º turno simulado: 47% x 43%."
+    "observacao": "2º turno simulado: 47% x 43%."
   },
   {
     "id": "2026-09-realtimebigdata-se-governador-t1",

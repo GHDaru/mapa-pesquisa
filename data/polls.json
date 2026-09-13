@@ -143,43 +143,6 @@
     "observacao": "Cenário de 2º turno simulado: Lyra 51% x Campos 44%."
   },
   {
-    "id": "2026-09-10-atlasintel-se-governador-t1",
-    "uf": "SE",
-    "cargo": "governador",
-    "turno": 1,
-    "instituto": "AtlasIntel",
-    "registroTSE": "SE-03800/2026",
-    "contratante": null,
-    "dataInicio": null,
-    "dataFim": null,
-    "publicadoEm": "2026-09-10",
-    "amostra": null,
-    "margem": 2,
-    "cenario": "estimulada, primeiro turno",
-    "fonte": {
-      "nome": "Poder360",
-      "url": "https://www.poder360.com.br/poder-eleicoes-2026/fabio-mitidieri-tem-413-contra-342-de-valmir-em-sergipe/"
-    },
-    "resultados": [
-      {
-        "candidato": "Fábio Mitidieri",
-        "partido": "PSD",
-        "pct": 41.3
-      },
-      {
-        "candidato": "Valmir de Francisquinho",
-        "partido": "Republicanos",
-        "pct": 34.2
-      },
-      {
-        "candidato": "Ricardo Marques",
-        "partido": null,
-        "pct": 14.4
-      }
-    ],
-    "observacao": "Datas de campo e amostra não confirmadas na fonte consultada; partido de Ricardo Marques não confirmado (uma fonte associa a sigla Republicanos a Valmir de Francisquinho). 2º turno simulado: 47% x 43%."
-  },
-  {
     "id": "2026-09-11-datafolha-sp-governador-t1",
     "uf": "SP",
     "cargo": "governador",
@@ -757,7 +720,7 @@
     "contratante": null,
     "dataInicio": "2026-09-05",
     "dataFim": "2026-09-09",
-    "publicadoEm": null,
+    "publicadoEm": "2026-09-10",
     "amostra": 1600,
     "margem": 2,
     "cenario": "estimulada, primeiro turno",
@@ -783,6 +746,43 @@
       }
     ],
     "observacao": "Mesmo levantamento aponta desaprovação de 62% à governadora Fátima Bezerra (PT), que não concorre à reeleição (limite de dois mandatos); Cadu Xavier é o candidato apoiado pelo governo estadual."
+  },
+  {
+    "id": "2026-09-10-atlasintel-se-governador-t1",
+    "uf": "SE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "SE-03800/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-04",
+    "dataFim": "2026-09-09",
+    "publicadoEm": "2026-09-10",
+    "amostra": 1260,
+    "margem": 2,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/fabio-mitidieri-tem-413-contra-342-de-valmir-em-sergipe/"
+    },
+    "resultados": [
+      {
+        "candidato": "Fábio Mitidieri",
+        "partido": "PSD",
+        "pct": 41.3
+      },
+      {
+        "candidato": "Valmir de Francisquinho",
+        "partido": "Republicanos",
+        "pct": 34.2
+      },
+      {
+        "candidato": "Ricardo Marques",
+        "partido": "PL",
+        "pct": 14.4
+      }
+    ],
+    "observacao": "2º turno simulado: 47% x 43%."
   },
   {
     "id": "2026-09-10-real-time-big-data-ma-governador-t1",
@@ -875,7 +875,7 @@
     "turno": 1,
     "instituto": "AtlasIntel",
     "registroTSE": "SC-02036/2026",
-    "contratante": "AtlasIntel (autofinanciada)",
+    "contratante": "TV O Estado Florianópolis Ltda. (Grupo ND)",
     "dataInicio": "2026-09-04",
     "dataFim": "2026-09-09",
     "publicadoEm": "2026-09-09",
@@ -954,7 +954,7 @@
     "dataFim": "2026-09-09",
     "publicadoEm": "2026-09-10",
     "amostra": 1600,
-    "margem": null,
+    "margem": 2,
     "cenario": "estimulada, 1º turno",
     "fonte": {
       "nome": "Gazeta do Povo",
@@ -972,7 +972,7 @@
         "pct": 26
       }
     ],
-    "observacao": "Margem de erro não informada no resumo consultado; percentual de Fábio Trad estimado a partir da diferença de 16 pontos citada na matéria (não confirmado literalmente)."
+    "observacao": "26% de Fábio Trad e margem de 2 pontos foram confirmados literalmente em múltiplas fontes (Infomoney, Metrópoles)."
   },
   {
     "id": "2026-09-10-atlasintel-br-presidente-t1",
@@ -1180,7 +1180,7 @@
     "turno": 1,
     "instituto": "AtlasIntel",
     "registroTSE": "SC-02036/2026",
-    "contratante": null,
+    "contratante": "TV O Estado Florianópolis Ltda. (Grupo ND)",
     "dataInicio": "2026-09-04",
     "dataFim": "2026-09-09",
     "publicadoEm": "2026-09-10",
@@ -2696,9 +2696,14 @@
         "candidato": "Capitão Alberto Neto",
         "partido": "PL",
         "pct": 39.3
+      },
+      {
+        "candidato": "Plínio Valério",
+        "partido": "PSDB",
+        "pct": 28.9
       }
     ],
-    "observacao": "Apenas os dois primeiros colocados foram encontrados com percentual nas fontes consultadas nesta sessão; a pesquisa provavelmente testou mais candidatos (ex.: Plínio Valério) cujos percentuais não foram localizados."
+    "observacao": "Plínio Valério (PSDB) localizado com 28,9% (fonte: Exame/Fato Amazônico)."
   },
   {
     "id": "2026-09-04-quaest-ce-governador-t1",
@@ -2763,6 +2768,43 @@
       }
     ],
     "observacao": "Data de publicação confirmada na auditoria rodada 2 (divulgada sexta-feira, 04/09/2026); demais candidatos não detalhados."
+  },
+  {
+    "id": "2026-09-avulso-brasildados-ro-governador-t1",
+    "uf": "RO",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Instituto Brasil Dados",
+    "registroTSE": "RO-08019/2026",
+    "contratante": "Brasil Dados Inteligência em Dados e Soluções e Pesquisas LTDA",
+    "dataInicio": "2026-08-31",
+    "dataFim": "2026-09-03",
+    "publicadoEm": null,
+    "amostra": 1060,
+    "margem": 3,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": {
+      "nome": "Agência Rondônia",
+      "url": "https://www.agenciarondonia.com/2026/09/marcos-rogerio-lidera-pesquisa-do.html"
+    },
+    "resultados": [
+      {
+        "candidato": "Marcos Rogério",
+        "partido": "PL",
+        "pct": 36
+      },
+      {
+        "candidato": "Adailton Fúria",
+        "partido": "PSD",
+        "pct": 27
+      },
+      {
+        "candidato": "Hildon Chaves",
+        "partido": "União Brasil",
+        "pct": 11
+      }
+    ],
+    "observacao": "Mais recente que a pesquisa Quaest de 25/08/2026 (RO-05711/2026) atualmente tratada como última do estado — mesmo líder (Marcos Rogério), mas vantagem menor (9 pontos vs. 3 pontos antes). Data exata de publicação não confirmada nas fontes desta sessão (buscas indicam 'há 2-3 dias' a partir de 13/09/2026, i.e. provavelmente 10 ou 11/09/2026); usar null em publicadoEm até confirmação."
   },
   {
     "id": "2026-09-10-parana-pesquisas-pr-governador-t1",
