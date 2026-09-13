@@ -1,0 +1,142 @@
+{
+  "mapa__1280x800__dark": {
+    "scrollWidth": 1280,
+    "viewport": 1280,
+    "overflow": false
+  },
+  "mapa__1280x800__light": {
+    "scrollWidth": 1280,
+    "viewport": 1280,
+    "overflow": false
+  },
+  "mapa__400x800__dark": {
+    "scrollWidth": 400,
+    "viewport": 400,
+    "overflow": false
+  },
+  "mapa__400x800__light": {
+    "scrollWidth": 400,
+    "viewport": 400,
+    "overflow": false
+  },
+  "mapa-sp-aberto__1280x800__dark": {
+    "scrollWidth": 1280,
+    "viewport": 1280,
+    "overflow": false
+  },
+  "mapa-sp-aberto__1280x800__light": {
+    "scrollWidth": 1280,
+    "viewport": 1280,
+    "overflow": false
+  },
+  "mapa-sp-aberto__400x800__dark": {
+    "scrollWidth": 400,
+    "viewport": 400,
+    "overflow": false
+  },
+  "mapa-sp-aberto__400x800__light": {
+    "scrollWidth": 400,
+    "viewport": 400,
+    "overflow": false
+  },
+  "mapa-hover-mg__1280x800__dark": {
+    "scrollWidth": 1280,
+    "viewport": 1280,
+    "overflow": false
+  },
+  "mapa-hover-mg__1280x800__light": {
+    "scrollWidth": 1280,
+    "viewport": 1280,
+    "overflow": false
+  },
+  "mapa-hover-mg__400x800__dark": {
+    "scrollWidth": 400,
+    "viewport": 400,
+    "overflow": false
+  },
+  "mapa-hover-mg__400x800__light": {
+    "scrollWidth": 400,
+    "viewport": 400,
+    "overflow": false
+  },
+  "presidente__1280x800__dark": {
+    "scrollWidth": 1280,
+    "viewport": 1280,
+    "overflow": false
+  },
+  "presidente__1280x800__light": {
+    "scrollWidth": 1280,
+    "viewport": 1280,
+    "overflow": false
+  },
+  "presidente__400x800__dark": {
+    "scrollWidth": 1087,
+    "viewport": 400,
+    "overflow": true
+  },
+  "presidente__400x800__light": {
+    "scrollWidth": 1087,
+    "viewport": 400,
+    "overflow": true
+  },
+  "senado__1280x800__dark": {
+    "scrollWidth": 1280,
+    "viewport": 1280,
+    "overflow": false
+  },
+  "senado__1280x800__light": {
+    "scrollWidth": 1280,
+    "viewport": 1280,
+    "overflow": false
+  },
+  "senado__400x800__dark": {
+    "scrollWidth": 400,
+    "viewport": 400,
+    "overflow": false
+  },
+  "senado__400x800__light": {
+    "scrollWidth": 400,
+    "viewport": 400,
+    "overflow": false
+  },
+  "senado-composicao-atual__1280x800__dark": {
+    "scrollWidth": 1280,
+    "viewport": 1280,
+    "overflow": false
+  },
+  "senado-composicao-atual__1280x800__light": {
+    "scrollWidth": 1280,
+    "viewport": 1280,
+    "overflow": false
+  },
+  "senado-composicao-atual__400x800__dark": {
+    "scrollWidth": 400,
+    "viewport": 400,
+    "overflow": false
+  },
+  "senado-composicao-atual__400x800__light": {
+    "scrollWidth": 400,
+    "viewport": 400,
+    "overflow": false
+  },
+  "partidos__1280x800__dark": {
+    "scrollWidth": 1280,
+    "viewport": 1280,
+    "overflow": false
+  },
+  "partidos__1280x800__light": {
+    "scrollWidth": 1280,
+    "viewport": 1280,
+    "overflow": false
+  },
+  "partidos__400x800__dark": {
+    "scrollWidth": 400,
+    "viewport": 400,
+    "overflow": false
+  },
+  "partidos__400x800__light": {
+    "scrollWidth": 400,
+    "viewport": 400,
+    "overflow": false
+  }
+}
