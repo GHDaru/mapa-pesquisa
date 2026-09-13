@@ -1,3 +1,4 @@
+import { renderVoteEstimate } from './vote-estimate-panel.js';
 import '../styles/presidential-states.css';
 import brazilMapDados from '@svg-maps/brazil';
 import type { CasosDeUso, PresidencialPorEstado, PresidencialUf } from '../../../../application/use-cases/index.js';
@@ -189,10 +190,99 @@ export function renderPresidentialStates(container: HTMLElement, casos: CasosDeU
   }
   redesenharMapa();
 
-  raiz.appendChild(mapSection);
-  raiz.appendChild(criarSecaoGrade(dados, partidos, container));
+  // Abas: "Mapa e tendências" (mapa + miniaturas) e "Votos estimados" (agregação estadual × eleitorado).
+  const abas = criarAbas();
+  raiz.appendChild(abas.barra);
+
+  const painelMapa = abas.paineis[0]!;
+  painelMapa.appendChild(mapSection);
+  painelMapa.appendChild(criarSecaoGrade(dados, partidos, container));
+  raiz.appendChild(painelMapa);
+
+  const painelVotos = abas.paineis[1]!;
+  let votosRenderizado = false;
+  abas.aoSelecionar((indice) => {
+    if (indice === 1 && !votosRenderizado) {
+      renderVoteEstimate(painelVotos, casos);
+      votosRenderizado = true;
+    }
+  });
+  raiz.appendChild(painelVotos);
 
   container.appendChild(raiz);
+}
+
+interface Abas {
+  readonly barra: HTMLElement;
+  readonly paineis: readonly HTMLElement[];
+  aoSelecionar(cb: (indice: number) => void): void;
+}
+
+/** Barra de abas acessível (role=tablist, setas do teclado, aria-selected/aria-controls). */
+function criarAbas(): Abas {
+  const rotulos = ['Mapa e tendências', 'Votos estimados'] as const;
+  const barra = document.createElement('div');
+  barra.className = 'ps-tabs';
+  barra.setAttribute('role', 'tablist');
+  barra.setAttribute('aria-label', 'Visões da corrida presidencial por estado');
+  const botoes: HTMLButtonElement[] = [];
+  const paineis: HTMLElement[] = [];
+  const ouvintes: ((indice: number) => void)[] = [];
+
+  const selecionar = (indice: number): void => {
+    botoes.forEach((b, i) => {
+      const ativo = i === indice;
+      b.setAttribute('aria-selected', ativo ? 'true' : 'false');
+      b.tabIndex = ativo ? 0 : -1;
+      b.classList.toggle('ps-tab--ativa', ativo);
+      paineis[i]!.hidden = !ativo;
+    });
+    for (const cb of ouvintes) cb(indice);
+  };
+
+  rotulos.forEach((rotulo, i) => {
+    const botao = document.createElement('button');
+    botao.type = 'button';
+    botao.className = 'ps-tab';
+    botao.id = `ps-tab-${i}`;
+    botao.setAttribute('role', 'tab');
+    botao.setAttribute('aria-controls', `ps-tabpanel-${i}`);
+    botao.textContent = rotulo;
+    botao.addEventListener('click', () => selecionar(i));
+    botao.addEventListener('keydown', (ev) => {
+      if (ev.key === 'ArrowRight' || ev.key === 'ArrowLeft') {
+        ev.preventDefault();
+        const proximo = (i + (ev.key === 'ArrowRight' ? 1 : rotulos.length - 1)) % rotulos.length;
+        selecionar(proximo);
+        botoes[proximo]!.focus();
+      }
+    });
+    barra.appendChild(botao);
+    botoes.push(botao);
+
+    const painel = document.createElement('div');
+    painel.id = `ps-tabpanel-${i}`;
+    painel.className = 'ps-tabpanel';
+    painel.setAttribute('role', 'tabpanel');
+    painel.setAttribute('aria-labelledby', botao.id);
+    paineis.push(painel);
+  });
+
+  const abas: Abas = {
+    barra,
+    paineis,
+    aoSelecionar(cb) {
+      ouvintes.push(cb);
+    },
+  };
+  // Estado inicial (sem disparar ouvintes ainda registrados).
+  botoes.forEach((b, i) => {
+    b.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+    b.tabIndex = i === 0 ? 0 : -1;
+    b.classList.toggle('ps-tab--ativa', i === 0);
+    paineis[i]!.hidden = i !== 0;
+  });
+  return abas;
 }
 
 function criarCabecalho(dados: PresidencialPorEstado): HTMLElement {
