@@ -450,6 +450,113 @@ describe('use-cases/getSenateByState', () => {
   });
 });
 
+describe('use-cases/getPollsDatabase', () => {
+  it('total conta todas as pesquisas de todos os cargos/turnos', () => {
+    expect(casos.getPollsDatabase().totais.total).toBe(8);
+  });
+
+  it('porCargo separa presidente/governador/senador corretamente', () => {
+    const { porCargo } = casos.getPollsDatabase().totais;
+    expect(porCargo.presidente).toBe(4);
+    expect(porCargo.governador).toBe(3);
+    expect(porCargo.senador).toBe(1);
+  });
+
+  it('porInstituto conta pesquisas por instituto', () => {
+    const { porInstituto } = casos.getPollsDatabase().totais;
+    expect(porInstituto['Instituto Teste']).toBe(8);
+  });
+
+  it('todas as pesquisas de teste têm registro TSE', () => {
+    const { comRegistroTSE, semRegistroTSE } = casos.getPollsDatabase().totais;
+    expect(comRegistroTSE).toBe(8);
+    expect(semRegistroTSE).toBe(0);
+  });
+
+  it('ufsCobertas conta UFs distintas (inclui BR)', () => {
+    expect(casos.getPollsDatabase().totais.ufsCobertas).toBe(3);
+  });
+
+  it('institutos e ufs vêm em ordem alfabética, sem duplicatas', () => {
+    const { institutos, ufs } = casos.getPollsDatabase();
+    expect(institutos).toEqual(['Instituto Teste']);
+    expect(ufs).toEqual(['BR', 'RJ', 'SP']);
+  });
+
+  it('pesquisas vêm ordenadas por data de referência desc', () => {
+    const { pesquisas } = casos.getPollsDatabase();
+    expect(pesquisas).toHaveLength(8);
+    expect(pesquisas[0]!.id).toBe('pres-t1');
+    expect(pesquisas.at(-1)!.id).toBe('pres-sp-t1');
+  });
+});
+
+describe('use-cases/getVoteEstimate', () => {
+  it('estima votos usando pesquisa estadual de SP e o nacional como substituto em RJ', () => {
+    const estimativa = casos.getVoteEstimate();
+    expect(estimativa).not.toBeNull();
+    expect(estimativa!.ufsComPesquisa).toEqual(['SP']);
+    expect(estimativa!.ufsSemPesquisa).toEqual(['RJ']);
+
+    const a = estimativa!.candidatos.find((c) => c.candidato === 'Candidato A')!;
+    // SP: 34_000_000 * 0.41 = 13_940_000 (pesquisa estadual)
+    // RJ: 12_000_000 * 0.45 = 5_400_000 (substituto nacional)
+    expect(a.votos).toBeCloseTo(13_940_000 + 5_400_000, 3);
+    expect(a.votosDeUfComPesquisa).toBeCloseTo(13_940_000, 3);
+    expect(a.votosDeUfSemPesquisa).toBeCloseTo(5_400_000, 3);
+  });
+
+  it('candidatos vêm ordenados por votos desc e a soma do eleitorado bate', () => {
+    const estimativa = casos.getVoteEstimate()!;
+    expect(estimativa.candidatos[0]!.candidato).toBe('Candidato A');
+    expect(estimativa.eleitoradoTotal).toBe(34_000_000 + 12_000_000);
+  });
+
+  it('retorna null quando não há eleitorado cadastrado para nenhuma UF', () => {
+    const reposSemEleitorado: Repositorios = {
+      polls: pollRepoFake([
+        p({
+          id: 'pres-br-solo',
+          uf: 'BR',
+          cargo: 'presidente',
+          turno: 1,
+          resultados: [{ candidato: 'Candidato A', partido: 'PT', pct: 50 }],
+        }),
+      ]),
+      parties: partyRepoFake(PARTIDOS),
+      senateSeats: senateSeatRepoFake([]),
+      meta: metaRepoFake('2026-09-13'),
+      electorate: electorateRepoFake([]),
+    };
+    const casosSemEleitorado = criarCasosDeUso(reposSemEleitorado, CLOCK);
+    expect(casosSemEleitorado.getVoteEstimate()).toBeNull();
+  });
+
+  it('retorna null quando falta agregado nacional e alguma UF com eleitorado não tem pesquisa estadual', () => {
+    const reposSemNacional: Repositorios = {
+      polls: pollRepoFake([
+        p({
+          id: 'pres-sp-solo',
+          uf: 'SP',
+          cargo: 'presidente',
+          turno: 1,
+          resultados: [{ candidato: 'Candidato A', partido: 'PT', pct: 50 }],
+        }),
+      ]),
+      parties: partyRepoFake(PARTIDOS),
+      senateSeats: senateSeatRepoFake([]),
+      meta: metaRepoFake('2026-09-13'),
+      electorate: electorateRepoFake([
+        criarEleitorado({ uf: 'SP', eleitores: 34_000_000, referencia: '2026-07', fonte: { nome: 'TSE', url: 'https://exemplo.test' } }),
+        criarEleitorado({ uf: 'RJ', eleitores: 12_000_000, referencia: '2026-07', fonte: { nome: 'TSE', url: 'https://exemplo.test' } }),
+      ]),
+    };
+    const casosSemNacional = criarCasosDeUso(reposSemNacional, CLOCK);
+    // SP tem pesquisa estadual, mas RJ não tem — e não há agregado nacional para suprir RJ.
+    expect(casosSemNacional.getVoteEstimate()).toBeNull();
+  });
+});
+
 describe('getPresidentialAggregate — cenários de 2º turno', () => {
   it('agrupa o mesmo confronto mesmo com rótulos diferentes', async () => {
     const { carregarDados } = await import('../../../adapters/outbound/json/carregar-dados.js');
