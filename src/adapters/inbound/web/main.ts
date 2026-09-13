@@ -35,6 +35,7 @@ const ROTAS: readonly Rota[] = [
   { hash: '#/presidente-estados', rotulo: 'Presidente por estado' },
   { hash: '#/senado', rotulo: 'Senado' },
   { hash: '#/partidos', rotulo: 'Partidos' },
+  { hash: '#/pesquisas', rotulo: 'Base de pesquisas' },
 ];
 
 const clockReal: Clock = {
@@ -159,6 +160,9 @@ async function renderizarRota(main: HTMLElement, nav: HTMLElement, casos: CasosD
       break;
     case '#/partidos':
       await renderPaginaOpcional(main, casos, './views/parties-view.ts', 'renderParties');
+      break;
+    case '#/pesquisas':
+      await renderPaginaOpcional(main, casos, './views/polls-database-view.ts', 'renderPollsDatabase');
       break;
     case '#/mapa':
     default:
