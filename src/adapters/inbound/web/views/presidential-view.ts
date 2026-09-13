@@ -168,7 +168,7 @@ function criarBarraCandidato(
   return criarEl('div', { className: 'pv-bar-row' }, [
     criarEl('span', { className: 'pv-bar-name' }, [
       candidato.partido ? criarBadgePartido(candidato.partido, espectro) : null,
-      criarEl('span', { className: 'pv-bar-name-text', texto: candidato.candidato }),
+      criarEl('span', { className: 'pv-bar-name-text', texto: candidato.candidato, attrs: { title: candidato.candidato } }),
     ]),
     criarEl('span', { className: 'pv-bar-track' }, [
       criarEl('span', {
