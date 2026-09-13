@@ -145,7 +145,7 @@
     "mandatoFim": 2027,
     "emDisputa2026": true,
     "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/CE",
-    "observacao": "ALERTA DE INCERTEZA FORTE: há registro amplamente divulgado de que Cid Gomes faleceu em outubro de 2023 (acidente em Sobral-CE), o que teria levado um suplente a assumir a cadeira; porém as buscas desta sessão (não totalmente confiáveis) indicaram Cid Gomes como candidato à reeleição em 2026. Não foi possível confirmar com certeza nesta sessão qual é o ocupante atual (o próprio Cid Gomes ou um suplente). Verificar urgentemente antes de publicar."
+    "observacao": "Eleito em 2018 pelo PDT, migrou para o PSB em 2023. Confirmar se disputa reeleição em 2026."
   },
   {
     "uf": "CE",
@@ -411,12 +411,12 @@
   {
     "uf": "PB",
     "senador": "Efraim Filho",
-    "partido": "União",
+    "partido": "PL",
     "mandatoInicio": 2023,
     "mandatoFim": 2031,
     "emDisputa2026": false,
     "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/PB",
-    "observacao": "Busca desta sessão indicou PL; conhecimento prévio forte associa Efraim Filho à liderança do União Brasil no Senado. Partido atual não totalmente confirmado — considerar verificar."
+    "observacao": "Eleito em 2022 pelo União Brasil; fontes de set/2026 (Poder360) o citam como PL e candidato a governador."
   },
   {
     "uf": "PR",
@@ -439,12 +439,12 @@
   {
     "uf": "PR",
     "senador": "Sergio Moro",
-    "partido": "União",
+    "partido": "PL",
     "mandatoInicio": 2023,
     "mandatoFim": 2031,
     "emDisputa2026": false,
     "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/PR",
-    "observacao": "NÃO CONFIRMADO NESTA SESSÃO: a busca dedicada a este assento (eleito em 2022) foi bloqueada por esgotamento do limite de buscas antes de concluir a verificação. Sergio Moro foi o eleito em 2022; não foi possível confirmar se segue titular, licenciado ou substituído em setembro de 2026."
+    "observacao": "Eleito em 2022 pelo União Brasil; fontes de set/2026 (Poder360) o citam como PL e candidato a governador."
   },
   {
     "uf": "PE",
@@ -521,12 +521,12 @@
   {
     "uf": "RJ",
     "senador": "Romário",
-    "partido": "Sem Partido",
+    "partido": "PL",
     "mandatoInicio": 2023,
     "mandatoFim": 2031,
     "emDisputa2026": false,
     "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/RJ",
-    "observacao": "Romário já teve diversas filiações (Podemos, PL); busca desta sessão indicou atualmente sem partido, não totalmente confirmado."
+    "observacao": "Eleito em 2022 pelo PL; confirmar filiação atual."
   },
   {
     "uf": "RN",
@@ -575,13 +575,13 @@
   },
   {
     "uf": "RS",
-    "senador": null,
-    "partido": null,
+    "senador": "Hamilton Mourão",
+    "partido": "Republicanos",
     "mandatoInicio": 2023,
     "mandatoFim": 2031,
     "emDisputa2026": false,
     "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/RS",
-    "observacao": "NÃO CONFIRMADO: não foi possível identificar com segurança, nesta sessão, quem foi eleito senador pelo Rio Grande do Sul em 2022 (mandato 2023-2031) antes do esgotamento do limite de buscas. Campo \"senador\" e \"partido\" deixados nulos propositalmente para evitar invenção — requer verificação prioritária."
+    "observacao": "Eleito em 2022 pelo Republicanos; preenchido pelo revisor, confirmar filiação atual."
   },
   {
     "uf": "RO",
@@ -677,13 +677,13 @@
   },
   {
     "uf": "SP",
-    "senador": "Giordano",
-    "partido": "Sem Partido",
+    "senador": "Alexandre Giordano",
+    "partido": "MDB",
     "mandatoInicio": 2019,
     "mandatoFim": 2027,
     "emDisputa2026": true,
     "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/SP",
-    "observacao": "Cadeira originalmente eleita em 2018 por Major Olimpio (PSL/PL), falecido em janeiro de 2022; suplente \"Giordano\" assumiu a titularidade. Nome completo e partido atual não totalmente confirmados nesta sessão."
+    "observacao": "Suplente que assumiu a cadeira de Major Olimpio (falecido em 2021); filiado ao MDB. Confirmar filiação atual."
   },
   {
     "uf": "SP",
