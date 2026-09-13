@@ -60,6 +60,17 @@ export function rotuloEspectro(espectro: Espectro): string {
 }
 
 /**
+ * Escolhe a forma singular ou plural conforme a quantidade — usado para
+ * concordância nominal completa (artigo, substantivo, particípio, etc.),
+ * não só o "s" final de um substantivo isolado. Ex.:
+ * `` `Ver ${pluralizar(n, 'a', 'as')} ${n} pesquisa${pluralizar(n, '', 's')} ${pluralizar(n, 'usada', 'usadas')}` ``
+ * produz "Ver a 1 pesquisa usada" e "Ver as 3 pesquisas usadas".
+ */
+export function pluralizar(quantidade: number, singular: string, plural: string): string {
+  return quantidade === 1 ? singular : plural;
+}
+
+/**
  * Classifica a confiança da liderança a partir da vantagem (pontos) e da
  * margem de referência ponderada do agregado, seguindo as 3 faixas de
  * docs/design-system.md. `semDados` tem prioridade sobre o cálculo.

@@ -8,6 +8,7 @@ import {
   formatarVantagem,
   nivelConfianca,
   opacidadeConfianca,
+  pluralizar,
   rotuloConfianca,
   rotuloEspectro,
 } from '../format.js';
@@ -65,6 +66,29 @@ describe('rotuloEspectro', () => {
     expect(rotuloEspectro('esquerda')).toBe('Esquerda');
     expect(rotuloEspectro('centro-direita')).toBe('Centro-direita');
     expect(rotuloEspectro('indefinido')).toBe('Não classificado');
+  });
+});
+
+describe('pluralizar', () => {
+  it('devolve a forma singular quando a quantidade é 1', () => {
+    expect(pluralizar(1, 'a', 'as')).toBe('a');
+  });
+
+  it('devolve a forma plural para quantidade zero', () => {
+    expect(pluralizar(0, 'a', 'as')).toBe('as');
+  });
+
+  it('devolve a forma plural para quantidade maior que 1', () => {
+    expect(pluralizar(3, 'a', 'as')).toBe('as');
+  });
+
+  it('monta a concordância completa de "Ver a(s) N pesquisa(s) usada(s)"', () => {
+    expect(`Ver ${pluralizar(1, 'a', 'as')} 1 pesquisa ${pluralizar(1, 'usada', 'usadas')}`).toBe(
+      'Ver a 1 pesquisa usada',
+    );
+    expect(`Ver ${pluralizar(3, 'a', 'as')} 3 pesquisas ${pluralizar(3, 'usada', 'usadas')}`).toBe(
+      'Ver as 3 pesquisas usadas',
+    );
   });
 });
 

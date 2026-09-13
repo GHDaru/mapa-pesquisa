@@ -44,6 +44,11 @@ export function renderPresidential(container: HTMLElement, casos: CasosDeUso): v
         className: 'pv-meta',
         texto: `Peso por recência (meia-vida) e por tamanho da amostra; janela de ${JANELA_DIAS_PADRAO} dias.`,
       }),
+      criarEl('p', {
+        className: 'pv-meta pv-uncertainty-legend',
+        texto:
+          'A faixa mais clara atrás de cada barra é a margem de erro da pesquisa (faixa = margem de erro); o valor exato aparece na legenda de cada cenário.',
+      }),
     ]),
   );
 
@@ -90,7 +95,11 @@ function criarCartaoTurno1(
   ]);
   card.append(cabecalho);
 
-  const lista = criarEl('div', {}, turno1.candidatos.map((c) => criarBarraCandidato(c, espectroDe(c.partido))));
+  const lista = criarEl(
+    'div',
+    {},
+    turno1.candidatos.map((c) => criarBarraCandidato(c, espectroDe(c.partido), turno1.margemReferencia)),
+  );
   card.append(lista);
 
   card.append(
@@ -125,28 +134,50 @@ function criarCartaoTurno2(
   const doisCandidatos = [agregado.lider, agregado.segundo].filter(
     (c): c is CandidatoAgregado => c != null,
   );
-  card.append(criarEl('div', {}, doisCandidatos.map((c) => criarBarraCandidato(c, espectroDe(c.partido)))));
+  card.append(
+    criarEl(
+      'div',
+      {},
+      doisCandidatos.map((c) => criarBarraCandidato(c, espectroDe(c.partido), agregado.margemReferencia)),
+    ),
+  );
 
   card.append(
     criarEl('p', {
       className: 'pv-meta',
       texto: `${agregado.pesquisasUsadas.length} ${
         agregado.pesquisasUsadas.length === 1 ? 'pesquisa' : 'pesquisas'
-      } · última em ${agregado.ultimaPesquisa.dataFim ?? agregado.ultimaPesquisa.publicadoEm ?? '—'}.`,
+      } · última em ${agregado.ultimaPesquisa.dataFim ?? agregado.ultimaPesquisa.publicadoEm ?? '—'}. Margem de referência ponderada: ± ${formatarNumero(agregado.margemReferencia)} pontos.`,
     }),
   );
 
   return card;
 }
 
-function criarBarraCandidato(candidato: CandidatoAgregado, espectro: Espectro): HTMLElement {
+function criarBarraCandidato(
+  candidato: CandidatoAgregado,
+  espectro: Espectro,
+  margemReferencia: number,
+): HTMLElement {
   const pct = Math.max(0, Math.min(100, candidato.pct));
+  // Faixa de incerteza (±margemReferencia) centrada no valor, na mesma escala
+  // 0..100 da barra — ver docs/ux-spec.md §2(c).
+  const faixaEsquerda = Math.max(0, pct - margemReferencia);
+  const faixaDireita = Math.min(100, pct + margemReferencia);
+  const faixaLargura = Math.max(0, faixaDireita - faixaEsquerda);
   return criarEl('div', { className: 'pv-bar-row' }, [
     criarEl('span', { className: 'pv-bar-name' }, [
       candidato.partido ? criarBadgePartido(candidato.partido, espectro) : null,
       criarEl('span', { className: 'pv-bar-name-text', texto: candidato.candidato }),
     ]),
     criarEl('span', { className: 'pv-bar-track' }, [
+      criarEl('span', {
+        className: 'pv-bar-uncertainty',
+        attrs: {
+          style: `left:${faixaEsquerda}%;width:${faixaLargura}%;background:${tokenFillEspectro(espectro)}`,
+          'aria-hidden': 'true',
+        },
+      }),
       criarEl('span', {
         className: 'pv-bar-fill',
         attrs: { style: `width:${pct}%;background:${tokenFillEspectro(espectro)}` },

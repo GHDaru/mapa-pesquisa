@@ -11,6 +11,7 @@ import {
   formatarPct,
   formatarVantagem,
   nivelConfianca,
+  pluralizar,
   rotuloConfianca,
 } from '../format.js';
 
@@ -206,7 +207,15 @@ function renderSecaoCargo(
   const candidatosMostrados = agregado.candidatos.slice(0, opcoes.destacarDoisPrimeiros ? 4 : 3);
 
   const listaCandidatos = candidatosMostrados
-    .map((c, i) => renderBarraCandidato(c, maxPct, opcoes.destacarDoisPrimeiros === true && i < 2, partidos))
+    .map((c, i) =>
+      renderBarraCandidato(
+        c,
+        maxPct,
+        agregado.margemReferencia,
+        opcoes.destacarDoisPrimeiros === true && i < 2,
+        partidos,
+      ),
+    )
     .join('');
 
   const listaNaoRankeados = agregado.outros.length
@@ -225,6 +234,10 @@ function renderSecaoCargo(
         ${seloEmpate}
       </div>
       <ul class="bar-list">${listaCandidatos}</ul>
+      <p class="bar-list__legenda">
+        <span class="bar-list__legenda-swatch" aria-hidden="true"></span>
+        Faixa = margem de erro (± ${formatarNumeroPt(agregado.margemReferencia)} pontos)
+      </p>
       ${listaNaoRankeados}
       ${renderListaPesquisas(agregado)}
     </section>
@@ -234,11 +247,17 @@ function renderSecaoCargo(
 function renderBarraCandidato(
   c: CandidatoAgregado,
   maxPct: number,
+  margemReferencia: number,
   destaque: boolean,
   partidos: ReturnType<CasosDeUso['listParties']>,
 ): string {
   const espectro = espectroDoPartido(c.partido, partidos);
   const largura = Math.max(2, (c.pct / maxPct) * 100);
+  // Faixa de incerteza (±margemReferencia) centrada no valor, na mesma escala
+  // relativa a `maxPct` usada pela barra — ver docs/ux-spec.md §2(c).
+  const faixaEsquerda = Math.max(0, ((c.pct - margemReferencia) / maxPct) * 100);
+  const faixaDireita = Math.min(100, ((c.pct + margemReferencia) / maxPct) * 100);
+  const faixaLargura = Math.max(0, faixaDireita - faixaEsquerda);
   const rotuloCompleto = c.partido ? `${c.candidato} (${c.partido})` : c.candidato;
   const badgePartido = c.partido
     ? `<span class="badge bar-row__badge" style="background:${corEspectroSolido(espectro)}">${escaparHtml(c.partido)}</span>`
@@ -250,6 +269,11 @@ function renderBarraCandidato(
         ${badgePartido}
       </span>
       <span class="bar-track" role="presentation">
+        <span
+          class="bar-uncertainty"
+          aria-hidden="true"
+          style="left:${faixaEsquerda}%; width:${faixaLargura}%; background:${corEspectroSolido(espectro)}"
+        ></span>
         <span class="bar-fill" style="width:${largura}%; background:${corEspectroSolido(espectro)}"></span>
       </span>
       <span class="bar-row__pct">${formatarPct(c.pct)}</span>
@@ -264,9 +288,14 @@ function renderListaPesquisas(agregado: Agregado): string {
     .map((p) => renderPesquisa(p))
     .join('');
 
+  const n = agregado.pesquisasUsadas.length;
+  const artigo = pluralizar(n, 'a', 'as');
+  const substantivo = pluralizar(n, 'pesquisa', 'pesquisas');
+  const participio = pluralizar(n, 'usada', 'usadas');
+
   return `
     <details class="poll-list">
-      <summary>Ver as ${agregado.pesquisasUsadas.length} pesquisa${agregado.pesquisasUsadas.length === 1 ? '' : 's'} usadas</summary>
+      <summary>Ver ${artigo} ${n} ${substantivo} ${participio}</summary>
       <ul class="poll-list__itens">${linhas}</ul>
     </details>
   `;

@@ -180,15 +180,33 @@ export function renderMap(container: HTMLElement, casos: CasosDeUso): void {
     `;
   }
 
+  /**
+   * Posiciona o tooltip (`position: fixed`) usando coordenadas de viewport
+   * (`x`/`y` já vêm como `clientX`/`clientY` ou de `getBoundingClientRect()`
+   * — nunca coordenadas relativas ao wrapper do mapa). Faz flip para
+   * cima/baixo e esquerda/direita conforme o espaço, e depois clampa contra
+   * `window.innerWidth`/`innerHeight` para garantir que o tooltip fique
+   * inteiramente dentro da janela visível — nunca só dentro do SVG do mapa,
+   * que é mais alto que a tela em muitas resoluções (ver docs/critica-ui-rodada2.md
+   * item 1).
+   */
   function posicionarTooltipPerto(x: number, y: number): void {
-    const wrapRect = mapWrap.getBoundingClientRect();
-    const offsetX = 14;
-    const offsetY = 14;
-    let left = x - wrapRect.left + offsetX;
-    let top = y - wrapRect.top + offsetY;
-    const maxLeft = wrapRect.width - 220;
-    if (left > maxLeft) left = Math.max(0, x - wrapRect.left - 220 - offsetX);
-    if (top > wrapRect.height - 90) top = Math.max(0, y - wrapRect.top - 90 - offsetY);
+    const offset = 14;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    // offsetWidth/offsetHeight só existem com layout real (não em jsdom);
+    // usa um tamanho aproximado do `max-width` do CSS como fallback.
+    const largura = tooltip.offsetWidth || 220;
+    const altura = tooltip.offsetHeight || 90;
+
+    let left = x + offset;
+    if (left + largura > vw) left = x - offset - largura; // flip: esquerda do cursor
+    left = Math.min(Math.max(0, left), Math.max(0, vw - largura));
+
+    let top = y + offset;
+    if (top + altura > vh) top = y - offset - altura; // flip: acima do cursor
+    top = Math.min(Math.max(0, top), Math.max(0, vh - altura));
+
     tooltip.style.left = `${left}px`;
     tooltip.style.top = `${top}px`;
   }

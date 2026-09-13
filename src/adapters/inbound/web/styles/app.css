@@ -395,7 +395,12 @@ th {
   display: none;
 }
 .map-tooltip {
-  position: absolute;
+  /* `fixed` + coordenadas de viewport calculadas em `posicionarTooltipPerto`
+     (map-view.ts) — nunca `absolute` relativo ao wrapper do mapa: o SVG do
+     Brasil é mais alto que muitas janelas, então um tooltip ancorado no
+     wrapper podia cair fora da área visível sem nenhum aviso (ver
+     docs/critica-ui-rodada2.md item 1). */
+  position: fixed;
   z-index: 20;
   max-width: 220px;
   background: var(--color-surface-3);
@@ -630,20 +635,47 @@ th {
   flex: none;
 }
 .bar-track {
+  position: relative;
   height: 8px;
   border-radius: var(--radius-pill);
   background: var(--color-surface-3);
   overflow: hidden;
 }
 .bar-fill {
+  position: relative;
   display: block;
   height: 100%;
+  border-radius: inherit;
+}
+/* Faixa de incerteza (±margem de referência) atrás da barra, centrada no
+   valor — ver docs/ux-spec.md §2(c). Puramente visual: aria-hidden no HTML. */
+.bar-uncertainty {
+  position: absolute;
+  inset-block: 0;
+  opacity: 0.35;
   border-radius: inherit;
 }
 .bar-row__pct {
   text-align: right;
   font-variant-numeric: tabular-nums;
   color: var(--color-text-muted);
+}
+.bar-list__legenda {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: calc(-1 * var(--space-1)) 0 var(--space-3);
+  font: var(--text-caption);
+  color: var(--color-text-tertiary);
+}
+.bar-list__legenda-swatch {
+  display: inline-block;
+  width: 18px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--color-text-tertiary);
+  opacity: 0.35;
+  flex-shrink: 0;
 }
 
 .state-panel__outros {

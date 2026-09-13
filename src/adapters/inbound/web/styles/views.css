@@ -177,6 +177,19 @@
   transition: width var(--duration-lg) var(--ease-standard);
 }
 .pv-bar-fill.pv-empate { opacity: var(--confidence-empate-opacity); }
+/* Faixa de incerteza (±margem ponderada), atrás da barra: segmento mais claro
+   centrado no valor — mesmo princípio de opacidade para confiança do mapa
+   (ver docs/ux-spec.md §2(c)). Puramente visual: aria-hidden no HTML. */
+.pv-bar-uncertainty {
+  position: absolute;
+  inset-block: 0;
+  opacity: 0.3;
+  border-radius: var(--radius-xs);
+  transition: left var(--duration-lg) var(--ease-standard), width var(--duration-lg) var(--ease-standard);
+}
+.pv-uncertainty-legend {
+  color: var(--color-text-subtle);
+}
 .pv-bar-pct {
   font: var(--text-body-sm);
   font-weight: 590;
@@ -186,7 +199,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .pv-bar-fill { transition-duration: 0ms; }
+  .pv-bar-fill,
+  .pv-bar-uncertainty { transition-duration: 0ms; }
 }
 
 /* --- Tabelas --- */
