@@ -358,3 +358,21 @@ describe('serieTemporal', () => {
     expect(nomes).toEqual(['Candidato A', 'Candidato B']);
   });
 });
+
+describe('serieTemporal — suavização bilateral', () => {
+  it('interpola sem degraus entre duas pesquisas e termina perto da mais recente', async () => {
+    const { serieTemporal } = await import('../aggregate.js');
+    const { criarPesquisa } = await import('../poll.js');
+    const base = { uf: 'BR', cargo: 'presidente' as const, turno: 1 as const, instituto: 'X', amostra: 2000, fonte: { nome: 'f', url: 'https://f' } };
+    const a = criarPesquisa({ ...base, id: 'a', dataFim: '2026-08-01', publicadoEm: '2026-08-01', resultados: [{ candidato: 'A', partido: 'PT', pct: 40 }, { candidato: 'B', partido: 'PL', pct: 30 }] });
+    const b = criarPesquisa({ ...base, id: 'b', dataFim: '2026-08-31', publicadoEm: '2026-08-31', resultados: [{ candidato: 'A', partido: 'PT', pct: 50 }, { candidato: 'B', partido: 'PL', pct: 30 }] });
+    const serie = serieTemporal([a, b], {}, new Date('2026-08-31T12:00:00Z'));
+    const valoresA = serie.dias.map((d) => d.valores['A'] ?? NaN);
+    expect(valoresA.every((v) => Number.isFinite(v))).toBe(true);
+    for (let i = 1; i < valoresA.length; i++) {
+      expect(valoresA[i]! + 1e-9).toBeGreaterThanOrEqual(valoresA[i - 1]!);
+      expect(valoresA[i]! - valoresA[i - 1]!).toBeLessThan(2);
+    }
+    expect(valoresA.at(-1)!).toBeGreaterThan(47);
+  });
+});

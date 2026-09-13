@@ -240,6 +240,14 @@ function dataIsoDoInstante(ms: number): string {
 export interface OpcoesSerieTemporal extends OpcoesAgregacao {
   /** Passo entre pontos consecutivos da série, em dias. Padrão 1 (diário). */
   passoDias?: number;
+  /**
+   * 'bilateral' (padrão): cada dia da série é a média ponderada de TODAS as
+   * pesquisas, com peso decaindo pela distância (antes ou depois) até o dia —
+   * linha suave, sem degraus quando uma pesquisa entra/sai da janela; o último
+   * dia coincide com o agregado causal. 'causal': reproduz `agregarPesquisas`
+   * dia a dia (só pesquisas até o dia, com janela).
+   */
+  suavizacao?: 'bilateral' | 'causal';
 }
 
 /** Um resultado individual de uma pesquisa, para plotagem como ponto no gráfico. */
@@ -300,15 +308,22 @@ export function serieTemporal(
   const hojeMs = Date.UTC(hoje.getUTCFullYear(), hoje.getUTCMonth(), hoje.getUTCDate());
   const hojeIso = dataIsoDoInstante(hojeMs);
 
+  const suavizacao = opcoes.suavizacao ?? 'bilateral';
+  const meiaVidaDias = opcoes.meiaVidaDias ?? MEIA_VIDA_DIAS_PADRAO;
+
   const dias: DiaSerieTemporal[] = [];
   for (let ms = primeiraDataMs; ms <= hojeMs; ms += passoDias * UM_DIA_MS) {
     const diaIso = dataIsoDoInstante(ms);
     const diaData = new Date(ms);
-    const pesquisasAteDia = pesquisas.filter((p) => dataReferencia(p) <= diaIso);
-    const agregado = agregarPesquisas(pesquisasAteDia, opcoesAgregacao, diaData);
     const valores: Record<string, number> = {};
-    if (agregado) {
-      for (const c of agregado.candidatos) valores[c.candidato] = c.pct;
+    if (suavizacao === 'bilateral') {
+      Object.assign(valores, mediaBilateral(pesquisas, ms, meiaVidaDias, excluidos));
+    } else {
+      const pesquisasAteDia = pesquisas.filter((p) => dataReferencia(p) <= diaIso);
+      const agregado = agregarPesquisas(pesquisasAteDia, opcoesAgregacao, diaData);
+      if (agregado) {
+        for (const c of agregado.candidatos) valores[c.candidato] = c.pct;
+      }
     }
     dias.push({ data: diaIso, valores });
   }
@@ -346,4 +361,37 @@ export function serieTemporal(
   const candidatos = agregadoFinal ? agregadoFinal.candidatos.map((c) => c.candidato) : [];
 
   return { dias, pontos, candidatos };
+}
+
+
+/**
+ * Média ponderada por candidato num instante, usando todas as pesquisas
+ * (passadas e futuras) com peso exp(-ln2·|distância em dias|/meiaVida)·√amostra.
+ * Cada candidato é normalizado pelo peso total das pesquisas em que apareceu.
+ */
+function mediaBilateral(
+  pesquisas: readonly Pesquisa[],
+  instanteMs: number,
+  meiaVidaDias: number,
+  excluidos: ReadonlySet<string>,
+): Record<string, number> {
+  const somaPesoPct = new Map<string, number>();
+  const somaPeso = new Map<string, number>();
+  for (const p of pesquisas) {
+    const dataMs = Date.parse(`${dataReferencia(p)}T00:00:00Z`);
+    if (!Number.isFinite(dataMs)) continue;
+    const distanciaDias = Math.abs(instanteMs - dataMs) / UM_DIA_MS;
+    const peso = Math.exp((-Math.LN2 * distanciaDias) / meiaVidaDias) * Math.sqrt(p.amostra ?? AMOSTRA_PADRAO);
+    for (const r of p.resultados) {
+      if (ehLinhaNaoCandidato(r.candidato, excluidos)) continue;
+      const chave = r.candidato.trim();
+      somaPesoPct.set(chave, (somaPesoPct.get(chave) ?? 0) + peso * r.pct);
+      somaPeso.set(chave, (somaPeso.get(chave) ?? 0) + peso);
+    }
+  }
+  const valores: Record<string, number> = {};
+  for (const [candidato, total] of somaPeso) {
+    if (total > 0) valores[candidato] = (somaPesoPct.get(candidato) ?? 0) / total;
+  }
+  return valores;
 }
