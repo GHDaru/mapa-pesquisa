@@ -1,0 +1,26 @@
+{
+  "mapa__1280x800__dark": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "mapa__1280x800__light": [],
+  "mapa__400x800__dark": [],
+  "mapa__400x800__light": [],
+  "mapa-sp-aberto__1280x800__dark": [],
+  "mapa-sp-aberto__1280x800__light": [],
+  "mapa-sp-aberto__400x800__dark": [],
+  "mapa-sp-aberto__400x800__light": [],
+  "mapa-hover-mg__1280x800__dark": [],
+  "mapa-hover-mg__1280x800__light": [],
+  "mapa-hover-mg__400x800__dark": [],
+  "mapa-hover-mg__400x800__light": [],
+  "presidente__1280x800__dark": [],
+  "presidente__1280x800__light": [],
+  "presidente__400x800__dark": [],
+  "presidente__400x800__light": [],
+  "senado__1280x800__dark": [],
+  "senado__1280x800__light": [],
+  "senado__400x800__dark": [],
+  "senado__400x800__light": [],
+  "senado-composicao-atual__1280x800__dark": [],
+  "senado-composicao-atual__1280x800__light": []
+}
