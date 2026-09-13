@@ -103,3 +103,73 @@ TSE (total de 13 pedidos), incluindo Caiado e Cury — por isso alguns instituto
 - Não há WebFetch/curl neste ambiente, então nenhuma página foi lida por inteiro — todos os dados vieram de
   trechos/resumos que o WebSearch devolveu. Antes de publicar em produção, vale reabrir as URLs listadas em
   `fonte.url` com uma ferramenta capaz de baixar HTML, para conferir números, brancos/nulos e datas exatas.
+
+## Histórico maio–agosto
+
+Levantamento complementar feito em 2026-09-13 (mesmo ambiente, só WebSearch) para popular o gráfico de
+tendência com pesquisas nacionais de presidente publicadas entre 1º/05 e 19/08/2026 — período anterior ao
+início do `data/research/polls-presidente.json` (que só cobre a partir de 20/08/2026). Resultado:
+`data/research/polls-presidente-historico.json`, mesmo esquema, `uf: "BR"`, `cargo: "presidente"`. **38
+entradas**: **21 de 1º turno** (meta 20–30, atingida) e **17 de 2º turno Lula x Flávio Bolsonaro/Flávio
+Bolsonaro x Lula** (meta 10, superada). IDs conferidos por script Node contra o arquivo principal — nenhuma
+colisão e nenhum duplicado internos. Institutos cobertos com pelo menos uma pesquisa confirmada no período:
+Quaest (5 rodadas: 13/mai, 10/jun, 15/jul, 05/ago e 14/ago — as duas de agosto são pesquisas **distintas**,
+não a mesma republicada), Datafolha (2: ~20/jun estimado e 24/jul), AtlasIntel/Bloomberg (3: 19/mai, 01/jul
+e 29/jul), Real Time Big Data (2: 01/jun e 21/jul), PoderData (2: ~17/jul estimado e 30/jul), Nexus/FSB-BTG
+Pactual (1: 15/jun), Ideia/Meio S.A. (1: 08/jul), Gerp (2: ~08/jul estimado e 11/ago — só 1º turno nesta
+última), Futura Inteligência (1: 11/ago, só 1º turno) e CNT/MDA (2: 16/jun e ~11/ago estimado — só 1º turno
+na de agosto), instituto que não aparecia no arquivo principal e foi acrescentado por já ter pesquisa
+nacional de presidente no período.
+
+### Achado relevante: pesquisa AtlasIntel suspensa pelo TSE em junho/2026
+
+Durante a varredura apareceu uma decisão do TSE (liminar do min. Kassio Nunes Marques, referendada em
+sessão colegiada) suspendendo a divulgação de uma pesquisa AtlasIntel sobre a disputa presidencial,
+registro **BR-06939/2026**, por suspeita de indução ao eleitor — o PL alegou que o questionário foi
+construído para prejudicar Flávio Bolsonaro, e o próprio CEO da AtlasIntel reconheceu viés no conteúdo
+submetido aos entrevistados; o TSE frisou que outras 27 pesquisas da AtlasIntel não tinham o mesmo problema.
+**Essa pesquisa (BR-06939/2026) não entrou no JSON**: como a divulgação foi suspensa e não encontrei os
+percentuais que ela teria mostrado, não havia números confiáveis para registrar, e incluir uma pesquisa
+judicialmente contestada sem sinalização adequada pareceu arriscado para o gráfico de tendência. Vale
+reavaliar numa rotina futura se o processo no TSE terminou liberando ou anulando definitivamente os dados.
+Não confundir com a pesquisa AtlasIntel de 19/mai/2026 (registro não encontrado, mas sem qualquer menção de
+contestação), que é a que entrou no JSON como a rodada de maio.
+
+### Institutos da lista da tarefa sem pesquisa nacional confirmada no período
+
+- **Paraná Pesquisas**: única pesquisa nacional (BR) de presidente localizada no período tem campo
+  25–28/03/2026 (antes da janela pedida); não encontrei rodada nacional entre mai–ago/2026 nos resultados de
+  busca (só pesquisas estaduais do Paraná). Não incluída.
+- **Meta, Ipespe**: não apareceram em nenhum resultado de busca como institutos com pesquisa nacional de
+  presidente no período — pode ser que não tenham publicado pesquisa presidencial nacional nessa janela, ou
+  que o nome "Meta" colida com termos de busca genéricos (rede social, "meta" de campanha) e atrapalhe achar
+  a pesquisa real, se existir.
+
+### Lacunas e menores confianças específicas desta rodada
+
+- **Quaest, registro BR-07661/2026 (rodada de 10/jun)**: extraído de uma resposta sintetizada de busca, sem
+  citação literal de manchete confirmando o número — confiança menor que as demais rodadas Quaest. Datas de
+  campo (5–8/jun) inferidas por analogia ao padrão de intervalo campo→divulgação do próprio instituto nas
+  demais rodadas do período, não citadas literalmente para esta rodada específica.
+- **Quaest de 14/ago, contratante "Rede Globo"**: apareceu assim numa única resposta sintetizada; diverge do
+  padrão usual "Genial/Quaest" com contratante Genial. Mantido no JSON com essa ressalva na `observacao` —
+  vale conferir diretamente com o instituto ou TSE numa rotina futura.
+- **AtlasIntel de 19/mai**: percentuais do 1º turno (Lula 47 / Flávio 34,3) vieram de resposta sintetizada
+  sem confirmação por manchete direta; o 2º turno (48,9/41,8) tem confirmação melhor (título de matéria da
+  CNN Brasil).
+- **Real Time Big Data de 21/jul**: o registro no TSE apareceu associado, em buscas diferentes, ora a esta
+  rodada ora à de maio/junho (BR-05864/2026) — mantive como `null` por segurança, já que os números de 1º e
+  2º turno em si vieram de manchetes diretas e batem entre si.
+- **Gerp de 11/ago e CNT/MDA de ~11/ago**: só entraram com 1º turno; não consegui confirmar com segurança os
+  percentuais exatos de 2º turno associados a cada uma (havia números de 2º turno parecidos atribuídos de
+  forma inconsistente entre pesquisas Gerp próximas, e nenhum número exato de 2º turno para o CNT/MDA de
+  agosto — só a vantagem em pontos percentuais do 1º turno, "13,7 p.p.", usada para deduzir por subtração o
+  percentual de Flávio Bolsonaro, o que está sinalizado na `observacao` daquela entrada).
+- **Futura Inteligência de 11/ago**: só 1º turno; o 2º turno foi descrito como "empate técnico" sem
+  percentuais exatos nas fontes consultadas.
+- Como no levantamento original, nenhuma página foi lida por inteiro (sem WebFetch/curl) — todos os números
+  vieram de trechos/resumos do WebSearch, cruzados manualmente entre múltiplas buscas quando possível para
+  reduzir o risco de o resumo automático combinar dados de pesquisas diferentes (isso de fato aconteceu
+  algumas vezes durante a varredura, por exemplo confundindo o registro TSE de uma rodada AtlasIntel de
+  julho com o de uma rodada de agosto — os números finais só entraram no JSON depois de reconciliados por
+  título de matéria específico).
