@@ -1,0 +1,434 @@
+/*
+ * Estilos da tela "Base de pesquisas"
+ * (src/adapters/inbound/web/views/polls-database-view.ts). Consome os
+ * tokens de docs/design-system.md (styles/tokens.css). Todas as classes
+ * específicas desta tela usam o prefixo `db-` para não colidir com as
+ * classes `pv-*` das outras telas (presidente/senado/partidos).
+ */
+
+.db-view {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding-block: var(--space-5);
+}
+
+/* Mesmo princípio de `.pv-view > * { min-width: 0 }` em styles/app.css:
+   filhos diretos de um flex column não devem herdar `min-width:auto` (que
+   equivale à largura intrínseca do conteúdo) — senão um filho com conteúdo
+   largo (ex.: a tabela) empurra o container inteiro além da viewport em vez
+   de rolar só internamente. */
+.db-view > * {
+  min-width: 0;
+}
+
+.db-view *:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-xs);
+}
+
+/* --- Cabeçalho --- */
+
+.db-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.db-title {
+  font: var(--text-headline);
+  color: var(--color-text);
+  margin: 0;
+}
+
+.db-subtitle {
+  font: var(--text-body-sm);
+  color: var(--color-text-subtle);
+  margin: 0;
+  max-width: 64ch;
+}
+
+.db-meta {
+  font: var(--text-caption);
+  color: var(--color-text-subtle);
+  margin: 0;
+}
+
+.db-summary-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.db-summary-chip {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-1);
+  box-shadow: var(--elevation-1);
+  min-width: 96px;
+}
+
+.db-summary-chip-valor {
+  font: var(--text-title);
+  font-weight: 590;
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.db-summary-chip-rotulo {
+  font: var(--text-caption);
+  color: var(--color-text-subtle);
+}
+
+/* --- Filtros --- */
+
+.db-filters-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  align-items: flex-end;
+}
+
+.db-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.db-field-label {
+  font: var(--text-caption);
+  color: var(--color-text-subtle);
+}
+
+.db-select,
+.db-input {
+  font: var(--text-body-sm);
+  color: var(--color-text);
+  background: var(--color-surface-1);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3);
+  max-width: 100%;
+}
+
+.db-input {
+  min-width: 14ch;
+}
+
+.db-checkbox-field {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font: var(--text-body-sm);
+  color: var(--color-text);
+  padding-block: var(--space-2);
+  white-space: nowrap;
+}
+
+/* --- Barra de ferramentas: contador + CSV --- */
+
+.db-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.db-contador {
+  font: var(--text-body-sm);
+  color: var(--color-text-subtle);
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.db-btn-csv {
+  font: var(--text-body-sm);
+  font-weight: 510;
+  color: var(--color-on-accent);
+  background: var(--color-accent);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-4);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.db-btn-csv:hover { background: var(--color-accent-hover); }
+.db-btn-csv:active { background: var(--color-accent-active); }
+
+.db-vazio {
+  font: var(--text-body-sm);
+  color: var(--color-text-subtle);
+  padding: var(--space-5);
+  text-align: center;
+  background: var(--color-surface-1);
+  border-radius: var(--radius-md);
+}
+
+/* --- Tabela --- */
+
+.db-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  /* .db-view é flex column: sem min-width:0 aqui, o item flex herda o
+     min-width:auto padrão (= largura intrínseca do conteúdo, ~1200px da
+     .db-table) e o próprio wrap cresce além do container em vez de
+     respeitar `overflow-x:auto` — vaza rolagem horizontal para a página
+     inteira. min-width:0 é o que faz o overflow ficar contido aqui dentro. */
+  min-width: 0;
+}
+
+.db-table {
+  width: 100%;
+  border-collapse: collapse;
+  font: var(--text-body-sm);
+  min-width: 1200px;
+}
+
+.db-table th,
+.db-table td {
+  padding: var(--space-2) var(--space-3);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+  vertical-align: top;
+}
+
+.db-table th {
+  font: var(--text-caption);
+  color: var(--color-text-subtle);
+  position: sticky;
+  top: 0;
+  background: var(--color-surface-1);
+}
+
+.db-table td.db-col-wrap { white-space: normal; }
+.db-table tbody tr:hover { background: var(--color-surface-2); }
+
+.db-num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+.db-selo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-pill);
+  font: var(--text-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+  white-space: nowrap;
+}
+.db-selo-sem-registro {
+  background: transparent;
+  color: var(--color-text-tertiary);
+  border: 1px solid var(--color-border-strong);
+}
+
+.db-meta {
+  color: var(--color-text-subtle);
+}
+
+/* --- Top 3 colocados --- */
+
+.db-top3-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 220px;
+}
+.db-top3-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.db-top3-nome {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--color-text);
+}
+.db-top3-pct {
+  font-variant-numeric: tabular-nums;
+  font-weight: 510;
+  color: var(--color-text);
+  min-width: 4.5ch;
+  text-align: right;
+}
+
+/* --- Detalhes expansíveis --- */
+
+.db-detalhes {
+  min-width: 140px;
+}
+.db-detalhes-summary {
+  cursor: pointer;
+  color: var(--color-accent);
+  font: var(--text-body-sm);
+  font-weight: 510;
+  white-space: nowrap;
+}
+.db-detalhes-summary:hover { color: var(--color-accent-hover); }
+.db-detalhes-conteudo {
+  margin-top: var(--space-2);
+  padding: var(--space-3);
+  background: var(--color-surface-2);
+  border-radius: var(--radius-sm);
+  min-width: 240px;
+}
+.db-detalhes-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.db-detalhes-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.db-detalhes-nome {
+  flex: 1;
+  min-width: 0;
+  color: var(--color-text);
+}
+.db-detalhes-pct {
+  font-variant-numeric: tabular-nums;
+  font-weight: 510;
+  min-width: 4.5ch;
+  text-align: right;
+}
+.db-detalhes-obs {
+  margin: var(--space-2) 0 0;
+  font: var(--text-body-sm);
+  color: var(--color-text-muted);
+}
+.db-detalhes-id {
+  margin: var(--space-2) 0 0;
+  font: var(--text-caption);
+  color: var(--color-text-tertiary);
+}
+
+/* --- Ordenação de colunas --- */
+
+.db-table-sort-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-transform: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+}
+.db-table-sort-btn::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 5px solid currentColor;
+  opacity: 0.35;
+}
+th[aria-sort='ascending'] .db-table-sort-btn::after,
+th[aria-sort='descending'] .db-table-sort-btn::after {
+  opacity: 1;
+}
+th[aria-sort='descending'] .db-table-sort-btn::after {
+  transform: rotate(180deg);
+}
+
+/* --- Responsivo: tabela vira lista de cards em <=640px --- */
+
+@media (max-width: 900px) {
+  .db-table th,
+  .db-table td {
+    padding-inline: var(--space-2);
+  }
+}
+
+@media (max-width: 640px) {
+  .db-table-wrap { border: none; overflow: visible; }
+  .db-table,
+  .db-table thead,
+  .db-table tbody,
+  .db-table tr,
+  .db-table td {
+    display: block;
+    width: 100%;
+  }
+  .db-table { min-width: 0; }
+  .db-table thead { display: none; }
+  .db-table tr {
+    background: var(--color-surface-1);
+    border-radius: var(--radius-md);
+    box-shadow: var(--elevation-1);
+    padding: var(--space-3);
+    margin-block-end: var(--space-3);
+  }
+  .db-table td {
+    border: none;
+    padding: var(--space-1) 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-3);
+    white-space: normal;
+    text-align: right;
+    overflow-wrap: anywhere;
+  }
+  .db-table td::before {
+    content: attr(data-rotulo);
+    font: var(--text-caption);
+    color: var(--color-text-subtle);
+    flex: none;
+    text-align: left;
+  }
+  .db-table td.db-col-wrap {
+    display: block;
+  }
+  .db-table td.db-col-wrap::before {
+    display: block;
+    margin-bottom: 2px;
+  }
+  .db-top3-list {
+    width: 100%;
+    min-width: 0;
+  }
+  .db-detalhes-conteudo {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .db-summary-chip {
+    min-width: 0;
+    flex: 1 1 40%;
+  }
+  .db-filters-row {
+    gap: var(--space-3);
+  }
+  .db-field {
+    flex: 1 1 100%;
+  }
+}
