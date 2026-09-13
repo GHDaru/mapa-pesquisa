@@ -37,9 +37,11 @@ function validarDisputa(disputa: Disputa): void {
     throw new DisputaInvalidaError(`Turno inválido: "${disputa.turno}". Deve ser 1 ou 2.`);
   }
   if (disputa.cargo === 'presidente') {
-    if (disputa.uf !== UF_NACIONAL) {
+    // Presidente aceita "BR" (disputa nacional) ou qualquer uma das 27 UFs
+    // (pesquisa presidencial estadual — ver docs/data-schema.md).
+    if (disputa.uf !== UF_NACIONAL && !UFS.includes(disputa.uf)) {
       throw new DisputaInvalidaError(
-        `Disputa de presidente deve usar uf "${UF_NACIONAL}", recebido "${disputa.uf}".`,
+        `UF inválida para disputa de presidente: "${disputa.uf}". Deve ser "${UF_NACIONAL}" ou uma das 27 UFs.`,
       );
     }
   } else {

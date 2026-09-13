@@ -8,8 +8,14 @@ describe('domain/race', () => {
     expect(disputaId(disputa)).toBe('BR-presidente-t1');
   });
 
-  it('rejeita presidente com UF diferente de BR', () => {
-    expect(() => criarDisputa('SP', 'presidente', 1)).toThrow();
+  it('aceita disputa presidencial estadual (pesquisa por UF)', () => {
+    const disputa = criarDisputa('SP', 'presidente', 1);
+    expect(disputa.uf).toBe('SP');
+    expect(disputaId(disputa)).toBe('SP-presidente-t1');
+  });
+
+  it('rejeita presidente com UF desconhecida (nem BR nem UF válida)', () => {
+    expect(() => criarDisputa('XX', 'presidente', 1)).toThrow();
   });
 
   it('rejeita governador com UF "BR"', () => {
