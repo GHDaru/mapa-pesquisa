@@ -1,0 +1,408 @@
+/*
+ * Estilos das telas de Presidente, Senado e Cadastro de partidos
+ * (src/adapters/inbound/web/views/{presidential,senate,parties}-view.ts).
+ * Consome os tokens de docs/design-system.md, definidos em styles/tokens.css.
+ * Classes com prefixo `pv-` são específicas destas três views; a classe
+ * `espectro-<nivel>` (sem prefixo) é a convenção combinada para colorir
+ * qualquer elemento pela escala ideológica, mas as regras abaixo estão
+ * sempre qualificadas por um seletor `pv-*` para não vazar para outras views.
+ */
+
+.pv-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.pv-view {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding-block: var(--space-5);
+}
+
+.pv-view *:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-xs);
+}
+
+.pv-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.pv-title {
+  font: var(--text-headline);
+  color: var(--color-text);
+  margin: 0;
+}
+
+.pv-meta {
+  font: var(--text-caption);
+  color: var(--color-text-subtle);
+}
+
+.pv-section-title {
+  font: var(--text-title);
+  color: var(--color-text);
+  margin: 0 0 var(--space-3);
+}
+
+/* --- Cartões --- */
+
+.pv-card {
+  background: var(--color-surface-1);
+  box-shadow: var(--elevation-1);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+
+.pv-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: var(--space-4);
+}
+
+/* --- Badges e selos (nunca só cor: sempre com texto) --- */
+
+.pv-badge-partido {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-pill);
+  font: var(--text-caption);
+  font-weight: 510;
+  color: var(--color-on-accent);
+  white-space: nowrap;
+}
+.pv-badge-partido.espectro-1 { background: var(--spectrum-1-solid); }
+.pv-badge-partido.espectro-2 { background: var(--spectrum-2-solid); }
+.pv-badge-partido.espectro-3 { background: var(--spectrum-3-solid); }
+.pv-badge-partido.espectro-4 { background: var(--spectrum-4-solid); }
+.pv-badge-partido.espectro-5 { background: var(--spectrum-5-solid); }
+.pv-badge-partido.espectro-indefinido { background: var(--spectrum-indefinido); }
+
+.pv-selo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-pill);
+  font: var(--text-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+  white-space: nowrap;
+}
+.pv-selo-empate {
+  background: color-mix(in srgb, var(--color-warning) 22%, transparent);
+  color: var(--color-warning);
+  border: 1px solid color-mix(in srgb, var(--color-warning) 45%, transparent);
+}
+.pv-selo-sem-registro {
+  background: transparent;
+  color: var(--color-text-tertiary);
+  border: 1px solid var(--color-border-strong);
+}
+.pv-selo-projetado {
+  background: transparent;
+  color: var(--color-text-subtle);
+  border: 1px dashed var(--color-border-strong);
+}
+.pv-selo-indefinida {
+  background: transparent;
+  color: var(--color-text-subtle);
+  border: 1px solid var(--color-border-strong);
+}
+.pv-selo-nao-classificado {
+  background: transparent;
+  color: var(--color-text-subtle);
+  border: 1px solid var(--color-border-strong);
+}
+
+.pv-link-fonte {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.pv-link-fonte:hover { color: var(--color-accent-hover); }
+
+.pv-num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+/* --- Barras horizontais (candidatos, totais por partido) --- */
+
+.pv-bar-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 1fr) minmax(90px, 2.5fr) auto;
+  align-items: center;
+  gap: var(--space-3);
+  padding-block: var(--space-2);
+}
+.pv-bar-row + .pv-bar-row { border-top: 1px solid var(--color-border); }
+.pv-bar-name {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font: var(--text-body-sm);
+  color: var(--color-text);
+  min-width: 0;
+}
+.pv-bar-name-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pv-bar-track {
+  position: relative;
+  height: 18px;
+  background: var(--color-surface-2);
+  border-radius: var(--radius-xs);
+  overflow: hidden;
+}
+.pv-bar-fill {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  border-radius: var(--radius-xs);
+  transition: width var(--duration-lg) var(--ease-standard);
+}
+.pv-bar-fill.pv-empate { opacity: var(--confidence-empate-opacity); }
+.pv-bar-pct {
+  font: var(--text-body-sm);
+  font-weight: 590;
+  color: var(--color-text);
+  text-align: right;
+  min-width: 4.5ch;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pv-bar-fill { transition-duration: 0ms; }
+}
+
+/* --- Tabelas --- */
+
+.pv-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+.pv-table {
+  width: 100%;
+  border-collapse: collapse;
+  font: var(--text-body-sm);
+  min-width: 640px;
+}
+.pv-table th,
+.pv-table td {
+  padding: var(--space-2) var(--space-3);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+.pv-table th {
+  font: var(--text-caption);
+  color: var(--color-text-subtle);
+  position: sticky;
+  top: 0;
+  background: var(--color-surface-1);
+}
+.pv-table td.pv-col-wrap { white-space: normal; }
+.pv-table tbody tr:hover { background: var(--color-surface-2); }
+.pv-mini-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Tabela do cadastro de partidos vira lista de cards em telas muito estreitas. */
+.pv-parties-table-wrap .pv-table {
+  min-width: 0;
+}
+@media (max-width: 400px) {
+  .pv-parties-table-wrap { border: none; overflow: visible; }
+  .pv-parties-table-wrap table,
+  .pv-parties-table-wrap thead,
+  .pv-parties-table-wrap tbody,
+  .pv-parties-table-wrap tr,
+  .pv-parties-table-wrap td {
+    display: block;
+    width: 100%;
+  }
+  .pv-parties-table-wrap thead { display: none; }
+  .pv-parties-table-wrap tr {
+    background: var(--color-surface-1);
+    border-radius: var(--radius-md);
+    box-shadow: var(--elevation-1);
+    padding: var(--space-3);
+    margin-block-end: var(--space-3);
+  }
+  .pv-parties-table-wrap td {
+    border: none;
+    padding: var(--space-1) 0;
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-3);
+    white-space: normal;
+  }
+  .pv-parties-table-wrap td::before {
+    content: attr(data-rotulo);
+    font: var(--text-caption);
+    color: var(--color-text-subtle);
+    flex: none;
+  }
+}
+
+/* --- Controles (abas, select) --- */
+
+.pv-toggle-group {
+  display: inline-flex;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-pill);
+  padding: 2px;
+  gap: 2px;
+  width: fit-content;
+  max-width: 100%;
+}
+.pv-toggle-btn {
+  border: none;
+  background: transparent;
+  color: var(--color-text-subtle);
+  font: var(--text-body-sm);
+  font-weight: 510;
+  padding: var(--space-1) var(--space-4);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.pv-toggle-btn[aria-pressed="true"] {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.pv-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font: var(--text-caption);
+  color: var(--color-text-subtle);
+}
+.pv-select {
+  font: var(--text-body-sm);
+  color: var(--color-text);
+  background: var(--color-surface-1);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3);
+}
+
+.pv-controls-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  align-items: flex-end;
+}
+
+/* --- Hemiciclo --- */
+
+.pv-hemiciclo-wrap svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 640px;
+  margin-inline: auto;
+}
+.pv-assento { stroke: none; transition: opacity var(--duration-sm) var(--ease-out); }
+.pv-assento.espectro-1 { fill: var(--spectrum-1-fill); }
+.pv-assento.espectro-2 { fill: var(--spectrum-2-fill); }
+.pv-assento.espectro-3 { fill: var(--spectrum-3-fill); }
+.pv-assento.espectro-4 { fill: var(--spectrum-4-fill); }
+.pv-assento.espectro-5 { fill: var(--spectrum-5-fill); }
+.pv-assento.espectro-indefinido {
+  fill: var(--confidence-sem-dados-fill);
+}
+.pv-assento.pv-origem-fixa { stroke: #ffffff; stroke-width: 1.5; }
+.pv-assento.pv-origem-projetada { stroke: var(--color-canvas); stroke-width: 1; stroke-dasharray: 2 2; }
+.pv-assento.pv-origem-indefinida { fill: url(#pv-hachura-indefinida); stroke: var(--color-border-strong); stroke-width: 1; }
+.pv-assento.pv-empate-tecnico { opacity: var(--confidence-empate-opacity); }
+.pv-assento.pv-esmaecido { opacity: 0.3; }
+.pv-assento.pv-destacado { stroke: var(--color-accent); stroke-width: 3; }
+.pv-assento:focus-visible { outline: none; stroke: var(--color-accent); stroke-width: 3; }
+
+.pv-majority-line { stroke: var(--color-text-subtle); stroke-width: 1; }
+.pv-majority-label { fill: var(--color-text-subtle); font: var(--text-caption); text-anchor: middle; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pv-assento { transition-duration: 0ms; }
+}
+
+/* --- Legenda / totais --- */
+
+.pv-legend {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.pv-legend-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font: var(--text-body-sm);
+  color: var(--color-text);
+}
+.pv-legend-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-xs);
+  flex: none;
+}
+.pv-legend-count {
+  margin-left: auto;
+  font-weight: 590;
+  font-variant-numeric: tabular-nums;
+}
+
+.pv-explainer {
+  font: var(--text-body-sm);
+  color: var(--color-text-subtle);
+  margin: 0;
+}
+
+.pv-summary-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.pv-summary-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-1);
+  box-shadow: var(--elevation-1);
+  font: var(--text-body-sm);
+  color: var(--color-text);
+}
+.pv-summary-chip .pv-legend-swatch { width: 10px; height: 10px; border-radius: var(--radius-pill); }
+
+.pv-columns-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+@media (min-width: 768px) {
+  .pv-columns-2 { grid-template-columns: 2fr 1fr; align-items: start; }
+}

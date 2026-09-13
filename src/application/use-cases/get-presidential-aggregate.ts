@@ -14,6 +14,12 @@ export interface AgregadoPresidencial {
   readonly turno1: Agregado | null;
   /** Um agregado por cenário de 2º turno (ex.: "Fulano x Ciclana"), mais recente primeiro. */
   readonly turno2: readonly CenarioAgregado[];
+  /**
+   * Todas as pesquisas presidenciais conhecidas (1º e 2º turno juntos), não
+   * só as usadas nos agregados acima (que só olham a janela de recência) —
+   * para telas que listam o histórico completo. Mais recente primeiro.
+   */
+  readonly todasAsPesquisas: readonly Pesquisa[];
 }
 
 /**
@@ -49,6 +55,10 @@ export function criarGetPresidentialAggregate(repos: Repositorios, clock: Clock)
       dataReferencia(b.agregado.ultimaPesquisa).localeCompare(dataReferencia(a.agregado.ultimaPesquisa)),
     );
 
-    return { turno1, turno2 };
+    const todasAsPesquisas = [...pollsTurno1, ...pollsTurno2].sort((a, b) =>
+      dataReferencia(b).localeCompare(dataReferencia(a)),
+    );
+
+    return { turno1, turno2, todasAsPesquisas };
   };
 }
