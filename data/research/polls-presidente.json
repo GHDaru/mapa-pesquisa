@@ -554,5 +554,47 @@
       { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 45.0 }
     ],
     "observacao": "registroTSE não localizado nas buscas da auditoria rodada 2. Divulgada no mesmo dia (11/09) que a Datafolha já presente na base, mostrando cenário de empate técnico em vez da vantagem de 2 p.p. de Lula apontada pela Datafolha — divergência relevante entre institutos na mesma janela."
+  },
+  {
+    "id": "2026-08-21-datafolha-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "BR-04496/2026",
+    "contratante": "TV Globo e Folha de S.Paulo",
+    "dataInicio": "2026-08-18",
+    "dataFim": "2026-08-20",
+    "publicadoEm": "2026-08-21",
+    "amostra": 2058,
+    "margem": 2.0,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": { "nome": "O Povo", "url": "https://www.opovo.com.br/noticias/politica/eleicoes/2026/08/21/pesquisa-datafolha-traz-lula-comm-39-e-flavio-bolsonaro-33.html" },
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 39.0 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 33.0 }
+    ],
+    "observacao": "Pesquisa ausente na base auditada; localizada via WebSearch em 13/09/2026 (auditoria de data/research/audit-presidente-historico.md). Confirmar candidatos adicionais/brancos/nulos na fonte original antes de publicar."
+  },
+  {
+    "id": "2026-08-21-datafolha-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Datafolha",
+    "registroTSE": "BR-04496/2026",
+    "contratante": "TV Globo e Folha de S.Paulo",
+    "dataInicio": "2026-08-18",
+    "dataFim": "2026-08-20",
+    "publicadoEm": "2026-08-21",
+    "amostra": 2058,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro",
+    "fonte": { "nome": "Brasil de Fato", "url": "https://www.brasildefato.com.br/2026/08/21/datafolha-no-segundo-turno-lula-tem-47-flavio-bolsonaro-tem-43/" },
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 47.0 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 43.0 }
+    ],
+    "observacao": "Pesquisa ausente na base auditada; localizada via WebSearch em 13/09/2026 (auditoria de data/research/audit-presidente-historico.md)."
   }
 ]

@@ -182,3 +182,22 @@ Não verificado por limite de orçamento de busca: se há rodadas PoderData de m
 **Publicável: NÃO.**
 
 **Maior lacuna**: a linha `2026-07-30-poderdata-br-presidente-t2-flavio-lula` não é apenas um erro de 1 ou 2 pontos percentuais — ela importa um **evento inteiro de outra data** (Flávio Bolsonaro aparecendo numericamente à frente de Lula pela primeira vez) para dentro do período maio–agosto, quando isso na realidade só veio a ocorrer numa pesquisa PoderData/Aya de campo 30/08–02/09/2026 (fora da janela coberta por este arquivo). Isso muda a narrativa da corrida presidencial em julho (que na realidade ainda tinha Lula à frente por 3 pontos, 46 a 43) e é o tipo de erro que mais compromete a credibilidade da base se publicado como está. Some-se a isso a inversão de números na pesquisa Nexus/FSB de 15/06, os números trocados do 2º turno Meio/Ideia de 08/07, uma fonte citada que na verdade é de uma pesquisa Datafolha de 2022, e duas pesquisas completas (Datafolha 21/08 e AtlasIntel 31/08) ausentes da base — todas achados típicos do risco de "números trocados entre pesquisas parecidas" que motivou esta auditoria.
+
+## Aplicado
+
+Todas as correções recomendadas foram aplicadas em `data/research/polls-presidente-historico.json`, sem nenhuma remoção (a auditoria não apontou ids para remover):
+
+- Nexus/FSB 15/06 (t1): percentuais corrigidos para 42,0/33,0.
+- Datafolha 20/06 (t2): fonte trocada para a Wikipédia (a antiga apontava para uma pesquisa Datafolha de 2022).
+- Real Time Big Data 21/07 (t1 e t2): `registroTSE` preenchido com `BR-09247/2026`.
+- PoderData 30/07 (t2): id renomeado de `...t2-flavio-lula` para `...t2-lula-flavio`, resultados corrigidos para Lula 46,0 / Flávio 43,0 e observação reescrita (o evento "Flávio à frente pela 1ª vez" pertence a uma rodada de setembro, fora do período coberto).
+- Meio/Ideia 08/07 (t1 e t2): `registroTSE` preenchido com `BR-05628/2026`; no t2, resultados corrigidos para Lula 45,0 / Flávio 40,0 e fonte trocada para a matéria do Brasil de Fato.
+- Quaest 10/06 (t1): fonte trocada para a matéria da CNN Brasil sobre o 1º turno desta rodada.
+
+Pesquisas faltantes inseridas (nenhum valor além dos trazidos pela auditoria):
+
+- `2026-08-11-gerp-br-presidente-t2-flavio-lula` — inserida em `data/research/polls-presidente-historico.json` (antes de 20/08).
+- `2026-08-21-datafolha-br-presidente-t1` e `2026-08-21-datafolha-br-presidente-t2-lula-flavio` — inseridas em `data/research/polls-presidente.json` (20/08 em diante).
+- `2026-08-31-atlasintel-br-presidente-t1` e `2026-08-31-atlasintel-br-presidente-t2-lula-flavio` — já existiam em `data/research/polls-presidente.json` com dados equivalentes; não duplicadas.
+
+Verificado: ids únicos entre `polls-presidente-historico.json` e `polls-presidente.json` (sem sobreposição). Rodado com sucesso: `npm run data:merge -- --date 2026-09-13`, `npm run data:validate` e `npm test` (215 testes, todos passando).
