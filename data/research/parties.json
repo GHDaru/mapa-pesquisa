@@ -298,5 +298,15 @@
     "cor": null,
     "federacao": null,
     "observacao": "Autodeclarado partido \"puramente de centro\"; baixa cobertura acadêmica específica de posicionamento."
+  },
+  {
+    "sigla": "PRTB",
+    "nome": "Partido Renovador Trabalhista Brasileiro",
+    "numero": 28,
+    "espectro": "direita",
+    "fonteClassificacao": "https://pt.wikipedia.org/wiki/Partido_Renovador_Trabalhista_Brasileiro",
+    "observacao": "Adicionado pelo revisor: partido de Pablo Marçal (candidato à Presidência em 2026). Classificação direita/direita radical segundo Wikipédia.",
+    "cor": null,
+    "federacao": null
   }
 ]

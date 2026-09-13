@@ -59,3 +59,37 @@ export function criarPartido(dados: DadosPartido): Partido {
   };
   return partido;
 }
+
+
+/** Apelidos de siglas encontrados em fontes de imprensa → sigla canônica do cadastro. */
+const APELIDOS_SIGLA: Readonly<Record<string, string>> = {
+  'UNIÃO': 'União Brasil',
+  'UNIAO': 'União Brasil',
+  'UNIÃO BRASIL': 'União Brasil',
+  'DEMOCRACIA CRISTÃ': 'DC',
+  'PODE': 'Podemos',
+  'PODEMOS': 'Podemos',
+  'REPUBLICANOS': 'Republicanos',
+  'SOLIDARIEDADE': 'Solidariedade',
+  'SD': 'Solidariedade',
+  'CIDADANIA': 'Cidadania',
+  'AVANTE': 'Avante',
+  'NOVO': 'Novo',
+  'REDE': 'Rede',
+  'MISSÃO': 'Missão',
+  'MISSAO': 'Missão',
+  'MOBILIZA': 'Mobiliza',
+  'AGIR': 'Agir',
+  'PC DO B': 'PCdoB',
+  'PCDOB': 'PCdoB',
+  'SEM PARTIDO': 'Sem Partido',
+  'S/PARTIDO': 'Sem Partido',
+};
+
+/** Normaliza a sigla de partido vinda de fontes externas; null/vazio permanece null. */
+export function normalizarSigla(sigla: string | null | undefined): string | null {
+  if (sigla == null) return null;
+  const limpa = sigla.trim();
+  if (!limpa) return null;
+  return APELIDOS_SIGLA[limpa.toUpperCase()] ?? limpa;
+}

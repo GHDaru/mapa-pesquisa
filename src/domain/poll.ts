@@ -1,3 +1,4 @@
+import { normalizarSigla } from './party.js';
 import { type Cargo, type Disputa, criarDisputa } from './race.js';
 
 /**
@@ -29,7 +30,8 @@ export interface ResultadoCandidato {
 export interface DadosResultadoCandidato {
   candidato: string;
   partido?: string | null;
-  pct: number;
+  /** null quando a fonte não informou o percentual; o resultado é descartado na validação. */
+  pct: number | null;
 }
 
 export interface DadosPesquisa {
@@ -40,9 +42,9 @@ export interface DadosPesquisa {
   instituto: string;
   registroTSE?: string | null;
   contratante?: string | null;
-  dataInicio: string;
+  dataInicio?: string | null;
   dataFim?: string | null;
-  publicadoEm: string;
+  publicadoEm?: string | null;
   amostra?: number | null;
   margem?: number | null;
   cenario?: string | null;
@@ -57,9 +59,9 @@ export interface Pesquisa {
   readonly instituto: string;
   readonly registroTSE: RegistroTSE;
   readonly contratante?: string;
-  readonly dataInicio: string;
+  readonly dataInicio?: string;
   readonly dataFim?: string;
-  readonly publicadoEm: string;
+  readonly publicadoEm?: string;
   readonly amostra?: number;
   readonly margem?: number;
   readonly cenario?: string;
@@ -85,7 +87,8 @@ function validarDataIso(id: string, campo: string, valor: string): void {
 
 /** Data de referência da pesquisa para fins de recência: fim de campo ou, na ausência, publicação. */
 export function dataReferencia(pesquisa: Pesquisa): string {
-  return pesquisa.dataFim ?? pesquisa.publicadoEm;
+  // A validação garante que ao menos uma das datas existe.
+  return pesquisa.dataFim ?? pesquisa.publicadoEm ?? pesquisa.dataInicio ?? '';
 }
 
 /**
@@ -105,10 +108,11 @@ export function criarPesquisa(dados: DadosPesquisa): Pesquisa {
     throw new PesquisaInvalidaError(id, 'instituto não pode ser vazio.');
   }
 
-  validarDataIso(id, 'dataInicio', dados.dataInicio);
-  validarDataIso(id, 'publicadoEm', dados.publicadoEm);
-  if (dados.dataFim != null) {
-    validarDataIso(id, 'dataFim', dados.dataFim);
+  if (dados.dataInicio != null) validarDataIso(id, 'dataInicio', dados.dataInicio);
+  if (dados.publicadoEm != null) validarDataIso(id, 'publicadoEm', dados.publicadoEm);
+  if (dados.dataFim != null) validarDataIso(id, 'dataFim', dados.dataFim);
+  if (dados.dataFim == null && dados.publicadoEm == null && dados.dataInicio == null) {
+    throw new PesquisaInvalidaError(id, 'a pesquisa precisa de ao menos uma data (dataFim, publicadoEm ou dataInicio).');
   }
 
   if (!dados.fonte || !dados.fonte.nome?.trim() || !dados.fonte.url?.trim()) {
@@ -131,32 +135,37 @@ export function criarPesquisa(dados: DadosPesquisa): Pesquisa {
     throw new PesquisaInvalidaError(id, 'resultados não pode ser vazio.');
   }
 
-  const resultados: ResultadoCandidato[] = dados.resultados.map((r, idx) => {
+  const resultados: ResultadoCandidato[] = dados.resultados.flatMap((r, idx): ResultadoCandidato[] => {
     if (!r.candidato || !r.candidato.trim()) {
       throw new PesquisaInvalidaError(id, `resultados[${idx}].candidato não pode ser vazio.`);
     }
+    // Percentual não informado pela fonte: o candidato é descartado, nunca inventado.
+    if (r.pct == null) return [];
     if (!Number.isFinite(r.pct) || r.pct < 0 || r.pct > 100) {
       throw new PesquisaInvalidaError(
         id,
         `resultados[${idx}].pct deve estar entre 0 e 100, recebido "${r.pct}" (${r.candidato}).`,
       );
     }
-    return {
+    return [{
       candidato: r.candidato.trim(),
-      partido: r.partido ?? null,
+      partido: normalizarSigla(r.partido),
       pct: r.pct,
-    };
+    }];
   });
+  if (resultados.length === 0) {
+    throw new PesquisaInvalidaError(id, 'nenhum resultado com percentual informado.');
+  }
 
   const pesquisa: Pesquisa = {
     id,
     disputa,
     instituto: dados.instituto.trim(),
     registroTSE: criarRegistroTSE(dados.registroTSE),
-    dataInicio: dados.dataInicio,
-    publicadoEm: dados.publicadoEm,
     fonte: { nome: dados.fonte.nome.trim(), url: dados.fonte.url.trim() },
     resultados,
+    ...(dados.dataInicio != null ? { dataInicio: dados.dataInicio } : {}),
+    ...(dados.publicadoEm != null ? { publicadoEm: dados.publicadoEm } : {}),
     ...(dados.dataFim != null ? { dataFim: dados.dataFim } : {}),
     ...(dados.contratante ? { contratante: dados.contratante } : {}),
     ...(dados.amostra != null ? { amostra: dados.amostra } : {}),

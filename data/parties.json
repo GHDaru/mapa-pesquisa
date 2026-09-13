@@ -1,10 +1,102 @@
 [
   {
+    "sigla": "Republicanos",
+    "nome": "Republicanos",
+    "numero": 10,
+    "espectro": "direita",
+    "fonteClassificacao": "https://en.wikipedia.org/wiki/Republicans_(Brazil)",
+    "cor": null,
+    "federacao": null,
+    "observacao": "Base evangélica conservadora; rejeitou a proposta de integrar a federação União Progressista em 2025."
+  },
+  {
+    "sigla": "PP",
+    "nome": "Progressistas",
+    "numero": 11,
+    "espectro": "direita",
+    "fonteClassificacao": "https://www.scielo.br/j/dados/a/zzyM3gzHD4P45WWdytXjZWg/?format=html&lang=pt",
+    "cor": null,
+    "federacao": "União Progressista",
+    "observacao": "Classificação acadêmica (Zucco/Power) e Congresso em Foco convergem em direita; partido se autodeclara centro-direita."
+  },
+  {
+    "sigla": "PDT",
+    "nome": "Partido Democrático Trabalhista",
+    "numero": 12,
+    "espectro": "centro-esquerda",
+    "fonteClassificacao": "https://pt.wikipedia.org/wiki/Lista_de_partidos_pol%C3%ADticos_do_Brasil",
+    "cor": "#DA291C",
+    "federacao": null,
+    "observacao": "Estudo de Zucco/Power (2023-2025) posiciona o PDT na esquerda; a maioria das fontes (Wikipédia, autodefinição trabalhista/social-democrata) usa centro-esquerda."
+  },
+  {
     "sigla": "PT",
     "nome": "Partido dos Trabalhadores",
     "numero": 13,
     "espectro": "esquerda",
-    "fonteClassificacao": "https://pt.org.br/",
+    "fonteClassificacao": "https://www.scielo.br/j/dados/a/zzyM3gzHD4P45WWdytXjZWg/?format=html&lang=pt",
+    "cor": "#C0392B",
+    "federacao": "Federação Brasil da Esperança (Fe Brasil)",
+    "observacao": "Consenso entre Wikipédia, Zucco/Power e GPS Partidário (Folha) de que é o polo à esquerda junto com o PSOL. Federado com PCdoB e PV desde 2022."
+  },
+  {
+    "sigla": "Missão",
+    "nome": "Partido Missão",
+    "numero": 14,
+    "espectro": "direita",
+    "fonteClassificacao": "https://conjur.com.br/2025-nov-04/missao-partido-politico-do-mbl-tem-registro-deferido-pelo-tse/",
+    "cor": null,
+    "federacao": null,
+    "observacao": "Partido novo (registro deferido pelo TSE em 04/11/2025), fundado por lideranças do MBL; autodefinição de direita liberal. Assumiu o número 14, antes usado pelo PTB (extinto pela fusão que criou o PRD). Sem histórico legislativo para classificação acadêmica de posicionamento parlamentar."
+  },
+  {
+    "sigla": "MDB",
+    "nome": "Movimento Democrático Brasileiro",
+    "numero": 15,
+    "espectro": "centro",
+    "fonteClassificacao": "https://www.scielo.br/j/dados/a/zzyM3gzHD4P45WWdytXjZWg/?format=html&lang=pt",
+    "cor": null,
+    "federacao": null,
+    "observacao": "Convergência entre Zucco/Power e Congresso em Foco (2024) em classificar o MDB como partido de centro (\"centrão\")."
+  },
+  {
+    "sigla": "PSTU",
+    "nome": "Partido Socialista dos Trabalhadores Unificado",
+    "numero": 16,
+    "espectro": "esquerda",
+    "fonteClassificacao": "https://www.cartacapital.com.br/politica/esquerda-volver-o-que-une-e-divide-up-pco-pstu-e-pcb/",
+    "cor": "#CC0000",
+    "federacao": null,
+    "observacao": "Apontado pelo GPS Partidário (Folha, atualizado set/2026) como o partido mais à esquerda do espectro brasileiro; trotskista."
+  },
+  {
+    "sigla": "Rede",
+    "nome": "Rede Sustentabilidade",
+    "numero": 18,
+    "espectro": "centro-esquerda",
+    "fonteClassificacao": "https://pt.wikipedia.org/wiki/Rede_Sustentabilidade",
+    "cor": "#3CB54A",
+    "federacao": "Federação PSOL-Rede",
+    "observacao": "Autodefinição como \"sustentabilista progressista\"; fundadora (Marina Silva) recusa rótulo esquerda/direita, mas classificações externas a situam na centro-esquerda."
+  },
+  {
+    "sigla": "Podemos",
+    "nome": "Podemos",
+    "numero": 20,
+    "espectro": "centro-direita",
+    "fonteClassificacao": "https://www.brasildefato.com.br/2024/10/29/eleicoes-2024-centro-e-direita-colocam-a-esquerda-em-sinal-de-alerta-para-2026/",
+    "cor": "#F7941D",
+    "federacao": null,
+    "observacao": "Partido se autodeclara \"centro puro\"; estudo usado pelo Congresso em Foco (2024) o inclui no campo da direita. Incorporou o PSC em 2024."
+  },
+  {
+    "sigla": "PCB",
+    "nome": "Partido Comunista Brasileiro",
+    "numero": 21,
+    "espectro": "esquerda",
+    "fonteClassificacao": "https://www.cartacapital.com.br/politica/esquerda-volver-o-que-une-e-divide-up-pco-pstu-e-pcb/",
+    "cor": "#CC0000",
+    "federacao": null,
     "observacao": ""
   },
   {
@@ -12,7 +104,209 @@
     "nome": "Partido Liberal",
     "numero": 22,
     "espectro": "direita",
-    "fonteClassificacao": "https://pl.org.br/",
-    "observacao": ""
+    "fonteClassificacao": "https://www.scielo.br/j/dados/a/zzyM3gzHD4P45WWdytXjZWg/?format=html&lang=pt",
+    "cor": "#003C71",
+    "federacao": null,
+    "observacao": "Consenso entre Zucco/Power, Congresso em Foco e GPS Partidário (Folha, set/2026, que o aponta como o partido mais à direita ao lado do Novo)."
+  },
+  {
+    "sigla": "Cidadania",
+    "nome": "Cidadania",
+    "numero": 23,
+    "espectro": "centro",
+    "fonteClassificacao": "https://pt.wikipedia.org/wiki/Cidadania_(partido_pol%C3%ADtico)",
+    "cor": null,
+    "federacao": "Federação PSDB-Cidadania",
+    "observacao": "Sucessor do PPS; algumas fontes o classificam como centro-esquerda (autodefinição) e outras como \"centro-democrático\"."
+  },
+  {
+    "sigla": "PRD",
+    "nome": "Partido Renovação Democrática",
+    "numero": 25,
+    "espectro": "centro-direita",
+    "fonteClassificacao": "https://en.wikipedia.org/wiki/Democratic_Renewal_Party_(Brazil)",
+    "cor": null,
+    "federacao": "Federação Renovação Solidária",
+    "observacao": "Resultado da fusão entre PTB e Patriota (aprovada pelo TSE em 09/11/2023). Estudo usado pelo Congresso em Foco (2024) o inclui no campo da direita; autodefinição e cobertura de imprensa oscilam entre centro-direita e direita."
+  },
+  {
+    "sigla": "DC",
+    "nome": "Democracia Cristã",
+    "numero": 27,
+    "espectro": "direita",
+    "fonteClassificacao": "https://pt.wikipedia.org/wiki/Democracia_Crist%C3%A3_(Brasil)",
+    "cor": null,
+    "federacao": null,
+    "observacao": "Conservadorismo cristão; incluído no campo da direita pelo estudo usado pelo Congresso em Foco (2024)."
+  },
+  {
+    "sigla": "PCO",
+    "nome": "Partido da Causa Operária",
+    "numero": 29,
+    "espectro": "esquerda",
+    "fonteClassificacao": "https://www.cartacapital.com.br/politica/esquerda-volver-o-que-une-e-divide-up-pco-pstu-e-pcb/",
+    "cor": "#CC0000",
+    "federacao": null,
+    "observacao": "Trotskista, extrema-esquerda."
+  },
+  {
+    "sigla": "Novo",
+    "nome": "Partido Novo",
+    "numero": 30,
+    "espectro": "direita",
+    "fonteClassificacao": "https://jornaldebrasilia.com.br/noticias/politica-e-poder/novo-e-pl-sao-as-siglas-mais-a-direita-pstu-e-up-as-mais-a-esquerda-mostra-gps-partidario-2026/",
+    "cor": "#FF6600",
+    "federacao": null,
+    "observacao": "Apontado pelo GPS Partidário (Folha, atualizado set/2026) como o partido mais à direita do espectro brasileiro; liberal na economia."
+  },
+  {
+    "sigla": "Mobiliza",
+    "nome": "Mobilização Nacional",
+    "numero": 33,
+    "espectro": "centro-direita",
+    "fonteClassificacao": "https://pt.wikipedia.org/wiki/Lista_de_partidos_pol%C3%ADticos_do_Brasil",
+    "cor": null,
+    "federacao": null,
+    "observacao": "Sucessor do PRP (Partido Republicano Progressista), historicamente classificado à direita; reposicionamento recente ('Mobiliza', a partir de 2022) não é consensual nas fontes consultadas."
+  },
+  {
+    "sigla": "PMB",
+    "nome": "Partido da Mulher Brasileira",
+    "numero": 35,
+    "espectro": "centro-esquerda",
+    "fonteClassificacao": "https://pt.wikipedia.org/wiki/Lista_de_partidos_pol%C3%ADticos_do_Brasil",
+    "cor": null,
+    "federacao": null,
+    "observacao": "Pauta programática voltada a direitos das mulheres; classificação com baixa cobertura em estudos acadêmicos de posicionamento parlamentar."
+  },
+  {
+    "sigla": "Agir",
+    "nome": "Agir",
+    "numero": 36,
+    "espectro": "centro-direita",
+    "fonteClassificacao": "https://pt.wikipedia.org/wiki/Agir_(Brasil)",
+    "cor": null,
+    "federacao": null,
+    "observacao": "Sucessor do PTC; autodefinição \"centro-progressista\" desde o rebranding de 2022, mas o estudo usado pelo Congresso em Foco (2024) o inclui no campo da direita."
+  },
+  {
+    "sigla": "PSB",
+    "nome": "Partido Socialista Brasileiro",
+    "numero": 40,
+    "espectro": "centro-esquerda",
+    "fonteClassificacao": "https://pt.wikipedia.org/wiki/Lista_de_partidos_pol%C3%ADticos_do_Brasil",
+    "cor": "#FFD400",
+    "federacao": null,
+    "observacao": "Estudo de Zucco/Power posiciona o PSB na esquerda; classificação majoritária (Wikipédia, imprensa) e autodefinição apontam centro-esquerda."
+  },
+  {
+    "sigla": "PV",
+    "nome": "Partido Verde",
+    "numero": 43,
+    "espectro": "centro-esquerda",
+    "fonteClassificacao": "https://pv.org.br/opartido/os-12-valores-do-pv/",
+    "cor": "#00A651",
+    "federacao": "Federação Brasil da Esperança (Fe Brasil)",
+    "observacao": "Ecologismo com pautas sociais progressistas; algumas fontes o situam entre centro-esquerda e esquerda."
+  },
+  {
+    "sigla": "União Brasil",
+    "nome": "União Brasil",
+    "numero": 44,
+    "espectro": "centro-direita",
+    "fonteClassificacao": "https://pt.wikipedia.org/wiki/Uni%C3%A3o_Brasil",
+    "cor": null,
+    "federacao": "União Progressista",
+    "observacao": "Fusão de DEM (centro-direita) e PSL (direita) em 2022. Autodefinição centro-direita; estudo usado pelo Congresso em Foco (2024) o inclui no campo da direita."
+  },
+  {
+    "sigla": "PSDB",
+    "nome": "Partido da Social Democracia Brasileira",
+    "numero": 45,
+    "espectro": "centro",
+    "fonteClassificacao": "https://www.brasildefato.com.br/2024/10/29/eleicoes-2024-centro-e-direita-colocam-a-esquerda-em-sinal-de-alerta-para-2026/",
+    "cor": "#003399",
+    "federacao": "Federação PSDB-Cidadania",
+    "observacao": "Autodefinição \"centro-democrático\"; classificação histórica oscila entre centro e centro-direita (social-democracia liberal)."
+  },
+  {
+    "sigla": "PSOL",
+    "nome": "Partido Socialismo e Liberdade",
+    "numero": 50,
+    "espectro": "esquerda",
+    "fonteClassificacao": "https://www.scielo.br/j/dados/a/zzyM3gzHD4P45WWdytXjZWg/?format=html&lang=pt",
+    "cor": "#E4032E",
+    "federacao": "Federação PSOL-Rede",
+    "observacao": "Consenso entre Wikipédia, Zucco/Power e GPS Partidário (Folha) de que é polo à esquerda junto com o PT."
+  },
+  {
+    "sigla": "PSD",
+    "nome": "Partido Social Democrático",
+    "numero": 55,
+    "espectro": "centro-direita",
+    "fonteClassificacao": "https://www.scielo.br/j/dados/a/zzyM3gzHD4P45WWdytXjZWg/?format=html&lang=pt",
+    "cor": null,
+    "federacao": null,
+    "observacao": "Divergência relevante: Zucco/Power (2023-2025) classifica o PSD no centro; o estudo usado pelo Congresso em Foco (2024) o inclui no campo da direita. Aqui adotado centro-direita como posição intermediária entre as fontes."
+  },
+  {
+    "sigla": "PCdoB",
+    "nome": "Partido Comunista do Brasil",
+    "numero": 65,
+    "espectro": "esquerda",
+    "fonteClassificacao": "https://www.scielo.br/j/dados/a/zzyM3gzHD4P45WWdytXjZWg/?format=html&lang=pt",
+    "cor": "#CC0000",
+    "federacao": "Federação Brasil da Esperança (Fe Brasil)",
+    "observacao": "Em 2026 lançou nova identidade visual incorporando verde, amarelo e azul da bandeira nacional, mantendo o vermelho tradicional; posicionamento ideológico (esquerda) não muda nas fontes consultadas."
+  },
+  {
+    "sigla": "Avante",
+    "nome": "Avante",
+    "numero": 70,
+    "espectro": "centro",
+    "fonteClassificacao": "https://www.brasildefato.com.br/2024/10/29/eleicoes-2024-centro-e-direita-colocam-a-esquerda-em-sinal-de-alerta-para-2026/",
+    "cor": null,
+    "federacao": null,
+    "observacao": "Ex-PT do Brasil (PTdoB); hoje partido fisiológico de centro segundo Congresso em Foco (2024) e autodefinição."
+  },
+  {
+    "sigla": "Solidariedade",
+    "nome": "Solidariedade",
+    "numero": 77,
+    "espectro": "centro",
+    "fonteClassificacao": "https://www.brasildefato.com.br/2024/10/29/eleicoes-2024-centro-e-direita-colocam-a-esquerda-em-sinal-de-alerta-para-2026/",
+    "cor": null,
+    "federacao": "Federação Renovação Solidária",
+    "observacao": "Congresso em Foco (2024) e autodefinição convergem em centro; origem sindical (Força Sindical)."
+  },
+  {
+    "sigla": "UP",
+    "nome": "Unidade Popular",
+    "numero": 80,
+    "espectro": "esquerda",
+    "fonteClassificacao": "https://en.wikipedia.org/wiki/Popular_Unity_(Brazil)",
+    "cor": "#CC0000",
+    "federacao": null,
+    "observacao": "Apontado pelo GPS Partidário (Folha, set/2026) entre os partidos mais à esquerda do espectro, ao lado do PSTU."
+  },
+  {
+    "sigla": "PROS",
+    "nome": "Partido Republicano da Ordem Social",
+    "numero": 90,
+    "espectro": "centro",
+    "fonteClassificacao": "https://pt.wikipedia.org/wiki/Lista_de_partidos_pol%C3%ADticos_do_Brasil",
+    "cor": null,
+    "federacao": null,
+    "observacao": "Autodeclarado partido \"puramente de centro\"; baixa cobertura acadêmica específica de posicionamento."
+  },
+  {
+    "sigla": "PRTB",
+    "nome": "Partido Renovador Trabalhista Brasileiro",
+    "numero": 28,
+    "espectro": "direita",
+    "fonteClassificacao": "https://pt.wikipedia.org/wiki/Partido_Renovador_Trabalhista_Brasileiro",
+    "observacao": "Adicionado pelo revisor: partido de Pablo Marçal (candidato à Presidência em 2026). Classificação direita/direita radical segundo Wikipédia.",
+    "cor": null,
+    "federacao": null
   }
 ]

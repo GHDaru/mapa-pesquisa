@@ -55,6 +55,7 @@ export function espectroDoPartido(
   partidos: readonly PartidoComEspectro[],
 ): Espectro {
   if (!sigla) return 'indefinido';
-  const partido = partidos.find((p) => p.sigla === sigla);
+  const alvo = sigla.trim().toLowerCase();
+  const partido = partidos.find((p) => p.sigla.toLowerCase() === alvo);
   return partido ? partido.espectro : 'indefinido';
 }

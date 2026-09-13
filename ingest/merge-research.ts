@@ -23,8 +23,10 @@ const RESEARCH_DIR = path.join(DATA_DIR, 'research');
 
 interface PesquisaBruta {
   id: string;
+  dataInicio?: string | null;
   dataFim?: string | null;
-  publicadoEm: string;
+  publicadoEm?: string | null;
+  resultados?: { pct?: number | null }[];
   [chave: string]: unknown;
 }
 
@@ -71,14 +73,20 @@ function mesclarPolls(): number {
     const caminho = path.join(RESEARCH_DIR, arquivo);
     const entradas = JSON.parse(readFileSync(caminho, 'utf-8')) as PesquisaBruta[];
     for (const entrada of entradas) {
+      const temData = entrada.dataFim != null || entrada.publicadoEm != null || entrada.dataInicio != null;
+      const temPct = Array.isArray(entrada.resultados) && entrada.resultados.some((r) => r.pct != null);
+      if (!temData || !temPct) {
+        console.log(`  descartada ${entrada.id}: ${!temData ? 'sem data' : 'sem percentuais'} (registro de pesquisa sem números na fonte)`);
+        continue;
+      }
       porId.set(entrada.id, entrada);
     }
     console.log(`  lido ${arquivo}: ${entradas.length} pesquisa(s)`);
   }
 
   const mescladas = [...porId.values()].sort((a, b) => {
-    const dataA = a.dataFim ?? a.publicadoEm;
-    const dataB = b.dataFim ?? b.publicadoEm;
+    const dataA = a.dataFim ?? a.publicadoEm ?? a.dataInicio ?? '';
+    const dataB = b.dataFim ?? b.publicadoEm ?? b.dataInicio ?? '';
     return dataB.localeCompare(dataA);
   });
 
