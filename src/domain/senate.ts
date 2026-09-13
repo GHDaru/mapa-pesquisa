@@ -91,7 +91,8 @@ const ORDEM_HEMICICLO: readonly Espectro[] = [
   'direita',
 ];
 
-function posicaoHemiciclo(espectro: Espectro): number {
+/** Exportado apenas para testes de ordenação do hemiciclo. */
+export function posicaoHemiciclo(espectro: Espectro): number {
   const idx = ORDEM_HEMICICLO.indexOf(espectro);
   return idx === -1 ? ORDEM_HEMICICLO.length : idx;
 }

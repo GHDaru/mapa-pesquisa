@@ -310,12 +310,12 @@
   {
     "uf": "MS",
     "senador": "Soraya Thronicke",
-    "partido": "União",
+    "partido": "PSB",
     "mandatoInicio": 2019,
     "mandatoFim": 2027,
     "emDisputa2026": true,
     "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/MS",
-    "observacao": "Fonte desta sessão indicou PSB; conhecimento prévio associa Soraya Thronicke ao União Brasil (ex-PSL/PSDB). Partido atual não totalmente confirmado."
+    "observacao": "Eleita em 2018 pelo PSL, passou pelo União e Podemos; fontes de 2026 a citam no PSB."
   },
   {
     "uf": "MS",
@@ -440,12 +440,12 @@
   {
     "uf": "PR",
     "senador": "Sergio Moro",
-    "partido": "PL",
+    "partido": "União",
     "mandatoInicio": 2023,
     "mandatoFim": 2031,
     "emDisputa2026": false,
     "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/PR",
-    "observacao": "Eleito em 2022 pelo União Brasil; fontes de set/2026 (Poder360) o citam como PL e candidato a governador."
+    "observacao": "Eleito em 2022 pelo União Brasil; verificações em set/2026 mantêm União (uma fonte citou PL). Candidato a governador."
   },
   {
     "uf": "PE",
@@ -522,12 +522,12 @@
   {
     "uf": "RJ",
     "senador": "Romário",
-    "partido": "PL",
+    "partido": "Sem Partido",
     "mandatoInicio": 2023,
     "mandatoFim": 2031,
     "emDisputa2026": false,
     "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/RJ",
-    "observacao": "Eleito em 2022 pelo PL; confirmar filiação atual."
+    "observacao": "Eleito em 2022 pelo PL; duas verificações em set/2026 o citam sem partido."
   },
   {
     "uf": "RN",
@@ -679,12 +679,12 @@
   {
     "uf": "SP",
     "senador": "Alexandre Giordano",
-    "partido": "MDB",
+    "partido": "Podemos",
     "mandatoInicio": 2019,
     "mandatoFim": 2027,
     "emDisputa2026": true,
     "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/SP",
-    "observacao": "Suplente que assumiu a cadeira de Major Olimpio (falecido em 2021); filiado ao MDB. Confirmar filiação atual."
+    "observacao": "Suplente de Major Olimpio; filiado ao MDB, fontes de 2026 o citam no Podemos."
   },
   {
     "uf": "SP",
