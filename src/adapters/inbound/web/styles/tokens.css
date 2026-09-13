@@ -141,6 +141,33 @@
 
     --color-accent-hover: #4a54b8;
     --color-accent-active: #454fae;
+
+    /* --- Escala ideológica de 5 níveis — variante clara ---
+       -fill (3-fill/4-fill/5-fill) escurecidos frente ao tema escuro para
+       manter contraste >= 3:1 (não-textual, WCAG 1.4.11) contra o novo
+       fundo branco/quase-branco; -solid e indefinido já tinham contraste
+       >= 4.5:1 com texto branco independente do fundo da página, mas ficam
+       redeclarados aqui para que nenhum token de cor exista só em um tema. */
+    --spectrum-1-fill: #eb5757;
+    --spectrum-1-solid: #b83232;
+    --spectrum-2-fill: #c1707a;
+    --spectrum-2-solid: #9c525c;
+    --spectrum-3-fill: #6f747c;
+    --spectrum-3-solid: #6b6f78;
+    --spectrum-4-fill: #5f76ab;
+    --spectrum-4-solid: #52658f;
+    --spectrum-5-fill: #1f7cc4;
+    --spectrum-5-solid: #1f6fb8;
+    --spectrum-indefinido: #4c4f56;
+
+    /* --- "Sem dados" — variante clara, mais escura que --color-border-strong
+       claro (#d3d6db, ~1.5:1 contra branco) para não sumir contra o fundo. */
+    --confidence-sem-dados-fill: #868a92;
+    --confidence-sem-dados-pattern: repeating-linear-gradient(
+      135deg,
+      #868a92 0 4px,
+      transparent 4px 8px
+    );
   }
 }
 
@@ -164,6 +191,25 @@
 
   --color-accent-hover: #4a54b8;
   --color-accent-active: #454fae;
+
+  --spectrum-1-fill: #eb5757;
+  --spectrum-1-solid: #b83232;
+  --spectrum-2-fill: #c1707a;
+  --spectrum-2-solid: #9c525c;
+  --spectrum-3-fill: #6f747c;
+  --spectrum-3-solid: #6b6f78;
+  --spectrum-4-fill: #5f76ab;
+  --spectrum-4-solid: #52658f;
+  --spectrum-5-fill: #1f7cc4;
+  --spectrum-5-solid: #1f6fb8;
+  --spectrum-indefinido: #4c4f56;
+
+  --confidence-sem-dados-fill: #868a92;
+  --confidence-sem-dados-pattern: repeating-linear-gradient(
+    135deg,
+    #868a92 0 4px,
+    transparent 4px 8px
+  );
 }
 :root[data-theme='dark'] {
   color-scheme: dark;

@@ -157,7 +157,7 @@ function criarBarraCandidato(candidato: CandidatoAgregado, espectro: Espectro): 
 }
 
 function criarTabelaPesquisas(pesquisas: readonly Pesquisa[]): HTMLElement {
-  const wrap = criarEl('div', { className: 'pv-table-wrap' });
+  const wrap = criarEl('div', { className: 'pv-table-wrap pv-presidential-table-wrap' });
   const table = criarEl('table', { className: 'pv-table' });
 
   const thead = criarEl('thead', {}, [
@@ -178,17 +178,26 @@ function criarTabelaPesquisas(pesquisas: readonly Pesquisa[]): HTMLElement {
     const disputa = p.disputa.turno === 1 ? '1º turno' : `2º turno${p.cenario ? ` — ${p.cenario}` : ''}`;
 
     return criarEl('tr', {}, [
-      criarEl('td', { texto: p.instituto }),
-      criarEl('td', { texto: disputa, className: 'pv-col-wrap' }),
-      criarEl('td', { texto: formatarPeriodo(p.dataInicio, p.dataFim), className: 'pv-num' }),
+      criarEl('td', { texto: p.instituto, attrs: { 'data-rotulo': 'Instituto' } }),
+      criarEl('td', { texto: disputa, className: 'pv-col-wrap', attrs: { 'data-rotulo': 'Disputa' } }),
+      criarEl('td', {
+        texto: formatarPeriodo(p.dataInicio, p.dataFim),
+        className: 'pv-num',
+        attrs: { 'data-rotulo': 'Campo' },
+      }),
       criarEl('td', {
         className: 'pv-num',
         texto: p.amostra != null ? p.amostra.toLocaleString('pt-BR') : '—',
+        attrs: { 'data-rotulo': 'Amostra' },
       }),
-      criarEl('td', { className: 'pv-num', texto: p.margem != null ? `± ${formatarNumero(p.margem)} pts` : '—' }),
+      criarEl('td', {
+        className: 'pv-num',
+        texto: p.margem != null ? `± ${formatarNumero(p.margem)} pts` : '—',
+        attrs: { 'data-rotulo': 'Margem' },
+      }),
       criarEl(
         'td',
-        {},
+        { attrs: { 'data-rotulo': 'Registro TSE' } },
         [
           p.registroTSE.naoRegistrada
             ? criarEl('span', {
@@ -201,7 +210,7 @@ function criarTabelaPesquisas(pesquisas: readonly Pesquisa[]): HTMLElement {
       ),
       criarEl(
         'td',
-        { className: 'pv-col-wrap' },
+        { className: 'pv-col-wrap', attrs: { 'data-rotulo': '3 primeiros colocados' } },
         [
           criarEl(
             'ul',
@@ -212,7 +221,7 @@ function criarTabelaPesquisas(pesquisas: readonly Pesquisa[]): HTMLElement {
           ),
         ],
       ),
-      criarEl('td', {}, [criarLinkFonte(p.fonte)]),
+      criarEl('td', { attrs: { 'data-rotulo': 'Fonte' } }, [criarLinkFonte(p.fonte)]),
     ]);
   });
 

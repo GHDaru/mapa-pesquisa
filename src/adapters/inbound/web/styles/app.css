@@ -20,10 +20,37 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Contenção final contra rolagem horizontal da página inteira: mesmo com
+   `min-width:0` nos itens flex (regra acima) e `overflow-x:auto` nos
+   wrappers de tabela, alguns motores de layout ainda contabilizam o
+   tamanho de conteúdo (min-content) de uma tabela larga na área rolável do
+   ancestral flex, mesmo a tabela estando visualmente contida por um
+   wrapper com overflow-x:auto — isso arrasta document.documentElement.
+   scrollWidth para além do viewport (ver docs/critica-ui-rodada1.md P0).
+   `overflow-x: hidden` na raiz garante scrollWidth <= viewport em qualquer
+   largura, sem afetar a rolagem interna dos wrappers (que continuam
+   rolando por conta própria) nem elementos `position: fixed` (drawer,
+   backdrop). */
+html,
+body {
+  overflow-x: hidden;
+}
+
 #app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+/* Itens flex têm `min-width:auto` por padrão, que soma o tamanho mínimo do
+   conteúdo (ex.: uma tabela com `min-width:640px` dentro de um wrapper com
+   `overflow-x:auto`) — isso infla o item flex além do viewport mesmo com o
+   wrapper interno rolando corretamente, arrastando a página inteira para o
+   lado. `min-width:0` deixa o item encolher e o `overflow-x:auto` do
+   wrapper interno passa a conter a rolagem de fato (ver docs/critica-ui-rodada1.md P0). */
+.app-main,
+.pv-view > * {
+  min-width: 0;
 }
 
 a {
@@ -105,6 +132,7 @@ svg :focus-visible,
 
 .site-nav {
   flex: 1 1 auto;
+  min-width: 0;
 }
 .site-nav ul {
   list-style: none;
@@ -113,6 +141,21 @@ svg :focus-visible,
   gap: var(--space-2);
   margin: 0;
   padding: 0;
+}
+/* Abaixo de 480px o wrap dos links quebra de forma desalinhada (ex.: 3 links
+   numa linha, "Partidos" sozinho na seguinte) — vira uma única linha
+   rolável horizontalmente em vez de quebrar, como o pv-toggle-group do
+   Senado já faz cabendo inteiro em 400px. */
+@media (max-width: 480px) {
+  .site-nav ul {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-block: 2px;
+  }
+  .site-nav__link {
+    flex: none;
+  }
 }
 .site-nav__link {
   display: inline-block;
@@ -563,18 +606,28 @@ th {
   gap: var(--space-2);
   font: var(--text-body-sm);
 }
-.bar-row--destaque .bar-row__rotulo {
+.bar-row--destaque .bar-row__nome {
   font-weight: var(--font-variation-nav);
   color: var(--color-text);
 }
-.bar-row__rotulo {
+.bar-row__info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-width: 0;
+}
+.bar-row__nome {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  min-width: 0;
   color: var(--color-text-muted);
 }
-.bar-row__partido {
-  color: var(--color-text-subtle);
+/* Badge de partido: nunca trunca (flex:none) — corrige o corte no meio da
+   sigla do partido quando nome+partido eram um único nó de texto com
+   ellipsis (ver docs/critica-ui-rodada1.md P1 #3). */
+.bar-row__badge {
+  flex: none;
 }
 .bar-track {
   height: 8px;

@@ -171,6 +171,67 @@ describe('domain/senate — projetarSenado', () => {
     expect(primeiro.empateTecnico).toBe(true);
   });
 
+  it('confianca é null para cadeiras fixas e indefinidas', () => {
+    const projecao = projetarSenado(cadeiras, {}, PARTIDOS);
+    const fixas = projecao.assentos.filter((a) => a.origem === 'fixa');
+    const indefinidas = projecao.assentos.filter((a) => a.origem === 'indefinida');
+    expect(fixas.length).toBeGreaterThan(0);
+    expect(indefinidas.length).toBeGreaterThan(0);
+    for (const a of [...fixas, ...indefinidas]) expect(a.confianca).toBeNull();
+  });
+
+  it('confianca é "empate" quando a vantagem para o próximo colocado está dentro da margem', () => {
+    const agregadosPorUf = {
+      SP: agregadoFake(
+        [
+          { candidato: 'Candidata E', partido: 'PT', pct: 36 },
+          { candidato: 'Candidato F', partido: 'PL', pct: 34 },
+        ],
+        3,
+      ),
+    };
+    const projecao = projetarSenado(cadeiras, agregadosPorUf, PARTIDOS);
+    const primeiro = projecao.assentos.find((a) => a.uf === 'SP' && a.ocupante === 'Candidata E')!;
+    expect(primeiro.confianca).toBe('empate');
+  });
+
+  it('confianca é "acirrada" quando a vantagem supera a margem mas é menor que o dobro dela', () => {
+    const agregadosPorUf = {
+      SP: agregadoFake(
+        [
+          { candidato: 'Candidata E', partido: 'PT', pct: 40 },
+          { candidato: 'Candidato F', partido: 'PL', pct: 35 },
+        ],
+        3,
+      ),
+    };
+    const projecao = projetarSenado(cadeiras, agregadosPorUf, PARTIDOS);
+    const primeiro = projecao.assentos.find((a) => a.uf === 'SP' && a.ocupante === 'Candidata E')!;
+    expect(primeiro.confianca).toBe('acirrada');
+  });
+
+  it('confianca é "folga" quando a vantagem é igual ou maior que o dobro da margem', () => {
+    const agregadosPorUf = {
+      SP: agregadoFake(
+        [
+          { candidato: 'Candidata E', partido: 'PT', pct: 50 },
+          { candidato: 'Candidato F', partido: 'PL', pct: 20 },
+        ],
+        3,
+      ),
+    };
+    const projecao = projetarSenado(cadeiras, agregadosPorUf, PARTIDOS);
+    const primeiro = projecao.assentos.find((a) => a.uf === 'SP' && a.ocupante === 'Candidata E')!;
+    expect(primeiro.confianca).toBe('folga');
+  });
+
+  it('confianca é null quando não há um próximo colocado para comparar (só 1 candidato no agregado)', () => {
+    const agregadosPorUf = { BA: agregadoFake([{ candidato: 'Único Candidato', partido: 'MDB', pct: 45 }]) };
+    const projecao = projetarSenado(cadeiras, agregadosPorUf, PARTIDOS);
+    const projetada = projecao.assentos.find((a) => a.uf === 'BA' && a.origem === 'projetada')!;
+    expect(projetada.confianca).toBeNull();
+  });
+
   it('ordena os assentos da esquerda para a direita, com indefinido no centro', () => {
     const projecao = projetarSenado(cadeiras, {}, PARTIDOS);
     const posicoes = projecao.assentos.map((a) => posicaoHemiciclo(a.espectro));

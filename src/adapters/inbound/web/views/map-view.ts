@@ -165,10 +165,12 @@ export function renderMap(container: HTMLElement, casos: CasosDeUso): void {
     const margem = margemPorUf.get(uf) ?? MARGEM_REFERENCIA_PADRAO;
     const nivel = nivelConfianca(overview.vantagem, margem, false);
     const ultima = resumo.governador?.ultimaPesquisa;
+    const nPesquisas = resumo.governador?.pesquisasUsadas.length ?? 0;
+    const rotuloPesquisas = nPesquisas === 1 ? '1 pesquisa' : `${nPesquisas} pesquisas`;
     const linhaInstituto = ultima
       ? `<span class="map-tooltip__meta">${ultima.instituto} · ${formatarData(
           ultima.dataFim ?? ultima.publicadoEm ?? ultima.dataInicio ?? '',
-        )}</span>`
+        )} · ${rotuloPesquisas}</span>`
       : '';
     return `
       <strong>${nome}</strong>

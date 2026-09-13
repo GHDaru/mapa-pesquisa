@@ -37,6 +37,25 @@ export function ehLinhaNaoCandidato(candidato: string, excluidos: ReadonlySet<st
   return PADROES_NAO_CANDIDATO.some((re) => re.test(plano));
 }
 
+/**
+ * Nível de confiança da liderança nas 3 faixas de docs/design-system.md,
+ * calculado a partir da vantagem (pontos) sobre o 2º colocado e da margem de
+ * referência ponderada. Usado tanto pelo agregado presidencial/governador
+ * quanto pelas cadeiras projetadas do Senado (`domain/senate.ts`).
+ */
+export type NivelConfianca = 'folga' | 'acirrada' | 'empate';
+
+/**
+ * Classifica a confiança da liderança: `empate` quando a vantagem está
+ * dentro da margem de referência, `acirrada` quando a supera mas fica abaixo
+ * do dobro da margem, `folga` quando é igual ou maior que o dobro.
+ */
+export function classificarConfianca(vantagem: number, margemReferencia: number): NivelConfianca {
+  if (vantagem <= margemReferencia) return 'empate';
+  if (vantagem < margemReferencia * 2) return 'acirrada';
+  return 'folga';
+}
+
 export const JANELA_DIAS_PADRAO = 45;
 export const MEIA_VIDA_DIAS_PADRAO = 14;
 export const MARGEM_REFERENCIA_PADRAO = 3.0;

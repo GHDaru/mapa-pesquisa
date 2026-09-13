@@ -6,32 +6,71 @@ import { ordemEspectro } from '../../../../domain/spectrum.js';
 import { criarBadgePartido, criarEl, rotuloEspectro, tokenFillEspectro } from './_shared.js';
 
 /**
- * Cadastro de partidos — tabela ordenada da esquerda para a direita (escala
- * ideológica), com barra de resumo por espectro no topo. Ver
- * docs/ux-spec.md §2(e); vira lista de cards em telas de 400px (views.css).
+ * Cadastro de partidos — tabela ordenável por Número (padrão, identificador
+ * oficial do TSE) ou por Espectro (agrupa a progressão de cor), com
+ * cabeçalhos clicáveis no desktop e um `select` equivalente substituindo-os
+ * quando a tabela vira lista de cards em 400px — ver docs/ux-spec.md §2(e).
  */
 
-export function renderParties(container: HTMLElement, casos: CasosDeUso): void {
-  const partidos = [...casos.listParties()].sort(
+type OrdenarPor = 'numero' | 'espectro';
+
+function ordenarPartidos(partidos: readonly Partido[], ordenarPor: OrdenarPor): Partido[] {
+  if (ordenarPor === 'numero') {
+    return [...partidos].sort((a, b) => a.numero - b.numero);
+  }
+  return [...partidos].sort(
     (a, b) => ordemEspectro(a.espectro) - ordemEspectro(b.espectro) || a.numero - b.numero,
   );
+}
+
+export function renderParties(container: HTMLElement, casos: CasosDeUso): void {
+  const todos = casos.listParties();
 
   container.innerHTML = '';
   const raiz = criarEl('section', { className: 'pv-view', attrs: { 'aria-labelledby': 'partidos-titulo' } });
 
+  const meta = criarEl('p', { className: 'pv-meta' });
   raiz.append(
     criarEl('header', { className: 'pv-header' }, [
       criarEl('h1', { className: 'pv-title', texto: 'Cadastro de partidos', attrs: { id: 'partidos-titulo' } }),
-      criarEl('p', {
-        className: 'pv-meta',
-        texto: `${partidos.length} partidos, ordenados da esquerda para a direita.`,
-      }),
+      meta,
     ]),
   );
 
-  raiz.append(criarResumoPorEspectro(partidos));
-  raiz.append(criarTabelaPartidos(partidos));
+  raiz.append(criarResumoPorEspectro(todos));
 
+  // --- Controle de ordenação: cabeçalhos clicáveis (desktop) + select (mobile) ---
+  let ordenarPor: OrdenarPor = 'numero';
+
+  const selectOrdenacao = criarEl('select', { className: 'pv-select', attrs: { id: 'partidos-ordenar' } }, [
+    criarEl('option', { texto: 'Número', attrs: { value: 'numero' } }),
+    criarEl('option', { texto: 'Espectro', attrs: { value: 'espectro' } }),
+  ]);
+  const campoOrdenacao = criarEl('label', { className: 'pv-field pv-sort-select-wrap', texto: 'Ordenar por' }, [
+    selectOrdenacao,
+  ]);
+  raiz.append(campoOrdenacao);
+
+  const tabelaWrap = criarEl('div', {});
+  raiz.append(tabelaWrap);
+
+  function atualizar(): void {
+    const partidos = ordenarPartidos(todos, ordenarPor);
+    meta.textContent = `${partidos.length} partidos, ordenados por ${ordenarPor === 'numero' ? 'número' : 'espectro'}.`;
+    selectOrdenacao.value = ordenarPor;
+    tabelaWrap.innerHTML = '';
+    tabelaWrap.append(criarTabelaPartidos(partidos, ordenarPor, (novo) => {
+      ordenarPor = novo;
+      atualizar();
+    }));
+  }
+
+  selectOrdenacao.addEventListener('change', () => {
+    ordenarPor = selectOrdenacao.value === 'espectro' ? 'espectro' : 'numero';
+    atualizar();
+  });
+
+  atualizar();
   container.append(raiz);
 }
 
@@ -54,17 +93,37 @@ function criarResumoPorEspectro(partidos: readonly Partido[]): HTMLElement {
   );
 }
 
-function criarTabelaPartidos(partidos: readonly Partido[]): HTMLElement {
+function criarThOrdenavel(
+  rotulo: string,
+  campo: OrdenarPor,
+  ordenarPor: OrdenarPor,
+  aoClicar: (campo: OrdenarPor) => void,
+): HTMLElement {
+  const ativo = ordenarPor === campo;
+  const btn = criarEl('button', {
+    className: 'pv-table-sort-btn',
+    texto: rotulo,
+    attrs: { type: 'button', 'aria-label': `Ordenar por ${rotulo}` },
+  });
+  btn.addEventListener('click', () => aoClicar(campo));
+  return criarEl('th', { attrs: { scope: 'col', 'aria-sort': ativo ? 'ascending' : 'none' } }, [btn]);
+}
+
+function criarTabelaPartidos(
+  partidos: readonly Partido[],
+  ordenarPor: OrdenarPor,
+  aoOrdenar: (campo: OrdenarPor) => void,
+): HTMLElement {
   const wrap = criarEl('div', { className: 'pv-table-wrap pv-parties-table-wrap' });
   const table = criarEl('table', { className: 'pv-table' });
 
   table.append(
     criarEl('thead', {}, [
       criarEl('tr', {}, [
-        criarEl('th', { texto: 'Número', attrs: { scope: 'col' } }),
+        criarThOrdenavel('Número', 'numero', ordenarPor, aoOrdenar),
         criarEl('th', { texto: 'Sigla', attrs: { scope: 'col' } }),
         criarEl('th', { texto: 'Nome completo', attrs: { scope: 'col' } }),
-        criarEl('th', { texto: 'Espectro', attrs: { scope: 'col' } }),
+        criarThOrdenavel('Espectro', 'espectro', ordenarPor, aoOrdenar),
         criarEl('th', { texto: 'Federação', attrs: { scope: 'col' } }),
         criarEl('th', { texto: 'Fonte da classificação', attrs: { scope: 'col' } }),
       ]),

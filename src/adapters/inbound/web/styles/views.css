@@ -231,6 +231,29 @@
 .pv-parties-table-wrap .pv-table {
   min-width: 0;
 }
+/* `min-width:0` remove o piso declarado, mas as 6 colunas com
+   `white-space:nowrap` (herdado de .pv-table) ainda somam um mínimo
+   intrínseco maior que o wrapper entre 400px e ~700px — mesma causa raiz
+   do P0 na tabela de pesquisas presidenciais, sem UF/dado atual longo o
+   bastante para ter sido notado na 1ª rodada. Mesma correção: permitir
+   quebra de linha e reduzir o padding antes do wrapper virar cards. */
+.pv-parties-table-wrap .pv-table th {
+  white-space: normal;
+}
+.pv-parties-table-wrap .pv-table td {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.pv-parties-table-wrap .pv-selo,
+.pv-parties-table-wrap .pv-badge-partido {
+  white-space: normal;
+}
+@media (max-width: 700px) {
+  .pv-parties-table-wrap .pv-table th,
+  .pv-parties-table-wrap .pv-table td {
+    padding-inline: var(--space-1);
+  }
+}
 @media (max-width: 400px) {
   .pv-parties-table-wrap { border: none; overflow: visible; }
   .pv-parties-table-wrap table,
@@ -262,6 +285,129 @@
     font: var(--text-caption);
     color: var(--color-text-subtle);
     flex: none;
+  }
+}
+
+/* Ordenação do cadastro de partidos: cabeçalhos clicáveis no desktop, select
+   substituindo-os quando a tabela vira lista de cards (400px). */
+.pv-table-sort-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-transform: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+}
+.pv-table-sort-btn::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 5px solid currentColor;
+  opacity: 0.35;
+}
+th[aria-sort='ascending'] .pv-table-sort-btn::after,
+th[aria-sort='descending'] .pv-table-sort-btn::after {
+  opacity: 1;
+}
+th[aria-sort='descending'] .pv-table-sort-btn::after {
+  transform: rotate(180deg);
+}
+.pv-sort-select-wrap {
+  display: none;
+}
+@media (max-width: 400px) {
+  .pv-sort-select-wrap {
+    display: flex;
+  }
+}
+
+/* Tabela de pesquisas presidenciais vira lista de cards em ≤640px — mesmo
+   princípio da tabela de partidos, só que num breakpoint maior porque tem
+   mais colunas (8) e nenhuma cabe de forma legível abaixo de 640px mesmo
+   com rolagem horizontal contida (ver docs/critica-ui-rodada1.md P0). */
+.pv-presidential-table-wrap .pv-table {
+  min-width: 0;
+}
+/* As 8 colunas com `white-space:nowrap` (herdado de .pv-table) fixam uma
+   largura mínima intrínseca de ~1100px que nenhum `min-width:0` remove —
+   é o próprio conteúdo sem quebra que impõe o mínimo, não uma largura
+   declarada. Entre o breakpoint de cards (640px) e a tela cheia, isso
+   ainda arrasta a página inteira de lado (mesma falha do P0, só que fora
+   de 400px). Permitir quebra de linha nas colunas de texto mais largas
+   deixa a tabela encolher para caber em qualquer largura do contêiner. */
+.pv-presidential-table-wrap .pv-table th {
+  /* Só quebra em espaços (ex.: "Registro TSE" em 2 linhas) — nunca no meio
+     de uma palavra, o que ficaria feio em rótulos curtos como "Amostra". */
+  white-space: normal;
+}
+.pv-presidential-table-wrap .pv-table td {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+/* Selos/badges normalmente não quebram (são pílulas curtas), mas dentro
+   desta tabela isso ainda impunha um piso de ~140px na coluna "Registro
+   TSE" — quebrar aqui é preferível a arrastar a página inteira de lado. */
+.pv-presidential-table-wrap .pv-selo {
+  white-space: normal;
+}
+/* Reduz o padding horizontal das 8 colunas antes do breakpoint de cards —
+   cada px de padding é multiplicado por 8 colunas, e é o que sobra do piso
+   intrínseco depois de permitir quebra de linha no conteúdo. */
+@media (max-width: 900px) {
+  .pv-presidential-table-wrap .pv-table th,
+  .pv-presidential-table-wrap .pv-table td {
+    padding-inline: var(--space-1);
+  }
+}
+@media (max-width: 640px) {
+  .pv-presidential-table-wrap { border: none; overflow: visible; }
+  .pv-presidential-table-wrap table,
+  .pv-presidential-table-wrap thead,
+  .pv-presidential-table-wrap tbody,
+  .pv-presidential-table-wrap tr,
+  .pv-presidential-table-wrap td {
+    display: block;
+    width: 100%;
+  }
+  .pv-presidential-table-wrap thead { display: none; }
+  .pv-presidential-table-wrap tr {
+    background: var(--color-surface-1);
+    border-radius: var(--radius-md);
+    box-shadow: var(--elevation-1);
+    padding: var(--space-3);
+    margin-block-end: var(--space-3);
+  }
+  .pv-presidential-table-wrap td {
+    border: none;
+    padding: var(--space-1) 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-3);
+    white-space: normal;
+    text-align: right;
+  }
+  .pv-presidential-table-wrap td::before {
+    content: attr(data-rotulo);
+    font: var(--text-caption);
+    color: var(--color-text-subtle);
+    flex: none;
+    text-align: left;
+  }
+  .pv-presidential-table-wrap td.pv-col-wrap {
+    display: block;
+  }
+  .pv-presidential-table-wrap td.pv-col-wrap::before {
+    display: block;
+    margin-bottom: 2px;
   }
 }
 
@@ -335,8 +481,13 @@
 }
 .pv-assento.pv-origem-fixa { stroke: #ffffff; stroke-width: 1.5; }
 .pv-assento.pv-origem-projetada { stroke: var(--color-canvas); stroke-width: 1; stroke-dasharray: 2 2; }
-.pv-assento.pv-origem-indefinida { fill: url(#pv-hachura-indefinida); stroke: var(--color-border-strong); stroke-width: 1; }
-.pv-assento.pv-empate-tecnico { opacity: var(--confidence-empate-opacity); }
+.pv-assento.pv-origem-indefinida { fill: url(#pv-hachura-indefinida); stroke: var(--color-text-tertiary); stroke-width: 1; }
+/* Confiança da projeção — mesmas 3 faixas do mapa/design-system.md,
+   aplicadas via opacidade (nunca só a opacidade: o contorno tracejado de
+   pv-origem-projetada e o rótulo textual no aria-label/tooltip reforçam). */
+.pv-assento.pv-confianca-folga { opacity: var(--confidence-solid-opacity); }
+.pv-assento.pv-confianca-acirrada { opacity: var(--confidence-lean-opacity); }
+.pv-assento.pv-confianca-empate { opacity: var(--confidence-empate-opacity); }
 .pv-assento.pv-esmaecido { opacity: 0.3; }
 .pv-assento.pv-destacado { stroke: var(--color-accent); stroke-width: 3; }
 .pv-assento:focus-visible { outline: none; stroke: var(--color-accent); stroke-width: 3; }
@@ -367,6 +518,18 @@
   height: 14px;
   border-radius: var(--radius-xs);
   flex: none;
+  position: relative;
+}
+.pv-legend-swatch--hachura::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--confidence-sem-dados-pattern);
+  border-radius: inherit;
+}
+.pv-legend-swatch--tracejado {
+  border: 1px dashed var(--color-border-strong);
+  background: transparent !important;
 }
 .pv-legend-count {
   margin-left: auto;

@@ -1,6 +1,7 @@
 import { type Espectro, espectroDoPartido } from './spectrum.js';
 import type { Partido } from './party.js';
-import type { Agregado } from './aggregate.js';
+import type { Agregado, NivelConfianca } from './aggregate.js';
+import { classificarConfianca } from './aggregate.js';
 import { UFS } from './race.js';
 
 /**
@@ -69,6 +70,14 @@ export interface AssentoSenado {
   readonly espectro: Espectro;
   readonly origem: OrigemAssento;
   readonly empateTecnico?: boolean;
+  /**
+   * Faixa de confiança da projeção (folga / corrida acirrada / empate
+   * técnico), calculada a partir da vantagem sobre o próximo colocado do
+   * agregado e da margem de referência ponderada — ver
+   * docs/design-system.md "Hemiciclo do Senado". `null` para cadeiras
+   * fixas, indefinidas, ou projetadas sem um próximo colocado para comparar.
+   */
+  readonly confianca: NivelConfianca | null;
 }
 
 export interface ProjecaoSenado {
@@ -133,6 +142,7 @@ export function projetarSenado(
         partido: cadeira.partido,
         espectro: espectroDoPartido(cadeira.partido, partidos),
         origem: 'fixa',
+        confianca: null,
       });
     }
 
@@ -150,19 +160,20 @@ export function projetarSenado(
           partido: null,
           espectro: 'indefinido',
           origem: 'indefinida',
+          confianca: null,
         });
         continue;
       }
       const proximo = ranking[i + 1];
+      const vantagem = proximo ? candidato.pct - proximo.pct : null;
       const assento: AssentoSenado = {
         uf,
         ocupante: candidato.candidato,
         partido: candidato.partido,
         espectro: espectroDoPartido(candidato.partido, partidos),
         origem: 'projetada',
-        ...(proximo
-          ? { empateTecnico: candidato.pct - proximo.pct <= margemReferencia }
-          : {}),
+        confianca: vantagem != null ? classificarConfianca(vantagem, margemReferencia) : null,
+        ...(vantagem != null ? { empateTecnico: vantagem <= margemReferencia } : {}),
       };
       assentos.push(assento);
     }

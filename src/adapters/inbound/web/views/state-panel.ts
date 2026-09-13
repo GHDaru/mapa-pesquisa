@@ -239,9 +239,16 @@ function renderBarraCandidato(
 ): string {
   const espectro = espectroDoPartido(c.partido, partidos);
   const largura = Math.max(2, (c.pct / maxPct) * 100);
+  const rotuloCompleto = c.partido ? `${c.candidato} (${c.partido})` : c.candidato;
+  const badgePartido = c.partido
+    ? `<span class="badge bar-row__badge" style="background:${corEspectroSolido(espectro)}">${escaparHtml(c.partido)}</span>`
+    : '';
   return `
     <li class="bar-row${destaque ? ' bar-row--destaque' : ''}">
-      <span class="bar-row__rotulo">${escaparHtml(c.candidato)}${c.partido ? ` <span class="bar-row__partido">(${escaparHtml(c.partido)})</span>` : ''}</span>
+      <span class="bar-row__info">
+        <span class="bar-row__nome" title="${escaparHtml(rotuloCompleto)}">${escaparHtml(c.candidato)}</span>
+        ${badgePartido}
+      </span>
       <span class="bar-track" role="presentation">
         <span class="bar-fill" style="width:${largura}%; background:${corEspectroSolido(espectro)}"></span>
       </span>

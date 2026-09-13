@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { agregarPesquisas, MARGEM_REFERENCIA_PADRAO } from '../aggregate.js';
+import { agregarPesquisas, classificarConfianca, MARGEM_REFERENCIA_PADRAO } from '../aggregate.js';
 import { criarPesquisa, type DadosPesquisa } from '../poll.js';
 
 const HOJE = new Date('2026-09-15T00:00:00Z');
@@ -229,5 +229,22 @@ describe('linhas que não são candidatos', () => {
     expect(ehLinhaNaoCandidato('Outros', vazio)).toBe(true);
     expect(ehLinhaNaoCandidato('Sergio Moro', vazio)).toBe(false);
     expect(ehLinhaNaoCandidato('Ronaldo Caiado', vazio)).toBe(false);
+  });
+});
+
+describe('classificarConfianca — 3 faixas de docs/design-system.md', () => {
+  it('classifica "empate" quando a vantagem é menor ou igual à margem', () => {
+    expect(classificarConfianca(2, 3)).toBe('empate');
+    expect(classificarConfianca(3, 3)).toBe('empate');
+  });
+
+  it('classifica "acirrada" quando a vantagem supera a margem mas é menor que o dobro dela', () => {
+    expect(classificarConfianca(3.1, 3)).toBe('acirrada');
+    expect(classificarConfianca(5.9, 3)).toBe('acirrada');
+  });
+
+  it('classifica "folga" quando a vantagem é igual ou maior que o dobro da margem', () => {
+    expect(classificarConfianca(6, 3)).toBe('folga');
+    expect(classificarConfianca(30, 3)).toBe('folga');
   });
 });

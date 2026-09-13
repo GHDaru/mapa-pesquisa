@@ -4,7 +4,21 @@ import type { AssentoSenado } from '../../../../domain/senate.js';
 import { posicaoHemiciclo } from '../../../../domain/senate.js';
 import { UFS } from '../../../../domain/race.js';
 import type { Espectro } from '../../../../domain/spectrum.js';
+import type { NivelConfianca } from '../../../../domain/aggregate.js';
 import { classeEspectro, criarEl, rotuloEspectro, tokenFillEspectro, tokenSolidEspectro } from './_shared.js';
+import { rotuloConfianca } from '../format.js';
+
+/** Rótulo textual da faixa de confiança de uma cadeira projetada — nunca só a cor/opacidade. */
+function rotuloConfiancaAssento(confianca: NivelConfianca): string {
+  switch (confianca) {
+    case 'folga':
+      return rotuloConfianca('solid');
+    case 'acirrada':
+      return rotuloConfianca('lean');
+    case 'empate':
+      return rotuloConfianca('empate');
+  }
+}
 
 /**
  * Hemiciclo do Senado (81 assentos), NYT "Senate results 2024" como barra de
@@ -121,6 +135,7 @@ interface AssentoVisual {
   readonly espectro: Espectro;
   readonly origemVisual: OrigemVisual;
   readonly empateTecnico?: boolean;
+  readonly confianca: NivelConfianca | null;
 }
 
 const MAIORIA = 41;
@@ -136,6 +151,7 @@ function assentosDaProjecao(assentos: readonly AssentoSenado[]): AssentoVisual[]
     partido: a.partido,
     espectro: a.espectro,
     origemVisual: a.origem,
+    confianca: a.confianca,
     ...(a.empateTecnico != null ? { empateTecnico: a.empateTecnico } : {}),
   }));
 }
@@ -149,7 +165,7 @@ function assentosDaComposicaoAtual(
   for (const [partido, quantidade] of Object.entries(totalPorPartido)) {
     const espectro = espectroPorPartido.get(partido) ?? 'indefinido';
     for (let i = 0; i < quantidade; i++) {
-      sinteticos.push({ uf: null, ocupante: null, partido, espectro, origemVisual: 'atual' });
+      sinteticos.push({ uf: null, ocupante: null, partido, espectro, origemVisual: 'atual', confianca: null });
     }
   }
   sinteticos.sort(
@@ -164,7 +180,7 @@ function rotuloAria(assento: AssentoVisual): string {
     case 'fixa':
       return `${assento.uf} — ${assento.ocupante} (${partido}), cadeira até 2031, não disputada em 2026`;
     case 'projetada':
-      return `${assento.uf} — ${assento.ocupante} (${partido}), projetada para 2027${assento.empateTecnico ? ', empate técnico' : ''}`;
+      return `${assento.uf} — ${assento.ocupante} (${partido}), projetada para 2027${assento.confianca ? `, ${rotuloConfiancaAssento(assento.confianca).toLowerCase()}` : ''}`;
     case 'indefinida':
       return `${assento.uf}, cadeira indefinida — sem pesquisa suficiente para projetar`;
     case 'atual':
@@ -207,8 +223,8 @@ function desenharHemiciclo(assentos: readonly AssentoVisual[], ufDestacada: stri
       patternUnits: 'userSpaceOnUse',
     });
     pattern.append(
-      criarSvgEl('rect', { width: '6', height: '6', fill: 'var(--color-surface-2)' }),
-      criarSvgEl('line', { x1: '0', y1: '0', x2: '0', y2: '6', stroke: 'var(--color-border-strong)', 'stroke-width': '3' }),
+      criarSvgEl('rect', { width: '6', height: '6', fill: 'var(--color-surface-3)' }),
+      criarSvgEl('line', { x1: '0', y1: '0', x2: '0', y2: '6', stroke: 'var(--color-text-tertiary)', 'stroke-width': '3' }),
     );
     defs.append(pattern);
     svg.append(defs);
@@ -235,7 +251,9 @@ function desenharHemiciclo(assentos: readonly AssentoVisual[], ufDestacada: stri
     const sx = cx + pos.x * SCALE;
     const sy = cy + pos.y * SCALE;
     const classes = ['pv-assento', classeEspectro(assento.espectro), `pv-origem-${assento.origemVisual}`];
-    if (assento.empateTecnico) classes.push('pv-empate-tecnico');
+    if (assento.origemVisual === 'projetada' && assento.confianca) {
+      classes.push(`pv-confianca-${assento.confianca}`);
+    }
     if (ufDestacada) classes.push(assento.uf === ufDestacada ? 'pv-destacado' : 'pv-esmaecido');
 
     const rotulo = rotuloAria(assento);
@@ -299,6 +317,46 @@ function criarLinhaLegendaEspectro(espectro: Espectro, contagem: number): HTMLEl
   ]);
 }
 
+/**
+ * Legenda de confiança das cadeiras projetadas — reforço textual das 3
+ * faixas de opacidade (docs/design-system.md), igual à do mapa (item b da
+ * ux-spec). Estática: não muda com o modo/filtro, por isso montada 1x fora
+ * de `atualizar()`.
+ */
+function criarLegendaConfianca(): HTMLElement {
+  const card = criarEl('div', { className: 'pv-card pv-legend' });
+  card.append(criarEl('h2', { className: 'pv-section-title', texto: 'Confiança da projeção' }));
+  const linhas: readonly [NivelConfianca, string][] = [
+    ['folga', 'var(--confidence-solid-opacity)'],
+    ['acirrada', 'var(--confidence-lean-opacity)'],
+    ['empate', 'var(--confidence-empate-opacity)'],
+  ];
+  for (const [confianca, opacidade] of linhas) {
+    card.append(
+      criarEl('div', { className: 'pv-legend-row' }, [
+        criarEl('span', {
+          className: 'pv-legend-swatch',
+          attrs: { style: `background:var(--color-accent);opacity:${opacidade}` },
+        }),
+        criarEl('span', { texto: rotuloConfiancaAssento(confianca) }),
+      ]),
+    );
+  }
+  card.append(
+    criarEl('div', { className: 'pv-legend-row' }, [
+      criarEl('span', { className: 'pv-legend-swatch pv-legend-swatch--hachura' }),
+      criarEl('span', { texto: 'Indefinida — sem pesquisa suficiente' }),
+    ]),
+  );
+  card.append(
+    criarEl('div', { className: 'pv-legend-row' }, [
+      criarEl('span', { className: 'pv-legend-swatch pv-legend-swatch--tracejado' }),
+      criarEl('span', { texto: 'Contorno tracejado = cadeira projetada' }),
+    ]),
+  );
+  return card;
+}
+
 export function renderSenate(container: HTMLElement, casos: CasosDeUso): void {
   const projecao = casos.projectSenate();
   const partidos = casos.listParties();
@@ -357,6 +415,7 @@ export function renderSenate(container: HTMLElement, casos: CasosDeUso): void {
   });
   raiz.append(
     criarEl('div', { className: 'pv-columns-2' }, [legendaPartidos, legendaEspectro]),
+    criarLegendaConfianca(),
     explicacao,
   );
 
