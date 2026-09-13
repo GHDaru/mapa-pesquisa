@@ -19,7 +19,7 @@ describe('vote-estimate-panel/formatarMilhoes', () => {
   });
 
   it('aceita número de casas decimais customizado', () => {
-    expect(formatarMilhoes(62_345_000, 2)).toBe('62,35 milhões');
+    expect(formatarMilhoes(62_400_000, 2)).toBe('62,40 milhões');
   });
 });
 
