@@ -1,0 +1,752 @@
+[
+  {
+    "uf": "AC",
+    "senador": "Sérgio Petecão",
+    "partido": "PSD",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/AC"
+  },
+  {
+    "uf": "AC",
+    "senador": "Márcio Bittar",
+    "partido": "PL",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/AC"
+  },
+  {
+    "uf": "AC",
+    "senador": "Alan Rick",
+    "partido": "Republicanos",
+    "mandatoInicio": 2023,
+    "mandatoFim": 2031,
+    "emDisputa2026": false,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/AC"
+  },
+  {
+    "uf": "AL",
+    "senador": "Renan Calheiros",
+    "partido": "MDB",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/AL"
+  },
+  {
+    "uf": "AL",
+    "senador": "Eudócia Caldas",
+    "partido": "PSDB",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/AL",
+    "observacao": "Cadeira eleita em 2018 por Rodrigo Cunha (PSDB); Cunha renunciou em 29/12/2024 para assumir vice-prefeitura de Maceió; suplente Eudócia Caldas assumiu a titularidade. Partido da suplente (PSDB) não totalmente confirmado nesta sessão."
+  },
+  {
+    "uf": "AL",
+    "senador": "Renan Filho",
+    "partido": "MDB",
+    "mandatoInicio": 2023,
+    "mandatoFim": 2031,
+    "emDisputa2026": false,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/AL"
+  },
+  {
+    "uf": "AP",
+    "senador": "Randolfe Rodrigues",
+    "partido": "PT",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/AP",
+    "observacao": "Fonte desta sessão indica filiação ao PT; historicamente Randolfe era da REDE. Possível licença/atuação em cargo do Executivo não confirmada nesta sessão — verificar se há suplente em exercício."
+  },
+  {
+    "uf": "AP",
+    "senador": "Lucas Barreto",
+    "partido": "PSD",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/AP"
+  },
+  {
+    "uf": "AP",
+    "senador": "Davi Alcolumbre",
+    "partido": "União",
+    "mandatoInicio": 2023,
+    "mandatoFim": 2031,
+    "emDisputa2026": false,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/AP"
+  },
+  {
+    "uf": "AM",
+    "senador": "Eduardo Braga",
+    "partido": "MDB",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/AM"
+  },
+  {
+    "uf": "AM",
+    "senador": "Plínio Valério",
+    "partido": "PSDB",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/AM"
+  },
+  {
+    "uf": "AM",
+    "senador": "Omar Aziz",
+    "partido": "PSD",
+    "mandatoInicio": 2023,
+    "mandatoFim": 2031,
+    "emDisputa2026": false,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/AM"
+  },
+  {
+    "uf": "BA",
+    "senador": "Jaques Wagner",
+    "partido": "PT",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/BA"
+  },
+  {
+    "uf": "BA",
+    "senador": "Ângelo Coronel",
+    "partido": "Republicanos",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/BA",
+    "observacao": "Fontes divergem: parte do material indica filiação anterior ao PSD e outra ao Republicanos. Partido atual não totalmente confirmado nesta sessão."
+  },
+  {
+    "uf": "BA",
+    "senador": "Otto Alencar",
+    "partido": "PSD",
+    "mandatoInicio": 2023,
+    "mandatoFim": 2031,
+    "emDisputa2026": false,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/BA"
+  },
+  {
+    "uf": "CE",
+    "senador": "Cid Gomes",
+    "partido": "PSB",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/CE",
+    "observacao": "ALERTA DE INCERTEZA FORTE: há registro amplamente divulgado de que Cid Gomes faleceu em outubro de 2023 (acidente em Sobral-CE), o que teria levado um suplente a assumir a cadeira; porém as buscas desta sessão (não totalmente confiáveis) indicaram Cid Gomes como candidato à reeleição em 2026. Não foi possível confirmar com certeza nesta sessão qual é o ocupante atual (o próprio Cid Gomes ou um suplente). Verificar urgentemente antes de publicar."
+  },
+  {
+    "uf": "CE",
+    "senador": "Eduardo Girão",
+    "partido": "Novo",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/CE",
+    "observacao": "Segundo buscas desta sessão, Girão não disputa reeleição ao Senado em 2026 (seria vice na chapa de Romeu Zema à Presidência), mas isso não altera quem ocupa a cadeira até o fim do mandato em 2027."
+  },
+  {
+    "uf": "CE",
+    "senador": "Camilo Santana",
+    "partido": "PT",
+    "mandatoInicio": 2023,
+    "mandatoFim": 2031,
+    "emDisputa2026": false,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/CE",
+    "observacao": "Camilo Santana está licenciado como Ministro da Educação desde 2023. A titularidade em exercício tem alternado entre as suplentes Augusta Brito (PT) e Janaína Farias (PT); não foi possível confirmar nesta sessão quem exerce o mandato em setembro de 2026."
+  },
+  {
+    "uf": "DF",
+    "senador": "Izalci Lucas",
+    "partido": "PL",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/DF"
+  },
+  {
+    "uf": "DF",
+    "senador": "Leila Barros",
+    "partido": "PDT",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/DF"
+  },
+  {
+    "uf": "DF",
+    "senador": "Damares Alves",
+    "partido": "Republicanos",
+    "mandatoInicio": 2023,
+    "mandatoFim": 2031,
+    "emDisputa2026": false,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/DF"
+  },
+  {
+    "uf": "ES",
+    "senador": "Fabiano Contarato",
+    "partido": "PT",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/ES"
+  },
+  {
+    "uf": "ES",
+    "senador": "Marcos do Val",
+    "partido": "Avante",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/ES",
+    "observacao": "Partido pode ter mudado ao longo do mandato (era Podemos/União anteriormente); Avante conforme fontes desta sessão."
+  },
+  {
+    "uf": "ES",
+    "senador": "Magno Malta",
+    "partido": "PL",
+    "mandatoInicio": 2023,
+    "mandatoFim": 2031,
+    "emDisputa2026": false,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/ES"
+  },
+  {
+    "uf": "GO",
+    "senador": "Jorge Kajuru",
+    "partido": "PSB",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/GO"
+  },
+  {
+    "uf": "GO",
+    "senador": "Vanderlan Cardoso",
+    "partido": "PSD",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/GO"
+  },
+  {
+    "uf": "GO",
+    "senador": "Wilder Morais",
+    "partido": "PL",
+    "mandatoInicio": 2023,
+    "mandatoFim": 2031,
+    "emDisputa2026": false,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/GO"
+  },
+  {
+    "uf": "MA",
+    "senador": "Weverton",
+    "partido": "PDT",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/MA"
+  },
+  {
+    "uf": "MA",
+    "senador": "Eliziane Gama",
+    "partido": "PSD",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/MA",
+    "observacao": "Fontes desta sessão divergiram entre PSD e PT para o partido atual; PSD é o valor considerado mais provável (migração histórica do Cidadania para o PSD), mas não totalmente confirmado."
+  },
+  {
+    "uf": "MA",
+    "senador": "Lourdinha Pereira",
+    "partido": "PSB",
+    "mandatoInicio": 2023,
+    "mandatoFim": 2031,
+    "emDisputa2026": false,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/MA",
+    "observacao": "Ocupante da cadeira eleita em 2022 pelo Maranhão não foi confirmada de forma independente nesta sessão (busca esgotada antes da verificação dedicada); baseado em agregação de resultado de busca única."
+  },
+  {
+    "uf": "MT",
+    "senador": "Carlos Fávaro",
+    "partido": "PSD",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/MT",
+    "observacao": "Carlos Fávaro é Ministro da Agricultura desde 2023; não foi possível confirmar nesta sessão se está licenciado e se um suplente ocupa a cadeira em setembro de 2026."
+  },
+  {
+    "uf": "MT",
+    "senador": "Jayme Campos",
+    "partido": "União",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/MT"
+  },
+  {
+    "uf": "MT",
+    "senador": "Wellington Fagundes",
+    "partido": "PL",
+    "mandatoInicio": 2023,
+    "mandatoFim": 2031,
+    "emDisputa2026": false,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/MT"
+  },
+  {
+    "uf": "MS",
+    "senador": "Soraya Thronicke",
+    "partido": "União",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/MS",
+    "observacao": "Fonte desta sessão indicou PSB; conhecimento prévio associa Soraya Thronicke ao União Brasil (ex-PSL/PSDB). Partido atual não totalmente confirmado."
+  },
+  {
+    "uf": "MS",
+    "senador": "Nelson Trad Filho",
+    "partido": "PSD",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/MS"
+  },
+  {
+    "uf": "MS",
+    "senador": "Tereza Cristina",
+    "partido": "PP",
+    "mandatoInicio": 2023,
+    "mandatoFim": 2031,
+    "emDisputa2026": false,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/MS"
+  },
+  {
+    "uf": "MG",
+    "senador": "Carlos Viana",
+    "partido": "PSD",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/MG",
+    "observacao": "Há indício de filiação ao Podemos (PODE) em vez de PSD; partido atual não totalmente confirmado nesta sessão."
+  },
+  {
+    "uf": "MG",
+    "senador": "Rodrigo Pacheco",
+    "partido": "PSB",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/MG",
+    "observacao": "Rodrigo Pacheco migrou do PSD para o PSB em 2025 segundo fontes desta sessão."
+  },
+  {
+    "uf": "MG",
+    "senador": "Cleitinho",
+    "partido": "Republicanos",
+    "mandatoInicio": 2023,
+    "mandatoFim": 2031,
+    "emDisputa2026": false,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/MG"
+  },
+  {
+    "uf": "PA",
+    "senador": "Jader Barbalho",
+    "partido": "MDB",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/PA"
+  },
+  {
+    "uf": "PA",
+    "senador": "Zequinha Marinho",
+    "partido": "Podemos",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/PA"
+  },
+  {
+    "uf": "PA",
+    "senador": "Beto Faro",
+    "partido": "PT",
+    "mandatoInicio": 2023,
+    "mandatoFim": 2031,
+    "emDisputa2026": false,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/PA"
+  },
+  {
+    "uf": "PB",
+    "senador": "Daniella Ribeiro",
+    "partido": "PP",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/PB"
+  },
+  {
+    "uf": "PB",
+    "senador": "Veneziano Vital do Rêgo",
+    "partido": "MDB",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/PB"
+  },
+  {
+    "uf": "PB",
+    "senador": "Efraim Filho",
+    "partido": "União",
+    "mandatoInicio": 2023,
+    "mandatoFim": 2031,
+    "emDisputa2026": false,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/PB",
+    "observacao": "Busca desta sessão indicou PL; conhecimento prévio forte associa Efraim Filho à liderança do União Brasil no Senado. Partido atual não totalmente confirmado — considerar verificar."
+  },
+  {
+    "uf": "PR",
+    "senador": "Oriovisto Guimarães",
+    "partido": "Podemos",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/PR"
+  },
+  {
+    "uf": "PR",
+    "senador": "Flávio Arns",
+    "partido": "PSB",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/PR"
+  },
+  {
+    "uf": "PR",
+    "senador": "Sergio Moro",
+    "partido": "União",
+    "mandatoInicio": 2023,
+    "mandatoFim": 2031,
+    "emDisputa2026": false,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/PR",
+    "observacao": "NÃO CONFIRMADO NESTA SESSÃO: a busca dedicada a este assento (eleito em 2022) foi bloqueada por esgotamento do limite de buscas antes de concluir a verificação. Sergio Moro foi o eleito em 2022; não foi possível confirmar se segue titular, licenciado ou substituído em setembro de 2026."
+  },
+  {
+    "uf": "PE",
+    "senador": "Fernando Dueire",
+    "partido": "PSD",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/PE"
+  },
+  {
+    "uf": "PE",
+    "senador": "Humberto Costa",
+    "partido": "PT",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/PE"
+  },
+  {
+    "uf": "PE",
+    "senador": "Teresa Leitão",
+    "partido": "PT",
+    "mandatoInicio": 2023,
+    "mandatoFim": 2031,
+    "emDisputa2026": false,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/PE"
+  },
+  {
+    "uf": "PI",
+    "senador": "Ciro Nogueira",
+    "partido": "PP",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/PI"
+  },
+  {
+    "uf": "PI",
+    "senador": "Marcelo Castro",
+    "partido": "MDB",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/PI"
+  },
+  {
+    "uf": "PI",
+    "senador": "Jussara Lima",
+    "partido": "PSD",
+    "mandatoInicio": 2023,
+    "mandatoFim": 2031,
+    "emDisputa2026": false,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/PI"
+  },
+  {
+    "uf": "RJ",
+    "senador": "Carlos Portinho",
+    "partido": "PL",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/RJ"
+  },
+  {
+    "uf": "RJ",
+    "senador": "Flávio Bolsonaro",
+    "partido": "PL",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/RJ"
+  },
+  {
+    "uf": "RJ",
+    "senador": "Romário",
+    "partido": "Sem Partido",
+    "mandatoInicio": 2023,
+    "mandatoFim": 2031,
+    "emDisputa2026": false,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/RJ",
+    "observacao": "Romário já teve diversas filiações (Podemos, PL); busca desta sessão indicou atualmente sem partido, não totalmente confirmado."
+  },
+  {
+    "uf": "RN",
+    "senador": "Styvenson Valentim",
+    "partido": "Podemos",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/RN"
+  },
+  {
+    "uf": "RN",
+    "senador": "Zenaide Maia",
+    "partido": "PSD",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/RN"
+  },
+  {
+    "uf": "RN",
+    "senador": "Rogério Marinho",
+    "partido": "PL",
+    "mandatoInicio": 2023,
+    "mandatoFim": 2031,
+    "emDisputa2026": false,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/RN"
+  },
+  {
+    "uf": "RS",
+    "senador": "Paulo Paim",
+    "partido": "PT",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/RS"
+  },
+  {
+    "uf": "RS",
+    "senador": "Luis Carlos Heinze",
+    "partido": "PP",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/RS"
+  },
+  {
+    "uf": "RS",
+    "senador": null,
+    "partido": null,
+    "mandatoInicio": 2023,
+    "mandatoFim": 2031,
+    "emDisputa2026": false,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/RS",
+    "observacao": "NÃO CONFIRMADO: não foi possível identificar com segurança, nesta sessão, quem foi eleito senador pelo Rio Grande do Sul em 2022 (mandato 2023-2031) antes do esgotamento do limite de buscas. Campo \"senador\" e \"partido\" deixados nulos propositalmente para evitar invenção — requer verificação prioritária."
+  },
+  {
+    "uf": "RO",
+    "senador": "Confúcio Moura",
+    "partido": "MDB",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/RO"
+  },
+  {
+    "uf": "RO",
+    "senador": "Marcos Rogério",
+    "partido": "PL",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/RO"
+  },
+  {
+    "uf": "RO",
+    "senador": "Jaime Bagattoli",
+    "partido": "PL",
+    "mandatoInicio": 2023,
+    "mandatoFim": 2031,
+    "emDisputa2026": false,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/RO"
+  },
+  {
+    "uf": "RR",
+    "senador": "Chico Rodrigues",
+    "partido": "PSB",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/RR"
+  },
+  {
+    "uf": "RR",
+    "senador": "Roberta Acioly",
+    "partido": "Republicanos",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/RR",
+    "observacao": "Segundo fontes desta sessão, Roberta Acioly assumiu o mandato em 11/03/2026 (provável suplência); não foi possível confirmar nesta sessão o nome do titular eleito em 2018 que ela substituiu."
+  },
+  {
+    "uf": "RR",
+    "senador": "Dr. Hiran",
+    "partido": "PP",
+    "mandatoInicio": 2023,
+    "mandatoFim": 2031,
+    "emDisputa2026": false,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/RR"
+  },
+  {
+    "uf": "SC",
+    "senador": "Esperidião Amin",
+    "partido": "PP",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/SC"
+  },
+  {
+    "uf": "SC",
+    "senador": "Ivete da Silveira",
+    "partido": "MDB",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/SC"
+  },
+  {
+    "uf": "SC",
+    "senador": "Hermes Klann",
+    "partido": "PL",
+    "mandatoInicio": 2023,
+    "mandatoFim": 2031,
+    "emDisputa2026": false,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/SC",
+    "observacao": "Cadeira eleita em 2022 por Jorge Seif (PL), que está licenciado; primeiro suplente Hermes Klann (PL) está em exercício."
+  },
+  {
+    "uf": "SP",
+    "senador": "Mara Gabrilli",
+    "partido": "PSD",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/SP"
+  },
+  {
+    "uf": "SP",
+    "senador": "Giordano",
+    "partido": "Sem Partido",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/SP",
+    "observacao": "Cadeira originalmente eleita em 2018 por Major Olimpio (PSL/PL), falecido em janeiro de 2022; suplente \"Giordano\" assumiu a titularidade. Nome completo e partido atual não totalmente confirmados nesta sessão."
+  },
+  {
+    "uf": "SP",
+    "senador": "Marcos Pontes",
+    "partido": "PL",
+    "mandatoInicio": 2023,
+    "mandatoFim": 2031,
+    "emDisputa2026": false,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/SP"
+  },
+  {
+    "uf": "SE",
+    "senador": "Alessandro Vieira",
+    "partido": "MDB",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/SE",
+    "observacao": "Alessandro Vieira foi eleito pelo Cidadania em 2018; fonte desta sessão indica filiação atual ao MDB, não totalmente confirmada."
+  },
+  {
+    "uf": "SE",
+    "senador": "Rogério Carvalho",
+    "partido": "PT",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/SE"
+  },
+  {
+    "uf": "SE",
+    "senador": "Laércio Oliveira",
+    "partido": "PP",
+    "mandatoInicio": 2023,
+    "mandatoFim": 2031,
+    "emDisputa2026": false,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/SE"
+  },
+  {
+    "uf": "TO",
+    "senador": "Eduardo Gomes",
+    "partido": "PL",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/TO"
+  },
+  {
+    "uf": "TO",
+    "senador": "Irajá",
+    "partido": "PSD",
+    "mandatoInicio": 2019,
+    "mandatoFim": 2027,
+    "emDisputa2026": true,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/TO"
+  },
+  {
+    "uf": "TO",
+    "senador": "Professora Dorinha Seabra",
+    "partido": "União",
+    "mandatoInicio": 2023,
+    "mandatoFim": 2031,
+    "emDisputa2026": false,
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/TO"
+  }
+]

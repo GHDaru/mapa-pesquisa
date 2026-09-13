@@ -1,0 +1,973 @@
+[
+  {
+    "id": "2026-09-06-travessia-ac-governador-t1",
+    "uf": "AC",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Instituto Travessia",
+    "registroTSE": "AC-07900/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-03",
+    "dataFim": "2026-09-05",
+    "publicadoEm": "2026-09-06",
+    "amostra": 800,
+    "margem": 3.5,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "ac24horas", "url": "https://ac24horas.com/2026/09/06/instituto-travessia-alan-rick-lidera-com-36-mailza-tem-32-bocalom-14-e-thor-6/" },
+    "resultados": [
+      { "candidato": "Alan Rick", "partido": "Republicanos", "pct": 36.0 },
+      { "candidato": "Mailza Assis", "partido": "PP", "pct": 32.0 },
+      { "candidato": "Tião Bocalom", "partido": "PSDB", "pct": 14.0 },
+      { "candidato": "Thor Dantas", "partido": "PSB", "pct": 6.0 }
+    ],
+    "observacao": "Brancos/nulos/indecisos não detalhados na fonte consultada."
+  },
+  {
+    "id": "2026-08-03-atlasintel-ac-governador-t1",
+    "uf": "AC",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "AC-07815/2026",
+    "contratante": null,
+    "dataInicio": "2026-07-28",
+    "dataFim": "2026-08-02",
+    "publicadoEm": "2026-08-03",
+    "amostra": 997,
+    "margem": 3.0,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-senador-acre-agosto-2026/" },
+    "resultados": [
+      { "candidato": "Mailza Assis", "partido": "PP", "pct": 35.2 },
+      { "candidato": "Alan Rick", "partido": "Republicanos", "pct": 33.1 }
+    ],
+    "observacao": "Demais candidatos e indecisos não detalhados na fonte consultada; também registrada como BR-09332/2026."
+  },
+
+  {
+    "id": "2026-09-05-atlasintel-am-governador-t1",
+    "uf": "AM",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "AM-04939/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-29",
+    "dataFim": "2026-09-03",
+    "publicadoEm": null,
+    "amostra": 1185,
+    "margem": 3.0,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-amazonas-setembro-2026/" },
+    "resultados": [
+      { "candidato": "Omar Aziz", "partido": "PSD", "pct": 31.0 },
+      { "candidato": "Professora Maria do Carmo", "partido": "PL", "pct": 27.4 }
+    ],
+    "observacao": "Data exata de publicação não confirmada na fonte; demais candidatos não detalhados."
+  },
+  {
+    "id": "2026-08-27-realtimebigdata-am-governador-t1",
+    "uf": "AM",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "AM-09965/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-21",
+    "dataFim": "2026-08-25",
+    "publicadoEm": null,
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "CartaCapital", "url": "https://www.cartacapital.com.br/politica/aziz-lidera-disputa-pelo-governo-do-amazonas-em-1o-turno-aponta-real-time-big-data/" },
+    "resultados": [
+      { "candidato": "Omar Aziz", "partido": "PSD", "pct": 34.0 },
+      { "candidato": "Roberto Cidade", "partido": "União Brasil", "pct": 22.0 },
+      { "candidato": "Professora Maria do Carmo", "partido": "PL", "pct": 21.0 }
+    ],
+    "observacao": "Data exata de publicação não confirmada na fonte consultada."
+  },
+  {
+    "id": "2026-09-10-paranapesquisas-am-governador-t1",
+    "uf": "AM",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "AM-01118/2026",
+    "contratante": null,
+    "dataInicio": null,
+    "dataFim": null,
+    "publicadoEm": null,
+    "amostra": null,
+    "margem": null,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Paraná Pesquisas", "url": "https://paranapesquisas.com.br/pesquisas/parana-pesquisas-registra-pesquisa-no-estado-do-amazonas-para-os-cargos-de-governador-e-senador-registro-tse-n-o-am-01118-2026-setembro-2026/" },
+    "resultados": [
+      { "candidato": "Omar Aziz", "partido": "PSD", "pct": 29.6 },
+      { "candidato": "David Almeida", "partido": "Avante", "pct": null },
+      { "candidato": "Professora Maria do Carmo", "partido": "PL", "pct": null }
+    ],
+    "observacao": "Datas de campo, amostra, margem de erro e percentuais dos demais candidatos não localizados nas fontes consultadas; apenas o percentual de Aziz foi confirmado."
+  },
+
+  {
+    "id": "2026-09-08-realtimebigdata-ap-governador-t1",
+    "uf": "AP",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "AP-04000/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-03",
+    "dataFim": "2026-09-07",
+    "publicadoEm": "2026-09-08",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Portal O Fato", "url": "https://portalofato.com.br/2026/09/08/ex-prefeito-de-macapa-lidera-disputa-pelo-governo-do-amapa-com-62-diz-real-time-big-data/" },
+    "resultados": [
+      { "candidato": "Dr. Furlan", "partido": "PSD", "pct": 62.0 },
+      { "candidato": "Clécio Luís", "partido": "União Brasil", "pct": 31.0 }
+    ],
+    "observacao": null
+  },
+  {
+    "id": "2026-08-24-quaest-ap-governador-t1",
+    "uf": "AP",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "AP-09438/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-21",
+    "dataFim": "2026-08-24",
+    "publicadoEm": null,
+    "amostra": null,
+    "margem": null,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governo-senado-amapa-agosto-2026/" },
+    "resultados": [
+      { "candidato": "Dr. Furlan", "partido": "PSD", "pct": 55.0 },
+      { "candidato": "Clécio Luís", "partido": "União Brasil", "pct": 35.0 }
+    ],
+    "observacao": "Amostra e margem de erro não confirmadas na fonte consultada (padrão Quaest estadual costuma ser 804 entrevistas)."
+  },
+  {
+    "id": "2026-08-28-paranapesquisas-ap-governador-t1",
+    "uf": "AP",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "AP-00062/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-26",
+    "dataFim": "2026-08-28",
+    "publicadoEm": null,
+    "amostra": null,
+    "margem": 3.0,
+    "cenario": "estimulada, primeiro e segundo turno",
+    "fonte": { "nome": "Paraná Pesquisas", "url": "https://paranapesquisas.com.br/pesquisas/parana-pesquisas-registra-pesquisa-no-estado-do-amapa-para-os-cargos-de-governador-e-senador-registro-tse-n-o-ap-00062-2026-agosto-2026/" },
+    "resultados": [
+      { "candidato": "Dr. Furlan", "partido": "PSD", "pct": 43.5 }
+    ],
+    "observacao": "Percentual de 43,5% refere-se ao cenário combinado citado pela fonte; percentuais individuais dos demais candidatos e amostra total não localizados."
+  },
+
+  {
+    "id": "2026-09-11-atlasintel-pa-governador-t1",
+    "uf": "PA",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "PA-09626/2026",
+    "contratante": "Federação das Indústrias do Estado do Pará (FIEPA)",
+    "dataInicio": "2026-09-05",
+    "dataFim": "2026-09-10",
+    "publicadoEm": "2026-09-11",
+    "amostra": 1212,
+    "margem": 3.0,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Exame", "url": "https://exame.com/brasil/pesquisa-atlasintel-hana-tem-485-e-dr-daniel-417-no-1o-turno-no-para/" },
+    "resultados": [
+      { "candidato": "Hana Ghassan", "partido": "MDB", "pct": 52.0 },
+      { "candidato": "Dr. Daniel", "partido": "Podemos", "pct": 44.8 }
+    ],
+    "observacao": "Manchete alternativa da mesma pesquisa cita 48,5% x 41,7%; valores 52%/44,8% correspondem ao cenário citado pelo Poder360/Exame para o 1º turno."
+  },
+  {
+    "id": "2026-09-08-realtimebigdata-pa-governador-t1",
+    "uf": "PA",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "PA-00206/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-03",
+    "dataFim": "2026-09-07",
+    "publicadoEm": "2026-09-08",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Exame", "url": "https://exame.com/brasil/real-time-big-data-ghassan-tem-37-e-dr-daniel-35-no-1o-turno-no-para/" },
+    "resultados": [
+      { "candidato": "Hana Ghassan", "partido": "MDB", "pct": 37.0 },
+      { "candidato": "Dr. Daniel", "partido": "Podemos", "pct": 35.0 }
+    ],
+    "observacao": null
+  },
+  {
+    "id": "2026-08-29-quaest-pa-governador-t1",
+    "uf": "PA",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "PA-07718/2026",
+    "contratante": "Televisão Liberal S/A (TV Liberal)",
+    "dataInicio": "2026-08-25",
+    "dataFim": "2026-08-28",
+    "publicadoEm": "2026-08-29",
+    "amostra": 804,
+    "margem": 3.0,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-para-agosto-2026/" },
+    "resultados": [
+      { "candidato": "Dr. Daniel", "partido": "Podemos", "pct": 28.0 },
+      { "candidato": "Hana Ghassan", "partido": "MDB", "pct": null }
+    ],
+    "observacao": "Fontes descreveram Hana e Dr. Daniel como tecnicamente empatados no cenário estimulado, mas não divulgaram o percentual exato de Hana."
+  },
+
+  {
+    "id": "2026-09-avulso-brasildados-ro-governador-t1",
+    "uf": "RO",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Instituto Brasil Dados",
+    "registroTSE": "RO-08019/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-31",
+    "dataFim": "2026-09-03",
+    "publicadoEm": null,
+    "amostra": 1060,
+    "margem": 3.0,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Agência Rondônia", "url": "https://www.agenciarondonia.com/2026/09/marcos-rogerio-lidera-pesquisa-do.html" },
+    "resultados": [
+      { "candidato": "Marcos Rogério", "partido": "PL", "pct": null },
+      { "candidato": "Adailton Fúria", "partido": "PSD", "pct": null },
+      { "candidato": "Hildon Chaves", "partido": "União Brasil", "pct": null }
+    ],
+    "observacao": "Fonte informou apenas a liderança de Marcos Rogério e o índice de indecisos (27%), sem detalhar percentuais individuais dos demais."
+  },
+  {
+    "id": "2026-08-25-quaest-ro-governador-t1",
+    "uf": "RO",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "RO-05711/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-21",
+    "dataFim": "2026-08-24",
+    "publicadoEm": "2026-08-25",
+    "amostra": 804,
+    "margem": 3.0,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Agência Rondônia", "url": "https://www.agenciarondonia.com/2026/08/quaest-em-ro-marcos-rogerio-24-adailton.html" },
+    "resultados": [
+      { "candidato": "Marcos Rogério", "partido": "PL", "pct": 24.0 },
+      { "candidato": "Adailton Fúria", "partido": "PSD", "pct": 21.0 },
+      { "candidato": "Expedito Netto", "partido": null, "pct": 10.0 },
+      { "candidato": "Hildon Chaves", "partido": "União Brasil", "pct": 10.0 }
+    ],
+    "observacao": "Partido de Expedito Netto não confirmado na fonte consultada."
+  },
+  {
+    "id": "2026-07-16-realtimebigdata-ro-governador-t1",
+    "uf": "RO",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "RO-04369/2026",
+    "contratante": null,
+    "dataInicio": "2026-07-14",
+    "dataFim": "2026-07-15",
+    "publicadoEm": "2026-07-16",
+    "amostra": 1600,
+    "margem": null,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-rondonia-julho-2026/" },
+    "resultados": [
+      { "candidato": "Marcos Rogério", "partido": "PL", "pct": 36.0 },
+      { "candidato": "Adailton Fúria", "partido": "PSD", "pct": 28.0 }
+    ],
+    "observacao": "Pesquisa de julho, mais antiga que as demais listadas; incluída por ausência de terceira pesquisa mais recente com percentuais completos."
+  },
+
+  {
+    "id": "2026-09-avulso-atlasintel-rr-governador-t1",
+    "uf": "RR",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "RR-07280/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-04",
+    "dataFim": "2026-09-09",
+    "publicadoEm": null,
+    "amostra": null,
+    "margem": null,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-roraima-setembro-2026/" },
+    "resultados": [
+      { "candidato": "Arthur Henrique", "partido": "PL", "pct": null },
+      { "candidato": "Soldado Sampaio", "partido": "Republicanos", "pct": null }
+    ],
+    "observacao": "Fonte descreveu Arthur Henrique com 'mais de 60%' no cenário estimulado, mas não trouxe percentual exato; amostra e margem de erro não localizadas."
+  },
+  {
+    "id": "2026-09-avulso-realtimebigdata-rr-governador-t1",
+    "uf": "RR",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "RR-03170/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-05",
+    "dataFim": "2026-09-09",
+    "publicadoEm": null,
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senado-roraima-setembro-2026/" },
+    "resultados": [
+      { "candidato": "Arthur Henrique", "partido": "PL", "pct": null },
+      { "candidato": "Soldado Sampaio", "partido": "Republicanos", "pct": null }
+    ],
+    "observacao": "Percentuais individuais não localizados na fonte consultada; contexto histórico: Roraima teve eleição suplementar em junho de 2026, o que reduziu o volume de pesquisas registradas no ano."
+  },
+  {
+    "id": "2026-08-26-quaest-rr-governador-t1",
+    "uf": "RR",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "RR-04765/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-23",
+    "dataFim": "2026-08-26",
+    "publicadoEm": null,
+    "amostra": null,
+    "margem": null,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-roraima-agosto-2026/" },
+    "resultados": [
+      { "candidato": "Arthur Henrique", "partido": "PL", "pct": null },
+      { "candidato": "Soldado Sampaio", "partido": "Republicanos", "pct": null }
+    ],
+    "observacao": "Percentuais individuais não localizados na fonte consultada."
+  },
+
+  {
+    "id": "2026-09-07-vrskala-to-governador-t1",
+    "uf": "TO",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "VR Skala",
+    "registroTSE": "TO-08826/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-01",
+    "dataFim": "2026-09-06",
+    "publicadoEm": "2026-09-07",
+    "amostra": 1600,
+    "margem": 3.0,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Brasil no Centro", "url": "https://brasilnocentro.com.br/vicentinho-lidera-para-o-governo-do-tocantins-com-33-6-diz-pesquisa/" },
+    "resultados": [
+      { "candidato": "Vicentinho Júnior", "partido": "PSDB", "pct": 33.6 },
+      { "candidato": "Professora Dorinha", "partido": "União Brasil", "pct": null }
+    ],
+    "observacao": "Percentual exato de Dorinha nesta pesquisa específica não localizado; fonte confirma apenas 2º lugar."
+  },
+  {
+    "id": "2026-08-quaest-to-governador-t1",
+    "uf": "TO",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "TO-02161/2026",
+    "contratante": null,
+    "dataInicio": null,
+    "dataFim": null,
+    "publicadoEm": null,
+    "amostra": null,
+    "margem": null,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Coluna do CT", "url": "https://clebertoledo.com.br/em-off/pesquisa-quaest-dorinha-soma-37-das-intencoes-de-voto-no-to-vicentinho-junior-tem-28/" },
+    "resultados": [
+      { "candidato": "Professora Dorinha", "partido": "União Brasil", "pct": 37.0 },
+      { "candidato": "Vicentinho Júnior", "partido": "PSDB", "pct": 28.0 }
+    ],
+    "observacao": "Datas de campo, amostra e margem de erro não confirmadas na fonte consultada."
+  },
+  {
+    "id": "2026-09-realtimebigdata-to-governador-t1",
+    "uf": "TO",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "TO-09665/2026",
+    "contratante": null,
+    "dataInicio": null,
+    "dataFim": null,
+    "publicadoEm": null,
+    "amostra": null,
+    "margem": null,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Jornal Opção Tocantins", "url": "https://tocantins.jornalopcao.com.br/noticias/real-time-big-data-aponta-dorinha-com-33-e-vicentinho-com-30-na-corrida-pelo-governo-do-tocantins-597946/" },
+    "resultados": [
+      { "candidato": "Professora Dorinha", "partido": "União Brasil", "pct": 33.0 },
+      { "candidato": "Vicentinho Júnior", "partido": "PSDB", "pct": 30.0 }
+    ],
+    "observacao": "Datas de campo, amostra e margem de erro não confirmadas na fonte consultada; institutos diferentes (Quaest, VR Skala, Real Time) divergem sobre quem lidera, todos dentro de margem de erro possível."
+  },
+
+  {
+    "id": "2026-09-10-atlasintel-al-governador-t1",
+    "uf": "AL",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "AL-00447/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-04",
+    "dataFim": "2026-09-09",
+    "publicadoEm": "2026-09-10",
+    "amostra": 1208,
+    "margem": 3.0,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-alagoas-setembro-2026/" },
+    "resultados": [
+      { "candidato": "João Henrique Caldas (JHC)", "partido": "PSDB", "pct": 49.3 },
+      { "candidato": "Renan Filho", "partido": "MDB", "pct": 46.4 }
+    ],
+    "observacao": null
+  },
+  {
+    "id": "2026-08-31-paranapesquisas-al-governador-t1",
+    "uf": "AL",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "AL-03316/2026",
+    "contratante": null,
+    "dataInicio": null,
+    "dataFim": null,
+    "publicadoEm": "2026-08-31",
+    "amostra": null,
+    "margem": null,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "TNH1", "url": "https://www.tnh1.com.br/noticia/nid/parana-pesquisas-confira-os-numeros-da-segunda-pesquisa-para-governador-de-alagoas/" },
+    "resultados": [
+      { "candidato": "João Henrique Caldas (JHC)", "partido": "PSDB", "pct": 47.2 },
+      { "candidato": "Renan Filho", "partido": "MDB", "pct": 41.3 }
+    ],
+    "observacao": "Datas de campo, amostra e margem de erro não confirmadas na fonte consultada."
+  },
+  {
+    "id": "2026-08-quaest-al-governador-t1",
+    "uf": "AL",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "AL-05503/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-20",
+    "dataFim": "2026-08-23",
+    "publicadoEm": null,
+    "amostra": 804,
+    "margem": 3.0,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "CartaCapital", "url": "https://www.cartacapital.com.br/politica/quaest-renan-filho-tem-42-dos-votos-em-alagoas-jhc-aparece-com-42/" },
+    "resultados": [
+      { "candidato": "Renan Filho", "partido": "MDB", "pct": 42.0 },
+      { "candidato": "João Henrique Caldas (JHC)", "partido": "PSDB", "pct": 40.0 }
+    ],
+    "observacao": "Também registrada como BR-09091/2026."
+  },
+
+  {
+    "id": "2026-08-27-quaest-ba-governador-t1",
+    "uf": "BA",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "BA-06206/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-23",
+    "dataFim": "2026-08-26",
+    "publicadoEm": "2026-08-27",
+    "amostra": 900,
+    "margem": 3.0,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-bahia-agosto-2026/" },
+    "resultados": [
+      { "candidato": "ACM Neto", "partido": "União Brasil", "pct": 40.0 },
+      { "candidato": "Jerônimo Rodrigues", "partido": "PT", "pct": 37.0 }
+    ],
+    "observacao": "Diferença de 3 pontos coincide com a margem de erro (empate técnico)."
+  },
+  {
+    "id": "2026-09-realtimebigdata-ba-governador-t1",
+    "uf": "BA",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BA-01568/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-04",
+    "dataFim": "2026-09-08",
+    "publicadoEm": null,
+    "amostra": null,
+    "margem": null,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-bahia-setembro-2026/" },
+    "resultados": [
+      { "candidato": "ACM Neto", "partido": "União Brasil", "pct": null },
+      { "candidato": "Jerônimo Rodrigues", "partido": "PT", "pct": null }
+    ],
+    "observacao": "Percentuais individuais não localizados dentro do orçamento de buscas desta sessão; recomenda-se checagem direta da fonte."
+  },
+  {
+    "id": "2026-08-25-paranapesquisas-ba-governador-t1",
+    "uf": "BA",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "BA-07628/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-23",
+    "dataFim": "2026-08-25",
+    "publicadoEm": null,
+    "amostra": null,
+    "margem": null,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-senado-bahia-agosto-2026/" },
+    "resultados": [
+      { "candidato": "ACM Neto", "partido": "União Brasil", "pct": null },
+      { "candidato": "Jerônimo Rodrigues", "partido": "PT", "pct": null }
+    ],
+    "observacao": "Percentuais individuais não localizados dentro do orçamento de buscas desta sessão; recomenda-se checagem direta da fonte."
+  },
+
+  {
+    "id": "2026-09-realtimebigdata-ce-governador-t1",
+    "uf": "CE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "CE-03293/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-03",
+    "dataFim": "2026-09-07",
+    "publicadoEm": null,
+    "amostra": null,
+    "margem": 2.0,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Poder360", "url": "https://www.poder360.com.br/poder-eleicoes-2026/elmano-e-ciro-estao-empatados-no-ce-diz-real-time-big-data/" },
+    "resultados": [
+      { "candidato": "Elmano de Freitas", "partido": "PT", "pct": null },
+      { "candidato": "Ciro Gomes", "partido": "PSDB", "pct": null }
+    ],
+    "observacao": "Fonte informa que Elmano lidera numericamente por 3 pontos, dentro da margem de erro de 2 pontos (empate técnico); percentuais exatos não confirmados. Aprovação do governo Elmano: 58% (39% desaprovam)."
+  },
+  {
+    "id": "2026-09-datafolha-ce-governador-t1",
+    "uf": "CE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "CE-04122/2026",
+    "contratante": null,
+    "dataInicio": null,
+    "dataFim": null,
+    "publicadoEm": "2026-09-02",
+    "amostra": null,
+    "margem": null,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "O Povo", "url": "https://www.opovo.com.br/noticias/politica/eleicoes/2026/09/02/datafolha-divulga-nova-pesquisa-para-governo-do-ceara.html" },
+    "resultados": [
+      { "candidato": "Elmano de Freitas", "partido": "PT", "pct": null },
+      { "candidato": "Ciro Gomes", "partido": "PSDB", "pct": null }
+    ],
+    "observacao": "Percentuais individuais não localizados dentro do orçamento de buscas desta sessão; recomenda-se checagem direta da fonte."
+  },
+  {
+    "id": "2026-09-quaest-ce-governador-t1",
+    "uf": "CE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "CE-01149/2026",
+    "contratante": null,
+    "dataInicio": null,
+    "dataFim": null,
+    "publicadoEm": null,
+    "amostra": null,
+    "margem": null,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-ceara-setembro-2026/" },
+    "resultados": [
+      { "candidato": "Elmano de Freitas", "partido": "PT", "pct": null },
+      { "candidato": "Ciro Gomes", "partido": "PSDB", "pct": null }
+    ],
+    "observacao": "Percentuais individuais não localizados dentro do orçamento de buscas desta sessão; recomenda-se checagem direta da fonte."
+  },
+
+  {
+    "id": "2026-09-realtimebigdata-ma-governador-t1",
+    "uf": "MA",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "MA-02569/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-05",
+    "dataFim": "2026-09-09",
+    "publicadoEm": null,
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Exame", "url": "https://exame.com/brasil/real-time-big-data-braide-tem-45-e-brandao-32-no-1o-turno-no-maranhao/" },
+    "resultados": [
+      { "candidato": "Eduardo Braide", "partido": "PSD", "pct": 45.0 },
+      { "candidato": "Orleans Brandão", "partido": "MDB", "pct": 32.0 },
+      { "candidato": "Felipe Camarão", "partido": "PT", "pct": 11.0 },
+      { "candidato": "Roberto Rocha", "partido": "PRTB", "pct": 5.0 }
+    ],
+    "observacao": "Orleans Brandão é apoiado pelo governador Carlos Brandão (aprovação de 53% no mesmo levantamento)."
+  },
+  {
+    "id": "2026-09-10-paranapesquisas-ma-governador-t1",
+    "uf": "MA",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "MA-00634/2026",
+    "contratante": null,
+    "dataInicio": null,
+    "dataFim": null,
+    "publicadoEm": "2026-09-10",
+    "amostra": null,
+    "margem": 2.8,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "CartaCapital", "url": "https://www.cartacapital.com.br/politica/a-disputa-pelo-governo-do-maranhao-segundo-o-parana-pesquisas/" },
+    "resultados": [
+      { "candidato": "Eduardo Braide", "partido": "PSD", "pct": 34.6 },
+      { "candidato": "Orleans Brandão", "partido": "MDB", "pct": 30.3 }
+    ],
+    "observacao": "Data de publicação estimada com base em referência da fonte a 'terça-feira, dia 10'; mês não confirmado com certeza (assumido setembro/2026 por ser a pesquisa mais recente do instituto)."
+  },
+
+  {
+    "id": "2026-09-atlasintel-pb-governador-t1",
+    "uf": "PB",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "PB-01118/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-28",
+    "dataFim": "2026-09-02",
+    "publicadoEm": null,
+    "amostra": 1207,
+    "margem": null,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Poder360", "url": "https://static.poder360.com.br/uploads/2026/09/AtlasIntel-PB-PresidenteGovernador-3set2026.pdf" },
+    "resultados": [
+      { "candidato": "Lucas Ribeiro", "partido": "PP", "pct": null },
+      { "candidato": "outros candidatos", "partido": null, "pct": null }
+    ],
+    "observacao": "PDF da pesquisa localizado (embargado), mas percentuais para governador não confirmados no material acessível via busca; Lucas Ribeiro (PP) é o atual governador e concorre à reeleição."
+  },
+  {
+    "id": "2026-08-22-realtimebigdata-pb-governador-t1",
+    "uf": "PB",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "PB-07790/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-19",
+    "dataFim": "2026-08-22",
+    "publicadoEm": null,
+    "amostra": 1600,
+    "margem": null,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senado-paraiba-agosto-2026/" },
+    "resultados": [
+      { "candidato": "Lucas Ribeiro", "partido": "PP", "pct": null }
+    ],
+    "observacao": "Percentuais para a corrida ao governo não localizados nesta busca (fontes disponíveis focaram na disputa ao Senado, com João Azevêdo do PSB em destaque)."
+  },
+
+  {
+    "id": "2026-09-11-datafolha-pe-governador-t1",
+    "uf": "PE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "PE-04411/2026",
+    "contratante": "TV Globo / Folha de S.Paulo",
+    "dataInicio": "2026-09-08",
+    "dataFim": "2026-09-10",
+    "publicadoEm": "2026-09-11",
+    "amostra": 1204,
+    "margem": 3.0,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Poder360", "url": "https://www.poder360.com.br/poder-eleicoes-2026/raquel-lyra-tem-51-contra-44-de-joao-campos-em-pe-diz-datafolha/" },
+    "resultados": [
+      { "candidato": "Raquel Lyra", "partido": "PSD", "pct": 47.0 },
+      { "candidato": "João Campos", "partido": "PSB", "pct": 42.0 }
+    ],
+    "observacao": "Cenário de 2º turno simulado: Lyra 51% x Campos 44%."
+  },
+  {
+    "id": "2026-09-03-realtimebigdata-pe-governador-t1",
+    "uf": "PE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "PE-09116/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-29",
+    "dataFim": "2026-09-02",
+    "publicadoEm": "2026-09-03",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "InfoMoney", "url": "https://www.infomoney.com.br/politica/real-time-big-data-joao-campos-e-raquel-lyra-empatam-com-43-na-disputa-no-pe/" },
+    "resultados": [
+      { "candidato": "João Campos", "partido": "PSB", "pct": 43.0 },
+      { "candidato": "Raquel Lyra", "partido": "PSD", "pct": 43.0 }
+    ],
+    "observacao": "Rejeição: Raquel Lyra 41%, João Campos 36%. Empate também no 2º turno simulado (44% a 44%)."
+  },
+  {
+    "id": "2026-09-quaest-pe-governador-t1",
+    "uf": "PE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "PE-00285/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-04",
+    "dataFim": "2026-09-07",
+    "publicadoEm": null,
+    "amostra": 1302,
+    "margem": null,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-pernambuco-setembro-2026/" },
+    "resultados": [
+      { "candidato": "Raquel Lyra", "partido": "PSD", "pct": 43.0 },
+      { "candidato": "João Campos", "partido": "PSB", "pct": 37.0 }
+    ],
+    "observacao": "Margem de erro não confirmada na fonte consultada (padrão Quaest para amostras próximas costuma ser 3 pontos)."
+  },
+
+  {
+    "id": "2026-09-03-atlasintel-pi-governador-t1",
+    "uf": "PI",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "AtlasIntel/MeioNorte",
+    "registroTSE": "PI-03771/2026",
+    "contratante": "Meio Norte",
+    "dataInicio": "2026-08-28",
+    "dataFim": "2026-09-02",
+    "publicadoEm": "2026-09-03",
+    "amostra": 1622,
+    "margem": 2.0,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Brasil no Centro", "url": "https://brasilnocentro.com.br/rafael-fonteles-tem-62-4-e-venceria-no-1-turno-para-o-governo-do-piaui-diz-pesquisa/" },
+    "resultados": [
+      { "candidato": "Rafael Fonteles", "partido": "PT", "pct": 62.4 },
+      { "candidato": "Joel Rodrigues", "partido": "PP", "pct": 20.9 }
+    ],
+    "observacao": "Em votos válidos (excluindo brancos/nulos/indecisos): Fonteles 71%, Rodrigues 23,7%."
+  },
+  {
+    "id": "2026-09-datamax-pi-governador-t1",
+    "uf": "PI",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Datamax",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": null,
+    "dataFim": null,
+    "publicadoEm": null,
+    "amostra": null,
+    "margem": null,
+    "cenario": "votos válidos, primeiro turno",
+    "fonte": { "nome": "WebPiauí", "url": "https://www.webpiaui.com.br/politica/datamax-aponta-rafael-com-7494-dos-votos-validos/" },
+    "resultados": [
+      { "candidato": "Rafael Fonteles", "partido": "PT", "pct": 74.94 },
+      { "candidato": "Joel Rodrigues", "partido": "PP", "pct": 21.03 }
+    ],
+    "observacao": "Registro TSE, datas de campo, amostra e margem de erro não localizados na fonte consultada; percentuais são sobre votos válidos, não estimulada total."
+  },
+  {
+    "id": "2026-08-21-datafolha-pi-governador-t1",
+    "uf": "PI",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "PI-06656/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-18",
+    "dataFim": "2026-08-21",
+    "publicadoEm": null,
+    "amostra": 826,
+    "margem": 3.0,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-governador-senador-piaui-agosto-2026/" },
+    "resultados": [
+      { "candidato": "Rafael Fonteles", "partido": "PT", "pct": 56.0 },
+      { "candidato": "outros candidatos", "partido": null, "pct": null }
+    ],
+    "observacao": "Percentuais dos demais candidatos não localizados na fonte consultada."
+  },
+
+  {
+    "id": "2026-09-realtimebigdata-rn-governador-t1",
+    "uf": "RN",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "RN-08492/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-05",
+    "dataFim": "2026-09-09",
+    "publicadoEm": null,
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senado-rio-grande-do-norte-setembro-2026/" },
+    "resultados": [
+      { "candidato": "Allyson Bezerra", "partido": "União Brasil", "pct": 30.0 },
+      { "candidato": "Cadu Xavier", "partido": "PT", "pct": 25.0 },
+      { "candidato": "Álvaro Dias", "partido": "PL", "pct": 23.0 }
+    ],
+    "observacao": "Mesmo levantamento aponta desaprovação de 62% à governadora Fátima Bezerra (PT), que não concorre à reeleição (limite de dois mandatos); Cadu Xavier é o candidato apoiado pelo governo estadual."
+  },
+  {
+    "id": "2026-08-27-quaest-rn-governador-t1",
+    "uf": "RN",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "RN-00876/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-20",
+    "dataFim": "2026-08-23",
+    "publicadoEm": null,
+    "amostra": 804,
+    "margem": 3.0,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "SBT News", "url": "https://sbtnews.sbt.com.br/noticia/politica/quaest-rn-alysson-bezerra-25-cadu-21-alvaro-dias-19-1" },
+    "resultados": [
+      { "candidato": "Allyson Bezerra", "partido": "União Brasil", "pct": 25.0 },
+      { "candidato": "Cadu Xavier", "partido": "PT", "pct": 21.0 },
+      { "candidato": "Álvaro Dias", "partido": "PL", "pct": 19.0 }
+    ],
+    "observacao": "Empate técnico entre os três primeiros colocados; cenário de 2º turno simulado: Cadu Xavier 36% x Álvaro Dias 31%."
+  },
+  {
+    "id": "2026-07-atlasintel-rn-governador-t1",
+    "uf": "RN",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "RN-04754/2026",
+    "contratante": null,
+    "dataInicio": null,
+    "dataFim": null,
+    "publicadoEm": null,
+    "amostra": null,
+    "margem": null,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-senador-rio-grande-do-norte-julho-2026/" },
+    "resultados": [
+      { "candidato": "Cadu Xavier", "partido": "PT", "pct": null },
+      { "candidato": "Álvaro Dias", "partido": "PL", "pct": null },
+      { "candidato": "Allyson Bezerra", "partido": "União Brasil", "pct": null }
+    ],
+    "observacao": "Fonte informa Cadu Xavier na liderança com Álvaro Dias e Allyson Bezerra em empate técnico na 2ª posição, sem percentuais exatos localizados; pesquisa de julho, mais antiga."
+  },
+
+  {
+    "id": "2026-09-10-atlasintel-se-governador-t1",
+    "uf": "SE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "SE-03800/2026",
+    "contratante": null,
+    "dataInicio": null,
+    "dataFim": null,
+    "publicadoEm": "2026-09-10",
+    "amostra": null,
+    "margem": 2.0,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Poder360", "url": "https://www.poder360.com.br/poder-eleicoes-2026/fabio-mitidieri-tem-413-contra-342-de-valmir-em-sergipe/" },
+    "resultados": [
+      { "candidato": "Fábio Mitidieri", "partido": "PSD", "pct": 41.3 },
+      { "candidato": "Valmir de Francisquinho", "partido": "Republicanos", "pct": 34.2 },
+      { "candidato": "Ricardo Marques", "partido": null, "pct": 14.4 }
+    ],
+    "observacao": "Datas de campo e amostra não confirmadas na fonte consultada; partido de Ricardo Marques não confirmado (uma fonte associa a sigla Republicanos a Valmir de Francisquinho). 2º turno simulado: 47% x 43%."
+  },
+  {
+    "id": "2026-09-realtimebigdata-se-governador-t1",
+    "uf": "SE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "SE-05776/2026",
+    "contratante": null,
+    "dataInicio": null,
+    "dataFim": null,
+    "publicadoEm": null,
+    "amostra": null,
+    "margem": null,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "CartaCapital", "url": "https://www.cartacapital.com.br/politica/fabio-mitidieri-lidera-disputa-pelo-governo-de-sergipe-diz-real-time-big-data/" },
+    "resultados": [
+      { "candidato": "Fábio Mitidieri", "partido": "PSD", "pct": 45.0 },
+      { "candidato": "Valmir de Francisquinho", "partido": "Republicanos", "pct": 37.0 }
+    ],
+    "observacao": "Datas de campo, amostra e margem de erro não confirmadas na fonte consultada; pode corresponder ao registro SE-05776/2026 ou SE-07327/2026."
+  },
+  {
+    "id": "2026-09-tws-se-governador-t1",
+    "uf": "SE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "TWS",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": null,
+    "dataFim": null,
+    "publicadoEm": null,
+    "amostra": null,
+    "margem": null,
+    "cenario": "votos válidos, primeiro turno",
+    "fonte": { "nome": "ND+ (ndmais.com.br)", "url": "https://ndmais.com.br/politica/instituto-tws-divulga-nova-pesquisa-para-governo-de-sergipe-fabio-mitidieri-aparece-em-primeiro-lugar/" },
+    "resultados": [
+      { "candidato": "Fábio Mitidieri", "partido": "PSD", "pct": 54.88 },
+      { "candidato": "Valmir de Francisquinho", "partido": "Republicanos", "pct": 29.58 }
+    ],
+    "observacao": "Registro TSE não localizado na fonte consultada; percentuais informados são sobre votos válidos, não estimulada total."
+  }
+]
