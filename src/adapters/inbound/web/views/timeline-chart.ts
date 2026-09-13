@@ -418,6 +418,7 @@ export function renderTimelineChart(host: HTMLElement, opcoes: OpcoesTimelineCha
           y: ultimo.y,
           corVar,
           texto: `${formatarNumero(ultimoValor)}% ${nomeCurto(candidato.nome)}`,
+          nomeCompleto: candidato.nome,
         });
       }
     }
@@ -435,7 +436,7 @@ export function renderTimelineChart(host: HTMLElement, opcoes: OpcoesTimelineCha
       (atual as { y: number }).y = anterior.y + ESPACO_MIN_ROTULO;
     }
   }
-  for (const { x, y, corVar, texto } of rotulosOrdenados) {
+  for (const { x, y, corVar, texto, nomeCompleto } of rotulosOrdenados) {
     const ancoraDireita = x > LARGURA - MARGEM.direita - 8;
     const linha = criarSvgEl('line', {
       x1: String(x), x2: String(x + (ancoraDireita ? -6 : 6)), y1: String(y), y2: String(y),
@@ -447,6 +448,11 @@ export function renderTimelineChart(host: HTMLElement, opcoes: OpcoesTimelineCha
       'text-anchor': ancoraDireita ? 'end' : 'start',
     });
     rotulo.textContent = texto;
+    // <title> dá o nome completo ao passar o mouse/focar (equivalente ao
+    // atributo `title` do HTML) — o rótulo visível usa só o apelido curto.
+    const tituloRotulo = criarSvgEl('title');
+    tituloRotulo.textContent = nomeCompleto;
+    rotulo.append(tituloRotulo);
     grupoSeries.append(rotulo);
   }
   svg.append(grupoSeries);
@@ -466,15 +472,23 @@ export function renderTimelineChart(host: HTMLElement, opcoes: OpcoesTimelineCha
   legenda.setAttribute('role', 'list');
   legenda.setAttribute('aria-label', 'Legenda de candidatos');
   for (const candidato of candidatosDestacados) {
+    const nomeCompletoComPartido = candidato.partido ? `${candidato.nome} (${candidato.partido})` : candidato.nome;
     const item = document.createElement('span');
     item.className = 'pv-timeline-legend-item';
     item.setAttribute('role', 'listitem');
+    // Texto visível é só o apelido curto (evita quebra/estouro em telas
+    // estreitas); nome completo + partido continuam acessíveis via
+    // aria-label e `title` (tooltip nativo ao passar o mouse).
+    item.setAttribute('aria-label', nomeCompletoComPartido);
+    item.title = nomeCompletoComPartido;
     const swatch = document.createElement('span');
     swatch.className = 'pv-timeline-legend-swatch';
     swatch.style.background = tokenTomSerie(candidato.espectro, candidato.tom);
     item.append(swatch);
     item.append(
-      document.createTextNode(candidato.partido ? `${candidato.nome} (${candidato.partido})` : candidato.nome),
+      document.createTextNode(
+        candidato.partido ? `${nomeCurto(candidato.nome)} (${candidato.partido})` : nomeCurto(candidato.nome),
+      ),
     );
     legenda.append(item);
   }
@@ -562,8 +576,10 @@ function montarTooltipHtml(
     .filter((c) => dia.valores[c.nome] != null)
     .map((c) => {
       const valor = dia.valores[c.nome]!;
-      return `<li><span class="pv-timeline-tooltip-swatch" style="background:${tokenTomSerie(c.espectro, c.tom)}"></span>${escaparHtml(
-        c.nome,
+      // Nome completo via `title` (tooltip nativo do próprio <li>); o texto
+      // visível é o apelido curto, igual ao rótulo de fim de linha.
+      return `<li title="${escaparHtml(c.nome)}"><span class="pv-timeline-tooltip-swatch" style="background:${tokenTomSerie(c.espectro, c.tom)}"></span>${escaparHtml(
+        nomeCurto(c.nome),
       )} <strong>${formatarNumero(valor)}%</strong></li>`;
     })
     .join('');

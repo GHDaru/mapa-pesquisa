@@ -194,9 +194,22 @@ export function raioAmostra(amostra: number | null): number {
 }
 
 /**
- * Rótulo curto do título de miniatura, estilo NYT: "Lula +2", "Harris <1"
- * (vantagem abaixo de 1 ponto, sem casa decimal) ou "Empate técnico"/"Sem
- * pesquisa estadual".
+ * Formata a vantagem de um título curto no estilo NYT: uma casa decimal só
+ * quando o valor é menor que 10 (ex.: "+2,3"), inteiro a partir daí (ex.:
+ * "+15") — casa decimal a mais não ajuda a leitura rápida de vantagens
+ * grandes e só ocupa espaço que este rótulo não tem sobrando.
+ */
+export function formatarVantagemTitulo(vantagem: number): string {
+  const absoluto = Math.abs(vantagem);
+  const casas = absoluto < 10 ? 1 : 0;
+  return `+${comVirgula(absoluto, casas)}`;
+}
+
+/**
+ * Rótulo curto do título de miniatura, estilo NYT: "Lula +2,3", "Harris +15"
+ * ou "Empate técnico"/"Sem pesquisa estadual". `liderNome` já deve vir
+ * abreviado pelo chamador (ver `nomeCurtissimo` em candidate-names.ts) —
+ * esta função só formata a vantagem, não decide o nome de exibição.
  */
 export function rotuloVantagemMini(
   liderNome: string | null,
@@ -205,6 +218,5 @@ export function rotuloVantagemMini(
 ): string {
   if (!liderNome) return 'Sem pesquisa estadual';
   if (empateTecnico) return 'Empate técnico';
-  if (vantagem < 1) return `${liderNome} <1`;
-  return `${liderNome} +${Math.round(vantagem)}`;
+  return `${liderNome} ${formatarVantagemTitulo(vantagem)}`;
 }

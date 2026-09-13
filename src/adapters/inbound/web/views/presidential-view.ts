@@ -15,7 +15,23 @@ import {
   formatarPeriodo,
   tokenFillEspectro,
 } from './_shared.js';
+import { nomeCurto } from './candidate-names.js';
 import { atribuirTomSerie, renderTimelineChart, type SerieCandidato } from './timeline-chart.js';
+
+/**
+ * Rótulo curto de um cenário de 2º turno ("2º turno: Luiz Inácio Lula da
+ * Silva x Flávio Bolsonaro" -> "Lula x Flávio Bolsonaro") para caber no
+ * título do cartão e na opção do seletor sem truncar — o valor interno
+ * `cenario.cenario` (nome completo) continua intacto, é a chave usada por
+ * `getPresidentialTimeline(2, cenario)` (ver get-presidential-timeline.ts).
+ */
+function rotuloCenarioCurto(cenario: string): string {
+  const semPrefixo = cenario.replace(/^2º turno:\s*/i, '');
+  return semPrefixo
+    .split(/\s+x\s+/i)
+    .map((nome) => nomeCurto(nome.trim()))
+    .join(' x ');
+}
 
 /**
  * Agregador presidencial nacional — barra de qualidade: tabela de médias de
@@ -125,7 +141,9 @@ function criarCartaoTimeline(
   if (turno2.length > 0) {
     selectCenario = criarEl('select', { className: 'pv-select pv-timeline-scenario-select', attrs: { id: 'presidente-timeline-cenario' } }, [
       criarEl('option', { texto: '1º turno', attrs: { value: '' } }),
-      ...turno2.map((c) => criarEl('option', { texto: c.cenario, attrs: { value: c.cenario } })),
+      ...turno2.map((c) =>
+        criarEl('option', { texto: rotuloCenarioCurto(c.cenario), attrs: { value: c.cenario, title: c.cenario } }),
+      ),
     ]);
     const campo = criarEl('label', { className: 'pv-field', texto: 'Mostrar série de' }, [selectCenario]);
     card.append(campo);
@@ -142,7 +160,10 @@ function criarCartaoTimeline(
         : casos.getPresidentialTimeline(2, valorSelecionado);
 
     titulo.textContent =
-      valorSelecionado === '' ? 'Evolução das pesquisas — 1º turno' : `Evolução das pesquisas — ${valorSelecionado}`;
+      valorSelecionado === ''
+        ? 'Evolução das pesquisas — 1º turno'
+        : `Evolução das pesquisas — ${rotuloCenarioCurto(valorSelecionado)}`;
+    titulo.title = valorSelecionado === '' ? '' : valorSelecionado;
 
     const candidatosDestacados = candidatosDestacadosDaSerie(serie, espectroDe);
     renderTimelineChart(host, {
@@ -215,7 +236,11 @@ function criarCartaoTurno2(
   const card = criarEl('div', { className: 'pv-card' });
   card.append(
     criarEl('div', { className: 'pv-controls-row' }, [
-      criarEl('h3', { className: 'pv-section-title', texto: cenario.cenario }),
+      criarEl('h3', {
+        className: 'pv-section-title',
+        texto: rotuloCenarioCurto(cenario.cenario),
+        attrs: { title: cenario.cenario },
+      }),
       agregado.empateTecnico ? criarSeloEmpateTecnico() : null,
     ]),
   );

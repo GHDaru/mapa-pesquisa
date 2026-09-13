@@ -9,7 +9,6 @@ import {
   formatarRotuloDataCurta,
   gerarTicksTempo,
   gerarTicksY,
-  nomeCurto,
   raioPonto,
   RAIO_AMOSTRA_DESCONHECIDA,
 } from '../timeline-chart.js';
@@ -140,16 +139,9 @@ describe('timeline-chart: caminhoSuavizado', () => {
   });
 });
 
-describe('timeline-chart: nomeCurto', () => {
-  it('usa só o primeiro nome de um nome completo, para caber no rótulo do fim da linha', () => {
-    expect(nomeCurto('Luiz Inácio Lula da Silva')).toBe('Luiz');
-    expect(nomeCurto('Flávio Bolsonaro')).toBe('Flávio');
-  });
-
-  it('nome com um único token retorna o próprio nome', () => {
-    expect(nomeCurto('Cury')).toBe('Cury');
-  });
-});
+// nomeCurto/nomeCurtissimo agora vivem em candidate-names.ts (compartilhado
+// também por presidential-states-view.ts) — ver
+// __tests__/candidate-names.test.ts.
 
 describe('timeline-chart: atribuirTomSerie', () => {
   it('primeira ocorrência de cada espectro usa o tom base', () => {

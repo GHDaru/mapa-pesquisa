@@ -5,6 +5,7 @@ import { MARGEM_REFERENCIA_PADRAO, type Agregado, type CandidatoAgregado } from 
 import type { PontoSerieTemporal } from '../../../../domain/aggregate.js';
 import type { Pesquisa } from '../../../../domain/poll.js';
 import { espectroDoPartido } from '../../../../domain/spectrum.js';
+import { nomeCurtissimo } from './candidate-names.js';
 import {
   corEspectro,
   corEspectroSolido,
@@ -658,7 +659,15 @@ function criarCardMiniatura(item: PresidencialUf, partidos: Partidos, hostElemen
     return card;
   }
 
-  const rotulo = rotuloVantagemMini(item.lider, item.vantagem, item.empateTecnico);
+  // Título visível usa o apelido "curtíssimo" (ex.: "Flávio", não "Flávio
+  // Bolsonaro") — a miniatura tem menos espaço que o gráfico grande; o nome
+  // completo continua acessível via `title` (tooltip nativo) e aria-label.
+  const rotuloVisivel = rotuloVantagemMini(
+    item.lider ? nomeCurtissimo(item.lider) : null,
+    item.vantagem,
+    item.empateTecnico,
+  );
+  const rotuloCompleto = rotuloVantagemMini(item.lider, item.vantagem, item.empateTecnico);
 
   const btn = document.createElement('button');
   btn.type = 'button';
@@ -666,12 +675,12 @@ function criarCardMiniatura(item: PresidencialUf, partidos: Partidos, hostElemen
   btn.setAttribute('aria-haspopup', 'dialog');
   btn.setAttribute(
     'aria-label',
-    `${nome}: ${rotulo}. ${eleitoresTexto}. Abrir detalhes das pesquisas presidenciais do estado.`,
+    `${nome}: ${rotuloCompleto}. ${eleitoresTexto}. Abrir detalhes das pesquisas presidenciais do estado.`,
   );
 
   const titulo = document.createElement('p');
   titulo.className = 'ps-card__titulo';
-  titulo.innerHTML = `<span class="ps-card__uf">${escaparHtml(nome)}</span><span class="ps-card__separador" aria-hidden="true">›</span><span class="ps-card__vantagem">${escaparHtml(rotulo)}</span>`;
+  titulo.innerHTML = `<span class="ps-card__uf">${escaparHtml(nome)}</span><span class="ps-card__separador" aria-hidden="true">›</span><span class="ps-card__vantagem" title="${escaparHtml(rotuloCompleto)}">${escaparHtml(rotuloVisivel)}</span>`;
   btn.appendChild(titulo);
 
   const eleitoresP = document.createElement('p');

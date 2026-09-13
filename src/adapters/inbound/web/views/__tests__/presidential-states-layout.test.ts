@@ -8,6 +8,7 @@ import {
   escalaX,
   escalaY,
   formatarEleitorado,
+  formatarVantagemTitulo,
   ordenarParaGrade,
   raioAmostra,
   rotuloVantagemMini,
@@ -208,6 +209,19 @@ describe('presidential-states-layout: raioAmostra', () => {
   });
 });
 
+describe('presidential-states-layout: formatarVantagemTitulo', () => {
+  it('uma casa decimal (vírgula) quando o valor é menor que 10', () => {
+    expect(formatarVantagemTitulo(2.3)).toBe('+2,3');
+    expect(formatarVantagemTitulo(0.4)).toBe('+0,4');
+    expect(formatarVantagemTitulo(9.96)).toBe('+10,0');
+  });
+
+  it('sem casa decimal (inteiro arredondado) a partir de 10', () => {
+    expect(formatarVantagemTitulo(15)).toBe('+15');
+    expect(formatarVantagemTitulo(10.2)).toBe('+10');
+  });
+});
+
 describe('presidential-states-layout: rotuloVantagemMini', () => {
   it('sem líder (sem pesquisa estadual)', () => {
     expect(rotuloVantagemMini(null, 0, false)).toBe('Sem pesquisa estadual');
@@ -217,12 +231,13 @@ describe('presidential-states-layout: rotuloVantagemMini', () => {
     expect(rotuloVantagemMini('Lula', 0.5, true)).toBe('Empate técnico');
   });
 
-  it('vantagem abaixo de 1 ponto usa "<1" em vez de arredondar para 0', () => {
-    expect(rotuloVantagemMini('Harris', 0.4, false)).toBe('Harris <1');
+  it('vantagem abaixo de 10 pontos usa uma casa decimal', () => {
+    expect(rotuloVantagemMini('Harris', 0.4, false)).toBe('Harris +0,4');
+    expect(rotuloVantagemMini('Trump', 1.4, false)).toBe('Trump +1,4');
+    expect(rotuloVantagemMini('Lula', 2.5, false)).toBe('Lula +2,5');
   });
 
-  it('vantagem >= 1 ponto arredonda para o inteiro mais próximo com sinal "+"', () => {
-    expect(rotuloVantagemMini('Trump', 1.4, false)).toBe('Trump +1');
-    expect(rotuloVantagemMini('Lula', 2.5, false)).toBe('Lula +3');
+  it('vantagem >= 10 pontos usa número inteiro, sem casa decimal', () => {
+    expect(rotuloVantagemMini('Lula', 15.2, false)).toBe('Lula +15');
   });
 });

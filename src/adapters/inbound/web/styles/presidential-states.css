@@ -344,9 +344,14 @@
   min-width: 0;
 }
 /* O nome do estado nunca trunca (é sempre curto o bastante e é a chave de
-   leitura do card) — só o texto de vantagem (candidato + pontos, que pode
-   ser bem mais longo, ex. "Luiz Inácio Lula da Silva +31") absorve todo o
-   encolhimento e ganha reticências quando não cabe. */
+   leitura do card). O texto de vantagem usa o apelido "curtíssimo" do
+   candidato (ver `nomeCurtissimo` em candidate-names.ts), então cabe numa
+   linha só na maioria dos estados — mas nomes de estado compridos (ex.
+   "Distrito Federal", "Mato Grosso do Sul") ainda podem deixar pouco espaço
+   nas 4 colunas de 1280px: em vez de truncar com reticências, a vantagem
+   quebra para uma 2ª linha dentro da própria célula (sem precisar de media
+   query — `white-space: normal` deixa isso acontecer em qualquer largura,
+   inclusive nos 400px de telas de celular). */
 .ps-card__uf {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -359,9 +364,8 @@
   flex-shrink: 0;
 }
 .ps-card__vantagem {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: normal;
+  overflow-wrap: break-word;
   flex: 1 1 auto;
   min-width: 0;
   color: var(--color-text-muted);
