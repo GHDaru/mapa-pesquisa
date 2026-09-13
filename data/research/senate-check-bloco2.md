@@ -1,0 +1,14 @@
+# Verificação de partido atual — Bloco 2 (AL, BA, CE, PB, PE, RN, SE, ES, MG)
+
+Checagem feita com 1 busca por estado (WebSearch) em 2026-09-13, cruzando com `data/research/senate-seats.json`. Só estão listadas abaixo as linhas com divergência ou onde a checagem confirma/resolve uma observação de incerteza já registrada no arquivo. As demais cadeiras do bloco (Renan Calheiros/MDB-AL, Renan Filho/MDB-AL, Otto Alencar/PSD-BA, Eduardo Girão/Novo-CE, Camilo Santana/PT-CE, Daniella Ribeiro/PP-PB, Efraim Filho/PL-PB, Humberto Costa/PT-PE, Teresa Leitão/PT-PE, Styvenson Valentim/Podemos-RN, Zenaide Maia/PSD-RN, Rogério Marinho/PL-RN, Alessandro Vieira/MDB-SE, Rogério Carvalho/PT-SE, Laércio Oliveira/PP-SE, Fabiano Contarato/PT-ES, Marcos do Val/Avante-ES, Magno Malta/PL-ES, Rodrigo Pacheco/PSB-MG, Cleitinho/Republicanos-MG) foram confirmadas sem divergência relevante.
+
+| UF | Senador | Partido no arquivo | Partido encontrado (set/2026) | Fonte |
+|---|---|---|---|---|
+| AL | Eudócia Caldas | PSDB (com observação de incerteza) | PSDB — confirmado | [O Brasilianista / Exame](https://exame.com/brasil/eleicoes-2026-quem-sao-os-possiveis-candidatos-ao-senado-em-alagoas/) |
+| BA | Ângelo Coronel | Republicanos (com observação de divergência PSD x Republicanos) | Republicanos — confirmado; fontes mencionam trajetória PT (2018) → PSD → Republicanos | [Jornal Grande Bahia](https://jornalgrandebahia.com.br/2026/02/senador-jaques-wagner-amplia-articulacao-para-2026-recompoe-a-base-do-governo-jeronimo-com-a-saida-de-angelo-coronel-e-testa-atracao-de-quadros-do-grupo-de-acm-neto/) |
+| CE | Cid Gomes | PSB (com observação de incerteza) | PSB — confirmado, filiado desde 2024 (antes PDT) | [Diário do Nordeste](https://diariodonordeste.verdesmares.com.br/pontopoder/quem-e-cid-gomes-candidato-a-reeleicao-no-senado-federal-em-2026-1.3778198) |
+| PE | Fernando Dueire | PSD | PSD — confirmado; nota: fonte mais antiga o listava como MDB, mas Senado Federal e fontes de 2026 indicam PSD | [Exame](https://exame.com/brasil/eleicoes-2026-quem-sao-os-possiveis-candidatos-ao-senado-em-pernambuco/) |
+| MG | Carlos Viana | PSD | PSD — confirmado pelo site oficial do Senado Federal; porém há fontes secundárias (busca) que ainda o referenciam como Podemos (partido anterior) | [Senado Federal — Senadores por UF (MG)](https://www25.senado.leg.br/web/senadores/por-uf/-/uf/MG) |
+
+## Observação geral
+Nenhuma divergência de partido foi encontrada que contradiga o arquivo `senate-seats.json` para este bloco; as buscas apenas confirmaram e resolveram três observações de incerteza pré-existentes (AL/Eudócia Caldas, BA/Ângelo Coronel, CE/Cid Gomes) e sinalizaram uma ressalva menor (MG/Carlos Viana, citação residual a "Podemos" em fontes de terceiros). `senate-seats.json` não foi editado, conforme instrução.
