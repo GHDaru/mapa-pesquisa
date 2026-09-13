@@ -711,45 +711,44 @@
     "observacao": "Datas de campo, amostra e registro TSE não confirmados na busca."
   },
   {
-    "id": "2026-06-19-real-time-big-data-to-presidente-t1",
+    "id": "2026-08-26-real-time-big-data-to-presidente-t1",
     "uf": "TO",
     "cargo": "presidente",
     "turno": 1,
     "instituto": "Real Time Big Data",
     "registroTSE": null,
     "contratante": null,
-    "dataInicio": "2026-06-17",
-    "dataFim": "2026-06-18",
-    "publicadoEm": "2026-06-19",
+    "dataInicio": "2026-08-21",
+    "dataFim": "2026-08-25",
+    "publicadoEm": "2026-08-26",
     "amostra": 1600,
     "margem": 2.0,
     "cenario": "estimulada, cenário principal (1º turno)",
-    "fonte": { "nome": "CartaCapital", "url": "https://www.cartacapital.com.br/politica/a-disputa-apertada-entre-lula-e-flavio-bolsonaro-no-tocantins-segundo-pesquisa-real-time-big-data/" },
+    "fonte": { "nome": "Exame", "url": "https://exame.com/brasil/real-time-big-data-lula-e-flavio-bolsonaro-empatam-com-37-no-1o-turno-no-tocantins/" },
     "resultados": [
       { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 37.0 },
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 35.0 }
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 37.0 }
     ],
-    "observacao": "Data de publicação (19/06) estimada a partir do fim de campo; não confirmada com precisão. Diferença dentro da margem de erro (empate técnico)."
+    "observacao": "Empate técnico (dentro da margem de erro); um resumo secundário desta mesma rodada citou 36%-36%, mas o título da matéria-fonte (Exame) traz 37%-37%."
   },
   {
-    "id": "2026-06-19-real-time-big-data-to-presidente-t2",
+    "id": "2026-08-26-real-time-big-data-to-presidente-t2",
     "uf": "TO",
     "cargo": "presidente",
     "turno": 2,
     "instituto": "Real Time Big Data",
     "registroTSE": null,
     "contratante": null,
-    "dataInicio": "2026-06-17",
-    "dataFim": "2026-06-18",
-    "publicadoEm": "2026-06-19",
+    "dataInicio": "2026-08-21",
+    "dataFim": "2026-08-25",
+    "publicadoEm": "2026-08-26",
     "amostra": 1600,
     "margem": 2.0,
     "cenario": "estimulada, 2º turno Lula x Flávio Bolsonaro",
-    "fonte": { "nome": "Metrópoles", "url": "https://www.metropoles.com/brasil/real-time-big-data-lula-flavio-2o-turno" },
+    "fonte": { "nome": "Poder360", "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-45-contra-39-de-lula-no-2o-turno-no-to-diz-big-data/" },
     "resultados": [
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 41.0 },
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 40.0 }
-    ],
-    "observacao": "Pesquisa de junho/2026; há um dado avulso não confirmado (Poder360, sem data localizada) de 'Flávio 45% x Lula 39%' no 2º turno em TO que pode ser mais recente, mas não foi possível confirmar instituto/data de campo com segurança para incluí-lo como a mais recente."
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 45.0 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 39.0 }
+    ]
   }
 ]
