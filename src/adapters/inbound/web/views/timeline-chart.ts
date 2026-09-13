@@ -1,6 +1,7 @@
 import type { DiaSerieTemporal, PontoSerieTemporal, SerieTemporal } from '../../../../domain/aggregate.js';
 import type { Espectro } from '../../../../domain/spectrum.js';
 import { formatarNumero, formatarPeriodo, nivelEspectro, tokenFillEspectro } from './_shared.js';
+import { nomeCurto } from './candidate-names.js';
 
 /**
  * Gráfico de série temporal presidencial — barra de qualidade: NYT
@@ -196,16 +197,6 @@ function fmt(n: number): string {
   return Number.isInteger(n) ? String(n) : n.toFixed(2);
 }
 
-/**
- * Nome curto de exibição para o rótulo direto no fim da linha — só o
- * primeiro nome (ex.: "Luiz Inácio Lula da Silva" -> "Luiz"), para caber no
- * espaço reservado à direita do gráfico sem estourar o viewBox. O nome
- * completo continua disponível na legenda e no tooltip (nunca só o curto).
- */
-export function nomeCurto(nomeCompleto: string): string {
-  return nomeCompleto.trim().split(/\s+/)[0] ?? nomeCompleto;
-}
-
 /** Estado de tom de série: 'base' para a 1ª ocorrência de um nível de espectro, 'alt' para as seguintes. */
 export type TomSerie = 'base' | 'alt';
 
@@ -256,9 +247,11 @@ export interface OpcoesTimelineChart {
 const LARGURA = 720;
 const ALTURA = 340;
 // `direita` reserva espaço para o rótulo direto no fim de cada linha
-// ("38,9% Luiz") — largo o bastante para o 1º nome + percentual sem
-// estourar o viewBox (o nome completo fica na legenda/tooltip).
-const MARGEM = { topo: 16, direita: 132, baixo: 36, esquerda: 40 };
+// ("38,9% Flávio Bolsonaro" é o caso mais longo entre os apelidos cadastrados
+// em candidate-names.ts) — largo o bastante para não estourar o viewBox; o
+// nome completo continua disponível via <title> no próprio rótulo, e
+// integralmente na legenda/tooltip (ver `nomeCurto`).
+const MARGEM = { topo: 16, direita: 156, baixo: 36, esquerda: 40 };
 
 function criarSvgEl<K extends keyof SVGElementTagNameMap>(
   tag: K,
@@ -374,7 +367,14 @@ export function renderTimelineChart(host: HTMLElement, opcoes: OpcoesTimelineCha
 
   // --- Séries destacadas: pontos + linha suavizada + rótulo direto ---
   const grupoSeries = criarSvgEl('g', { class: 'pv-timeline-series' });
-  const candidatosParaRotulo: { candidato: SerieCandidato; x: number; y: number; corVar: string; texto: string }[] = [];
+  const candidatosParaRotulo: {
+    candidato: SerieCandidato;
+    x: number;
+    y: number;
+    corVar: string;
+    texto: string;
+    nomeCompleto: string;
+  }[] = [];
   for (const candidato of candidatosDestacados) {
     const corVar = tokenTomSerie(candidato.espectro, candidato.tom);
 
