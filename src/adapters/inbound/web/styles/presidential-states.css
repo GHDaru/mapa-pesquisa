@@ -19,6 +19,10 @@
   padding-block: var(--space-5);
 }
 
+.ps-view > * {
+  min-width: 0;
+}
+
 .ps-view *:focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);
@@ -280,6 +284,14 @@
   grid-template-columns: 1fr;
   gap: var(--space-4);
 }
+/* Itens de grid têm `min-width:auto` por padrão, que usa o max-content do
+   conteúdo (aqui, o nome do candidato em `.ps-card__vantagem` sem quebra de
+   linha) como piso — isso ignorava o `1fr` e inflava as 4 colunas além do
+   viewport em ~1280px (mesma causa raiz documentada em app.css/views.css
+   para flex; para grid o fix é o mesmo `min-width:0`, aplicado ao item). */
+.ps-grid > * {
+  min-width: 0;
+}
 @media (min-width: 640px) {
   .ps-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -331,10 +343,16 @@
   color: var(--color-text);
   min-width: 0;
 }
+/* O nome do estado nunca trunca (é sempre curto o bastante e é a chave de
+   leitura do card) — só o texto de vantagem (candidato + pontos, que pode
+   ser bem mais longo, ex. "Luiz Inácio Lula da Silva +31") absorve todo o
+   encolhimento e ganha reticências quando não cabe. */
 .ps-card__uf {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  flex: none;
+  max-width: 100%;
 }
 .ps-card__separador {
   color: var(--color-text-tertiary);
@@ -344,6 +362,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  flex: 1 1 auto;
+  min-width: 0;
   color: var(--color-text-muted);
   font-weight: var(--font-variation-nav);
 }

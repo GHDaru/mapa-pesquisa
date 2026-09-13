@@ -196,6 +196,16 @@ function fmt(n: number): string {
   return Number.isInteger(n) ? String(n) : n.toFixed(2);
 }
 
+/**
+ * Nome curto de exibição para o rótulo direto no fim da linha — só o
+ * primeiro nome (ex.: "Luiz Inácio Lula da Silva" -> "Luiz"), para caber no
+ * espaço reservado à direita do gráfico sem estourar o viewBox. O nome
+ * completo continua disponível na legenda e no tooltip (nunca só o curto).
+ */
+export function nomeCurto(nomeCompleto: string): string {
+  return nomeCompleto.trim().split(/\s+/)[0] ?? nomeCompleto;
+}
+
 /** Estado de tom de série: 'base' para a 1ª ocorrência de um nível de espectro, 'alt' para as seguintes. */
 export type TomSerie = 'base' | 'alt';
 
@@ -245,7 +255,10 @@ export interface OpcoesTimelineChart {
 
 const LARGURA = 720;
 const ALTURA = 340;
-const MARGEM = { topo: 16, direita: 96, baixo: 36, esquerda: 40 };
+// `direita` reserva espaço para o rótulo direto no fim de cada linha
+// ("38,9% Luiz") — largo o bastante para o 1º nome + percentual sem
+// estourar o viewBox (o nome completo fica na legenda/tooltip).
+const MARGEM = { topo: 16, direita: 132, baixo: 36, esquerda: 40 };
 
 function criarSvgEl<K extends keyof SVGElementTagNameMap>(
   tag: K,
@@ -404,7 +417,7 @@ export function renderTimelineChart(host: HTMLElement, opcoes: OpcoesTimelineCha
           x: ultimo.x,
           y: ultimo.y,
           corVar,
-          texto: `${formatarNumero(ultimoValor)}% ${candidato.nome}`,
+          texto: `${formatarNumero(ultimoValor)}% ${nomeCurto(candidato.nome)}`,
         });
       }
     }

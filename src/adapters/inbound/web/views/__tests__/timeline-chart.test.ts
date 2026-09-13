@@ -9,6 +9,7 @@ import {
   formatarRotuloDataCurta,
   gerarTicksTempo,
   gerarTicksY,
+  nomeCurto,
   raioPonto,
   RAIO_AMOSTRA_DESCONHECIDA,
 } from '../timeline-chart.js';
@@ -136,6 +137,17 @@ describe('timeline-chart: caminhoSuavizado', () => {
     expect(d).toContain('C ');
     // A curva deve terminar exatamente no último ponto de controle (20, 0).
     expect(d.trim().endsWith('20 0')).toBe(true);
+  });
+});
+
+describe('timeline-chart: nomeCurto', () => {
+  it('usa só o primeiro nome de um nome completo, para caber no rótulo do fim da linha', () => {
+    expect(nomeCurto('Luiz Inácio Lula da Silva')).toBe('Luiz');
+    expect(nomeCurto('Flávio Bolsonaro')).toBe('Flávio');
+  });
+
+  it('nome com um único token retorna o próprio nome', () => {
+    expect(nomeCurto('Cury')).toBe('Cury');
   });
 });
 

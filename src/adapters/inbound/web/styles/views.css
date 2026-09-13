@@ -793,3 +793,98 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
 @media (prefers-reduced-motion: reduce) {
   .pv-timeline-svg * { transition-duration: 0ms; }
 }
+
+/* =========================================================================
+ * Painel da UF do Senado (clique num assento) — reaproveita as classes
+ * `.state-panel*` de styles/app.css (mesma linguagem visual do painel de
+ * estado); só o conteúdo interno é específico do Senado.
+ * ======================================================================= */
+
+.pv-senate-panel-disputas {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.pv-senate-panel-disputa-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-block: var(--space-2);
+}
+.pv-senate-panel-disputa-item + .pv-senate-panel-disputa-item {
+  border-top: 1px solid var(--color-border);
+}
+
+/* =========================================================================
+ * Tabela "Senadores por estado" — abaixo do hemiciclo.
+ * ======================================================================= */
+
+.pv-senate-table-wrap .pv-table {
+  min-width: 0;
+}
+.pv-senate-table-wrap .pv-table th,
+.pv-senate-table-wrap .pv-table td {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.pv-senate-table-wrap .pv-selo,
+.pv-senate-table-wrap .pv-badge-partido {
+  white-space: normal;
+}
+/* Linha destacada pelo select "Destacar UF" ou por rolagem programática —
+   fundo + barra de acento à esquerda, nunca só a cor (o próprio scroll +
+   foco já sinaliza qual linha é a selecionada, para leitor de tela também). */
+.pv-senate-table-wrap tbody tr.pv-senate-table-row--destacada {
+  background: color-mix(in srgb, var(--color-accent) 14%, transparent);
+  box-shadow: inset 3px 0 0 var(--color-accent);
+}
+.pv-senate-table-wrap tbody tr:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+@media (max-width: 700px) {
+  .pv-senate-table-wrap .pv-table th,
+  .pv-senate-table-wrap .pv-table td {
+    padding-inline: var(--space-1);
+  }
+}
+@media (max-width: 400px) {
+  .pv-senate-table-wrap { border: none; overflow: visible; }
+  .pv-senate-table-wrap table,
+  .pv-senate-table-wrap thead,
+  .pv-senate-table-wrap tbody,
+  .pv-senate-table-wrap tr,
+  .pv-senate-table-wrap td {
+    display: block;
+    width: 100%;
+  }
+  .pv-senate-table-wrap thead { display: none; }
+  .pv-senate-table-wrap tr {
+    background: var(--color-surface-1);
+    border-radius: var(--radius-md);
+    box-shadow: var(--elevation-1);
+    padding: var(--space-3);
+    margin-block-end: var(--space-3);
+  }
+  .pv-senate-table-wrap tbody tr.pv-senate-table-row--destacada {
+    box-shadow: var(--elevation-1), inset 3px 0 0 var(--color-accent);
+  }
+  .pv-senate-table-wrap td {
+    border: none;
+    padding: var(--space-1) 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-3);
+    white-space: normal;
+    text-align: right;
+  }
+  .pv-senate-table-wrap td::before {
+    content: attr(data-rotulo);
+    font: var(--text-caption);
+    color: var(--color-text-subtle);
+    flex: none;
+    text-align: left;
+  }
+}

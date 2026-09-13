@@ -699,7 +699,8 @@ function destacarLinhaTabelaSenado(uf: string): void {
   if (!linha) return;
   document.querySelectorAll('.pv-senate-table-row--destacada').forEach((el) => el.classList.remove('pv-senate-table-row--destacada'));
   linha.classList.add('pv-senate-table-row--destacada');
-  linha.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  const reduzMovimento = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  linha.scrollIntoView({ block: 'center', behavior: reduzMovimento ? 'auto' : 'smooth' });
   linha.focus({ preventScroll: true });
 }
 
