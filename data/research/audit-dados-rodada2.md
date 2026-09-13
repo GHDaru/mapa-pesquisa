@@ -358,3 +358,33 @@ Não foi possível verificar as 27 cadeiras individualmente com 6 buscas; a estr
 **Dados em condição de publicar: NÃO.**
 
 Maior lacuna única: o registro `2026-09-10-paranapesquisas-ma-governador-t1` (arquivo `polls-governador-norte-nordeste.json`) não é, na verdade, uma pesquisa de setembro de 2026 — é uma pesquisa Paraná Pesquisas de **março de 2026** (campo 05–08/03, divulgada 10/03/2026) cujo mês foi assumido incorretamente como setembro na coleta original, e que hoje ocupa a posição de "pesquisa mais recente" para o governo do Maranhão no mapa. Isso é um erro de categoria mais grave que os de percentuais ou registro: o mapa mostraria, como atual, uma disputa de seis meses atrás (Braide 34,6% x Brandão 30,3%) quando a realidade de setembro é uma vantagem de Braide muito maior e uma disputa pela terceira posição totalmente diferente (Braide 45% x Brandão 32%, com Camarão e Rocha também na disputa) — a existência da pesquisa real de setembro (Real Time Big Data, 10/09, MA-02569/2026) já identificada e pronta para uso na seção "Pesquisas faltantes" torna a correção simples, mas ela precisa ser feita antes de qualquer publicação. Somam-se a isso: um segundo caso de pesquisa "mais recente" desatualizada por dias com mudança relevante de patamar (DF: Datafolha de 11/09 mostra Celina Leão saltando de empate técnico para liderança isolada, ausente da base), dois registros TSE incorretos ou ausentes que já foram localizados (Gerp presidencial e AtlasIntel-CE senador) e um caso adicional de pesquisa faltante em AM.
+
+## Aplicado
+
+Todas as "Correções recomendadas" e "Pesquisas faltantes" desta rodada foram aplicadas diretamente nos arquivos de origem em `data/research/polls-*.json` em 2026-09-13.
+
+### Correções aplicadas
+
+| arquivo | id | campo | valor aplicado |
+|---|---|---|---|
+| `polls-presidente.json` | `2026-09-09-gerp-br-presidente-t2-flavio-lula` | `registroTSE` | `BR-00251/2026` |
+| `polls-governador-sul-sudeste-co.json` | `2026-09-11-parana-pesquisas-go-governador-t1` | `contratante` | `Portal 6 Comunicação LTDA` |
+| `polls-governador-norte-nordeste.json` | `2026-09-05-atlasintel-am-governador-t1` | `publicadoEm` | `2026-09-04` |
+| `polls-governador-norte-nordeste.json` | `2026-09-10-paranapesquisas-ma-governador-t1` → **id corrigido para** `2026-03-10-paranapesquisas-ma-governador-t1` | `id`, `dataInicio`, `dataFim`, `publicadoEm`, `amostra`, `observacao` | `id: 2026-03-10-paranapesquisas-ma-governador-t1`; `dataInicio: 2026-03-05`; `dataFim: 2026-03-08`; `publicadoEm: 2026-03-10`; `amostra: 1300`; `observacao` reescrita explicando que a pesquisa é de março/2026, não de setembro. A entrada permanece na base (não foi removida), mas a janela de agregação de 45 dias usada em setembro/2026 não a alcança. |
+| `polls-senador-bloco2.json` | `2026-09-04-atlasintel-ce-senador-t1` | `registroTSE` | `BR-07411/2026` |
+
+### Pesquisas faltantes inseridas
+
+| arquivo | id inserido |
+|---|---|
+| `polls-presidente.json` | `2026-09-11-futura-100-cidades-br-presidente-t2-flavio-lula` |
+| `polls-governador-norte-nordeste.json` | `2026-09-05-parana-pesquisas-am-governador-t1` |
+| `polls-governador-norte-nordeste.json` | `2026-09-10-real-time-big-data-ma-governador-t1` |
+| `polls-governador-sul-sudeste-co.json` | `2026-09-11-datafolha-df-governador-t1` |
+| `polls-senador-bloco2.json` | `2026-09-05-real-time-big-data-ce-senador-t1` |
+
+Todas as entradas foram inseridas com exatamente os valores trazidos pela auditoria (nenhum campo foi inventado além do que consta acima). Após a aplicação:
+
+- `npm run data:merge -- --date 2026-09-13` rodou sem erros e produziu `data/polls.json` com 122 pesquisas únicas (`data/meta.json` com `atualizadoEm: "2026-09-13"`).
+- `npm run data:validate` passou sem erros estruturais (0 UFs sem pesquisa de governador ou senador, 0 partidos ausentes de `parties.json`).
+- `npm test` passou com 112/112 testes.

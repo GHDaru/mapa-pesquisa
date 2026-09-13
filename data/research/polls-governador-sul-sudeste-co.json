@@ -422,7 +422,7 @@
     "turno": 1,
     "instituto": "Paraná Pesquisas",
     "registroTSE": "GO-03096/2026",
-    "contratante": null,
+    "contratante": "Portal 6 Comunicação LTDA",
     "dataInicio": "2026-09-08",
     "dataFim": "2026-09-10",
     "publicadoEm": "2026-09-11",
@@ -434,7 +434,7 @@
       { "candidato": "Daniel Vilela", "partido": "MDB", "pct": 45.1 },
       { "candidato": "Marconi Perillo", "partido": "PSDB", "pct": 23.2 }
     ],
-    "observacao": "Contratante não identificado; demais candidatos não discriminados no resumo consultado."
+    "observacao": "Contratante confirmado na auditoria rodada 2 (Portal 6 Comunicação LTDA); demais candidatos não discriminados no resumo consultado."
   },
   {
     "id": "2026-08-25-quaest-go-governador-t1",
@@ -588,5 +588,27 @@
       { "candidato": "Cappelli", "partido": "PSB", "pct": 5.8 }
     ],
     "observacao": "Cargo tratado como governador do Distrito Federal (GDF). Uma segunda numeração de registro TSE (BR-04726/2026) apareceu associada a esta pesquisa em uma das fontes, possivelmente referente ao cenário presidencial testado na mesma rodada; mantido apenas o registro específico do DF."
+  },
+  {
+    "id": "2026-09-11-datafolha-df-governador-t1",
+    "uf": "DF",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "DF-06055/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-08",
+    "dataFim": "2026-09-11",
+    "publicadoEm": "2026-09-11",
+    "amostra": 910,
+    "margem": 3.0,
+    "cenario": "estimulada, primeiro turno (dois cenários testados, 40% e 45% para a líder)",
+    "fonte": { "nome": "O Hoje", "url": "https://ohoje.com/2026/09/11/datafolha-celina-leao-dispara-e-chega-a-40-na-disputa-pelo-governo-do-df/" },
+    "resultados": [
+      { "candidato": "Celina Leão", "partido": "PP", "pct": 40.0 },
+      { "candidato": "José Roberto Arruda", "partido": "PSD", "pct": 17.0 },
+      { "candidato": "Leandro Grass", "partido": "PT", "pct": 16.0 }
+    ],
+    "observacao": "Também registrada sob BR-04623/2026. Oito dias mais recente que a AtlasIntel (03/09) já presente na base; mostra Celina Leão ampliando vantagem de forma relevante (de empate técnico 30,7%x29% para liderança isolada de 40%x17%/16%) — mudança de patamar que a base anterior não captava."
   }
 ]

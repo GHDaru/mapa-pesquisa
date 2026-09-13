@@ -370,7 +370,7 @@
     "cargo": "presidente",
     "turno": 2,
     "instituto": "Gerp",
-    "registroTSE": null,
+    "registroTSE": "BR-00251/2026",
     "contratante": null,
     "dataInicio": "2026-09-03",
     "dataFim": "2026-09-08",
@@ -383,7 +383,7 @@
       { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 47.0 },
       { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 40.0 }
     ],
-    "observacao": null
+    "observacao": "registroTSE confirmado na auditoria rodada 2 (BR-00251/2026, parceria Gerp/AESP Rádio+TV, mesma amostra 2400 e campo 03-08/09)."
   },
   {
     "id": "2026-09-06-verita-br-presidente-t2-flavio-lula",
@@ -533,5 +533,26 @@
       { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 2.0 }
     ],
     "observacao": "Pesquisa também registrou 6% que declarou que não votaria; esse grupo não foi incluído como categoria própria no schema."
+  },
+  {
+    "id": "2026-09-11-futura-100-cidades-br-presidente-t2-flavio-lula",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Futura/100% Cidades",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-04",
+    "dataFim": "2026-09-10",
+    "publicadoEm": "2026-09-11",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
+    "fonte": { "nome": "Poder360", "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-454-contra-45-de-lula-no-2o-turno-diz-pesquisa/" },
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 45.4 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 45.0 }
+    ],
+    "observacao": "registroTSE não localizado nas buscas da auditoria rodada 2. Divulgada no mesmo dia (11/09) que a Datafolha já presente na base, mostrando cenário de empate técnico em vez da vantagem de 2 p.p. de Lula apontada pela Datafolha — divergência relevante entre institutos na mesma janela."
   }
 ]

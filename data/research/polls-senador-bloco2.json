@@ -54,7 +54,7 @@
     "cargo": "senador",
     "turno": 1,
     "instituto": "AtlasIntel",
-    "registroTSE": "CE-02357/2026",
+    "registroTSE": "BR-07411/2026",
     "contratante": null,
     "dataInicio": "2026-08-28",
     "dataFim": "2026-09-02",
@@ -69,7 +69,7 @@
       { "candidato": "Capitão Wagner", "partido": "União", "pct": 19.1 },
       { "candidato": "Alcides Fernandes", "partido": "PL", "pct": 15.7 }
     ],
-    "observacao": "Cid Gomes é o titular da cadeira em disputa; Eduardo Girão (Novo, outra cadeira desta UF) não aparece entre os líderes desta pesquisa. Dados obtidos via resumo de busca (WebFetch bloqueado)."
+    "observacao": "Cid Gomes é o titular da cadeira em disputa; Eduardo Girão (Novo, outra cadeira desta UF) não aparece entre os líderes desta pesquisa. Dados obtidos via resumo de busca (WebFetch bloqueado). registroTSE corrigido na auditoria rodada 2 (BR-07411/2026, confirmado para esta pesquisa específica com mesmos 1834 entrevistados e campo 28/08-02/09; o valor anterior CE-02357/2026 estava incorreto)."
   },
   {
     "id": "2026-09-08-anova-pb-senador-t1",
@@ -221,5 +221,29 @@
       { "candidato": "Carlos Viana", "partido": "PSD", "pct": 13.0 }
     ],
     "observacao": "Uma manchete (Exame) do mesmo período citou valores distintos (Marília 24%, Viana e Sávio 13%), possivelmente de outra rodada/corte; optou-se pelos valores confirmados por duas fontes (Correio Braziliense e Jornal de Brasília/EM) para 08/09/2026. Lista provavelmente incompleta (Áurea Carolina, Marcelo Aro e outros candidatos citados em pesquisas anteriores não aparecem aqui)."
+  },
+  {
+    "id": "2026-09-05-real-time-big-data-ce-senador-t1",
+    "uf": "CE",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "CE-03293/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-03",
+    "dataFim": "2026-09-07",
+    "publicadoEm": null,
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada (2 vagas em disputa)",
+    "fonte": { "nome": "Exame", "url": "https://exame.com/brasil/real-time-big-data-cid-wagner-e-luizianne-lideram-corrida-ao-senado-no-ceara/" },
+    "resultados": [
+      { "candidato": "Cid Gomes", "partido": "PSB", "pct": 27.0 },
+      { "candidato": "Capitão Wagner", "partido": "União Brasil", "pct": 20.0 },
+      { "candidato": "Luizianne Lins", "partido": "Rede", "pct": 20.0 },
+      { "candidato": "Alcides Fernandes", "partido": "PL", "pct": 17.0 },
+      { "candidato": "Guilherme Theophilo", "partido": "Novo", "pct": 5.0 }
+    ],
+    "observacao": "publicadoEm não confirmado com precisão na auditoria rodada 2 (fontes datadas entre 08 e 09/09/2026; campo termina 07/09). Mesmo registroTSE (CE-03293/2026) já usado pela pesquisa de governador CE presente na base — mesma rodada de campo, questionário com múltiplos cargos. Mais recente que a AtlasIntel de 03/09 já na base, e muda o cenário de empate Cid/Luizianne para liderança isolada de Cid."
   }
 ]

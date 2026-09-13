@@ -54,7 +54,7 @@
     "contratante": null,
     "dataInicio": "2026-08-29",
     "dataFim": "2026-09-03",
-    "publicadoEm": null,
+    "publicadoEm": "2026-09-04",
     "amostra": 1185,
     "margem": 3.0,
     "cenario": "estimulada, primeiro turno",
@@ -63,7 +63,7 @@
       { "candidato": "Omar Aziz", "partido": "PSD", "pct": 31.0 },
       { "candidato": "Professora Maria do Carmo", "partido": "PL", "pct": 27.4 }
     ],
-    "observacao": "Data exata de publicação não confirmada na fonte; demais candidatos não detalhados."
+    "observacao": "Data de publicação confirmada na auditoria rodada 2 (divulgada sexta-feira, 04/09/2026); demais candidatos não detalhados."
   },
   {
     "id": "2026-08-27-realtimebigdata-am-governador-t1",
@@ -648,17 +648,17 @@
     "observacao": "Orleans Brandão é apoiado pelo governador Carlos Brandão (aprovação de 53% no mesmo levantamento)."
   },
   {
-    "id": "2026-09-10-paranapesquisas-ma-governador-t1",
+    "id": "2026-03-10-paranapesquisas-ma-governador-t1",
     "uf": "MA",
     "cargo": "governador",
     "turno": 1,
     "instituto": "Paraná Pesquisas",
     "registroTSE": "MA-00634/2026",
     "contratante": null,
-    "dataInicio": null,
-    "dataFim": null,
-    "publicadoEm": "2026-09-10",
-    "amostra": null,
+    "dataInicio": "2026-03-05",
+    "dataFim": "2026-03-08",
+    "publicadoEm": "2026-03-10",
+    "amostra": 1300,
     "margem": 2.8,
     "cenario": "estimulada, primeiro turno",
     "fonte": { "nome": "CartaCapital", "url": "https://www.cartacapital.com.br/politica/a-disputa-pelo-governo-do-maranhao-segundo-o-parana-pesquisas/" },
@@ -666,7 +666,7 @@
       { "candidato": "Eduardo Braide", "partido": "PSD", "pct": 34.6 },
       { "candidato": "Orleans Brandão", "partido": "MDB", "pct": 30.3 }
     ],
-    "observacao": "Data de publicação estimada com base em referência da fonte a 'terça-feira, dia 10'; mês não confirmado com certeza (assumido setembro/2026 por ser a pesquisa mais recente do instituto)."
+    "observacao": "CORREÇÃO: esta pesquisa é de março/2026 (campo 05-08/03, divulgada 10/03/2026), não de setembro — o mês foi assumido incorretamente na coleta original. Não deveria ocupar a posição de 'pesquisa mais recente' para o governo do MA; ver pesquisa Real Time Big Data de 10/09/2026 em data/research/polls-governador-norte-nordeste.json."
   },
 
   {
@@ -969,5 +969,51 @@
       { "candidato": "Valmir de Francisquinho", "partido": "Republicanos", "pct": 29.58 }
     ],
     "observacao": "Registro TSE não localizado na fonte consultada; percentuais informados são sobre votos válidos, não estimulada total."
+  },
+  {
+    "id": "2026-09-05-parana-pesquisas-am-governador-t1",
+    "uf": "AM",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "AM-01118/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-02",
+    "dataFim": "2026-09-04",
+    "publicadoEm": "2026-09-05",
+    "amostra": 1350,
+    "margem": 2.7,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Poder360", "url": "https://www.poder360.com.br/poder-eleicoes-2026/omar-aziz-lidera-no-1o-turno-para-o-governo-do-amazonas-diz-pesquisa/" },
+    "resultados": [
+      { "candidato": "Omar Aziz", "partido": "PSD", "pct": 29.6 },
+      { "candidato": "Roberto Cidade", "partido": "União Brasil", "pct": 21.5 },
+      { "candidato": "Professora Maria do Carmo", "partido": "PL", "pct": 19.4 },
+      { "candidato": "David Almeida", "partido": "Avante", "pct": 16.8 }
+    ],
+    "observacao": "Um dia mais recente que a AtlasIntel (04/09) já presente na base; cenário com 4 nomes em vez de 2, o que explica os percentuais menores para Aziz e Maria do Carmo."
+  },
+  {
+    "id": "2026-09-10-real-time-big-data-ma-governador-t1",
+    "uf": "MA",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "MA-02569/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-05",
+    "dataFim": "2026-09-09",
+    "publicadoEm": "2026-09-10",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": { "nome": "Exame", "url": "https://exame.com/brasil/real-time-big-data-braide-tem-45-e-brandao-32-no-1o-turno-no-maranhao/" },
+    "resultados": [
+      { "candidato": "Eduardo Braide", "partido": "PSD", "pct": 45.0 },
+      { "candidato": "Orleans Brandão", "partido": "MDB", "pct": 32.0 },
+      { "candidato": "Felipe Camarão", "partido": "PT", "pct": 11.0 },
+      { "candidato": "Roberto Rocha", "partido": "PRTB", "pct": 5.0 }
+    ],
+    "observacao": "Esta é a verdadeira pesquisa mais recente de setembro/2026 para o governo do MA. Substitui a entrada 2026-03-10-paranapesquisas-ma-governador-t1 na posição de 'mais recente', pois aquela é, na realidade, uma pesquisa de março/2026 mal identificada anteriormente como setembro (ver Correções recomendadas em data/research/audit-dados-rodada2.md)."
   }
 ]
