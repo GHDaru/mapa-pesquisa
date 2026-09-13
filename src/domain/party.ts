@@ -10,6 +10,8 @@ export interface Partido {
   readonly espectro: Espectro;
   readonly federacao?: string;
   readonly cor?: string;
+  readonly fonteClassificacao?: string;
+  readonly observacao?: string;
 }
 
 export interface DadosPartido {
@@ -19,6 +21,8 @@ export interface DadosPartido {
   espectro: string;
   federacao?: string | null;
   cor?: string | null;
+  fonteClassificacao?: string | null;
+  observacao?: string | null;
 }
 
 export class PartidoInvalidoError extends Error {
@@ -56,6 +60,8 @@ export function criarPartido(dados: DadosPartido): Partido {
     espectro: dados.espectro,
     ...(dados.federacao ? { federacao: dados.federacao } : {}),
     ...(dados.cor ? { cor: dados.cor } : {}),
+    ...(dados.fonteClassificacao ? { fonteClassificacao: dados.fonteClassificacao } : {}),
+    ...(dados.observacao ? { observacao: dados.observacao } : {}),
   };
   return partido;
 }
