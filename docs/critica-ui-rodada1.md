@@ -12,9 +12,11 @@ em 400px verificados para cada rota/tema. Barra de qualidade: NYT
 **Nota sobre o processo**: a primeira rodada de screenshots foi tirada contra um
 build (`dist/`) mais antigo que `data/polls.json` no disco (mtime do bundle
 anterior ao do dado) — isso produzia uma liderança fantasma no Paraná ("Não
-sabe/indeciso" como líder, pintado como "Não classificado"). Rebuild before
-descartou esse falso positivo; os vereditos abaixo são contra o build atual,
-consistente com os dados atuais em `data/`.
+sabe/indeciso" como líder, pintado como "Não classificado"). Um `npm run build`
+antes da rodada final descartou esse falso positivo; confirmado depois (tema
+claro e escuro) que o Paraná volta a aparecer corretamente como "Direita" —
+os vereditos abaixo são contra o build atual, consistente com os dados
+atuais em `data/`.
 
 ---
 
@@ -70,9 +72,11 @@ consistente com os dados atuais em `data/`.
    de tema claro.** Definidas uma única vez em `:root` (`tokens.css`), sem
    override no bloco `@media (prefers-color-scheme: light)` nem em
    `[data-theme="light"]`. Nos dados atuais nenhuma UF/partido dispara essa
-   cor (todos os 31 partidos do cadastro têm espectro classificado), então o
-   bug não é visível nas screenshots desta rodada — mas division é real:
-   assim que um partido ficar sem classificação confirmada, ele pintará quase
+   cor (todos os 31 partidos do cadastro têm espectro classificado, e
+   confirmei nas screenshots de tema claro do mapa e do hemiciclo desta rodada
+   que nenhum estado/assento aparece como "Não classificado" hoje) — mas o
+   defeito no CSS é real: assim que um partido ficar sem classificação
+   confirmada, ele pintará quase
    preto (`#4c4f56`) sobre fundo branco no tema claro, destoando de toda a
    paleta clara ao redor (inclusive do cinza "sem dados", que corretamente usa
    `--color-border-strong`, redefinido por tema).
@@ -92,6 +96,12 @@ consistente com os dados atuais em `data/`.
    mas seria mais limpo como um `select`/menu único, já que o resto do site
    evita justamente esse tipo de quebra irregular em controles (ex.:
    `pv-toggle-group` do Senado tem `flex-wrap` mas cabe inteiro em 400px).
+8. **Assentos "indefinidos" do hemiciclo ficam com baixo contraste no tema
+   claro.** A hachura usa `--color-surface-2` (`#eef0f2`, quase branco) com
+   linhas em `--color-border-strong` (`#d3d6db`) — visível em
+   `senado__1280x800__light.png`, esses assentos quase somem contra o fundo
+   `--color-canvas` branco, ao contrário do tema escuro onde o mesmo par de
+   tokens contrasta bem.
 
 ---
 
