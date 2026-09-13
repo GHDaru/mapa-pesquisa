@@ -1304,7 +1304,7 @@
     "cargo": "presidente",
     "turno": 1,
     "instituto": "Real Time Big Data",
-    "registroTSE": null,
+    "registroTSE": "BR-00377/2026",
     "contratante": null,
     "dataInicio": "2026-09-05",
     "dataFim": "2026-09-09",
@@ -2569,6 +2569,38 @@
     "observacao": "Contratante não identificado na fonte consultada."
   },
   {
+    "id": "2026-09-08-quaest-sp-presidente-t1",
+    "uf": "SP",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "SP-00959/2026",
+    "contratante": "Globo Comunicação e Participações S/A",
+    "dataInicio": "2026-09-04",
+    "dataFim": "2026-09-07",
+    "publicadoEm": "2026-09-08",
+    "amostra": 1800,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno) — amostra estadual de São Paulo",
+    "fonte": {
+      "nome": "CartaCapital",
+      "url": "https://www.cartacapital.com.br/politica/quaest-flavio-bolsonaro-tem-30-em-sp-contra-29-de-lula/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 30
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 29
+      }
+    ],
+    "observacao": "Pesquisa Quaest/Genial (mesma rodada que gerou as matérias sobre MG, RJ, DF e PE) com campo mais recente (04-07/09) do que a entrada AtlasIntel de 02/09 acima, hoje tratada como a mais recente para SP. ATENÇÃO: veículos divergem no valor exato — CartaCapital publicou ao menos duas manchetes para o mesmo período de campo ('Flávio 30 x Lula 29' e, em outra matéria, 'empatam' / '31 x 30'); confirmar o número definitivo diretamente na Quaest/Genial antes de usar em produção."
+  },
+  {
     "id": "2026-09-08-realtimebigdata-mg-presidente-t1",
     "uf": "MG",
     "cargo": "presidente",
@@ -2831,7 +2863,7 @@
     "cargo": "presidente",
     "turno": 1,
     "instituto": "Real Time Big Data",
-    "registroTSE": null,
+    "registroTSE": "BR-04485/2026",
     "contratante": null,
     "dataInicio": "2026-09-03",
     "dataFim": "2026-09-07",
@@ -4257,7 +4289,7 @@
     "cargo": "presidente",
     "turno": 1,
     "instituto": "AtlasIntel",
-    "registroTSE": null,
+    "registroTSE": "BR-07739/2026",
     "contratante": "A Tarde",
     "dataInicio": "2026-08-28",
     "dataFim": "2026-09-02",
@@ -4630,6 +4662,43 @@
       }
     ],
     "observacao": "Empate técnico (margem de erro de 2 p.p.). Esta é a pesquisa com amostra própria e dedicada ao estado do RJ mais recente encontrada (registro RJ-08350/2026)."
+  },
+  {
+    "id": "2026-09-03-atlasintel-go-presidente-t1",
+    "uf": "GO",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "GO-05293/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-27",
+    "dataFim": "2026-09-01",
+    "publicadoEm": "2026-09-03",
+    "amostra": 1214,
+    "margem": 3,
+    "cenario": "estimulada, cenário principal (1º turno) — amostra estadual de Goiás",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/caiado-tem-624-e-lula-298-em-2o-turno-em-go-diz-pesquisa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 38.2
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 26.9
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 19.2
+      }
+    ],
+    "observacao": "Correção (auditoria de 2026-09-13): no 1º turno, Flávio Bolsonaro lidera com 38,2%, seguido por Lula com 26,9% e Ronaldo Caiado com 19,2% — Caiado só assume a liderança nos cenários de 2º turno testados (ver entrada t2), não no 1º turno."
   },
   {
     "id": "2026-09-03-atlasintel-go-presidente-t2",
@@ -5577,7 +5646,7 @@
         "pct": 25
       }
     ],
-    "observacao": "Registro TSE não localizado na busca; parte da rodada Quaest em 17 estados e no DF, comissionada por afiliadas Rede Amazônica. Demais candidatos testados no Acre não foram capturados na busca."
+    "observacao": "Registro TSE não localizado na busca; parte da rodada Quaest em 17 estados e no DF, comissionada por afiliadas Rede Amazônica. Demais candidatos testados no Acre não foram capturados na busca. Auditoria de 2026-09-13: o valor de Lula (25,0%) é o mais citado (título/URL da matéria do Poder360), mas ao menos uma fonte agregada da mesma rodada menciona 30,0% no cenário sem Marçal; não foi possível resolver a ambiguidade dentro do orçamento de buscas, então o valor foi mantido em 25,0 até confirmação direta na Quaest."
   },
   {
     "id": "2026-08-26-quaest-rr-presidente-t1",

@@ -18,7 +18,7 @@
       { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 42.0 },
       { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 25.0 }
     ],
-    "observacao": "Registro TSE não localizado na busca; parte da rodada Quaest em 17 estados e no DF, comissionada por afiliadas Rede Amazônica. Demais candidatos testados no Acre não foram capturados na busca."
+    "observacao": "Registro TSE não localizado na busca; parte da rodada Quaest em 17 estados e no DF, comissionada por afiliadas Rede Amazônica. Demais candidatos testados no Acre não foram capturados na busca. Auditoria de 2026-09-13: o valor de Lula (25,0%) é o mais citado (título/URL da matéria do Poder360), mas ao menos uma fonte agregada da mesma rodada menciona 30,0% no cenário sem Marçal; não foi possível resolver a ambiguidade dentro do orçamento de buscas, então o valor foi mantido em 25,0 até confirmação direta na Quaest."
   },
   {
     "id": "2026-07-27-real-time-big-data-ac-presidente-t1",
@@ -234,7 +234,7 @@
     "cargo": "presidente",
     "turno": 1,
     "instituto": "Real Time Big Data",
-    "registroTSE": null,
+    "registroTSE": "BR-00377/2026",
     "contratante": null,
     "dataInicio": "2026-09-05",
     "dataFim": "2026-09-09",
@@ -295,7 +295,7 @@
     "cargo": "presidente",
     "turno": 1,
     "instituto": "Real Time Big Data",
-    "registroTSE": null,
+    "registroTSE": "BR-04485/2026",
     "contratante": null,
     "dataInicio": "2026-09-03",
     "dataFim": "2026-09-07",

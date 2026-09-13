@@ -41,6 +41,27 @@
     ],
     "observacao": "Pesquisa mais recente de 2º turno Lula x Flávio Bolsonaro encontrada para SP com amostra estadual própria."
   },
+  {
+    "id": "2026-09-08-quaest-sp-presidente-t1",
+    "uf": "SP",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "SP-00959/2026",
+    "contratante": "Globo Comunicação e Participações S/A",
+    "dataInicio": "2026-09-04",
+    "dataFim": "2026-09-07",
+    "publicadoEm": "2026-09-08",
+    "amostra": 1800,
+    "margem": 2.0,
+    "cenario": "estimulada, cenário principal (1º turno) — amostra estadual de São Paulo",
+    "fonte": { "nome": "CartaCapital", "url": "https://www.cartacapital.com.br/politica/quaest-flavio-bolsonaro-tem-30-em-sp-contra-29-de-lula/" },
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 30.0 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 29.0 }
+    ],
+    "observacao": "Pesquisa Quaest/Genial (mesma rodada que gerou as matérias sobre MG, RJ, DF e PE) com campo mais recente (04-07/09) do que a entrada AtlasIntel de 02/09 acima, hoje tratada como a mais recente para SP. ATENÇÃO: veículos divergem no valor exato — CartaCapital publicou ao menos duas manchetes para o mesmo período de campo ('Flávio 30 x Lula 29' e, em outra matéria, 'empatam' / '31 x 30'); confirmar o número definitivo diretamente na Quaest/Genial antes de usar em produção."
+  },
 
   {
     "id": "2026-09-08-realtimebigdata-mg-presidente-t1",
@@ -390,21 +411,21 @@
     "cargo": "presidente",
     "turno": 1,
     "instituto": "AtlasIntel",
-    "registroTSE": null,
+    "registroTSE": "GO-05293/2026",
     "contratante": null,
     "dataInicio": "2026-08-27",
     "dataFim": "2026-09-01",
     "publicadoEm": "2026-09-03",
     "amostra": 1214,
-    "margem": 2.0,
+    "margem": 3.0,
     "cenario": "estimulada, cenário principal (1º turno) — amostra estadual de Goiás",
     "fonte": { "nome": "Poder360", "url": "https://www.poder360.com.br/poder-eleicoes-2026/caiado-tem-624-e-lula-298-em-2o-turno-em-go-diz-pesquisa/" },
     "resultados": [
-      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": null },
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": null },
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": null }
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 38.2 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 26.9 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 19.2 }
     ],
-    "observacao": "As fontes consultadas só trouxeram com clareza o cenário de 2º turno Caiado x Lula desta pesquisa AtlasIntel (ver entrada t2); os percentuais do cenário de 1º turno com todos os candidatos não foram confirmados (havia números conflitantes atribuídos a institutos diferentes nas buscas) e o registro no TSE específico desta pesquisa em Goiás não foi localizado — por isso os campos ficaram null. Goiás é caso especial: o ex-governador Ronaldo Caiado (PSD) é candidato a presidente e lidera no estado, à frente de Lula e de Flávio Bolsonaro."
+    "observacao": "Correção (auditoria de 2026-09-13): no 1º turno, Flávio Bolsonaro lidera com 38,2%, seguido por Lula com 26,9% e Ronaldo Caiado com 19,2% — Caiado só assume a liderança nos cenários de 2º turno testados (ver entrada t2), não no 1º turno."
   },
   {
     "id": "2026-09-03-atlasintel-go-presidente-t2",
@@ -643,7 +664,7 @@
     "cargo": "presidente",
     "turno": 1,
     "instituto": "AtlasIntel",
-    "registroTSE": null,
+    "registroTSE": "BR-07739/2026",
     "contratante": "A Tarde",
     "dataInicio": "2026-08-28",
     "dataFim": "2026-09-02",

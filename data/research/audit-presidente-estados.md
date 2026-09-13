@@ -88,3 +88,16 @@ Para RJ, há um indício (não confirmado com confiança suficiente para virar e
 **Publicável hoje (SIM/NÃO): NÃO.**
 
 **Maior lacuna:** a entrada de Goiás (`2026-09-03-atlasintel-go-presidente-t1`, arquivo `polls-presidente-estados-a.json`) — que hoje é a pesquisa presidencial estadual mais recente de 1º turno usada para GO — está com os **percentuais dos candidatos como `null`** (nenhum número publicável) **e** carrega uma observação que **inverte o resultado real do 1º turno**, atribuindo a liderança a Ronaldo Caiado quando na verdade Flávio Bolsonaro lidera (38,2%) à frente de Lula (26,9%) e do próprio Caiado (19,2%, apenas 3º lugar no 1º turno). Publicar o mapa hoje faria uma de duas coisas erradas para GO: mostrar "sem dado" onde há dado disponível, ou herdar a narrativa incorreta da observação. Isso, somado à pesquisa de SP desatualizada (falta a rodada Quaest de 04-07/09, mais recente que a atualmente usada) e às lacunas de registro TSE em BA/PA/MA, deixa a base abaixo do padrão de publicação — mas são correções pontuais e bem delimitadas, não um problema estrutural do dataset.
+
+## Aplicado
+
+Todas as correções recomendadas na seção 3 foram aplicadas e a pesquisa faltante da seção 4 foi inserida:
+
+- `polls-presidente-estados-a.json` / `2026-09-03-atlasintel-go-presidente-t1`: percentuais preenchidos (Flávio Bolsonaro 38,2 / Lula 26,9 / Caiado 19,2), `margem` corrigida para 3.0, `registroTSE` preenchido com `GO-05293/2026` e `observacao` reescrita para refletir corretamente o resultado do 1º turno.
+- `polls-presidente-estados-a.json` / `2026-09-03-atlasintel-ba-presidente-t1`: `registroTSE` preenchido com `BR-07739/2026`.
+- `polls-presidente-estados-b.json` / `2026-09-08-real-time-big-data-pa-presidente-t1`: `registroTSE` preenchido com `BR-04485/2026`.
+- `polls-presidente-estados-b.json` / `2026-09-10-real-time-big-data-ma-presidente-t1`: `registroTSE` preenchido com `BR-00377/2026`.
+- `polls-presidente-estados-b.json` / `2026-08-27-quaest-ac-presidente-t1`: percentual de Lula mantido em `25.0` (não foi possível resolver a ambiguidade 25 vs. 30 com o material da auditoria); `observacao` atualizada para documentar a divergência entre fontes.
+- `polls-presidente-estados-a.json`: inserida a pesquisa faltante `2026-09-08-quaest-sp-presidente-t1` (Quaest/Genial, SP), mais recente que a entrada AtlasIntel de 02/09.
+
+Não foi inserida entrada para o indício de pesquisa AtlasIntel/RJ mencionado na seção 4 por falta de confirmação de instituto/data/percentuais na própria auditoria.
