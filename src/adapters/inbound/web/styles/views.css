@@ -705,6 +705,15 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
   stroke: var(--color-canvas);
   stroke-width: 2;
 }
+/* Anel de contorno para o marcador final que ficaria quase totalmente
+   coberto por outro a poucos px de distância (corrida acirrada) — ver
+   `marcadoresFinaisOcultos` em timeline-chart.ts. Vazado (sem fill) e maior
+   que o marcador sólido para que a parte que não se sobrepõe continue
+   visível ao redor/atrás do outro círculo. */
+.pv-timeline-end-dot-anel {
+  fill: none;
+  stroke-width: 2;
+}
 .pv-timeline-end-leader {
   stroke-width: 1;
 }

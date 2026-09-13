@@ -107,6 +107,36 @@ export function escalaX(dataIso: string, dominio: DominioX, largura: number): nu
   return (offset / span) * largura;
 }
 
+/** Um dia da série suave (`SerieTemporal.dias` de domain/aggregate.ts): 1 valor por candidato por data, sem duplicatas. */
+export interface DiaValores {
+  readonly data: string;
+  readonly valores: Readonly<Record<string, number>>;
+}
+
+/**
+ * Série (data, pct) de UM candidato a partir de `dias` (já suavizada,
+ * garantidamente 1 valor por data — ver `serieTemporal` em
+ * domain/aggregate.ts), restrita ao intervalo `[dominio.minIso,
+ * dominio.maxIso]`. Usada para desenhar a LINHA do mini-gráfico em vez de
+ * interpolar os pontos brutos de pesquisa: como pode haver 2+ pesquisas na
+ * mesma data (mesmo x), interpolar os pontos brutos produz um laço quando
+ * a suavização Catmull-Rom cruza consigo mesma; agregando por dia primeiro,
+ * a sequência fica estritamente ordenada por x e nunca laça.
+ */
+export function serieCandidatoPorDia(
+  dias: readonly DiaValores[],
+  candidato: string,
+  dominio: DominioX,
+): Array<{ data: string; pct: number }> {
+  const pontos: Array<{ data: string; pct: number }> = [];
+  for (const dia of dias) {
+    if (dia.data < dominio.minIso || dia.data > dominio.maxIso) continue;
+    const pct = dia.valores[candidato];
+    if (typeof pct === 'number') pontos.push({ data: dia.data, pct });
+  }
+  return pontos;
+}
+
 export interface DominioY {
   readonly min: number;
   readonly max: number;
@@ -191,6 +221,19 @@ export function raioAmostra(amostra: number | null): number {
   const base = amostra != null && amostra > 0 ? amostra : AMOSTRA_REFERENCIA;
   const raio = RAIO_MIN + Math.sqrt(base / AMOSTRA_REFERENCIA) * 3;
   return Math.min(RAIO_MAX, Math.max(RAIO_MIN, raio));
+}
+
+/**
+ * Padding esquerdo do mini-gráfico: raio do maior ponto que será desenhado
+ * (entre as amostras informadas) mais 2px de folga. Sem essa reserva, o
+ * ponto mais antigo (o que `escalaX` mapeia para x=0 dentro da área útil)
+ * fica com o centro do círculo exatamente na borda esquerda do `viewBox` e
+ * metade dele é cortada — bug confirmado via DOM (`cx=0`) em 20 dos 27
+ * mini-gráficos por estado. Lista vazia usa o raio mínimo como piso.
+ */
+export function padEsquerdoMiniChart(amostras: readonly (number | null)[]): number {
+  const raioMax = amostras.length > 0 ? Math.max(...amostras.map(raioAmostra)) : RAIO_MIN;
+  return raioMax + 2;
 }
 
 /**

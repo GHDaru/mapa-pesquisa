@@ -110,7 +110,43 @@ function mostrarEmConstrucao(main: HTMLElement): void {
   main.appendChild(aviso);
 }
 
-/** Carrega uma tela opcional (presidente/senado/partidos) e chama sua função de render, com fallback. */
+/**
+ * Espera de fato antes da 2ª tentativa de `import()` — dá tempo do soluço
+ * transitório (proxy, deploy reescrevendo `dist/assets/` no meio da
+ * requisição, bloqueador de conteúdo) passar antes de tentar de novo.
+ */
+function esperar(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+/** Carrega o módulo da rota e invoca sua função de render; lança se algo der errado (chamador decide o fallback). */
+async function carregarERenderizar(
+  carregar: () => Promise<ModuloPagina>,
+  caminho: string,
+  nomeFuncao: string,
+  main: HTMLElement,
+  casos: CasosDeUso,
+): Promise<void> {
+  const mod = await carregar();
+  const render = mod[nomeFuncao];
+  if (typeof render !== 'function') {
+    throw new Error(`Módulo "${caminho}" não exporta "${nomeFuncao}".`);
+  }
+  (render as (main: HTMLElement, casos: CasosDeUso) => void)(main, casos);
+}
+
+/**
+ * Carrega uma tela opcional (presidente/senado/partidos) e chama sua função
+ * de render, com fallback "Em construção" só depois de 2 tentativas.
+ *
+ * Uma falha de rede transitória no `import()` dinâmico (ex.: "Unable to
+ * preload CSS for /assets/...css" quando um deploy reescreve `dist/assets/`
+ * no meio da requisição, ou um soluço de proxy/bloqueador de conteúdo) faz
+ * a tela inteira parecer "não implementada" para quem a visita — mesmo
+ * sendo uma tela funcional, sem nenhum jeito de tentar de novo a não ser
+ * recarregar a página inteira. Por isso, antes de desistir e mostrar o
+ * fallback genérico, tenta o `import()` mais uma vez após um pequeno atraso.
+ */
 async function renderPaginaOpcional(
   main: HTMLElement,
   casos: CasosDeUso,
@@ -123,15 +159,16 @@ async function renderPaginaOpcional(
     return;
   }
   try {
-    const mod = await carregar();
-    const render = mod[nomeFuncao];
-    if (typeof render !== 'function') {
-      throw new Error(`Módulo "${caminho}" não exporta "${nomeFuncao}".`);
+    await carregarERenderizar(carregar, caminho, nomeFuncao, main, casos);
+  } catch (primeiroErro) {
+    console.warn(`Falha ao carregar ${caminho} (tentando de novo em 300ms):`, primeiroErro);
+    await esperar(300);
+    try {
+      await carregarERenderizar(carregar, caminho, nomeFuncao, main, casos);
+    } catch (segundoErro) {
+      console.warn(`Falha ao carregar ${caminho} na 2ª tentativa, desistindo:`, segundoErro);
+      mostrarEmConstrucao(main);
     }
-    (render as (main: HTMLElement, casos: CasosDeUso) => void)(main, casos);
-  } catch (erro) {
-    console.warn(`Falha ao carregar ${caminho}:`, erro);
-    mostrarEmConstrucao(main);
   }
 }
 
@@ -173,7 +210,26 @@ async function renderizarRota(main: HTMLElement, nav: HTMLElement, casos: CasosD
   main.focus();
 }
 
+/**
+ * O Vite dispara `vite:preloadError` no `window` quando o preload de um
+ * asset (JS ou CSS) de um `import()` dinâmico falha — o mesmo tipo de
+ * soluço transitório que faz `renderPaginaOpcional` cair no fallback "Em
+ * construção" (ver nota lá). Sem `preventDefault()`, o evento também gera
+ * ruído de "erro não tratado" no console para algo que o `catch` de
+ * `renderPaginaOpcional` já está tentando de novo — então aqui só marca o
+ * evento como tratado; a nova tentativa em si já acontece em
+ * `renderPaginaOpcional`.
+ */
+function ignorarErrosDePreload(): void {
+  window.addEventListener('vite:preloadError', (evento) => {
+    console.warn('Preload de módulo/CSS falhou (Vite); ignorando — a rota já tenta carregar de novo:', evento);
+    evento.preventDefault();
+  });
+}
+
 function iniciar(): void {
+  ignorarErrosDePreload();
+
   const repos = carregarDados();
   const casos = criarCasosDeUso(repos, clockReal);
 

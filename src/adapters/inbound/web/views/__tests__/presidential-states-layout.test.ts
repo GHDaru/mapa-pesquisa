@@ -10,8 +10,10 @@ import {
   formatarEleitorado,
   formatarVantagemTitulo,
   ordenarParaGrade,
+  padEsquerdoMiniChart,
   raioAmostra,
   rotuloVantagemMini,
+  serieCandidatoPorDia,
 } from '../presidential-states-layout.js';
 
 describe('presidential-states-layout: ordenarParaGrade', () => {
@@ -206,6 +208,85 @@ describe('presidential-states-layout: raioAmostra', () => {
 
   it('nunca fica abaixo do raio mínimo, mesmo com amostra minúscula', () => {
     expect(raioAmostra(1)).toBeGreaterThanOrEqual(3);
+  });
+});
+
+describe('presidential-states-layout: padEsquerdoMiniChart', () => {
+  it('reserva o raio do maior ponto (raiz da amostra) mais 2px de folga', () => {
+    // amostra 1000 -> raio 6 (referência); pad = 6 + 2 = 8.
+    expect(padEsquerdoMiniChart([1000])).toBeCloseTo(8, 5);
+  });
+
+  it('usa o maior raio entre várias amostras, não a média nem a última', () => {
+    const padGrande = padEsquerdoMiniChart([100, 1_000_000, 500]);
+    const padPequeno = padEsquerdoMiniChart([100, 500]);
+    expect(padGrande).toBeGreaterThan(padPequeno);
+  });
+
+  it('lista vazia cai no raio mínimo (nunca fica sem padding)', () => {
+    expect(padEsquerdoMiniChart([])).toBeGreaterThan(0);
+  });
+
+  it('garante que um ponto no início do domínio (cx = padding) nunca fica com cx < raio (sem corte)', () => {
+    const amostras = [200, 4000, null, 50_000];
+    const pad = padEsquerdoMiniChart(amostras);
+    for (const amostra of amostras) {
+      expect(pad).toBeGreaterThanOrEqual(raioAmostra(amostra));
+    }
+  });
+});
+
+describe('presidential-states-layout: serieCandidatoPorDia', () => {
+  const dominio = { minIso: '2026-08-01', maxIso: '2026-08-05' };
+
+  it('extrai (data, pct) de um candidato, ignorando os demais', () => {
+    const dias = [
+      { data: '2026-08-01', valores: { Lula: 40, Flávio: 38 } },
+      { data: '2026-08-02', valores: { Lula: 41, Flávio: 37 } },
+    ];
+    expect(serieCandidatoPorDia(dias, 'Lula', dominio)).toEqual([
+      { data: '2026-08-01', pct: 40 },
+      { data: '2026-08-02', pct: 41 },
+    ]);
+  });
+
+  it('produz 1 único ponto para o dia em que 2 pesquisas foram publicadas (sem laço)', () => {
+    // Cenário do bug MG/TO: 2 pesquisas do mesmo estado com datas de
+    // referência iguais (aqui, 40% e 46% brutos no mesmo dia). Uma linha
+    // interpolando os pontos brutos teria 2 pontos empilhados no mesmo x
+    // (mais o ponto final), o que faz a suavização Catmull-Rom cruzar a si
+    // mesma e formar um laço. `dias` já chega agregado (1 valor por data —
+    // a média ponderada das 2 pesquisas), então o resultado tem 1 só ponto
+    // nessa data, e a linha nunca pode laçar.
+    const dias = [{ data: '2026-08-01', valores: { Lula: 43 } }, { data: '2026-08-03', valores: { Lula: 42 } }];
+    const resultado = serieCandidatoPorDia(dias, 'Lula', dominio);
+    const datas = resultado.map((p) => p.data);
+    expect(new Set(datas).size).toBe(datas.length);
+    expect(resultado).toEqual([
+      { data: '2026-08-01', pct: 43 },
+      { data: '2026-08-03', pct: 42 },
+    ]);
+  });
+
+  it('ignora dias fora do intervalo [minIso, maxIso] do domínio', () => {
+    const dias = [
+      { data: '2026-07-20', valores: { Lula: 39 } },
+      { data: '2026-08-03', valores: { Lula: 42 } },
+      { data: '2026-09-01', valores: { Lula: 44 } },
+    ];
+    expect(serieCandidatoPorDia(dias, 'Lula', dominio)).toEqual([{ data: '2026-08-03', pct: 42 }]);
+  });
+
+  it('ignora dias em que o candidato não tem valor', () => {
+    const dias = [
+      { data: '2026-08-01', valores: { Lula: 40 } },
+      { data: '2026-08-02', valores: {} },
+    ];
+    expect(serieCandidatoPorDia(dias, 'Lula', dominio)).toEqual([{ data: '2026-08-01', pct: 40 }]);
+  });
+
+  it('retorna lista vazia quando não há nenhum dia no domínio', () => {
+    expect(serieCandidatoPorDia([], 'Lula', dominio)).toEqual([]);
   });
 });
 

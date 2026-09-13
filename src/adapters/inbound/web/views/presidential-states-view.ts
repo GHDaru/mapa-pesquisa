@@ -3,7 +3,7 @@ import '../styles/presidential-states.css';
 import brazilMapDados from '@svg-maps/brazil';
 import type { CasosDeUso, PresidencialPorEstado, PresidencialUf } from '../../../../application/use-cases/index.js';
 import { MARGEM_REFERENCIA_PADRAO, type Agregado, type CandidatoAgregado } from '../../../../domain/aggregate.js';
-import type { PontoSerieTemporal } from '../../../../domain/aggregate.js';
+import type { SerieTemporal } from '../../../../domain/aggregate.js';
 import type { Pesquisa } from '../../../../domain/poll.js';
 import { espectroDoPartido } from '../../../../domain/spectrum.js';
 import { nomeCurtissimo } from './candidate-names.js';
@@ -26,12 +26,15 @@ import {
   calcularQuantis,
   caminhoSuavizado,
   classificarPorQuantil,
+  diasEntreIso,
   escalaX,
   escalaY,
   formatarEleitorado,
   ordenarParaGrade,
+  padEsquerdoMiniChart,
   raioAmostra,
   rotuloVantagemMini,
+  serieCandidatoPorDia,
   type DominioX,
   type PontoXY,
 } from './presidential-states-layout.js';
@@ -704,7 +707,6 @@ const MINI_H = 90;
 const MINI_PAD_TOP = 10;
 const MINI_PAD_BOTTOM = 16;
 const MINI_PAD_RIGHT = 32;
-const MINI_PLOT_W = MINI_W - MINI_PAD_RIGHT;
 const MINI_PLOT_H = MINI_H - MINI_PAD_TOP - MINI_PAD_BOTTOM;
 
 function criarSecaoGrade(dados: PresidencialPorEstado, partidos: Partidos, hostElement: HTMLElement): HTMLElement {
@@ -778,7 +780,7 @@ function criarCardMiniatura(item: PresidencialUf, partidos: Partidos, hostElemen
   eleitoresP.textContent = eleitoresTexto;
   btn.appendChild(eleitoresP);
 
-  btn.appendChild(construirMiniGrafico(item.agregado, item.serie.pontos, partidos));
+  btn.appendChild(construirMiniGrafico(item.agregado, item.serie, partidos));
 
   btn.addEventListener('click', () => abrirPainelUf(item, nome, btn, hostElement, partidos));
 
@@ -798,16 +800,12 @@ function descricaoAcessivelMiniGrafico(candidatos: readonly CandidatoAgregado[])
  * limiar de empate técnico) e seu rótulo. Com apenas 1 pesquisa no
  * agregado, mostra só os pontos, sem linha (nada para suavizar/tender).
  */
-function construirMiniGrafico(
-  agregado: Agregado,
-  pontosSerie: readonly PontoSerieTemporal[],
-  partidos: Partidos,
-): SVGSVGElement {
+function construirMiniGrafico(agregado: Agregado, serie: SerieTemporal, partidos: Partidos): SVGSVGElement {
   const candidatos = agregado.candidatos.slice(0, 2);
   const multiplasPesquisas = agregado.pesquisasUsadas.length > 1;
 
   const pontosPorCandidato = candidatos.map((c) =>
-    pontosSerie.filter((p) => p.candidato === c.candidato).sort((a, b) => a.data.localeCompare(b.data)),
+    serie.pontos.filter((p) => p.candidato === c.candidato).sort((a, b) => a.data.localeCompare(b.data)),
   );
 
   const todasDatas = pontosPorCandidato.flat().map((p) => p.data);
@@ -818,9 +816,22 @@ function construirMiniGrafico(
           maxIso: todasDatas.reduce((m, d) => (d > m ? d : m)),
         }
       : { minIso: '2000-01-01', maxIso: '2000-01-01' };
+  // Domínio de um único dia (todas as pesquisas usadas datam do mesmo dia —
+  // ex.: 2 institutos publicando no mesmo dia em MG/TO) não tem evolução
+  // real para desenhar como linha: em vez de deixar a suavização Catmull-Rom
+  // inventar um laço entre pontos empilhados no mesmo x, mostra só os
+  // pontos e o valor final (bug de laço confirmado em rodadas anteriores).
+  const dominioXTemUmDia = diasEntreIso(dominioX.minIso, dominioX.maxIso) <= 0;
 
   const todosPct = [...pontosPorCandidato.flat().map((p) => p.pct), ...candidatos.map((c) => c.pct)];
   const dominioY = calcularDominioY(todosPct);
+
+  // Reserva a largura equivalente ao maior raio de ponto + 2px como padding
+  // esquerdo: sem isso, o ponto mais antigo (mapeado para x=0 pela escala)
+  // fica com o centro do círculo na borda esquerda do viewBox e é cortado
+  // ao meio (bug confirmado via DOM em 20 de 27 mini-gráficos por estado).
+  const padEsquerdo = padEsquerdoMiniChart(pontosPorCandidato.flat().map((p) => p.amostra));
+  const larguraPlot = MINI_W - padEsquerdo - MINI_PAD_RIGHT;
 
   const svg = document.createElementNS(SVG_NS, 'svg');
   svg.setAttribute('viewBox', `0 0 ${MINI_W} ${MINI_H}`);
@@ -831,15 +842,15 @@ function construirMiniGrafico(
 
   const yBase = MINI_PAD_TOP + escalaY(50, dominioY, MINI_PLOT_H);
   const baseline = document.createElementNS(SVG_NS, 'line');
-  baseline.setAttribute('x1', '0');
-  baseline.setAttribute('x2', String(MINI_PLOT_W));
+  baseline.setAttribute('x1', String(padEsquerdo));
+  baseline.setAttribute('x2', String(padEsquerdo + larguraPlot));
   baseline.setAttribute('y1', String(yBase));
   baseline.setAttribute('y2', String(yBase));
   baseline.setAttribute('class', 'ps-mini-chart__baseline');
   svg.appendChild(baseline);
 
   const baselineLabel = document.createElementNS(SVG_NS, 'text');
-  baselineLabel.setAttribute('x', String(MINI_PLOT_W + 3));
+  baselineLabel.setAttribute('x', String(padEsquerdo + larguraPlot + 3));
   baselineLabel.setAttribute('y', String(yBase + 3));
   baselineLabel.setAttribute('class', 'ps-mini-chart__baseline-label');
   baselineLabel.textContent = '50%';
@@ -867,7 +878,7 @@ function construirMiniGrafico(
     const pontos = pontosPorCandidato[i]!;
 
     const coordsHistoricos: PontoXY[] = pontos.map((p) => ({
-      x: escalaX(p.data, dominioX, MINI_PLOT_W),
+      x: padEsquerdo + escalaX(p.data, dominioX, larguraPlot),
       y: MINI_PAD_TOP + escalaY(p.pct, dominioY, MINI_PLOT_H),
     }));
 
@@ -883,9 +894,16 @@ function construirMiniGrafico(
       svg.appendChild(circulo);
     }
 
-    const finalCoord: PontoXY = { x: MINI_PLOT_W, y: finaisY[i]! };
-    if (multiplasPesquisas) {
-      const coordsLinha = coordsHistoricos.length > 0 ? [...coordsHistoricos, finalCoord] : [finalCoord];
+    const finalCoord: PontoXY = { x: padEsquerdo + larguraPlot, y: finaisY[i]! };
+    if (multiplasPesquisas && !dominioXTemUmDia) {
+      // Linha construída a partir de `serie.dias` (já suave — no máximo 1
+      // valor por candidato por data), não dos pontos brutos de pesquisa:
+      // evita o laço quando 2+ pesquisas caem na mesma data (mesmo x).
+      const coordsDias: PontoXY[] = serieCandidatoPorDia(serie.dias, candidato.candidato, dominioX).map((d) => ({
+        x: padEsquerdo + escalaX(d.data, dominioX, larguraPlot),
+        y: MINI_PAD_TOP + escalaY(d.pct, dominioY, MINI_PLOT_H),
+      }));
+      const coordsLinha = coordsDias.length > 0 ? [...coordsDias, finalCoord] : [finalCoord];
       const d = caminhoSuavizado(coordsLinha);
       if (d) {
         const path = document.createElementNS(SVG_NS, 'path');

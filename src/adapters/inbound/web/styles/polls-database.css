@@ -270,23 +270,30 @@
   text-align: right;
 }
 
-/* --- Detalhes expansíveis --- */
+/* --- Detalhes expansíveis ---
+   Botão simples (não um <details>/<summary>) numa célula normal, que só
+   alterna `hidden` de uma <tr> irmã com uma célula de colspan completo
+   logo abaixo — nunca ganha foco fora da viewport horizontal atual, então
+   nunca dispara o scrollIntoView nativo que um <summary> focado causaria
+   em `.db-table-wrap` (bug: expandir escondia Data/Cargo/UF/Instituto). */
 
-.db-detalhes {
-  min-width: 140px;
-}
-.db-detalhes-summary {
+.db-detalhes-btn {
   cursor: pointer;
   color: var(--color-accent);
   font: var(--text-body-sm);
   font-weight: 510;
   white-space: nowrap;
+  background: none;
+  border: none;
+  padding: 0;
 }
-.db-detalhes-summary:hover { color: var(--color-accent-hover); }
-.db-detalhes-conteudo {
-  margin-top: var(--space-2);
-  padding: var(--space-3);
+.db-detalhes-btn:hover { color: var(--color-accent-hover); }
+
+.db-detalhes-row td {
   background: var(--color-surface-2);
+}
+.db-detalhes-conteudo {
+  padding: var(--space-3);
   border-radius: var(--radius-sm);
   min-width: 240px;
 }
@@ -417,6 +424,26 @@ th[aria-sort='descending'] .db-table-sort-btn::after {
   }
   .db-detalhes-conteudo {
     min-width: 0;
+  }
+  /* A linha de detalhes não tem `data-rotulo` (é 1 célula de colspan
+     completo) — sem isso ela herdaria o layout rótulo-à-esquerda/valor-à-
+     direita das outras células e o bloco de detalhes ficaria espremido à
+     direita em vez de ocupar a largura do card. */
+  .db-detalhes-row {
+    box-shadow: none;
+    margin-block-start: calc(-1 * var(--space-3));
+    padding-block-start: 0;
+  }
+  .db-detalhes-row td {
+    display: block;
+    text-align: left;
+  }
+  /* `.db-table tr { display: block }` acima tem mais especificidade que o
+     estilo padrão do navegador para `[hidden]` (`[hidden] { display: none
+     }`) — sem esta regra, a linha de detalhes fechada reapareceria
+     forçadamente no layout de cards do mobile. */
+  .db-table tr.db-detalhes-row[hidden] {
+    display: none;
   }
 }
 

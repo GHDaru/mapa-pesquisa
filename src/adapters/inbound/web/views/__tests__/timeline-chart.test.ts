@@ -9,6 +9,7 @@ import {
   formatarRotuloDataCurta,
   gerarTicksTempo,
   gerarTicksY,
+  marcadoresFinaisOcultos,
   raioPonto,
   RAIO_AMOSTRA_DESCONHECIDA,
 } from '../timeline-chart.js';
@@ -142,6 +143,44 @@ describe('timeline-chart: caminhoSuavizado', () => {
 // nomeCurto/nomeCurtissimo agora vivem em candidate-names.ts (compartilhado
 // também por presidential-states-view.ts) — ver
 // __tests__/candidate-names.test.ts.
+
+describe('timeline-chart: marcadoresFinaisOcultos', () => {
+  it('nenhum oculto quando os marcadores estão bem separados', () => {
+    const marcadores = [
+      { x: 680, y: 100 },
+      { x: 680, y: 200 },
+    ];
+    expect(marcadoresFinaisOcultos(marcadores)).toEqual([false, false]);
+  });
+
+  it('o primeiro (coberto pelo desenhado depois dele) fica marcado como oculto; o de cima, não', () => {
+    // Cenário do bug: 2º turno com valores finais a décimos de diferença
+    // (~2-3px de distância entre os centros dos marcadores).
+    const marcadores = [
+      { x: 680, y: 200 }, // Flávio — desenhado primeiro, fica embaixo
+      { x: 680, y: 202.5 }, // Lula — desenhado depois, fica em cima
+    ];
+    expect(marcadoresFinaisOcultos(marcadores)).toEqual([true, false]);
+  });
+
+  it('limiar é configurável', () => {
+    const marcadores = [
+      { x: 0, y: 0 },
+      { x: 0, y: 5 },
+    ];
+    expect(marcadoresFinaisOcultos(marcadores, 4)).toEqual([false, false]);
+    expect(marcadoresFinaisOcultos(marcadores, 6)).toEqual([true, false]);
+  });
+
+  it('3 marcadores próximos: só os cobertos por um desenhado depois ficam marcados', () => {
+    const marcadores = [
+      { x: 0, y: 0 },
+      { x: 0, y: 3 },
+      { x: 0, y: 30 },
+    ];
+    expect(marcadoresFinaisOcultos(marcadores)).toEqual([true, false, false]);
+  });
+});
 
 describe('timeline-chart: atribuirTomSerie', () => {
   it('primeira ocorrência de cada espectro usa o tom base', () => {

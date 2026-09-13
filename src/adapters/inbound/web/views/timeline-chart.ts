@@ -197,6 +197,26 @@ function fmt(n: number): string {
   return Number.isInteger(n) ? String(n) : n.toFixed(2);
 }
 
+export interface PontoFinal {
+  readonly x: number;
+  readonly y: number;
+}
+
+/**
+ * Para cada marcador final (na mesma ordem de desenho — z-index — em que
+ * serão colocados no SVG, então um índice maior fica por cima), diz se ele
+ * está a menos de `limiar` (padrão 6px, distância euclidiana) de algum
+ * marcador desenhado DEPOIS dele: esse marcador ficaria quase totalmente
+ * coberto pelo outro (cenário mais notável: 2º turno acirrado, valores
+ * finais a décimos de diferença) e por isso precisa de um anel de contorno
+ * para continuar visível — ver `renderTimelineChart`.
+ */
+export function marcadoresFinaisOcultos(marcadores: readonly PontoFinal[], limiar = 6): boolean[] {
+  return marcadores.map((m, i) =>
+    marcadores.some((outro, j) => j > i && Math.hypot(m.x - outro.x, m.y - outro.y) < limiar),
+  );
+}
+
 /** Estado de tom de série: 'base' para a 1ª ocorrência de um nível de espectro, 'alt' para as seguintes. */
 export type TomSerie = 'base' | 'alt';
 
@@ -407,11 +427,6 @@ export function renderTimelineChart(host: HTMLElement, opcoes: OpcoesTimelineCha
         candidato.nome
       ];
       if (ultimoValor != null) {
-        const marcador = criarSvgEl('circle', {
-          cx: String(ultimo.x), cy: String(ultimo.y), r: '4', class: 'pv-timeline-end-dot', style: `fill:${corVar}`,
-        });
-        grupoSeries.append(marcador);
-
         candidatosParaRotulo.push({
           candidato,
           x: ultimo.x,
@@ -423,6 +438,29 @@ export function renderTimelineChart(host: HTMLElement, opcoes: OpcoesTimelineCha
       }
     }
   }
+
+  // Marcadores finais — numa passada separada (depois de todas as séries),
+  // para poder detectar colisão entre marcadores de séries diferentes: dois
+  // valores finais a poucos px um do outro (corrida acirrada) fazem o
+  // círculo desenhado por último (o de cima no z-index) cobrir quase por
+  // completo o de baixo. O coberto ganha um anel de contorno (raio maior,
+  // vazado) que continua visível ao redor dele, em vez de sumir quase por
+  // inteiro atrás do outro.
+  const ocultos = marcadoresFinaisOcultos(candidatosParaRotulo.map(({ x, y }) => ({ x, y })));
+  candidatosParaRotulo.forEach(({ x, y, corVar }, i) => {
+    if (ocultos[i]) {
+      grupoSeries.append(
+        criarSvgEl('circle', {
+          cx: String(x), cy: String(y), r: '7', class: 'pv-timeline-end-dot-anel', style: `stroke:${corVar}`,
+        }),
+      );
+    }
+    grupoSeries.append(
+      criarSvgEl('circle', {
+        cx: String(x), cy: String(y), r: '4', class: 'pv-timeline-end-dot', style: `fill:${corVar}`,
+      }),
+    );
+  });
 
   // Rótulos diretos no fim de cada linha — quando duas linhas terminam perto
   // uma da outra, afasta verticalmente (nunca empilha em cima, ver

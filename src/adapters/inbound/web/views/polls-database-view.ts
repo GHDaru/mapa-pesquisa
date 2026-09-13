@@ -22,6 +22,9 @@ import {
  * um conjunto de estilos próprio, prefixo `db-`, em styles/polls-database.css.
  */
 
+/** Número de colunas do `<thead>` de `criarTabela` — usado como `colspan` da linha de detalhes expandida. */
+const NUM_COLUNAS_TABELA = 14;
+
 const ROTULOS_CARGO: Readonly<Record<Cargo, string>> = {
   presidente: 'Presidente',
   governador: 'Governador',
@@ -427,7 +430,7 @@ function criarTabela(
     ]),
   );
 
-  table.append(criarEl('tbody', {}, pesquisas.map((p) => criarLinhaPesquisa(p, partidos))));
+  table.append(criarEl('tbody', {}, pesquisas.flatMap((p) => criarLinhaPesquisa(p, partidos))));
   wrap.append(table);
   return wrap;
 }
@@ -447,17 +450,41 @@ function criarCelulaTop3(p: Pesquisa, partidos: ReturnType<CasosDeUso['listParti
   return criarEl('td', { attrs: { 'data-rotulo': 'Principais colocados' } }, [lista]);
 }
 
-function criarLinhaPesquisa(p: Pesquisa, partidos: ReturnType<CasosDeUso['listParties']>): HTMLElement {
+/**
+ * Uma pesquisa vira 2 `<tr>`: a linha principal (todas as colunas
+ * resumidas) e uma linha de detalhes, oculta por padrão, com uma única
+ * célula de `colspan` completo. Antes, "Detalhes" era um `<details>`
+ * aninhado na última célula — ao abrir, o navegador rolava
+ * `.db-table-wrap` horizontalmente sozinho para trazer o `<summary>`
+ * focado para a viewport, escondendo Data/Cargo/UF/Instituto (a própria
+ * linha que o usuário queria ver melhor). Um botão simples que só
+ * alterna a visibilidade de uma linha-irmã abaixo (sem `scrollIntoView`)
+ * nunca precisa mexer no `scrollLeft` da tabela.
+ */
+function criarLinhaPesquisa(p: Pesquisa, partidos: ReturnType<CasosDeUso['listParties']>): HTMLElement[] {
   const celulaRegistro = p.registroTSE.naoRegistrada
     ? criarEl('td', { attrs: { 'data-rotulo': 'Registro TSE' } }, [
         criarEl('span', { className: 'db-selo db-selo-sem-registro', texto: 'Sem registro' }),
       ])
     : criarEl('td', { className: 'db-num', texto: p.registroTSE.valor, attrs: { 'data-rotulo': 'Registro TSE' } });
 
-  const detalhes = criarEl('details', { className: 'db-detalhes' }, [
-    criarEl('summary', { className: 'db-detalhes-summary', texto: 'Detalhes' }),
-    criarBlocoDetalhes(p, partidos),
+  const idDetalhes = `pesquisa-detalhes-${p.id}`;
+  const linhaDetalhes = criarEl('tr', { className: 'db-detalhes-row', attrs: { id: idDetalhes } }, [
+    criarEl('td', { attrs: { colspan: String(NUM_COLUNAS_TABELA) } }, [criarBlocoDetalhes(p, partidos)]),
   ]);
+  linhaDetalhes.hidden = true;
+
+  const btnDetalhes = criarEl('button', {
+    className: 'db-detalhes-btn',
+    texto: 'Detalhes',
+    attrs: { type: 'button', 'aria-expanded': 'false', 'aria-controls': idDetalhes },
+  }) as HTMLButtonElement;
+  btnDetalhes.addEventListener('click', () => {
+    const vaiAbrir = linhaDetalhes.hidden;
+    linhaDetalhes.hidden = !vaiAbrir;
+    btnDetalhes.setAttribute('aria-expanded', String(vaiAbrir));
+    btnDetalhes.textContent = vaiAbrir ? 'Ocultar' : 'Detalhes';
+  });
 
   const linha = criarEl('tr', {}, [
     criarEl('td', {
@@ -485,10 +512,10 @@ function criarLinhaPesquisa(p: Pesquisa, partidos: ReturnType<CasosDeUso['listPa
     criarEl('td', { texto: p.cenario ?? '—', className: 'db-col-wrap', attrs: { 'data-rotulo': 'Cenário' } }),
     criarCelulaTop3(p, partidos),
     criarEl('td', { attrs: { 'data-rotulo': 'Fonte' } }, [criarLinkFonte(p.fonte)]),
-    criarEl('td', { className: 'db-col-wrap', attrs: { 'data-rotulo': 'Detalhes' } }, [detalhes]),
+    criarEl('td', { attrs: { 'data-rotulo': 'Detalhes' } }, [btnDetalhes]),
   ]);
 
-  return linha;
+  return [linha, linhaDetalhes];
 }
 
 function criarBlocoDetalhes(p: Pesquisa, partidos: ReturnType<CasosDeUso['listParties']>): HTMLElement {
