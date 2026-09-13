@@ -24,7 +24,7 @@ DDD + hexagonal, descrita em `docs/architecture.md`: `src/domain` (puro), `src/a
 
 ## Publicação
 
-- **GitHub Pages**: workflow `.github/workflows/deploy.yml` faz build e deploy a cada push. É preciso habilitar uma vez em *Settings → Pages → Source: GitHub Actions*.
+- **GitHub Pages** (https://ghdaru.github.io/mapa-pesquisa/): workflow `.github/workflows/deploy.yml` faz build e deploy a cada push. É preciso habilitar uma vez em *Settings → Pages → Source: GitHub Actions*.
 - **Vercel**: `vercel.json` já aponta `npm run build` e `dist/`.
 
 ## Atualização diária
