@@ -305,3 +305,15 @@ describe('use-cases/projectSenate', () => {
     expect(fixaSp.partido).toBe('PL');
   });
 });
+
+describe('getPresidentialAggregate — cenários de 2º turno', () => {
+  it('agrupa o mesmo confronto mesmo com rótulos diferentes', async () => {
+    const { carregarDados } = await import('../../../adapters/outbound/json/carregar-dados.js');
+    const { criarCasosDeUso } = await import('../index.js');
+    const casos = criarCasosDeUso(carregarDados(), { hoje: () => new Date('2026-09-13T12:00:00Z') });
+    const chaves = casos.getPresidentialAggregate().turno2.map((c) =>
+      c.agregado.candidatos.map((x) => x.candidato.toLowerCase()).sort().join('|'),
+    );
+    expect(new Set(chaves).size).toBe(chaves.length);
+  });
+});

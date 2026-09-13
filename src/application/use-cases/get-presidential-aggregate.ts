@@ -1,5 +1,5 @@
 import type { Clock, Repositorios } from '../ports.js';
-import { type Agregado, agregarPesquisas } from '../../domain/aggregate.js';
+import { type Agregado, agregarPesquisas, ehLinhaNaoCandidato } from '../../domain/aggregate.js';
 import { dataReferencia, type Pesquisa } from '../../domain/poll.js';
 import { criarDisputa, UF_NACIONAL } from '../../domain/race.js';
 
@@ -37,7 +37,7 @@ export function criarGetPresidentialAggregate(repos: Repositorios, clock: Clock)
     const pollsTurno2 = repos.polls.porDisputa(criarDisputa(UF_NACIONAL, 'presidente', 2));
     const porCenario = new Map<string, Pesquisa[]>();
     for (const p of pollsTurno2) {
-      const chave = p.cenario ?? CENARIO_PADRAO;
+      const chave = chaveDoCenario(p);
       const grupo = porCenario.get(chave);
       if (grupo) {
         grupo.push(p);
@@ -47,9 +47,9 @@ export function criarGetPresidentialAggregate(repos: Repositorios, clock: Clock)
     }
 
     const turno2: CenarioAgregado[] = [];
-    for (const [cenario, grupo] of porCenario) {
+    for (const [chave, grupo] of porCenario) {
       const agregado = agregarPesquisas(grupo, {}, hoje);
-      if (agregado) turno2.push({ cenario, agregado });
+      if (agregado) turno2.push({ cenario: rotuloDoCenario(agregado.candidatos.map((c) => c.candidato), chave), agregado });
     }
     turno2.sort((a, b) =>
       dataReferencia(b.agregado.ultimaPesquisa).localeCompare(dataReferencia(a.agregado.ultimaPesquisa)),
@@ -61,4 +61,23 @@ export function criarGetPresidentialAggregate(repos: Repositorios, clock: Clock)
 
     return { turno1, turno2, todasAsPesquisas };
   };
+}
+
+
+/**
+ * Chave de agrupamento do 2º turno: o conjunto de candidatos (linhas que são
+ * candidatos) em ordem alfabética, para que "Lula x Flávio" e "Flávio x Lula"
+ * caiam no mesmo cenário mesmo com rótulos diferentes entre institutos.
+ */
+function chaveDoCenario(p: Pesquisa): string {
+  const nomes = p.resultados
+    .map((r) => r.candidato)
+    .filter((nome) => !ehLinhaNaoCandidato(nome, new Set()))
+    .map((nome) => nome.trim().toLowerCase())
+    .sort();
+  return nomes.length > 0 ? nomes.join(' x ') : (p.cenario ?? CENARIO_PADRAO);
+}
+
+function rotuloDoCenario(candidatosOrdenados: readonly string[], fallback: string): string {
+  return candidatosOrdenados.length >= 2 ? `2º turno: ${candidatosOrdenados.join(' x ')}` : fallback;
 }
