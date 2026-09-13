@@ -2,7 +2,7 @@ import '../styles/views.css';
 import type { CasosDeUso } from '../../../../application/use-cases/index.js';
 import type { CenarioAgregado } from '../../../../application/use-cases/get-presidential-aggregate.js';
 import { JANELA_DIAS_PADRAO } from '../../../../domain/aggregate.js';
-import type { Agregado, CandidatoAgregado } from '../../../../domain/aggregate.js';
+import type { Agregado, CandidatoAgregado, SerieTemporal } from '../../../../domain/aggregate.js';
 import type { Pesquisa } from '../../../../domain/poll.js';
 import type { Espectro } from '../../../../domain/spectrum.js';
 import {
@@ -15,13 +15,17 @@ import {
   formatarPeriodo,
   tokenFillEspectro,
 } from './_shared.js';
+import { atribuirTomSerie, renderTimelineChart, type SerieCandidato } from './timeline-chart.js';
 
 /**
  * Agregador presidencial nacional — barra de qualidade: tabela de médias de
- * pesquisas do NYT (ver docs/ux-spec.md §2(c)). Único caso de uso consumido:
+ * pesquisas do NYT (ver docs/ux-spec.md §2(c)). Casos de uso consumidos:
  * `getPresidentialAggregate` (turno1 + cenários de 2º turno + histórico
- * completo de pesquisas em `todasAsPesquisas`).
+ * completo de pesquisas em `todasAsPesquisas`) e `getPresidentialTimeline`
+ * (série diária para o gráfico do topo da tela).
  */
+
+const MAX_CANDIDATOS_DESTACADOS = 3;
 
 export function renderPresidential(container: HTMLElement, casos: CasosDeUso): void {
   const { turno1, turno2, todasAsPesquisas } = casos.getPresidentialAggregate();
@@ -52,6 +56,8 @@ export function renderPresidential(container: HTMLElement, casos: CasosDeUso): v
     ]),
   );
 
+  raiz.append(criarCartaoTimeline(casos, turno2, espectroDe));
+
   raiz.append(criarCartaoTurno1(turno1, espectroDe));
 
   if (turno2.length > 0) {
@@ -70,6 +76,89 @@ export function renderPresidential(container: HTMLElement, casos: CasosDeUso): v
   raiz.append(criarTabelaPesquisas(todasAsPesquisas));
 
   container.append(raiz);
+}
+
+/**
+ * Escolhe os até `MAX_CANDIDATOS_DESTACADOS` candidatos com linha própria no
+ * gráfico (já vêm ordenados por média final desc. em `serie.candidatos` —
+ * ver `domain/aggregate.ts`); os demais aparecem só como pontos cinza
+ * ("Outros", sem linha) desenhados por `renderTimelineChart`. Dois
+ * candidatos do mesmo espectro (ex.: dois de direita) recebem tons
+ * distintos via `atribuirTomSerie` — ver styles/views.css.
+ */
+function candidatosDestacadosDaSerie(
+  serie: SerieTemporal,
+  espectroDe: (partido: string | null) => Espectro,
+): SerieCandidato[] {
+  const nomes = serie.candidatos.slice(0, MAX_CANDIDATOS_DESTACADOS);
+  const partidoPorNome = new Map<string, string | null>();
+  for (const ponto of serie.pontos) {
+    if (!partidoPorNome.has(ponto.candidato)) partidoPorNome.set(ponto.candidato, ponto.partido);
+  }
+  const espectros = nomes.map((nome) => espectroDe(partidoPorNome.get(nome) ?? null));
+  const tons = atribuirTomSerie(espectros);
+  return nomes.map((nome, i) => ({
+    nome,
+    partido: partidoPorNome.get(nome) ?? null,
+    espectro: espectros[i]!,
+    tom: tons[i]!,
+  }));
+}
+
+/**
+ * Cartão do gráfico temporal presidencial, no topo da tela (acima dos
+ * cartões de agregado) — barra de qualidade: NYT "Presidential polls 2024"
+ * (ver docs/ux-spec.md). 1º turno por padrão; se houver cenários de 2º
+ * turno testados, um seletor troca para a série de um deles (ex.: "Lula x
+ * Flávio Bolsonaro") via `getPresidentialTimeline(2, cenario)`.
+ */
+function criarCartaoTimeline(
+  casos: CasosDeUso,
+  turno2: readonly CenarioAgregado[],
+  espectroDe: (partido: string | null) => Espectro,
+): HTMLElement {
+  const card = criarEl('div', { className: 'pv-card pv-timeline-card' });
+  const titulo = criarEl('h2', { className: 'pv-section-title', texto: 'Evolução das pesquisas — 1º turno' });
+  card.append(titulo);
+
+  let selectCenario: HTMLSelectElement | null = null;
+  if (turno2.length > 0) {
+    selectCenario = criarEl('select', { className: 'pv-select pv-timeline-scenario-select', attrs: { id: 'presidente-timeline-cenario' } }, [
+      criarEl('option', { texto: '1º turno', attrs: { value: '' } }),
+      ...turno2.map((c) => criarEl('option', { texto: c.cenario, attrs: { value: c.cenario } })),
+    ]);
+    const campo = criarEl('label', { className: 'pv-field', texto: 'Mostrar série de' }, [selectCenario]);
+    card.append(campo);
+  }
+
+  const host = criarEl('div', { className: 'pv-timeline-chart-host' });
+  card.append(host);
+
+  function atualizar(): void {
+    const valorSelecionado = selectCenario?.value || '';
+    const serie =
+      valorSelecionado === ''
+        ? casos.getPresidentialTimeline(1)
+        : casos.getPresidentialTimeline(2, valorSelecionado);
+
+    titulo.textContent =
+      valorSelecionado === '' ? 'Evolução das pesquisas — 1º turno' : `Evolução das pesquisas — ${valorSelecionado}`;
+
+    const candidatosDestacados = candidatosDestacadosDaSerie(serie, espectroDe);
+    renderTimelineChart(host, {
+      serie,
+      candidatosDestacados,
+      tituloAcessivel:
+        valorSelecionado === ''
+          ? 'Gráfico de evolução das pesquisas presidenciais no 1º turno, de agosto até a eleição'
+          : `Gráfico de evolução das pesquisas do 2º turno, cenário ${valorSelecionado}`,
+    });
+  }
+
+  selectCenario?.addEventListener('change', atualizar);
+  atualizar();
+
+  return card;
 }
 
 function criarCartaoTurno1(

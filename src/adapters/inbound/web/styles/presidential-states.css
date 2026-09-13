@@ -261,6 +261,12 @@
   --ps-electorate-5: var(--color-accent);
 }
 
+.ps-section-title {
+  font: var(--text-title);
+  color: var(--color-text);
+  margin: 0;
+}
+
 /* ================= Grade de miniaturas ================= */
 
 .ps-grid-section {
@@ -489,6 +495,10 @@
   color: var(--color-text-subtle);
   font: var(--text-body-sm);
 }
+.ps-panel__secao {
+  display: flex;
+  flex-direction: column;
+}
 .ps-panel__lider {
   display: flex;
   flex-wrap: wrap;
@@ -629,4 +639,10 @@
   padding-top: var(--space-3);
   color: var(--color-text-subtle);
   font: var(--text-caption);
+}
+.ps-panel__ultima {
+  margin: 0 0 var(--space-1);
+}
+.ps-panel__metodologia {
+  margin: 0;
 }

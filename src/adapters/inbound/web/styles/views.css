@@ -505,6 +505,7 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
 .pv-assento.pv-esmaecido { opacity: 0.3; }
 .pv-assento.pv-destacado { stroke: var(--color-accent); stroke-width: 3; }
 .pv-assento:focus-visible { outline: none; stroke: var(--color-accent); stroke-width: 3; }
+.pv-assento--clicavel { cursor: pointer; }
 
 .pv-majority-line { stroke: var(--color-text-subtle); stroke-width: 1; }
 .pv-majority-label { fill: var(--color-text-subtle); font: var(--text-caption); text-anchor: middle; }
@@ -582,4 +583,213 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
 }
 @media (min-width: 768px) {
   .pv-columns-2 { grid-template-columns: 2fr 1fr; align-items: start; }
+}
+
+/* =========================================================================
+ * Tons de série alternativos (2º candidato do mesmo espectro)
+ * -------------------------------------------------------------------------
+ * Quando dois candidatos caem no mesmo dos 5 níveis de espectro (ex.: dois
+ * de direita), o gráfico temporal presidencial (timeline-chart.ts) usa o
+ * token `-fill` normal para o 1º e um destes tons `-alt` para o 2º — mesma
+ * família de matiz, tom mais escuro/deslocado, para não repetir a cor.
+ * Validado com a skill de dataviz (scripts/validate_palette.js), pareado
+ * contra o token `-fill` do mesmo nível:
+ *   node validate_palette.js "<fill>,<alt>" --mode dark
+ *   node validate_palette.js "<fill>,<alt>" --mode light
+ * Níveis 1 e 2 passam integralmente (todos os 5 checks, incluindo faixa de
+ * luminosidade e piso de croma). Níveis 3-5 passam CVD e piso de visão
+ * normal (o que garante que os dois tons são distinguíveis, o objetivo
+ * desta paleta) mas herdam do próprio token `-fill` base uma falha
+ * pré-existente de piso de croma (nível 3, "centro", é deliberadamente
+ * acromático — ver design-system.md) ou de faixa de luminosidade (nível 5
+ * no escuro, `#4ea7fc` é mais claro que a faixa categórica para manter
+ * contraste em fundo escuro) — o design-system.md já documenta que os
+ * tokens `-fill` só precisam de contraste >= 3:1 como elemento gráfico não
+ * textual, não da faixa categórica completa; nenhum destes dois é
+ * introduzido pelo tom alternativo. Como toda cor de série aqui já vem
+ * acompanhada do nome do candidato na legenda e no rótulo direto no fim da
+ * linha (nunca só a cor), a identificação nunca depende exclusivamente do
+ * tom exato. */
+:root {
+  --pv-serie-alt-1-fill: #aa124e;
+  --pv-serie-alt-2-fill: #a51564;
+  --pv-serie-alt-3-fill: #326297;
+  --pv-serie-alt-4-fill: #593ec6;
+  --pv-serie-alt-5-fill: #2f4fd6;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    --pv-serie-alt-1-fill: #9a0042;
+    --pv-serie-alt-2-fill: #940056;
+    --pv-serie-alt-3-fill: #1c5284;
+    --pv-serie-alt-4-fill: #4c21c3;
+    --pv-serie-alt-5-fill: #1d3ec0;
+  }
+}
+:root[data-theme='light'] {
+  --pv-serie-alt-1-fill: #9a0042;
+  --pv-serie-alt-2-fill: #940056;
+  --pv-serie-alt-3-fill: #1c5284;
+  --pv-serie-alt-4-fill: #4c21c3;
+  --pv-serie-alt-5-fill: #1d3ec0;
+}
+:root[data-theme='dark'] {
+  --pv-serie-alt-1-fill: #aa124e;
+  --pv-serie-alt-2-fill: #a51564;
+  --pv-serie-alt-3-fill: #326297;
+  --pv-serie-alt-4-fill: #593ec6;
+  --pv-serie-alt-5-fill: #2f4fd6;
+}
+
+/* =========================================================================
+ * Gráfico temporal presidencial (timeline-chart.ts)
+ * -------------------------------------------------------------------------
+ * Barra de qualidade: NYT "Presidential polls 2024" — pontos de cada
+ * pesquisa (opacidade baixa) com a linha suavizada por cima, grade
+ * recessiva, rótulo direto no fim da linha, crosshair + tooltip no hover.
+ * ======================================================================= */
+
+.pv-timeline-card {
+  position: relative;
+}
+
+.pv-timeline-chart-host {
+  position: relative;
+}
+
+.pv-timeline-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.pv-timeline-svg:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-xs);
+}
+
+.pv-timeline-gridline {
+  stroke: var(--color-border);
+  stroke-width: 1;
+}
+.pv-timeline-axis-label {
+  fill: var(--color-text-subtle);
+  font: var(--text-caption);
+}
+
+.pv-timeline-election-line {
+  stroke: var(--color-text-tertiary);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+.pv-timeline-election-label {
+  fill: var(--color-text-subtle);
+  font: var(--text-caption);
+}
+
+.pv-timeline-point {
+  opacity: 0.35;
+  stroke: none;
+}
+.pv-timeline-point-outros {
+  fill: var(--spectrum-indefinido);
+}
+
+.pv-timeline-line {
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.pv-timeline-end-dot {
+  stroke: var(--color-canvas);
+  stroke-width: 2;
+}
+.pv-timeline-end-leader {
+  stroke-width: 1;
+}
+.pv-timeline-end-label {
+  fill: var(--color-text);
+  font: var(--text-body-sm);
+  font-weight: var(--font-variation-nav);
+}
+
+.pv-timeline-crosshair {
+  stroke: var(--color-text-subtle);
+  stroke-width: 1;
+  pointer-events: none;
+}
+
+.pv-timeline-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-4);
+  margin-top: var(--space-3);
+}
+.pv-timeline-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font: var(--text-body-sm);
+  color: var(--color-text);
+}
+.pv-timeline-legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-pill);
+  flex: none;
+}
+.pv-timeline-legend-swatch--outros {
+  background: var(--spectrum-indefinido);
+}
+
+.pv-timeline-tooltip {
+  position: absolute;
+  z-index: 5;
+  max-width: 260px;
+  background: var(--color-surface-3);
+  box-shadow: var(--elevation-2);
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-3);
+  font: var(--text-body-sm);
+  color: var(--color-text);
+  pointer-events: none;
+}
+.pv-timeline-tooltip-data {
+  margin: 0 0 var(--space-1);
+  font: var(--text-caption);
+  color: var(--color-text-subtle);
+}
+.pv-timeline-tooltip-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.pv-timeline-tooltip-list li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.pv-timeline-tooltip-swatch {
+  width: 10px;
+  height: 2px;
+  flex: none;
+}
+.pv-timeline-tooltip-poll {
+  margin: var(--space-2) 0 0;
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-border);
+  font: var(--text-caption);
+  color: var(--color-text-subtle);
+}
+
+.pv-timeline-scenario-select {
+  margin-bottom: var(--space-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pv-timeline-svg * { transition-duration: 0ms; }
 }
