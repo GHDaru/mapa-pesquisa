@@ -316,6 +316,147 @@
     "observacao": "Contratante confirmado na auditoria rodada 2 (Portal 6 Comunicação LTDA); demais candidatos não discriminados no resumo consultado."
   },
   {
+    "id": "2026-09-11-datafolha-rj-presidente-t1",
+    "uf": "RJ",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "BR-01833/2026",
+    "contratante": "Folha da Manhã S.A. e Globo Comunicação e Participações S/A",
+    "dataInicio": "2026-09-08",
+    "dataFim": "2026-09-10",
+    "publicadoEm": "2026-09-11",
+    "amostra": null,
+    "margem": 3,
+    "cenario": "estimulada, cenário principal (1º turno) — recorte/crosstab do estado do Rio de Janeiro dentro da pesquisa nacional Datafolha (n=2002 no total do Brasil)",
+    "fonte": {
+      "nome": "CartaCapital",
+      "url": "https://www.cartacapital.com.br/politica/as-intencoes-de-voto-de-lula-e-flavio-bolsonaro-no-rio-segundo-nova-pesquisa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 39
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 35
+      }
+    ],
+    "observacao": "Não é uma amostra estadual dedicada: é o recorte do RJ dentro da amostra nacional da Datafolha (total nacional n=2002); tamanho da subamostra do RJ não informado nas fontes consultadas, por isso 'amostra' ficou null. Margem de erro citada para o recorte estadual (3 p.p.) é maior que a nacional (2 p.p.)."
+  },
+  {
+    "id": "2026-09-12-datafolha-rj-presidente-t2",
+    "uf": "RJ",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Datafolha",
+    "registroTSE": "BR-01833/2026",
+    "contratante": "Folha da Manhã S.A. e Globo Comunicação e Participações S/A",
+    "dataInicio": "2026-09-08",
+    "dataFim": "2026-09-10",
+    "publicadoEm": "2026-09-12",
+    "amostra": null,
+    "margem": 3,
+    "cenario": "estimulada, 2º turno (Lula x Flávio Bolsonaro) — recorte do estado do Rio de Janeiro dentro da pesquisa nacional Datafolha",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/datafolha-flavio-tem-49-e-lula-41-no-2o-turno-no-rio-de-janeiro"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 49
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 41
+      }
+    ],
+    "observacao": "Mesma ressalva da entrada de 1º turno: recorte estadual de pesquisa nacional, não amostra própria do RJ."
+  },
+  {
+    "id": "2026-09-11-datafolha-pe-presidente-t1",
+    "uf": "PE",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "PE-04411/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-08",
+    "dataFim": "2026-09-10",
+    "publicadoEm": "2026-09-11",
+    "amostra": 1204,
+    "margem": 3,
+    "cenario": "estimulada, cenário principal (1º turno) — amostra estadual de Pernambuco",
+    "fonte": {
+      "nome": "Diário de Pernambuco",
+      "url": "https://www.diariodepernambuco.com.br/politica/2026/09/11723773-datafolha-em-pernambuco-lula-tem-55-e-flavio-bolsonaro-24-no-primeiro-turno.html"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 55
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 24
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 4
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 2
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 2
+      }
+    ]
+  },
+  {
+    "id": "2026-09-11-datafolha-pe-presidente-t2",
+    "uf": "PE",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Datafolha",
+    "registroTSE": "PE-04411/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-08",
+    "dataFim": "2026-09-10",
+    "publicadoEm": "2026-09-11",
+    "amostra": 1204,
+    "margem": 3,
+    "cenario": "estimulada, 2º turno (Lula x Flávio Bolsonaro) — amostra estadual de Pernambuco",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/datafolha-em-pe-lula-lidera-com-61-no-2o-turno-flavio-tem-30"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 61
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 30
+      }
+    ]
+  },
+  {
     "id": "2026-09-11-datafolha-br-presidente-t1",
     "uf": "BR",
     "cargo": "presidente",
@@ -975,6 +1116,360 @@
     "observacao": "26% de Fábio Trad e margem de 2 pontos foram confirmados literalmente em múltiplas fontes (Infomoney, Metrópoles)."
   },
   {
+    "id": "2026-09-10-realtimebigdata-rs-presidente-t1",
+    "uf": "RS",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-00631/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-05",
+    "dataFim": "2026-09-09",
+    "publicadoEm": "2026-09-10",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno) — amostra estadual do Rio Grande do Sul",
+    "fonte": {
+      "nome": "Jornal do Comércio",
+      "url": "https://www.jornaldocomercio.com/politica/2026/09/1262978-no-rs-flavio-tem-42-e-lula-39-mostra-pesquisa-real-time-big-data.html"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 42
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 39
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 5
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 5
+      },
+      {
+        "candidato": "Pablo Marçal",
+        "partido": "PRTB",
+        "pct": 2
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 2
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 1
+      }
+    ],
+    "observacao": "Não foi localizada uma segunda pesquisa estadual do RS (amostra própria do estado) mais recente para comparação dentro do orçamento de buscas."
+  },
+  {
+    "id": "2026-09-10-realtimebigdata-rs-presidente-t2",
+    "uf": "RS",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-00631/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-05",
+    "dataFim": "2026-09-09",
+    "publicadoEm": "2026-09-10",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno (Lula x Flávio Bolsonaro) — amostra estadual do Rio Grande do Sul",
+    "fonte": {
+      "nome": "Jornal do Comércio",
+      "url": "https://www.jornaldocomercio.com/politica/2026/09/1262978-no-rs-flavio-tem-42-e-lula-39-mostra-pesquisa-real-time-big-data.html"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 53
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 42
+      }
+    ]
+  },
+  {
+    "id": "2026-09-10-atlasintel-sc-presidente-t1",
+    "uf": "SC",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "SC-02036/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-04",
+    "dataFim": "2026-09-09",
+    "publicadoEm": "2026-09-10",
+    "amostra": 1211,
+    "margem": null,
+    "cenario": "estimulada, cenário principal (1º turno) — amostra estadual de Santa Catarina",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/em-quais-pesquisas-flavio-bolsonaro-esta-a-frente-de-lula/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 48
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 25
+      }
+    ],
+    "observacao": "Além do registro estadual SC-02036/2026, a pesquisa também aparece referenciada sob o protocolo BR-06230/2026. Margem de erro exata e cenário de 2º turno não encontrados nas fontes consultadas."
+  },
+  {
+    "id": "2026-09-10-atlasintel-mt-presidente-t2",
+    "uf": "MT",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-04",
+    "dataFim": "2026-09-09",
+    "publicadoEm": "2026-09-10",
+    "amostra": 1209,
+    "margem": 3,
+    "cenario": "estimulada, 2º turno (Lula x Flávio Bolsonaro) — amostra estadual do Mato Grosso",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-bolsonaro-tem-591-contra-352-de-lula-no-2o-turno-no-mt/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 59.1
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 35.2
+      }
+    ]
+  },
+  {
+    "id": "2026-09-12-ipems-ms-presidente-t1",
+    "uf": "MS",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "IPEMS",
+    "registroTSE": "BR-02890/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-05",
+    "dataFim": "2026-09-09",
+    "publicadoEm": "2026-09-12",
+    "amostra": 800,
+    "margem": 3.46,
+    "cenario": "estimulada, cenário principal (1º turno) — amostra estadual de Mato Grosso do Sul",
+    "fonte": {
+      "nome": "A Crítica de Campo Grande",
+      "url": "https://acritica.net/eleicoes-2026/pesquisa-ipems-presidente-ms-flavio-bolsonaro-lidera-setembro-2026/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 46.36
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 25.84
+      }
+    ],
+    "observacao": "Cenário de 2º turno desta pesquisa IPEMS não foi encontrado nas fontes consultadas; ver entrada Ranking Brasil Inteligência abaixo para o 2º turno mais recente disponível em MS."
+  },
+  {
+    "id": "2026-09-10-real-time-big-data-ma-presidente-t1",
+    "uf": "MA",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-05",
+    "dataFim": "2026-09-09",
+    "publicadoEm": "2026-09-10",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/real-time-big-data-lula-tem-62-e-flavio-bolsonaro-25-no-1o-turno-no-maranhao/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 62
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 25
+      }
+    ]
+  },
+  {
+    "id": "2026-09-10-real-time-big-data-ma-presidente-t2",
+    "uf": "MA",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-05",
+    "dataFim": "2026-09-09",
+    "publicadoEm": "2026-09-10",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-tem-65-contra-30-de-flavio-no-2o-turno-no-ma-diz-pesquisa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 65
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 30
+      }
+    ]
+  },
+  {
+    "id": "2026-09-10-real-time-big-data-rn-presidente-t1",
+    "uf": "RN",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-05",
+    "dataFim": "2026-09-09",
+    "publicadoEm": "2026-09-10",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Brasil em Folhas / BNews RN",
+      "url": "https://www.bnewsrn.com.br/noticias/politica/real-time-big-data-lula-lidera-corrida-no-rio-grande-do-norte-e-vence-flavio-no-segundo-turno.html"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 56
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 27
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 3
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 3
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 2
+      }
+    ]
+  },
+  {
+    "id": "2026-09-10-real-time-big-data-rn-presidente-t2",
+    "uf": "RN",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-05",
+    "dataFim": "2026-09-09",
+    "publicadoEm": "2026-09-10",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-lidera-2o-turno-com-62-contra-30-de-flavio-no-rn-diz-pesquisa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 62
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 30
+      }
+    ]
+  },
+  {
+    "id": "2026-09-10-real-time-big-data-rr-presidente-t1",
+    "uf": "RR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-05",
+    "dataFim": "2026-09-09",
+    "publicadoEm": "2026-09-10",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-soma-62-contra-18-de-lula-no-1o-turno-em-roraima/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 62
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 18
+      }
+    ],
+    "observacao": "Registro TSE não localizado. Rejeição no estado: Lula 60%, Flávio 22% (não incluída em resultados por não ser intenção de voto). Não foi encontrada pesquisa de 2º turno específica para Roraima."
+  },
+  {
     "id": "2026-09-10-atlasintel-br-presidente-t1",
     "uf": "BR",
     "cargo": "presidente",
@@ -1416,6 +1911,193 @@
       }
     ],
     "observacao": "Demais candidatos não discriminados no resumo consultado; cerca de 50% dos eleitores ainda indecisos, segundo a matéria."
+  },
+  {
+    "id": "2026-09-11-realtimebigdata-pr-presidente-t1",
+    "uf": "PR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-07275/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-04",
+    "dataFim": "2026-09-08",
+    "publicadoEm": "2026-09-11",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno) — amostra estadual do Paraná",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-60-contra-30-de-lula-no-2o-turno-no-pr-diz-pesquisa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 45
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 29
+      }
+    ]
+  },
+  {
+    "id": "2026-09-11-realtimebigdata-pr-presidente-t2",
+    "uf": "PR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-07275/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-04",
+    "dataFim": "2026-09-08",
+    "publicadoEm": "2026-09-11",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno (Lula x Flávio Bolsonaro) — amostra estadual do Paraná",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-60-contra-30-de-lula-no-2o-turno-no-pr-diz-pesquisa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 60
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 30
+      }
+    ]
+  },
+  {
+    "id": "2026-09-09-realtimebigdata-es-presidente-t1",
+    "uf": "ES",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "ES-01967/2026",
+    "contratante": "Real Time Mídia",
+    "dataInicio": "2026-09-04",
+    "dataFim": "2026-09-08",
+    "publicadoEm": "2026-09-09",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno) — amostra estadual do Espírito Santo",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-47-e-lula-42-em-eventual-2o-turno-no-es-diz-pesquisa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 35
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 35
+      }
+    ],
+    "observacao": "Empate técnico no 1º turno. Também referenciada sob o protocolo BR-08236/2026."
+  },
+  {
+    "id": "2026-09-09-realtimebigdata-es-presidente-t2",
+    "uf": "ES",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "ES-01967/2026",
+    "contratante": "Real Time Mídia",
+    "dataInicio": "2026-09-04",
+    "dataFim": "2026-09-08",
+    "publicadoEm": "2026-09-09",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno (Lula x Flávio Bolsonaro) — amostra estadual do Espírito Santo",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-47-e-lula-42-em-eventual-2o-turno-no-es-diz-pesquisa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 47
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 42
+      }
+    ]
+  },
+  {
+    "id": "2026-09-09-realtimebigdata-ba-presidente-t1",
+    "uf": "BA",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-06566/2026",
+    "contratante": "Real Time Mídia",
+    "dataInicio": "2026-09-04",
+    "dataFim": "2026-09-08",
+    "publicadoEm": "2026-09-09",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno) — amostra estadual da Bahia",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/real-time-big-data-lula-tem-vantagem-de-31-pontos-sobre-flavio-bolsonaro-na-bahia/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 55
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 24
+      }
+    ]
+  },
+  {
+    "id": "2026-09-09-realtimebigdata-ba-presidente-t2",
+    "uf": "BA",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-06566/2026",
+    "contratante": "Real Time Mídia",
+    "dataInicio": "2026-09-04",
+    "dataFim": "2026-09-08",
+    "publicadoEm": "2026-09-09",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno (Lula x Flávio Bolsonaro) — amostra estadual da Bahia",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-tem-581-contra-29-de-flavio-no-2o-turno-na-ba-diz-pesquisa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 61
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 30
+      }
+    ]
   },
   {
     "id": "2026-09-09-gerp-br-presidente-t1",
@@ -1885,6 +2567,326 @@
       }
     ],
     "observacao": "Contratante não identificado na fonte consultada."
+  },
+  {
+    "id": "2026-09-08-realtimebigdata-mg-presidente-t1",
+    "uf": "MG",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-01825/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-03",
+    "dataFim": "2026-09-07",
+    "publicadoEm": "2026-09-08",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno) — recorte/amostra de Minas Gerais",
+    "fonte": {
+      "nome": "CartaCapital",
+      "url": "https://www.cartacapital.com.br/politica/real-time-big-data-em-mg-lula-vence-flavio-bolsonaro-em-1o-turno-e-empata-no-2o/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 39
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 34
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 9
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 5
+      }
+    ],
+    "observacao": "Contratante não confirmado nas fontes consultadas."
+  },
+  {
+    "id": "2026-09-09-quaest-mg-presidente-t1",
+    "uf": "MG",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "MG-04716/2026",
+    "contratante": "Globo Comunicação",
+    "dataInicio": "2026-09-04",
+    "dataFim": "2026-09-07",
+    "publicadoEm": "2026-09-09",
+    "amostra": 1506,
+    "margem": 3,
+    "cenario": "estimulada, cenário principal (1º turno) — amostra estadual de Minas Gerais",
+    "fonte": {
+      "nome": "Tribuna de Minas",
+      "url": "https://tribunademinas.com.br/colunas/painel/09-09-2026/disputa-presidencial-continua-embolada-em-minas-diz-a-quaest.html"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 31
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 27
+      }
+    ]
+  },
+  {
+    "id": "2026-09-09-quaest-mg-presidente-t2",
+    "uf": "MG",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "MG-04716/2026",
+    "contratante": "Globo Comunicação",
+    "dataInicio": "2026-09-04",
+    "dataFim": "2026-09-07",
+    "publicadoEm": "2026-09-09",
+    "amostra": 1506,
+    "margem": 3,
+    "cenario": "estimulada, 2º turno (Lula x Flávio Bolsonaro) — amostra estadual de Minas Gerais",
+    "fonte": {
+      "nome": "Tribuna de Minas",
+      "url": "https://tribunademinas.com.br/colunas/painel/09-09-2026/disputa-presidencial-continua-embolada-em-minas-diz-a-quaest.html"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 40
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 37
+      }
+    ],
+    "observacao": "Diferença (3 pontos) dentro da margem de erro de 3 p.p.: empate técnico. Pesquisa Real Time Big Data da mesma semana (07-09-2026, BR-01825/2026) deu 2º turno de 46% (Lula) a 44% (Flávio) — sentido oposto, também empate técnico."
+  },
+  {
+    "id": "2026-09-08-realtimebigdata-ce-presidente-t1",
+    "uf": "CE",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-05643/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-03",
+    "dataFim": "2026-09-07",
+    "publicadoEm": "2026-09-08",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno) — amostra estadual do Ceará",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-big-data-lula-lidera-cenarios-de-1o-e-2o-turnos-no-ceara/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 61
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 19
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 8
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 2
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 1
+      },
+      {
+        "candidato": "Pablo Marçal",
+        "partido": "PRTB",
+        "pct": 1
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 1
+      }
+    ],
+    "observacao": "Não foi localizada, dentro do orçamento de buscas, uma segunda pesquisa estadual do Ceará (amostra própria) mais recente e com dados completos para comparação — Datafolha, Quaest, AtlasIntel e Paraná Pesquisas também pesquisaram o CE em 2026, mas os percentuais específicos não foram confirmados nas fontes consultadas."
+  },
+  {
+    "id": "2026-09-08-realtimebigdata-ce-presidente-t2",
+    "uf": "CE",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-05643/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-03",
+    "dataFim": "2026-09-07",
+    "publicadoEm": "2026-09-08",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno (Lula x Flávio Bolsonaro) — amostra estadual do Ceará",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-big-data-lula-lidera-cenarios-de-1o-e-2o-turnos-no-ceara/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 65
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 27
+      }
+    ]
+  },
+  {
+    "id": "2026-09-08-real-time-big-data-ap-presidente-t1",
+    "uf": "AP",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-03",
+    "dataFim": "2026-09-07",
+    "publicadoEm": "2026-09-08",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "CartaCapital",
+      "url": "https://www.cartacapital.com.br/politica/pesquisa-indica-empate-entre-lula-e-flavio-bolsonaro-no-amapa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 34
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 32
+      }
+    ],
+    "observacao": "Data de publicação (08/09) estimada a partir do fim de campo (07/09); registro TSE não localizado. Diferença de 2 pontos está dentro da margem de erro (empate técnico)."
+  },
+  {
+    "id": "2026-09-08-real-time-big-data-ap-presidente-t2",
+    "uf": "AP",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-03",
+    "dataFim": "2026-09-07",
+    "publicadoEm": "2026-09-08",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "TMC (Tribuna Macapá)",
+      "url": "https://tmc.com.br/politica/lula-flavio-bolsonaro-empate-tecnico-segundo-turno-amapa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 45
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 41
+      }
+    ],
+    "observacao": "Diferença de 4 pontos está dentro da margem de erro de 2 p.p. (empate técnico)."
+  },
+  {
+    "id": "2026-09-08-real-time-big-data-pa-presidente-t1",
+    "uf": "PA",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-03",
+    "dataFim": "2026-09-07",
+    "publicadoEm": "2026-09-08",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Gazeta Carajás",
+      "url": "https://www.gazetacarajas.com/noticia/real-time-big-data-lula-lidera-no-para-com-41-das-intencoes-de-voto"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 41
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 31
+      }
+    ],
+    "observacao": "Data de publicação estimada a partir do fim de campo; registro TSE não localizado."
+  },
+  {
+    "id": "2026-09-08-real-time-big-data-pa-presidente-t2",
+    "uf": "PA",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-03",
+    "dataFim": "2026-09-07",
+    "publicadoEm": "2026-09-08",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-tem-44-contra-36-de-flavio-no-2o-turno-no-pa-diz-pesquisa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 44
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 36
+      }
+    ]
   },
   {
     "id": "2026-09-10-meio-ideia-br-presidente-t1",
@@ -2849,6 +3851,69 @@
     "observacao": "Amostra e margem de erro não encontradas nos resumos consultados; o valor de 51,2% refere-se ao cenário espontâneo (indecisos), não ao estimulado."
   },
   {
+    "id": "2026-09-04-atlasintel-am-presidente-t1",
+    "uf": "AM",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "AM-04939/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-29",
+    "dataFim": "2026-09-03",
+    "publicadoEm": "2026-09-04",
+    "amostra": 1185,
+    "margem": 3,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes/flavio-tem-413-das-intencoes-de-voto-contra-391-de-lula-no-amazonas/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 41.3
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 39.1
+      }
+    ],
+    "observacao": "Registro também aparece pareado ao registro nacional BR-01799/2026."
+  },
+  {
+    "id": "2026-09-04-atlasintel-am-presidente-t2",
+    "uf": "AM",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "AM-04939/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-29",
+    "dataFim": "2026-09-03",
+    "publicadoEm": "2026-09-04",
+    "amostra": 1185,
+    "margem": 3,
+    "cenario": "estimulada, 2º turno Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/atlas-no-amazonas-flavio-bolsonaro-tem-48-e-lula-marca-413-no-2o-turno"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 48
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 41.3
+      }
+    ]
+  },
+  {
     "id": "2026-09-04-datafolha-br-presidente-t1",
     "uf": "BR",
     "cargo": "presidente",
@@ -3187,6 +4252,53 @@
     "observacao": "Ordem dos dois primeiros colocados diverge da pesquisa Paraná Pesquisas de setembro (institutos diferentes, mesma janela temporal)."
   },
   {
+    "id": "2026-09-03-atlasintel-ba-presidente-t1",
+    "uf": "BA",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": null,
+    "contratante": "A Tarde",
+    "dataInicio": "2026-08-28",
+    "dataFim": "2026-09-02",
+    "publicadoEm": "2026-09-03",
+    "amostra": 1804,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno) — amostra estadual da Bahia",
+    "fonte": {
+      "nome": "Política ao Ponto",
+      "url": "https://politicaaoponto.com.br/lula-lidera-na-bahia-com-557-contra-257-de-flavio-diz-atlasintel/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 55.7
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 25.7
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 7.9
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 5.7
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 4.2
+      }
+    ],
+    "observacao": "Registro TSE específico desta pesquisa (AtlasIntel/A Tarde) não foi localizado nas fontes consultadas."
+  },
+  {
     "id": "2026-09-04-poderdata-br-presidente-t1",
     "uf": "BR",
     "cargo": "presidente",
@@ -3488,6 +4600,164 @@
     "observacao": "Cargo tratado como governador do Distrito Federal (GDF). Uma segunda numeração de registro TSE (BR-04726/2026) apareceu associada a esta pesquisa em uma das fontes, possivelmente referente ao cenário presidencial testado na mesma rodada; mantido apenas o registro específico do DF."
   },
   {
+    "id": "2026-09-02-realtimebigdata-rj-presidente-t1",
+    "uf": "RJ",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "RJ-08350/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-28",
+    "dataFim": "2026-09-01",
+    "publicadoEm": "2026-09-02",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno) — amostra estadual do Rio de Janeiro",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-big-data-flavio-e-lula-tem-empate-tecnico-no-1o-turno-no-rj/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 36
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 34
+      }
+    ],
+    "observacao": "Empate técnico (margem de erro de 2 p.p.). Esta é a pesquisa com amostra própria e dedicada ao estado do RJ mais recente encontrada (registro RJ-08350/2026)."
+  },
+  {
+    "id": "2026-09-03-atlasintel-go-presidente-t2",
+    "uf": "GO",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-08-27",
+    "dataFim": "2026-09-01",
+    "publicadoEm": "2026-09-03",
+    "amostra": 1214,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno (Ronaldo Caiado x Lula) — amostra estadual de Goiás",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/caiado-tem-624-e-lula-298-em-2o-turno-em-go-diz-pesquisa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 62.4
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 29.8
+      }
+    ],
+    "observacao": "Este é o 2º turno mais recente e mais citado para Goiás, mas é Caiado x Lula, não Lula x Flávio Bolsonaro (ver entrada Real Time Big Data abaixo para o cenário Lula x Flávio)."
+  },
+  {
+    "id": "2026-09-03-atlasintel-df-presidente-t1",
+    "uf": "DF",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "DF-02018/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-27",
+    "dataFim": "2026-09-01",
+    "publicadoEm": "2026-09-03",
+    "amostra": 1193,
+    "margem": 3,
+    "cenario": "estimulada, cenário principal (1º turno) — amostra estadual do Distrito Federal",
+    "fonte": {
+      "nome": "Brasil de Fato",
+      "url": "https://www.brasildefato.com.br/2026/09/03/flavio-bolsonaro-aparece-a-frente-de-lula-entre-eleitores-do-df-aponta-pesquisa-da-atlasintel/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 42.4
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 36.8
+      }
+    ]
+  },
+  {
+    "id": "2026-09-03-atlasintel-df-presidente-t2",
+    "uf": "DF",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "DF-02018/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-27",
+    "dataFim": "2026-09-01",
+    "publicadoEm": "2026-09-03",
+    "amostra": 1193,
+    "margem": 3,
+    "cenario": "estimulada, 2º turno (Lula x Flávio Bolsonaro) — amostra estadual do Distrito Federal",
+    "fonte": {
+      "nome": "Brasil de Fato",
+      "url": "https://www.brasildefato.com.br/2026/09/03/flavio-bolsonaro-aparece-a-frente-de-lula-entre-eleitores-do-df-aponta-pesquisa-da-atlasintel/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 47.4
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 42.5
+      }
+    ]
+  },
+  {
+    "id": "2026-09-01-real-time-big-data-al-presidente-t1",
+    "uf": "AL",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": null,
+    "dataFim": null,
+    "publicadoEm": "2026-09-01",
+    "amostra": null,
+    "margem": null,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-big-data-lula-tem-51-e-flavio-30-no-1o-turno-no-al/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 51
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 30
+      }
+    ],
+    "observacao": "Datas de campo, amostra, margem e registro TSE específicos não confirmados na busca (não foi possível abrir a matéria completa)."
+  },
+  {
     "id": "2026-09-03-futura-inteligencia-br-presidente-t1",
     "uf": "BR",
     "cargo": "presidente",
@@ -3634,6 +4904,102 @@
       }
     ],
     "observacao": ""
+  },
+  {
+    "id": "2026-09-02-atlasintel-sp-presidente-t1",
+    "uf": "SP",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "SP-06964/2026",
+    "contratante": "Estadão",
+    "dataInicio": "2026-08-26",
+    "dataFim": "2026-08-31",
+    "publicadoEm": "2026-09-02",
+    "amostra": 1810,
+    "margem": 1,
+    "cenario": "estimulada, cenário principal (1º turno) — amostra representativa do eleitorado de SP",
+    "fonte": {
+      "nome": "TMC/Estadão",
+      "url": "https://tmc.com.br/politica/atlasintel-flavio-bolsonaro-lidera-corrida-presidencial-entre-eleitores-de-sao-paulo/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 39.9
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 36
+      }
+    ],
+    "observacao": "Não foi possível confirmar via busca os percentuais dos demais candidatos nem de brancos/nulos/não sabe nesta amostra estadual. Não foi localizada uma segunda pesquisa estadual de SP (amostra própria do estado, não recorte de pesquisa nacional) mais recente para comparação; pesquisas Quaest/Datafolha de setembro citadas na imprensa para 'SP' são, na verdade, pesquisas nacionais com registro BR."
+  },
+  {
+    "id": "2026-09-02-atlasintel-sp-presidente-t2",
+    "uf": "SP",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "SP-06964/2026",
+    "contratante": "Estadão",
+    "dataInicio": "2026-08-26",
+    "dataFim": "2026-08-31",
+    "publicadoEm": "2026-09-02",
+    "amostra": 1810,
+    "margem": 1,
+    "cenario": "estimulada, 2º turno (Lula x Flávio Bolsonaro) — amostra estadual de SP",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/atlas-em-sp-flavio-tem-468-no-2o-turno-no-estado-lula-433/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 46.8
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 43.3
+      }
+    ],
+    "observacao": "Pesquisa mais recente de 2º turno Lula x Flávio Bolsonaro encontrada para SP com amostra estadual própria."
+  },
+  {
+    "id": "2026-09-01-realtimebigdata-go-presidente-t2",
+    "uf": "GO",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-03490/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-27",
+    "dataFim": "2026-08-31",
+    "publicadoEm": "2026-09-01",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno (Lula x Flávio Bolsonaro) — recorte de Goiás dentro de pesquisa nacional",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-big-data-no-2o-turno-flavio-tem-56-e-lula-33-em-goias/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 56
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 33
+      }
+    ],
+    "observacao": "Pesquisa nacional (n=2000) com recorte para Goiás; tamanho da subamostra goiana não informado. É o 2º turno Lula x Flávio mais recente encontrado especificamente para Goiás."
   },
   {
     "id": "2026-09-01-real-time-big-data-br-presidente-t1",
@@ -3870,6 +5236,38 @@
     "observacao": null
   },
   {
+    "id": "2026-08-29-quaest-pa-presidente-t1",
+    "uf": "PA",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": null,
+    "dataFim": null,
+    "publicadoEm": "2026-08-29",
+    "amostra": null,
+    "margem": null,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/quaest-no-para-lula-lidera-com-39-no-1o-turno-flavio-bolsonaro-tem-28"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 39
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 28
+      }
+    ],
+    "observacao": "Datas de campo, amostra e registro TSE não confirmados na busca."
+  },
+  {
     "id": "2026-08-28-paranapesquisas-ap-governador-t1",
     "uf": "AP",
     "cargo": "governador",
@@ -3927,6 +5325,38 @@
       }
     ],
     "observacao": "Fontes descreveram Hana e Dr. Daniel como tecnicamente empatados no cenário estimulado, mas não divulgaram o percentual exato de Hana."
+  },
+  {
+    "id": "2026-08-27-quaest-se-presidente-t1",
+    "uf": "SE",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": null,
+    "dataFim": null,
+    "publicadoEm": "2026-08-27",
+    "amostra": null,
+    "margem": 3,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Jornal de Brasília",
+      "url": "https://jornaldebrasilia.com.br/noticias/politica-e-poder/quaest-se-lula-tem-53-flavio-bolsonaro-19/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 53
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 19
+      }
+    ],
+    "observacao": "Datas de campo, amostra e registro TSE não confirmados na busca."
   },
   {
     "id": "2026-08-27-quaest-rr-governador-t1",
@@ -4087,6 +5517,101 @@
     "observacao": "Partido de Wilder Morais não confirmado na fonte consultada."
   },
   {
+    "id": "2026-08-27-realtimebigdata-es-presidente-t1",
+    "uf": "ES",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-03706/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-22",
+    "dataFim": "2026-08-26",
+    "publicadoEm": "2026-08-27",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno) — amostra estadual do Espírito Santo",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/real-time-big-data-flavio-bolsonaro-e-lula-empatam-no-1o-turno-no-espirito-santo/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 35
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 34
+      }
+    ]
+  },
+  {
+    "id": "2026-08-27-quaest-ac-presidente-t1",
+    "uf": "AC",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-08-23",
+    "dataFim": "2026-08-26",
+    "publicadoEm": "2026-08-27",
+    "amostra": 804,
+    "margem": 3,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/no-acre-flavio-tem-42-e-lula-25-no-1o-turno-diz-quaest/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 42
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 25
+      }
+    ],
+    "observacao": "Registro TSE não localizado na busca; parte da rodada Quaest em 17 estados e no DF, comissionada por afiliadas Rede Amazônica. Demais candidatos testados no Acre não foram capturados na busca."
+  },
+  {
+    "id": "2026-08-26-quaest-rr-presidente-t1",
+    "uf": "RR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": null,
+    "dataFim": null,
+    "publicadoEm": "2026-08-26",
+    "amostra": null,
+    "margem": null,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-lidera-disputa-pela-presidencia-no-1o-turno-em-roraima/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 52
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 17
+      }
+    ],
+    "observacao": "Parte da rodada Quaest em 17 estados (agosto/2026); datas de campo, amostra e registro TSE não confirmados."
+  },
+  {
     "id": "2026-08-27-poderdata-br-presidente-t1",
     "uf": "BR",
     "cargo": "presidente",
@@ -4228,6 +5753,165 @@
       }
     ],
     "observacao": "Data exata de publicação não confirmada na fonte consultada."
+  },
+  {
+    "id": "2026-08-26-quaest-am-presidente-t1",
+    "uf": "AM",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "BR-09140/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-21",
+    "dataFim": "2026-08-25",
+    "publicadoEm": "2026-08-26",
+    "amostra": null,
+    "margem": 3,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Amazonas1",
+      "url": "https://amazonas1.com.br/quaest-lula-lidera-no-amazonas-mas-disputa-com-flavio-segue-aberta/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 38
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 33
+      }
+    ],
+    "observacao": "Amostra não confirmada; percentuais reconstruídos a partir de agregadores (amazonas1.com.br, bncamazonas.com.br) que citam a mesma rodada Quaest (registro BR-09140/2026) cujo 2º turno foi divulgado com Flávio 43% x Lula 41%."
+  },
+  {
+    "id": "2026-08-25-quaest-ap-presidente-t1",
+    "uf": "AP",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": null,
+    "contratante": "Rede Amazônica",
+    "dataInicio": null,
+    "dataFim": null,
+    "publicadoEm": "2026-08-25",
+    "amostra": null,
+    "margem": null,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "ConectAmapa",
+      "url": "https://conectamapa.com/pesquisa-no-amapa-lula-lidera-com-36-dos-votos/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 36
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 32
+      }
+    ],
+    "observacao": "Parte da rodada Quaest em 17 estados e no DF (agosto/2026); datas de campo, amostra e registro TSE não confirmados."
+  },
+  {
+    "id": "2026-08-26-quaest-to-presidente-t1",
+    "uf": "TO",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": null,
+    "contratante": "TV Anhanguera",
+    "dataInicio": null,
+    "dataFim": null,
+    "publicadoEm": "2026-08-25",
+    "amostra": null,
+    "margem": 3,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Jornal Opção Tocantins",
+      "url": "https://tocantins.jornalopcao.com.br/noticias/quaest-lula-lidera-disputa-presidencial-no-tocantins-com-37-flavio-bolsonaro-tem-32-597937/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 37
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 32
+      }
+    ],
+    "observacao": "Datas de campo, amostra e registro TSE não confirmados na busca."
+  },
+  {
+    "id": "2026-08-26-real-time-big-data-to-presidente-t1",
+    "uf": "TO",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-08-21",
+    "dataFim": "2026-08-25",
+    "publicadoEm": "2026-08-26",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/real-time-big-data-lula-e-flavio-bolsonaro-empatam-com-37-no-1o-turno-no-tocantins/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 37
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 37
+      }
+    ],
+    "observacao": "Empate técnico (dentro da margem de erro); um resumo secundário desta mesma rodada citou 36%-36%, mas o título da matéria-fonte (Exame) traz 37%-37%."
+  },
+  {
+    "id": "2026-08-26-real-time-big-data-to-presidente-t2",
+    "uf": "TO",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-08-21",
+    "dataFim": "2026-08-25",
+    "publicadoEm": "2026-08-26",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-45-contra-39-de-lula-no-2o-turno-no-to-diz-big-data/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 45
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 39
+      }
+    ]
   },
   {
     "id": "2026-09-01-falpe-al-senador-t1",
@@ -4398,6 +6082,158 @@
     "observacao": "Cargo tratado como governador do Distrito Federal (GDF), conforme instrução; contratante não identificado na fonte consultada."
   },
   {
+    "id": "2026-08-24-quaest-al-presidente-t1",
+    "uf": "AL",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": null,
+    "dataFim": null,
+    "publicadoEm": "2026-08-24",
+    "amostra": null,
+    "margem": null,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/quaest-em-alagoas-lula-tem-44-e-flavio-bolsonaro-29-no-1o-turno/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 44
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 29
+      }
+    ],
+    "observacao": "Parte da rodada Quaest em 17 estados e no DF (agosto/2026); datas de campo exatas e registro TSE não confirmados. Não foi encontrada pesquisa de 2º turno específica para Alagoas."
+  },
+  {
+    "id": "2026-08-24-quaest-ma-presidente-t1",
+    "uf": "MA",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": null,
+    "dataFim": null,
+    "publicadoEm": "2026-08-24",
+    "amostra": null,
+    "margem": null,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/quaest-no-maranhao-lula-tem-58-no-1o-turno-flavio-bolsonaro-20/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 58
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 20
+      }
+    ],
+    "observacao": "Parte da rodada Quaest em 17 estados (agosto/2026); datas de campo e registro TSE não confirmados."
+  },
+  {
+    "id": "2026-08-25-quaest-pb-presidente-t1",
+    "uf": "PB",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "PB-07850/2026",
+    "contratante": "TV Cabo Branco e TV Paraíba",
+    "dataInicio": "2026-08-21",
+    "dataFim": "2026-08-24",
+    "publicadoEm": "2026-08-25",
+    "amostra": 804,
+    "margem": 3,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Cariri in Foco",
+      "url": "https://www.caririinfoco.com.br/quaest-na-paraiba-lula-50-flavio-bolsonaro-21-ronaldo-caiado-3-renan-santos-2/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 50
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 21
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 3
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 2
+      }
+    ]
+  },
+  {
+    "id": "2026-08-27-quaest-ro-presidente-t1",
+    "uf": "RO",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": null,
+    "contratante": "Rede Amazônica",
+    "dataInicio": "2026-08-21",
+    "dataFim": "2026-08-24",
+    "publicadoEm": "2026-08-27",
+    "amostra": 804,
+    "margem": 3,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Portal364",
+      "url": "https://www.portal364.com/2026/08/quaest-em-ro-flavio-45-lula-25-caiado-3.html"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 45
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 25
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 3
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 3
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 2
+      }
+    ],
+    "observacao": "Registro TSE não localizado na busca."
+  },
+  {
     "id": "2026-08-quaest-al-governador-t1",
     "uf": "AL",
     "cargo": "governador",
@@ -4541,6 +6377,69 @@
     "observacao": ""
   },
   {
+    "id": "2026-08-24-quaest-sc-presidente-t1",
+    "uf": "SC",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "SC-00517/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-20",
+    "dataFim": "2026-08-23",
+    "publicadoEm": "2026-08-24",
+    "amostra": 804,
+    "margem": 3,
+    "cenario": "estimulada, cenário principal (1º turno) — amostra estadual de Santa Catarina",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/quaest-em-sc-flavio-bolsonaro-tem-45-e-lula-20-no-1o-turno"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 45
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 20
+      }
+    ],
+    "observacao": "Também referenciada sob o protocolo BR-07160/2026. Cenário de 2º turno Lula x Flávio para SC não foi localizado nas fontes consultadas."
+  },
+  {
+    "id": "2026-08-24-quaest-rn-presidente-t1",
+    "uf": "RN",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "RN-00876/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-20",
+    "dataFim": "2026-08-23",
+    "publicadoEm": "2026-08-24",
+    "amostra": 804,
+    "margem": 3,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-tem-54-e-flavio-20-em-1o-turno-no-rn-diz-quaest/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 54
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 20
+      }
+    ]
+  },
+  {
     "id": "2026-08-26-indexa-broadcast-br-presidente-t1",
     "uf": "BR",
     "cargo": "presidente",
@@ -4615,6 +6514,70 @@
     "observacao": "Pesquisa também registrou 6% que declarou que não votaria; esse grupo não foi incluído como categoria própria no schema."
   },
   {
+    "id": "2026-08-23-real-time-big-data-pb-presidente-t1",
+    "uf": "PB",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-08-19",
+    "dataFim": "2026-08-22",
+    "publicadoEm": "2026-08-23",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/real-time-big-data-lula-tem-29-pontos-de-vantagem-sobre-flavio-bolsonaro-na-paraiba/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 55
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 26
+      }
+    ],
+    "observacao": "Data de publicação estimada a partir do fim de campo (não confirmada com precisão)."
+  },
+  {
+    "id": "2026-08-23-real-time-big-data-pb-presidente-t2",
+    "uf": "PB",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-08-19",
+    "dataFim": "2026-08-22",
+    "publicadoEm": "2026-08-23",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-big-data-na-paraiba-lula-tem-59-no-2o-turno-flavio-32/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 59
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 32
+      }
+    ],
+    "observacao": "Não foi localizada pesquisa de 2º turno para a Paraíba mais recente que esta (rodada de 19-22/08)."
+  },
+  {
     "id": "2026-08-21-datafolha-pi-governador-t1",
     "uf": "PI",
     "cargo": "governador",
@@ -4645,6 +6608,133 @@
       }
     ],
     "observacao": "Percentuais dos demais candidatos não localizados na fonte consultada."
+  },
+  {
+    "id": "2026-08-19-realtimebigdata-df-presidente-t1",
+    "uf": "DF",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "DF-07849/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-14",
+    "dataFim": "2026-08-18",
+    "publicadoEm": "2026-08-19",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "espontânea (sem estímulo de lista de nomes) — amostra estadual do Distrito Federal",
+    "fonte": {
+      "nome": "Brasil de Fato",
+      "url": "https://www.brasildefato.com.br/2026/08/19/real-time-big-data-aponta-empate-tecnico-entre-lula-e-flavio-bolsonaro-no-distrito-federal/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 24
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 21
+      }
+    ],
+    "observacao": "Estes são os percentuais do cenário ESPONTÂNEO (sem lista de nomes), não do estimulado. A fonte informa que no cenário estimulado também há empate técnico entre Lula e Flávio, mas os percentuais exatos do 1º turno estimulado desta pesquisa não foram confirmados nas fontes consultadas."
+  },
+  {
+    "id": "2026-08-18-realtimebigdata-pr-presidente-t1",
+    "uf": "PR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-09275/2026",
+    "contratante": null,
+    "dataInicio": "2026-08-13",
+    "dataFim": "2026-08-17",
+    "publicadoEm": "2026-08-18",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno) — amostra estadual do Paraná",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/eleicoes/pesquisa-real-time-big-data-flavio-bolsonaro-tem-44-e-lula-30-no-1o-turno-no-parana/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 44
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 31
+      }
+    ]
+  },
+  {
+    "id": "2026-08-15-rankingbrasil-ms-presidente-t1",
+    "uf": "MS",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Ranking Brasil Inteligência",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": null,
+    "dataFim": null,
+    "publicadoEm": "2026-08-15",
+    "amostra": null,
+    "margem": null,
+    "cenario": "estimulada, cenário principal (1º turno) — amostra estadual de Mato Grosso do Sul",
+    "fonte": {
+      "nome": "A Crítica de Campo Grande",
+      "url": "https://acritica.net/politica/flavio-bolsonaro-lula-pesquisa-presidente-mato-grosso-do-sul-2026/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 40
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 33
+      }
+    ],
+    "observacao": "Datas de campo, tamanho de amostra, margem de erro e registro TSE exatos desta rodada (agosto/2026) do instituto Ranking Brasil Inteligência não foram confirmados nas fontes consultadas; publicadoEm é aproximado. Há também uma pesquisa registrada do mesmo instituto de julho/2026 (registro MS-08317/2026 e BR-08403/2026, amostra 2.000, campo 18-23/jul/2026) com cenário espontâneo (Flávio 23% x Lula ~23%)."
+  },
+  {
+    "id": "2026-08-15-rankingbrasil-ms-presidente-t2",
+    "uf": "MS",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Ranking Brasil Inteligência",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": null,
+    "dataFim": null,
+    "publicadoEm": "2026-08-15",
+    "amostra": null,
+    "margem": null,
+    "cenario": "estimulada, 2º turno (Lula x Flávio Bolsonaro) — amostra estadual de Mato Grosso do Sul",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-52-contra-38-de-lula-no-2o-turno-em-ms-diz-pesquisa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 52
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 38
+      }
+    ],
+    "observacao": "2º turno mais recente encontrado para MS (mais recente que a pesquisa IPEMS de setembro, que não trouxe cenário de 2º turno)."
   },
   {
     "id": "2026-08-03-atlasintel-ac-governador-t1",
@@ -4679,6 +6769,132 @@
     "observacao": "Demais candidatos e indecisos não detalhados na fonte consultada; também registrada como BR-09332/2026."
   },
   {
+    "id": "2026-08-03-real-time-big-data-se-presidente-t1",
+    "uf": "SE",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-07-28",
+    "dataFim": "2026-08-01",
+    "publicadoEm": "2026-08-03",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/real-time-big-data-lula-tem-60-e-flavio-bolsonaro-23-no-1o-turno-em-sergipe/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 60
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 23
+      }
+    ]
+  },
+  {
+    "id": "2026-08-03-real-time-big-data-se-presidente-t2",
+    "uf": "SE",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-07-28",
+    "dataFim": "2026-08-01",
+    "publicadoEm": "2026-08-03",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "CartaCapital",
+      "url": "https://www.cartacapital.com.br/politica/lula-x-flavio-os-numeros-da-disputa-presidencial-em-sergipe-segundo-o-real-time-big-data/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 63
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 27
+      }
+    ],
+    "observacao": "Não foi encontrada pesquisa de 2º turno específica para Sergipe mais recente que esta."
+  },
+  {
+    "id": "2026-07-27-real-time-big-data-ac-presidente-t1",
+    "uf": "AC",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-08086/2026",
+    "contratante": null,
+    "dataInicio": "2026-07-22",
+    "dataFim": "2026-07-25",
+    "publicadoEm": "2026-07-27",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/real-time-big-data-flavio-bolsonaro-tem-51-e-lula-29-no-1o-turno-no-acre/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 51
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 29
+      }
+    ]
+  },
+  {
+    "id": "2026-07-27-real-time-big-data-ac-presidente-t2",
+    "uf": "AC",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-08086/2026",
+    "contratante": null,
+    "dataInicio": "2026-07-22",
+    "dataFim": "2026-07-25",
+    "publicadoEm": "2026-07-27",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-57-contra-34-de-lula-no-2o-turno-no-acre-diz-pesquisa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 57
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 34
+      }
+    ],
+    "observacao": "Não foi encontrada pesquisa estadual de 2º turno para o Acre mais recente que esta (rodada de julho/2026)."
+  },
+  {
     "id": "2026-07-16-realtimebigdata-ro-governador-t1",
     "uf": "RO",
     "cargo": "governador",
@@ -4709,6 +6925,197 @@
       }
     ],
     "observacao": "Pesquisa de julho, mais antiga que as demais listadas; incluída por ausência de terceira pesquisa mais recente com percentuais completos."
+  },
+  {
+    "id": "2026-07-16-real-time-big-data-ro-presidente-t1",
+    "uf": "RO",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-05580/2026",
+    "contratante": null,
+    "dataInicio": "2026-07-14",
+    "dataFim": "2026-07-15",
+    "publicadoEm": "2026-07-16",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/real-time-big-data-flavio-bolsonaro-tem-58-e-lula-25-no-1o-turno-em-rondonia/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 58
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 25
+      }
+    ]
+  },
+  {
+    "id": "2026-07-16-real-time-big-data-ro-presidente-t2",
+    "uf": "RO",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-05580/2026",
+    "contratante": null,
+    "dataInicio": "2026-07-14",
+    "dataFim": "2026-07-15",
+    "publicadoEm": "2026-07-16",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "Rondônia Dinâmica",
+      "url": "https://www.rondoniadinamica.com/noticias/2026/07/flavio-bolsonaro-chega-a-66-contra-lula-no-segundo-turno-em-rondonia-aponta-realtime-big-data,249409.shtml"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 66
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 24
+      }
+    ],
+    "observacao": "Não foi localizada pesquisa de 2º turno específica para Rondônia mais recente que esta (rodada de 14-15/07); há menção não confirmada a um número mais recente e mais apertado (Flávio 44% x Lula 43%) que não pôde ser associado com segurança a instituto/data."
+  },
+  {
+    "id": "2026-06-22-atlasintel-pi-presidente-t1",
+    "uf": "PI",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "PI-00806/2026",
+    "contratante": null,
+    "dataInicio": "2026-06-16",
+    "dataFim": "2026-06-21",
+    "publicadoEm": "2026-06-22",
+    "amostra": 1197,
+    "margem": 3,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/atlasintel-lula-tem-639-e-flavio-bolsonaro-15-no-1o-turno-no-piaui/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 63.9
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 15
+      }
+    ],
+    "observacao": "Registro também aparece pareado ao registro nacional BR-08344/2026. Data de publicação estimada em 22/06 (não confirmada com precisão). Não foi possível confirmar com segurança uma SEGUNDA pesquisa estadual específica para o Piauí mais recente que esta (há menções soltas a pesquisas Real Time Big Data e GP1 no Piauí com outros números de 2º turno — 67%/24%, 68,3%/24,4% —, mas sem par de 1º turno confiável nem data exata associada); por isso apenas esta pesquisa foi incluída para o 1º turno estadual do PI."
+  },
+  {
+    "id": "2026-06-22-atlasintel-pi-presidente-t2",
+    "uf": "PI",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "PI-00806/2026",
+    "contratante": null,
+    "dataInicio": "2026-06-16",
+    "dataFim": "2026-06-21",
+    "publicadoEm": "2026-06-22",
+    "amostra": 1197,
+    "margem": 3,
+    "cenario": "estimulada, 2º turno Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/atlasintel-lula-tem-639-e-flavio-bolsonaro-15-no-1o-turno-no-piaui/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 76.6
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 23.4
+      }
+    ],
+    "observacao": "Pesquisa de junho/2026; podem existir rodadas mais recentes de 2º turno (Poder360 cita 67,3%x20,6% e 68,3%x24,4% sem instituto/data confirmados na busca)."
+  },
+  {
+    "id": "2026-05-13-realtimebigdata-go-presidente-t1",
+    "uf": "GO",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-02402/2026",
+    "contratante": null,
+    "dataInicio": "2026-05-11",
+    "dataFim": "2026-05-12",
+    "publicadoEm": "2026-05-13",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno) — amostra estadual de Goiás",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-big-data-caiado-lidera-cenarios-de-1o-e-2o-turnos-em-go/"
+    },
+    "resultados": [
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 38
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 29
+      }
+    ],
+    "observacao": "Pesquisa de maio/2026, mais antiga; incluída como 2ª pesquisa estadual de 1º turno para GO porque não foi encontrada, dentro do orçamento de buscas, uma segunda pesquisa de 1º turno mais recente com percentuais completos e amostra dedicada ao estado. Percentual de Flávio Bolsonaro nesta pesquisa não confirmado nas fontes consultadas."
+  },
+  {
+    "id": "2026-05-05-percentbrasil-mt-presidente-t1",
+    "uf": "MT",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Percent Brasil",
+    "registroTSE": "MT-06232/2026",
+    "contratante": "DOC Comunicação",
+    "dataInicio": "2026-04-30",
+    "dataFim": "2026-05-03",
+    "publicadoEm": "2026-05-05",
+    "amostra": 1200,
+    "margem": 2.83,
+    "cenario": "estimulada, cenário principal (1º turno) — amostra estadual do Mato Grosso",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes/flavio-tem-446-em-mt-contra-298-de-lula-diz-pesquisa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 44.6
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 29.8
+      }
+    ],
+    "observacao": "Também referenciada sob o protocolo BR-00726/2026. Data de publicação (05/05/2026) é aproximada, inferida a partir do período de campo."
   },
   {
     "id": "2026-03-10-paranapesquisas-ma-governador-t1",
