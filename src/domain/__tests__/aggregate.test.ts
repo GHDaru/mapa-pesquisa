@@ -216,3 +216,18 @@ describe('domain/aggregate', () => {
     expect(agregado.ultimaPesquisa.id).toBe('recente-2');
   });
 });
+
+
+describe('linhas que não são candidatos', () => {
+  it('exclui indecisos, brancos/nulos e cenário espontâneo do ranking', async () => {
+    const { ehLinhaNaoCandidato } = await import('../aggregate.js');
+    const vazio = new Set<string>();
+    expect(ehLinhaNaoCandidato('Não sabe/indeciso (cenário espontâneo)', vazio)).toBe(true);
+    expect(ehLinhaNaoCandidato('Brancos e nulos', vazio)).toBe(true);
+    expect(ehLinhaNaoCandidato('Indecisos', vazio)).toBe(true);
+    expect(ehLinhaNaoCandidato('Nenhum/Não respondeu', vazio)).toBe(true);
+    expect(ehLinhaNaoCandidato('Outros', vazio)).toBe(true);
+    expect(ehLinhaNaoCandidato('Sergio Moro', vazio)).toBe(false);
+    expect(ehLinhaNaoCandidato('Ronaldo Caiado', vazio)).toBe(false);
+  });
+});

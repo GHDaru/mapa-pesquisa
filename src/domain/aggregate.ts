@@ -15,6 +15,28 @@ export const CANDIDATOS_EXCLUIDOS_PADRAO: readonly string[] = [
   'outros',
 ];
 
+/**
+ * Padrões (sem acento, minúsculas) que identificam linhas que não são candidatos:
+ * brancos, nulos, indecisos, "não sabe", "não respondeu", "nenhum", "outros",
+ * e qualquer linha marcada como cenário espontâneo.
+ */
+const PADROES_NAO_CANDIDATO: readonly RegExp[] = [
+  /\bbranco/, /\bnulo/, /\bindecis/, /nao sabe/, /nao respond/, /nao opin/,
+  /\bnenhum/, /^outros?\b/, /\boutros\b/, /espontan/, /nao vot/, /ns\/nr/,
+];
+
+function semAcento(texto: string): string {
+  return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+}
+
+/** Verdadeiro quando a linha de resultado não representa um candidato. */
+export function ehLinhaNaoCandidato(candidato: string, excluidos: ReadonlySet<string>): boolean {
+  const chave = candidato.toLowerCase().trim();
+  if (excluidos.has(chave)) return true;
+  const plano = semAcento(candidato);
+  return PADROES_NAO_CANDIDATO.some((re) => re.test(plano));
+}
+
 export const JANELA_DIAS_PADRAO = 45;
 export const MEIA_VIDA_DIAS_PADRAO = 14;
 export const MARGEM_REFERENCIA_PADRAO = 3.0;
@@ -148,7 +170,7 @@ export function agregarPesquisas(
       pct: acc.somaPeso > 0 ? acc.somaPesoPct / acc.somaPeso : 0,
       pesquisas: acc.pesquisas,
     };
-    if (excluidos.has(chave)) {
+    if (ehLinhaNaoCandidato(chave, excluidos)) {
       outros.push(item);
     } else {
       candidatos.push(item);
