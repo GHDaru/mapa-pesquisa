@@ -49,7 +49,6 @@ export function renderVoteEstimate(container: HTMLElement, casos: CasosDeUso): v
 
   raiz.append(criarCabecalho(estimativa));
   raiz.append(criarSecaoComparacaoBarras(estimativa, partidos));
-  raiz.append(criarSecaoCards(estimativa, partidos));
   raiz.append(criarSecaoComparacao(estimativa));
   raiz.append(criarLinhaNaoAtribuidos(estimativa));
   raiz.append(criarSecaoPorUf(estimativa));
@@ -231,42 +230,6 @@ function criarBarraSegmentada(candidato: CandidatoEstimado, espectro: Espectro):
 
   track.append(...criarSegmentosBarra(candidato, espectro));
   return track;
-}
-
-function criarCardCandidato(candidato: CandidatoEstimado, partidos: readonly Partido[]): HTMLElement {
-  const espectro = resolverEspectro(candidato.partido, partidos);
-
-  return criarEl('article', { className: 've-card' }, [
-    criarEl('div', { className: 've-card__topo' }, [
-      criarEl('h3', { className: 've-card__nome', texto: candidato.candidato, attrs: { title: candidato.candidato } }),
-      criarBadgePartido(candidato.partido, espectro),
-    ]),
-    criarEl('p', { className: 've-card__votos', texto: formatarMilhoes(candidato.votos) }),
-    criarEl('p', { className: 've-card__pct', texto: `${formatarPct(candidato.pctDoEleitorado)} do eleitorado` }),
-    criarEl('p', { className: 've-card__composicao-rotulo', texto: 'Proveniência dos dados (não comparável em tamanho):' }),
-    criarBarraSegmentada(candidato, espectro),
-  ]);
-}
-
-function criarSecaoCards(e: EstimativaVotos, partidos: readonly Partido[]): HTMLElement {
-  const secao = criarEl('section', { attrs: { 'aria-labelledby': 've-cards-heading' } }, [
-    criarEl('h2', { className: 've-section-title', texto: 'Detalhe por candidato', attrs: { id: 've-cards-heading' } }),
-    criarEl('p', {
-      className: 've-meta',
-      texto:
-        'Cada card detalha de onde vieram os votos estimados de um candidato — a barra abaixo do card mostra só a ' +
-        'proveniência (sempre 100% do próprio candidato), não a magnitude: para comparar candidatos entre si, veja ' +
-        'o gráfico "Comparação entre candidatos" acima.',
-    }),
-  ]);
-
-  const grid = criarEl(
-    'div',
-    { className: 've-cards' },
-    e.candidatos.map((c) => criarCardCandidato(c, partidos)),
-  );
-  secao.append(grid);
-  return secao;
 }
 
 /* ============ Gráfico de comparação: barras proporcionais + faixa de incerteza ============ */
