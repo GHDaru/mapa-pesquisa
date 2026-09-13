@@ -9,6 +9,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { type DadosEleitorado, type Eleitorado, criarEleitorado } from '../src/domain/electorate.js';
 import { type DadosPartido, type Partido, criarPartido } from '../src/domain/party.js';
 import { type DadosPesquisa, type Pesquisa, criarPesquisa } from '../src/domain/poll.js';
 import { UFS } from '../src/domain/race.js';
@@ -35,6 +36,7 @@ function main(): void {
   const partiesRaw = lerJson<DadosPartido[]>('parties.json');
   const seatsRaw = lerJson<DadosCadeiraSenado[]>('senate-seats.json');
   const metaRaw = lerJson<{ atualizadoEm?: string }>('meta.json');
+  const electorateRaw = lerJson<DadosEleitorado[]>('electorate.json');
 
   const partidos: Partido[] = [];
   for (const dados of partiesRaw) {
@@ -59,6 +61,15 @@ function main(): void {
       criarCadeiraSenado(dados);
     } catch (e) {
       erros.push({ arquivo: 'senate-seats.json', mensagem: (e as Error).message });
+    }
+  }
+
+  const eleitorado: Eleitorado[] = [];
+  for (const dados of electorateRaw) {
+    try {
+      eleitorado.push(criarEleitorado(dados));
+    } catch (e) {
+      erros.push({ arquivo: 'electorate.json', mensagem: (e as Error).message });
     }
   }
 
@@ -114,6 +125,17 @@ function main(): void {
   const siglasFaltantes = [...siglasCitadas].filter((s) => !siglasConhecidas.has(s)).sort();
   console.log(`\nPartidos citados em pesquisas mas ausentes de parties.json: ${siglasFaltantes.length}`);
   for (const s of siglasFaltantes) console.log(`  - ${s}`);
+
+  const ufsComEleitorado = new Set(eleitorado.map((e) => e.uf));
+  const ufsSemEleitorado = UFS.filter((uf) => !ufsComEleitorado.has(uf));
+  const ufsComPresidencialEstadual = new Set(
+    pesquisas.filter((p) => p.disputa.cargo === 'presidente' && p.disputa.uf !== 'BR').map((p) => p.disputa.uf),
+  );
+  console.log(`\nEleitorado (data/electorate.json): ${eleitorado.length}/${UFS.length} UFs cadastradas.`);
+  if (ufsSemEleitorado.length > 0) {
+    console.log(`  UFs sem eleitorado cadastrado: ${ufsSemEleitorado.join(', ')}`);
+  }
+  console.log(`Pesquisas presidenciais estaduais (uf !== "BR"): ${ufsComPresidencialEstadual.size}/${UFS.length} UFs.`);
 
   if (erros.length > 0) {
     console.log(`\n=== Erros estruturais (${erros.length}) ===`);
