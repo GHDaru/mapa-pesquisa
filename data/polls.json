@@ -1,0 +1,67 @@
+[
+  {
+    "id": "2026-09-10-quaest-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "BR-01234/2026",
+    "contratante": "Genial",
+    "dataInicio": "2026-09-05",
+    "dataFim": "2026-09-09",
+    "publicadoEm": "2026-09-10",
+    "amostra": 2004,
+    "margem": 2.0,
+    "cenario": "estimulada, cenário 1",
+    "fonte": { "nome": "Poder360", "url": "https://www.poder360.com.br/poder-data/exemplo-presidente" },
+    "resultados": [
+      { "candidato": "Candidato A", "partido": "PT", "pct": 32.5 },
+      { "candidato": "Candidato B", "partido": "PL", "pct": 28.0 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 10.0 },
+      { "candidato": "Não sabe", "partido": null, "pct": 5.0 }
+    ]
+  },
+  {
+    "id": "2026-09-08-datafolha-sp-governador-t1",
+    "uf": "SP",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": null,
+    "observacao": "Registro TSE ainda não publicado para esta pesquisa (dado de exemplo).",
+    "dataInicio": "2026-09-01",
+    "dataFim": "2026-09-03",
+    "publicadoEm": "2026-09-08",
+    "amostra": 1500,
+    "margem": 2.5,
+    "cenario": "estimulada",
+    "fonte": { "nome": "Folha de S.Paulo", "url": "https://www1.folha.uol.com.br/poder/exemplo-sp" },
+    "resultados": [
+      { "candidato": "Candidato C", "partido": "PL", "pct": 40.0 },
+      { "candidato": "Candidato D", "partido": "PT", "pct": 35.0 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 15.0 },
+      { "candidato": "Não sabe", "partido": null, "pct": 10.0 }
+    ]
+  },
+  {
+    "id": "2026-09-05-exemplo-sp-senador-t1",
+    "uf": "SP",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Instituto Exemplo",
+    "registroTSE": "SP-05678/2026",
+    "dataInicio": "2026-08-28",
+    "dataFim": "2026-09-01",
+    "publicadoEm": "2026-09-05",
+    "amostra": 1200,
+    "margem": 2.8,
+    "cenario": "estimulada",
+    "fonte": { "nome": "Poder360", "url": "https://www.poder360.com.br/poder-data/exemplo-senado-sp" },
+    "resultados": [
+      { "candidato": "Candidata E", "partido": "PT", "pct": 38.0 },
+      { "candidato": "Candidato F", "partido": "PL", "pct": 34.0 },
+      { "candidato": "Candidato G", "partido": "PL", "pct": 20.0 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 8.0 }
+    ]
+  }
+]

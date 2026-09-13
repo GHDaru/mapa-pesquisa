@@ -1,0 +1,18 @@
+[
+  {
+    "sigla": "PT",
+    "nome": "Partido dos Trabalhadores",
+    "numero": 13,
+    "espectro": "esquerda",
+    "fonteClassificacao": "https://pt.org.br/",
+    "observacao": ""
+  },
+  {
+    "sigla": "PL",
+    "nome": "Partido Liberal",
+    "numero": 22,
+    "espectro": "direita",
+    "fonteClassificacao": "https://pl.org.br/",
+    "observacao": ""
+  }
+]
