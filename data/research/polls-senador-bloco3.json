@@ -5,8 +5,8 @@
     "cargo": "senador",
     "turno": 1,
     "instituto": "Quaest",
-    "registroTSE": null,
-    "contratante": null,
+    "registroTSE": "SP-00959/2026",
+    "contratante": "Globo Comunicação e Participações S/A",
     "dataInicio": "2026-09-04",
     "dataFim": "2026-09-07",
     "publicadoEm": "2026-09-08",
@@ -29,7 +29,7 @@
     "cargo": "senador",
     "turno": 1,
     "instituto": "Real Time Big Data",
-    "registroTSE": "BR-02209/2026",
+    "registroTSE": "RJ-08350/2026",
     "contratante": null,
     "dataInicio": "2026-08-28",
     "dataFim": "2026-09-01",
@@ -44,7 +44,7 @@
       { "candidato": "Pedro Paulo", "partido": "PSD", "pct": 13.0 },
       { "candidato": "Carlos Jordy", "partido": "PL", "pct": 11.0 }
     ],
-    "observacao": "O código BR-02209/2026 apareceu no resumo de busca associado à pesquisa (que também media a corrida presidencial); não confirmado se é o registro específico do módulo de Senado ou um registro guarda-chuva da rodada Real Time Big Data no RJ. Buscas distintas retornaram números diferentes para Carlos Portinho (de <4% a 14%) conforme o cenário/lista de nomes testada; optou-se pelo cenário mais citado e consistente (Benedita/Crivella/Pedro Paulo/Jordy)."
+    "observacao": "registroTSE corrigido via auditoria de 13/09/2026 para RJ-08350/2026 (código específico do módulo de Senado, mais alinhado ao padrão UF-XXXXX usado no resto da base); o código BR-02209/2026, também citado nas mesmas fontes, é o registro agregado nacional da rodada (que também media a corrida presidencial). Buscas distintas retornaram números diferentes para Carlos Portinho (de <4% a 14%) conforme o cenário/lista de nomes testada; optou-se pelo cenário mais citado e consistente (Benedita/Crivella/Pedro Paulo/Jordy)."
   },
   {
     "id": "2026-09-11-real-time-big-data-pr-senador-t1",
@@ -204,5 +204,56 @@
       { "candidato": "Erika Kokay", "partido": "PT", "pct": 14.0 }
     ],
     "observacao": "\"Leila do Vôlei\" é a senadora atual Leila Barros (PDT). Izalci Lucas (titular, PL) não aparece entre os líderes citados nos resumos de busca — indícios apontam que ele estaria concorrendo a deputado federal em 2026, não a reeleição ao Senado, mas isso não foi confirmado com leitura da fonte primária."
+  },
+  {
+    "id": "2026-09-11-datafolha-sp-senador-t1",
+    "uf": "SP",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "SP-04189/2026",
+    "contratante": "Folha de S.Paulo e TV Globo",
+    "dataInicio": "2026-09-08",
+    "dataFim": "2026-09-10",
+    "publicadoEm": "2026-09-11",
+    "amostra": 1610,
+    "margem": 2.0,
+    "cenario": "estimulada (2 vagas em disputa)",
+    "fonte": { "nome": "CNN Brasil", "url": "https://www.cnnbrasil.com.br/eleicoes/datafolha-marina-tebet-do-prado-e-derrite-empatam-para-senado-em-sp/" },
+    "resultados": [
+      { "candidato": "Marina Silva", "partido": "Rede", "pct": 13.0 },
+      { "candidato": "Simone Tebet", "partido": "PSB", "pct": 13.0 },
+      { "candidato": "André do Prado", "partido": "PL", "pct": 11.0 },
+      { "candidato": "Guilherme Derrite", "partido": "PP", "pct": 10.0 },
+      { "candidato": "Ricardo Salles", "partido": "Novo", "pct": 5.0 }
+    ],
+    "observacao": "Pesquisa faltante identificada e adicionada via auditoria de 13/09/2026. Registrada também sob BR-03904/2026 (código agregado nacional). Substitui em atualidade a Quaest de 08/09 já presente na base (campo 3 dias mais antigo)."
+  },
+  {
+    "id": "2026-09-11-datafolha-rj-senador-t1",
+    "uf": "RJ",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-08",
+    "dataFim": "2026-09-10",
+    "publicadoEm": "2026-09-11",
+    "amostra": 1204,
+    "margem": 3.0,
+    "cenario": "estimulada (2 vagas em disputa, cenário com 18 nomes testados)",
+    "fonte": { "nome": "Diário do Rio", "url": "https://diariodorio.com/politica/2026/09/11/benedita-tem-15-para-o-senado-no-rio-jordy-e-portinho-aparecem-com-8-diz-datafolha.html" },
+    "resultados": [
+      { "candidato": "Benedita da Silva", "partido": "PT", "pct": 18.0 },
+      { "candidato": "Carlos Jordy", "partido": "PL", "pct": 10.0 },
+      { "candidato": "Carlos Portinho", "partido": "PL", "pct": 10.0 },
+      { "candidato": "Pedro Paulo", "partido": "PSD", "pct": 7.0 },
+      { "candidato": "Marcelo Crivella", "partido": "Republicanos", "pct": 7.0 },
+      { "candidato": "Mônica Benício", "partido": "PSOL", "pct": 6.0 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 18.0 },
+      { "candidato": "Não sabe", "partido": null, "pct": 13.0 }
+    ],
+    "observacao": "Pesquisa faltante identificada e adicionada via auditoria de 13/09/2026. registroTSE não localizado nas buscas desta sessão (não inventado). Substitui em atualidade a pesquisa Real Time Big Data de 02/09 já presente na base (9 dias mais antiga) e muda o líder isolado (Benedita 18% x segundo colocado a 10%, fora da margem de erro) frente ao empate quádruplo mostrado pela Real Time Big Data."
   }
 ]

@@ -143,7 +143,7 @@
     "contratante": "Folha da Manhã S.A. e Globo Comunicação e Participações S/A",
     "dataInicio": "2026-09-08",
     "dataFim": "2026-09-10",
-    "publicadoEm": "2026-09-10",
+    "publicadoEm": "2026-09-11",
     "amostra": 1204,
     "margem": 3.0,
     "cenario": "estimulada, 1º turno",
@@ -156,7 +156,7 @@
       { "candidato": "Flávio Roscoe", "partido": "PL", "pct": 4.0 },
       { "candidato": "Gabriel Azevedo", "partido": "MDB", "pct": 4.0 }
     ],
-    "observacao": "Brancos/nulos/indecisos não discriminados no resumo consultado."
+    "observacao": "Brancos/nulos/indecisos não discriminados no resumo consultado. publicadoEm corrigido para 2026-09-11 (sexta-feira), conforme auditoria de 13/09/2026."
   },
   {
     "id": "2026-09-08-quaest-mg-governador-t1",
@@ -290,7 +290,7 @@
     "turno": 1,
     "instituto": "Alfa Inteligência",
     "registroTSE": "PR-03042/2026",
-    "contratante": null,
+    "contratante": "Rádio Transamérica de São Paulo Ltda.",
     "dataInicio": "2026-09-04",
     "dataFim": "2026-09-09",
     "publicadoEm": "2026-09-10",
@@ -304,7 +304,7 @@
       { "candidato": "Requião Filho", "partido": "PDT", "pct": 20.0 },
       { "candidato": "Indecisos", "partido": null, "pct": 44.0 }
     ],
-    "observacao": "Contratante não identificado; valor de 44% de indecisos citado na manchete pode se referir a cenário espontâneo."
+    "observacao": "Contratante confirmado via auditoria de 13/09/2026 (Tribuna do Paraná): Rádio Transamérica de São Paulo Ltda. Valor de 44% de indecisos citado na manchete pode se referir a cenário espontâneo."
   },
   {
     "id": "2026-08-24-quaest-pr-governador-t1",

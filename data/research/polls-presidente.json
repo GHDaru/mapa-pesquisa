@@ -28,7 +28,7 @@
     "turno": 1,
     "instituto": "Datafolha",
     "registroTSE": "BR-01833/2026",
-    "contratante": null,
+    "contratante": "Folha da Manhã S.A. e Globo Comunicação e Participações S/A",
     "dataInicio": "2026-09-08",
     "dataFim": "2026-09-10",
     "publicadoEm": "2026-09-11",
@@ -40,7 +40,7 @@
       { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 39.0 },
       { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 35.0 }
     ],
-    "observacao": "Contratante do Datafolha não veio explicitado nos resultados de busca (institutos ligados ao Grupo Folha costumam não ter 'contratante' externo); mapeamento exato entre esta URL da Gazeta do Povo e a data de campo foi inferido, pois há duas matérias quase homônimas (ver observação da pesquisa de 1-3/set)."
+    "observacao": "Contratante confirmado via auditoria (Gazeta do Povo, 11/09/2026): Folha da Manhã S.A. e Globo Comunicação e Participações S/A. Mapeamento exato entre esta URL da Gazeta do Povo e a data de campo foi inferido, pois há duas matérias quase homônimas (ver observação da pesquisa de 1-3/set)."
   },
   {
     "id": "2026-09-10-meio-ideia-br-presidente-t1",
@@ -52,7 +52,7 @@
     "contratante": "Meio S.A.",
     "dataInicio": "2026-09-04",
     "dataFim": "2026-09-07",
-    "publicadoEm": "2026-09-10",
+    "publicadoEm": "2026-09-09",
     "amostra": 1500,
     "margem": 2.5,
     "cenario": "estimulada, cenário principal (1º turno)",
@@ -62,7 +62,7 @@
       { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 37.3 },
       { "candidato": "Augusto Cury", "partido": "Avante", "pct": 6.6 }
     ],
-    "observacao": null
+    "observacao": "publicadoEm corrigido para 2026-09-09 (quarta-feira, conforme auditoria de 13/09/2026 — Exame)."
   },
   {
     "id": "2026-09-09-gerp-br-presidente-t1",

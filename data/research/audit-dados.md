@@ -225,3 +225,33 @@ Arquivo: `polls-senador-bloco2.json`
 **Dados em condição de publicar: NÃO.**
 
 Maior lacuna única: a base está desatualizada exatamente nas disputas de maior interesse nacional para Senado — SP e RJ possuem pesquisas Datafolha de 11/09 (mais recentes e com resultados de liderança sensivelmente diferentes) que não entraram no arquivo, enquanto o `polls-senador-bloco3.json` ainda expõe como "mais recente" pesquisas de 3 a 9 dias mais antigas; some-se a isso dois campos `publicadoEm` incorretos (Meio/Ideia e Datafolha-MG) e três pares de percentuais `null` que já existem publicados (BA e CE governador, PA governador com corte errado) — isso é volume suficiente de erro concreto para não liberar a base sem correção.
+
+## Aplicado
+
+Todas as correções recomendadas e as duas pesquisas faltantes desta auditoria foram aplicadas em 2026-09-13 aos arquivos de origem em `data/research/`, seguidas de `npm run data:merge -- --date 2026-09-13`, `npm run data:validate` e `npm test` (todos passaram: 117 pesquisas válidas, 0 erros estruturais, 81 testes ok).
+
+### Correções aplicadas
+
+- `polls-presidente.json`
+  - `2026-09-11-datafolha-br-presidente-t1`: `contratante` preenchido com `"Folha da Manhã S.A. e Globo Comunicação e Participações S/A"`.
+  - `2026-09-10-meio-ideia-br-presidente-t1`: `publicadoEm` corrigido de `"2026-09-10"` para `"2026-09-09"`.
+- `polls-governador-sul-sudeste-co.json`
+  - `2026-09-08-datafolha-mg-governador-t1`: `publicadoEm` corrigido de `"2026-09-10"` para `"2026-09-11"`.
+  - `2026-09-10-alfa-inteligencia-pr-governador-t1`: `contratante` preenchido com `"Rádio Transamérica de São Paulo Ltda."`.
+- `polls-governador-norte-nordeste.json`
+  - `2026-09-realtimebigdata-ba-governador-t1`: `resultados[].pct` preenchidos (Jerônimo Rodrigues 45.0 / ACM Neto 44.0); ordem invertida para colocar o líder real (Jerônimo Rodrigues) primeiro.
+  - `2026-09-realtimebigdata-ce-governador-t1`: `resultados[].pct` preenchidos (Elmano de Freitas 46.0 / Ciro Gomes 43.0); observação atualizada com alerta de divergência de líder frente a pesquisas Quaest/Datafolha mais antigas.
+  - `2026-09-11-atlasintel-pa-governador-t1`: `resultados[].pct` corrigidos de 52.0/44.8 (corte "votos válidos") para 48.5/41.7 (cenário principal); valores antigos documentados na observação.
+- `polls-senador-bloco3.json`
+  - `2026-09-08-quaest-sp-senador-t1`: `registroTSE` preenchido com `"SP-00959/2026"`; `contratante` preenchido com `"Globo Comunicação e Participações S/A"`.
+  - `2026-09-02-real-time-big-data-rj-senador-t1`: `registroTSE` corrigido de `"BR-02209/2026"` para `"RJ-08350/2026"`; código antigo mantido na observação como registro agregado.
+- `polls-senador-bloco2.json`
+  - `2026-09-11-datafolha-pe-senador-t1`: `resultados[3].partido` (Eduardo da Fonte) preenchido com `"PP"`.
+
+### Pesquisas faltantes inseridas
+
+- `polls-senador-bloco3.json`
+  - `2026-09-11-datafolha-sp-senador-t1` (Datafolha, SP, senador, 1º turno).
+  - `2026-09-11-datafolha-rj-senador-t1` (Datafolha, RJ, senador, 1º turno).
+
+Nenhum valor foi inventado além do que constava na auditoria; onde a auditoria não trouxe um dado (ex.: `registroTSE` da pesquisa RJ), o campo permaneceu `null` com a observação explicando a lacuna.

@@ -121,9 +121,9 @@
       { "candidato": "Marília Arraes", "partido": "PDT", "pct": 18.0 },
       { "candidato": "Humberto Costa", "partido": "PT", "pct": 16.0 },
       { "candidato": "Mendonça Filho", "partido": "PL", "pct": 12.0 },
-      { "candidato": "Eduardo da Fonte", "partido": null, "pct": 10.0 }
+      { "candidato": "Eduardo da Fonte", "partido": "PP", "pct": 10.0 }
     ],
-    "observacao": "Lista provavelmente incompleta: fontes secundárias citam apenas os 4 primeiros colocados; demais candidatos e brancos/nulos/indecisos não detalhados. Partido de Eduardo da Fonte não confirmado nesta sessão."
+    "observacao": "Lista provavelmente incompleta: fontes secundárias citam apenas os 4 primeiros colocados; demais candidatos e brancos/nulos/indecisos não detalhados. Partido de Eduardo da Fonte (PP) confirmado via auditoria de 13/09/2026 (candidatos.nexojornal.com.br)."
   },
   {
     "id": "2026-09-10-realtimebigdata-rn-senador-t1",

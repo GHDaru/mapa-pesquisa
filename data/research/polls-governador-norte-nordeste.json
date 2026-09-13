@@ -189,10 +189,10 @@
     "cenario": "estimulada, primeiro turno",
     "fonte": { "nome": "Exame", "url": "https://exame.com/brasil/pesquisa-atlasintel-hana-tem-485-e-dr-daniel-417-no-1o-turno-no-para/" },
     "resultados": [
-      { "candidato": "Hana Ghassan", "partido": "MDB", "pct": 52.0 },
-      { "candidato": "Dr. Daniel", "partido": "Podemos", "pct": 44.8 }
+      { "candidato": "Hana Ghassan", "partido": "MDB", "pct": 48.5 },
+      { "candidato": "Dr. Daniel", "partido": "Podemos", "pct": 41.7 }
     ],
-    "observacao": "Manchete alternativa da mesma pesquisa cita 48,5% x 41,7%; valores 52%/44,8% correspondem ao cenário citado pelo Poder360/Exame para o 1º turno."
+    "observacao": "Corrigido via auditoria de 13/09/2026: a maioria das fontes (Exame, Poder360, Diário do Pará, Ponto de Pauta) cita Hana 48,5% / Dr. Daniel 41,7% como número principal do cenário estimulado/total. Os valores 52,0%/44,8% eram o corte de 'votos válidos' de uma única matéria e foram removidos dos resultados principais."
   },
   {
     "id": "2026-09-08-realtimebigdata-pa-governador-t1",
@@ -533,10 +533,10 @@
     "cenario": "estimulada, primeiro turno",
     "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-bahia-setembro-2026/" },
     "resultados": [
-      { "candidato": "ACM Neto", "partido": "União Brasil", "pct": null },
-      { "candidato": "Jerônimo Rodrigues", "partido": "PT", "pct": null }
+      { "candidato": "Jerônimo Rodrigues", "partido": "PT", "pct": 45.0 },
+      { "candidato": "ACM Neto", "partido": "União Brasil", "pct": 44.0 }
     ],
-    "observacao": "Percentuais individuais não localizados dentro do orçamento de buscas desta sessão; recomenda-se checagem direta da fonte."
+    "observacao": "Percentuais preenchidos via auditoria de 13/09/2026 (jornalgrandebahia.com.br): Jerônimo Rodrigues (PT) 45% / ACM Neto (União Brasil) 44%. Ordem reajustada para refletir o líder real (Jerônimo Rodrigues), que estava listado em segundo no arquivo original."
   },
   {
     "id": "2026-08-25-paranapesquisas-ba-governador-t1",
@@ -576,10 +576,10 @@
     "cenario": "estimulada, primeiro turno",
     "fonte": { "nome": "Poder360", "url": "https://www.poder360.com.br/poder-eleicoes-2026/elmano-e-ciro-estao-empatados-no-ce-diz-real-time-big-data/" },
     "resultados": [
-      { "candidato": "Elmano de Freitas", "partido": "PT", "pct": null },
-      { "candidato": "Ciro Gomes", "partido": "PSDB", "pct": null }
+      { "candidato": "Elmano de Freitas", "partido": "PT", "pct": 46.0 },
+      { "candidato": "Ciro Gomes", "partido": "PSDB", "pct": 43.0 }
     ],
-    "observacao": "Fonte informa que Elmano lidera numericamente por 3 pontos, dentro da margem de erro de 2 pontos (empate técnico); percentuais exatos não confirmados. Aprovação do governo Elmano: 58% (39% desaprovam)."
+    "observacao": "Percentuais preenchidos via auditoria de 13/09/2026 (exame.com): Elmano 46% / Ciro Gomes 43%, dentro da margem de erro de 2 pontos (empate técnico). Aprovação do governo Elmano: 58% (39% desaprovam). ALERTA: pesquisas Quaest (campo 31/08-03/09, publ. 04/09) e Datafolha (campo 31/08-02/09), mais antigas, mostram Ciro Gomes na frente (Ciro 45%/Elmano 34% na Quaest; Ciro 46%/Elmano 37% na Datafolha) — divergência forte de líder entre institutos na mesma janela de tempo."
   },
   {
     "id": "2026-09-datafolha-ce-governador-t1",
