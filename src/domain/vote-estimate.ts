@@ -11,6 +11,20 @@ import type { Agregado } from './aggregate.js';
  * dados: se uma UF não tem agregado estadual E não há agregado nacional para
  * suprir a lacuna, `estimarVotos` lança `EstimativaVotosError` em vez de
  * silenciosamente ignorar a UF.
+ *
+ * Correção metodológica: muitas pesquisas estaduais só testam os 2 ou 3
+ * primeiros colocados, então um candidato menor (ex.: alguém com ~9% no
+ * nacional) simplesmente não aparece no agregado estadual — tratar isso como
+ * 0 nessa UF derruba artificialmente candidatos menores no total nacional
+ * estimado. Por isso, em toda UF que TEM pesquisa estadual, qualquer
+ * candidato do agregado NACIONAL que não apareça no agregado ESTADUAL recebe
+ * o percentual nacional desse candidato aplicado ao eleitorado da UF — a
+ * parcela é marcada com `origem: 'complemento-nacional'` (distinta de
+ * 'estadual', a pesquisa própria da UF, e de 'nacional', usado só quando a UF
+ * inteira não tem pesquisa estadual). Se a soma dos percentuais atribuídos
+ * numa UF (estadual + complemento) passar de 100%, todos os percentuais
+ * atribuídos daquela UF são normalizados proporcionalmente para caber no
+ * eleitorado — a UF entra em `ufsNormalizadas`.
  */
 
 export interface EstimativaVotosUfEntrada {
@@ -29,10 +43,30 @@ export interface CandidatoEstimado {
   readonly pctDoEleitorado: number;
   /** Percentual sobre a soma de votos atribuídos a candidatos (exclui `naoAtribuidos`). */
   readonly pctDosVotosAtribuidos: number;
-  /** Parcela dos votos vinda de UFs com pesquisa estadual própria. */
+  /** Parcela dos votos vinda do percentual PRÓPRIO da pesquisa estadual, em UFs que têm pesquisa estadual. */
   readonly votosDeUfComPesquisa: number;
-  /** Parcela dos votos vinda de UFs sem pesquisa estadual (usou o agregado nacional). */
+  /** Parcela dos votos vinda de UFs sem pesquisa estadual (usou o agregado nacional para a UF inteira). */
   readonly votosDeUfSemPesquisa: number;
+  /**
+   * Parcela dos votos, em UFs que TÊM pesquisa estadual, de quando este
+   * candidato não apareceu nessa pesquisa estadual e foi suprido pelo
+   * percentual do agregado nacional aplicado ao eleitorado da UF.
+   */
+  readonly votosComplementoNacional: number;
+}
+
+/**
+ * Origem de uma parcela de votos de um candidato numa UF: 'estadual' veio do
+ * percentual próprio da pesquisa estadual; 'nacional' veio do agregado
+ * nacional porque a UF inteira não tem pesquisa estadual; 'complemento-
+ * nacional' veio do agregado nacional porque a UF TEM pesquisa estadual mas
+ * esse candidato específico não apareceu nela.
+ */
+export type OrigemVotoCandidato = 'estadual' | 'nacional' | 'complemento-nacional';
+
+export interface VotosCandidatoUf {
+  readonly votos: number;
+  readonly origem: OrigemVotoCandidato;
 }
 
 export interface UfOrigemVotos {
@@ -40,8 +74,8 @@ export interface UfOrigemVotos {
   readonly eleitores: number;
   /** 'estadual' quando a UF tinha agregado próprio; 'nacional' quando usou o substituto nacional. */
   readonly origem: 'estadual' | 'nacional';
-  /** Votos estimados por candidato nesta UF (chave = nome do candidato). */
-  readonly votosPorCandidato: Readonly<Record<string, number>>;
+  /** Votos estimados por candidato nesta UF, com a origem de cada parcela (chave = nome do candidato). */
+  readonly votosPorCandidato: Readonly<Record<string, VotosCandidatoUf>>;
 }
 
 export interface ComparacaoNacional {
@@ -69,6 +103,12 @@ export interface EstimativaVotos {
   readonly porUf: readonly UfOrigemVotos[];
   /** Um item por candidato do agregado nacional, comparando pct nacional vs. estimado. */
   readonly comparacaoNacional: readonly ComparacaoNacional[];
+  /**
+   * UFs onde a soma dos percentuais atribuídos (pesquisa estadual própria +
+   * complemento nacional) passou de 100% e precisou ser normalizada
+   * proporcionalmente para caber no eleitorado da UF.
+   */
+  readonly ufsNormalizadas: readonly string[];
 }
 
 export class EstimativaVotosError extends Error {
@@ -84,12 +124,27 @@ interface Acumulador {
   votos: number;
   votosComPesquisa: number;
   votosSemPesquisa: number;
+  votosComplementoNacional: number;
+}
+
+interface Contribuicao {
+  readonly candidato: string;
+  readonly partido: string | null;
+  readonly pct: number;
+  readonly origem: OrigemVotoCandidato;
+}
+
+/** Chave de comparação entre candidatos (não usada para exibição): trim + minúsculas. */
+function chaveComparacao(nome: string): string {
+  return nome.trim().toLowerCase();
 }
 
 /**
  * Estima votos presidenciais (1º turno) por candidato, combinando o
  * eleitorado de cada UF com os percentuais do agregado estadual quando
- * disponível, ou do agregado nacional como substituto caso contrário.
+ * disponível (mais o complemento nacional para candidatos ausentes dessa
+ * pesquisa estadual), ou do agregado nacional inteiro como substituto quando
+ * a UF não tem pesquisa estadual.
  *
  * Lança `EstimativaVotosError` quando alguma UF não tem agregado estadual e
  * `agregadoNacional` é `null` (não há como estimar aquela UF sem inventar
@@ -112,6 +167,7 @@ export function estimarVotos(
   const porUfResultado: UfOrigemVotos[] = [];
   const ufsComPesquisa: string[] = [];
   const ufsSemPesquisa: string[] = [];
+  const ufsNormalizadas: string[] = [];
 
   let eleitoradoTotal = 0;
   let eleitoradoComPesquisaEstadual = 0;
@@ -120,46 +176,96 @@ export function estimarVotos(
   for (const entrada of porUf) {
     eleitoradoTotal += entrada.eleitores;
     const usaEstadual = entrada.agregado !== null;
-    // Validado acima: se !usaEstadual, agregadoNacional não é null.
-    const agregado = (entrada.agregado ?? agregadoNacional)!;
-    const origem: 'estadual' | 'nacional' = usaEstadual ? 'estadual' : 'nacional';
+    const origemUf: 'estadual' | 'nacional' = usaEstadual ? 'estadual' : 'nacional';
+
+    let contribuicoes: Contribuicao[];
 
     if (usaEstadual) {
       ufsComPesquisa.push(entrada.uf);
       eleitoradoComPesquisaEstadual += entrada.eleitores;
+
+      const estadual = entrada.agregado!;
+      const chavesEstaduais = new Set(estadual.candidatos.map((c) => chaveComparacao(c.candidato)));
+
+      contribuicoes = estadual.candidatos.map(
+        (c): Contribuicao => ({
+          candidato: c.candidato.trim(),
+          partido: c.partido,
+          pct: c.pct,
+          origem: 'estadual',
+        }),
+      );
+
+      // Candidatos do nacional ausentes da pesquisa estadual (muitas
+      // pesquisas estaduais só testam os 2-3 primeiros colocados): supridos
+      // pelo percentual nacional, para não zerar candidatos menores.
+      if (agregadoNacional) {
+        for (const cn of agregadoNacional.candidatos) {
+          if (chavesEstaduais.has(chaveComparacao(cn.candidato))) continue;
+          contribuicoes.push({
+            candidato: cn.candidato.trim(),
+            partido: cn.partido,
+            pct: cn.pct,
+            origem: 'complemento-nacional',
+          });
+        }
+      }
     } else {
       ufsSemPesquisa.push(entrada.uf);
+      // Validado acima: se !usaEstadual, agregadoNacional não é null.
+      const nacional = agregadoNacional!;
+      contribuicoes = nacional.candidatos.map(
+        (c): Contribuicao => ({
+          candidato: c.candidato.trim(),
+          partido: c.partido,
+          pct: c.pct,
+          origem: 'nacional',
+        }),
+      );
     }
 
-    const votosPorCandidato: Record<string, number> = {};
-    let somaPctCandidatos = 0;
+    const somaPctBruto = contribuicoes.reduce((soma, c) => soma + c.pct, 0);
+    const precisaNormalizar = somaPctBruto > 100;
+    const fatorNormalizacao = precisaNormalizar ? 100 / somaPctBruto : 1;
+    if (precisaNormalizar) ufsNormalizadas.push(entrada.uf);
 
-    for (const c of agregado.candidatos) {
-      const chave = c.candidato.trim();
-      const votos = entrada.eleitores * (c.pct / 100);
-      somaPctCandidatos += c.pct;
-      votosPorCandidato[chave] = (votosPorCandidato[chave] ?? 0) + votos;
+    const votosPorCandidato: Record<string, VotosCandidatoUf> = {};
+    let somaVotosAtribuidosUf = 0;
 
-      const atual: Acumulador = acumulado.get(chave) ?? {
-        candidato: chave,
+    for (const c of contribuicoes) {
+      const pctFinal = c.pct * fatorNormalizacao;
+      const votos = entrada.eleitores * (pctFinal / 100);
+      somaVotosAtribuidosUf += votos;
+
+      votosPorCandidato[c.candidato] = { votos, origem: c.origem };
+
+      const atual: Acumulador = acumulado.get(c.candidato) ?? {
+        candidato: c.candidato,
         partido: c.partido,
         votos: 0,
         votosComPesquisa: 0,
         votosSemPesquisa: 0,
+        votosComplementoNacional: 0,
       };
       atual.votos += votos;
-      if (usaEstadual) atual.votosComPesquisa += votos;
-      else atual.votosSemPesquisa += votos;
+      if (c.origem === 'estadual') atual.votosComPesquisa += votos;
+      else if (c.origem === 'nacional') atual.votosSemPesquisa += votos;
+      else atual.votosComplementoNacional += votos;
       if (atual.partido === null && c.partido !== null) atual.partido = c.partido;
-      acumulado.set(chave, atual);
+      acumulado.set(c.candidato, atual);
     }
 
-    // Parcela do eleitorado desta UF não coberta por candidatos (brancos,
-    // nulos, indecisos, outros): o restante até 100% do pct dos candidatos.
-    const pctNaoAtribuido = Math.max(0, 100 - somaPctCandidatos);
-    naoAtribuidosVotos += entrada.eleitores * (pctNaoAtribuido / 100);
+    // Parcela do eleitorado desta UF não coberta por nenhum candidato
+    // (brancos, nulos, indecisos, outros): nunca negativa — quando a
+    // normalização acima já usou 100% do eleitorado, fica em 0.
+    naoAtribuidosVotos += Math.max(0, entrada.eleitores - somaVotosAtribuidosUf);
 
-    porUfResultado.push({ uf: entrada.uf, eleitores: entrada.eleitores, origem, votosPorCandidato });
+    porUfResultado.push({
+      uf: entrada.uf,
+      eleitores: entrada.eleitores,
+      origem: origemUf,
+      votosPorCandidato,
+    });
   }
 
   const candidatosSemPct: (Omit<CandidatoEstimado, 'pctDoEleitorado' | 'pctDosVotosAtribuidos'> & {
@@ -170,6 +276,7 @@ export function estimarVotos(
     votos: acc.votos,
     votosDeUfComPesquisa: acc.votosComPesquisa,
     votosDeUfSemPesquisa: acc.votosSemPesquisa,
+    votosComplementoNacional: acc.votosComplementoNacional,
   }));
 
   const totalVotosAtribuidos = candidatosSemPct.reduce((soma, c) => soma + c.votos, 0);
@@ -202,5 +309,6 @@ export function estimarVotos(
     ufsSemPesquisa,
     porUf: porUfResultado,
     comparacaoNacional,
+    ufsNormalizadas,
   };
 }
