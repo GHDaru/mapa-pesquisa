@@ -469,8 +469,10 @@ th {
   }
   .state-panel__handle {
     display: block;
+    flex: 0 0 4px;
     width: 40px;
     height: 4px;
+    min-height: 4px;
     border-radius: var(--radius-pill);
     background: var(--color-border-strong);
     margin: 0 auto calc(-1 * var(--space-2));
