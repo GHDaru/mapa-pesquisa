@@ -1,3 +1,4 @@
+import { normalizarSigla } from './party.js';
 import { type Espectro, espectroDoPartido } from './spectrum.js';
 import type { Partido } from './party.js';
 import type { Agregado, NivelConfianca } from './aggregate.js';
@@ -53,7 +54,7 @@ export function criarCadeiraSenado(dados: DadosCadeiraSenado): CadeiraSenado {
   return {
     uf: dados.uf,
     senador: dados.senador.trim(),
-    partido: dados.partido.trim(),
+    partido: normalizarSigla(dados.partido) ?? dados.partido.trim(),
     mandatoInicio: dados.mandatoInicio,
     mandatoFim: dados.mandatoFim,
     emDisputa2026: dados.emDisputa2026,
