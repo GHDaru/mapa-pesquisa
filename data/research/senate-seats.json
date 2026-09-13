@@ -24,7 +24,8 @@
     "mandatoInicio": 2023,
     "mandatoFim": 2031,
     "emDisputa2026": false,
-    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/AC"
+    "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/AC",
+    "observacao": "Eleito em 2022 pelo União Brasil; Poder360 (set/2026) o cita como Republicanos e candidato a governador. Uma busca de verificação ainda indicou União."
   },
   {
     "uf": "AL",
@@ -261,12 +262,12 @@
   {
     "uf": "MA",
     "senador": "Eliziane Gama",
-    "partido": "PSD",
+    "partido": "PT",
     "mandatoInicio": 2019,
     "mandatoFim": 2027,
     "emDisputa2026": true,
     "fonte": "https://www25.senado.leg.br/web/senadores/por-uf/-/uf/MA",
-    "observacao": "Fontes desta sessão divergiram entre PSD e PT para o partido atual; PSD é o valor considerado mais provável (migração histórica do Cidadania para o PSD), mas não totalmente confirmado."
+    "observacao": "Eleita em 2018 pelo PPS/Cidadania, passou pelo PSD; fontes de 2026 a citam no PT."
   },
   {
     "uf": "MA",
