@@ -155,3 +155,24 @@ export function criarLinkFonte(fonte: Fonte, texto?: string): HTMLAnchorElement 
 export function criarSeloEmpateTecnico(): HTMLSpanElement {
   return criarEl('span', { className: 'pv-selo pv-selo-empate', texto: 'Empate técnico' });
 }
+
+export interface FaixaIncerteza {
+  /** Início da faixa na escala 0..100. */
+  readonly esquerda: number;
+  /** Largura da faixa na escala 0..100. */
+  readonly largura: number;
+}
+
+/**
+ * Faixa de incerteza (±`margemReferencia`) centrada em `pct`, recortada na
+ * escala 0..100 — usada atrás da barra do candidato em `presidential-view.ts`
+ * e atrás do número do líder no hero de `home-view.ts`. Função pura (sem
+ * DOM), extraída para as duas views consumirem o mesmo cálculo em vez de
+ * duplicar a lógica (ver docs/ux-spec.md §2(c)).
+ */
+export function calcularFaixaIncerteza(pct: number, margemReferencia: number): FaixaIncerteza {
+  const pctLimitado = Math.max(0, Math.min(100, pct));
+  const esquerda = Math.max(0, pctLimitado - margemReferencia);
+  const direita = Math.min(100, pctLimitado + margemReferencia);
+  return { esquerda, largura: Math.max(0, direita - esquerda) };
+}

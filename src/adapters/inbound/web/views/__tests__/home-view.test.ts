@@ -96,6 +96,9 @@ describe('home-view/montarResumoDoDia', () => {
     expect(resumo.presidencial?.partido).toBe('PT');
     expect(resumo.presidencial?.vantagem).toBeCloseTo(5, 6);
     expect(resumo.presidencial?.empateTecnico).toBe(false);
+    expect(resumo.presidencial?.segundo).toEqual({ candidato: 'Ciclana Souza', partido: 'PL', pct: 40 });
+    expect(resumo.presidencial?.margemReferencia).toBeGreaterThan(0);
+    expect(resumo.presidencial?.pesquisasUsadas).toBe(1);
 
     expect(resumo.votos).not.toBeNull();
     expect(resumo.votos?.primeiro.candidato).toBe('Fulano da Silva');
@@ -113,6 +116,19 @@ describe('home-view/montarResumoDoDia', () => {
   it('presidencial fica null quando o agregado existe mas não tem líder (só brancos/nulos)', () => {
     const resumo = montarResumoDoDia(agregadoSemLider(), null, TOTAL_POR_ESPECTRO_COMPLETO);
     expect(resumo.presidencial).toBeNull();
+  });
+
+  it('presidencial.segundo fica null quando só há 1 candidato no agregado', () => {
+    const pesquisas = [
+      pesquisaFake('p3', [
+        { candidato: 'Único Candidato', partido: 'PT', pct: 60 },
+        { candidato: 'Brancos/nulos', partido: null, pct: 40 },
+      ]),
+    ];
+    const agregado = agregarPesquisas(pesquisas, {}, HOJE);
+    if (!agregado) throw new Error('fixture inválida: esperava um agregado.');
+    const resumo = montarResumoDoDia(agregado, null, TOTAL_POR_ESPECTRO_COMPLETO);
+    expect(resumo.presidencial?.segundo).toBeNull();
   });
 
   it('votos fica null quando a estimativa de votos é null (eleitorado insuficiente)', () => {

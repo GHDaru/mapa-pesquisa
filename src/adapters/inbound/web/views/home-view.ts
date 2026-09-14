@@ -1,5 +1,5 @@
 import '../styles/home.css';
-import type { CasosDeUso } from '../../../../application/use-cases/index.js';
+import type { CasosDeUso, VisaoGeralUf } from '../../../../application/use-cases/index.js';
 import { type Agregado, ehLinhaNaoCandidato, JANELA_DIAS_PADRAO, MEIA_VIDA_DIAS_PADRAO } from '../../../../domain/aggregate.js';
 import type { Partido } from '../../../../domain/party.js';
 import { dataReferencia, type Fonte, type Pesquisa } from '../../../../domain/poll.js';
@@ -8,22 +8,42 @@ import { espectroDoPartido, type Espectro } from '../../../../domain/spectrum.js
 import type { EstimativaVotos } from '../../../../domain/vote-estimate.js';
 import { nomeCurto } from './candidate-names.js';
 import { formatarVantagem } from '../format.js';
-import { classeEspectro, criarEl, formatarData, formatarNumero, formatarPct, rotuloEspectro } from './_shared.js';
+import {
+  calcularFaixaIncerteza,
+  classeEspectro,
+  criarEl,
+  formatarData,
+  formatarNumero,
+  formatarPct,
+  rotuloEspectro,
+  tokenFillEspectro,
+} from './_shared.js';
 
 /* =========================================================================
  * "Resumo do dia" — função pura (sem DOM, sem I/O). Recebe os agregados já
- * calculados pelos casos de uso e só reformata os 3 números do hero: líder
- * presidencial (1º turno), estimativa de votos dos 2 primeiros e a
- * projeção do Senado por bloco de espectro. Testada isoladamente em
- * __tests__/home-view.test.ts.
+ * calculados pelos casos de uso e reformata os números do hero e das seções
+ * seguintes: líder presidencial (1º turno, com o 2º colocado), estimativa
+ * de votos dos 2 primeiros e a projeção do Senado por bloco de espectro.
+ * Testada isoladamente em __tests__/home-view.test.ts.
  * ======================================================================= */
+
+export interface ResumoSegundoColocado {
+  readonly candidato: string;
+  readonly partido: string | null;
+  readonly pct: number;
+}
 
 export interface ResumoLiderPresidencial {
   readonly lider: string;
   readonly partido: string | null;
   readonly pct: number;
+  readonly segundo: ResumoSegundoColocado | null;
   readonly vantagem: number;
   readonly empateTecnico: boolean;
+  /** Margem de referência ponderada do agregado — desenha a faixa de incerteza do hero. */
+  readonly margemReferencia: number;
+  /** Quantas pesquisas entraram na média (janela de recência) — "média de N pesquisas" do hero. */
+  readonly pesquisasUsadas: number;
 }
 
 export interface ResumoVotoCandidato {
@@ -84,8 +104,17 @@ export function montarResumoDoDia(
           lider: agregadoPresidencialTurno1.lider.candidato,
           partido: agregadoPresidencialTurno1.lider.partido,
           pct: agregadoPresidencialTurno1.lider.pct,
+          segundo: agregadoPresidencialTurno1.segundo
+            ? {
+                candidato: agregadoPresidencialTurno1.segundo.candidato,
+                partido: agregadoPresidencialTurno1.segundo.partido,
+                pct: agregadoPresidencialTurno1.segundo.pct,
+              }
+            : null,
           vantagem: agregadoPresidencialTurno1.vantagem,
           empateTecnico: agregadoPresidencialTurno1.empateTecnico,
+          margemReferencia: agregadoPresidencialTurno1.margemReferencia,
+          pesquisasUsadas: agregadoPresidencialTurno1.pesquisasUsadas.length,
         }
       : null;
 
@@ -119,6 +148,8 @@ export function montarResumoDoDia(
  * das classes `pv-*` de styles/views.css — ver styles/home.css).
  * ======================================================================= */
 
+const SVG_NS = 'http://www.w3.org/2000/svg';
+
 /** Badge de sigla de partido, colorido pelo espectro — reforço textual via title/sr-only, nunca só a cor. */
 function criarBadgePartido(sigla: string, espectro: Espectro): HTMLElement {
   return criarEl(
@@ -136,7 +167,7 @@ function criarBadgePartido(sigla: string, espectro: Espectro): HTMLElement {
 function criarLinkFonte(fonte: Fonte): HTMLAnchorElement {
   return criarEl(
     'a',
-    { className: 'hm-link-fonte', attrs: { href: fonte.url, target: '_blank', rel: 'noopener noreferrer' } },
+    { className: 'hm-link-fonte hm-quiet-link', attrs: { href: fonte.url, target: '_blank', rel: 'noopener noreferrer' } },
     ['Fonte', criarEl('span', { className: 'sr-only', texto: ' (abre em nova aba)' })],
   );
 }
@@ -185,27 +216,172 @@ function top2Candidatos(p: Pesquisa): readonly { candidato: string; partido: str
 }
 
 /* =========================================================================
- * 1. Hero
+ * 1. Hero — ver docs/briefing-landing-page.md "Estrutura do hero".
  * ======================================================================= */
 
-function construirCardPresidencial(p: ResumoLiderPresidencial | null, partidos: readonly Partido[]): HTMLElement {
-  if (!p) {
-    return criarEl('div', { className: 'hm-resumo__card' }, [
-      criarEl('p', { className: 'hm-resumo__label', texto: 'Presidente — 1º turno' }),
-      criarEl('p', { className: 'hm-resumo__vazio', texto: 'Ainda sem pesquisa presidencial suficiente.' }),
-    ]);
-  }
-  const espectro = espectroDoPartido(p.partido, partidos);
-  return criarEl('div', { className: 'hm-resumo__card' }, [
-    criarEl('p', { className: 'hm-resumo__label', texto: 'Presidente — 1º turno' }),
-    criarEl('p', { className: 'hm-resumo__value' }, [
-      nomeCurto(p.lider),
-      p.partido ? criarBadgePartido(p.partido, espectro) : null,
+/**
+ * Textura ambiente do hero: hachura diagonal a 5% de opacidade (a
+ * opacidade em si vive em `.hm-hero__texture`, styles/home.css) — mesmo
+ * princípio visual de "sem dados"/incerteza já usado no mapa e no
+ * hemiciclo (map-view.ts, senate-view.ts), aqui puramente decorativo atrás
+ * do conteúdo do hero.
+ */
+function construirTexturaHero(): SVGSVGElement {
+  const svg = document.createElementNS(SVG_NS, 'svg') as SVGSVGElement;
+  svg.setAttribute('class', 'hm-hero__texture');
+  svg.setAttribute('aria-hidden', 'true');
+  svg.setAttribute('focusable', 'false');
+
+  const defs = document.createElementNS(SVG_NS, 'defs');
+  const pattern = document.createElementNS(SVG_NS, 'pattern');
+  pattern.setAttribute('id', 'hm-hero-hachura');
+  pattern.setAttribute('patternUnits', 'userSpaceOnUse');
+  pattern.setAttribute('width', '8');
+  pattern.setAttribute('height', '8');
+  pattern.setAttribute('patternTransform', 'rotate(45)');
+  const linha = document.createElementNS(SVG_NS, 'line');
+  linha.setAttribute('x1', '0');
+  linha.setAttribute('y1', '0');
+  linha.setAttribute('x2', '0');
+  linha.setAttribute('y2', '8');
+  linha.setAttribute('stroke', 'currentColor');
+  linha.setAttribute('stroke-width', '2');
+  pattern.append(linha);
+  defs.append(pattern);
+  svg.append(defs);
+
+  const rect = document.createElementNS(SVG_NS, 'rect');
+  rect.setAttribute('width', '100%');
+  rect.setAttribute('height', '100%');
+  rect.setAttribute('fill', 'url(#hm-hero-hachura)');
+  svg.append(rect);
+
+  return svg;
+}
+
+/** Eyebrow: "Presidente · 1º turno" + timestamp exato de `meta.atualizadoEm` — a fonte não traz hora, então o texto nunca inventa uma ("Atualizado em dd/mm/aaaa", nunca "às hh:mm"). */
+function construirEyebrow(atualizadoEm: string): HTMLElement {
+  return criarEl('p', { className: 'hm-hero__eyebrow' }, [
+    criarEl('span', { className: 'hm-hero__eyebrow-tag', texto: 'Presidente · 1º turno' }),
+    // Separador + timestamp num único span (`white-space: nowrap` via CSS)
+    // para os dois quebrarem juntos em telas estreitas, nunca deixando o
+    // "·" sozinho no fim da linha do olho editorial.
+    criarEl('span', { className: 'hm-hero__eyebrow-meta' }, [
+      criarEl('span', { className: 'hm-hero__eyebrow-sep', texto: '· ', attrs: { 'aria-hidden': 'true' } }),
+      criarEl('span', {
+        className: 'hm-hero__timestamp tabular-nums',
+        texto: `Atualizado em ${formatarData(atualizadoEm)}`,
+      }),
     ]),
-    criarEl('p', { className: 'hm-resumo__detail tabular-nums', texto: `${formatarPct(p.pct)} · ${formatarVantagem(p.vantagem)}` }),
-    p.empateTecnico ? criarEl('span', { className: 'pill pill--empate', texto: 'Empate técnico' }) : null,
   ]);
 }
+
+function construirLinhaLider(p: ResumoLiderPresidencial, espectro: Espectro): HTMLElement {
+  return criarEl('p', { className: 'hm-hero__lider' }, [
+    criarEl('span', { className: 'hm-hero__lider-nome', texto: nomeCurto(p.lider) }),
+    p.partido ? criarBadgePartido(p.partido, espectro) : null,
+    criarEl('span', { className: 'hm-hero__lider-pct', texto: formatarPct(p.pct) }),
+  ]);
+}
+
+/**
+ * Faixa de margem de erro sob o número do líder — mesma lógica visual de
+ * `.pv-bar-track`/`.pv-bar-uncertainty` (presidential-view.ts,
+ * styles/views.css), calculada por `calcularFaixaIncerteza`
+ * (views/_shared.ts) para não duplicar a fórmula em duas views. Puramente
+ * ilustrativa (a vantagem/empate já está dita por extenso ao lado —
+ * `aria-hidden`).
+ */
+function construirFaixaLider(p: ResumoLiderPresidencial, espectroLider: Espectro): HTMLElement {
+  const pct = Math.max(0, Math.min(100, p.pct));
+  const { esquerda, largura } = calcularFaixaIncerteza(pct, p.margemReferencia);
+  const cor = tokenFillEspectro(espectroLider);
+
+  const filhos: (HTMLElement | null)[] = [
+    criarEl('span', {
+      className: 'hm-hero__track-uncertainty',
+      attrs: { style: `left:${esquerda}%;width:${largura}%;background:${cor}` },
+    }),
+    criarEl('span', { className: 'hm-hero__track-fill', attrs: { style: `width:${pct}%;background:${cor}` } }),
+  ];
+  if (p.segundo) {
+    const pctSegundo = Math.max(0, Math.min(100, p.segundo.pct));
+    filhos.push(criarEl('span', { className: 'hm-hero__track-tick', attrs: { style: `left:${pctSegundo}%` } }));
+  }
+
+  return criarEl('div', { className: 'hm-hero__track', attrs: { 'aria-hidden': 'true' } }, filhos);
+}
+
+/** 2º colocado + vantagem ("+N,N pts", Fraunces reto) ou "Empate técnico" (Fraunces itálico) — nunca só cor. */
+function construirLinhaSegundo(p: ResumoLiderPresidencial, segundo: ResumoSegundoColocado, espectro: Espectro): HTMLElement {
+  const vantagemOuEmpate = p.empateTecnico
+    ? criarEl('em', { className: 'hm-hero__empate', texto: 'Empate técnico' })
+    : criarEl('strong', { className: 'hm-hero__vantagem', texto: formatarVantagem(p.vantagem) });
+
+  return criarEl('p', { className: 'hm-hero__segundo' }, [
+    criarEl('span', { className: 'hm-hero__segundo-label', texto: '2º colocado:' }),
+    criarEl('span', { className: 'hm-hero__segundo-nome', texto: nomeCurto(segundo.candidato) }),
+    segundo.partido ? criarBadgePartido(segundo.partido, espectro) : null,
+    criarEl('span', { className: 'hm-hero__segundo-pct tabular-nums', texto: formatarPct(segundo.pct) }),
+    vantagemOuEmpate,
+  ]);
+}
+
+/** "Média de N pesquisas" + link inline "como calculamos" (cor `--hm-selo`) — sempre visível perto do número, nunca em rodapé. */
+function construirLinhaConfianca(p: ResumoLiderPresidencial): HTMLElement {
+  return criarEl('p', { className: 'hm-hero__confianca' }, [
+    'Média de ',
+    criarEl('span', { className: 'tabular-nums', texto: formatarNumero(p.pesquisasUsadas, 0) }),
+    p.pesquisasUsadas === 1 ? ' pesquisa · ' : ' pesquisas · ',
+    criarEl('a', { className: 'hm-hero__como', texto: 'como calculamos', attrs: { href: '#/presidente' } }),
+  ]);
+}
+
+function construirHeroVazio(): HTMLElement {
+  return criarEl('p', {
+    className: 'hm-hero__vazio',
+    texto: 'Ainda não há pesquisa presidencial de 1º turno suficiente para calcular um líder.',
+  });
+}
+
+function construirHero(casos: CasosDeUso, resumo: ResumoDoDia, partidos: readonly Partido[]): HTMLElement {
+  const meta = casos.getMeta();
+  const p = resumo.presidencial;
+
+  const conteudo: (Node | null)[] = [
+    criarEl('h1', { className: 'sr-only', texto: 'Mapa das Pesquisas 2026' }),
+    construirEyebrow(meta.atualizadoEm),
+  ];
+
+  if (p) {
+    const espectroLider = espectroDoPartido(p.partido, partidos);
+    conteudo.push(construirLinhaLider(p, espectroLider));
+    conteudo.push(construirFaixaLider(p, espectroLider));
+    if (p.segundo) {
+      conteudo.push(construirLinhaSegundo(p, p.segundo, espectroDoPartido(p.segundo.partido, partidos)));
+    }
+    conteudo.push(construirLinhaConfianca(p));
+  } else {
+    conteudo.push(construirHeroVazio());
+  }
+
+  conteudo.push(
+    criarEl('div', { className: 'hm-hero__actions' }, [
+      criarEl('a', { className: 'hm-cta hm-cta--primary', texto: 'Ver o mapa', attrs: { href: '#/mapa' } }),
+      criarEl('a', { className: 'hm-cta', texto: 'Ver presidente', attrs: { href: '#/presidente' } }),
+    ]),
+  );
+
+  return criarEl('section', { className: 'hm-hero', attrs: { 'aria-label': 'Resumo da disputa presidencial' } }, [
+    construirTexturaHero(),
+    criarEl('div', { className: 'hm-hero__inner' }, conteudo),
+  ]);
+}
+
+/* =========================================================================
+ * 2. Resumo do dia — tiles quietos: estimativa de votos, Senado por
+ * espectro e o tamanho da base de pesquisas (com o selo TSE).
+ * ======================================================================= */
 
 function construirLinhaVoto(c: ResumoVotoCandidato, partidos: readonly Partido[]): HTMLElement {
   const espectro = espectroDoPartido(c.partido, partidos);
@@ -267,39 +443,113 @@ function construirCardSenado(s: ResumoSenado): HTMLElement {
   ]);
 }
 
-function construirHero(casos: CasosDeUso, resumo: ResumoDoDia, partidos: readonly Partido[]): HTMLElement {
-  const meta = casos.getMeta();
+/** Tamanho da base de pesquisas, com o selo "Registrado no TSE" (`--hm-verificado`) ao lado da contagem — ver briefing item 5. */
+function construirCardBaseDePesquisas(casos: CasosDeUso): HTMLElement {
   const totais = casos.getPollsDatabase().totais;
-
-  const resumoEl = criarEl('div', { className: 'hm-resumo', attrs: { 'aria-label': 'Resumo do dia' } }, [
-    construirCardPresidencial(resumo.presidencial, partidos),
-    construirCardVotos(resumo.votos, partidos),
-    construirCardSenado(resumo.senado),
+  return criarEl('div', { className: 'hm-resumo__card' }, [
+    criarEl('p', { className: 'hm-resumo__label', texto: 'Base de pesquisas' }),
+    criarEl('p', { className: 'hm-resumo__value tabular-nums', texto: formatarNumero(totais.total, 0) }),
+    criarEl('p', { className: 'hm-resumo__detail' }, [
+      criarEl('span', { className: 'hm-selo-tse' }, [
+        criarEl('span', { className: 'hm-selo-tse__icone', texto: '✓', attrs: { 'aria-hidden': 'true' } }),
+        'Registrado no TSE',
+      ]),
+      criarEl('span', {}, [
+        criarEl('span', { className: 'tabular-nums', texto: formatarNumero(totais.comRegistroTSE, 0) }),
+        ` de ${formatarNumero(totais.total, 0)} pesquisas`,
+      ]),
+    ]),
   ]);
+}
 
-  return criarEl('section', { className: 'hm-hero' }, [
-    criarEl('h1', { className: 'hm-hero__title', texto: 'Mapa das Pesquisas 2026' }),
-    criarEl('p', {
-      className: 'hm-hero__lede',
-      texto:
-        'Um mapa do Brasil com quem lidera as pesquisas para governador, senador e presidente, atualizado todo dia a partir de pesquisas registradas no TSE.',
-    }),
-    criarEl('div', { className: 'hm-hero__meta' }, [
-      criarEl('span', {
-        className: 'hm-pill tabular-nums',
-        texto: `Atualizado em ${formatarData(meta.atualizadoEm)} · ${formatarNumero(totais.total, 0)} pesquisas na base`,
-      }),
+function construirResumoDoDia(casos: CasosDeUso, resumo: ResumoDoDia, partidos: readonly Partido[]): HTMLElement {
+  return criarEl('section', { className: 'hm-section', attrs: { 'aria-label': 'Resumo do dia' } }, [
+    criarEl('h2', { className: 'hm-section__title', texto: 'Resumo do dia' }),
+    criarEl('div', { className: 'hm-resumo' }, [
+      construirCardVotos(resumo.votos, partidos),
+      construirCardSenado(resumo.senado),
+      construirCardBaseDePesquisas(casos),
     ]),
-    criarEl('div', { className: 'hm-hero__actions' }, [
-      criarEl('a', { className: 'btn btn--primario', texto: 'Ver o mapa', attrs: { href: '#/mapa' } }),
-      criarEl('a', { className: 'btn', texto: 'Presidente', attrs: { href: '#/presidente' } }),
-    ]),
-    resumoEl,
   ]);
 }
 
 /* =========================================================================
- * 2. Últimas pesquisas
+ * 3. Prévia do mapa — "prova", não abertura: grade reduzida das 27 UFs
+ * coloridas pelo espectro de quem lidera o governo (getMapOverview()), com
+ * link para as telas completas do mapa e do hemiciclo do Senado.
+ * ======================================================================= */
+
+/** Descrição por extenso do chip, usada em `title` e num `sr-only` — nunca só a cor. */
+function descricaoChipEstado(u: VisaoGeralUf): string {
+  if (u.semDados) return `${u.uf}: ainda sem pesquisa de governador suficiente.`;
+  const lider = u.liderGovernador ? nomeCurto(u.liderGovernador) : '—';
+  const partido = u.partido ? ` (${u.partido})` : '';
+  const situacao = u.empateTecnico ? 'empate técnico' : `vantagem de ${formatarVantagem(u.vantagem)}`;
+  return `${u.uf}: ${lider}${partido} — ${situacao}.`;
+}
+
+function construirChipEstado(u: VisaoGeralUf): HTMLElement {
+  const classes = ['hm-mapa-preview__chip'];
+  if (u.semDados) {
+    classes.push('hm-mapa-preview__chip--sem-dados');
+  } else {
+    classes.push(classeEspectro(u.espectro));
+    if (u.empateTecnico) classes.push('hm-mapa-preview__chip--empate');
+  }
+  const descricao = descricaoChipEstado(u);
+  return criarEl('li', { className: classes.join(' '), attrs: { title: descricao } }, [
+    u.uf,
+    criarEl('span', { className: 'sr-only', texto: ` — ${descricao}` }),
+  ]);
+}
+
+const LEGENDA_ESPECTRO_MAPA: readonly Espectro[] = ['esquerda', 'centro-esquerda', 'centro', 'centro-direita', 'direita'];
+
+function construirLegendaMapa(): HTMLElement {
+  const itens = LEGENDA_ESPECTRO_MAPA.map((espectro) =>
+    criarEl('li', {}, [
+      criarEl('span', { className: `hm-mapa-preview__swatch ${classeEspectro(espectro)}`, attrs: { 'aria-hidden': 'true' } }),
+      rotuloEspectro(espectro),
+    ]),
+  );
+  itens.push(
+    criarEl('li', {}, [
+      criarEl('span', { className: 'hm-mapa-preview__swatch hm-mapa-preview__swatch--sem-dados', attrs: { 'aria-hidden': 'true' } }),
+      'Sem pesquisa',
+    ]),
+  );
+  return criarEl('ul', { className: 'hm-mapa-preview__legend' }, itens);
+}
+
+function construirPreviaDoMapa(casos: CasosDeUso): HTMLElement {
+  const overview = casos.getMapOverview();
+  const comDados = overview.filter((u) => !u.semDados).length;
+
+  return criarEl('section', { className: 'hm-section', attrs: { 'aria-labelledby': 'hm-mapa-preview-titulo' } }, [
+    criarEl('div', { className: 'hm-section__header' }, [
+      criarEl('h2', { className: 'hm-section__title', texto: 'O mapa até agora', attrs: { id: 'hm-mapa-preview-titulo' } }),
+      criarEl('a', { className: 'hm-section__link', texto: 'Ver mapa completo →', attrs: { href: '#/mapa' } }),
+    ]),
+    criarEl('p', { className: 'hm-mapa-preview__caption' }, [
+      criarEl('span', { className: 'tabular-nums', texto: formatarNumero(comDados, 0) }),
+      ' de ',
+      criarEl('span', { className: 'tabular-nums', texto: formatarNumero(overview.length, 0) }),
+      ' estados já têm pesquisa de governador — o espectro de quem lidera em cada um:',
+    ]),
+    criarEl(
+      'ul',
+      { className: 'hm-mapa-preview__grid', attrs: { 'aria-label': 'Estados por espectro de quem lidera o governo' } },
+      overview.map((u) => construirChipEstado(u)),
+    ),
+    construirLegendaMapa(),
+    criarEl('p', { className: 'hm-mapa-preview__links' }, [
+      criarEl('a', { className: 'hm-quiet-link', texto: 'Ver hemiciclo do Senado →', attrs: { href: '#/senado' } }),
+    ]),
+  ]);
+}
+
+/* =========================================================================
+ * 4. Últimas pesquisas
  * ======================================================================= */
 
 function construirLinhaCandidatoPesquisa(
@@ -356,7 +606,7 @@ function construirUltimasPesquisas(casos: CasosDeUso, partidos: readonly Partido
 }
 
 /* =========================================================================
- * 3. O que você encontra aqui
+ * 5. O que você encontra aqui
  * ======================================================================= */
 
 interface ExploreCard {
@@ -436,7 +686,7 @@ function construirExplorar(casos: CasosDeUso): HTMLElement {
 }
 
 /* =========================================================================
- * 4. Como funciona
+ * 6. Como funciona
  * ======================================================================= */
 
 interface Passo {
@@ -489,7 +739,7 @@ function construirComoFunciona(): HTMLElement {
 }
 
 /* =========================================================================
- * 5. Fontes e créditos
+ * 7. Fontes e créditos
  * ======================================================================= */
 
 function construirCreditos(casos: CasosDeUso): HTMLElement {
@@ -561,6 +811,8 @@ export function renderHome(container: HTMLElement, casos: CasosDeUso): void {
 
   const view = criarEl('div', { className: 'hm-view' }, [
     construirHero(casos, resumo, partidos),
+    construirResumoDoDia(casos, resumo, partidos),
+    construirPreviaDoMapa(casos),
     construirUltimasPesquisas(casos, partidos),
     construirExplorar(casos),
     construirComoFunciona(),

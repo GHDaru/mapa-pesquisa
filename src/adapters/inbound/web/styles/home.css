@@ -1,15 +1,79 @@
 /*
- * Tela inicial (src/adapters/inbound/web/views/home-view.ts). Prefixo `hm-`,
- * independente de styles/views.css (que é das telas de Presidente/Senado/
- * Partidos) — consome só os tokens de docs/design-system.md e as classes
- * globais de styles/app.css (.btn, .pill, .tabular-nums, .sr-only).
+ * Tela inicial (src/adapters/inbound/web/views/home-view.ts) — ver
+ * docs/briefing-landing-page.md. Paleta e tipografia próprias desta tela,
+ * prefixo `hm-`: "quase-preto/quase-papel" editorial, distinto do azul-Linear
+ * do resto do produto (styles/tokens.css, NÃO alterado aqui). Reaproveita de
+ * tokens.css só o que é compartilhado por design (escala de espaçamento,
+ * raio, motion, tipografia base e o espectro político --spectrum-*).
  */
+
+/* ============ TOKENS `--hm-*` — tema claro (padrão) ============ */
+:root {
+  --hm-canvas: #f7f6f2;
+  --hm-surface: #ffffff;
+  --hm-ink: #17181b;
+  --hm-ink-muted: #5c6066;
+
+  /* Dourado institucional (lacre da urna) — único acento de marca da
+     landing. Escurecido no tema claro frente ao valor do briefing
+     (#d9a441) para manter contraste de texto >= 4.5:1 sobre --hm-canvas/
+     --hm-surface claros — mesmo raciocínio de tokens.css ao escurecer
+     --spectrum-3/4/5-fill no tema claro. `--hm-selo-ink` é o texto usado
+     SOBRE um preenchimento `--hm-selo` (hover de CTA): claro sobre o
+     dourado escuro do tema claro, escuro sobre o dourado vívido do tema
+     escuro. */
+  --hm-selo: #8f640a;
+  --hm-selo-ink: #fffaf0;
+  --hm-verificado: #1f7a3d;
+
+  /* Superfícies/bordas derivadas — calculadas a partir de --hm-ink/--hm-surface
+     acima, então herdam o tema certo sem precisar de redeclaração nos blocos
+     de tema escuro abaixo. */
+  --hm-surface-2: color-mix(in srgb, var(--hm-ink) 4%, var(--hm-surface));
+  --hm-border: color-mix(in srgb, var(--hm-ink) 12%, transparent);
+  --hm-border-strong: color-mix(in srgb, var(--hm-ink) 22%, transparent);
+  --hm-ink-faint: color-mix(in srgb, var(--hm-ink-muted) 65%, transparent);
+
+  /* Tipografia própria da landing — Inter (UI/corpo) já carregada
+     globalmente; Fraunces (display do hero) e JetBrains Mono (dados) via
+     index.html. */
+  --hm-font-display: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', serif;
+  --hm-font-mono: 'JetBrains Mono', 'Berkeley Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+/* ============ TEMA ESCURO ============ */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --hm-canvas: #0a0b0d;
+    --hm-surface: #17181b;
+    --hm-ink: #f2f0ea;
+    --hm-ink-muted: #9a9ea5;
+
+    --hm-selo: #d9a441;
+    --hm-selo-ink: #171208;
+    --hm-verificado: #2f9e52;
+  }
+}
+:root[data-theme='dark'] {
+  --hm-canvas: #0a0b0d;
+  --hm-surface: #17181b;
+  --hm-ink: #f2f0ea;
+  --hm-ink-muted: #9a9ea5;
+
+  --hm-selo: #d9a441;
+  --hm-selo-ink: #171208;
+  --hm-verificado: #2f9e52;
+}
+
+/* ============ Estrutura geral ============ */
 
 .hm-view {
   display: flex;
   flex-direction: column;
   gap: var(--space-8);
   padding-block: var(--space-5) var(--space-7);
+  background: var(--hm-canvas);
+  color: var(--hm-ink);
 }
 
 .hm-view *:focus-visible {
@@ -18,67 +82,293 @@
   border-radius: var(--radius-xs);
 }
 
+/* Todo número/timestamp/contagem da landing (marcados com a classe global
+   `.tabular-nums`) usa JetBrains Mono — ver docs/briefing-landing-page.md
+   "Tipografia". Escopo restrito a `.hm-view` para não afetar as outras
+   telas, que continuam em Inter (styles/tokens.css). */
+.hm-view .tabular-nums {
+  font-family: var(--hm-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Selo "registrado no TSE": contorno dourado (--hm-selo, o lacre
+   institucional) + texto/ícone verde (--hm-verificado, a verificação em
+   si) — nunca só cor, o texto "Registrado no TSE" é sempre explícito. */
+.hm-selo-tse {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 2px var(--space-2);
+  border: 1px solid var(--hm-selo);
+  border-radius: var(--radius-pill);
+  color: var(--hm-verificado);
+  font: var(--text-caption);
+  font-weight: var(--font-variation-nav);
+  white-space: nowrap;
+}
+.hm-selo-tse__icone {
+  flex: none;
+}
+
+/* Links "quietos" (Fonte, Ver todas, créditos): tinta neutra + sublinhado —
+   o sublinhado é a affordance, não a cor (nunca reservamos --hm-selo para
+   link genérico, ele é o único acento de marca e fica só nos 4 usos do
+   briefing: eyebrow, "como calculamos", contorno do selo TSE, hover de CTA). */
+.hm-quiet-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  color: var(--hm-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--hm-border-strong);
+  text-underline-offset: 2px;
+}
+.hm-quiet-link:hover {
+  text-decoration-color: currentColor;
+}
+
+/*
+ * Alvo de toque mínimo (~44x44px, WCAG 2.5.5) sem inchar o texto visível:
+ * `::before` posicionado (hit-slop) estende a área clicável ao redor do
+ * link sem ocupar espaço no layout.
+ */
+.hm-link-fonte,
+.hm-section__link {
+  position: relative;
+}
+.hm-link-fonte::before,
+.hm-section__link::before {
+  content: '';
+  position: absolute;
+  inset: -15px -8px;
+}
+
 /* ================= Hero ================= */
 
 .hm-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--hm-border);
+  background: var(--hm-surface);
+  padding: var(--space-6) var(--space-5);
+}
+
+/* Textura ambiente: hachura a 4–6% de opacidade atrás do hero — mesmo
+   princípio visual de "sem dados"/incerteza já usado no mapa e no
+   hemiciclo (ver map-view.ts/senate-view.ts), aqui só decorativo. */
+.hm-hero__texture {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--hm-ink);
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hm-hero__inner {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
-  max-width: 78ch;
-}
-
-.hm-hero__title {
-  margin: 0;
-  font: var(--text-display);
-  letter-spacing: var(--tracking-tight);
-  text-wrap: balance;
-}
-
-.hm-hero__lede {
-  margin: 0;
-  font: var(--text-body);
-  color: var(--color-text-muted);
+  gap: var(--space-3);
   max-width: 62ch;
-  text-wrap: balance;
 }
 
-.hm-hero__meta {
+.hm-hero__eyebrow {
+  margin: 0;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-3);
+  align-items: baseline;
+  gap: var(--space-1) var(--space-2);
+  font: var(--text-eyebrow);
+}
+.hm-hero__eyebrow-tag {
+  color: var(--hm-selo);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+}
+.hm-hero__eyebrow-meta {
+  white-space: nowrap;
+}
+.hm-hero__eyebrow-sep {
+  color: var(--hm-ink-faint);
+}
+.hm-hero__timestamp {
+  color: var(--hm-ink-muted);
+  text-transform: none;
+  letter-spacing: normal;
+  font: var(--text-caption);
 }
 
-.hm-pill {
-  display: inline-flex;
-  align-items: center;
-  padding: var(--space-1) var(--space-3);
+.hm-hero__vazio {
+  margin: 0;
+  font: var(--text-title);
+  color: var(--hm-ink-muted);
+  max-width: 48ch;
+}
+
+.hm-hero__lider {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+}
+.hm-hero__lider-nome {
+  font-family: var(--hm-font-display);
+  font-weight: 600;
+  font-style: normal;
+  font-size: clamp(2rem, 6vw, 3.75rem);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  color: var(--hm-ink);
+}
+.hm-hero__lider-pct {
+  font-family: var(--hm-font-display);
+  font-weight: 600;
+  font-style: normal;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: var(--hm-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Faixa de margem de erro sob o número do líder — mesma lógica de
+   `.pv-bar-track`/`.pv-bar-uncertainty` (styles/views.css), calculada por
+   `calcularFaixaIncerteza` (views/_shared.ts) para não duplicar a fórmula. */
+.hm-hero__track {
+  position: relative;
+  height: 8px;
   border-radius: var(--radius-pill);
-  background: var(--color-surface-2);
-  border: 1px solid var(--color-border-strong);
-  color: var(--color-text-muted);
-  font: var(--text-caption);
+  background: var(--hm-surface-2);
+  overflow: hidden;
+}
+.hm-hero__track-fill {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  border-radius: inherit;
+}
+.hm-hero__track-uncertainty {
+  position: absolute;
+  inset-block: 0;
+  opacity: 0.35;
+}
+.hm-hero__track-tick {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  width: 2px;
+  background: var(--hm-ink-muted);
+  border-radius: var(--radius-pill);
+}
+
+.hm-hero__segundo {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-2);
+  font: var(--text-body-sm);
+  color: var(--hm-ink-muted);
+}
+.hm-hero__segundo-label {
+  color: var(--hm-ink-faint);
+}
+.hm-hero__segundo-nome {
+  color: var(--hm-ink);
+}
+.hm-hero__vantagem {
+  font-family: var(--hm-font-display);
+  font-weight: 600;
+  font-style: normal;
+  color: var(--hm-ink);
+  font-variant-numeric: tabular-nums;
+}
+/* Empate técnico: itálico real (não só peso/cor) — 4º canal de
+   acessibilidade além de cor/opacidade/texto, ver briefing. */
+.hm-hero__empate {
+  font-family: var(--hm-font-display);
+  font-weight: 600;
+  font-style: italic;
+  color: var(--hm-ink);
+}
+
+.hm-hero__confianca {
+  margin: 0;
+  font: var(--text-body-sm);
+  color: var(--hm-ink-muted);
+}
+.hm-hero__como {
+  position: relative;
+  color: var(--hm-selo);
+  font-weight: var(--font-variation-nav);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.hm-hero__como::before {
+  content: '';
+  position: absolute;
+  inset: -15px -6px;
+}
+.hm-hero__como:hover {
+  color: var(--hm-ink);
 }
 
 .hm-hero__actions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3);
-  margin-block: var(--space-1);
+  margin-top: var(--space-2);
+}
+
+/* CTAs neutros (tinta/contorno), nunca o indigo `--color-accent` do resto
+   do produto — ver briefing "Proibido". O hover do CTA primário é o único
+   outro uso permitido do dourado `--hm-selo`. */
+.hm-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding-inline: var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--hm-ink);
+  color: var(--hm-ink);
+  background: transparent;
+  font: var(--text-body-sm);
+  font-weight: var(--font-variation-nav);
+  text-decoration: none;
+  transition: background var(--duration-sm) var(--ease-out), color var(--duration-sm) var(--ease-out),
+    border-color var(--duration-sm) var(--ease-out);
+}
+.hm-cta:hover {
+  background: var(--hm-surface-2);
+}
+.hm-cta--primary {
+  background: var(--hm-ink);
+  border-color: var(--hm-ink);
+  color: var(--hm-canvas);
+}
+.hm-cta--primary:hover {
+  background: var(--hm-selo);
+  border-color: var(--hm-selo);
+  color: var(--hm-selo-ink);
 }
 
 /* --- Resumo do dia --- */
 
 .hm-resumo {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
   gap: var(--space-4);
-  margin-top: var(--space-2);
 }
 
 .hm-resumo__card {
-  background: var(--color-surface-1);
-  box-shadow: var(--elevation-1);
+  background: var(--hm-surface);
+  border: 1px solid var(--hm-border);
   border-radius: var(--radius-lg);
   padding: var(--space-4) var(--space-5);
   display: flex;
@@ -92,29 +382,34 @@
   font: var(--text-eyebrow);
   text-transform: uppercase;
   letter-spacing: var(--tracking-eyebrow);
-  color: var(--color-text-subtle);
+  color: var(--hm-ink-muted);
 }
 
 .hm-resumo__value {
   margin: 0;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: var(--space-2);
   font: var(--text-title);
   font-weight: var(--font-variation-announce);
-  color: var(--color-text);
+  color: var(--hm-ink);
 }
 
 .hm-resumo__detail {
   margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-2);
   font: var(--text-body-sm);
-  color: var(--color-text-muted);
+  color: var(--hm-ink-muted);
 }
 
 .hm-resumo__vazio {
   margin: 0;
   font: var(--text-body-sm);
-  color: var(--color-text-subtle);
+  color: var(--hm-ink-faint);
 }
 
 .hm-resumo__votos-lista,
@@ -140,22 +435,22 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   min-width: 0;
-  color: var(--color-text);
+  color: var(--hm-ink);
   font-weight: var(--font-variation-nav);
 }
 
 .hm-resumo__voto-valor {
-  color: var(--color-text);
+  color: var(--hm-ink);
 }
 
 .hm-resumo__voto-pct {
   grid-column: 2 / -1;
-  color: var(--color-text-subtle);
+  color: var(--hm-ink-faint);
   font: var(--text-caption);
 }
 
 .hm-resumo__sem-partido {
-  color: var(--color-text-tertiary);
+  color: var(--hm-ink-faint);
   font: var(--text-caption);
 }
 
@@ -170,18 +465,18 @@
   width: 14px;
   height: 14px;
   border-radius: var(--radius-xs);
-  border: 1px solid var(--color-border-strong);
+  border: 1px solid var(--hm-border-strong);
   flex-shrink: 0;
 }
 
 .hm-resumo__senado-rotulo {
   flex: 1 1 auto;
-  color: var(--color-text-muted);
+  color: var(--hm-ink-muted);
   min-width: 0;
 }
 
 .hm-resumo__senado-valor {
-  color: var(--color-text);
+  color: var(--hm-ink);
   font-weight: var(--font-variation-nav);
 }
 
@@ -205,30 +500,6 @@
 .hm-badge-partido.espectro-5 { background: var(--spectrum-5-solid); }
 .hm-badge-partido.espectro-indefinido { background: var(--spectrum-indefinido); }
 
-/*
- * Alvo de toque mínimo (~44x44px, WCAG 2.5.5 / mobile HIG — ver P1 de
- * docs/critica-ui-inicio.md) sem inchar o texto visível: `::before`
- * posicionado (hit-slop) estende a área clicável ao redor do link sem
- * ocupar espaço no layout do card.
- */
-.hm-link-fonte {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  color: var(--color-accent);
-  font: var(--text-caption);
-  text-decoration: none;
-}
-.hm-link-fonte::before {
-  content: '';
-  position: absolute;
-  inset: -15px -8px;
-}
-.hm-link-fonte:hover {
-  color: var(--color-accent-hover);
-  text-decoration: underline;
-}
-
 /* ================= Seções genéricas ================= */
 
 .hm-section {
@@ -249,23 +520,111 @@
   margin: 0;
   font: var(--text-headline);
   letter-spacing: var(--tracking-tight);
-  color: var(--color-text);
+  color: var(--hm-ink);
   text-wrap: balance;
 }
 
 .hm-section__link {
-  position: relative;
   display: inline-flex;
   align-items: center;
+  color: var(--hm-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--hm-border-strong);
+  text-underline-offset: 2px;
   font: var(--text-body-sm);
   font-weight: var(--font-variation-nav);
   white-space: nowrap;
 }
-/* Hit-slop — mesmo raciocínio de `.hm-link-fonte` acima. */
-.hm-section__link::before {
-  content: '';
-  position: absolute;
-  inset: -13px -8px;
+.hm-section__link:hover {
+  text-decoration-color: currentColor;
+}
+
+/* ================= Prévia do mapa (prova) ================= */
+
+.hm-mapa-preview__caption {
+  margin: 0;
+  font: var(--text-body-sm);
+  color: var(--hm-ink-muted);
+  max-width: 68ch;
+}
+
+.hm-mapa-preview__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+  gap: var(--space-2);
+}
+
+.hm-mapa-preview__chip {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  border-radius: var(--radius-sm);
+  color: #ffffff;
+  font: var(--text-caption);
+  font-weight: var(--font-variation-nav);
+}
+.hm-mapa-preview__chip.espectro-1 { background: var(--spectrum-1-fill); }
+.hm-mapa-preview__chip.espectro-2 { background: var(--spectrum-2-fill); }
+.hm-mapa-preview__chip.espectro-3 { background: var(--spectrum-3-fill); }
+.hm-mapa-preview__chip.espectro-4 { background: var(--spectrum-4-fill); }
+.hm-mapa-preview__chip.espectro-5 { background: var(--spectrum-5-fill); }
+.hm-mapa-preview__chip.espectro-indefinido {
+  background: var(--confidence-sem-dados-fill);
+  color: var(--hm-ink-muted);
+}
+/* Empate técnico: opacidade reduzida (mesmo token de confiança do mapa
+   completo) — nunca o único sinal, o `sr-only` de cada chip já diz "empate
+   técnico" por extenso. */
+.hm-mapa-preview__chip--empate { opacity: var(--confidence-empate-opacity); }
+/* Sem pesquisa: hachura sobre o cinza neutro, mesmo padrão de "sem dados"
+   usado no mapa/hemiciclo completos (styles/tokens.css). */
+.hm-mapa-preview__chip--sem-dados {
+  background: var(--confidence-sem-dados-fill);
+  background-image: var(--confidence-sem-dados-pattern);
+  color: var(--hm-ink-muted);
+}
+
+.hm-mapa-preview__legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  font: var(--text-caption);
+  color: var(--hm-ink-muted);
+}
+.hm-mapa-preview__legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+.hm-mapa-preview__swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-xs);
+  flex: none;
+}
+.hm-mapa-preview__swatch.espectro-1 { background: var(--spectrum-1-fill); }
+.hm-mapa-preview__swatch.espectro-2 { background: var(--spectrum-2-fill); }
+.hm-mapa-preview__swatch.espectro-3 { background: var(--spectrum-3-fill); }
+.hm-mapa-preview__swatch.espectro-4 { background: var(--spectrum-4-fill); }
+.hm-mapa-preview__swatch.espectro-5 { background: var(--spectrum-5-fill); }
+.hm-mapa-preview__swatch--sem-dados {
+  background: var(--confidence-sem-dados-fill);
+  background-image: var(--confidence-sem-dados-pattern);
+}
+
+.hm-mapa-preview__links {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
 }
 
 /* ================= Últimas pesquisas ================= */
@@ -285,8 +644,8 @@
 
 .hm-poll-card {
   height: 100%;
-  background: var(--color-surface-1);
-  border: 1px solid var(--color-border);
+  background: var(--hm-surface);
+  border: 1px solid var(--hm-border);
   border-radius: var(--radius-lg);
   padding: var(--space-4);
   display: flex;
@@ -300,11 +659,11 @@
   justify-content: space-between;
   gap: var(--space-2);
   font: var(--text-caption);
-  color: var(--color-text-subtle);
+  color: var(--hm-ink-faint);
 }
 
 .hm-poll-card__data {
-  color: var(--color-text-muted);
+  color: var(--hm-ink-muted);
 }
 
 /*
@@ -325,23 +684,24 @@
   align-items: center;
   padding: 1px var(--space-2);
   border-radius: var(--radius-pill);
-  border: 1px solid var(--color-border-strong);
-  background: var(--color-surface-2);
-  color: var(--color-text-muted);
+  border: 1px solid var(--hm-border-strong);
+  background: var(--hm-surface-2);
+  color: var(--hm-ink-muted);
   font: var(--text-caption);
   font-weight: var(--font-variation-nav);
   white-space: nowrap;
 }
 .hm-poll-card__turno--t2 {
-  color: var(--color-accent);
-  border-color: var(--color-accent);
+  color: var(--hm-ink);
+  border-color: var(--hm-ink);
+  font-weight: var(--font-variation-announce);
 }
 
 .hm-poll-card__instituto {
   margin: 0;
   font: var(--text-body-sm);
   font-weight: var(--font-variation-nav);
-  color: var(--color-text);
+  color: var(--hm-ink);
 }
 
 .hm-poll-card__candidatos {
@@ -366,22 +726,22 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   min-width: 0;
-  color: var(--color-text-muted);
+  color: var(--hm-ink-muted);
 }
 
 .hm-poll-card__candidato-pct {
-  color: var(--color-text);
+  color: var(--hm-ink);
 }
 
 .hm-poll-card__sem-partido {
-  color: var(--color-text-tertiary);
+  color: var(--hm-ink-faint);
   font: var(--text-caption);
 }
 
 .hm-poll-card__footer {
   margin-top: auto;
   padding-top: var(--space-2);
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--hm-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -390,10 +750,10 @@
 
 .hm-poll-card__registro {
   font: var(--text-caption);
-  color: var(--color-text-subtle);
+  color: var(--hm-ink-faint);
 }
 .hm-poll-card__registro--ausente {
-  color: var(--color-text-tertiary);
+  color: var(--hm-ink-faint);
 }
 
 /* ================= O que você encontra aqui ================= */
@@ -416,32 +776,34 @@
   flex-direction: column;
   gap: var(--space-2);
   height: 100%;
-  background: var(--color-surface-1);
-  box-shadow: var(--elevation-1);
+  background: var(--hm-surface);
+  border: 1px solid var(--hm-border);
   border-radius: var(--radius-lg);
   padding: var(--space-5);
   color: inherit;
   text-decoration: none;
-  transition: background var(--duration-sm) var(--ease-out), box-shadow var(--duration-sm) var(--ease-out);
+  transition: background var(--duration-sm) var(--ease-out), border-color var(--duration-sm) var(--ease-out);
 }
 .hm-explore-card:hover {
-  background: var(--color-surface-2);
+  background: var(--hm-surface-2);
+  border-color: var(--hm-border-strong);
 }
 .hm-explore-card:hover .hm-explore-card__title {
-  color: var(--color-accent-hover);
+  text-decoration: underline;
+  text-decoration-color: var(--hm-border-strong);
 }
 
 .hm-explore-card__title {
   margin: 0;
   font: var(--text-title);
-  color: var(--color-text);
-  transition: color var(--duration-sm) var(--ease-out);
+  color: var(--hm-ink);
+  text-underline-offset: 3px;
 }
 
 .hm-explore-card__desc {
   margin: 0;
   font: var(--text-body-sm);
-  color: var(--color-text-muted);
+  color: var(--hm-ink-muted);
   flex: 1 1 auto;
 }
 
@@ -449,7 +811,7 @@
   margin: 0;
   font: var(--text-caption);
   font-weight: var(--font-variation-nav);
-  color: var(--color-text-subtle);
+  color: var(--hm-ink-faint);
 }
 
 /* ================= Como funciona ================= */
@@ -468,9 +830,9 @@
   flex-direction: column;
   gap: var(--space-1);
   padding: var(--space-4);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--hm-border);
   border-radius: var(--radius-lg);
-  background: var(--color-surface-1);
+  background: var(--hm-surface);
 }
 
 .hm-step__num {
@@ -480,8 +842,8 @@
   width: 24px;
   height: 24px;
   border-radius: var(--radius-pill);
-  background: var(--color-surface-3);
-  color: var(--color-text-muted);
+  background: var(--hm-surface-2);
+  color: var(--hm-ink-muted);
   font: var(--text-caption);
   font-weight: var(--font-variation-announce);
   margin-bottom: var(--space-1);
@@ -491,26 +853,26 @@
   margin: 0;
   font: var(--text-body);
   font-weight: var(--font-variation-announce);
-  color: var(--color-text);
+  color: var(--hm-ink);
 }
 
 .hm-step__desc {
   margin: 0;
   font: var(--text-body-sm);
-  color: var(--color-text-muted);
+  color: var(--hm-ink-muted);
 }
 
 .hm-transparency {
   margin: 0;
   padding: var(--space-3) var(--space-4);
   border-radius: var(--radius-md);
-  background: var(--color-surface-2);
-  border: 1px solid var(--color-border);
+  background: var(--hm-surface-2);
+  border: 1px solid var(--hm-border);
   font: var(--text-body-sm);
-  color: var(--color-text-muted);
+  color: var(--hm-ink-muted);
 }
 .hm-transparency strong {
-  color: var(--color-text);
+  color: var(--hm-ink);
   font-weight: var(--font-variation-nav);
 }
 
@@ -518,7 +880,7 @@
 
 .hm-credits {
   padding-top: var(--space-4);
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--hm-border);
 }
 
 .hm-credits__group + .hm-credits__group {
@@ -529,21 +891,24 @@
   margin: 0 0 var(--space-2);
   font: var(--text-body);
   font-weight: var(--font-variation-nav);
-  color: var(--color-text);
+  color: var(--hm-ink);
 }
 
 .hm-credits__text {
   margin: 0;
   font: var(--text-body-sm);
-  color: var(--color-text-muted);
+  color: var(--hm-ink-muted);
   max-width: 72ch;
 }
 
 .hm-credits__link {
-  color: var(--color-accent);
+  color: var(--hm-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--hm-border-strong);
+  text-underline-offset: 2px;
 }
 .hm-credits__link:hover {
-  color: var(--color-accent-hover);
+  text-decoration-color: currentColor;
 }
 
 .hm-credits__pills {
@@ -558,9 +923,9 @@
 .hm-credits__pill {
   padding: 2px var(--space-3);
   border-radius: var(--radius-pill);
-  background: var(--color-surface-2);
-  border: 1px solid var(--color-border-strong);
-  color: var(--color-text-muted);
+  background: var(--hm-surface-2);
+  border: 1px solid var(--hm-border-strong);
+  color: var(--hm-ink-muted);
   font: var(--text-caption);
 }
 
@@ -569,5 +934,8 @@
 @media (max-width: 639px) {
   .hm-resumo__value {
     font-size: 18px;
+  }
+  .hm-hero {
+    padding: var(--space-5) var(--space-4);
   }
 }

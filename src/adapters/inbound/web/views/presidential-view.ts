@@ -6,6 +6,7 @@ import type { Agregado, CandidatoAgregado, SerieTemporal } from '../../../../dom
 import type { Pesquisa } from '../../../../domain/poll.js';
 import type { Espectro } from '../../../../domain/spectrum.js';
 import {
+  calcularFaixaIncerteza,
   criarBadgePartido,
   criarEl,
   criarLinkFonte,
@@ -276,9 +277,7 @@ function criarBarraCandidato(
   const pct = Math.max(0, Math.min(100, candidato.pct));
   // Faixa de incerteza (±margemReferencia) centrada no valor, na mesma escala
   // 0..100 da barra — ver docs/ux-spec.md §2(c).
-  const faixaEsquerda = Math.max(0, pct - margemReferencia);
-  const faixaDireita = Math.min(100, pct + margemReferencia);
-  const faixaLargura = Math.max(0, faixaDireita - faixaEsquerda);
+  const { esquerda: faixaEsquerda, largura: faixaLargura } = calcularFaixaIncerteza(pct, margemReferencia);
   return criarEl('div', { className: 'pv-bar-row' }, [
     criarEl('span', { className: 'pv-bar-name' }, [
       candidato.partido ? criarBadgePartido(candidato.partido, espectro) : null,
