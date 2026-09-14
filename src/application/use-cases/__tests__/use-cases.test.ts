@@ -241,6 +241,12 @@ beforeAll(() => {
   casos = criarCasosDeUso(repos, CLOCK);
 });
 
+describe('use-cases/getMeta', () => {
+  it('devolve a data de atualização do MetaRepository', () => {
+    expect(casos.getMeta().atualizadoEm).toBe('2026-09-13');
+  });
+});
+
 describe('use-cases/getStateSummary', () => {
   it('usa o 2º turno de governador quando disponível', () => {
     const resumo = casos.getStateSummary('SP');

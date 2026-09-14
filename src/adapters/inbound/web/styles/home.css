@@ -1,0 +1,525 @@
+/*
+ * Tela inicial (src/adapters/inbound/web/views/home-view.ts). Prefixo `hm-`,
+ * independente de styles/views.css (que é das telas de Presidente/Senado/
+ * Partidos) — consome só os tokens de docs/design-system.md e as classes
+ * globais de styles/app.css (.btn, .pill, .tabular-nums, .sr-only).
+ */
+
+.hm-view {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding-block: var(--space-5) var(--space-7);
+}
+
+.hm-view *:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-xs);
+}
+
+/* ================= Hero ================= */
+
+.hm-hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 78ch;
+}
+
+.hm-hero__title {
+  margin: 0;
+  font: var(--text-display);
+  letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+}
+
+.hm-hero__lede {
+  margin: 0;
+  font: var(--text-body);
+  color: var(--color-text-muted);
+  max-width: 62ch;
+  text-wrap: balance;
+}
+
+.hm-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.hm-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-text-muted);
+  font: var(--text-caption);
+}
+
+.hm-hero__total {
+  color: var(--color-text-subtle);
+  font: var(--text-body-sm);
+}
+
+.hm-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-block: var(--space-1);
+}
+
+/* --- Resumo do dia --- */
+
+.hm-resumo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-2);
+}
+
+.hm-resumo__card {
+  background: var(--color-surface-1);
+  box-shadow: var(--elevation-1);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.hm-resumo__label {
+  margin: 0;
+  font: var(--text-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+  color: var(--color-text-subtle);
+}
+
+.hm-resumo__value {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font: var(--text-title);
+  font-weight: var(--font-variation-announce);
+  color: var(--color-text);
+}
+
+.hm-resumo__detail {
+  margin: 0;
+  font: var(--text-body-sm);
+  color: var(--color-text-muted);
+}
+
+.hm-resumo__vazio {
+  margin: 0;
+  font: var(--text-body-sm);
+  color: var(--color-text-subtle);
+}
+
+.hm-resumo__votos-lista,
+.hm-resumo__senado-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.hm-resumo__voto-linha {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-2);
+  font: var(--text-body-sm);
+}
+
+.hm-resumo__voto-nome {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+  color: var(--color-text);
+  font-weight: var(--font-variation-nav);
+}
+
+.hm-resumo__voto-valor {
+  color: var(--color-text);
+}
+
+.hm-resumo__voto-pct {
+  grid-column: 2 / -1;
+  color: var(--color-text-subtle);
+  font: var(--text-caption);
+}
+
+.hm-resumo__sem-partido {
+  color: var(--color-text-tertiary);
+  font: var(--text-caption);
+}
+
+.hm-resumo__senado-linha {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font: var(--text-body-sm);
+}
+
+.hm-resumo__senado-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--color-border-strong);
+  flex-shrink: 0;
+}
+
+.hm-resumo__senado-rotulo {
+  flex: 1 1 auto;
+  color: var(--color-text-muted);
+  min-width: 0;
+}
+
+.hm-resumo__senado-valor {
+  color: var(--color-text);
+  font-weight: var(--font-variation-nav);
+}
+
+/* --- Badge de partido (própria desta view, ver views/_shared.ts classeEspectro) --- */
+
+.hm-badge-partido {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px var(--space-2);
+  border-radius: var(--radius-pill);
+  font: var(--text-caption);
+  font-weight: 510;
+  color: #ffffff;
+  white-space: nowrap;
+  flex: none;
+}
+.hm-badge-partido.espectro-1 { background: var(--spectrum-1-solid); }
+.hm-badge-partido.espectro-2 { background: var(--spectrum-2-solid); }
+.hm-badge-partido.espectro-3 { background: var(--spectrum-3-solid); }
+.hm-badge-partido.espectro-4 { background: var(--spectrum-4-solid); }
+.hm-badge-partido.espectro-5 { background: var(--spectrum-5-solid); }
+.hm-badge-partido.espectro-indefinido { background: var(--spectrum-indefinido); }
+
+.hm-link-fonte {
+  color: var(--color-accent);
+  font: var(--text-caption);
+  text-decoration: none;
+}
+.hm-link-fonte:hover {
+  color: var(--color-accent-hover);
+  text-decoration: underline;
+}
+
+/* ================= Seções genéricas ================= */
+
+.hm-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.hm-section__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-4);
+}
+
+.hm-section__title {
+  margin: 0;
+  font: var(--text-headline);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text);
+  text-wrap: balance;
+}
+
+.hm-section__link {
+  font: var(--text-body-sm);
+  font-weight: var(--font-variation-nav);
+  white-space: nowrap;
+}
+
+/* ================= Últimas pesquisas ================= */
+
+.hm-polls-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+  gap: var(--space-3);
+}
+
+.hm-polls-grid__item {
+  min-width: 0;
+}
+
+.hm-poll-card {
+  height: 100%;
+  background: var(--color-surface-1);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.hm-poll-card__meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  font: var(--text-caption);
+  color: var(--color-text-subtle);
+}
+
+.hm-poll-card__data {
+  color: var(--color-text-muted);
+}
+
+.hm-poll-card__instituto {
+  margin: 0;
+  font: var(--text-body-sm);
+  font-weight: var(--font-variation-nav);
+  color: var(--color-text);
+}
+
+.hm-poll-card__candidatos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.hm-poll-card__candidato {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-2);
+  font: var(--text-body-sm);
+}
+
+.hm-poll-card__candidato-nome {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+  color: var(--color-text-muted);
+}
+
+.hm-poll-card__candidato-pct {
+  color: var(--color-text);
+}
+
+.hm-poll-card__sem-partido {
+  color: var(--color-text-tertiary);
+  font: var(--text-caption);
+}
+
+.hm-poll-card__footer {
+  margin-top: auto;
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.hm-poll-card__registro {
+  font: var(--text-caption);
+  color: var(--color-text-subtle);
+}
+.hm-poll-card__registro--ausente {
+  color: var(--color-text-tertiary);
+}
+
+/* ================= O que você encontra aqui ================= */
+
+.hm-explore-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+  gap: var(--space-4);
+}
+
+.hm-explore-grid__item {
+  min-width: 0;
+}
+
+.hm-explore-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  height: 100%;
+  background: var(--color-surface-1);
+  box-shadow: var(--elevation-1);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  color: inherit;
+  text-decoration: none;
+  transition: background var(--duration-sm) var(--ease-out), box-shadow var(--duration-sm) var(--ease-out);
+}
+.hm-explore-card:hover {
+  background: var(--color-surface-2);
+}
+.hm-explore-card:hover .hm-explore-card__title {
+  color: var(--color-accent-hover);
+}
+
+.hm-explore-card__title {
+  margin: 0;
+  font: var(--text-title);
+  color: var(--color-text);
+  transition: color var(--duration-sm) var(--ease-out);
+}
+
+.hm-explore-card__desc {
+  margin: 0;
+  font: var(--text-body-sm);
+  color: var(--color-text-muted);
+  flex: 1 1 auto;
+}
+
+.hm-explore-card__stat {
+  margin: 0;
+  font: var(--text-caption);
+  font-weight: var(--font-variation-nav);
+  color: var(--color-text-subtle);
+}
+
+/* ================= Como funciona ================= */
+
+.hm-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+  gap: var(--space-4);
+}
+
+.hm-step {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-1);
+}
+
+.hm-step__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-3);
+  color: var(--color-text-muted);
+  font: var(--text-caption);
+  font-weight: var(--font-variation-announce);
+  margin-bottom: var(--space-1);
+}
+
+.hm-step__title {
+  margin: 0;
+  font: var(--text-body);
+  font-weight: var(--font-variation-announce);
+  color: var(--color-text);
+}
+
+.hm-step__desc {
+  margin: 0;
+  font: var(--text-body-sm);
+  color: var(--color-text-muted);
+}
+
+.hm-transparency {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  font: var(--text-body-sm);
+  color: var(--color-text-muted);
+}
+.hm-transparency strong {
+  color: var(--color-text);
+  font-weight: var(--font-variation-nav);
+}
+
+/* ================= Fontes e créditos ================= */
+
+.hm-credits {
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.hm-credits__group + .hm-credits__group {
+  margin-top: var(--space-4);
+}
+
+.hm-credits__title {
+  margin: 0 0 var(--space-2);
+  font: var(--text-body);
+  font-weight: var(--font-variation-nav);
+  color: var(--color-text);
+}
+
+.hm-credits__text {
+  margin: 0;
+  font: var(--text-body-sm);
+  color: var(--color-text-muted);
+  max-width: 72ch;
+}
+
+.hm-credits__link {
+  color: var(--color-accent);
+}
+.hm-credits__link:hover {
+  color: var(--color-accent-hover);
+}
+
+.hm-credits__pills {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.hm-credits__pill {
+  padding: 2px var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-text-muted);
+  font: var(--text-caption);
+}
+
+/* ================= Responsivo ================= */
+
+@media (max-width: 639px) {
+  .hm-resumo__value {
+    font-size: 18px;
+  }
+}
