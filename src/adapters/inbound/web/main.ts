@@ -30,6 +30,7 @@ interface Rota {
 }
 
 const ROTAS: readonly Rota[] = [
+  { hash: '#/inicio', rotulo: 'Início' },
   { hash: '#/mapa', rotulo: 'Governadores' },
   { hash: '#/presidente', rotulo: 'Presidente' },
   { hash: '#/presidente-estados', rotulo: 'Presidente por estado' },
@@ -96,7 +97,7 @@ function montarLayout(atualizadoEm: string): { main: HTMLElement; nav: HTMLEleme
 }
 
 function normalizarHash(hash: string): string {
-  if (!hash || hash === '#' || hash === '') return '#/mapa';
+  if (!hash || hash === '#' || hash === '') return '#/inicio';
   return hash;
 }
 
@@ -202,8 +203,11 @@ async function renderizarRota(main: HTMLElement, nav: HTMLElement, casos: CasosD
       await renderPaginaOpcional(main, casos, './views/polls-database-view.ts', 'renderPollsDatabase');
       break;
     case '#/mapa':
-    default:
       renderMap(main, casos);
+      break;
+    case '#/inicio':
+    default:
+      await renderPaginaOpcional(main, casos, './views/home-view.ts', 'renderHome');
       break;
   }
 
