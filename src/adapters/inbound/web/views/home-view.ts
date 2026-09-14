@@ -287,7 +287,7 @@ function construirLinhaCandidatoPesquisa(
   const nome = cargo === 'presidente' ? nomeCurto(c.candidato) : c.candidato;
   return criarEl('li', { className: 'hm-poll-card__candidato' }, [
     c.partido ? criarBadgePartido(c.partido, espectro) : criarEl('span', { className: 'hm-poll-card__sem-partido', texto: 'S/P' }),
-    criarEl('span', { className: 'hm-poll-card__candidato-nome', texto: nome }),
+    criarEl('span', { className: 'hm-poll-card__candidato-nome', texto: nome, attrs: { title: c.candidato } }),
     criarEl('span', { className: 'hm-poll-card__candidato-pct tabular-nums', texto: formatarPct(c.pct) }),
   ]);
 }
