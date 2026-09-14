@@ -288,7 +288,9 @@ th {
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: var(--space-2);
+  min-height: 44px; /* alvo de toque mínimo (WCAG 2.5.5 / mobile HIG) — ver P1 de docs/critica-ui-inicio.md */
   padding: var(--space-2) var(--space-4);
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border-strong);

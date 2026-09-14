@@ -60,11 +60,6 @@
   font: var(--text-caption);
 }
 
-.hm-hero__total {
-  color: var(--color-text-subtle);
-  font: var(--text-body-sm);
-}
-
 .hm-hero__actions {
   display: flex;
   flex-wrap: wrap;
@@ -210,10 +205,24 @@
 .hm-badge-partido.espectro-5 { background: var(--spectrum-5-solid); }
 .hm-badge-partido.espectro-indefinido { background: var(--spectrum-indefinido); }
 
+/*
+ * Alvo de toque mínimo (~44x44px, WCAG 2.5.5 / mobile HIG — ver P1 de
+ * docs/critica-ui-inicio.md) sem inchar o texto visível: `::before`
+ * posicionado (hit-slop) estende a área clicável ao redor do link sem
+ * ocupar espaço no layout do card.
+ */
 .hm-link-fonte {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
   color: var(--color-accent);
   font: var(--text-caption);
   text-decoration: none;
+}
+.hm-link-fonte::before {
+  content: '';
+  position: absolute;
+  inset: -15px -8px;
 }
 .hm-link-fonte:hover {
   color: var(--color-accent-hover);
@@ -245,9 +254,18 @@
 }
 
 .hm-section__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
   font: var(--text-body-sm);
   font-weight: var(--font-variation-nav);
   white-space: nowrap;
+}
+/* Hit-slop — mesmo raciocínio de `.hm-link-fonte` acima. */
+.hm-section__link::before {
+  content: '';
+  position: absolute;
+  inset: -13px -8px;
 }
 
 /* ================= Últimas pesquisas ================= */
@@ -287,6 +305,36 @@
 
 .hm-poll-card__data {
   color: var(--color-text-muted);
+}
+
+/*
+ * Rótulo de disputa + badge de turno. Existe para que duas pesquisas da
+ * mesma disputa/instituto/data (1º e 2º turno) nunca fiquem visualmente
+ * indistinguíveis na grade — ver P0 de docs/critica-ui-inicio.md.
+ */
+.hm-poll-card__disputa-group {
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-1) var(--space-2);
+}
+
+.hm-poll-card__turno {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px var(--space-2);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface-2);
+  color: var(--color-text-muted);
+  font: var(--text-caption);
+  font-weight: var(--font-variation-nav);
+  white-space: nowrap;
+}
+.hm-poll-card__turno--t2 {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
 }
 
 .hm-poll-card__instituto {

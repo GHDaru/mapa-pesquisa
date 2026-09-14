@@ -154,6 +154,28 @@ function rotuloDisputa(p: Pesquisa): string {
   return `${rotuloCargo} · ${p.disputa.uf}`;
 }
 
+/** "1º turno" / "2º turno" — mesmo padrão de `polls-database-view.ts` e `presidential-view.ts`. */
+function rotuloTurno(turno: 1 | 2): string {
+  return `${turno}º turno`;
+}
+
+/**
+ * Badge de turno ao lado do rótulo de disputa do card. Existe para que duas
+ * pesquisas da mesma disputa/instituto/data (1º e 2º turno, ex.: RJ
+ * Presidente) nunca pareçam cards duplicados na grade — ver P0 de
+ * docs/critica-ui-inicio.md. Quando a pesquisa tem `cenario` (ex.: "2º turno
+ * (Lula x Flávio Bolsonaro) — recorte..."), ele vira o `title` do badge: é
+ * texto livre longo demais para caber no card, mas fica disponível ao passar
+ * o mouse/foco.
+ */
+function criarBadgeTurno(p: Pesquisa): HTMLElement {
+  return criarEl('span', {
+    className: `hm-poll-card__turno hm-poll-card__turno--t${p.disputa.turno}`,
+    texto: rotuloTurno(p.disputa.turno),
+    attrs: p.cenario ? { title: p.cenario } : {},
+  });
+}
+
 /** Os 2 primeiros colocados de uma pesquisa (exclui brancos/nulos/indecisos/etc.), por % desc. */
 function top2Candidatos(p: Pesquisa): readonly { candidato: string; partido: string | null; pct: number }[] {
   return [...p.resultados]
@@ -263,8 +285,10 @@ function construirHero(casos: CasosDeUso, resumo: ResumoDoDia, partidos: readonl
         'Um mapa do Brasil com quem lidera as pesquisas para governador, senador e presidente, atualizado todo dia a partir de pesquisas registradas no TSE.',
     }),
     criarEl('div', { className: 'hm-hero__meta' }, [
-      criarEl('span', { className: 'hm-pill', texto: `Atualizado em ${formatarData(meta.atualizadoEm)}` }),
-      criarEl('span', { className: 'hm-hero__total tabular-nums', texto: `${formatarNumero(totais.total, 0)} pesquisas na base` }),
+      criarEl('span', {
+        className: 'hm-pill tabular-nums',
+        texto: `Atualizado em ${formatarData(meta.atualizadoEm)} · ${formatarNumero(totais.total, 0)} pesquisas na base`,
+      }),
     ]),
     criarEl('div', { className: 'hm-hero__actions' }, [
       criarEl('a', { className: 'btn btn--primario', texto: 'Ver o mapa', attrs: { href: '#/mapa' } }),
@@ -301,7 +325,10 @@ function construirCardPesquisa(p: Pesquisa, partidos: readonly Partido[]): HTMLE
   return criarEl('article', { className: 'hm-poll-card' }, [
     criarEl('div', { className: 'hm-poll-card__meta' }, [
       criarEl('span', { className: 'hm-poll-card__data tabular-nums', texto: formatarData(dataReferencia(p)) }),
-      criarEl('span', { className: 'hm-poll-card__disputa', texto: rotuloDisputa(p) }),
+      criarEl('span', { className: 'hm-poll-card__disputa-group' }, [
+        criarEl('span', { className: 'hm-poll-card__disputa', texto: rotuloDisputa(p) }),
+        criarBadgeTurno(p),
+      ]),
     ]),
     criarEl('p', { className: 'hm-poll-card__instituto', texto: p.instituto }),
     criarEl(
@@ -427,7 +454,7 @@ function construirComoFunciona(): HTMLElement {
     {
       titulo: 'Agregação',
       texto:
-        `Cada disputa vira uma média ponderada: peso maior para pesquisas recentes (meia-vida de ${MEIA_VIDA_DIAS_PADRAO} dias) e para amostras maiores, numa janela de ${JANELA_DIAS_PADRAO} dias. Vantagem dentro da margem de erro ponderada vira "empate técnico".`,
+        `Cada disputa vira uma média ponderada: peso maior para pesquisas recentes — a cada ${MEIA_VIDA_DIAS_PADRAO} dias, o peso de uma pesquisa mais antiga cai pela metade (sua "meia-vida") — e peso maior para amostras maiores, numa janela de ${JANELA_DIAS_PADRAO} dias. Vantagem dentro da margem de erro ponderada vira "empate técnico".`,
     },
     {
       titulo: 'Projeção do Senado',
