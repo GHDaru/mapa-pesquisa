@@ -130,14 +130,19 @@
 /*
  * Alvo de toque mínimo (~44x44px, WCAG 2.5.5) sem inchar o texto visível:
  * `::before` posicionado (hit-slop) estende a área clicável ao redor do
- * link sem ocupar espaço no layout.
+ * link sem ocupar espaço no layout. `.hm-quiet-link` está na lista (ex.:
+ * "Ver hemiciclo do Senado →") mesmo já tendo `position: relative` na sua
+ * própria regra acima — precisava só do `::before`, ver P0 de
+ * docs/critica-ui-inicio2.md.
  */
 .hm-link-fonte,
-.hm-section__link {
+.hm-section__link,
+.hm-quiet-link {
   position: relative;
 }
 .hm-link-fonte::before,
-.hm-section__link::before {
+.hm-section__link::before,
+.hm-quiet-link::before {
   content: '';
   position: absolute;
   inset: -15px -8px;
@@ -568,11 +573,18 @@
   font: var(--text-caption);
   font-weight: var(--font-variation-nav);
 }
-.hm-mapa-preview__chip.espectro-1 { background: var(--spectrum-1-fill); }
-.hm-mapa-preview__chip.espectro-2 { background: var(--spectrum-2-fill); }
-.hm-mapa-preview__chip.espectro-3 { background: var(--spectrum-3-fill); }
-.hm-mapa-preview__chip.espectro-4 { background: var(--spectrum-4-fill); }
-.hm-mapa-preview__chip.espectro-5 { background: var(--spectrum-5-fill); }
+/* `-solid`, não `-fill`: o texto branco da sigla da UF fica em cima do
+   preenchimento do chip, e `--spectrum-*-fill` (tokens.css) é calibrado só
+   para 3:1 não-textual (preenchimento de mapa/hemiciclo) — não altera esse
+   token global, que outras telas usam para texto por cima. `-solid` é a
+   variante mais escura/saturada do mesmo espectro, já usada com texto
+   branco em `.hm-badge-partido` acima; mede >=5:1 nos dois temas para as 5
+   categorias (ver docs/critica-ui-inicio2.md P0 "contraste do chip"). */
+.hm-mapa-preview__chip.espectro-1 { background: var(--spectrum-1-solid); }
+.hm-mapa-preview__chip.espectro-2 { background: var(--spectrum-2-solid); }
+.hm-mapa-preview__chip.espectro-3 { background: var(--spectrum-3-solid); }
+.hm-mapa-preview__chip.espectro-4 { background: var(--spectrum-4-solid); }
+.hm-mapa-preview__chip.espectro-5 { background: var(--spectrum-5-solid); }
 .hm-mapa-preview__chip.espectro-indefinido {
   background: var(--confidence-sem-dados-fill);
   color: var(--hm-ink-muted);
@@ -899,16 +911,6 @@
   font: var(--text-body-sm);
   color: var(--hm-ink-muted);
   max-width: 72ch;
-}
-
-.hm-credits__link {
-  color: var(--hm-ink);
-  text-decoration: underline;
-  text-decoration-color: var(--hm-border-strong);
-  text-underline-offset: 2px;
-}
-.hm-credits__link:hover {
-  text-decoration-color: currentColor;
 }
 
 .hm-credits__pills {

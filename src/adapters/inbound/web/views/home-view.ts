@@ -456,7 +456,9 @@ function construirCardBaseDePesquisas(casos: CasosDeUso): HTMLElement {
       ]),
       criarEl('span', {}, [
         criarEl('span', { className: 'tabular-nums', texto: formatarNumero(totais.comRegistroTSE, 0) }),
-        ` de ${formatarNumero(totais.total, 0)} pesquisas`,
+        ' de ',
+        criarEl('span', { className: 'tabular-nums', texto: formatarNumero(totais.total, 0) }),
+        ' pesquisas',
       ]),
     ]),
   ]);
@@ -609,18 +611,42 @@ function construirUltimasPesquisas(casos: CasosDeUso, partidos: readonly Partido
  * 5. O que você encontra aqui
  * ======================================================================= */
 
+/**
+ * Um pedaço do texto da legenda ("dado") de um card de "O que você encontra
+ * aqui": ou um número (vai para um `<span class="tabular-nums">` próprio, em
+ * JetBrains Mono) ou uma palavra solta (Inter, herdada do parágrafo). Nunca
+ * a legenda inteira em mono — ver P0 de docs/critica-ui-inicio2.md.
+ */
+type PedacoDado = { readonly numero: string } | { readonly texto: string };
+
+function numero(valor: string): PedacoDado {
+  return { numero: valor };
+}
+function texto(valor: string): PedacoDado {
+  return { texto: valor };
+}
+
 interface ExploreCard {
   readonly titulo: string;
   readonly descricao: string;
-  readonly dado: string;
+  readonly dado: readonly PedacoDado[];
   readonly href: string;
+}
+
+/** Só o(s) número(s) do "dado" viram `<span class="tabular-nums">` (mono); o resto do texto fica em Inter. */
+function construirStatCard(dado: readonly PedacoDado[]): HTMLElement {
+  return criarEl(
+    'p',
+    { className: 'hm-explore-card__stat' },
+    dado.map((pedaco) => ('numero' in pedaco ? criarEl('span', { className: 'tabular-nums', texto: pedaco.numero }) : pedaco.texto)),
+  );
 }
 
 function construirExploreCard(c: ExploreCard): HTMLElement {
   return criarEl('a', { className: 'hm-explore-card', attrs: { href: c.href } }, [
     criarEl('h3', { className: 'hm-explore-card__title', texto: c.titulo }),
     criarEl('p', { className: 'hm-explore-card__desc', texto: c.descricao }),
-    criarEl('p', { className: 'hm-explore-card__stat tabular-nums', texto: c.dado }),
+    construirStatCard(c.dado),
   ]);
 }
 
@@ -640,37 +666,37 @@ function construirExplorar(casos: CasosDeUso): HTMLElement {
     {
       titulo: 'Governadores',
       descricao: 'O mapa do Brasil colorido pelo espectro de quem lidera a disputa em cada estado.',
-      dado: `${ufsComGovernador} de ${overview.length} estados com pesquisa`,
+      dado: [numero(String(ufsComGovernador)), texto(' de '), numero(String(overview.length)), texto(' estados com pesquisa')],
       href: '#/mapa',
     },
     {
       titulo: 'Presidente',
       descricao: 'Média ponderada das pesquisas nacionais, 1º e 2º turno, com a evolução dia a dia.',
-      dado: `${formatarNumero(presidencial.todasAsPesquisas.length, 0)} pesquisas nacionais`,
+      dado: [numero(formatarNumero(presidencial.todasAsPesquisas.length, 0)), texto(' pesquisas nacionais')],
       href: '#/presidente',
     },
     {
       titulo: 'Presidente por estado',
       descricao: 'Como a corrida presidencial aparece dentro de cada estado, com estimativa de votos.',
-      dado: `${ufsComPresidencialEstadual} estados com pesquisa própria`,
+      dado: [numero(String(ufsComPresidencialEstadual)), texto(' estados com pesquisa própria')],
       href: '#/presidente-estados',
     },
     {
       titulo: 'Senado',
       descricao: 'Hemiciclo com as 27 cadeiras fixas e as 54 em disputa, projetadas pelas pesquisas.',
-      dado: `${formatarNumero(senado.assentos.length, 0)} assentos`,
+      dado: [numero(formatarNumero(senado.assentos.length, 0)), texto(' assentos')],
       href: '#/senado',
     },
     {
       titulo: 'Partidos',
       descricao: 'Cadastro de partidos com número, sigla e espectro ideológico, com a fonte da classificação.',
-      dado: `${formatarNumero(totalPartidos, 0)} partidos`,
+      dado: [numero(formatarNumero(totalPartidos, 0)), texto(' partidos')],
       href: '#/partidos',
     },
     {
       titulo: 'Base de pesquisas',
       descricao: 'Todas as pesquisas conhecidas, com instituto, registro no TSE e link para a fonte.',
-      dado: `${formatarNumero(totalPesquisas, 0)} pesquisas`,
+      dado: [numero(formatarNumero(totalPesquisas, 0)), texto(' pesquisas')],
       href: '#/pesquisas',
     },
   ];
@@ -742,6 +768,13 @@ function construirComoFunciona(): HTMLElement {
  * 7. Fontes e créditos
  * ======================================================================= */
 
+/**
+ * Só o que é específico da home (institutos, veículos, eleitorado) — o
+ * rodapé global (`<footer class="site-footer">`, montado por `main.ts` logo
+ * abaixo desta seção) já cobre a atribuição do mapa/código; repeti-la aqui
+ * duplicava a mesma frase duas vezes seguidas na tela. Ver P1 de
+ * docs/critica-ui-inicio2.md.
+ */
 function construirCreditos(casos: CasosDeUso): HTMLElement {
   const institutos = casos.getPollsDatabase().institutos;
 
@@ -768,31 +801,6 @@ function construirCreditos(casos: CasosDeUso): HTMLElement {
         className: 'hm-credits__text',
         texto: 'Número de eleitores aptos por estado: Tribunal Superior Eleitoral (TSE).',
       }),
-    ]),
-    criarEl('div', { className: 'hm-credits__group' }, [
-      criarEl('h3', { className: 'hm-credits__title', texto: 'Mapa e código' }),
-      criarEl('p', { className: 'hm-credits__text' }, [
-        'Mapa: ',
-        criarEl(
-          'a',
-          {
-            className: 'hm-credits__link',
-            texto: '@svg-maps/brazil',
-            attrs: { href: 'https://github.com/VictorCazanave/svg-maps', target: '_blank', rel: 'noopener noreferrer' },
-          },
-        ),
-        ' (CC BY 4.0). Código aberto no ',
-        criarEl(
-          'a',
-          {
-            className: 'hm-credits__link',
-            texto: 'GitHub',
-            attrs: { href: 'https://github.com/GHDaru/mapa-pesquisa', target: '_blank', rel: 'noopener noreferrer' },
-          },
-        ),
-        '.',
-        criarEl('span', { className: 'sr-only', texto: ' (links abrem em nova aba)' }),
-      ]),
     ]),
   ]);
 }
