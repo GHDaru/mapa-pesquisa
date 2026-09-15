@@ -249,6 +249,29 @@ export function formatarVantagemTitulo(vantagem: number): string {
 }
 
 /**
+ * Verdadeiro quando há pelo menos 2 datas distintas entre as pesquisas
+ * plotadas no mini-gráfico — o critério correto para desenhar a linha de
+ * tendência é "existe evolução real para suavizar", não quantas pesquisas
+ * sobreviveram ao filtro de recência do agregado
+ * (`agregado.pesquisasUsadas`, janela de 45 dias por padrão — ver
+ * `domain/aggregate.ts`). `datas` deve vir da série real desenhada como
+ * pontos (`serie.pontos`/`serie.dias`, não filtrados por janela), nunca de
+ * `agregado.pesquisasUsadas` diretamente.
+ *
+ * Bug corrigido (P0 da revisão): Goiás, Acre e Rondônia têm 2 pesquisas de
+ * datas bem distantes (ex.: GO — 2026-09-01 e 2026-05-12, 112 dias de
+ * diferença), mas só 1 sobrevivia à janela de 45 dias de
+ * `agregado.pesquisasUsadas`, escondendo a linha mesmo havendo os dois
+ * pontos reais desenhados no gráfico (`serie.pontos` não é filtrado por
+ * janela). O gate antigo (`agregado.pesquisasUsadas.length > 1`) confundia
+ * "quantas pesquisas contam para a média ponderada" com "quantas datas
+ * distintas foram desenhadas" — são perguntas diferentes.
+ */
+export function temEvolucaoParaLinha(datas: readonly string[]): boolean {
+  return new Set(datas).size > 1;
+}
+
+/**
  * Rótulo curto do título de miniatura, estilo NYT: "Lula +2,3", "Harris +15"
  * ou "Empate técnico"/"Sem pesquisa estadual". `liderNome` já deve vir
  * abreviado pelo chamador (ver `nomeCurtissimo` em candidate-names.ts) —

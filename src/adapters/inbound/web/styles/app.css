@@ -341,6 +341,25 @@ th {
   .map-view__legend {
     flex: 0 0 260px;
   }
+
+  /* P0 (docs/revisao-mapa.md §4): o SVG do Brasil é mais alto que largo
+     (~936px de altura quando a largura ocupa a coluna inteira em 1280px),
+     deixando SP e RS fora da viewport de 800px de altura no carregamento.
+     A partir daqui (mesma faixa em que a legenda já vai para o lado),
+     `--map-max-height` (calculado em `ajustarAlturaMapa`, map-view.ts, a
+     partir do espaço real abaixo do cabeçalho/título/texto de introdução)
+     limita a altura do SVG; `width:auto` + `max-width:100%` deriva a
+     largura automaticamente mantendo a proporção do viewBox — o mesmo
+     padrão de "largura auto + altura máxima" usado para imagens
+     responsivas com teto de altura. Sem JS (antes do primeiro layout) cai
+     no valor de fallback do `var()`. */
+  .map-svg {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: var(--map-max-height, calc(100vh - 320px));
+    margin-inline: auto;
+  }
 }
 
 .map-view__map-wrap {
@@ -391,6 +410,16 @@ th {
   .uf-label--pequena {
     display: none;
   }
+}
+
+/* Marcador textual (E/CE) ao lado da sigla — reforço não-cromático para
+   esquerda/centro-esquerda, hues próximos e de difícil distinção para
+   daltonismo vermelho-verde (docs/revisao-mapa.md P2 #5). Mesmo esquema de
+   contorno branco/preto do `.uf-label`, só menor; some junto com a sigla
+   quando esta é escondida (estado pequeno em tela estreita). */
+.uf-label__marcador {
+  font-size: 6px;
+  font-weight: 700;
 }
 
 .map-tooltip[hidden] {

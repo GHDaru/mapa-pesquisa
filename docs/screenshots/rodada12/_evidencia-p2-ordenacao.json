@@ -1,0 +1,64 @@
+{
+  "partyCount": 30,
+  "ariaSorts": [
+    {
+      "texto": "Número",
+      "ariaSort": "ascending"
+    },
+    {
+      "texto": "Sigla",
+      "ariaSort": "none"
+    },
+    {
+      "texto": "Nome completo",
+      "ariaSort": "none"
+    },
+    {
+      "texto": "Espectro",
+      "ariaSort": "none"
+    },
+    {
+      "texto": "Federação",
+      "ariaSort": "none"
+    },
+    {
+      "texto": "Fonte da classificação",
+      "ariaSort": null
+    }
+  ],
+  "afterSiglaSort": {
+    "ariaSorts": [
+      {
+        "texto": "Número",
+        "ariaSort": "none"
+      },
+      {
+        "texto": "Sigla",
+        "ariaSort": "ascending"
+      },
+      {
+        "texto": "Nome completo",
+        "ariaSort": "none"
+      },
+      {
+        "texto": "Espectro",
+        "ariaSort": "none"
+      },
+      {
+        "texto": "Federação",
+        "ariaSort": "none"
+      },
+      {
+        "texto": "Fonte da classificação",
+        "ariaSort": null
+      }
+    ],
+    "primeirasSiglas": [
+      "Agir (Centro-direita)",
+      "Avante (Centro)",
+      "Cidadania (Centro)",
+      "DC (Direita)",
+      "MDB (Centro)"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "legendInfo": [
+    {
+      "bg": "rgb(138, 143, 152)",
+      "opacity": "1"
+    },
+    {
+      "bg": "rgb(138, 143, 152)",
+      "opacity": "0.72"
+    },
+    {
+      "bg": "rgb(138, 143, 152)",
+      "opacity": "0.45"
+    },
+    {
+      "bg": "rgb(52, 52, 58)",
+      "opacity": "1"
+    }
+  ],
+  "desc": "map-tooltip"
+}

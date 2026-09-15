@@ -6,21 +6,59 @@ import { ordemEspectro } from '../../../../domain/spectrum.js';
 import { criarBadgePartido, criarEl, rotuloEspectro, tokenFillEspectro } from './_shared.js';
 
 /**
- * Cadastro de partidos — tabela ordenável por Número (padrão, identificador
- * oficial do TSE) ou por Espectro (agrupa a progressão de cor), com
- * cabeçalhos clicáveis no desktop e um `select` equivalente substituindo-os
- * quando a tabela vira lista de cards em 400px — ver docs/ux-spec.md §2(e).
+ * Cadastro de partidos — tabela ordenável por qualquer coluna (Sigla, Nome,
+ * Número — padrão, identificador oficial do TSE —, Espectro ou Federação),
+ * com cabeçalhos clicáveis no desktop (clicar de novo no mesmo cabeçalho
+ * inverte a direção, refletida em `aria-sort`) e um `select` equivalente
+ * substituindo-os quando a tabela vira lista de cards em 400px — ver
+ * docs/ux-spec.md §2(e) e docs/revisao-partidos.md ("O que a barra faz
+ * melhor" #1: a tabela da Wikipédia é ordenável por qualquer coluna, a
+ * nossa não era).
  */
 
-type OrdenarPor = 'numero' | 'espectro';
+type OrdenarPor = 'numero' | 'sigla' | 'nome' | 'espectro' | 'federacao';
+type Direcao = 'asc' | 'desc';
 
-function ordenarPartidos(partidos: readonly Partido[], ordenarPor: OrdenarPor): Partido[] {
-  if (ordenarPor === 'numero') {
-    return [...partidos].sort((a, b) => a.numero - b.numero);
+const ROTULO_CAMPO: Readonly<Record<OrdenarPor, string>> = {
+  numero: 'Número',
+  sigla: 'Sigla',
+  nome: 'Nome completo',
+  espectro: 'Espectro',
+  federacao: 'Federação',
+};
+
+function compararPartidos(a: Partido, b: Partido, campo: OrdenarPor): number {
+  switch (campo) {
+    case 'numero':
+      return a.numero - b.numero;
+    case 'sigla':
+      return a.sigla.localeCompare(b.sigla, 'pt-BR') || a.numero - b.numero;
+    case 'nome':
+      return a.nome.localeCompare(b.nome, 'pt-BR') || a.numero - b.numero;
+    case 'espectro':
+      return ordemEspectro(a.espectro) - ordemEspectro(b.espectro) || a.numero - b.numero;
+    case 'federacao': {
+      const fa = a.federacao ?? '';
+      const fb = b.federacao ?? '';
+      // Sem federação sempre por último, em ambas as direções de ordenação
+      // (não faz sentido "—" competir alfabeticamente com nomes reais).
+      if (!fa && fb) return 1;
+      if (fa && !fb) return -1;
+      return fa.localeCompare(fb, 'pt-BR') || a.numero - b.numero;
+    }
   }
-  return [...partidos].sort(
-    (a, b) => ordemEspectro(a.espectro) - ordemEspectro(b.espectro) || a.numero - b.numero,
-  );
+}
+
+function ordenarPartidos(partidos: readonly Partido[], campo: OrdenarPor, direcao: Direcao): Partido[] {
+  const semFederacao = (p: Partido): boolean => campo === 'federacao' && !p.federacao;
+  const ordenados = [...partidos].sort((a, b) => compararPartidos(a, b, campo));
+  if (direcao === 'asc') return ordenados;
+  // Reverter para "desc" também inverteria a regra de "sem federação por
+  // último" (viraria "por primeiro") — separa esse grupo antes de reverter
+  // o resto para mantê-lo sempre ao final, nas duas direções.
+  const comValor = ordenados.filter((p) => !semFederacao(p)).reverse();
+  const semValor = ordenados.filter((p) => semFederacao(p));
+  return [...comValor, ...semValor];
 }
 
 export function renderParties(container: HTMLElement, casos: CasosDeUso): void {
@@ -41,10 +79,14 @@ export function renderParties(container: HTMLElement, casos: CasosDeUso): void {
 
   // --- Controle de ordenação: cabeçalhos clicáveis (desktop) + select (mobile) ---
   let ordenarPor: OrdenarPor = 'numero';
+  let direcao: Direcao = 'asc';
 
   const selectOrdenacao = criarEl('select', { className: 'pv-select', attrs: { id: 'partidos-ordenar' } }, [
     criarEl('option', { texto: 'Número', attrs: { value: 'numero' } }),
+    criarEl('option', { texto: 'Sigla', attrs: { value: 'sigla' } }),
+    criarEl('option', { texto: 'Nome completo', attrs: { value: 'nome' } }),
     criarEl('option', { texto: 'Espectro', attrs: { value: 'espectro' } }),
+    criarEl('option', { texto: 'Federação', attrs: { value: 'federacao' } }),
   ]);
   const campoOrdenacao = criarEl('label', { className: 'pv-field pv-sort-select-wrap', texto: 'Ordenar por' }, [
     selectOrdenacao,
@@ -54,19 +96,31 @@ export function renderParties(container: HTMLElement, casos: CasosDeUso): void {
   const tabelaWrap = criarEl('div', {});
   raiz.append(tabelaWrap);
 
+  function aoOrdenar(campo: OrdenarPor): void {
+    if (ordenarPor === campo) {
+      direcao = direcao === 'asc' ? 'desc' : 'asc';
+    } else {
+      ordenarPor = campo;
+      direcao = 'asc';
+    }
+    atualizar();
+  }
+
   function atualizar(): void {
-    const partidos = ordenarPartidos(todos, ordenarPor);
-    meta.textContent = `${partidos.length} partidos, ordenados por ${ordenarPor === 'numero' ? 'número' : 'espectro'}.`;
+    const partidos = ordenarPartidos(todos, ordenarPor, direcao);
+    const rotuloDirecao = direcao === 'asc' ? 'crescente' : 'decrescente';
+    meta.textContent = `${partidos.length} partidos, ordenados por ${ROTULO_CAMPO[ordenarPor].toLowerCase()} (${rotuloDirecao}).`;
     selectOrdenacao.value = ordenarPor;
     tabelaWrap.innerHTML = '';
-    tabelaWrap.append(criarTabelaPartidos(partidos, ordenarPor, (novo) => {
-      ordenarPor = novo;
-      atualizar();
-    }));
+    tabelaWrap.append(criarTabelaPartidos(partidos, ordenarPor, direcao, aoOrdenar));
   }
 
   selectOrdenacao.addEventListener('change', () => {
-    ordenarPor = selectOrdenacao.value === 'espectro' ? 'espectro' : 'numero';
+    const valor = selectOrdenacao.value;
+    const campo: OrdenarPor =
+      valor === 'sigla' || valor === 'nome' || valor === 'espectro' || valor === 'federacao' ? valor : 'numero';
+    ordenarPor = campo;
+    direcao = 'asc';
     atualizar();
   });
 
@@ -94,24 +148,30 @@ function criarResumoPorEspectro(partidos: readonly Partido[]): HTMLElement {
 }
 
 function criarThOrdenavel(
-  rotulo: string,
   campo: OrdenarPor,
   ordenarPor: OrdenarPor,
+  direcao: Direcao,
   aoClicar: (campo: OrdenarPor) => void,
 ): HTMLElement {
+  const rotulo = ROTULO_CAMPO[campo];
   const ativo = ordenarPor === campo;
   const btn = criarEl('button', {
     className: 'pv-table-sort-btn',
     texto: rotulo,
-    attrs: { type: 'button', 'aria-label': `Ordenar por ${rotulo}` },
+    attrs: {
+      type: 'button',
+      'aria-label': `Ordenar por ${rotulo}${ativo ? `, ordem ${direcao === 'asc' ? 'crescente' : 'decrescente'} — clique para inverter` : ''}`,
+    },
   });
   btn.addEventListener('click', () => aoClicar(campo));
-  return criarEl('th', { attrs: { scope: 'col', 'aria-sort': ativo ? 'ascending' : 'none' } }, [btn]);
+  const ariaSort = ativo ? (direcao === 'asc' ? 'ascending' : 'descending') : 'none';
+  return criarEl('th', { attrs: { scope: 'col', 'aria-sort': ariaSort } }, [btn]);
 }
 
 function criarTabelaPartidos(
   partidos: readonly Partido[],
   ordenarPor: OrdenarPor,
+  direcao: Direcao,
   aoOrdenar: (campo: OrdenarPor) => void,
 ): HTMLElement {
   const wrap = criarEl('div', { className: 'pv-table-wrap pv-parties-table-wrap' });
@@ -120,11 +180,11 @@ function criarTabelaPartidos(
   table.append(
     criarEl('thead', {}, [
       criarEl('tr', {}, [
-        criarThOrdenavel('Número', 'numero', ordenarPor, aoOrdenar),
-        criarEl('th', { texto: 'Sigla', attrs: { scope: 'col' } }),
-        criarEl('th', { texto: 'Nome completo', attrs: { scope: 'col' } }),
-        criarThOrdenavel('Espectro', 'espectro', ordenarPor, aoOrdenar),
-        criarEl('th', { texto: 'Federação', attrs: { scope: 'col' } }),
+        criarThOrdenavel('numero', ordenarPor, direcao, aoOrdenar),
+        criarThOrdenavel('sigla', ordenarPor, direcao, aoOrdenar),
+        criarThOrdenavel('nome', ordenarPor, direcao, aoOrdenar),
+        criarThOrdenavel('espectro', ordenarPor, direcao, aoOrdenar),
+        criarThOrdenavel('federacao', ordenarPor, direcao, aoOrdenar),
         criarEl('th', { texto: 'Fonte da classificação', attrs: { scope: 'col' } }),
       ]),
     ]),

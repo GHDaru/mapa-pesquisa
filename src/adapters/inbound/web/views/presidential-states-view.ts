@@ -26,7 +26,6 @@ import {
   calcularQuantis,
   caminhoSuavizado,
   classificarPorQuantil,
-  diasEntreIso,
   escalaX,
   escalaY,
   formatarEleitorado,
@@ -35,6 +34,7 @@ import {
   raioAmostra,
   rotuloVantagemMini,
   serieCandidatoPorDia,
+  temEvolucaoParaLinha,
   type DominioX,
   type PontoXY,
 } from './presidential-states-layout.js';
@@ -802,7 +802,6 @@ function descricaoAcessivelMiniGrafico(candidatos: readonly CandidatoAgregado[])
  */
 function construirMiniGrafico(agregado: Agregado, serie: SerieTemporal, partidos: Partidos): SVGSVGElement {
   const candidatos = agregado.candidatos.slice(0, 2);
-  const multiplasPesquisas = agregado.pesquisasUsadas.length > 1;
 
   const pontosPorCandidato = candidatos.map((c) =>
     serie.pontos.filter((p) => p.candidato === c.candidato).sort((a, b) => a.data.localeCompare(b.data)),
@@ -816,12 +815,19 @@ function construirMiniGrafico(agregado: Agregado, serie: SerieTemporal, partidos
           maxIso: todasDatas.reduce((m, d) => (d > m ? d : m)),
         }
       : { minIso: '2000-01-01', maxIso: '2000-01-01' };
-  // Domínio de um único dia (todas as pesquisas usadas datam do mesmo dia —
-  // ex.: 2 institutos publicando no mesmo dia em MG/TO) não tem evolução
-  // real para desenhar como linha: em vez de deixar a suavização Catmull-Rom
-  // inventar um laço entre pontos empilhados no mesmo x, mostra só os
-  // pontos e o valor final (bug de laço confirmado em rodadas anteriores).
-  const dominioXTemUmDia = diasEntreIso(dominioX.minIso, dominioX.maxIso) <= 0;
+  // Linha de tendência só faz sentido quando há pelo menos 2 datas distintas
+  // desenhadas como pontos — usa a SÉRIE real (`serie.pontos`, via
+  // `todasDatas`), não `agregado.pesquisasUsadas.length > 1` (filtrado pela
+  // janela de recência de 45 dias do agregado): esse gate antigo escondia a
+  // linha em Goiás/Acre/Rondônia, que têm 2 pesquisas de datas bem
+  // distantes mas só 1 sobrevivia à janela — bug P0 documentado em
+  // docs/revisao-presidente-estados.md. Cobre também o caso "mesmo dia"
+  // (MG/TO: 2 institutos publicando na mesma data) — não é evolução real
+  // para desenhar, senão a suavização Catmull-Rom inventaria um laço entre
+  // pontos empilhados no mesmo x (bug de laço confirmado em rodadas
+  // anteriores) — `temEvolucaoParaLinha` retorna `false` nesse caso também,
+  // já que só há 1 data distinta.
+  const temLinha = temEvolucaoParaLinha(todasDatas);
 
   const todosPct = [...pontosPorCandidato.flat().map((p) => p.pct), ...candidatos.map((c) => c.pct)];
   const dominioY = calcularDominioY(todosPct);
@@ -895,7 +901,7 @@ function construirMiniGrafico(agregado: Agregado, serie: SerieTemporal, partidos
     }
 
     const finalCoord: PontoXY = { x: padEsquerdo + larguraPlot, y: finaisY[i]! };
-    if (multiplasPesquisas && !dominioXTemUmDia) {
+    if (temLinha) {
       // Linha construída a partir de `serie.dias` (já suave — no máximo 1
       // valor por candidato por data), não dos pontos brutos de pesquisa:
       // evita o laço quando 2+ pesquisas caem na mesma data (mesmo x).

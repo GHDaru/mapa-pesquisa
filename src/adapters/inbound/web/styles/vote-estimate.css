@@ -132,6 +132,17 @@
   align-items: center;
   gap: 6px;
 }
+/* A legenda usa a MESMA codificação visual do gráfico logo abaixo dela
+ * (`.ve-bar-seg--*` / `.ve-chart-whisker`), não uma paleta própria: os 3
+ * primeiros swatches são um candidato de exemplo (cor sólida `--color-accent`
+ * — o mesmo fallback que `--ve-cor-seg` usa quando nenhuma cor de candidato
+ * é passada, ver `.ve-bar-seg--estadual` abaixo) cheio / com hachura /
+ * translúcido, exatamente como um candidato real fica na barra empilhada; o
+ * 4º reproduz o traço vertical + fundo translúcido do whisker de incerteza.
+ * Antes, os 4 usavam a MESMA cor-base (`--color-text-subtle`) só variando
+ * opacidade — indistinguíveis a olho nu e sem relação com a codificação real
+ * do gráfico (P1 da revisão: "a legenda ensina uma chave visual diferente da
+ * que o gráfico realmente usa"). */
 .ve-legend-swatch {
   display: inline-block;
   width: 22px;
@@ -139,21 +150,21 @@
   border-radius: var(--radius-xs);
   border: 1px solid var(--color-border-strong);
   flex-shrink: 0;
-  background-color: var(--color-text-subtle);
+  background-color: var(--color-accent);
 }
 .ve-legend-swatch--complemento {
-  background-color: color-mix(in srgb, var(--color-text-subtle) 45%, transparent);
+  background-color: color-mix(in srgb, var(--color-accent) 45%, transparent);
   background-image: repeating-linear-gradient(
     135deg,
-    color-mix(in srgb, var(--color-text-subtle) 85%, transparent) 0 3px,
+    color-mix(in srgb, var(--color-accent) 80%, transparent) 0 3px,
     transparent 3px 6px
   );
 }
 .ve-legend-swatch--sem-pesquisa {
-  background-color: color-mix(in srgb, var(--color-text-subtle) 25%, transparent);
+  background-color: color-mix(in srgb, var(--color-accent) 25%, transparent);
 }
 .ve-legend-swatch--faixa {
-  background-color: color-mix(in srgb, var(--color-text-subtle) 20%, transparent);
+  background-color: color-mix(in srgb, var(--color-text) 12%, transparent);
   border-left: 2px solid var(--color-text-subtle);
   border-right: 2px solid var(--color-text-subtle);
   border-top-color: transparent;

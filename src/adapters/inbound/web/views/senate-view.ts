@@ -310,10 +310,13 @@ function desenharHemiciclo(
     });
     grupo.append(titulo, corpo);
 
-    // Distinção fixa/projetada reforçada além do contorno tracejado (que a
-    // 9px de raio fica quase ilegível a olho nu, ver docs/revisao-senado.md
-    // P1): um marcador interno sólido só nas cadeiras projetadas, além do
-    // rótulo textual "projetada"/"não disputada" no aria-label/tooltip.
+    // Distinção fixa/projetada não-cromática (docs/revisao-senado.md P1: a
+    // 9px de raio, um contorno tracejado de 1-2px é ilegível a olho nu e,
+    // testado, lê como dente de engrenagem em vez de linha pontilhada):
+    // fixa ganha um anel branco grosso (CSS); projetada ganha este marcador
+    // interno sólido — duas formas claramente diferentes, robustas em
+    // qualquer zoom — além do rótulo textual "projetada"/"não disputada" no
+    // aria-label/tooltip.
     if (assento.origemVisual === 'projetada') {
       grupo.append(
         criarSvgEl('circle', {
@@ -373,6 +376,43 @@ function criarBarraPartido(
   ]);
 }
 
+/**
+ * Bloco ideológico (excluindo "indefinido") com mais cadeiras no total
+ * corrente — usado pelo número grande acima do hemiciclo. `null` quando não
+ * há nenhuma cadeira classificada (dataset vazio).
+ */
+function blocoLiderante(totalEspectro: Readonly<Record<Espectro, number>>): { espectro: Espectro; contagem: number } | null {
+  let melhor: { espectro: Espectro; contagem: number } | null = null;
+  for (const [espectro, contagem] of Object.entries(totalEspectro) as [Espectro, number][]) {
+    if (espectro === 'indefinido' || contagem <= 0) continue;
+    if (!melhor || contagem > melhor.contagem) melhor = { espectro, contagem };
+  }
+  return melhor;
+}
+
+/**
+ * Número grande ao lado do hemiciclo com o total de assentos do bloco
+ * ideológico líder — o hemiciclo por si só exige contar círculos para saber
+ * quem está na frente; o card "Totais por espectro" existe mas fica abaixo
+ * do desenho, no mesmo tamanho de texto dos demais números da página (ver
+ * docs/revisao-senado.md §1.1, item "número grande do balanço de poder").
+ */
+function criarResumoHemiciclo(totalEspectro: Readonly<Record<Espectro, number>>, modo: 'projecao' | 'atual'): HTMLElement {
+  const total = Object.values(totalEspectro).reduce((soma, v) => soma + v, 0);
+  const lider = blocoLiderante(totalEspectro);
+  if (!lider || total <= 0) {
+    return criarEl('p', { className: 'pv-hemiciclo-resumo pv-meta', texto: 'Sem assentos classificados para resumir.' });
+  }
+  const rotuloVerbo = modo === 'projecao' ? 'projetados para' : 'ocupados por';
+  return criarEl('p', { className: 'pv-hemiciclo-resumo' }, [
+    criarEl('span', { className: 'pv-hemiciclo-resumo-numero pv-num', texto: String(lider.contagem) }),
+    criarEl('span', {
+      className: 'pv-hemiciclo-resumo-label',
+      texto: ` de ${total} assentos ${rotuloVerbo} ${rotuloEspectro(lider.espectro).toLowerCase()}`,
+    }),
+  ]);
+}
+
 function criarLinhaLegendaEspectro(espectro: Espectro, contagem: number): HTMLElement {
   return criarEl('div', { className: 'pv-legend-row' }, [
     criarEl('span', {
@@ -417,8 +457,8 @@ function criarLegendaConfianca(): HTMLElement {
   );
   card.append(
     criarEl('div', { className: 'pv-legend-row' }, [
-      criarEl('span', { className: 'pv-legend-swatch pv-legend-swatch--tracejado' }),
-      criarEl('span', { texto: 'Contorno tracejado + marcador central = cadeira projetada' }),
+      criarEl('span', { className: 'pv-legend-swatch pv-legend-swatch--marcador' }),
+      criarEl('span', { texto: 'Marcador central = cadeira projetada' }),
     ]),
   );
   return card;
@@ -633,12 +673,13 @@ function abrirPainelSenado(uf: string, casos: CasosDeUso, origem: HTMLElement | 
 
 /* =========================================================================
  * Tabela "Senadores por estado" — abaixo do hemiciclo, as 27 UFs (ver
- * docs/ux-spec.md). Ordenável por UF (padrão, alfabética) ou por espectro
- * projetado (agrupa a progressão de cor, mesmo padrão de `parties-view.ts`);
- * vira lista de cards em 400px.
+ * docs/ux-spec.md). Ordenável por corrida mais acirrada (padrão, mesmo
+ * princípio do NYT — ver docs/revisao-senado.md §1, item 4), por UF
+ * (alfabética) ou por espectro projetado (agrupa a progressão de cor, mesmo
+ * padrão de `parties-view.ts`); vira lista de cards em 400px.
  * ======================================================================= */
 
-type OrdenarSenadoPor = 'uf' | 'espectro';
+type OrdenarSenadoPor = 'acirrada' | 'uf' | 'espectro';
 
 /** Espectro do 1º colocado projetado da UF (para ordenar por espectro), ou 'indefinido' sem projeção. */
 function espectroProjetadoLider(dados: SenadoUf, espectroPorPartido: ReadonlyMap<string, Espectro>): Espectro {
@@ -647,17 +688,42 @@ function espectroProjetadoLider(dados: SenadoUf, espectroPorPartido: ReadonlyMap
   return espectroPorPartido.get(lider.partido) ?? 'indefinido';
 }
 
+/**
+ * Vantagem (pontos) entre o 1º e o 2º colocado projetados da UF — quanto
+ * menor, mais acirrada a corrida. `null` sem os 2 primeiros colocados (sem
+ * pesquisa suficiente), para que essas UFs fiquem no fim da lista em vez de
+ * no topo por "vantagem zero".
+ */
+function vantagemProjetada(dados: SenadoUf): number | null {
+  const validos = dados.projetadas.filter((p) => p.candidato);
+  if (validos.length < 2) return null;
+  const pcts = validos.map((p) => p.pct).sort((a, b) => b - a);
+  return pcts[0]! - pcts[1]!;
+}
+
 function ordenarSenadoPorUf(
   dados: readonly SenadoUf[],
   ordenarPor: OrdenarSenadoPor,
   espectroPorPartido: ReadonlyMap<string, Espectro>,
 ): SenadoUf[] {
   if (ordenarPor === 'uf') return [...dados].sort((a, b) => a.uf.localeCompare(b.uf));
+  if (ordenarPor === 'espectro') {
+    return [...dados].sort((a, b) => {
+      const diff =
+        posicaoHemiciclo(espectroProjetadoLider(a, espectroPorPartido)) -
+        posicaoHemiciclo(espectroProjetadoLider(b, espectroPorPartido));
+      return diff !== 0 ? diff : a.uf.localeCompare(b.uf);
+    });
+  }
+  // 'acirrada' (padrão): menor vantagem primeiro; UFs sem os 2 primeiros
+  // colocados (sem pesquisa suficiente) vão para o fim.
   return [...dados].sort((a, b) => {
-    const diff =
-      posicaoHemiciclo(espectroProjetadoLider(a, espectroPorPartido)) -
-      posicaoHemiciclo(espectroProjetadoLider(b, espectroPorPartido));
-    return diff !== 0 ? diff : a.uf.localeCompare(b.uf);
+    const va = vantagemProjetada(a);
+    const vb = vantagemProjetada(b);
+    if (va == null && vb == null) return a.uf.localeCompare(b.uf);
+    if (va == null) return 1;
+    if (vb == null) return -1;
+    return va !== vb ? va - vb : a.uf.localeCompare(b.uf);
   });
 }
 
@@ -727,7 +793,7 @@ function criarTabelaSenadoPorEstado(
         criarThOrdenavelSenado('UF', 'uf', ordenarPor, aoOrdenar),
         criarEl('th', { texto: 'Cadeira fixa (até 2031)', attrs: { scope: 'col' } }),
         criarEl('th', { texto: 'Atuais em disputa (até 2027)', attrs: { scope: 'col' } }),
-        criarThOrdenavelSenado('Projetados 2027', 'espectro', ordenarPor, aoOrdenar),
+        criarThOrdenavelSenado('Projetados 2027', 'acirrada', ordenarPor, aoOrdenar),
       ]),
     ]),
   );
@@ -788,7 +854,7 @@ export function renderSenate(container: HTMLElement, casos: CasosDeUso): void {
 
   const btnProjecao = criarEl('button', {
     className: 'pv-toggle-btn',
-    texto: 'Projeção 2027',
+    texto: 'Projeção 2026',
     attrs: { type: 'button', 'aria-pressed': 'true' },
   });
   const btnAtual = criarEl('button', {
@@ -836,8 +902,14 @@ export function renderSenate(container: HTMLElement, casos: CasosDeUso): void {
         ? assentosDaProjecao(projecao.assentos)
         : assentosDaComposicaoAtual(projecao.composicaoAtual.totalPorPartido, espectroPorPartido);
 
+    // Totais por espectro — usado tanto pelo número grande logo acima do
+    // hemiciclo (item "totais/bancadas" de docs/revisao-senado.md §1.1)
+    // quanto pela legenda "Totais por espectro" mais abaixo.
+    const totalEspectro = modo === 'projecao' ? projecao.totalPorEspectro : projecao.composicaoAtual.totalPorEspectro;
+
     corpo.append(
       criarEl('div', { className: 'pv-hemiciclo-wrap' }, [
+        criarResumoHemiciclo(totalEspectro, modo),
         desenharHemiciclo(assentosVisuais, modo === 'projecao' ? ufFiltro : null, (uf, origem) => {
           abrirPainelSenado(uf, casos, origem);
         }),
@@ -873,7 +945,6 @@ export function renderSenate(container: HTMLElement, casos: CasosDeUso): void {
     // Totais por espectro.
     legendaEspectro.innerHTML = '';
     legendaEspectro.append(criarEl('h2', { className: 'pv-section-title', texto: 'Totais por espectro' }));
-    const totalEspectro = modo === 'projecao' ? projecao.totalPorEspectro : projecao.composicaoAtual.totalPorEspectro;
     const espectrosOrdenados = (Object.entries(totalEspectro) as [Espectro, number][]).sort(
       (a, b) => posicaoHemiciclo(a[0]) - posicaoHemiciclo(b[0]),
     );
@@ -906,10 +977,14 @@ export function renderSenate(container: HTMLElement, casos: CasosDeUso): void {
 
   // --- Tabela "Senadores por estado" (27 UFs), abaixo do hemiciclo ---
   const todosSenadoUf = casos.getSenateByState();
-  let ordenarTabelaPor: OrdenarSenadoPor = 'uf';
+  // Padrão "corrida mais acirrada" primeiro (menor vantagem entre o 1º e o
+  // 2º colocado), como o NYT faz — ver docs/ux-spec.md §1.1 e
+  // docs/revisao-senado.md §1, item 4/§3 P2. "UF" volta à ordem alfabética.
+  let ordenarTabelaPor: OrdenarSenadoPor = 'acirrada';
 
   const selectOrdenacaoTabela = criarEl('select', { className: 'pv-select', attrs: { id: 'senado-tabela-ordenar' } }, [
-    criarEl('option', { texto: 'UF', attrs: { value: 'uf' } }),
+    criarEl('option', { texto: 'Corrida mais acirrada', attrs: { value: 'acirrada' } }),
+    criarEl('option', { texto: 'UF (alfabética)', attrs: { value: 'uf' } }),
     criarEl('option', { texto: 'Espectro projetado', attrs: { value: 'espectro' } }),
   ]);
   const campoOrdenacaoTabela = criarEl(
@@ -931,7 +1006,8 @@ export function renderSenate(container: HTMLElement, casos: CasosDeUso): void {
     );
   }
   selectOrdenacaoTabela.addEventListener('change', () => {
-    ordenarTabelaPor = selectOrdenacaoTabela.value === 'espectro' ? 'espectro' : 'uf';
+    const valor = selectOrdenacaoTabela.value;
+    ordenarTabelaPor = valor === 'espectro' || valor === 'uf' ? valor : 'acirrada';
     atualizarTabelaSenado();
   });
   atualizarTabelaSenado();

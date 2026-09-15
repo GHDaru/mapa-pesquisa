@@ -395,22 +395,45 @@ export function renderTimelineChart(host: HTMLElement, opcoes: OpcoesTimelineCha
   // exatamente sobre a geometria correspondente do SVG ao lado.
   const figura = document.createElement('div');
   figura.className = 'pv-timeline-figure';
+  // Insere cedo (ainda vazio) para medir a largura renderizada real: a
+  // largura de `.pv-timeline-figure` só depende do layout CSS do card, não
+  // do conteúdo do SVG, que ainda nem existe.
+  host.append(figura);
   const overlay = document.createElement('div');
   overlay.className = 'pv-timeline-overlay';
   overlay.setAttribute('aria-hidden', 'true');
+
+  // Fator unidade-do-viewBox -> px reais, usado abaixo para converter um gap
+  // mínimo entre rótulos finais (`ESPACO_MIN_ROTULO_PX`) de px reais para
+  // unidades do viewBox. Sem essa conversão, um gap fixo em unidades do
+  // viewBox encolhe proporcionalmente em telas estreitas junto com o resto
+  // do SVG — mas o texto HTML dos rótulos não encolhe mais (esse é
+  // justamente o ponto do P0 corrigido acima), então dois rótulos finais
+  // que cabiam confortavelmente a 1280px passavam a se sobrepor a 400px
+  // (bug confirmado por DOM: `getBoundingClientRect()` dos dois rótulos se
+  // interceptando em ~2px a 400px de largura).
+  const larguraFiguraPx = figura.getBoundingClientRect().width;
+  const escalaPxPorUnidade = larguraFiguraPx > 0 ? larguraFiguraPx / LARGURA : 1;
 
   // --- Grade horizontal + eixo Y (recessivos, ver references/marks-and-anatomy.md) ---
   const ticksY = gerarTicksY(dominioY);
   const grupoGrade = criarSvgEl('g', { class: 'pv-timeline-grid' });
   const overlayEixoY = document.createElement('div');
   overlayEixoY.className = 'pv-timeline-axis-y-labels';
-  for (const tick of ticksY) {
+  ticksY.forEach((tick, i) => {
     const y = escalaY(tick);
     grupoGrade.append(
       criarSvgEl('line', { x1: String(areaX[0]), x2: String(areaX[1]), y1: String(y), y2: String(y), class: 'pv-timeline-gridline' }),
     );
-    overlayEixoY.append(criarRotuloOverlay(`${tick}%`, areaX[0], y, 'pv-timeline-axis-label pv-timeline-axis-label--y'));
-  }
+    // O tick mais baixo (1º de `ticksY`, sempre crescente) cai bem em cima
+    // da linha de base do eixo X — ancorar seu rótulo pela base em vez do
+    // centro (modificador `--y-bottom`) evita que ele desça sobre a faixa
+    // onde os rótulos do eixo X começam, corrigindo uma sobreposição real
+    // confirmada por `getBoundingClientRect()` (~2-18px, a depender da
+    // largura) entre o tick "%" mais baixo e o 1º rótulo de data.
+    const classe = `pv-timeline-axis-label pv-timeline-axis-label--y${i === 0 ? ' pv-timeline-axis-label--y-bottom' : ''}`;
+    overlayEixoY.append(criarRotuloOverlay(`${tick}%`, areaX[0], y, classe));
+  });
   svg.append(grupoGrade);
   overlay.append(overlayEixoY);
 
@@ -539,7 +562,8 @@ export function renderTimelineChart(host: HTMLElement, opcoes: OpcoesTimelineCha
   // Rótulos diretos no fim de cada linha — quando duas linhas terminam perto
   // uma da outra, afasta verticalmente (nunca empilha em cima, ver
   // references/marks-and-anatomy.md "quando rótulos de fim colidem").
-  const ESPACO_MIN_ROTULO = 14;
+  const ESPACO_MIN_ROTULO_PX = 20; // ~1 altura de linha de --text-body-sm (13px/1.5)
+  const ESPACO_MIN_ROTULO = ESPACO_MIN_ROTULO_PX / escalaPxPorUnidade;
   const rotulosOrdenados = [...candidatosParaRotulo].sort((a, b) => a.y - b.y);
   for (let i = 1; i < rotulosOrdenados.length; i++) {
     const anterior = rotulosOrdenados[i - 1]!;
@@ -578,8 +602,7 @@ export function renderTimelineChart(host: HTMLElement, opcoes: OpcoesTimelineCha
   crosshair.style.display = 'none';
   svg.append(crosshair);
 
-  figura.append(svg, overlay);
-  host.append(figura);
+  figura.append(svg, overlay); // figura já está em `host` (ver acima, medição de largura)
 
   // --- Legenda: nome + partido de cada candidato destacado, + "Outros" ---
   const legenda = document.createElement('div');

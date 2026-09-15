@@ -42,6 +42,9 @@ function rotuloCenarioCurto(cenario: string): string {
  * (série diária para o gráfico do topo da tela).
  */
 
+/** Candidatos com linha própria no gráfico por padrão (domínio Y estreito, ver P2 da revisão). */
+const MIN_CANDIDATOS_DESTACADOS = 2;
+/** Candidatos com linha própria quando o toggle "Mostrar outros candidatos" está ligado. */
 const MAX_CANDIDATOS_DESTACADOS = 3;
 
 export function renderPresidential(container: HTMLElement, casos: CasosDeUso): void {
@@ -96,18 +99,28 @@ export function renderPresidential(container: HTMLElement, casos: CasosDeUso): v
 }
 
 /**
- * Escolhe os até `MAX_CANDIDATOS_DESTACADOS` candidatos com linha própria no
- * gráfico (já vêm ordenados por média final desc. em `serie.candidatos` —
- * ver `domain/aggregate.ts`); os demais aparecem só como pontos cinza
- * ("Outros", sem linha) desenhados por `renderTimelineChart`. Dois
- * candidatos do mesmo espectro (ex.: dois de direita) recebem tons
- * distintos via `atribuirTomSerie` — ver styles/views.css.
+ * Escolhe os até `maxDestacados` candidatos com linha própria no gráfico (já
+ * vêm ordenados por média final desc. em `serie.candidatos` — ver
+ * `domain/aggregate.ts`); os demais aparecem só como pontos cinza ("Outros",
+ * sem linha) desenhados por `renderTimelineChart`. Dois candidatos do mesmo
+ * espectro (ex.: dois de direita) recebem tons distintos via
+ * `atribuirTomSerie` — ver styles/views.css.
+ *
+ * Por padrão `maxDestacados` é `MIN_CANDIDATOS_DESTACADOS` (2): como o
+ * domínio Y do gráfico é calculado só a partir dos valores dos candidatos
+ * destacados (ver `renderTimelineChart`), isso mantém o domínio estreito ao
+ * redor da corrida que importa (1º x 2º) em vez de um 3º candidato residual
+ * (ex.: Cury) empurrar o piso a 0% e diluir a separação visual entre os dois
+ * primeiros — bug de design P2 documentado em docs/revisao-presidente.md. O
+ * toggle "Mostrar outros candidatos" chama esta função de novo com
+ * `MAX_CANDIDATOS_DESTACADOS`.
  */
 function candidatosDestacadosDaSerie(
   serie: SerieTemporal,
   espectroDe: (partido: string | null) => Espectro,
+  maxDestacados: number = MIN_CANDIDATOS_DESTACADOS,
 ): SerieCandidato[] {
-  const nomes = serie.candidatos.slice(0, MAX_CANDIDATOS_DESTACADOS);
+  const nomes = serie.candidatos.slice(0, maxDestacados);
   const partidoPorNome = new Map<string, string | null>();
   for (const ponto of serie.pontos) {
     if (!partidoPorNome.has(ponto.candidato)) partidoPorNome.set(ponto.candidato, ponto.partido);
@@ -138,6 +151,8 @@ function criarCartaoTimeline(
   const titulo = criarEl('h2', { className: 'pv-section-title', texto: 'Evolução das pesquisas — 1º turno' });
   card.append(titulo);
 
+  const controlesRow = criarEl('div', { className: 'pv-timeline-controls-row' });
+
   let selectCenario: HTMLSelectElement | null = null;
   if (turno2.length > 0) {
     selectCenario = criarEl('select', { className: 'pv-select pv-timeline-scenario-select', attrs: { id: 'presidente-timeline-cenario' } }, [
@@ -147,8 +162,23 @@ function criarCartaoTimeline(
       ),
     ]);
     const campo = criarEl('label', { className: 'pv-field', texto: 'Mostrar série de' }, [selectCenario]);
-    card.append(campo);
+    controlesRow.append(campo);
   }
+
+  // Toggle "Mostrar outros candidatos": por padrão o gráfico traça linha só
+  // para os 2 primeiros colocados (domínio Y estreito, mín-5/máx+5 — ver P2
+  // da revisão); ligado, inclui o 3º (ex.: candidatos residuais como Cury)
+  // e o domínio se amplia de acordo (os valores desse candidato passam a
+  // contar no cálculo do domínio — ver `renderTimelineChart`).
+  const checkboxOutros = criarEl('input', {
+    attrs: { type: 'checkbox', id: 'presidente-timeline-outros' },
+  }) as HTMLInputElement;
+  const campoOutros = criarEl('label', { className: 'pv-timeline-toggle', attrs: { for: 'presidente-timeline-outros' } }, [
+    checkboxOutros,
+    'Mostrar outros candidatos',
+  ]);
+  controlesRow.append(campoOutros);
+  card.append(controlesRow);
 
   const host = criarEl('div', { className: 'pv-timeline-chart-host' });
   card.append(host);
@@ -166,7 +196,8 @@ function criarCartaoTimeline(
         : `Evolução das pesquisas — ${rotuloCenarioCurto(valorSelecionado)}`;
     titulo.title = valorSelecionado === '' ? '' : valorSelecionado;
 
-    const candidatosDestacados = candidatosDestacadosDaSerie(serie, espectroDe);
+    const maxDestacados = checkboxOutros.checked ? MAX_CANDIDATOS_DESTACADOS : MIN_CANDIDATOS_DESTACADOS;
+    const candidatosDestacados = candidatosDestacadosDaSerie(serie, espectroDe, maxDestacados);
     renderTimelineChart(host, {
       serie,
       candidatosDestacados,
@@ -178,6 +209,7 @@ function criarCartaoTimeline(
   }
 
   selectCenario?.addEventListener('change', atualizar);
+  checkboxOutros.addEventListener('change', atualizar);
   atualizar();
 
   return card;

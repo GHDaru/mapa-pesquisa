@@ -128,6 +128,10 @@ function ariaLabelUf(nomeEstado: string, overview: VisaoGeralUf): string {
 /** Renderiza o mapa do Brasil (governadores 2026) dentro de `container`. */
 export function renderMap(container: HTMLElement, casos: CasosDeUso): void {
   container.innerHTML = '';
+  desligarOuvinteToqueFora?.();
+  desligarOuvinteToqueFora = null;
+  desligarOuvinteResize?.();
+  desligarOuvinteResize = null;
 
   const overviewLista = casos.getMapOverview();
   const overviewPorUf = new Map(overviewLista.map((o) => [o.uf, o]));
@@ -146,6 +150,10 @@ export function renderMap(container: HTMLElement, casos: CasosDeUso): void {
   const secao = document.createElement('section');
   secao.className = 'map-view';
   secao.setAttribute('aria-labelledby', 'map-view-heading');
+  // Conectado ao documento já aqui (em vez de só no final) para que
+  // `ajustarAlturaMapa` (P0 — ver abaixo) consiga medir posições reais via
+  // `getBoundingClientRect()` assim que o wrapper do mapa existir.
+  container.appendChild(secao);
 
   const heading = document.createElement('h2');
   heading.id = 'map-view-heading';
@@ -174,8 +182,30 @@ export function renderMap(container: HTMLElement, casos: CasosDeUso): void {
   tooltip.hidden = true;
   mapWrap.appendChild(tooltip);
 
+  // UF cujo tooltip-prévia está fixado por toque (mobile) — `null` quando
+  // nenhum está fixado ou estamos em fluxo de mouse/teclado. Ver
+  // `aoInteragirComEstado` e docs/ux-spec.md §1 princípio 4 (P1 #1 de
+  // docs/revisao-mapa.md: no mobile o 1º toque só fixa a prévia; só o 2º
+  // toque no MESMO estado abre o painel completo).
+  let ufTooltipFixado: string | null = null;
+  // Elemento com `aria-describedby="map-tooltip"` no momento — associação
+  // dinâmica, só enquanto o tooltip está de fato visível para aquele
+  // elemento (P2 #2 de docs/revisao-mapa.md: `role="tooltip"` sem nenhum
+  // path referenciando-o via `aria-describedby`).
+  let elementoDescrito: SVGElement | null = null;
+
   function esconderTooltip(): void {
     tooltip.hidden = true;
+    if (elementoDescrito) {
+      elementoDescrito.removeAttribute('aria-describedby');
+      elementoDescrito = null;
+    }
+  }
+
+  function marcarDescricaoTooltip(alvo: SVGElement): void {
+    if (elementoDescrito && elementoDescrito !== alvo) elementoDescrito.removeAttribute('aria-describedby');
+    alvo.setAttribute('aria-describedby', 'map-tooltip');
+    elementoDescrito = alvo;
   }
 
   function conteudoTooltip(uf: string): string {
@@ -234,21 +264,46 @@ export function renderMap(container: HTMLElement, casos: CasosDeUso): void {
     tooltip.style.top = `${top}px`;
   }
 
-  function mostrarTooltipMouse(uf: string, evento: PointerEvent): void {
+  function mostrarTooltipMouse(uf: string, pathAcessivel: SVGElement, evento: PointerEvent): void {
     tooltip.innerHTML = conteudoTooltip(uf);
     tooltip.hidden = false;
+    marcarDescricaoTooltip(pathAcessivel);
     posicionarTooltipPerto(evento.clientX, evento.clientY);
   }
 
   function mostrarTooltipFoco(uf: string, alvo: SVGElement): void {
     tooltip.innerHTML = conteudoTooltip(uf);
     tooltip.hidden = false;
+    marcarDescricaoTooltip(alvo);
     const rect = alvo.getBoundingClientRect();
     posicionarTooltipPerto(rect.left + rect.width / 2, rect.top + rect.height / 2);
   }
 
   function abrirPainel(uf: string, origem: SVGElement): void {
+    ufTooltipFixado = null;
+    esconderTooltip();
     abrirPainelEstado({ uf, casos, elementoOrigem: origem });
+  }
+
+  /**
+   * Um único handler de `click` para mouse/teclado (abre o painel direto,
+   * comportamento desktop inalterado — ver docs/revisao-mapa.md) e para
+   * toque (mobile, `pointerType === 'touch'`): o 1º toque num estado só fixa
+   * o tooltip-prévia (igual ao hover), o 2º toque no MESMO estado abre o
+   * painel. Toque em outro estado troca a prévia fixada; toque fora do mapa
+   * fecha (ver ouvinte de `pointerdown` em `document`, registrado abaixo).
+   */
+  function aoInteragirComEstado(uf: string, path: SVGElement, pointerType: string): void {
+    if (pointerType !== 'touch') {
+      abrirPainel(uf, path);
+      return;
+    }
+    if (ufTooltipFixado === uf && !tooltip.hidden) {
+      abrirPainel(uf, path);
+      return;
+    }
+    mostrarTooltipFoco(uf, path);
+    ufTooltipFixado = uf;
   }
 
   const svg = document.createElementNS(SVG_NS, 'svg');
@@ -345,11 +400,40 @@ export function renderMap(container: HTMLElement, casos: CasosDeUso): void {
       alvoInterativo = alvo;
     }
 
-    for (const el of [path, alvoInterativo]) {
-      el.addEventListener('pointerenter', (e) => mostrarTooltipMouse(uf, e as PointerEvent));
-      el.addEventListener('pointermove', (e) => posicionarTooltipPerto((e as PointerEvent).clientX, (e as PointerEvent).clientY));
-      el.addEventListener('pointerleave', esconderTooltip);
-      el.addEventListener('click', () => abrirPainel(uf, path));
+    // Último tipo de ponteiro observado por estado (mouse/touch/pen) — o
+    // evento `click` em si não carrega `pointerType` de forma confiável
+    // (é um `MouseEvent`), então é capturado no `pointerdown` imediatamente
+    // anterior para decidir, no `click`, entre abrir o painel direto
+    // (desktop) ou o fluxo de prévia fixada por toque (mobile).
+    let ultimoPointerType = 'mouse';
+
+    // `alvoInterativo` é o próprio `path` em estados grandes (sem alvo de
+    // toque ampliado) — iterar `[path, alvoInterativo]` sem deduplicar
+    // registraria cada listener 2x no mesmo elemento. Antes isso era
+    // inofensivo (`abrirPainel` é idempotente), mas duplica a chamada de
+    // `aoInteragirComEstado` por toque: o 1º toque fixaria a prévia E, na
+    // mesma interação, o 2º registro já veria `ufTooltipFixado === uf` e
+    // abriria o painel direto — pulando o estágio de prévia no mobile.
+    const elementosInterativos = alvoInterativo === path ? [path] : [path, alvoInterativo];
+    for (const el of elementosInterativos) {
+      el.addEventListener('pointerdown', (e) => {
+        ultimoPointerType = (e as PointerEvent).pointerType;
+      });
+      el.addEventListener('pointerenter', (e) => {
+        const evento = e as PointerEvent;
+        if (evento.pointerType === 'touch') return; // toque usa o fluxo de aoInteragirComEstado, não hover
+        mostrarTooltipMouse(uf, path, evento);
+      });
+      el.addEventListener('pointermove', (e) => {
+        const evento = e as PointerEvent;
+        if (evento.pointerType === 'touch') return;
+        posicionarTooltipPerto(evento.clientX, evento.clientY);
+      });
+      el.addEventListener('pointerleave', (e) => {
+        if ((e as PointerEvent).pointerType === 'touch') return;
+        esconderTooltip();
+      });
+      el.addEventListener('click', () => aoInteragirComEstado(uf, path, ultimoPointerType));
     }
     path.addEventListener('focus', () => mostrarTooltipFoco(uf, path));
     path.addEventListener('blur', esconderTooltip);
@@ -369,13 +453,76 @@ export function renderMap(container: HTMLElement, casos: CasosDeUso): void {
     texto.setAttribute('class', 'uf-label');
     if (area < AREA_ESCONDER_SIGLA_ESTREITO) texto.classList.add('uf-label--pequena');
     texto.textContent = uf;
+    // Marcador textual (E/CE) para reforçar, sem depender de matiz, a
+    // distinção entre esquerda e centro-esquerda — ver MARCADOR_ESPECTRO.
+    const marcador = MARCADOR_ESPECTRO[espectro];
+    if (marcador) {
+      const tspan = document.createElementNS(SVG_NS, 'tspan');
+      tspan.setAttribute('class', 'uf-label__marcador');
+      tspan.setAttribute('dx', '1');
+      tspan.textContent = marcador;
+      texto.appendChild(tspan);
+    }
     grupoRotulos.appendChild(texto);
   }
 
   mapWrap.appendChild(svg);
 
+  // Toque fora de qualquer estado fecha o tooltip-prévia fixado (mobile) —
+  // "clique fora fecha" do mesmo padrão já usado pelo backdrop do painel.
+  function aoTocarForaDoMapa(e: PointerEvent): void {
+    if (ufTooltipFixado === null) return;
+    const alvo = e.target;
+    if (alvo instanceof Element && alvo.closest('.map-uf, .map-uf__alvo-toque')) return;
+    ufTooltipFixado = null;
+    esconderTooltip();
+  }
+  document.addEventListener('pointerdown', aoTocarForaDoMapa);
+  desligarOuvinteToqueFora = () => document.removeEventListener('pointerdown', aoTocarForaDoMapa);
+
   layout.appendChild(criarLegenda());
-  container.appendChild(secao);
+
+  ajustarAlturaMapa(mapWrap);
+  window.addEventListener('resize', onResizeAjustarAltura);
+  desligarOuvinteResize = () => window.removeEventListener('resize', onResizeAjustarAltura);
+  function onResizeAjustarAltura(): void {
+    if (!secao.isConnected) {
+      window.removeEventListener('resize', onResizeAjustarAltura);
+      return;
+    }
+    ajustarAlturaMapa(mapWrap);
+  }
+}
+
+/**
+ * P0 (docs/revisao-mapa.md §4): o SVG do mapa é mais alto que a janela em
+ * 1280×800 (936px medidos vs. 800px de altura), deixando SP e RS fora da
+ * área visível ao carregar. A partir de `LARGURA_MIN_LIMITAR_ALTURA` (mesma
+ * faixa em que a legenda passa a ficar ao lado do mapa — `.map-view__layout`
+ * vira `row`), mede o espaço realmente disponível abaixo do topo do wrapper
+ * do mapa (cabeçalho do site + título + texto de introdução + respiro já
+ * consumidos acima dele) e limita a altura do SVG a isso via a variável CSS
+ * `--map-max-height`, mantendo a proporção (`.map-svg` usa `width:auto` +
+ * `max-height` nesse breakpoint — ver styles/app.css). Abaixo do breakpoint
+ * a variável é removida e o mapa volta a ocupar a largura total (mobile,
+ * ver docs/ux-spec.md §2(a): "mapa mantém-se como mapa... SVG escala por
+ * `viewBox`, `max-width: 100%`").
+ */
+function ajustarAlturaMapa(mapWrap: HTMLElement): void {
+  if (!window.matchMedia(`(min-width: ${LARGURA_MIN_LIMITAR_ALTURA}px)`).matches) {
+    mapWrap.style.removeProperty('--map-max-height');
+    return;
+  }
+  const rect = mapWrap.getBoundingClientRect();
+  const estilos = window.getComputedStyle(mapWrap);
+  const reservado =
+    Number.parseFloat(estilos.paddingTop) +
+    Number.parseFloat(estilos.paddingBottom) +
+    Number.parseFloat(estilos.borderTopWidth) +
+    Number.parseFloat(estilos.borderBottomWidth);
+  const folga = 24; // respiro para não colar no rodapé da viewport
+  const disponivel = window.innerHeight - rect.top - reservado - folga;
+  mapWrap.style.setProperty('--map-max-height', `${Math.max(280, disponivel)}px`);
 }
 
 function semDadosFallback(uf: string): VisaoGeralUf {
@@ -456,7 +603,12 @@ function criarItemLegendaConfianca(opacidade: string, rotulo: string, hachura: b
   item.className = 'legend-item';
   const swatch = document.createElement('span');
   swatch.className = 'legend-swatch';
-  swatch.style.background = 'var(--color-accent)';
+  // `--color-accent` (roxo/azul de marca) nunca aparece no mapa — nenhum
+  // espectro usa essa cor, então a amostra da legenda de confiança não batia
+  // com nada do que se via no próprio mapa (docs/revisao-mapa.md P1 #2). Usa
+  // o tom "centro" (`--spectrum-3-fill`), neutro e presente na paleta real
+  // do mapa, como cor de exemplo para as opacidades.
+  swatch.style.background = 'var(--spectrum-3-fill)';
   swatch.style.opacity = opacidade;
   if (hachura) swatch.classList.add('legend-swatch--hachura');
   swatch.setAttribute('aria-hidden', 'true');

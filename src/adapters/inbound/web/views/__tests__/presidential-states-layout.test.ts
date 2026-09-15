@@ -14,6 +14,7 @@ import {
   raioAmostra,
   rotuloVantagemMini,
   serieCandidatoPorDia,
+  temEvolucaoParaLinha,
 } from '../presidential-states-layout.js';
 
 describe('presidential-states-layout: ordenarParaGrade', () => {
@@ -320,5 +321,34 @@ describe('presidential-states-layout: rotuloVantagemMini', () => {
 
   it('vantagem >= 10 pontos usa número inteiro, sem casa decimal', () => {
     expect(rotuloVantagemMini('Lula', 15.2, false)).toBe('Lula +15');
+  });
+});
+
+describe('presidential-states-layout: temEvolucaoParaLinha', () => {
+  it('falso para 0 ou 1 data (nada para suavizar)', () => {
+    expect(temEvolucaoParaLinha([])).toBe(false);
+    expect(temEvolucaoParaLinha(['2026-09-01'])).toBe(false);
+  });
+
+  it('falso quando todas as pesquisas caem na mesma data (caso MG/TO — 2 institutos no mesmo dia)', () => {
+    expect(temEvolucaoParaLinha(['2026-09-01', '2026-09-01', '2026-09-01'])).toBe(false);
+  });
+
+  it('verdadeiro para 2+ datas distintas, mesmo bem afastadas no tempo (caso Goiás: 112 dias de diferença)', () => {
+    expect(temEvolucaoParaLinha(['2026-05-12', '2026-09-01'])).toBe(true);
+  });
+
+  it('não depende da quantidade de pesquisas usadas pelo agregado (janela de recência) — só das datas plotadas', () => {
+    // Regressão do bug confirmado em GO/AC/RO: `agregado.pesquisasUsadas`
+    // pode ter só 1 item (a pesquisa antiga caiu fora da janela de 45 dias),
+    // mas `serie.pontos` continua tendo os 2 pontos reais — o gate deve se
+    // basear nas datas realmente desenhadas, não no tamanho de
+    // `pesquisasUsadas`.
+    const datasDaSerieAcre = ['2026-07-25', '2026-08-26']; // Real Time Big Data + Quaest, 32 dias de diferença
+    expect(temEvolucaoParaLinha(datasDaSerieAcre)).toBe(true);
+  });
+
+  it('verdadeiro mesmo com datas repetidas, desde que haja pelo menos 2 distintas', () => {
+    expect(temEvolucaoParaLinha(['2026-07-15', '2026-07-15', '2026-08-24'])).toBe(true);
   });
 });

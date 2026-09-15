@@ -133,6 +133,22 @@
   text-underline-offset: 2px;
 }
 .pv-link-fonte:hover { color: var(--color-accent-hover); }
+/* `--color-accent` (#5e6ad2) mede só 4.44:1 sobre `--color-canvas` escuro
+   (#010102) — abaixo do mínimo AA de 4.5:1 para texto normal (WCAG 1.4.3),
+   confirmado em docs/revisao-partidos.md P1 #3. No tema claro o mesmo token
+   já passa (4.70:1), por isso o ajuste é só para o escuro. Um tom mais claro
+   do próprio acento (#6c76dc, 5.23:1 sobre o mesmo fundo) resolve sem tocar
+   o token global `--color-accent` (usado em navegação, botões etc., que não
+   dependem de texto pequeno sobre `--color-canvas`) — ajuste local só neste
+   link, presente em todas as 30 linhas da tabela. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .pv-link-fonte {
+    color: #6c76dc;
+  }
+}
+:root[data-theme='dark'] .pv-link-fonte {
+  color: #6c76dc;
+}
 
 .pv-num {
   font-variant-numeric: tabular-nums;
@@ -484,6 +500,32 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
   max-width: 640px;
   margin-inline: auto;
 }
+/* Número grande do balanço de poder, acima do hemiciclo — mesmo princípio do
+   NYT (docs/ux-spec.md §1.2, docs/revisao-senado.md §1.1): o total do bloco
+   líder é a primeira coisa que o olho encontra, não só um card abaixo do
+   desenho no mesmo tamanho dos demais números. */
+.pv-hemiciclo-resumo {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  text-align: center;
+  margin: 0 0 var(--space-3);
+}
+.pv-hemiciclo-resumo-numero {
+  font: var(--text-display);
+  color: var(--color-text);
+}
+.pv-hemiciclo-resumo-label {
+  font: var(--text-body-sm);
+  color: var(--color-text-subtle);
+}
+/* `.pv-assento` agora é um `<g>` (círculo do assento + marcador interno nas
+   cadeiras projetadas, ver senate-view.ts `desenharHemiciclo`) — `fill` e
+   `stroke` são propriedades herdadas em SVG, então as regras abaixo, embora
+   qualificadas em `.pv-assento`, também pintam `.pv-assento-corpo` (o
+   círculo visível) sem precisar repetir o seletor. */
 .pv-assento { stroke: none; transition: opacity var(--duration-sm) var(--ease-out); }
 .pv-assento.espectro-1 { fill: var(--spectrum-1-fill); }
 .pv-assento.espectro-2 { fill: var(--spectrum-2-fill); }
@@ -493,12 +535,27 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
 .pv-assento.espectro-indefinido {
   fill: var(--confidence-sem-dados-fill);
 }
-.pv-assento.pv-origem-fixa { stroke: #ffffff; stroke-width: 1.5; }
-.pv-assento.pv-origem-projetada { stroke: var(--color-canvas); stroke-width: 1; stroke-dasharray: 2 2; }
+/* Fixa vs. projetada — reforçado além da cor/opacidade (docs/revisao-senado.md
+   P1: a 9px de raio, um contorno tracejado de 1-2px fica ilegível a olho nu
+   — e testado à parte, um traço tracejado nesse raio acaba lendo como
+   "dente de engrenagem", não como linha pontilhada, o que é pior, não
+   melhor). Fixa ganha um contorno sólido bem mais grosso; projetada troca o
+   contorno por um marcador interno sólido (`.pv-assento-marcador`, só
+   existe no DOM das cadeiras projetadas) — duas formas claramente
+   diferentes (anel vs. disco central), robustas em qualquer zoom, mais o
+   rótulo textual no aria-label/título. */
+.pv-assento.pv-origem-fixa { stroke: #ffffff; stroke-width: 2.5; }
+.pv-assento.pv-origem-projetada { stroke: none; }
 .pv-assento.pv-origem-indefinida { fill: url(#pv-hachura-indefinida); stroke: var(--color-text-tertiary); stroke-width: 1; }
+.pv-assento-marcador {
+  fill: var(--color-canvas);
+  stroke: none;
+  pointer-events: none;
+}
 /* Confiança da projeção — mesmas 3 faixas do mapa/design-system.md,
-   aplicadas via opacidade (nunca só a opacidade: o contorno tracejado de
-   pv-origem-projetada e o rótulo textual no aria-label/tooltip reforçam). */
+   aplicadas via opacidade (nunca só a opacidade: o marcador interno de
+   pv-origem-projetada e o rótulo textual no
+   aria-label/tooltip reforçam). */
 .pv-assento.pv-confianca-folga { opacity: var(--confidence-solid-opacity); }
 .pv-assento.pv-confianca-acirrada { opacity: var(--confidence-lean-opacity); }
 .pv-assento.pv-confianca-empate { opacity: var(--confidence-empate-opacity); }
@@ -542,9 +599,23 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
   background-image: var(--confidence-sem-dados-pattern);
   border-radius: inherit;
 }
-.pv-legend-swatch--tracejado {
-  border: 1px dashed var(--color-border-strong);
-  background: transparent !important;
+/* Prévia da distinção fixa/projetada do hemiciclo (marcador interno sólido,
+   ver `.pv-assento.pv-origem-projetada`/`.pv-assento-marcador` em
+   "--- Hemiciclo ---" acima) — reforço não-cromático, nunca só a cor. Um
+   contorno tracejado foi tentado e descartado: no raio real do assento
+   (9px) lê como dente de engrenagem, não como linha pontilhada. */
+.pv-legend-swatch--marcador {
+  background: var(--color-text-tertiary) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pv-legend-swatch--marcador::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-canvas);
 }
 .pv-legend-count {
   margin-left: auto;
@@ -700,6 +771,12 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
 .pv-timeline-axis-label--y {
   transform: translate(calc(-100% - 6px), -50%);
 }
+/* Tick mais baixo do eixo Y: ancora pela base em vez do centro, para nunca
+   descer sobre a faixa onde os rótulos do eixo X começam (ver comentário em
+   timeline-chart.ts). */
+.pv-timeline-axis-label--y-bottom {
+  transform: translate(calc(-100% - 6px), -100%);
+}
 .pv-timeline-axis-label--x {
   transform: translate(-50%, 6px);
 }
@@ -710,6 +787,15 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
    fica mais esparso. */
 @media (max-width: 480px) {
   .pv-timeline-axis-x-labels span:nth-of-type(even) {
+    display: none;
+  }
+  /* Mesma lógica no eixo Y: a ~400px o gráfico fica baixo o bastante (menos
+     de ~20px reais entre ticks de 5pp) para que rótulos de ~17px de altura
+     colidam entre si — esconder os ticks alternados dobra o espaçamento
+     entre os que restam (a linha de grade correspondente continua
+     desenhada, só o número fica mais esparso). O tick mais baixo (1º,
+     `--y-bottom`) nunca é escondido por esta regra. */
+  .pv-timeline-axis-y-labels span:nth-of-type(even) {
     display: none;
   }
 }
@@ -808,6 +894,11 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
   background: var(--spectrum-indefinido);
 }
 
+/* Nunca `hidden`/`display:none` (removeria o nó da árvore de
+   acessibilidade) — o SVG referencia este elemento por `aria-describedby`
+   o tempo todo (P1 da revisão: antes não havia `id`/`aria-describedby`
+   nenhum ligando os dois). Só a opacidade muda; `pointer-events:none`
+   evita que o tooltip invisível bloqueie cliques quando não está ativo. */
 .pv-timeline-tooltip {
   position: absolute;
   z-index: 5;
@@ -819,6 +910,11 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
   font: var(--text-body-sm);
   color: var(--color-text);
   pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--duration-sm) var(--ease-out);
+}
+.pv-timeline-tooltip--visible {
+  opacity: 1;
 }
 .pv-timeline-tooltip-data {
   margin: 0 0 var(--space-1);
@@ -855,8 +951,45 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
   margin-bottom: var(--space-3);
 }
 
+.pv-timeline-controls-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+  margin-bottom: var(--space-3);
+}
+.pv-timeline-controls-row .pv-field {
+  margin-bottom: 0;
+}
+/* Toggle "Mostrar outros candidatos" (P2 — domínio Y estreito por padrão,
+   ver docs/revisao-presidente.md). */
+.pv-timeline-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font: var(--text-body-sm);
+  color: var(--color-text);
+}
+
+/* Visualmente oculto, mas lido por tecnologia assistiva — região
+   `aria-live` que anuncia o dia sob o crosshair (P1 da revisão). */
+.pv-timeline-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .pv-timeline-svg * { transition-duration: 0ms; }
+  .pv-timeline-svg *,
+  .pv-timeline-tooltip {
+    transition-duration: 0ms;
+  }
 }
 
 /* =========================================================================
@@ -865,19 +998,52 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
  * estado); só o conteúdo interno é específico do Senado.
  * ======================================================================= */
 
+/* Ocupantes atuais e projeção são dois grupos independentes, não uma linha
+   "Hoje: X -> Projeção: Y" por vaga — as 2 cadeiras em disputa de uma UF não
+   têm identidade própria nos dados, então nada aqui pode sugerir que o
+   ocupante da "cadeira 1" vira o candidato do "1º colocado" (docs/revisao-senado.md
+   P1, "pareamento Hoje/Projeção sem chave de vaga"). */
 .pv-senate-panel-disputas {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: var(--space-4);
 }
-.pv-senate-panel-disputa-item {
+.pv-senate-panel-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.pv-senate-panel-grupo + .pv-senate-panel-grupo {
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+.pv-senate-panel-grupo-titulo {
+  margin: 0;
+  font: var(--text-caption);
+  color: var(--color-text-subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.pv-senate-panel-vaga-lista {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.pv-senate-panel-vaga-item {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  padding-block: var(--space-2);
 }
-.pv-senate-panel-disputa-item + .pv-senate-panel-disputa-item {
-  border-top: 1px solid var(--color-border);
+.pv-senate-panel-vaga-rotulo {
+  font: var(--text-caption);
+  color: var(--color-text-tertiary);
+}
+.pv-senate-panel-disputas-nota {
+  margin: 0;
+  font-style: italic;
 }
 
 /* =========================================================================
