@@ -251,6 +251,22 @@ export function tokenTomSerie(espectro: Espectro, tom: TomSerie): string {
 /** Data do 1º turno das eleições de 2026 — única marca fixa do eixo X. */
 export const DATA_ELEICAO_1O_TURNO = '2026-10-04';
 
+/**
+ * Contador de instâncias — sufixo dos `id` gerados (tooltip, região
+ * `aria-live`) para que `aria-describedby` funcione mesmo se o gráfico for
+ * renderizado mais de uma vez na mesma página.
+ */
+let contadorInstancia = 0;
+
+/**
+ * Controllers da última interação ligada por host, para remover o listener
+ * de `pointerdown` em `document` (tap-fora-fecha, ver `ligarInteracao`)
+ * quando o gráfico é re-renderizado no mesmo host (ex.: troca do seletor de
+ * cenário do 2º turno) — sem isso, cada re-render empilharia mais um
+ * listener global de documento (vazamento de memória).
+ */
+const abortControllersPorHost = new WeakMap<HTMLElement, AbortController>();
+
 export interface SerieCandidato {
   readonly nome: string;
   readonly partido: string | null;
@@ -282,8 +298,42 @@ function criarSvgEl<K extends keyof SVGElementTagNameMap>(
   return el;
 }
 
+/** Posição x (%, relativa à largura do `viewBox`) de uma coordenada em unidades do viewBox. */
+function pctX(x: number): number {
+  return (x / LARGURA) * 100;
+}
+/** Posição y (%, relativa à altura do `viewBox`) de uma coordenada em unidades do viewBox. */
+function pctY(y: number): number {
+  return (y / ALTURA) * 100;
+}
+
+/**
+ * Rótulo de texto posicionado como HTML sobre o SVG (não dentro dele) — via
+ * `left`/`top` em % (mesmo sistema de coordenadas do `viewBox`, preservado
+ * porque `.pv-timeline-figure` força a mesma proporção do `viewBox`) mais um
+ * `transform` de ancoragem em `px` reais fixos. Corrige o P0 do relatório de
+ * revisão: texto `<text>` DENTRO do SVG herda o fator de escala do
+ * `viewBox` quando o CSS encolhe o SVG (`width:100%`), então em 400px um
+ * `font-size` nominal de 12-13px rendia ~5-6px na tela — ilegível. Texto
+ * HTML fora do sistema de coordenadas do SVG sempre renderiza no
+ * `font-size` real declarado em CSS, não importa o quanto o SVG ao lado
+ * tenha encolhido.
+ */
+function criarRotuloOverlay(texto: string, xViewBox: number, yViewBox: number, className: string): HTMLSpanElement {
+  const span = document.createElement('span');
+  span.className = className;
+  span.style.left = `${pctX(xViewBox)}%`;
+  span.style.top = `${pctY(yViewBox)}%`;
+  span.textContent = texto;
+  return span;
+}
+
 /** Renderiza o gráfico de série temporal presidencial dentro de `host`. */
 export function renderTimelineChart(host: HTMLElement, opcoes: OpcoesTimelineChart): void {
+  abortControllersPorHost.get(host)?.abort();
+  const abortController = new AbortController();
+  abortControllersPorHost.set(host, abortController);
+
   host.innerHTML = '';
   const { serie, candidatosDestacados, tituloAcessivel } = opcoes;
 
@@ -313,7 +363,12 @@ export function renderTimelineChart(host: HTMLElement, opcoes: OpcoesTimelineCha
     if (nomesDestacados.includes(ponto.candidato)) valoresY.push(ponto.pct);
   }
 
-  const dominioY = calcularDominioY(valoresY);
+  // Folga de 5pp (em vez do padrão de 3 de `calcularDominioY`): com o corte
+  // padrão de candidatos destacados em 2 (ver `presidential-view.ts`), um
+  // domínio mais estreito ao redor só dos 2 primeiros colocados evita a
+  // diluição visual documentada na revisão (quase metade do gráfico vazia
+  // quando um 3º candidato residual empurrava o piso a 0%) — ver P2.
+  const dominioY = calcularDominioY(valoresY, { folgaPontos: 5 });
   const areaX: [number, number] = [MARGEM.esquerda, LARGURA - MARGEM.direita];
   const areaY: [number, number] = [ALTURA - MARGEM.baixo, MARGEM.topo];
 
@@ -322,36 +377,52 @@ export function renderTimelineChart(host: HTMLElement, opcoes: OpcoesTimelineCha
 
   const svg = criarSvgEl('svg', {
     viewBox: `0 0 ${LARGURA} ${ALTURA}`,
-    role: 'img',
+    // `role="application"` (em vez de "img"): o SVG tem `tabindex="0"` e
+    // responde a teclado/ponteiro (crosshair, tooltip) — "img" diz a
+    // tecnologias assistivas que é conteúdo estático, contradizendo o
+    // comportamento real (ver P1 da revisão). `aria-describedby` liga o
+    // tooltip (definido abaixo, com `id`); a região `aria-live` (também
+    // abaixo) anuncia o dia sob o crosshair a cada mudança.
+    role: 'application',
     class: 'pv-timeline-svg',
     tabindex: '0',
     'aria-label': tituloAcessivel,
   });
 
+  // --- Camada HTML sobreposta ao SVG para todo texto (eixos, rótulo da
+  // eleição, rótulos finais) — ver `criarRotuloOverlay`. `.pv-timeline-figure`
+  // mantém a mesma proporção do `viewBox`, então `left`/`top` em % caem
+  // exatamente sobre a geometria correspondente do SVG ao lado.
+  const figura = document.createElement('div');
+  figura.className = 'pv-timeline-figure';
+  const overlay = document.createElement('div');
+  overlay.className = 'pv-timeline-overlay';
+  overlay.setAttribute('aria-hidden', 'true');
+
   // --- Grade horizontal + eixo Y (recessivos, ver references/marks-and-anatomy.md) ---
   const ticksY = gerarTicksY(dominioY);
   const grupoGrade = criarSvgEl('g', { class: 'pv-timeline-grid' });
+  const overlayEixoY = document.createElement('div');
+  overlayEixoY.className = 'pv-timeline-axis-y-labels';
   for (const tick of ticksY) {
     const y = escalaY(tick);
     grupoGrade.append(
       criarSvgEl('line', { x1: String(areaX[0]), x2: String(areaX[1]), y1: String(y), y2: String(y), class: 'pv-timeline-gridline' }),
     );
-    const rotulo = criarSvgEl('text', { x: String(areaX[0] - 8), y: String(y + 4), class: 'pv-timeline-axis-label', 'text-anchor': 'end' });
-    rotulo.textContent = `${tick}%`;
-    grupoGrade.append(rotulo);
+    overlayEixoY.append(criarRotuloOverlay(`${tick}%`, areaX[0], y, 'pv-timeline-axis-label pv-timeline-axis-label--y'));
   }
   svg.append(grupoGrade);
+  overlay.append(overlayEixoY);
 
   // --- Eixo X (datas) ---
   const ticksX = gerarTicksTempo(primeiraData, fimEixo);
-  const grupoEixoX = criarSvgEl('g', { class: 'pv-timeline-axis-x' });
+  const overlayEixoX = document.createElement('div');
+  overlayEixoX.className = 'pv-timeline-axis-x-labels';
   for (const tick of ticksX) {
     const x = escalaX(tick.data);
-    const rotulo = criarSvgEl('text', { x: String(x), y: String(ALTURA - MARGEM.baixo + 18), class: 'pv-timeline-axis-label', 'text-anchor': 'middle' });
-    rotulo.textContent = tick.rotulo;
-    grupoEixoX.append(rotulo);
+    overlayEixoX.append(criarRotuloOverlay(tick.rotulo, x, areaY[0], 'pv-timeline-axis-label pv-timeline-axis-label--x'));
   }
-  svg.append(grupoEixoX);
+  overlay.append(overlayEixoX);
 
   // --- Marca da data da eleição ---
   const xEleicao = escalaX(DATA_ELEICAO_1O_TURNO);
@@ -362,13 +433,16 @@ export function renderTimelineChart(host: HTMLElement, opcoes: OpcoesTimelineCha
       class: 'pv-timeline-election-line',
     }),
   );
-  const rotuloEleicao = criarSvgEl('text', {
-    x: String(xEleicao), y: String(MARGEM.topo - 4), class: 'pv-timeline-election-label',
-    'text-anchor': xEleicao > LARGURA - MARGEM.direita - 60 ? 'end' : 'middle',
-  });
-  rotuloEleicao.textContent = `1º turno · ${formatarRotuloDataCurta(DATA_ELEICAO_1O_TURNO)}`;
-  grupoEleicao.append(rotuloEleicao);
   svg.append(grupoEleicao);
+  const ancoraEleicaoFim = xEleicao > LARGURA - MARGEM.direita - 60;
+  overlay.append(
+    criarRotuloOverlay(
+      `1º turno · ${formatarRotuloDataCurta(DATA_ELEICAO_1O_TURNO)}`,
+      xEleicao,
+      MARGEM.topo,
+      `pv-timeline-election-label ${ancoraEleicaoFim ? 'pv-timeline-election-label--end' : 'pv-timeline-election-label--mid'}`,
+    ),
+  );
 
   // --- Pontos de "Outros" (cinza, sem linha) ---
   const grupoOutros = criarSvgEl('g', { class: 'pv-timeline-outros' });

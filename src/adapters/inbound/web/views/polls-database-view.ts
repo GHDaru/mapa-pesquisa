@@ -2,7 +2,6 @@ import '../styles/polls-database.css';
 import type { CasosDeUso } from '../../../../application/use-cases/index.js';
 import { dataReferencia, type Pesquisa } from '../../../../domain/poll.js';
 import type { Cargo } from '../../../../domain/race.js';
-import { UF_NACIONAL, UFS } from '../../../../domain/race.js';
 import { espectroDoPartido } from '../../../../domain/spectrum.js';
 import {
   criarBadgePartido,
@@ -87,6 +86,70 @@ function ordenarPesquisas(pesquisas: readonly Pesquisa[], ordenacao: Ordenacao):
         return sinal * dataReferencia(a).localeCompare(dataReferencia(b));
     }
   });
+}
+
+function contarPor<T extends string>(pesquisas: readonly Pesquisa[], chave: (p: Pesquisa) => T): Map<T, number> {
+  const mapa = new Map<T, number>();
+  for (const p of pesquisas) {
+    const v = chave(p);
+    mapa.set(v, (mapa.get(v) ?? 0) + 1);
+  }
+  return mapa;
+}
+
+interface OpcoesCruzadas {
+  readonly contagemInstituto: ReadonlyMap<string, number>;
+  readonly contagemUf: ReadonlyMap<string, number>;
+}
+
+/**
+ * Filtros cruzados: as opções de Instituto refletem Cargo/UF/Turno/busca já
+ * escolhidos (e vice-versa para UF) — cada `<select>` é recalculado a
+ * partir de todos os *outros* filtros ativos, nunca do próprio. Se a opção
+ * hoje selecionada deixou de ter qualquer pesquisa nesse cruzamento (ex.:
+ * trocou a UF e o instituto escolhido não pesquisou lá), o filtro volta
+ * para "todos" em vez de deixar `filtros` e o `<select>` dessincronizados
+ * (o navegador ignoraria em silêncio um `<option>` que não existe mais).
+ */
+function sincronizarOpcoesCruzadas(pesquisas: readonly Pesquisa[], filtros: Filtros): OpcoesCruzadas {
+  let subsetInstituto = aplicarFiltros(pesquisas, { ...filtros, instituto: 'todos' });
+  let contagemInstituto = contarPor(subsetInstituto, (p) => p.instituto);
+  if (filtros.instituto !== 'todos' && !contagemInstituto.has(filtros.instituto)) {
+    filtros.instituto = 'todos';
+    subsetInstituto = aplicarFiltros(pesquisas, { ...filtros, instituto: 'todos' });
+    contagemInstituto = contarPor(subsetInstituto, (p) => p.instituto);
+  }
+
+  let subsetUf = aplicarFiltros(pesquisas, { ...filtros, uf: 'todos' });
+  let contagemUf = contarPor(subsetUf, (p) => p.disputa.uf);
+  if (filtros.uf !== 'todos' && !contagemUf.has(filtros.uf)) {
+    filtros.uf = 'todos';
+    subsetUf = aplicarFiltros(pesquisas, { ...filtros, uf: 'todos' });
+    contagemUf = contarPor(subsetUf, (p) => p.disputa.uf);
+    // A UF mudou (foi limpa) — o cruzamento de Instituto depende dela, recalcula.
+    subsetInstituto = aplicarFiltros(pesquisas, { ...filtros, instituto: 'todos' });
+    contagemInstituto = contarPor(subsetInstituto, (p) => p.instituto);
+  }
+
+  return { contagemInstituto, contagemUf };
+}
+
+/** Repopula um `<select>` com "Todos"/rótuloTodos + só as chaves com pesquisa no cruzamento atual, contagem no rótulo. */
+function preencherOpcoesComContagem(
+  select: HTMLSelectElement,
+  todasAsChaves: readonly string[],
+  contagem: ReadonlyMap<string, number>,
+  rotuloTodos: string,
+  valorAtual: string,
+): void {
+  select.innerHTML = '';
+  select.append(criarEl('option', { texto: rotuloTodos, attrs: { value: 'todos' } }));
+  for (const chave of todasAsChaves) {
+    const n = contagem.get(chave);
+    if (!n) continue;
+    select.append(criarEl('option', { texto: `${chave} (${n})`, attrs: { value: chave } }));
+  }
+  select.value = valorAtual;
 }
 
 function formatarRegistroCurto(p: Pesquisa): string {

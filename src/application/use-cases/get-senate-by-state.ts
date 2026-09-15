@@ -70,12 +70,25 @@ export function criarGetSenateByState(repos: Repositorios, clock: Clock) {
 
       const agregado = agregadosPorUf[uf] ?? null;
       const assentosProjetados = projecao.assentos.filter((a) => a.uf === uf && a.origem === 'projetada');
-      const projetadas: CandidatoProjetadoResumo[] = assentosProjetados.map((assento, i) => ({
-        candidato: assento.ocupante ?? agregado?.candidatos[i]?.candidato ?? '',
-        partido: assento.partido,
-        pct: agregado?.candidatos[i]?.pct ?? 0,
-        confianca: assento.confianca,
-      }));
+      // `assentosProjetados` vem de `projecao.assentos`, que é ordenado
+      // GLOBALMENTE por espectro (ver `projetarSenado`/`posicaoHemiciclo` em
+      // domain/senate.ts) — essa ordem não coincide, em geral, com a ordem
+      // por `pct` de `agregado.candidatos`. Pareia cada assento com o
+      // candidato do agregado pela IDENTIDADE (nome + partido), nunca pelo
+      // índice: zipar por índice troca o percentual (e o selo de empate)
+      // entre o 1º e o 2º colocado sempre que os dois têm espectros
+      // diferentes (ver docs/revisao-senado.md, bug P0).
+      const projetadas: CandidatoProjetadoResumo[] = assentosProjetados.map((assento) => {
+        const candidatoAgregado = agregado?.candidatos.find(
+          (c) => c.candidato === assento.ocupante && c.partido === assento.partido,
+        );
+        return {
+          candidato: assento.ocupante ?? candidatoAgregado?.candidato ?? '',
+          partido: assento.partido,
+          pct: candidatoAgregado?.pct ?? 0,
+          confianca: assento.confianca,
+        };
+      });
 
       return {
         uf,
