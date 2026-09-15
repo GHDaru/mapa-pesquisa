@@ -1,6 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import { criarPesquisa, type DadosPesquisa, type Pesquisa } from '../../../../../domain/poll.js';
-import { aplicarFiltros, contarPor, sincronizarOpcoesCruzadas, type Filtros } from '../polls-database-view.js';
+import {
+  aplicarFiltros,
+  contarPor,
+  direcaoPadrao,
+  ordenarPesquisas,
+  sincronizarOpcoesCruzadas,
+  type Filtros,
+} from '../polls-database-view.js';
 
 /**
  * Testes de lógica pura da tela "Base de pesquisas" — sem DOM (o ambiente de
@@ -122,5 +129,68 @@ describe('polls-database-view: aplicarFiltros (combinação final continua corre
   it('combinação impossível (UF=SP + Instituto=Alfa Inteligência) dá 0 resultados — é esse o caso que o botão "limpar filtros" cobre', () => {
     const filtros: Filtros = { ...FILTROS_PADRAO, uf: 'SP', instituto: 'Alfa Inteligência' };
     expect(aplicarFiltros(BASE, filtros)).toHaveLength(0);
+  });
+});
+
+describe('ordenarPesquisas', () => {
+  const LISTA: Pesquisa[] = [
+    pesquisa({ id: 'gov-sp', uf: 'SP', cargo: 'governador', turno: 1, instituto: 'Quaest', dataFim: '2026-09-05', publicadoEm: '2026-09-07' }),
+    pesquisa({ id: 'pres-br-2t', uf: 'BR', cargo: 'presidente', turno: 2, instituto: 'Datafolha', dataFim: '2026-09-01', publicadoEm: '2026-09-03' }),
+    pesquisa({ id: 'sen-rj', uf: 'RJ', cargo: 'senador', turno: 1, instituto: 'Alfa', dataFim: '2026-09-10' }),
+    pesquisa({ id: 'pres-br-1t', uf: 'BR', cargo: 'presidente', turno: 1, instituto: 'Quaest', dataFim: '2026-09-08', publicadoEm: '2026-09-09' }),
+  ];
+  const ids = (lista: Pesquisa[]) => lista.map((p) => p.id);
+
+  it('publicada desc: mais recente primeiro e sem data de publicação sempre no fim', () => {
+    expect(ids(ordenarPesquisas(LISTA, { campo: 'publicada', direcao: 'desc' }))).toEqual([
+      'pres-br-1t',
+      'gov-sp',
+      'pres-br-2t',
+      'sen-rj',
+    ]);
+    expect(ids(ordenarPesquisas(LISTA, { campo: 'publicada', direcao: 'asc' }))).toEqual([
+      'pres-br-2t',
+      'gov-sp',
+      'pres-br-1t',
+      'sen-rj',
+    ]);
+  });
+
+  it('cargo: presidente → governador → senador, desempate por data de campo mais recente', () => {
+    expect(ids(ordenarPesquisas(LISTA, { campo: 'cargo', direcao: 'asc' }))).toEqual([
+      'pres-br-1t',
+      'pres-br-2t',
+      'gov-sp',
+      'sen-rj',
+    ]);
+    expect(ids(ordenarPesquisas(LISTA, { campo: 'cargo', direcao: 'desc' }))).toEqual([
+      'sen-rj',
+      'gov-sp',
+      'pres-br-1t',
+      'pres-br-2t',
+    ]);
+  });
+
+  it('turno: 1º turno antes do 2º em asc, desempate por data de campo mais recente', () => {
+    expect(ids(ordenarPesquisas(LISTA, { campo: 'turno', direcao: 'asc' }))).toEqual([
+      'sen-rj',
+      'pres-br-1t',
+      'gov-sp',
+      'pres-br-2t',
+    ]);
+    expect(ids(ordenarPesquisas(LISTA, { campo: 'turno', direcao: 'desc' }))[0]).toBe('pres-br-2t');
+  });
+
+  it('não muta a lista original', () => {
+    const copia = [...LISTA];
+    ordenarPesquisas(LISTA, { campo: 'cargo', direcao: 'asc' });
+    expect(LISTA).toEqual(copia);
+  });
+
+  it('direção padrão: datas descem, o resto sobe', () => {
+    expect(direcaoPadrao('data')).toBe('desc');
+    expect(direcaoPadrao('publicada')).toBe('desc');
+    expect(direcaoPadrao('cargo')).toBe('asc');
+    expect(direcaoPadrao('turno')).toBe('asc');
   });
 });

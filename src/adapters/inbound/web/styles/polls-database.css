@@ -142,6 +142,38 @@
   gap: var(--space-3);
 }
 
+/* Ordenação fora da tabela: só no modo cartões (<=640px), onde o <thead> some. */
+.db-sort-control {
+  display: none;
+  align-items: flex-end;
+  gap: var(--space-2);
+  flex: 1 1 100%;
+}
+
+.db-sort-select {
+  min-width: 0;
+}
+
+.db-sort-dir {
+  font: var(--text-body-sm);
+  color: var(--color-text);
+  background: var(--color-surface-1);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.db-sort-dir:hover {
+  background: var(--color-surface-2);
+}
+
+.db-sort-dir:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
 .db-contador {
   font: var(--text-body-sm);
   color: var(--color-text-subtle);
@@ -409,6 +441,8 @@ th[aria-sort='descending'] .db-table-sort-btn::after {
 }
 
 @media (max-width: 640px) {
+  .db-sort-control { display: flex; }
+  .db-sort-control .db-field { flex: 1 1 auto; }
   .db-table-wrap { border: none; overflow: visible; }
   .db-table,
   .db-table thead,
