@@ -11,6 +11,7 @@
   flex-direction: column;
   gap: var(--space-5);
   padding-block: var(--space-5);
+
 }
 
 /* Mesmo princípio de `.pv-view > * { min-width: 0 }` em styles/app.css:
@@ -204,6 +205,11 @@
      respeitar `overflow-x:auto` — vaza rolagem horizontal para a página
      inteira. min-width:0 é o que faz o overflow ficar contido aqui dentro. */
   min-width: 0;
+  /* Regressão (crítica final rodada 3): em 1280px o scrollWidth do documento
+     crescia até ~1789px apesar do overflow-x:auto — medido: só `contain: paint`
+     no wrap contém o overflow rolável no Chromium (overflow-x:clip no pai e
+     th sem sticky não resolvem). */
+  contain: paint;
 }
 
 .db-table {
