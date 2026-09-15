@@ -102,36 +102,45 @@ interface OpcoesCruzadas {
   readonly contagemUf: ReadonlyMap<string, number>;
 }
 
+/** Qual dos dois filtros cruzados (UF/Instituto) o usuário acabou de mexer — ver `sincronizarOpcoesCruzadas`. */
+export type CampoCruzado = 'uf' | 'instituto';
+
 /**
  * Filtros cruzados: as opções de Instituto refletem Cargo/UF/Turno/busca já
  * escolhidos (e vice-versa para UF) — cada `<select>` é recalculado a
  * partir de todos os *outros* filtros ativos, nunca do próprio. Se a opção
  * hoje selecionada deixou de ter qualquer pesquisa nesse cruzamento (ex.:
- * trocou a UF e o instituto escolhido não pesquisou lá), o filtro volta
+ * trocou a UF e o instituto escolhido não pesquisou lá), esse filtro volta
  * para "todos" em vez de deixar `filtros` e o `<select>` dessincronizados
  * (o navegador ignoraria em silêncio um `<option>` que não existe mais).
+ *
+ * `campoRecemAlterado` é o campo que o próprio usuário acabou de escolher
+ * (undefined quando o gatilho foi outro filtro, como Cargo ou a busca): esse
+ * campo nunca é revertido — só o outro cede. Sem essa proteção, trocar o
+ * Instituto para um valor válido em si (mas incompatível com a UF antiga)
+ * seria desfeito na mesma chamada, porque a checagem de Instituto roda
+ * antes da de UF.
  */
-export function sincronizarOpcoesCruzadas(pesquisas: readonly Pesquisa[], filtros: Filtros): OpcoesCruzadas {
-  let subsetInstituto = aplicarFiltros(pesquisas, { ...filtros, instituto: 'todos' });
-  let contagemInstituto = contarPor(subsetInstituto, (p) => p.instituto);
-  if (filtros.instituto !== 'todos' && !contagemInstituto.has(filtros.instituto)) {
-    filtros.instituto = 'todos';
-    subsetInstituto = aplicarFiltros(pesquisas, { ...filtros, instituto: 'todos' });
-    contagemInstituto = contarPor(subsetInstituto, (p) => p.instituto);
+export function sincronizarOpcoesCruzadas(
+  pesquisas: readonly Pesquisa[],
+  filtros: Filtros,
+  campoRecemAlterado?: CampoCruzado,
+): OpcoesCruzadas {
+  const calcularContagemInstituto = (): ReadonlyMap<string, number> =>
+    contarPor(aplicarFiltros(pesquisas, { ...filtros, instituto: 'todos' }), (p) => p.instituto);
+  const calcularContagemUf = (): ReadonlyMap<string, number> =>
+    contarPor(aplicarFiltros(pesquisas, { ...filtros, uf: 'todos' }), (p) => p.disputa.uf);
+
+  if (campoRecemAlterado !== 'instituto') {
+    const contagem = calcularContagemInstituto();
+    if (filtros.instituto !== 'todos' && !contagem.has(filtros.instituto)) filtros.instituto = 'todos';
+  }
+  if (campoRecemAlterado !== 'uf') {
+    const contagem = calcularContagemUf();
+    if (filtros.uf !== 'todos' && !contagem.has(filtros.uf)) filtros.uf = 'todos';
   }
 
-  let subsetUf = aplicarFiltros(pesquisas, { ...filtros, uf: 'todos' });
-  let contagemUf = contarPor(subsetUf, (p) => p.disputa.uf);
-  if (filtros.uf !== 'todos' && !contagemUf.has(filtros.uf)) {
-    filtros.uf = 'todos';
-    subsetUf = aplicarFiltros(pesquisas, { ...filtros, uf: 'todos' });
-    contagemUf = contarPor(subsetUf, (p) => p.disputa.uf);
-    // A UF mudou (foi limpa) — o cruzamento de Instituto depende dela, recalcula.
-    subsetInstituto = aplicarFiltros(pesquisas, { ...filtros, instituto: 'todos' });
-    contagemInstituto = contarPor(subsetInstituto, (p) => p.instituto);
-  }
-
-  return { contagemInstituto, contagemUf };
+  return { contagemInstituto: calcularContagemInstituto(), contagemUf: calcularContagemUf() };
 }
 
 /** Repopula um `<select>` com "Todos"/rótuloTodos + só as chaves com pesquisa no cruzamento atual, contagem no rótulo. */
@@ -252,7 +261,7 @@ export function renderPollsDatabase(container: HTMLElement, casos: CasosDeUso): 
   const contador = criarEl('p', { className: 'db-contador', attrs: { 'aria-live': 'polite' } });
   const tabelaWrap = criarEl('div', {});
 
-  const barraFiltros = criarBarraFiltros(filtros, () => atualizar());
+  const barraFiltros = criarBarraFiltros(filtros, (campo) => atualizar(campo));
 
   function limparFiltros(): void {
     filtros.cargo = 'todos';
@@ -268,8 +277,8 @@ export function renderPollsDatabase(container: HTMLElement, casos: CasosDeUso): 
     atualizar();
   }
 
-  function atualizar(): void {
-    const { contagemInstituto, contagemUf } = sincronizarOpcoesCruzadas(base.pesquisas, filtros);
+  function atualizar(campoRecemAlterado?: CampoCruzado): void {
+    const { contagemInstituto, contagemUf } = sincronizarOpcoesCruzadas(base.pesquisas, filtros, campoRecemAlterado);
     preencherOpcoesComContagem(
       barraFiltros.selectInstituto,
       base.institutos,
@@ -403,7 +412,7 @@ interface BarraFiltrosRefs {
  * `renderPollsDatabase` — é o que faz os dois `<select>` refletirem um ao
  * outro (e Cargo/Turno/busca) em vez da lista fixa e global de antes.
  */
-function criarBarraFiltros(filtros: Filtros, aoMudar: () => void): BarraFiltrosRefs {
+function criarBarraFiltros(filtros: Filtros, aoMudar: (campoRecemAlterado?: CampoCruzado) => void): BarraFiltrosRefs {
   const selectCargo = criarSelect(
     [
       { valor: 'todos', rotulo: 'Todos os cargos' },
@@ -420,12 +429,12 @@ function criarBarraFiltros(filtros: Filtros, aoMudar: () => void): BarraFiltrosR
 
   const selectUf = criarSelect([{ valor: 'todos', rotulo: 'Todas as UFs' }], filtros.uf, (v) => {
     filtros.uf = v;
-    aoMudar();
+    aoMudar('uf');
   });
 
   const selectInstituto = criarSelect([{ valor: 'todos', rotulo: 'Todos os institutos' }], filtros.instituto, (v) => {
     filtros.instituto = v;
-    aoMudar();
+    aoMudar('instituto');
   });
 
   const selectTurno = criarSelect(
