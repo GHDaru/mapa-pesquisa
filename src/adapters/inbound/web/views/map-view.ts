@@ -17,6 +17,13 @@ import { abrirPainelEstado } from './state-panel.js';
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
 
+/** Backdrop do painel/drawer (state-panel.ts) já segue este padrão de módulo:
+ * guarda o "desfazer" do listener global da renderização anterior para
+ * remover antes de registrar um novo, evitando empilhar listeners em
+ * `document`/`window` a cada navegação de volta para `#/mapa`. */
+let desligarOuvinteToqueFora: (() => void) | null = null;
+let desligarOuvinteResize: (() => void) | null = null;
+
 /**
  * `@svg-maps/brazil` referencia o tipo `Map` de um pacote de tipos
  * (`svg-maps__common`) que não está instalado — o `.d.ts` da lib não
@@ -51,6 +58,22 @@ const ESPECTROS_LEGENDA: readonly Espectro[] = [
   'centro-direita',
   'direita',
 ];
+
+/**
+ * Marcador textual curto para os dois espectros adjacentes mais difíceis de
+ * distinguir por matiz para daltonismo vermelho-verde (`esquerda` #eb5757 vs.
+ * `centro-esquerda` #c1707a — ver docs/revisao-mapa.md P2 #5). Reforço
+ * puramente textual ao lado da sigla da UF no próprio mapa (não só no
+ * `aria-label`/legenda, que já eram textuais) — não altera nenhum token de
+ * cor, só acrescenta um rótulo visível.
+ */
+const MARCADOR_ESPECTRO: Partial<Record<Espectro, string>> = {
+  esquerda: 'E',
+  'centro-esquerda': 'CE',
+};
+
+/** Abaixo desta largura de viewport o mapa não fica com altura limitada — continua em largura total. */
+const LARGURA_MIN_LIMITAR_ALTURA = 1024;
 
 interface Bbox {
   readonly minX: number;

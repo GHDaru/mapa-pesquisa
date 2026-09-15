@@ -657,6 +657,15 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
   position: relative;
 }
 
+/* Contêiner do SVG + camada HTML de texto sobreposta — mesma proporção do
+   `viewBox` (o SVG define a altura via `height:auto` + intrínseco do
+   viewBox; `.pv-timeline-overlay` cobre exatamente essa área, não a altura
+   maior do card inteiro, que também tem legenda/tooltip abaixo). */
+.pv-timeline-figure {
+  position: relative;
+  width: 100%;
+}
+
 .pv-timeline-svg {
   display: block;
   width: 100%;
@@ -668,13 +677,46 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
   border-radius: var(--radius-xs);
 }
 
+/* ---- Texto do gráfico, como HTML sobre o SVG (P0 da revisão) ----
+   `<text>` DENTRO de um SVG que encolhe por `width:100%` herda o fator de
+   escala do `viewBox` — em 400px um `font-size` nominal de 12-13px rendia
+   ~5-6px reais na tela, ilegível. Movendo todo rótulo (eixos, marca da
+   eleição, valores finais) para HTML posicionado por `left`/`top` em %
+   (mesmo sistema de coordenadas do viewBox, preservado porque
+   `.pv-timeline-figure` mantém a mesma proporção), o `font-size` declarado
+   aqui sempre é o tamanho real renderizado, não importa a largura do
+   cartão — ver `criarRotuloOverlay` em timeline-chart.ts. */
+.pv-timeline-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.pv-timeline-axis-label {
+  position: absolute;
+  color: var(--color-text-subtle);
+  font: var(--text-caption);
+  white-space: nowrap;
+}
+.pv-timeline-axis-label--y {
+  transform: translate(calc(-100% - 6px), -50%);
+}
+.pv-timeline-axis-label--x {
+  transform: translate(-50%, 6px);
+}
+/* Em ~400px os ticks semanais do eixo X ficam próximos demais para caber
+   por extenso sem sobrepor (o rótulo agora tem largura real em px, não
+   encolhe mais junto com o SVG) — esconde os alternados; a grade/linha do
+   gráfico continua com a resolução diária de sempre, só o rótulo textual
+   fica mais esparso. */
+@media (max-width: 480px) {
+  .pv-timeline-axis-x-labels span:nth-of-type(even) {
+    display: none;
+  }
+}
+
 .pv-timeline-gridline {
   stroke: var(--color-border);
   stroke-width: 1;
-}
-.pv-timeline-axis-label {
-  fill: var(--color-text-subtle);
-  font: var(--text-caption);
 }
 
 .pv-timeline-election-line {
@@ -683,8 +725,14 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
   stroke-dasharray: 3 3;
 }
 .pv-timeline-election-label {
-  fill: var(--color-text-subtle);
+  position: absolute;
+  color: var(--color-text-subtle);
   font: var(--text-caption);
+  white-space: nowrap;
+  transform: translate(-50%, -100%);
+}
+.pv-timeline-election-label--end {
+  transform: translate(-100%, -100%);
 }
 
 .pv-timeline-point {
@@ -718,9 +766,17 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
   stroke-width: 1;
 }
 .pv-timeline-end-label {
-  fill: var(--color-text);
+  position: absolute;
+  color: var(--color-text);
   font: var(--text-body-sm);
   font-weight: var(--font-variation-nav);
+  white-space: nowrap;
+}
+.pv-timeline-end-label--start {
+  transform: translate(14px, -50%);
+}
+.pv-timeline-end-label--end {
+  transform: translate(calc(-100% - 14px), -50%);
 }
 
 .pv-timeline-crosshair {

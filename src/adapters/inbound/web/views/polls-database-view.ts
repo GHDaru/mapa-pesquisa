@@ -35,7 +35,7 @@ type FiltroTurno = 'todos' | 1 | 2;
 type CampoOrdenacao = 'data' | 'instituto' | 'uf';
 type DirecaoOrdenacao = 'asc' | 'desc';
 
-interface Filtros {
+export interface Filtros {
   cargo: FiltroCargo;
   uf: string; // 'todos' ou UF
   instituto: string; // 'todos' ou nome exato
@@ -60,7 +60,7 @@ function pesquisaCasaComBusca(p: Pesquisa, buscaNormalizada: string): boolean {
   return p.resultados.some((r) => semAcento(r.candidato).includes(buscaNormalizada));
 }
 
-function aplicarFiltros(pesquisas: readonly Pesquisa[], filtros: Filtros): Pesquisa[] {
+export function aplicarFiltros(pesquisas: readonly Pesquisa[], filtros: Filtros): Pesquisa[] {
   const buscaNormalizada = semAcento(filtros.busca.trim());
   return pesquisas.filter((p) => {
     if (filtros.cargo !== 'todos' && p.disputa.cargo !== filtros.cargo) return false;
@@ -88,7 +88,7 @@ function ordenarPesquisas(pesquisas: readonly Pesquisa[], ordenacao: Ordenacao):
   });
 }
 
-function contarPor<T extends string>(pesquisas: readonly Pesquisa[], chave: (p: Pesquisa) => T): Map<T, number> {
+export function contarPor<T extends string>(pesquisas: readonly Pesquisa[], chave: (p: Pesquisa) => T): Map<T, number> {
   const mapa = new Map<T, number>();
   for (const p of pesquisas) {
     const v = chave(p);
@@ -111,7 +111,7 @@ interface OpcoesCruzadas {
  * para "todos" em vez de deixar `filtros` e o `<select>` dessincronizados
  * (o navegador ignoraria em silêncio um `<option>` que não existe mais).
  */
-function sincronizarOpcoesCruzadas(pesquisas: readonly Pesquisa[], filtros: Filtros): OpcoesCruzadas {
+export function sincronizarOpcoesCruzadas(pesquisas: readonly Pesquisa[], filtros: Filtros): OpcoesCruzadas {
   let subsetInstituto = aplicarFiltros(pesquisas, { ...filtros, instituto: 'todos' });
   let contagemInstituto = contarPor(subsetInstituto, (p) => p.instituto);
   if (filtros.instituto !== 'todos' && !contagemInstituto.has(filtros.instituto)) {

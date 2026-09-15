@@ -488,31 +488,70 @@ function criarLinhaCadeiraFixa(dados: SenadoUf, espectroPorPartido: ReadonlyMap<
   ]);
 }
 
-function criarLinhasCadeirasEmDisputa(dados: SenadoUf, espectroPorPartido: ReadonlyMap<string, Espectro>): HTMLElement {
+/**
+ * As 2 cadeiras em disputa de uma UF não têm identidade própria nos dados
+ * (`CadeiraSenado` não tem um id de vaga — ver docs/revisao-senado.md P1):
+ * as pesquisas de senador projetam quem fica com as 2 vagas *no total*, não
+ * qual dos 2 ocupantes atuais é substituído por qual candidato. Por isso os
+ * ocupantes de hoje e a projeção são listados como dois grupos
+ * independentes ("Cadeira 1"/"Cadeira 2" dentro de cada grupo), nunca como
+ * uma linha "Hoje: X → Projeção: Y" que sugeriria essa correspondência.
+ */
+function criarListaOcupantesAtuais(dados: SenadoUf, espectroPorPartido: ReadonlyMap<string, Espectro>): HTMLElement {
   if (dados.cadeirasAtuaisEmDisputa.length === 0) {
     return criarEl('p', { className: 'pv-meta', texto: 'Nenhuma cadeira em disputa registrada para esta UF.' });
   }
-  const linhas = dados.cadeirasAtuaisEmDisputa.map((atual, i) => {
-    const projetado = dados.projetadas[i];
-    const badgeAtual = criarBadgePartido(atual.partido, espectroPorPartido.get(atual.partido) ?? 'indefinido');
-    const linhaAtual = criarEl('p', { className: 'pv-meta' }, [`Hoje: ${atual.senador} `, badgeAtual]);
+  const itens = dados.cadeirasAtuaisEmDisputa.map((atual, i) =>
+    criarEl('li', { className: 'pv-senate-panel-vaga-item' }, [
+      criarEl('span', { className: 'pv-senate-panel-vaga-rotulo', texto: `Cadeira ${i + 1} — hoje` }),
+      criarEl('span', { className: 'pv-meta' }, [
+        `${atual.senador} `,
+        criarBadgePartido(atual.partido, espectroPorPartido.get(atual.partido) ?? 'indefinido'),
+      ]),
+    ]),
+  );
+  return criarEl('ul', { className: 'pv-senate-panel-vaga-lista' }, itens);
+}
 
-    let linhaProjetada: HTMLElement;
-    if (!projetado || !projetado.candidato) {
-      linhaProjetada = criarEl('p', { className: 'pv-meta', texto: 'Projeção: sem pesquisa suficiente para esta cadeira.' });
-    } else {
-      const espectro = projetado.partido ? (espectroPorPartido.get(projetado.partido) ?? 'indefinido') : 'indefinido';
-      const badgeProjetado = projetado.partido ? criarBadgePartido(projetado.partido, espectro) : null;
-      const confiancaTexto = projetado.confianca ? ` — ${rotuloConfiancaAssento(projetado.confianca).toLowerCase()}` : '';
-      linhaProjetada = criarEl('p', { className: 'pv-meta' }, [
-        `Projeção: ${projetado.candidato} `,
+function criarListaProjecaoDisputa(dados: SenadoUf, espectroPorPartido: ReadonlyMap<string, Espectro>): HTMLElement {
+  const validos = dados.projetadas.filter((p) => p.candidato);
+  if (validos.length === 0) {
+    return criarEl('p', { className: 'pv-meta', texto: 'Projeção: sem pesquisa suficiente para esta UF.' });
+  }
+  const ordenados = [...validos].sort((a, b) => b.pct - a.pct);
+  const itens = ordenados.map((projetado, i) => {
+    const espectro = projetado.partido ? (espectroPorPartido.get(projetado.partido) ?? 'indefinido') : 'indefinido';
+    const badgeProjetado = projetado.partido ? criarBadgePartido(projetado.partido, espectro) : null;
+    const confiancaTexto = projetado.confianca ? ` — ${rotuloConfiancaAssento(projetado.confianca).toLowerCase()}` : '';
+    return criarEl('li', { className: 'pv-senate-panel-vaga-item' }, [
+      criarEl('span', { className: 'pv-senate-panel-vaga-rotulo', texto: `${i + 1}º colocado` }),
+      criarEl('span', { className: 'pv-meta' }, [
+        `${projetado.candidato} `,
         badgeProjetado,
         ` ${formatarPct(projetado.pct)}${confiancaTexto}`,
-      ]);
-    }
-    return criarEl('div', { className: 'pv-senate-panel-disputa-item' }, [linhaAtual, linhaProjetada]);
+        projetado.confianca === 'empate' ? criarSeloEmpateTecnico() : null,
+      ]),
+    ]);
   });
-  return criarEl('div', { className: 'pv-senate-panel-disputas' }, linhas);
+  return criarEl('ul', { className: 'pv-senate-panel-vaga-lista' }, itens);
+}
+
+function criarBlocoCadeirasEmDisputa(dados: SenadoUf, espectroPorPartido: ReadonlyMap<string, Espectro>): HTMLElement {
+  return criarEl('div', { className: 'pv-senate-panel-disputas' }, [
+    criarEl('div', { className: 'pv-senate-panel-grupo' }, [
+      criarEl('h4', { className: 'pv-senate-panel-grupo-titulo', texto: 'Ocupantes atuais (2 vagas)' }),
+      criarListaOcupantesAtuais(dados, espectroPorPartido),
+    ]),
+    criarEl('div', { className: 'pv-senate-panel-grupo' }, [
+      criarEl('h4', { className: 'pv-senate-panel-grupo-titulo', texto: 'Projeção 2026 (2 primeiros colocados)' }),
+      criarListaProjecaoDisputa(dados, espectroPorPartido),
+    ]),
+    criarEl('p', {
+      className: 'pv-meta pv-senate-panel-disputas-nota',
+      texto:
+        'As 2 vagas desta UF são preenchidas em conjunto pelos 2 primeiros colocados da pesquisa — não há correspondência individual entre um ocupante atual e um candidato projetado específico.',
+    }),
+  ]);
 }
 
 /** Abre o painel/diálogo com os detalhes do Senado de uma UF (clique num assento). */
@@ -567,7 +606,7 @@ function abrirPainelSenado(uf: string, casos: CasosDeUso, origem: HTMLElement | 
           criarEl('h3', { texto: 'Cadeiras em disputa — mandato até 2027' }),
           dados.empate ? criarSeloEmpateTecnico() : null,
         ]),
-        criarLinhasCadeirasEmDisputa(dados, espectroPorPartido),
+        criarBlocoCadeirasEmDisputa(dados, espectroPorPartido),
       ]),
     );
   }
