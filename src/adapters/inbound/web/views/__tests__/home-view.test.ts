@@ -10,6 +10,7 @@ function digestFake(sobrescritas: Partial<DigestDiario> = {}): DigestDiario {
       total: 3,
       porCargo: { presidente: 1, governador: 2, senador: 0 },
       ufs: ['RJ', 'SP'],
+      incluiNacional: false,
       institutos: ['Datafolha', 'Quaest'],
     },
     totalPesquisas: 1234,
@@ -25,9 +26,9 @@ function digestFake(sobrescritas: Partial<DigestDiario> = {}): DigestDiario {
 }
 
 describe('home-view/montarBigNumbers', () => {
-  it('monta 7 tiles, um por número geral do briefing', () => {
+  it('monta 6 tiles, um por número geral do briefing (a data fica na notícia do dia)', () => {
     const tiles = montarBigNumbers(digestFake());
-    expect(tiles).toHaveLength(7);
+    expect(tiles).toHaveLength(6);
     expect(tiles.map((t) => t.id)).toEqual([
       'pesquisas',
       'estados',
@@ -35,7 +36,6 @@ describe('home-view/montarBigNumbers', () => {
       'registro-tse',
       'partidos',
       'senado',
-      'atualizado',
     ]);
   });
 
@@ -75,11 +75,9 @@ describe('home-view/montarBigNumbers', () => {
     expect(tiles.find((t) => t.id === 'senado')!.href).toBe('#/senado');
   });
 
-  it('o tile "Atualizado em" mostra a data em dd/mm/aaaa e aponta para a âncora local da notícia do dia', () => {
+  it('não há tile "Atualizado em" (a data vive na notícia do dia, evitando tile órfão)', () => {
     const tiles = montarBigNumbers(digestFake({ dataAtualizacao: '2026-09-14' }));
-    const atualizado = tiles.find((t) => t.id === 'atualizado')!;
-    expect(atualizado.valor).toBe('14/09/2026');
-    expect(atualizado.href).toBe('#atualizacao-do-dia');
+    expect(tiles.find((t) => t.id === 'atualizado')).toBeUndefined();
   });
 
   it('nenhum tile carrega nome de candidato, partido de candidato ou percentual de resultado — só metadados da base', () => {

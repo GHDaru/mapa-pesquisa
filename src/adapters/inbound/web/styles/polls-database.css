@@ -163,13 +163,34 @@
 .db-btn-csv:active { background: var(--color-accent-active); }
 
 .db-vazio {
-  font: var(--text-body-sm);
-  color: var(--color-text-subtle);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
   padding: var(--space-5);
   text-align: center;
   background: var(--color-surface-1);
   border-radius: var(--radius-md);
 }
+
+.db-vazio-texto {
+  font: var(--text-body-sm);
+  color: var(--color-text-subtle);
+  margin: 0;
+}
+
+.db-btn-limpar {
+  font: var(--text-body-sm);
+  font-weight: 510;
+  color: var(--color-text);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-4);
+  cursor: pointer;
+}
+.db-btn-limpar:hover { background: var(--color-surface-3); }
+.db-btn-limpar:active { background: var(--color-surface-4); }
 
 /* --- Tabela --- */
 
@@ -228,10 +249,17 @@
   letter-spacing: var(--tracking-eyebrow);
   white-space: nowrap;
 }
+/* Preenchimento sólido (não transparente sobre `--color-text-tertiary`, que
+   media ~3.25:1 — abaixo do mínimo AA de 4.5:1 para texto normal em ambos os
+   temas). `--spectrum-1-solid` + texto branco é o mesmo par já usado nos
+   badges de partido (`.pv-badge-partido`) e mede >=5.9:1 nos dois temas,
+   porque o próprio selo carrega fundo e texto — não depende de qual
+   superfície está por baixo (cartão, linha em hover, canvas). */
 .db-selo-sem-registro {
-  background: transparent;
-  color: var(--color-text-tertiary);
-  border: 1px solid var(--color-border-strong);
+  background: var(--spectrum-1-solid);
+  color: var(--color-on-accent);
+  border: 1px solid transparent;
+  font-weight: 700;
 }
 
 .db-meta {
@@ -421,6 +449,26 @@ th[aria-sort='descending'] .db-table-sort-btn::after {
   .db-top3-list {
     width: 100%;
     min-width: 0;
+  }
+  /* No card mobile a coluna some (a linha inteira é a largura do cartão),
+     então um nome de candidato que cortava com "…" na tabela larga (36% dos
+     nomes em 400px, ver docs/revisao-pesquisas.md P1) tem espaço de sobra
+     para quebrar em vez de truncar — a informação mais olhada da linha
+     (quem está na frente) nunca deveria desaparecer. `align-items:
+     flex-start` alinha o partido/percentual (sempre 1 linha) com a primeira
+     linha do nome quando ele quebra em duas. */
+  .db-top3-item {
+    align-items: flex-start;
+  }
+  .db-top3-nome {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  .db-top3-pct {
+    padding-top: 1px;
   }
   .db-detalhes-conteudo {
     min-width: 0;

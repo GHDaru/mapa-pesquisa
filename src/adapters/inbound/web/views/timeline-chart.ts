@@ -548,6 +548,8 @@ export function renderTimelineChart(host: HTMLElement, opcoes: OpcoesTimelineCha
       (atual as { y: number }).y = anterior.y + ESPACO_MIN_ROTULO;
     }
   }
+  const overlayRotulosFinais = document.createElement('div');
+  overlayRotulosFinais.className = 'pv-timeline-end-labels';
   for (const { x, y, corVar, texto, nomeCompleto } of rotulosOrdenados) {
     const ancoraDireita = x > LARGURA - MARGEM.direita - 8;
     const linha = criarSvgEl('line', {
@@ -555,19 +557,19 @@ export function renderTimelineChart(host: HTMLElement, opcoes: OpcoesTimelineCha
       class: 'pv-timeline-end-leader', style: `stroke:${corVar}`,
     });
     grupoSeries.append(linha);
-    const rotulo = criarSvgEl('text', {
-      x: String(x + (ancoraDireita ? -8 : 8)), y: String(y + 4), class: 'pv-timeline-end-label',
-      'text-anchor': ancoraDireita ? 'end' : 'start',
-    });
-    rotulo.textContent = texto;
-    // <title> dá o nome completo ao passar o mouse/focar (equivalente ao
-    // atributo `title` do HTML) — o rótulo visível usa só o apelido curto.
-    const tituloRotulo = criarSvgEl('title');
-    tituloRotulo.textContent = nomeCompleto;
-    rotulo.append(tituloRotulo);
-    grupoSeries.append(rotulo);
+    const rotulo = criarRotuloOverlay(
+      texto,
+      x,
+      y,
+      `pv-timeline-end-label ${ancoraDireita ? 'pv-timeline-end-label--end' : 'pv-timeline-end-label--start'}`,
+    );
+    // `title` dá o nome completo ao passar o mouse/focar — o rótulo visível
+    // usa só o apelido curto (ver `nomeCurto`).
+    rotulo.title = nomeCompleto;
+    overlayRotulosFinais.append(rotulo);
   }
   svg.append(grupoSeries);
+  overlay.append(overlayRotulosFinais);
 
   // --- Crosshair (oculto até hover/foco/teclado) ---
   const crosshair = criarSvgEl('line', {
@@ -576,7 +578,8 @@ export function renderTimelineChart(host: HTMLElement, opcoes: OpcoesTimelineCha
   crosshair.style.display = 'none';
   svg.append(crosshair);
 
-  host.append(svg);
+  figura.append(svg, overlay);
+  host.append(figura);
 
   // --- Legenda: nome + partido de cada candidato destacado, + "Outros" ---
   const legenda = document.createElement('div');
@@ -616,17 +619,34 @@ export function renderTimelineChart(host: HTMLElement, opcoes: OpcoesTimelineCha
   }
   host.append(legenda);
 
-  // --- Tooltip flutuante ---
+  const idSufixo = ++contadorInstancia;
+
+  // --- Tooltip flutuante — `id` fixo (não `hidden`, ver `ligarInteracao`)
+  // para que `aria-describedby` no SVG continue apontando para um elemento
+  // real e legível por tecnologia assistiva mesmo quando visualmente oculto
+  // (P1: antes não havia `id`/`aria-describedby` nenhum ligando os dois).
   const tooltip = document.createElement('div');
+  tooltip.id = `pv-timeline-tooltip-${idSufixo}`;
   tooltip.className = 'pv-timeline-tooltip';
   tooltip.setAttribute('role', 'tooltip');
-  tooltip.hidden = true;
   host.style.position = host.style.position || 'relative';
   host.append(tooltip);
+  svg.setAttribute('aria-describedby', tooltip.id);
+
+  // --- Região aria-live: anuncia o dia sob o crosshair a leitores de tela
+  // (P1 — antes não existia nenhum `[aria-live]` na página; navegação por
+  // teclado mudava o crosshair/tooltip visualmente sem nenhum anúncio).
+  const liveRegion = document.createElement('div');
+  liveRegion.id = `pv-timeline-live-${idSufixo}`;
+  liveRegion.className = 'pv-timeline-sr-only';
+  liveRegion.setAttribute('aria-live', 'polite');
+  liveRegion.setAttribute('role', 'status');
+  host.append(liveRegion);
 
   ligarInteracao({
     svg,
     tooltip,
+    liveRegion,
     crosshair,
     serie,
     candidatosDestacados,
@@ -637,6 +657,7 @@ export function renderTimelineChart(host: HTMLElement, opcoes: OpcoesTimelineCha
     areaY,
     fimEixo,
     primeiraData,
+    signal: abortController.signal,
   });
 }
 
@@ -653,6 +674,7 @@ function desenharLinha(grupo: SVGGElement, pontos: readonly PontoXY[], corVar: s
 interface EstadoInteracao {
   readonly svg: SVGSVGElement;
   readonly tooltip: HTMLDivElement;
+  readonly liveRegion: HTMLDivElement;
   readonly crosshair: SVGLineElement;
   readonly serie: SerieTemporal;
   readonly candidatosDestacados: readonly SerieCandidato[];
@@ -663,6 +685,8 @@ interface EstadoInteracao {
   readonly areaY: readonly [number, number];
   readonly fimEixo: string;
   readonly primeiraData: string;
+  /** Abortado quando o gráfico é re-renderizado no mesmo host — encerra o listener de `pointerdown` em `document` (tap-fora-fecha). */
+  readonly signal: AbortSignal;
 }
 
 /** Índice do dia de `serie.dias` cuja posição x está mais próxima de `xAlvo`. */
@@ -715,15 +739,51 @@ function escaparHtml(valor: string): string {
   return valor.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
+/** Texto puro (sem HTML) do dia atual, para a região `aria-live` — mesmo conteúdo essencial do tooltip. */
+function montarAnuncioDia(dia: DiaSerieTemporal, candidatosDestacados: readonly SerieCandidato[]): string {
+  const partes = candidatosDestacados
+    .filter((c) => dia.valores[c.nome] != null)
+    .map((c) => `${nomeCurto(c.nome)} ${formatarNumero(dia.valores[c.nome]!)}%`);
+  return `${formatarPeriodo(undefined, dia.data)}: ${partes.join(', ') || 'sem dados'}`;
+}
+
+/** Pesquisa individual mais próxima de `(xRel, yRel)` (unidades do viewBox), dentro de uma folga de toque. */
+function pontoMaisProximo(
+  serie: SerieTemporal,
+  escalaX: (d: string) => number,
+  escalaY: (v: number) => number,
+  xRel: number,
+  yRel: number,
+): PontoSerieTemporal | null {
+  let maisProximo: PontoSerieTemporal | null = null;
+  let melhorDist = 14; // folga de toque em unidades do viewBox
+  for (const p of serie.pontos) {
+    const dist = Math.hypot(escalaX(p.data) - xRel, escalaY(p.pct) - yRel);
+    if (dist < melhorDist) {
+      melhorDist = dist;
+      maisProximo = p;
+    }
+  }
+  return maisProximo;
+}
+
 function ligarInteracao(estado: EstadoInteracao): void {
-  const { svg, tooltip, crosshair, serie, candidatosDestacados, escalaX, escalaY, areaX, areaY } = estado;
+  const { svg, tooltip, liveRegion, crosshair, serie, candidatosDestacados, escalaX, escalaY, areaX, areaY, signal } = estado;
+  const host = svg.parentElement!.parentElement as HTMLElement; // svg -> .pv-timeline-figure -> host
 
   let indiceAtual = serie.dias.length - 1;
   let pontoHover: PontoSerieTemporal | null = null;
+  let ultimoIndiceAnunciado = -1;
+  // Tap-fixo (mobile): um `pointerdown`/click dentro do gráfico fixa o
+  // tooltip no ponto tocado, ignorando `pointermove` (hover) até ser
+  // liberado por um novo toque dentro do gráfico ou por um toque fora dele
+  // — nunca depende só de hover, que não existe em touch (ver ux-spec.md
+  // §1, princípio 4, e P1 da revisão).
+  let fixado = false;
 
   function posicionarTooltip(xSvg: number, ySvg: number): void {
     const ret = svg.getBoundingClientRect();
-    const hostRect = (svg.parentElement as HTMLElement).getBoundingClientRect();
+    const hostRect = host.getBoundingClientRect();
     const escalaPxPorUnidade = ret.width / LARGURA;
     const xPx = xSvg * escalaPxPorUnidade;
     const yPx = ySvg * escalaPxPorUnidade;
@@ -742,47 +802,80 @@ function ligarInteracao(estado: EstadoInteracao): void {
     crosshair.style.display = '';
 
     tooltip.innerHTML = montarTooltipHtml(dia, candidatosDestacados, pontoHover);
-    tooltip.hidden = false;
+    tooltip.classList.add('pv-timeline-tooltip--visible');
     posicionarTooltip(x, xClientHint ?? (areaY[0] + areaY[1]) / 2);
+
+    if (indiceAtual !== ultimoIndiceAnunciado) {
+      ultimoIndiceAnunciado = indiceAtual;
+      liveRegion.textContent = montarAnuncioDia(dia, candidatosDestacados);
+    }
   }
 
   function esconder(): void {
+    if (fixado) return; // só um toque fora (ver listener em document) ou Escape libera o tap-fixo
     crosshair.style.display = 'none';
-    tooltip.hidden = true;
+    tooltip.classList.remove('pv-timeline-tooltip--visible');
     pontoHover = null;
   }
 
-  svg.addEventListener('pointermove', (e: PointerEvent) => {
+  function esconderForcado(): void {
+    fixado = false;
+    crosshair.style.display = 'none';
+    tooltip.classList.remove('pv-timeline-tooltip--visible');
+    pontoHover = null;
+  }
+
+  function atualizarDoPonteiro(e: PointerEvent): { idx: number; yRel: number } | null {
     const rect = svg.getBoundingClientRect();
     const xRel = ((e.clientX - rect.left) / rect.width) * LARGURA;
-    if (xRel < areaX[0] || xRel > areaX[1]) {
-      esconder();
-      return;
-    }
+    if (xRel < areaX[0] || xRel > areaX[1]) return null;
     const idx = diaMaisProximo(serie, escalaX, xRel);
-
+    const yRel = ((e.clientY - rect.top) / rect.height) * ALTURA;
     // Se o ponteiro está bem próximo de um marcador individual (raio + folga
     // de toque), mostra também os detalhes daquela pesquisa (instituto,
     // campo, amostra, registro TSE) — ver references/interaction.md.
-    const yRel = ((e.clientY - rect.top) / rect.height) * ALTURA;
-    let maisProximo: PontoSerieTemporal | null = null;
-    let melhorDist = 14; // folga de toque em unidades do viewBox
-    for (const p of serie.pontos) {
-      const px = escalaX(p.data);
-      const py = escalaY(p.pct);
-      const dist = Math.hypot(px - xRel, py - yRel);
-      if (dist < melhorDist) {
-        melhorDist = dist;
-        maisProximo = p;
-      }
+    pontoHover = pontoMaisProximo(serie, escalaX, escalaY, xRel, yRel);
+    return { idx, yRel };
+  }
+
+  svg.addEventListener('pointermove', (e: PointerEvent) => {
+    if (fixado) return;
+    const resultado = atualizarDoPonteiro(e);
+    if (!resultado) {
+      esconder();
+      return;
     }
-    pontoHover = maisProximo;
-    atualizar(idx, yRel);
+    atualizar(resultado.idx, resultado.yRel);
   });
   svg.addEventListener('pointerleave', esconder);
 
+  // `pointerdown` fixa o tooltip no ponto tocado/clicado — funciona igual
+  // para mouse (click) e touch (tap), como pede o princípio 4 da barra de
+  // qualidade (ux-spec.md §1: "nunca só hover").
+  svg.addEventListener('pointerdown', (e: PointerEvent) => {
+    const resultado = atualizarDoPonteiro(e);
+    if (!resultado) return;
+    fixado = true;
+    atualizar(resultado.idx, resultado.yRel);
+  });
+
+  // Um segundo toque/clique fora do gráfico libera o tap-fixo e esconde o
+  // tooltip — registrado com `signal` para não vazar entre re-renders do
+  // mesmo host (troca de cenário de 2º turno).
+  document.addEventListener(
+    'pointerdown',
+    (e: PointerEvent) => {
+      if (!fixado) return;
+      if (svg.contains(e.target as Node)) return; // tratado pelo listener do próprio svg acima
+      esconderForcado();
+    },
+    { signal, capture: true },
+  );
+
   svg.addEventListener('focus', () => atualizar(indiceAtual));
-  svg.addEventListener('blur', esconder);
+  svg.addEventListener('blur', () => {
+    if (!fixado) esconder();
+  });
 
   svg.addEventListener('keydown', (e: KeyboardEvent) => {
     if (e.key === 'ArrowLeft') {
@@ -802,7 +895,7 @@ function ligarInteracao(estado: EstadoInteracao): void {
       pontoHover = null;
       atualizar(serie.dias.length - 1);
     } else if (e.key === 'Escape') {
-      esconder();
+      esconderForcado();
     }
   });
 }

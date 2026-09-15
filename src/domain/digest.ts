@@ -23,7 +23,10 @@ export interface NovidadesUltimaAtualizacao {
   readonly total: number;
   readonly porCargo: Readonly<Record<Cargo, number>>;
   /** UFs distintas das pesquisas novas (pode incluir "BR"), ordem alfabética. */
+  /** UFs (sem 'BR') com pesquisas novas. */
   readonly ufs: readonly string[];
+  /** Verdadeiro se houve pesquisa nacional (uf 'BR') nova. */
+  readonly incluiNacional: boolean;
   /** Institutos distintos das pesquisas novas, ordem alfabética. */
   readonly institutos: readonly string[];
 }
@@ -108,9 +111,11 @@ export function montarDigestDiario(entrada: EntradaDigest): DigestDiario {
   const porCargo = Object.fromEntries(CARGOS_VALIDOS.map((cargo) => [cargo, 0])) as Record<Cargo, number>;
   const ufsNovas = new Set<string>();
   const institutosNovos = new Set<string>();
+  let incluiNacional = false;
   for (const p of novas) {
     porCargo[p.disputa.cargo] += 1;
-    ufsNovas.add(p.disputa.uf);
+    if (p.disputa.uf === UF_NACIONAL) incluiNacional = true;
+    else ufsNovas.add(p.disputa.uf);
     institutosNovos.add(p.instituto);
   }
 
@@ -124,6 +129,7 @@ export function montarDigestDiario(entrada: EntradaDigest): DigestDiario {
       total: novas.length,
       porCargo,
       ufs: ordenarAlfabetico(ufsNovas),
+      incluiNacional,
       institutos: ordenarAlfabetico(institutosNovos),
     },
     totalPesquisas,

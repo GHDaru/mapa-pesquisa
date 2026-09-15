@@ -167,3 +167,18 @@ describe('domain/digest — montarDigestDiario', () => {
     expect(serializado).not.toMatch(/\b62\b/);
   });
 });
+
+
+describe('digest — nacional à parte', () => {
+  it('não lista BR entre as UFs novas e marca incluiNacional', async () => {
+    const { montarDigestDiario } = await import('../digest.js');
+    const { criarPesquisa } = await import('../poll.js');
+    const base = { cargo: 'presidente' as const, turno: 1 as const, instituto: 'X', fonte: { nome: 'f', url: 'https://f' },
+      resultados: [{ candidato: 'A', partido: 'PT', pct: 40 }] };
+    const nacional = criarPesquisa({ ...base, id: 'n', uf: 'BR', dataFim: '2026-09-12', publicadoEm: '2026-09-12' });
+    const estadual = criarPesquisa({ ...base, id: 'e', uf: 'SP', dataFim: '2026-09-12', publicadoEm: '2026-09-12' });
+    const d = montarDigestDiario({ pesquisas: [nacional, estadual], atualizadoEm: '2026-09-13', totalPartidos: 0, eleitoradoTotal: null });
+    expect(d.novasNaUltimaAtualizacao.ufs).toEqual(['SP']);
+    expect(d.novasNaUltimaAtualizacao.incluiNacional).toBe(true);
+  });
+});

@@ -91,3 +91,14 @@ describe('domain/poll', () => {
     expect(dataReferencia(pesquisa)).toBe('2026-09-05');
   });
 });
+
+
+describe('normalizarInstituto', () => {
+  it('unifica grafias do mesmo instituto', async () => {
+    const { normalizarInstituto } = await import('../poll.js');
+    expect(normalizarInstituto('Instituto Anova')).toBe('Anova');
+    expect(normalizarInstituto('Anova (PB Agora)')).toBe('Anova');
+    expect(normalizarInstituto('AtlasIntel/MeioNorte')).toBe('AtlasIntel');
+    expect(normalizarInstituto('  Quaest ')).toBe('Quaest');
+  });
+});

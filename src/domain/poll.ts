@@ -160,7 +160,7 @@ export function criarPesquisa(dados: DadosPesquisa): Pesquisa {
   const pesquisa: Pesquisa = {
     id,
     disputa,
-    instituto: dados.instituto.trim(),
+    instituto: normalizarInstituto(dados.instituto),
     registroTSE: criarRegistroTSE(dados.registroTSE),
     fonte: { nome: dados.fonte.nome.trim(), url: dados.fonte.url.trim() },
     resultados,
@@ -175,4 +175,28 @@ export function criarPesquisa(dados: DadosPesquisa): Pesquisa {
   };
 
   return pesquisa;
+}
+
+
+/** Grafias diferentes do mesmo instituto encontradas nas fontes → nome canônico. */
+const APELIDOS_INSTITUTO: Readonly<Record<string, string>> = {
+  'instituto anova': 'Anova',
+  'anova (pb agora)': 'Anova',
+  'anova': 'Anova',
+  'instituto brasil dados': 'Brasil Dados',
+  'brasil dados': 'Brasil Dados',
+  'instituto ranking brasil inteligência': 'Ranking Brasil Inteligência',
+  'ranking brasil inteligência': 'Ranking Brasil Inteligência',
+  'ideia (meio/ideia)': 'Ideia',
+  'ideia': 'Ideia',
+  'futura/100% cidades': 'Futura Inteligência',
+  'futura inteligência': 'Futura Inteligência',
+  'atlasintel/meionorte': 'AtlasIntel',
+  'atlasintel': 'AtlasIntel',
+};
+
+/** Normaliza o nome do instituto; mantém o original (aparado) quando não há apelido conhecido. */
+export function normalizarInstituto(instituto: string): string {
+  const limpo = instituto.trim();
+  return APELIDOS_INSTITUTO[limpo.toLowerCase()] ?? limpo;
 }

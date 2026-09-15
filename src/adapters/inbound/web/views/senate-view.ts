@@ -203,7 +203,7 @@ function rotuloAria(assento: AssentoVisual): string {
     case 'fixa':
       return `${assento.uf} — ${assento.ocupante} (${partido}), cadeira até 2031, não disputada em 2026`;
     case 'projetada':
-      return `${assento.uf} — ${assento.ocupante} (${partido}), projetada para 2027${assento.confianca ? `, ${rotuloConfiancaAssento(assento.confianca).toLowerCase()}` : ''}`;
+      return `${assento.uf} — ${assento.ocupante} (${partido}), projetada para 2026${assento.confianca ? `, ${rotuloConfiancaAssento(assento.confianca).toLowerCase()}` : ''}`;
     case 'indefinida':
       return `${assento.uf}, cadeira indefinida — sem pesquisa suficiente para projetar`;
     case 'atual':
@@ -290,11 +290,11 @@ function desenharHemiciclo(
     if (clicavel) classes.push('pv-assento--clicavel');
 
     const rotulo = rotuloAria(assento);
-    const circulo = criarSvgEl('circle', {
+    // Grupo (não só o círculo) carrega a interatividade: assim o marcador
+    // interno das cadeiras projetadas (abaixo) herda `fill`/`stroke` do
+    // mesmo estado (foco, destaque, confiança) sem duplicar classes.
+    const grupo = criarSvgEl('g', {
       class: classes.join(' '),
-      cx: String(sx),
-      cy: String(sy),
-      r: String(SEAT_R),
       tabindex: '0',
       role: clicavel ? 'button' : 'img',
       'aria-label': clicavel ? `${rotulo} — ver detalhes da UF` : rotulo,
@@ -302,20 +302,41 @@ function desenharHemiciclo(
     });
     const titulo = criarSvgEl('title');
     titulo.textContent = rotulo;
-    circulo.append(titulo);
+    const corpo = criarSvgEl('circle', {
+      class: 'pv-assento-corpo',
+      cx: String(sx),
+      cy: String(sy),
+      r: String(SEAT_R),
+    });
+    grupo.append(titulo, corpo);
+
+    // Distinção fixa/projetada reforçada além do contorno tracejado (que a
+    // 9px de raio fica quase ilegível a olho nu, ver docs/revisao-senado.md
+    // P1): um marcador interno sólido só nas cadeiras projetadas, além do
+    // rótulo textual "projetada"/"não disputada" no aria-label/tooltip.
+    if (assento.origemVisual === 'projetada') {
+      grupo.append(
+        criarSvgEl('circle', {
+          class: 'pv-assento-marcador',
+          cx: String(sx),
+          cy: String(sy),
+          r: String(SEAT_R * 0.36),
+        }),
+      );
+    }
 
     if (clicavel) {
       const uf = assento.uf!;
-      circulo.addEventListener('click', () => aoSelecionarUf(uf, circulo));
-      circulo.addEventListener('keydown', (e) => {
+      grupo.addEventListener('click', () => aoSelecionarUf(uf, grupo));
+      grupo.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
           e.preventDefault();
-          aoSelecionarUf(uf, circulo);
+          aoSelecionarUf(uf, grupo);
         }
       });
     }
 
-    svg.append(circulo);
+    svg.append(grupo);
   });
 
   return svg;
@@ -397,7 +418,7 @@ function criarLegendaConfianca(): HTMLElement {
   card.append(
     criarEl('div', { className: 'pv-legend-row' }, [
       criarEl('span', { className: 'pv-legend-swatch pv-legend-swatch--tracejado' }),
-      criarEl('span', { texto: 'Contorno tracejado = cadeira projetada' }),
+      criarEl('span', { texto: 'Contorno tracejado + marcador central = cadeira projetada' }),
     ]),
   );
   return card;

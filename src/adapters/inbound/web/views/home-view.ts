@@ -82,14 +82,6 @@ export function montarBigNumbers(digest: DigestDiario): readonly BigNumberTile[]
       href: '#/senado',
       seloTse: false,
     },
-    {
-      id: 'atualizado',
-      rotulo: 'Atualizado em',
-      valor: formatarData(digest.dataAtualizacao),
-      detalhe: null,
-      href: '#atualizacao-do-dia',
-      seloTse: false,
-    },
   ];
 }
 
@@ -257,6 +249,9 @@ function construirTextoNovidades(digest: DigestDiario): HTMLElement {
     partes.push(
       ` em ${pluralizar(novas.ufs.length, '1 estado', `${formatarNumero(novas.ufs.length, 0)} estados`)} (${novas.ufs.join(', ')})`,
     );
+    if (novas.incluiNacional) partes.push(' e na disputa nacional');
+  } else if (novas.incluiNacional) {
+    partes.push(' na disputa nacional');
   }
   if (novas.institutos.length > 0) {
     partes.push(`, de ${novas.institutos.join(', ')}`);

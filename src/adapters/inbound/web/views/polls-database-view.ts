@@ -252,14 +252,38 @@ export function renderPollsDatabase(container: HTMLElement, casos: CasosDeUso): 
   const contador = criarEl('p', { className: 'db-contador', attrs: { 'aria-live': 'polite' } });
   const tabelaWrap = criarEl('div', {});
 
+  const barraFiltros = criarBarraFiltros(filtros, () => atualizar());
+
+  function limparFiltros(): void {
+    filtros.cargo = 'todos';
+    filtros.uf = 'todos';
+    filtros.instituto = 'todos';
+    filtros.turno = 'todos';
+    filtros.busca = '';
+    filtros.somenteComRegistro = false;
+    barraFiltros.selectCargo.value = 'todos';
+    barraFiltros.selectTurno.value = 'todos';
+    barraFiltros.inputBusca.value = '';
+    barraFiltros.checkboxRegistro.checked = false;
+    atualizar();
+  }
+
   function atualizar(): void {
+    const { contagemInstituto, contagemUf } = sincronizarOpcoesCruzadas(base.pesquisas, filtros);
+    preencherOpcoesComContagem(
+      barraFiltros.selectInstituto,
+      base.institutos,
+      contagemInstituto,
+      'Todos os institutos',
+      filtros.instituto,
+    );
+    preencherOpcoesComContagem(barraFiltros.selectUf, base.ufs, contagemUf, 'Todas as UFs', filtros.uf);
+
     const filtradas = ordenarPesquisas(aplicarFiltros(base.pesquisas, filtros), ordenacao);
     contador.textContent = `${filtradas.length} de ${base.pesquisas.length} pesquisas`;
     tabelaWrap.innerHTML = '';
     if (filtradas.length === 0) {
-      tabelaWrap.append(
-        criarEl('p', { className: 'db-vazio', texto: 'Nenhuma pesquisa encontrada com os filtros atuais.' }),
-      );
+      tabelaWrap.append(criarEstadoVazio(limparFiltros));
     } else {
       tabelaWrap.append(criarTabela(filtradas, partidos, ordenacao, (campo) => {
         if (ordenacao.campo === campo) {
@@ -274,7 +298,7 @@ export function renderPollsDatabase(container: HTMLElement, casos: CasosDeUso): 
   }
 
   raiz.append(
-    criarBarraFiltros(base, filtros, () => atualizar()),
+    barraFiltros.elemento,
     criarEl('div', { className: 'db-toolbar' }, [
       contador,
       criarBotaoCsv(() => baixarCsv(ordenarPesquisas(aplicarFiltros(base.pesquisas, filtros), ordenacao))),
@@ -284,6 +308,21 @@ export function renderPollsDatabase(container: HTMLElement, casos: CasosDeUso): 
 
   atualizar();
   container.append(raiz);
+}
+
+/** Mensagem de zero resultados + botão para voltar todos os filtros ao padrão. */
+function criarEstadoVazio(aoLimpar: () => void): HTMLElement {
+  const btnLimpar = criarEl('button', {
+    className: 'db-btn-limpar',
+    texto: 'Limpar filtros',
+    attrs: { type: 'button' },
+  }) as HTMLButtonElement;
+  btnLimpar.addEventListener('click', aoLimpar);
+
+  return criarEl('div', { className: 'db-vazio' }, [
+    criarEl('p', { className: 'db-vazio-texto', texto: 'Nenhuma pesquisa encontrada com os filtros atuais.' }),
+    btnLimpar,
+  ]);
 }
 
 function criarCabecalho(base: ReturnType<CasosDeUso['getPollsDatabase']>): HTMLElement {
@@ -347,13 +386,24 @@ function criarSelect(
   return select;
 }
 
-function criarBarraFiltros(
-  base: ReturnType<CasosDeUso['getPollsDatabase']>,
-  filtros: Filtros,
-  aoMudar: () => void,
-): HTMLElement {
-  const ufsCompletas = [UF_NACIONAL, ...UFS];
+interface BarraFiltrosRefs {
+  readonly elemento: HTMLElement;
+  readonly selectCargo: HTMLSelectElement;
+  readonly selectUf: HTMLSelectElement;
+  readonly selectInstituto: HTMLSelectElement;
+  readonly selectTurno: HTMLSelectElement;
+  readonly inputBusca: HTMLInputElement;
+  readonly checkboxRegistro: HTMLInputElement;
+}
 
+/**
+ * Monta a barra de filtros. UF e Instituto começam sem `<option>` própria
+ * (além de "todos"): quem as popula, a cada mudança, é
+ * `preencherOpcoesComContagem` chamada por `atualizar()` em
+ * `renderPollsDatabase` — é o que faz os dois `<select>` refletirem um ao
+ * outro (e Cargo/Turno/busca) em vez da lista fixa e global de antes.
+ */
+function criarBarraFiltros(filtros: Filtros, aoMudar: () => void): BarraFiltrosRefs {
   const selectCargo = criarSelect(
     [
       { valor: 'todos', rotulo: 'Todos os cargos' },
@@ -368,26 +418,15 @@ function criarBarraFiltros(
     },
   );
 
-  const selectUf = criarSelect(
-    [{ valor: 'todos', rotulo: 'Todas as UFs' }, ...ufsCompletas.map((uf) => ({ valor: uf, rotulo: uf }))],
-    filtros.uf,
-    (v) => {
-      filtros.uf = v;
-      aoMudar();
-    },
-  );
+  const selectUf = criarSelect([{ valor: 'todos', rotulo: 'Todas as UFs' }], filtros.uf, (v) => {
+    filtros.uf = v;
+    aoMudar();
+  });
 
-  const selectInstituto = criarSelect(
-    [
-      { valor: 'todos', rotulo: 'Todos os institutos' },
-      ...base.institutos.map((i) => ({ valor: i, rotulo: i })),
-    ],
-    filtros.instituto,
-    (v) => {
-      filtros.instituto = v;
-      aoMudar();
-    },
-  );
+  const selectInstituto = criarSelect([{ valor: 'todos', rotulo: 'Todos os institutos' }], filtros.instituto, (v) => {
+    filtros.instituto = v;
+    aoMudar();
+  });
 
   const selectTurno = criarSelect(
     [
@@ -425,14 +464,20 @@ function criarBarraFiltros(
     'Só com registro TSE',
   ]);
 
-  return criarEl('div', { className: 'db-filters-row', attrs: { role: 'search', 'aria-label': 'Filtros da base de pesquisas' } }, [
-    criarCampo('Cargo', 'pesquisas-filtro-cargo', selectCargo),
-    criarCampo('UF', 'pesquisas-filtro-uf', selectUf),
-    criarCampo('Instituto', 'pesquisas-filtro-instituto', selectInstituto),
-    criarCampo('Turno', 'pesquisas-filtro-turno', selectTurno),
-    criarCampo('Buscar', 'pesquisas-filtro-busca', inputBusca),
-    campoCheckbox,
-  ]);
+  const elemento = criarEl(
+    'div',
+    { className: 'db-filters-row', attrs: { role: 'search', 'aria-label': 'Filtros da base de pesquisas' } },
+    [
+      criarCampo('Cargo', 'pesquisas-filtro-cargo', selectCargo),
+      criarCampo('UF', 'pesquisas-filtro-uf', selectUf),
+      criarCampo('Instituto', 'pesquisas-filtro-instituto', selectInstituto),
+      criarCampo('Turno', 'pesquisas-filtro-turno', selectTurno),
+      criarCampo('Buscar', 'pesquisas-filtro-busca', inputBusca),
+      campoCheckbox,
+    ],
+  );
+
+  return { elemento, selectCargo, selectUf, selectInstituto, selectTurno, inputBusca, checkboxRegistro };
 }
 
 function criarBotaoCsv(aoClicar: () => void): HTMLButtonElement {

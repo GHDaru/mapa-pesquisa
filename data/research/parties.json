@@ -117,7 +117,7 @@
     "fonteClassificacao": "https://pt.wikipedia.org/wiki/Cidadania_(partido_pol%C3%ADtico)",
     "cor": null,
     "federacao": "Federação PSDB-Cidadania",
-    "observacao": "Sucessor do PPS; algumas fontes o classificam como centro-esquerda (autodefinição) e outras como \"centro-democrático\"."
+    "observacao": "Sucessor do PPS; algumas fontes o classificam como centro-esquerda (autodefinição) e outras como \"centro-democrático\". Federação PSDB-Cidadania: o diretório nacional do Cidadania aprovou por unanimidade o fim da federação em 16/03/2025 e o STF autorizou, na modulação da ADI 7021 (06/08/2025), que federações formadas em 2022 se dissolvam antes do prazo mínimo de 4 anos; mesmo assim, a federação segue registrada no TSE e vigente para as eleições de 2026 (ex.: chapa federada homologada em SP em jul/2026)."
   },
   {
     "sigla": "PRD",
@@ -227,7 +227,7 @@
     "fonteClassificacao": "https://www.brasildefato.com.br/2024/10/29/eleicoes-2024-centro-e-direita-colocam-a-esquerda-em-sinal-de-alerta-para-2026/",
     "cor": "#003399",
     "federacao": "Federação PSDB-Cidadania",
-    "observacao": "Autodefinição \"centro-democrático\"; classificação histórica oscila entre centro e centro-direita (social-democracia liberal)."
+    "observacao": "Autodefinição \"centro-democrático\"; classificação histórica oscila entre centro e centro-direita (social-democracia liberal). Federação PSDB-Cidadania: o Cidadania aprovou por unanimidade a dissolução antecipada em 16/03/2025 e o STF autorizou federações de 2022 a se dissolverem antes do prazo mínimo de 4 anos (modulação da ADI 7021, 06/08/2025); apesar disso, a federação foi mantida para as eleições de 2026 (registro ativo no TSE e chapas federadas homologadas, ex.: SP em jul/2026)."
   },
   {
     "sigla": "PSOL",
@@ -288,16 +288,6 @@
     "cor": "#CC0000",
     "federacao": null,
     "observacao": "Apontado pelo GPS Partidário (Folha, set/2026) entre os partidos mais à esquerda do espectro, ao lado do PSTU."
-  },
-  {
-    "sigla": "PROS",
-    "nome": "Partido Republicano da Ordem Social",
-    "numero": 90,
-    "espectro": "centro",
-    "fonteClassificacao": "https://pt.wikipedia.org/wiki/Lista_de_partidos_pol%C3%ADticos_do_Brasil",
-    "cor": null,
-    "federacao": null,
-    "observacao": "Autodeclarado partido \"puramente de centro\"; baixa cobertura acadêmica específica de posicionamento."
   },
   {
     "sigla": "PRTB",

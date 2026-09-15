@@ -4,6 +4,28 @@ Levantamento realizado em 13/09/2026 via WebSearch (WebFetch/curl bloqueados). O
 **30 partidos com registro definitivo no TSE** (o 30º foi o Partido Missão, deferido em 04/11/2025) e
 **5 federações partidárias** registradas.
 
+## Atualização 15/09/2026 — correção pós-`docs/revisao-partidos.md`
+
+- **PROS removido de `parties.json`.** O PROS (nº 90) não existe mais como partido autônomo: o TSE
+  aprovou por unanimidade, em 14/02/2023, a incorporação do PROS pelo Solidariedade (todos os filiados
+  do PROS passaram automaticamente a integrar o Solidariedade). A linha do PROS estava incluída por
+  engano na tabela resumo abaixo (mantida como registro histórico do levantamento original, riscada) —
+  removida de `parties.json` nesta rodada. Fontes: [TSE, 14/02/2023](https://www.tse.jus.br/comunicacao/noticias/2023/Fevereiro/partido-republicano-da-ordem-social-pros-e-incorporado-ao-solidariedade),
+  [ConJur, 14/02/2023](https://www.conjur.com.br/2023-fev-14/tse-autoriza-incorporacao-pros-solidariedade/),
+  [Solidariedade — nota oficial](https://solidariedade.org.br/nota-oficial-por-unanimidade-tse-autoriza-a-incorporacao-do-pros-pelo-solidariedade/).
+- **Federação PSDB-Cidadania — status verificado para 2026.** O diretório nacional do Cidadania
+  aprovou por unanimidade encerrar a federação em 16/03/2025, e o STF autorizou (modulação da ADI 7021,
+  06/08/2025) que federações formadas em 2022 se dissolvam antes do prazo mínimo de 4 anos. Apesar
+  disso, a federação **segue registrada e vigente para as eleições de 2026** — página oficial de
+  federações do TSE ainda lista "PSDB-Cidadania" como ativa, e a chapa federada foi homologada em SP em
+  julho/2026 (166 candidaturas). Por isso `federacao` foi **mantido** (não marcado `null`) em PSDB e
+  Cidadania, com `observacao` adicionada em ambos explicando a tentativa de dissolução e por que ela não
+  se efetivou para este ciclo. Fontes: [Congresso em Foco](https://www.congressoemfoco.com.br/noticia/107014/cidadania-confirma-saida-da-federacao-com-psdb-para-2026),
+  [ConJur, 11/12/2025](https://www.conjur.com.br/2025-dez-11/para-eleicoes-do-ano-que-vem-partidos-poderao-desfazer-federacoes-antes-do-prazo-minimo/),
+  [Poder360](https://www.poder360.com.br/partidos-politicos/diretorio-nacional-do-cidadania-aprova-fim-da-federacao-com-psdb/),
+  [TSE — federações registradas](https://www.tse.jus.br/partidos/federacoes-registradas-no-tse/psdb-cidadania),
+  [PSDB — chapa SP jul/2026](https://www.psdb.org.br/acompanhe/noticias/sp-homologa-166-candidatos-a-deputado-e-soninha-ao-senado/).
+
 ## Tabela resumo
 
 | Sigla | Número | Espectro | Federação |
@@ -37,7 +59,7 @@ Levantamento realizado em 13/09/2026 via WebSearch (WebFetch/curl bloqueados). O
 | Avante | 70 | centro | — |
 | Solidariedade | 77 | centro | Federação Renovação Solidária |
 | UP | 80 | esquerda | — |
-| PROS | 90 | centro | — |
+| ~~PROS~~ | ~~90~~ | ~~centro~~ | ~~—~~ | *(removido em 15/09/2026 — incorporado ao Solidariedade em 14/02/2023, ver "Atualização" acima)*
 
 ## Federações partidárias vigentes em 2026
 
