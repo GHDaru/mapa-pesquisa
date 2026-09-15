@@ -1,0 +1,93 @@
+{
+  "titulo": "São Paulo (SP)",
+  "secoes": [
+    {
+      "cargo": "Governador",
+      "liderNome": "Tarcísio de Freitas",
+      "badge": "Republicanos",
+      "vantagem": "+16,8 pts",
+      "selo": "Lidera com folga",
+      "candidatos": [
+        {
+          "nome": "Tarcísio de Freitas",
+          "badge": "Republicanos",
+          "pct": "47,1%"
+        },
+        {
+          "nome": "Fernando Haddad",
+          "badge": "PT",
+          "pct": "30,3%"
+        },
+        {
+          "nome": "Vera Lúcia",
+          "badge": "PSTU",
+          "pct": "1,8%"
+        }
+      ],
+      "pesquisas": [
+        {
+          "linha1": "Datafolha (contratante: Folha da Manhã S.A. e Globo Comunicação e Participações S/A) · 08/09/2026–10/09/2026",
+          "linha2": "amostra 1.610 · margem não informada · registro TSE SP-04189/2026",
+          "fonteHref": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-governador-sao-paulo-setembro-2026/",
+          "fonteTexto": "Fonte: Gazeta do Povo (abre em nova aba)"
+        },
+        {
+          "linha1": "Paraná Pesquisas · 07/09/2026–10/09/2026",
+          "linha2": "amostra 1.680 · margem ± 2,4 pontos · registro TSE SP-08090/2026",
+          "fonteHref": "https://exame.com/brasil/parana-pesquisas-tarcisio-tem-497-e-haddad-345-no-1o-turno/",
+          "fonteTexto": "Fonte: Exame (abre em nova aba)"
+        },
+        {
+          "linha1": "Quaest (contratante: Globo Comunicação e Participações S/A) · 04/09/2026–07/09/2026",
+          "linha2": "amostra 1.800 · margem ± 2,0 pontos · registro TSE não localizado ⚠",
+          "fonteHref": "https://www.metropoles.com/sao-paulo/quaest-tarcisio-tem-42-das-intencoes-de-voto-haddad-tem-27",
+          "fonteTexto": "Fonte: Metrópoles (abre em nova aba)"
+        }
+      ]
+    },
+    {
+      "cargo": "Senador",
+      "liderNome": "Marina Silva",
+      "badge": "Rede",
+      "vantagem": "+1,0 pts",
+      "selo": "2 vagas",
+      "candidatos": [
+        {
+          "nome": "Marina Silva",
+          "badge": "Rede",
+          "pct": "13,5%"
+        },
+        {
+          "nome": "Simone Tebet",
+          "badge": "PSB",
+          "pct": "12,5%"
+        },
+        {
+          "nome": "Guilherme Derrite",
+          "badge": "PP",
+          "pct": "11,9%"
+        },
+        {
+          "nome": "André do Prado",
+          "badge": "PL",
+          "pct": "9,1%"
+        }
+      ],
+      "pesquisas": [
+        {
+          "linha1": "Datafolha (contratante: Folha de S.Paulo e TV Globo) · 08/09/2026–10/09/2026",
+          "linha2": "amostra 1.610 · margem ± 2,0 pontos · registro TSE SP-04189/2026",
+          "fonteHref": "https://www.cnnbrasil.com.br/eleicoes/datafolha-marina-tebet-do-prado-e-derrite-empatam-para-senado-em-sp/",
+          "fonteTexto": "Fonte: CNN Brasil (abre em nova aba)"
+        },
+        {
+          "linha1": "Quaest (contratante: Globo Comunicação e Participações S/A) · 04/09/2026–07/09/2026",
+          "linha2": "amostra 1.800 · margem ± 2,0 pontos · registro TSE SP-00959/2026",
+          "fonteHref": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-senador-sao-paulo-setembro-2026/",
+          "fonteTexto": "Fonte: Gazeta do Povo (abre em nova aba)"
+        }
+      ]
+    }
+  ],
+  "rodape": "Última pesquisa em 10/09/2026."
+}

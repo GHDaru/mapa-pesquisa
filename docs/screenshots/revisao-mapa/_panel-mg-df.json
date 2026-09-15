@@ -1,0 +1,46 @@
+{
+  "MG": {
+    "liderNome": "Cleitinho Azevedo",
+    "badge": "Republicanos",
+    "vantagem": "+18,9 pts",
+    "pesquisas": [
+      {
+        "linha1": "Datafolha (contratante: Folha da Manhã S.A. e Globo Comunicação e Participações S/A) · 08/09/2026–10/09/2026",
+        "linha2": "amostra 1.204 · margem ± 3,0 pontos · registro TSE MG-01611/2026",
+        "fonteHref": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-governador-senador-minas-gerais-setembro-2026/"
+      },
+      {
+        "linha1": "Quaest · 04/09/2026–07/09/2026",
+        "linha2": "amostra 1.506 · margem ± 3,0 pontos · registro TSE MG-04716/2026",
+        "fonteHref": "https://www.brasildefato.com.br/2026/09/08/eleicoes-em-mg-cleitinho-tem-32-patrus-e-kalil-tem-11-diz-quaest/"
+      },
+      {
+        "linha1": "AtlasIntel (contratante: AtlasIntel (autofinanciada)) · 30/08/2026–04/09/2026",
+        "linha2": "amostra 1.804 · margem ± 2,0 pontos · registro TSE MG-01579/2026",
+        "fonteHref": "https://www.em.com.br/politica/2026/09/7495825-atlasintel-cleitinho-tem-41-patrus-30-e-kalil-9-em-minas.html"
+      }
+    ]
+  },
+  "DF": {
+    "liderNome": "Celina Leão",
+    "badge": "PP",
+    "vantagem": "+16,1 pts",
+    "pesquisas": [
+      {
+        "linha1": "Datafolha · 08/09/2026–11/09/2026",
+        "linha2": "amostra 910 · margem ± 3,0 pontos · registro TSE DF-06055/2026",
+        "fonteHref": "https://ohoje.com/2026/09/11/datafolha-celina-leao-dispara-e-chega-a-40-na-disputa-pelo-governo-do-df/"
+      },
+      {
+        "linha1": "AtlasIntel (contratante: AtlasIntel (autofinanciada)) · 27/08/2026–01/09/2026",
+        "linha2": "amostra 1.193 · margem ± 3,0 pontos · registro TSE DF-02018/2026",
+        "fonteHref": "https://www.cartacapital.com.br/politica/atlasintel-celina-leao-e-leandro-grass-empatam-na-disputa-pelo-governo-do-df/"
+      },
+      {
+        "linha1": "Quaest · 21/08/2026–24/08/2026",
+        "linha2": "amostra 1.104 · margem ± 3,0 pontos · registro TSE DF-06256/2026",
+        "fonteHref": "https://www.brasildefato.com.br/2026/08/25/quaest-celina-tem-34-arruda-20-e-grass-13-das-intencoes-de-voto-no-df/"
+      }
+    ]
+  }
+}

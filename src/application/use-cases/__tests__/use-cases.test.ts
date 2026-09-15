@@ -247,6 +247,17 @@ describe('use-cases/getMeta', () => {
   });
 });
 
+describe('use-cases/getDailyDigest', () => {
+  it('combina pesquisas, partidos e eleitorado dos repositórios num único resumo', () => {
+    const digest = casos.getDailyDigest();
+    expect(digest.dataAtualizacao).toBe('2026-09-13');
+    expect(digest.totalPesquisas).toBe(8);
+    expect(digest.partidos).toBe(2);
+    expect(digest.eleitoradoTotal).toBe(34_000_000 + 12_000_000);
+    expect(digest.cadeirasSenado).toBe(81);
+  });
+});
+
 describe('use-cases/getStateSummary', () => {
   it('usa o 2º turno de governador quando disponível', () => {
     const resumo = casos.getStateSummary('SP');

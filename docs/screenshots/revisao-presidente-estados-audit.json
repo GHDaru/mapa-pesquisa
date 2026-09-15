@@ -1,0 +1,133 @@
+{
+  "miniChartAudit": {
+    "totalCharts": 27,
+    "badCircles": [],
+    "singlePollNoLine": [
+      {
+        "uf": "Rio Grande do Sul",
+        "circleCount": 2
+      },
+      {
+        "uf": "Pernambuco",
+        "circleCount": 2
+      },
+      {
+        "uf": "Ceará",
+        "circleCount": 2
+      },
+      {
+        "uf": "Piauí",
+        "circleCount": 2
+      },
+      {
+        "uf": "Mato Grosso",
+        "circleCount": 2
+      }
+    ]
+  },
+  "titleAudit": {
+    "count": 27,
+    "truncated": []
+  },
+  "tabAudit": {
+    "hasTablist": true,
+    "tabCount": 2,
+    "tabsHaveAriaSelected": true,
+    "tabsHaveAriaControls": true
+  },
+  "tabArrowRight": {
+    "active": "ps-tab-1",
+    "selected": "true",
+    "panel1Hidden": false
+  },
+  "voteBarAudit": {
+    "barCount": 7,
+    "widths": [
+      "94.621%",
+      "79.1556%",
+      "20.8535%",
+      "3.33303%",
+      "3.32302%",
+      "2.51296%",
+      "0.365284%"
+    ],
+    "whiskers": [
+      "10.7579%",
+      "10.7579%",
+      "9.31609%",
+      "3.28902%",
+      "4.0521%",
+      "2.28472%",
+      "0.836861%"
+    ],
+    "methodText": "Método em uma frase: cada UF contribui com o seu eleitorado apto — o total de eleitores registrados no TSE, sem descontar abstenção (em 2022 o comparecimento nacional foi de cerca de 79%) — multiplicado pelo percentual da própria pesquisa presidencial estadual, ou pelo percentual do agregado nacional quando falta pesquisa estadual.",
+    "metaText": "Candidatos que não aparecem na pesquisa estadual de uma UF (comum quando a pesquisa testa só os primeiros colocados) recebem o percentual do agregado nacional aplicado ao eleitorado dessa UF, para não zerar candidatos menores — marcado com \"*\" na tabela por UF, ao final da página.",
+    "trackCount": 7
+  },
+  "scrollWidthVotos1280": 1280,
+  "mgPanelData": {
+    "titulo": "Minas Gerais (MG)",
+    "rows": [
+      {
+        "nome": "Luiz Inácio Lula da Silva",
+        "pct": "35,3%",
+        "fillWidth": "100%",
+        "uncertaintyLeft": "93.0148%",
+        "uncertaintyWidth": "6.98519%"
+      },
+      {
+        "nome": "Flávio Bolsonaro",
+        "pct": "30,7%",
+        "fillWidth": "87.1457%",
+        "uncertaintyLeft": "80.1605%",
+        "uncertaintyWidth": "13.9704%"
+      },
+      {
+        "nome": "Romeu Zema",
+        "pct": "9,0%",
+        "fillWidth": "25.5079%",
+        "uncertaintyLeft": "18.5227%",
+        "uncertaintyWidth": "13.9704%"
+      },
+      {
+        "nome": "Renan Santos",
+        "pct": "5,0%",
+        "fillWidth": "14.171%",
+        "uncertaintyLeft": "7.18586%",
+        "uncertaintyWidth": "13.9704%"
+      }
+    ],
+    "rodape": "\n      \n    Última pesquisa em 07/09/2026.\n    Média ponderada por recência e tamanho de amostra. Como calculamos.\n  \n    ",
+    "nPesquisas": "Ver as 2 pesquisas usadas"
+  },
+  "colorSampleDark": {
+    "meta": {
+      "color": "rgb(138, 143, 152)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "fontSize": "13px"
+    },
+    "cardEleitores": {
+      "color": "rgb(138, 143, 152)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "fontSize": "12px"
+    },
+    "legendText": {
+      "color": "rgb(208, 214, 224)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "fontSize": "13px"
+    },
+    "body": {
+      "color": "rgb(247, 248, 248)",
+      "bg": "rgb(1, 1, 2)",
+      "fontSize": "15px"
+    }
+  },
+  "consoleErrorsDesktopDark": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "failedReqsDesktopDark": [],
+  "consoleErrorsDesktopLight": [],
+  "scrollWidthMap400": 400,
+  "scrollWidthVotos400": 400,
+  "consoleErrorsMobileDark": []
+}

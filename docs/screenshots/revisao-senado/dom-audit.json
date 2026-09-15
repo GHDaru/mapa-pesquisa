@@ -1,0 +1,450 @@
+{
+  "light_1280_projecao": {
+    "seatCount": 81,
+    "seatOrigins": {
+      "projetada": 54,
+      "fixa": 27
+    },
+    "seatsMissingAria": 0,
+    "majorityLabel": "41 para maioria",
+    "majorityLine": true,
+    "svgAriaLabel": "Hemiciclo do Senado com 81 assentos, maioria em 41",
+    "confidenceLegendText": [
+      "",
+      "Esquerda",
+      "11",
+      "",
+      "Centro-esquerda",
+      "9",
+      "",
+      "Centro",
+      "11",
+      "",
+      "Não classificado",
+      "1",
+      "",
+      "Centro-direita",
+      "13",
+      "",
+      "Direita",
+      "36",
+      "",
+      "Lidera com folga",
+      "",
+      "Lidera, corrida acirrada",
+      "",
+      "Empate técnico",
+      "",
+      "Indefinida — sem pesquisa suficiente",
+      "",
+      "Contorno tracejado = cadeira projetada"
+    ],
+    "rowCount": 27,
+    "theadCols": [
+      "UF",
+      "Cadeira fixa (até 2031)",
+      "Atuais em disputa (até 2027)",
+      "Projetados 2027"
+    ],
+    "bodyScrollWidth": 1280,
+    "windowInnerWidth": 1280
+  },
+  "light_1280_atual": {
+    "seatCount": 81,
+    "seatOrigins": {
+      "atual": 81
+    },
+    "seatsMissingAria": 0,
+    "majorityLabel": "41 para maioria",
+    "majorityLine": true,
+    "svgAriaLabel": "Hemiciclo do Senado com 81 assentos, maioria em 41",
+    "confidenceLegendText": [
+      "",
+      "Esquerda",
+      "10",
+      "",
+      "Centro-esquerda",
+      "9",
+      "",
+      "Centro",
+      "12",
+      "",
+      "Não classificado",
+      "1",
+      "",
+      "Centro-direita",
+      "21",
+      "",
+      "Direita",
+      "28",
+      "",
+      "Lidera com folga",
+      "",
+      "Lidera, corrida acirrada",
+      "",
+      "Empate técnico",
+      "",
+      "Indefinida — sem pesquisa suficiente",
+      "",
+      "Contorno tracejado = cadeira projetada"
+    ],
+    "rowCount": 27,
+    "theadCols": [
+      "UF",
+      "Cadeira fixa (até 2031)",
+      "Atuais em disputa (até 2027)",
+      "Projetados 2027"
+    ],
+    "bodyScrollWidth": 1280,
+    "windowInnerWidth": 1280
+  },
+  "light_1280_filtro_sp": {
+    "seatCount": 81,
+    "seatOrigins": {
+      "projetada": 54,
+      "fixa": 27
+    },
+    "seatsMissingAria": 0,
+    "majorityLabel": "41 para maioria",
+    "majorityLine": true,
+    "svgAriaLabel": "Hemiciclo do Senado com 81 assentos, maioria em 41",
+    "confidenceLegendText": [
+      "",
+      "Esquerda",
+      "11",
+      "",
+      "Centro-esquerda",
+      "9",
+      "",
+      "Centro",
+      "11",
+      "",
+      "Não classificado",
+      "1",
+      "",
+      "Centro-direita",
+      "13",
+      "",
+      "Direita",
+      "36",
+      "",
+      "Lidera com folga",
+      "",
+      "Lidera, corrida acirrada",
+      "",
+      "Empate técnico",
+      "",
+      "Indefinida — sem pesquisa suficiente",
+      "",
+      "Contorno tracejado = cadeira projetada"
+    ],
+    "rowCount": 27,
+    "theadCols": [
+      "UF",
+      "Cadeira fixa (até 2031)",
+      "Atuais em disputa (até 2027)",
+      "Projetados 2027"
+    ],
+    "bodyScrollWidth": 1280,
+    "windowInnerWidth": 1280
+  },
+  "light_painel_seatAria": "AP — Randolfe Rodrigues (PT), projetada para 2027, lidera com folga — ver detalhes da UF",
+  "light_painel_text": "Amapá (AP)\n×\nCadeira fixa — mandato até 2031\n\nDavi Alcolumbre\nUnião Brasil\n(Centro-direita)\nmandato até 2031\n\nCadeiras em disputa — mandato até 2027\n\nHoje: Randolfe Rodrigues PT\n(Esquerda)\n\nProjeção: Randolfe Rodrigues PT\n(Esquerda)\n 33,0% — lidera com folga\n\nHoje: Lucas Barreto PSD\n(Centro-direita)\n\nProjeção: Rayssa Furlan Podemos\n(Centro-direita)\n 20,0% — lidera com folga\n\nÚltima pesquisa de senador usada — fonte: Metrópoles\n(abre em nova aba)",
+  "light_colors": {
+    "title": {
+      "color": "rgb(15, 16, 17)",
+      "background": "rgba(0, 0, 0, 0)",
+      "font": "590 28px / 33.6px \"Inter var\", Inter, -apple-system, \"Segoe UI\", system-ui, sans-serif"
+    },
+    "meta": {
+      "color": "rgb(98, 102, 109)",
+      "background": "rgba(0, 0, 0, 0)",
+      "font": "510 12px / 16.8px \"Inter var\", Inter, -apple-system, \"Segoe UI\", system-ui, sans-serif"
+    },
+    "explainer": {
+      "color": "rgb(98, 102, 109)",
+      "background": "rgba(0, 0, 0, 0)",
+      "font": "13px / 19.5px \"Inter var\", Inter, -apple-system, \"Segoe UI\", system-ui, sans-serif"
+    },
+    "body": {
+      "background": "rgb(255, 255, 255)"
+    }
+  },
+  "dark_1280_projecao": {
+    "seatCount": 81,
+    "seatOrigins": {
+      "projetada": 54,
+      "fixa": 27
+    },
+    "seatsMissingAria": 0,
+    "majorityLabel": "41 para maioria",
+    "majorityLine": true,
+    "svgAriaLabel": "Hemiciclo do Senado com 81 assentos, maioria em 41",
+    "confidenceLegendText": [
+      "",
+      "Esquerda",
+      "11",
+      "",
+      "Centro-esquerda",
+      "9",
+      "",
+      "Centro",
+      "11",
+      "",
+      "Não classificado",
+      "1",
+      "",
+      "Centro-direita",
+      "13",
+      "",
+      "Direita",
+      "36",
+      "",
+      "Lidera com folga",
+      "",
+      "Lidera, corrida acirrada",
+      "",
+      "Empate técnico",
+      "",
+      "Indefinida — sem pesquisa suficiente",
+      "",
+      "Contorno tracejado = cadeira projetada"
+    ],
+    "rowCount": 27,
+    "theadCols": [
+      "UF",
+      "Cadeira fixa (até 2031)",
+      "Atuais em disputa (até 2027)",
+      "Projetados 2027"
+    ],
+    "bodyScrollWidth": 1280,
+    "windowInnerWidth": 1280
+  },
+  "dark_1280_atual": {
+    "seatCount": 81,
+    "seatOrigins": {
+      "atual": 81
+    },
+    "seatsMissingAria": 0,
+    "majorityLabel": "41 para maioria",
+    "majorityLine": true,
+    "svgAriaLabel": "Hemiciclo do Senado com 81 assentos, maioria em 41",
+    "confidenceLegendText": [
+      "",
+      "Esquerda",
+      "10",
+      "",
+      "Centro-esquerda",
+      "9",
+      "",
+      "Centro",
+      "12",
+      "",
+      "Não classificado",
+      "1",
+      "",
+      "Centro-direita",
+      "21",
+      "",
+      "Direita",
+      "28",
+      "",
+      "Lidera com folga",
+      "",
+      "Lidera, corrida acirrada",
+      "",
+      "Empate técnico",
+      "",
+      "Indefinida — sem pesquisa suficiente",
+      "",
+      "Contorno tracejado = cadeira projetada"
+    ],
+    "rowCount": 27,
+    "theadCols": [
+      "UF",
+      "Cadeira fixa (até 2031)",
+      "Atuais em disputa (até 2027)",
+      "Projetados 2027"
+    ],
+    "bodyScrollWidth": 1280,
+    "windowInnerWidth": 1280
+  },
+  "dark_1280_filtro_sp": {
+    "seatCount": 81,
+    "seatOrigins": {
+      "projetada": 54,
+      "fixa": 27
+    },
+    "seatsMissingAria": 0,
+    "majorityLabel": "41 para maioria",
+    "majorityLine": true,
+    "svgAriaLabel": "Hemiciclo do Senado com 81 assentos, maioria em 41",
+    "confidenceLegendText": [
+      "",
+      "Esquerda",
+      "11",
+      "",
+      "Centro-esquerda",
+      "9",
+      "",
+      "Centro",
+      "11",
+      "",
+      "Não classificado",
+      "1",
+      "",
+      "Centro-direita",
+      "13",
+      "",
+      "Direita",
+      "36",
+      "",
+      "Lidera com folga",
+      "",
+      "Lidera, corrida acirrada",
+      "",
+      "Empate técnico",
+      "",
+      "Indefinida — sem pesquisa suficiente",
+      "",
+      "Contorno tracejado = cadeira projetada"
+    ],
+    "rowCount": 27,
+    "theadCols": [
+      "UF",
+      "Cadeira fixa (até 2031)",
+      "Atuais em disputa (até 2027)",
+      "Projetados 2027"
+    ],
+    "bodyScrollWidth": 1280,
+    "windowInnerWidth": 1280
+  },
+  "dark_painel_seatAria": "AP — Randolfe Rodrigues (PT), projetada para 2027, lidera com folga — ver detalhes da UF",
+  "dark_painel_text": "Amapá (AP)\n×\nCadeira fixa — mandato até 2031\n\nDavi Alcolumbre\nUnião Brasil\n(Centro-direita)\nmandato até 2031\n\nCadeiras em disputa — mandato até 2027\n\nHoje: Randolfe Rodrigues PT\n(Esquerda)\n\nProjeção: Randolfe Rodrigues PT\n(Esquerda)\n 33,0% — lidera com folga\n\nHoje: Lucas Barreto PSD\n(Centro-direita)\n\nProjeção: Rayssa Furlan Podemos\n(Centro-direita)\n 20,0% — lidera com folga\n\nÚltima pesquisa de senador usada — fonte: Metrópoles\n(abre em nova aba)",
+  "dark_colors": {
+    "title": {
+      "color": "rgb(247, 248, 248)",
+      "background": "rgba(0, 0, 0, 0)",
+      "font": "590 28px / 33.6px \"Inter var\", Inter, -apple-system, \"Segoe UI\", system-ui, sans-serif"
+    },
+    "meta": {
+      "color": "rgb(138, 143, 152)",
+      "background": "rgba(0, 0, 0, 0)",
+      "font": "510 12px / 16.8px \"Inter var\", Inter, -apple-system, \"Segoe UI\", system-ui, sans-serif"
+    },
+    "explainer": {
+      "color": "rgb(138, 143, 152)",
+      "background": "rgba(0, 0, 0, 0)",
+      "font": "13px / 19.5px \"Inter var\", Inter, -apple-system, \"Segoe UI\", system-ui, sans-serif"
+    },
+    "body": {
+      "background": "rgb(1, 1, 2)"
+    }
+  },
+  "light_400_projecao": {
+    "seatCount": 81,
+    "seatOrigins": {
+      "projetada": 54,
+      "fixa": 27
+    },
+    "seatsMissingAria": 0,
+    "majorityLabel": "41 para maioria",
+    "majorityLine": true,
+    "svgAriaLabel": "Hemiciclo do Senado com 81 assentos, maioria em 41",
+    "confidenceLegendText": [
+      "",
+      "Esquerda",
+      "11",
+      "",
+      "Centro-esquerda",
+      "9",
+      "",
+      "Centro",
+      "11",
+      "",
+      "Não classificado",
+      "1",
+      "",
+      "Centro-direita",
+      "13",
+      "",
+      "Direita",
+      "36",
+      "",
+      "Lidera com folga",
+      "",
+      "Lidera, corrida acirrada",
+      "",
+      "Empate técnico",
+      "",
+      "Indefinida — sem pesquisa suficiente",
+      "",
+      "Contorno tracejado = cadeira projetada"
+    ],
+    "rowCount": 27,
+    "theadCols": [
+      "UF",
+      "Cadeira fixa (até 2031)",
+      "Atuais em disputa (até 2027)",
+      "Projetados 2027"
+    ],
+    "bodyScrollWidth": 400,
+    "windowInnerWidth": 400
+  },
+  "dark_400_projecao": {
+    "seatCount": 81,
+    "seatOrigins": {
+      "projetada": 54,
+      "fixa": 27
+    },
+    "seatsMissingAria": 0,
+    "majorityLabel": "41 para maioria",
+    "majorityLine": true,
+    "svgAriaLabel": "Hemiciclo do Senado com 81 assentos, maioria em 41",
+    "confidenceLegendText": [
+      "",
+      "Esquerda",
+      "11",
+      "",
+      "Centro-esquerda",
+      "9",
+      "",
+      "Centro",
+      "11",
+      "",
+      "Não classificado",
+      "1",
+      "",
+      "Centro-direita",
+      "13",
+      "",
+      "Direita",
+      "36",
+      "",
+      "Lidera com folga",
+      "",
+      "Lidera, corrida acirrada",
+      "",
+      "Empate técnico",
+      "",
+      "Indefinida — sem pesquisa suficiente",
+      "",
+      "Contorno tracejado = cadeira projetada"
+    ],
+    "rowCount": 27,
+    "theadCols": [
+      "UF",
+      "Cadeira fixa (até 2031)",
+      "Atuais em disputa (até 2027)",
+      "Projetados 2027"
+    ],
+    "bodyScrollWidth": 400,
+    "windowInnerWidth": 400
+  },
+  "consoleErrors": {
+    "light": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "dark": []
+  }
+}

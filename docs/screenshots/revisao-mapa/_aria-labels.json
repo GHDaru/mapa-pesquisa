@@ -1,0 +1,164 @@
+[
+  {
+    "uf": "RR",
+    "ariaLabel": "Roraima: Arthur Henrique (PL) lidera com 29,7 pontos.",
+    "tabindex": "0",
+    "role": "button"
+  },
+  {
+    "uf": "AP",
+    "ariaLabel": "Amapá: Dr. Furlan (PSD) lidera com 23,6 pontos.",
+    "tabindex": "0",
+    "role": "button"
+  },
+  {
+    "uf": "PA",
+    "ariaLabel": "Pará: Hana Ghassan (MDB) lidera com 6,2 pontos.",
+    "tabindex": "0",
+    "role": "button"
+  },
+  {
+    "uf": "AM",
+    "ariaLabel": "Amazonas: Omar Aziz (PSD) lidera com 8,6 pontos.",
+    "tabindex": "0",
+    "role": "button"
+  },
+  {
+    "uf": "CE",
+    "ariaLabel": "Ceará: Ciro Gomes (PSDB) lidera com 2,9 pontos.",
+    "tabindex": "0",
+    "role": "button"
+  },
+  {
+    "uf": "MA",
+    "ariaLabel": "Maranhão: Eduardo Braide (PSD) lidera com 13,0 pontos.",
+    "tabindex": "0",
+    "role": "button"
+  },
+  {
+    "uf": "RN",
+    "ariaLabel": "Rio Grande do Norte: Allyson Bezerra (União Brasil) lidera com 4,8 pontos.",
+    "tabindex": "0",
+    "role": "button"
+  },
+  {
+    "uf": "PI",
+    "ariaLabel": "Piauí: Rafael Fonteles (PT) lidera com 39,7 pontos.",
+    "tabindex": "0",
+    "role": "button"
+  },
+  {
+    "uf": "PB",
+    "ariaLabel": "Paraíba: Lucas Ribeiro (PP) lidera com 23,4 pontos.",
+    "tabindex": "0",
+    "role": "button"
+  },
+  {
+    "uf": "PE",
+    "ariaLabel": "Pernambuco: Raquel Lyra (PSD) lidera com 3,9 pontos.",
+    "tabindex": "0",
+    "role": "button"
+  },
+  {
+    "uf": "AC",
+    "ariaLabel": "Acre: Alan Rick (Republicanos) lidera com 3,0 pontos, empate técnico.",
+    "tabindex": "0",
+    "role": "button"
+  },
+  {
+    "uf": "TO",
+    "ariaLabel": "Tocantins: Vicentinho Júnior (PSDB) lidera com 33,6 pontos.",
+    "tabindex": "0",
+    "role": "button"
+  },
+  {
+    "uf": "AL",
+    "ariaLabel": "Alagoas: João Henrique Caldas (JHC) (PSDB) lidera com 2,9 pontos, empate técnico.",
+    "tabindex": "0",
+    "role": "button"
+  },
+  {
+    "uf": "SE",
+    "ariaLabel": "Sergipe: Fábio Mitidieri (PSD) lidera com 7,1 pontos.",
+    "tabindex": "0",
+    "role": "button"
+  },
+  {
+    "uf": "RO",
+    "ariaLabel": "Rondônia: Marcos Rogério (PL) lidera com 6,9 pontos.",
+    "tabindex": "0",
+    "role": "button"
+  },
+  {
+    "uf": "MT",
+    "ariaLabel": "Mato Grosso: Otaviano Pivetta (Republicanos) lidera com 2,8 pontos.",
+    "tabindex": "0",
+    "role": "button"
+  },
+  {
+    "uf": "BA",
+    "ariaLabel": "Bahia: ACM Neto (União Brasil) lidera com 1,3 pontos, empate técnico.",
+    "tabindex": "0",
+    "role": "button"
+  },
+  {
+    "uf": "DF",
+    "ariaLabel": "Distrito Federal: Celina Leão (PP) lidera com 16,1 pontos.",
+    "tabindex": "0",
+    "role": "button"
+  },
+  {
+    "uf": "GO",
+    "ariaLabel": "Goiás: Daniel Vilela (MDB) lidera com 20,5 pontos.",
+    "tabindex": "0",
+    "role": "button"
+  },
+  {
+    "uf": "MG",
+    "ariaLabel": "Minas Gerais: Cleitinho Azevedo (Republicanos) lidera com 18,9 pontos.",
+    "tabindex": "0",
+    "role": "button"
+  },
+  {
+    "uf": "ES",
+    "ariaLabel": "Espírito Santo: Ricardo Ferraço (MDB) lidera com 6,4 pontos.",
+    "tabindex": "0",
+    "role": "button"
+  },
+  {
+    "uf": "MS",
+    "ariaLabel": "Mato Grosso do Sul: Eduardo Riedel (PP) lidera com 18,6 pontos.",
+    "tabindex": "0",
+    "role": "button"
+  },
+  {
+    "uf": "RJ",
+    "ariaLabel": "Rio de Janeiro: Eduardo Paes (PSD) lidera com 20,4 pontos.",
+    "tabindex": "0",
+    "role": "button"
+  },
+  {
+    "uf": "SP",
+    "ariaLabel": "São Paulo: Tarcísio de Freitas (Republicanos) lidera com 16,8 pontos.",
+    "tabindex": "0",
+    "role": "button"
+  },
+  {
+    "uf": "PR",
+    "ariaLabel": "Paraná: Sergio Moro (PL) lidera com 19,1 pontos.",
+    "tabindex": "0",
+    "role": "button"
+  },
+  {
+    "uf": "SC",
+    "ariaLabel": "Santa Catarina: Jorginho Mello (PL) lidera com 33,1 pontos.",
+    "tabindex": "0",
+    "role": "button"
+  },
+  {
+    "uf": "RS",
+    "ariaLabel": "Rio Grande do Sul: Zucco (PL) lidera com 3,4 pontos.",
+    "tabindex": "0",
+    "role": "button"
+  }
+]

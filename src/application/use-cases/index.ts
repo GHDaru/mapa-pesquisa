@@ -1,4 +1,5 @@
 import type { Clock, Repositorios } from '../ports.js';
+import { criarGetDailyDigest } from './get-daily-digest.js';
 import { criarGetMapOverview } from './get-map-overview.js';
 import { criarGetMeta } from './get-meta.js';
 import { criarGetPollsDatabase } from './get-polls-database.js';
@@ -11,6 +12,7 @@ import { criarGetVoteEstimate } from './get-vote-estimate.js';
 import { criarListParties } from './list-parties.js';
 import { criarProjectSenate } from './project-senate.js';
 
+export * from './get-daily-digest.js';
 export * from './get-map-overview.js';
 export * from './get-meta.js';
 export * from './get-polls-database.js';
@@ -35,6 +37,7 @@ export interface CasosDeUso {
   readonly getVoteEstimate: ReturnType<typeof criarGetVoteEstimate>;
   readonly getPollsDatabase: ReturnType<typeof criarGetPollsDatabase>;
   readonly getMeta: ReturnType<typeof criarGetMeta>;
+  readonly getDailyDigest: ReturnType<typeof criarGetDailyDigest>;
 }
 
 /** Fábrica dos casos de uso, com repositórios e relógio injetados. */
@@ -51,5 +54,6 @@ export function criarCasosDeUso(repos: Repositorios, clock: Clock): CasosDeUso {
     getVoteEstimate: criarGetVoteEstimate(repos, clock),
     getPollsDatabase: criarGetPollsDatabase(repos),
     getMeta: criarGetMeta(repos),
+    getDailyDigest: criarGetDailyDigest(repos),
   };
 }

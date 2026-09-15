@@ -1,0 +1,69 @@
+[
+  {
+    "uf": "AC",
+    "hidden": false,
+    "ttBox": {
+      "x": 147.5625,
+      "y": 498.75,
+      "width": 220,
+      "height": 127.09375
+    },
+    "dentroViewport": true
+  },
+  {
+    "uf": "RR",
+    "hidden": false,
+    "ttBox": {
+      "x": 341.59375,
+      "y": 246.625,
+      "width": 220,
+      "height": 127.09375
+    },
+    "dentroViewport": true
+  },
+  {
+    "uf": "SP",
+    "hidden": true,
+    "ttBox": null,
+    "dentroViewport": null
+  },
+  {
+    "uf": "RJ",
+    "hidden": false,
+    "ttBox": {
+      "x": 774.265625,
+      "y": 649.703125,
+      "width": 220,
+      "height": 127.09375
+    },
+    "dentroViewport": true
+  },
+  {
+    "uf": "RS",
+    "hidden": true,
+    "ttBox": null,
+    "dentroViewport": null
+  },
+  {
+    "uf": "AM",
+    "hidden": false,
+    "ttBox": {
+      "x": 267.296875,
+      "y": 377.34375,
+      "width": 220,
+      "height": 127.09375
+    },
+    "dentroViewport": true
+  },
+  {
+    "uf": "PI",
+    "hidden": false,
+    "ttBox": {
+      "x": 767.78125,
+      "y": 446.296875,
+      "width": 220,
+      "height": 127.09375
+    },
+    "dentroViewport": true
+  }
+]

@@ -1,10 +1,11 @@
 /*
- * Tela inicial (src/adapters/inbound/web/views/home-view.ts) — ver
- * docs/briefing-landing-page.md. Paleta e tipografia próprias desta tela,
- * prefixo `hm-`: "quase-preto/quase-papel" editorial, distinto do azul-Linear
- * do resto do produto (styles/tokens.css, NÃO alterado aqui). Reaproveita de
- * tokens.css só o que é compartilhado por design (escala de espaçamento,
- * raio, motion, tipografia base e o espectro político --spectrum-*).
+ * Tela inicial (src/adapters/inbound/web/views/home-view.ts) — capa
+ * explicativa do projeto, ver docs/briefing-landing-page.md. Paleta e
+ * tipografia próprias desta tela, prefixo `hm-`: "quase-preto/quase-papel"
+ * editorial, distinto do azul-Linear do resto do produto (styles/tokens.css,
+ * NÃO alterado aqui). Reaproveita de tokens.css só o que é compartilhado por
+ * design (escala de espaçamento, raio, motion, tipografia base e o espectro
+ * político --spectrum-*, usado só na tela de mapa/hemiciclo — não na home).
  */
 
 /* ============ TOKENS `--hm-*` — tema claro (padrão) ============ */
@@ -21,7 +22,9 @@
      --spectrum-3/4/5-fill no tema claro. `--hm-selo-ink` é o texto usado
      SOBRE um preenchimento `--hm-selo` (hover de CTA): claro sobre o
      dourado escuro do tema claro, escuro sobre o dourado vívido do tema
-     escuro. */
+     escuro. Único outro uso do dourado: contorno do selo "Registrado no
+     TSE" e o link "Ver base de pesquisas" da notícia do dia — nunca em
+     dado partidário/político. */
   --hm-selo: #8f640a;
   --hm-selo-ink: #fffaf0;
   --hm-verificado: #1f7a3d;
@@ -82,10 +85,20 @@
   border-radius: var(--radius-xs);
 }
 
+/* Uma seção-âncora (id="como-funciona", id="atualizacao-do-dia") recebe
+   foco por script ao ser alvo de um salto local (ver `tornarAncoraLocal` em
+   home-view.ts) — sem contorno de foco permanente na região inteira, só o
+   necessário para não sumir do fluxo de acessibilidade. */
+.hm-view section[tabindex='-1']:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
 /* Todo número/timestamp/contagem da landing (marcados com a classe global
    `.tabular-nums`) usa JetBrains Mono — ver docs/briefing-landing-page.md
-   "Tipografia". Escopo restrito a `.hm-view` para não afetar as outras
-   telas, que continuam em Inter (styles/tokens.css). */
+   "Tipografia". Nunca em prosa (parágrafos ficam em Inter). Escopo restrito
+   a `.hm-view` para não afetar as outras telas, que continuam em Inter
+   (styles/tokens.css). */
 .hm-view .tabular-nums {
   font-family: var(--hm-font-mono);
   font-variant-numeric: tabular-nums;
@@ -110,10 +123,10 @@
   flex: none;
 }
 
-/* Links "quietos" (Fonte, Ver todas, créditos): tinta neutra + sublinhado —
-   o sublinhado é a affordance, não a cor (nunca reservamos --hm-selo para
-   link genérico, ele é o único acento de marca e fica só nos 4 usos do
-   briefing: eyebrow, "como calculamos", contorno do selo TSE, hover de CTA). */
+/* Links "quietos" (Ver base de pesquisas, créditos): tinta neutra +
+   sublinhado — o sublinhado é a affordance, não a cor (nunca reservamos
+   --hm-selo para link genérico, ele é o único acento de marca e fica só
+   nos usos do briefing: contorno do selo TSE e hover de CTA). */
 .hm-quiet-link {
   position: relative;
   display: inline-flex;
@@ -130,17 +143,12 @@
 /*
  * Alvo de toque mínimo (~44x44px, WCAG 2.5.5) sem inchar o texto visível:
  * `::before` posicionado (hit-slop) estende a área clicável ao redor do
- * link sem ocupar espaço no layout. `.hm-quiet-link` está na lista (ex.:
- * "Ver hemiciclo do Senado →") mesmo já tendo `position: relative` na sua
- * própria regra acima — precisava só do `::before`, ver P0 de
- * docs/critica-ui-inicio2.md.
+ * link sem ocupar espaço no layout.
  */
-.hm-link-fonte,
 .hm-section__link,
 .hm-quiet-link {
   position: relative;
 }
-.hm-link-fonte::before,
 .hm-section__link::before,
 .hm-quiet-link::before {
   content: '';
@@ -157,10 +165,10 @@
   border-radius: var(--radius-xl);
   border: 1px solid var(--hm-border);
   background: var(--hm-surface);
-  padding: var(--space-6) var(--space-5);
+  padding: var(--space-7) var(--space-5);
 }
 
-/* Textura ambiente: hachura a 4–6% de opacidade atrás do hero — mesmo
+/* Textura ambiente: hachura a 5% de opacidade atrás do hero — mesmo
    princípio visual de "sem dados"/incerteza já usado no mapa e no
    hemiciclo (ver map-view.ts/senate-view.ts), aqui só decorativo. */
 .hm-hero__texture {
@@ -179,148 +187,27 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
-  max-width: 62ch;
+  gap: var(--space-4);
+  max-width: 46ch;
 }
 
-.hm-hero__eyebrow {
+.hm-hero__title {
   margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--space-1) var(--space-2);
-  font: var(--text-eyebrow);
-}
-.hm-hero__eyebrow-tag {
-  color: var(--hm-selo);
-  text-transform: uppercase;
-  letter-spacing: var(--tracking-eyebrow);
-}
-.hm-hero__eyebrow-meta {
-  white-space: nowrap;
-}
-.hm-hero__eyebrow-sep {
-  color: var(--hm-ink-faint);
-}
-.hm-hero__timestamp {
-  color: var(--hm-ink-muted);
-  text-transform: none;
-  letter-spacing: normal;
-  font: var(--text-caption);
-}
-
-.hm-hero__vazio {
-  margin: 0;
-  font: var(--text-title);
-  color: var(--hm-ink-muted);
-  max-width: 48ch;
-}
-
-.hm-hero__lider {
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--space-2) var(--space-3);
-}
-.hm-hero__lider-nome {
   font-family: var(--hm-font-display);
   font-weight: 600;
   font-style: normal;
-  font-size: clamp(2rem, 6vw, 3.75rem);
-  line-height: 1.02;
+  font-size: clamp(1.875rem, 5.5vw, 3.25rem);
+  line-height: 1.08;
   letter-spacing: -0.01em;
   color: var(--hm-ink);
-}
-.hm-hero__lider-pct {
-  font-family: var(--hm-font-display);
-  font-weight: 600;
-  font-style: normal;
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-  color: var(--hm-ink);
-  font-variant-numeric: tabular-nums;
+  text-wrap: balance;
 }
 
-/* Faixa de margem de erro sob o número do líder — mesma lógica de
-   `.pv-bar-track`/`.pv-bar-uncertainty` (styles/views.css), calculada por
-   `calcularFaixaIncerteza` (views/_shared.ts) para não duplicar a fórmula. */
-.hm-hero__track {
-  position: relative;
-  height: 8px;
-  border-radius: var(--radius-pill);
-  background: var(--hm-surface-2);
-  overflow: hidden;
-}
-.hm-hero__track-fill {
-  position: absolute;
-  inset-block: 0;
-  left: 0;
-  border-radius: inherit;
-}
-.hm-hero__track-uncertainty {
-  position: absolute;
-  inset-block: 0;
-  opacity: 0.35;
-}
-.hm-hero__track-tick {
-  position: absolute;
-  top: -3px;
-  bottom: -3px;
-  width: 2px;
-  background: var(--hm-ink-muted);
-  border-radius: var(--radius-pill);
-}
-
-.hm-hero__segundo {
+.hm-hero__lead {
   margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--space-1) var(--space-2);
-  font: var(--text-body-sm);
+  font: var(--text-body);
   color: var(--hm-ink-muted);
-}
-.hm-hero__segundo-label {
-  color: var(--hm-ink-faint);
-}
-.hm-hero__segundo-nome {
-  color: var(--hm-ink);
-}
-.hm-hero__vantagem {
-  font-family: var(--hm-font-display);
-  font-weight: 600;
-  font-style: normal;
-  color: var(--hm-ink);
-  font-variant-numeric: tabular-nums;
-}
-/* Empate técnico: itálico real (não só peso/cor) — 4º canal de
-   acessibilidade além de cor/opacidade/texto, ver briefing. */
-.hm-hero__empate {
-  font-family: var(--hm-font-display);
-  font-weight: 600;
-  font-style: italic;
-  color: var(--hm-ink);
-}
-
-.hm-hero__confianca {
-  margin: 0;
-  font: var(--text-body-sm);
-  color: var(--hm-ink-muted);
-}
-.hm-hero__como {
-  position: relative;
-  color: var(--hm-selo);
-  font-weight: var(--font-variation-nav);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-.hm-hero__como::before {
-  content: '';
-  position: absolute;
-  inset: -15px -6px;
-}
-.hm-hero__como:hover {
-  color: var(--hm-ink);
+  max-width: 58ch;
 }
 
 .hm-hero__actions {
@@ -363,147 +250,60 @@
   color: var(--hm-selo-ink);
 }
 
-/* --- Resumo do dia --- */
+/* ================= Big numbers ================= */
 
-.hm-resumo {
+.hm-bignums {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
-  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+  gap: var(--space-3);
 }
 
-.hm-resumo__card {
-  background: var(--hm-surface);
-  border: 1px solid var(--hm-border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-4) var(--space-5);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
+.hm-bignums__item {
   min-width: 0;
 }
 
-.hm-resumo__label {
-  margin: 0;
+.hm-bignum {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  height: 100%;
+  min-height: 44px;
+  background: var(--hm-surface);
+  border: 1px solid var(--hm-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  color: inherit;
+  text-decoration: none;
+  transition: background var(--duration-sm) var(--ease-out), border-color var(--duration-sm) var(--ease-out);
+}
+.hm-bignum:hover {
+  background: var(--hm-surface-2);
+  border-color: var(--hm-border-strong);
+}
+
+.hm-bignum__label {
   font: var(--text-eyebrow);
   text-transform: uppercase;
   letter-spacing: var(--tracking-eyebrow);
   color: var(--hm-ink-muted);
 }
 
-.hm-resumo__value {
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-2);
-  font: var(--text-title);
-  font-weight: var(--font-variation-announce);
+.hm-bignum__value {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 500;
   color: var(--hm-ink);
+  line-height: 1.1;
 }
 
-.hm-resumo__detail {
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-1) var(--space-2);
-  font: var(--text-body-sm);
-  color: var(--hm-ink-muted);
-}
-
-.hm-resumo__vazio {
-  margin: 0;
-  font: var(--text-body-sm);
-  color: var(--hm-ink-faint);
-}
-
-.hm-resumo__votos-lista,
-.hm-resumo__senado-lista {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-.hm-resumo__voto-linha {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: baseline;
-  gap: var(--space-1) var(--space-2);
-  font: var(--text-body-sm);
-}
-
-.hm-resumo__voto-nome {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  min-width: 0;
-  color: var(--hm-ink);
-  font-weight: var(--font-variation-nav);
-}
-
-.hm-resumo__voto-valor {
-  color: var(--hm-ink);
-}
-
-.hm-resumo__voto-pct {
-  grid-column: 2 / -1;
-  color: var(--hm-ink-faint);
+.hm-bignum__detail {
   font: var(--text-caption);
-}
-
-.hm-resumo__sem-partido {
   color: var(--hm-ink-faint);
-  font: var(--text-caption);
+  margin-top: auto;
+  padding-top: var(--space-1);
 }
-
-.hm-resumo__senado-linha {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  font: var(--text-body-sm);
-}
-
-.hm-resumo__senado-swatch {
-  width: 14px;
-  height: 14px;
-  border-radius: var(--radius-xs);
-  border: 1px solid var(--hm-border-strong);
-  flex-shrink: 0;
-}
-
-.hm-resumo__senado-rotulo {
-  flex: 1 1 auto;
-  color: var(--hm-ink-muted);
-  min-width: 0;
-}
-
-.hm-resumo__senado-valor {
-  color: var(--hm-ink);
-  font-weight: var(--font-variation-nav);
-}
-
-/* --- Badge de partido (própria desta view, ver views/_shared.ts classeEspectro) --- */
-
-.hm-badge-partido {
-  display: inline-flex;
-  align-items: center;
-  padding: 1px var(--space-2);
-  border-radius: var(--radius-pill);
-  font: var(--text-caption);
-  font-weight: 510;
-  color: #ffffff;
-  white-space: nowrap;
-  flex: none;
-}
-.hm-badge-partido.espectro-1 { background: var(--spectrum-1-solid); }
-.hm-badge-partido.espectro-2 { background: var(--spectrum-2-solid); }
-.hm-badge-partido.espectro-3 { background: var(--spectrum-3-solid); }
-.hm-badge-partido.espectro-4 { background: var(--spectrum-4-solid); }
-.hm-badge-partido.espectro-5 { background: var(--spectrum-5-solid); }
-.hm-badge-partido.espectro-indefinido { background: var(--spectrum-indefinido); }
 
 /* ================= Seções genéricas ================= */
 
@@ -511,14 +311,6 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
-}
-
-.hm-section__header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-2) var(--space-4);
 }
 
 .hm-section__title {
@@ -544,231 +336,39 @@
   text-decoration-color: currentColor;
 }
 
-/* ================= Prévia do mapa (prova) ================= */
+/* ================= Atualização de hoje (notícia curta) ================= */
 
-.hm-mapa-preview__caption {
-  margin: 0;
-  font: var(--text-body-sm);
-  color: var(--hm-ink-muted);
-  max-width: 68ch;
-}
-
-.hm-mapa-preview__grid {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+.hm-noticia {
+  display: flex;
+  flex-direction: column;
   gap: var(--space-2);
-}
-
-.hm-mapa-preview__chip {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 40px;
-  border-radius: var(--radius-sm);
-  color: #ffffff;
-  font: var(--text-caption);
-  font-weight: var(--font-variation-nav);
-}
-/* `-solid`, não `-fill`: o texto branco da sigla da UF fica em cima do
-   preenchimento do chip, e `--spectrum-*-fill` (tokens.css) é calibrado só
-   para 3:1 não-textual (preenchimento de mapa/hemiciclo) — não altera esse
-   token global, que outras telas usam para texto por cima. `-solid` é a
-   variante mais escura/saturada do mesmo espectro, já usada com texto
-   branco em `.hm-badge-partido` acima; mede >=5:1 nos dois temas para as 5
-   categorias (ver docs/critica-ui-inicio2.md P0 "contraste do chip"). */
-.hm-mapa-preview__chip.espectro-1 { background: var(--spectrum-1-solid); }
-.hm-mapa-preview__chip.espectro-2 { background: var(--spectrum-2-solid); }
-.hm-mapa-preview__chip.espectro-3 { background: var(--spectrum-3-solid); }
-.hm-mapa-preview__chip.espectro-4 { background: var(--spectrum-4-solid); }
-.hm-mapa-preview__chip.espectro-5 { background: var(--spectrum-5-solid); }
-.hm-mapa-preview__chip.espectro-indefinido {
-  background: var(--confidence-sem-dados-fill);
-  color: var(--hm-ink-muted);
-}
-/* Empate técnico: opacidade reduzida (mesmo token de confiança do mapa
-   completo) — nunca o único sinal, o `sr-only` de cada chip já diz "empate
-   técnico" por extenso. */
-.hm-mapa-preview__chip--empate { opacity: var(--confidence-empate-opacity); }
-/* Sem pesquisa: hachura sobre o cinza neutro, mesmo padrão de "sem dados"
-   usado no mapa/hemiciclo completos (styles/tokens.css). */
-.hm-mapa-preview__chip--sem-dados {
-  background: var(--confidence-sem-dados-fill);
-  background-image: var(--confidence-sem-dados-pattern);
-  color: var(--hm-ink-muted);
-}
-
-.hm-mapa-preview__legend {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-1) var(--space-4);
-  font: var(--text-caption);
-  color: var(--hm-ink-muted);
-}
-.hm-mapa-preview__legend li {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-1);
-}
-.hm-mapa-preview__swatch {
-  width: 12px;
-  height: 12px;
-  border-radius: var(--radius-xs);
-  flex: none;
-}
-.hm-mapa-preview__swatch.espectro-1 { background: var(--spectrum-1-fill); }
-.hm-mapa-preview__swatch.espectro-2 { background: var(--spectrum-2-fill); }
-.hm-mapa-preview__swatch.espectro-3 { background: var(--spectrum-3-fill); }
-.hm-mapa-preview__swatch.espectro-4 { background: var(--spectrum-4-fill); }
-.hm-mapa-preview__swatch.espectro-5 { background: var(--spectrum-5-fill); }
-.hm-mapa-preview__swatch--sem-dados {
-  background: var(--confidence-sem-dados-fill);
-  background-image: var(--confidence-sem-dados-pattern);
-}
-
-.hm-mapa-preview__links {
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2) var(--space-4);
-}
-
-/* ================= Últimas pesquisas ================= */
-
-.hm-polls-grid {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
-  gap: var(--space-3);
-}
-
-.hm-polls-grid__item {
-  min-width: 0;
-}
-
-.hm-poll-card {
-  height: 100%;
   background: var(--hm-surface);
   border: 1px solid var(--hm-border);
   border-radius: var(--radius-lg);
-  padding: var(--space-4);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
+  padding: var(--space-5);
 }
 
-.hm-poll-card__meta {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-2);
-  font: var(--text-caption);
-  color: var(--hm-ink-faint);
-}
-
-.hm-poll-card__data {
-  color: var(--hm-ink-muted);
-}
-
-/*
- * Rótulo de disputa + badge de turno. Existe para que duas pesquisas da
- * mesma disputa/instituto/data (1º e 2º turno) nunca fiquem visualmente
- * indistinguíveis na grade — ver P0 de docs/critica-ui-inicio.md.
- */
-.hm-poll-card__disputa-group {
-  display: inline-flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: var(--space-1) var(--space-2);
-}
-
-.hm-poll-card__turno {
-  display: inline-flex;
-  align-items: center;
-  padding: 1px var(--space-2);
-  border-radius: var(--radius-pill);
-  border: 1px solid var(--hm-border-strong);
-  background: var(--hm-surface-2);
-  color: var(--hm-ink-muted);
-  font: var(--text-caption);
-  font-weight: var(--font-variation-nav);
-  white-space: nowrap;
-}
-.hm-poll-card__turno--t2 {
-  color: var(--hm-ink);
-  border-color: var(--hm-ink);
-  font-weight: var(--font-variation-announce);
-}
-
-.hm-poll-card__instituto {
+.hm-noticia__data {
   margin: 0;
-  font: var(--text-body-sm);
-  font-weight: var(--font-variation-nav);
-  color: var(--hm-ink);
-}
-
-.hm-poll-card__candidatos {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-}
-
-.hm-poll-card__candidato {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: center;
-  gap: var(--space-2);
-  font: var(--text-body-sm);
-}
-
-.hm-poll-card__candidato-nome {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  min-width: 0;
+  font: var(--text-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
   color: var(--hm-ink-muted);
 }
 
-.hm-poll-card__candidato-pct {
+.hm-noticia__texto {
+  margin: 0;
+  font: var(--text-body);
   color: var(--hm-ink);
+  max-width: 68ch;
 }
 
-.hm-poll-card__sem-partido {
-  color: var(--hm-ink-faint);
-  font: var(--text-caption);
+.hm-noticia .hm-quiet-link {
+  align-self: flex-start;
+  margin-top: var(--space-1);
 }
 
-.hm-poll-card__footer {
-  margin-top: auto;
-  padding-top: var(--space-2);
-  border-top: 1px solid var(--hm-border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-2);
-}
-
-.hm-poll-card__registro {
-  font: var(--text-caption);
-  color: var(--hm-ink-faint);
-}
-.hm-poll-card__registro--ausente {
-  color: var(--hm-ink-faint);
-}
-
-/* ================= O que você encontra aqui ================= */
+/* ================= O que você encontra aqui (chamadas de navegação) ================= */
 
 .hm-explore-grid {
   list-style: none;
@@ -788,6 +388,7 @@
   flex-direction: column;
   gap: var(--space-2);
   height: 100%;
+  min-height: 44px;
   background: var(--hm-surface);
   border: 1px solid var(--hm-border);
   border-radius: var(--radius-lg);
@@ -934,9 +535,6 @@
 /* ================= Responsivo ================= */
 
 @media (max-width: 639px) {
-  .hm-resumo__value {
-    font-size: 18px;
-  }
   .hm-hero {
     padding: var(--space-5) var(--space-4);
   }

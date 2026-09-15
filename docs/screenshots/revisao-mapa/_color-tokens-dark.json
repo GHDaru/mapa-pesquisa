@@ -1,0 +1,16 @@
+{
+  "--spectrum-1-fill": "#eb5757",
+  "--spectrum-2-fill": "#c1707a",
+  "--spectrum-3-fill": "#8a8f98",
+  "--spectrum-4-fill": "#7f93c4",
+  "--spectrum-5-fill": "#4ea7fc",
+  "--spectrum-indefinido": "#4c4f56",
+  "--confidence-sem-dados-fill": "#34343a",
+  "--color-canvas": "#010102",
+  "--confidence-empate-opacity": ".45",
+  "--confidence-lean-opacity": ".72",
+  "--confidence-solid-opacity": "1",
+  "ufLabelFill": "rgb(255, 255, 255)",
+  "ufLabelStroke": "rgb(0, 0, 0)",
+  "ufLabelStrokeWidth": "2px"
+}
