@@ -579,8 +579,20 @@ export function renderTimelineChart(host: HTMLElement, opcoes: OpcoesTimelineCha
       y,
       `pv-timeline-end-label ${ancoraDireita ? 'pv-timeline-end-label--end' : 'pv-timeline-end-label--start'}`,
     );
+    // Trava a largura ao espaço real disponível até a borda do cartão
+    // (`max-width` em %, na mesma direção em que o rótulo se estende) e
+    // deixa o CSS truncar com reticências (`text-overflow: ellipsis`) em vez
+    // de estourar por baixo do `overflow-x: hidden` do `<body>` — sem isso,
+    // um rótulo real (não mais encolhido pelo viewBox, ver P0 acima) como
+    // "34,4% Flávio Bolsonaro" ficava cortado no meio da palavra e
+    // invisível além dos 400px de largura da tela, sem nenhum indício
+    // visual de que havia mais texto (bug confirmado por
+    // `getBoundingClientRect().right` > `innerWidth`).
+    const pctPonto = pctX(x);
+    rotulo.style.maxWidth = ancoraDireita ? `calc(${pctPonto}% - 8px)` : `calc(100% - ${pctPonto}% - 8px)`;
     // `title` dá o nome completo ao passar o mouse/focar — o rótulo visível
-    // usa só o apelido curto (ver `nomeCurto`).
+    // usa só o apelido curto (ver `nomeCurto`), truncado com reticências
+    // quando nem esse já não couber.
     rotulo.title = nomeCompleto;
     overlayRotulosFinais.append(rotulo);
   }

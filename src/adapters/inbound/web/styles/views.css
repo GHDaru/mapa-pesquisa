@@ -857,6 +857,12 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
   font: var(--text-body-sm);
   font-weight: var(--font-variation-nav);
   white-space: nowrap;
+  /* `max-width` é calculado por rótulo em timeline-chart.ts (espaço real até
+     a borda do cartão); acima dele, trunca com reticências em vez de
+     estourar por baixo do `overflow-x:hidden` do body sem nenhum indício
+     visual de que falta texto — nome completo continua em `title`. */
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .pv-timeline-end-label--start {
   transform: translate(14px, -50%);
