@@ -1,7 +1,7 @@
 import type { DiaSerieTemporal, PontoSerieTemporal, SerieTemporal } from '../../../../domain/aggregate.js';
 import type { Espectro } from '../../../../domain/spectrum.js';
 import { formatarNumero, formatarPeriodo, nivelEspectro, tokenFillEspectro } from './_shared.js';
-import { nomeCurto } from './candidate-names.js';
+import { nomeCurto, nomeCurtissimo } from './candidate-names.js';
 
 /**
  * Gráfico de série temporal presidencial — barra de qualidade: NYT
@@ -513,7 +513,10 @@ export function renderTimelineChart(host: HTMLElement, opcoes: OpcoesTimelineCha
           x: ultimo.x,
           y: ultimo.y,
           corVar,
-          texto: `${formatarNumero(ultimoValor)}% ${nomeCurto(candidato.nome)}`,
+          // Em telas estreitas o rótulo final usa o apelido mais curto ("Flávio") para não truncar.
+          texto: `${formatarNumero(ultimoValor)}% ${
+            typeof window !== 'undefined' && window.innerWidth < 640 ? nomeCurtissimo(candidato.nome) : nomeCurto(candidato.nome)
+          }`,
           nomeCompleto: candidato.nome,
         });
       }
