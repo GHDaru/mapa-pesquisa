@@ -395,25 +395,9 @@ export function renderTimelineChart(host: HTMLElement, opcoes: OpcoesTimelineCha
   // exatamente sobre a geometria correspondente do SVG ao lado.
   const figura = document.createElement('div');
   figura.className = 'pv-timeline-figure';
-  // Insere cedo (ainda vazio) para medir a largura renderizada real: a
-  // largura de `.pv-timeline-figure` só depende do layout CSS do card, não
-  // do conteúdo do SVG, que ainda nem existe.
-  host.append(figura);
   const overlay = document.createElement('div');
   overlay.className = 'pv-timeline-overlay';
   overlay.setAttribute('aria-hidden', 'true');
-
-  // Fator unidade-do-viewBox -> px reais, usado abaixo para converter um gap
-  // mínimo entre rótulos finais (`ESPACO_MIN_ROTULO_PX`) de px reais para
-  // unidades do viewBox. Sem essa conversão, um gap fixo em unidades do
-  // viewBox encolhe proporcionalmente em telas estreitas junto com o resto
-  // do SVG — mas o texto HTML dos rótulos não encolhe mais (esse é
-  // justamente o ponto do P0 corrigido acima), então dois rótulos finais
-  // que cabiam confortavelmente a 1280px passavam a se sobrepor a 400px
-  // (bug confirmado por DOM: `getBoundingClientRect()` dos dois rótulos se
-  // interceptando em ~2px a 400px de largura).
-  const larguraFiguraPx = figura.getBoundingClientRect().width;
-  const escalaPxPorUnidade = larguraFiguraPx > 0 ? larguraFiguraPx / LARGURA : 1;
 
   // --- Grade horizontal + eixo Y (recessivos, ver references/marks-and-anatomy.md) ---
   const ticksY = gerarTicksY(dominioY);
@@ -561,9 +545,17 @@ export function renderTimelineChart(host: HTMLElement, opcoes: OpcoesTimelineCha
 
   // Rótulos diretos no fim de cada linha — quando duas linhas terminam perto
   // uma da outra, afasta verticalmente (nunca empilha em cima, ver
-  // references/marks-and-anatomy.md "quando rótulos de fim colidem").
-  const ESPACO_MIN_ROTULO_PX = 20; // ~1 altura de linha de --text-body-sm (13px/1.5)
-  const ESPACO_MIN_ROTULO = ESPACO_MIN_ROTULO_PX / escalaPxPorUnidade;
+  // references/marks-and-anatomy.md "quando rótulos de fim colidem"). O
+  // gap mínimo é dado em unidades do viewBox (não em px reais): como o
+  // rótulo agora é HTML com altura real fixa (~19-20px, `--text-body-sm`) e
+  // não encolhe mais junto com o SVG (esse é o ponto do P0 corrigido acima),
+  // o valor precisa ser grande o bastante para garantir esse gap real
+  // mesmo no PIOR caso de escala — a largura mínima suportada de 400px
+  // (`--bp-xs` em ux-spec.md), onde o SVG renderiza a ~320px de largura
+  // (fator `320/720 ≈ 0,444`): 20px reais ÷ 0,444 ≈ 45 unidades. Em telas
+  // mais largas o mesmo gap em unidades do viewBox mapeia para um gap real
+  // ainda maior — nunca insuficiente.
+  const ESPACO_MIN_ROTULO = 45;
   const rotulosOrdenados = [...candidatosParaRotulo].sort((a, b) => a.y - b.y);
   for (let i = 1; i < rotulosOrdenados.length; i++) {
     const anterior = rotulosOrdenados[i - 1]!;
@@ -602,7 +594,8 @@ export function renderTimelineChart(host: HTMLElement, opcoes: OpcoesTimelineCha
   crosshair.style.display = 'none';
   svg.append(crosshair);
 
-  figura.append(svg, overlay); // figura já está em `host` (ver acima, medição de largura)
+  figura.append(svg, overlay);
+  host.append(figura);
 
   // --- Legenda: nome + partido de cada candidato destacado, + "Outros" ---
   const legenda = document.createElement('div');
