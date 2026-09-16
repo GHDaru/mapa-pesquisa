@@ -7,7 +7,7 @@ acrescenta aqui; um agente de "preenchimento de lacunas" limpa a lista.
 ## Anotadas em 2026-09-16
 
 ### Presidente
-- Quaest BR 07/09: a entrada `2026-09-07-quaest-br-presidente-t1` traz Lula 37 / Flávio 30 / Cury 10, mas matérias de 14/09 citam a rodada anterior como Lula 36 / Flávio 29 / Cury 8 — auditar (os números na base podem ser os de 02/09).
+- ~~Quaest BR 07/09: números suspeitos~~ **RESOLVIDO em 16/09.** A suspeita se confirmou: os números que estavam como 07/09 (Lula 37, Flávio 30, Cury 10) são da rodada divulgada em 02/09 (campo 30/08–01/09, primeira da campanha oficial, contratante Globo). A entrada foi reetiquetada como 02/09 e a rodada real de 07/09 entrou com Lula 36, Flávio 29, Cury 8, mais o 2º turno Lula 41 x Flávio 41.
 - AtlasIntel MG (pub. 08/09, campo 30/08–04/09, n=1804, MG-01579/2026): t1 Lula 44,3 / Flávio 35,4; t2 Lula 48,7 / Flávio 42,1 (CNN Brasil / Poder360).
 - Real Time Big Data MG t2 (pub. 08/09): Lula 46 / Flávio 44.
 - Real Time Big Data PE (Lula 58 / Flávio 22; t2 61/33): data de publicação não confirmada (campo 10–14/09?) — conferir em cnnbrasil.com.br.

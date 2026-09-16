@@ -13,11 +13,26 @@
     "amostra": 5000,
     "margem": 1.0,
     "cenario": "estimulada, cenário principal (1º turno)",
-    "fonte": { "nome": "Metrópoles", "url": "https://www.metropoles.com/brasil/atlas-flavio-bolsonaro-sobe-a-374-no-1o-turno-lula-mantem-43" },
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/atlas-flavio-bolsonaro-sobe-a-374-no-1o-turno-lula-mantem-43"
+    },
     "resultados": [
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 43.0 },
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 37.4 },
-      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 7.8 }
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 43.0
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 37.4
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 7.8
+      }
     ],
     "observacao": "Dados obtidos via busca (WebSearch); não foi possível abrir a página original para conferir brancos/nulos/não sabe, que ficam de fora da soma."
   },
@@ -35,10 +50,21 @@
     "amostra": 2002,
     "margem": 2.0,
     "cenario": "estimulada, cenário principal (1º turno)",
-    "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-presidente-setembro-2026-2/" },
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-presidente-setembro-2026-2/"
+    },
     "resultados": [
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 39.0 },
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 35.0 }
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 39.0
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 35.0
+      }
     ],
     "observacao": "Contratante confirmado via auditoria (Gazeta do Povo, 11/09/2026): Folha da Manhã S.A. e Globo Comunicação e Participações S/A. Mapeamento exato entre esta URL da Gazeta do Povo e a data de campo foi inferido, pois há duas matérias quase homônimas (ver observação da pesquisa de 1-3/set)."
   },
@@ -56,11 +82,26 @@
     "amostra": 1500,
     "margem": 2.5,
     "cenario": "estimulada, cenário principal (1º turno)",
-    "fonte": { "nome": "Exame", "url": "https://exame.com/brasil/pesquisa-meio-ideia-lula-tem-384-e-flavio-bolsonaro-373-no-1o-turno/" },
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/pesquisa-meio-ideia-lula-tem-384-e-flavio-bolsonaro-373-no-1o-turno/"
+    },
     "resultados": [
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 38.4 },
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 37.3 },
-      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 6.6 }
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 38.4
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 37.3
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 6.6
+      }
     ],
     "observacao": "publicadoEm corrigido para 2026-09-09 (quarta-feira, conforme auditoria de 13/09/2026 — Exame)."
   },
@@ -78,12 +119,60 @@
     "amostra": 2400,
     "margem": 2.0,
     "cenario": "estimulada, cenário principal (1º turno)",
-    "fonte": { "nome": "Exame", "url": "https://exame.com/brasil/pesquisa-gerp-flavio-bolsonaro-tem-37-e-lula-34-no-1o-turno/" },
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/pesquisa-gerp-flavio-bolsonaro-tem-37-e-lula-34-no-1o-turno/"
+    },
     "resultados": [
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 36.6 },
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 34.4 }
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 36.6
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 34.4
+      }
     ],
     "observacao": "Número de registro no TSE não encontrado nos resultados de busca; Gerp não aparece na base agenciasertao.com consultada via busca."
+  },
+  {
+    "id": "2026-09-02-quaest-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": null,
+    "contratante": "Globo Editora e Globo Comunicação e Participações S.A.",
+    "dataInicio": "2026-08-30",
+    "dataFim": "2026-09-01",
+    "publicadoEm": "2026-09-02",
+    "amostra": 2004,
+    "margem": 2.0,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Imirante",
+      "url": "https://m.imirante.com/noticias/brasil/2026/09/02/ipolitica-pesquisa-quaest-lula-37-flavio-bolsonaro-30-augusto-cury-10"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 37.0
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 30.0
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 10.0
+      }
+    ],
+    "observacao": "Corrigida em 16/09/2026: estes números (Lula 37, Flávio 30, Cury 10) são da rodada divulgada em 02/09 — primeira pesquisa presidencial da Quaest na campanha oficial, campo 30/08–01/09 —, não da rodada de 07/09, que trouxe Lula 36 e Flávio 29. O registro TSE desta rodada não foi confirmado."
   },
   {
     "id": "2026-09-07-quaest-br-presidente-t1",
@@ -99,13 +188,70 @@
     "amostra": 2004,
     "margem": 2.0,
     "cenario": "estimulada, cenário principal (1º turno)",
-    "fonte": { "nome": "Agência Sertão", "url": "https://agenciasertao.com/eleicoes/pesquisas.php?protocolo=BR017202026&uf=BR" },
+    "fonte": {
+      "nome": "Brasil de Fato",
+      "url": "https://www.brasildefato.com.br/2026/09/07/quaest-lula-lidera-1o-turno-com-36-a-29-e-empata-com-flavio-bolsonaro-em-41-no-2o-turno/"
+    },
     "resultados": [
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 37.0 },
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 30.0 },
-      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 10.0 }
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 36.0
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 29.0
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 8.0
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 10.0
+      },
+      {
+        "candidato": "Nenhum/branco/nulo",
+        "partido": null,
+        "pct": 8.0
+      }
     ],
-    "observacao": null
+    "observacao": "Demais candidatos somam 9% e não foram discriminados na fonte. Datas de campo vêm do registro BR-01720/2026 (não reconfirmadas na matéria)."
+  },
+  {
+    "id": "2026-09-07-quaest-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "BR-01720/2026",
+    "contratante": "Genial",
+    "dataInicio": "2026-09-03",
+    "dataFim": "2026-09-06",
+    "publicadoEm": "2026-09-07",
+    "amostra": 2004,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "JOTA",
+      "url": "https://www.jota.info/eleicoes/eleicoes-2026/quaest-lula-e-flavio-empatam-com-41-em-eventual-2o-turno"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 41.0
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 41.0
+      }
+    ],
+    "observacao": "Empate técnico e numérico. Brancos/nulos e indecisos não discriminados na fonte."
   },
   {
     "id": "2026-09-06-verita-br-presidente-t1",
@@ -121,11 +267,26 @@
     "amostra": 3804,
     "margem": 2.0,
     "cenario": "estimulada, cenário principal (1º turno)",
-    "fonte": { "nome": "CNN Brasil", "url": "https://www.cnnbrasil.com.br/eleicoes/verita-flavio-tem-389-no-1o-turno-lula-384-e-cury-122/" },
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/verita-flavio-tem-389-no-1o-turno-lula-384-e-cury-122/"
+    },
     "resultados": [
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 38.9 },
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 38.4 },
-      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 12.2 }
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 38.9
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 38.4
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 12.2
+      }
     ],
     "observacao": "Contratante não identificado nos resultados de busca."
   },
@@ -143,11 +304,26 @@
     "amostra": 2000,
     "margem": 2.0,
     "cenario": "estimulada, cenário principal (1º turno)",
-    "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-presidente-setembro-2026/" },
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-presidente-setembro-2026/"
+    },
     "resultados": [
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 38.0 },
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 29.0 },
-      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 10.0 }
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 38.0
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 29.0
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 10.0
+      }
     ],
     "observacao": "Percentual de Flávio Bolsonaro inferido da diferença informada na busca ('Lula abre 9 pontos'); não foi possível confirmar a casa decimal exata."
   },
@@ -165,11 +341,26 @@
     "amostra": 2000,
     "margem": 2.2,
     "cenario": "estimulada, cenário principal (1º turno)",
-    "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/futura-inteligencia-presidente-setembro-2026/" },
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/futura-inteligencia-presidente-setembro-2026/"
+    },
     "resultados": [
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 38.7 },
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 33.6 },
-      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 9.9 }
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 38.7
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 33.6
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 9.9
+      }
     ],
     "observacao": "Número de registro no TSE não encontrado nos resultados de busca."
   },
@@ -187,10 +378,21 @@
     "amostra": 5014,
     "margem": 1.0,
     "cenario": "estimulada, cenário principal (1º turno)",
-    "fonte": { "nome": "Band", "url": "https://www.band.com.br/politica/eleicoes/atlas-bloomberg-lula-tem-434-no-1o-turno-e-flavio-337" },
+    "fonte": {
+      "nome": "Band",
+      "url": "https://www.band.com.br/politica/eleicoes/atlas-bloomberg-lula-tem-434-no-1o-turno-e-flavio-337"
+    },
     "resultados": [
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 43.4 },
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 33.7 }
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 43.4
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 33.7
+      }
     ],
     "observacao": null
   },
@@ -208,10 +410,21 @@
     "amostra": 3000,
     "margem": 2.0,
     "cenario": "estimulada, cenário principal (1º turno)",
-    "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/poderdata-presidente-setembro-2026/" },
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/poderdata-presidente-setembro-2026/"
+    },
     "resultados": [
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 37.0 },
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 34.0 }
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 37.0
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 34.0
+      }
     ],
     "observacao": "Data de publicação (04/set) estimada; a busca só confirmou o período de campo e a divulgação 'no início de setembro'. Pesquisas do PoderData são frequentemente citadas como 'PoderData/Aya' — não foi possível confirmar se Aya é o instituto executor ou o contratante."
   },
@@ -229,11 +442,26 @@
     "amostra": 2005,
     "margem": 2.0,
     "cenario": "estimulada, cenário principal (1º turno)",
-    "fonte": { "nome": "Congresso em Foco", "url": "https://www.congressoemfoco.com.br/noticia/121786/btg-nexus-lula-tem-39--flavio-33-e-cury-salta-para-11" },
+    "fonte": {
+      "nome": "Congresso em Foco",
+      "url": "https://www.congressoemfoco.com.br/noticia/121786/btg-nexus-lula-tem-39--flavio-33-e-cury-salta-para-11"
+    },
     "resultados": [
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 39.0 },
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 33.0 },
-      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 11.0 }
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 39.0
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 33.0
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 11.0
+      }
     ],
     "observacao": "Divulgada uma pesquisa Nexus/BTG mais recente (campo 4-7/set, registro BR-06790/2026), mas os percentuais dela não puderam ser confirmados antes de a cota de buscas da sessão se esgotar; ver notes-presidente.md."
   },
@@ -251,10 +479,21 @@
     "amostra": 2002,
     "margem": 2.0,
     "cenario": "estimulada, cenário principal (1º turno)",
-    "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-presidente-setembro-2026/" },
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-presidente-setembro-2026/"
+    },
     "resultados": [
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 38.0 },
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 32.0 }
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 38.0
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 32.0
+      }
     ],
     "observacao": "Data de publicação estimada em 04/set (um a dois dias após o fim do campo, padrão do instituto); não confirmada literalmente na busca. Ver observação da pesquisa Datafolha de 8-10/set sobre a possível troca das duas URLs quase homônimas da Gazeta do Povo."
   },
@@ -272,10 +511,21 @@
     "amostra": 2400,
     "margem": 2.0,
     "cenario": "estimulada, cenário principal (1º turno)",
-    "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/poderdata-presidente-pesquisa-agosto-2026/" },
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/poderdata-presidente-pesquisa-agosto-2026/"
+    },
     "resultados": [
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 38.0 },
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 35.0 }
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 38.0
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 35.0
+      }
     ],
     "observacao": "Data de publicação (27/ago) estimada com base no período de campo; não confirmada literalmente na busca. Registro TSE não encontrado."
   },
@@ -293,14 +543,24 @@
     "amostra": 2000,
     "margem": 2.2,
     "cenario": "estimulada, cenário principal (1º turno)",
-    "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/indexa-broadcast-presidente-agosto-2026/" },
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/indexa-broadcast-presidente-agosto-2026/"
+    },
     "resultados": [
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 39.0 },
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 33.0 }
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 39.0
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 33.0
+      }
     ],
     "observacao": "Foi essa a primeira pesquisa da parceria Indexa/Broadcast; um protocolo BR-06597/2026 aparece associado a uma pesquisa Indexa de 4/set na Agência Sertão, mas não foi possível confirmar se é a mesma pesquisa ou uma edição mais recente — por isso o campo registroTSE ficou como null aqui."
   },
-
   {
     "id": "2026-09-10-atlasintel-br-presidente-t2-flavio",
     "uf": "BR",
@@ -315,10 +575,21 @@
     "amostra": 5000,
     "margem": 1.0,
     "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
-    "fonte": { "nome": "Brasil de Fato", "url": "https://www.brasildefato.com.br/2026/09/10/atlasbloomberg-lula-mantem-vantagem-no-1o-turno-2o-turno-tem-empate-tecnico/" },
+    "fonte": {
+      "nome": "Brasil de Fato",
+      "url": "https://www.brasildefato.com.br/2026/09/10/atlasbloomberg-lula-mantem-vantagem-no-1o-turno-2o-turno-tem-empate-tecnico/"
+    },
     "resultados": [
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 46.4 },
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 46.2 }
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 46.4
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 46.2
+      }
     ],
     "observacao": null
   },
@@ -336,10 +607,21 @@
     "amostra": 2002,
     "margem": 2.0,
     "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro",
-    "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-presidente-setembro-2026-2/" },
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-presidente-setembro-2026-2/"
+    },
     "resultados": [
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 46.0 },
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 44.0 }
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 46.0
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 44.0
+      }
     ],
     "observacao": null
   },
@@ -357,10 +639,21 @@
     "amostra": 1500,
     "margem": 2.5,
     "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro",
-    "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/meio-ideia-presidente-setembro-2026/" },
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/meio-ideia-presidente-setembro-2026/"
+    },
     "resultados": [
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 46.0 },
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 46.0 }
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 46.0
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 46.0
+      }
     ],
     "observacao": "Empate numérico exato (46 a 46) conforme resumo da busca; não confirmado casa decimal na matéria original."
   },
@@ -378,10 +671,21 @@
     "amostra": 2400,
     "margem": 2.0,
     "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
-    "fonte": { "nome": "CNN Brasil", "url": "https://www.cnnbrasil.com.br/eleicoes/gerp-flavio-tem-47-das-intencoes-de-voto-no-2o-turno-lula-40/" },
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/gerp-flavio-tem-47-das-intencoes-de-voto-no-2o-turno-lula-40/"
+    },
     "resultados": [
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 47.0 },
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 40.0 }
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 47.0
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 40.0
+      }
     ],
     "observacao": "registroTSE confirmado na auditoria rodada 2 (BR-00251/2026, parceria Gerp/AESP Rádio+TV, mesma amostra 2400 e campo 03-08/09)."
   },
@@ -399,10 +703,21 @@
     "amostra": 3804,
     "margem": 2.0,
     "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
-    "fonte": { "nome": "Revista Oeste", "url": "https://revistaoeste.com/politica/flavio-tem-485-contra-431-de-lula-em-eventual-2o-turno-mostra-verita/" },
+    "fonte": {
+      "nome": "Revista Oeste",
+      "url": "https://revistaoeste.com/politica/flavio-tem-485-contra-431-de-lula-em-eventual-2o-turno-mostra-verita/"
+    },
     "resultados": [
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 48.5 },
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 43.1 }
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 48.5
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 43.1
+      }
     ],
     "observacao": null
   },
@@ -420,10 +735,21 @@
     "amostra": 2000,
     "margem": 2.0,
     "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro",
-    "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-presidente-setembro-2026/" },
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-presidente-setembro-2026/"
+    },
     "resultados": [
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 44.0 },
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 44.0 }
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 44.0
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 44.0
+      }
     ],
     "observacao": null
   },
@@ -441,10 +767,21 @@
     "amostra": 2000,
     "margem": 2.0,
     "cenario": "estimulada, 2º turno: Ronaldo Caiado x Lula",
-    "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-presidente-setembro-2026/" },
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-presidente-setembro-2026/"
+    },
     "resultados": [
-      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 45.0 },
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 43.0 }
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 45.0
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 43.0
+      }
     ],
     "observacao": null
   },
@@ -462,10 +799,21 @@
     "amostra": 5014,
     "margem": 1.0,
     "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro",
-    "fonte": { "nome": "Terra", "url": "https://www.terra.com.br/noticias/eleicoes/pesquisas/pesquisa-atlasbloomberg-lula-tem-471-de-intencoes-de-voto-no-2-turno-flavio-426,fec885aad538fcafbfc95b36254690a4xibn91en.html" },
+    "fonte": {
+      "nome": "Terra",
+      "url": "https://www.terra.com.br/noticias/eleicoes/pesquisas/pesquisa-atlasbloomberg-lula-tem-471-de-intencoes-de-voto-no-2-turno-flavio-426,fec885aad538fcafbfc95b36254690a4xibn91en.html"
+    },
     "resultados": [
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 47.1 },
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 42.6 }
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 47.1
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 42.6
+      }
     ],
     "observacao": null
   },
@@ -483,10 +831,21 @@
     "amostra": 2005,
     "margem": 2.0,
     "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro",
-    "fonte": { "nome": "Poder360", "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-tem-46-ante-45-de-flavio-no-2o-turno-diz-btg-nexus/" },
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-tem-46-ante-45-de-flavio-no-2o-turno-diz-btg-nexus/"
+    },
     "resultados": [
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 46.0 },
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 45.0 }
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 46.0
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 45.0
+      }
     ],
     "observacao": null
   },
@@ -504,10 +863,21 @@
     "amostra": 2002,
     "margem": 2.0,
     "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro",
-    "fonte": { "nome": "Gazeta do Povo", "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-presidente-setembro-2026/" },
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-presidente-setembro-2026/"
+    },
     "resultados": [
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 46.0 },
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 44.0 }
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 46.0
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 44.0
+      }
     ],
     "observacao": "Data de publicação estimada; ver observação da entrada de 1º turno equivalente."
   },
@@ -525,12 +895,31 @@
     "amostra": 2000,
     "margem": 2.2,
     "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro",
-    "fonte": { "nome": "JOTA", "url": "https://www.jota.info/eleicoes/eleicoes-2026/indexa-broadcast-lula-marca-46-contra-41-de-flavio-bolsonaro-no-2o-turno" },
+    "fonte": {
+      "nome": "JOTA",
+      "url": "https://www.jota.info/eleicoes/eleicoes-2026/indexa-broadcast-lula-marca-46-contra-41-de-flavio-bolsonaro-no-2o-turno"
+    },
     "resultados": [
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 46.0 },
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 41.0 },
-      { "candidato": "Brancos/nulos", "partido": null, "pct": 5.0 },
-      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 2.0 }
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 46.0
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 41.0
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 5.0
+      },
+      {
+        "candidato": "Não sabe/não respondeu",
+        "partido": null,
+        "pct": 2.0
+      }
     ],
     "observacao": "Pesquisa também registrou 6% que declarou que não votaria; esse grupo não foi incluído como categoria própria no schema."
   },
@@ -548,10 +937,21 @@
     "amostra": 2000,
     "margem": 2.2,
     "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
-    "fonte": { "nome": "Poder360", "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-454-contra-45-de-lula-no-2o-turno-diz-pesquisa/" },
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-454-contra-45-de-lula-no-2o-turno-diz-pesquisa/"
+    },
     "resultados": [
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 45.4 },
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 45.0 }
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 45.4
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 45.0
+      }
     ],
     "observacao": "registroTSE não localizado nas buscas da auditoria rodada 2. Divulgada no mesmo dia (11/09) que a Datafolha já presente na base, mostrando cenário de empate técnico em vez da vantagem de 2 p.p. de Lula apontada pela Datafolha — divergência relevante entre institutos na mesma janela."
   },
@@ -569,10 +969,21 @@
     "amostra": 2058,
     "margem": 2.0,
     "cenario": "estimulada, cenário principal (1º turno)",
-    "fonte": { "nome": "O Povo", "url": "https://www.opovo.com.br/noticias/politica/eleicoes/2026/08/21/pesquisa-datafolha-traz-lula-comm-39-e-flavio-bolsonaro-33.html" },
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/eleicoes/2026/08/21/pesquisa-datafolha-traz-lula-comm-39-e-flavio-bolsonaro-33.html"
+    },
     "resultados": [
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 39.0 },
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 33.0 }
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 39.0
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 33.0
+      }
     ],
     "observacao": "Pesquisa ausente na base auditada; localizada via WebSearch em 13/09/2026 (auditoria de data/research/audit-presidente-historico.md). Confirmar candidatos adicionais/brancos/nulos na fonte original antes de publicar."
   },
@@ -590,10 +1001,21 @@
     "amostra": 2058,
     "margem": 2.0,
     "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro",
-    "fonte": { "nome": "Brasil de Fato", "url": "https://www.brasildefato.com.br/2026/08/21/datafolha-no-segundo-turno-lula-tem-47-flavio-bolsonaro-tem-43/" },
+    "fonte": {
+      "nome": "Brasil de Fato",
+      "url": "https://www.brasildefato.com.br/2026/08/21/datafolha-no-segundo-turno-lula-tem-47-flavio-bolsonaro-tem-43/"
+    },
     "resultados": [
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 47.0 },
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 43.0 }
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 47.0
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 43.0
+      }
     ],
     "observacao": "Pesquisa ausente na base auditada; localizada via WebSearch em 13/09/2026 (auditoria de data/research/audit-presidente-historico.md)."
   }

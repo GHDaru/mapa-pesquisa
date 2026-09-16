@@ -5377,27 +5377,69 @@
     "margem": 2,
     "cenario": "estimulada, cenário principal (1º turno)",
     "fonte": {
-      "nome": "Agência Sertão",
-      "url": "https://agenciasertao.com/eleicoes/pesquisas.php?protocolo=BR017202026&uf=BR"
+      "nome": "Brasil de Fato",
+      "url": "https://www.brasildefato.com.br/2026/09/07/quaest-lula-lidera-1o-turno-com-36-a-29-e-empata-com-flavio-bolsonaro-em-41-no-2o-turno/"
     },
     "resultados": [
       {
         "candidato": "Luiz Inácio Lula da Silva",
         "partido": "PT",
-        "pct": 37
+        "pct": 36
       },
       {
         "candidato": "Flávio Bolsonaro",
         "partido": "PL",
-        "pct": 30
+        "pct": 29
       },
       {
         "candidato": "Augusto Cury",
         "partido": "Avante",
+        "pct": 8
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
         "pct": 10
+      },
+      {
+        "candidato": "Nenhum/branco/nulo",
+        "partido": null,
+        "pct": 8
       }
     ],
-    "observacao": null
+    "observacao": "Demais candidatos somam 9% e não foram discriminados na fonte. Datas de campo vêm do registro BR-01720/2026 (não reconfirmadas na matéria)."
+  },
+  {
+    "id": "2026-09-07-quaest-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "BR-01720/2026",
+    "contratante": "Genial",
+    "dataInicio": "2026-09-03",
+    "dataFim": "2026-09-06",
+    "publicadoEm": "2026-09-07",
+    "amostra": 2004,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "JOTA",
+      "url": "https://www.jota.info/eleicoes/eleicoes-2026/quaest-lula-e-flavio-empatam-com-41-em-eventual-2o-turno"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 41
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 41
+      }
+    ],
+    "observacao": "Empate técnico e numérico. Brancos/nulos e indecisos não discriminados na fonte."
   },
   {
     "id": "2026-09-07-vr-skala-to-senador-t1",
@@ -7022,6 +7064,43 @@
       }
     ],
     "observacao": "Datas de campo, amostra, margem e registro TSE específicos não confirmados na busca (não foi possível abrir a matéria completa)."
+  },
+  {
+    "id": "2026-09-02-quaest-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": null,
+    "contratante": "Globo Editora e Globo Comunicação e Participações S.A.",
+    "dataInicio": "2026-08-30",
+    "dataFim": "2026-09-01",
+    "publicadoEm": "2026-09-02",
+    "amostra": 2004,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Imirante",
+      "url": "https://m.imirante.com/noticias/brasil/2026/09/02/ipolitica-pesquisa-quaest-lula-37-flavio-bolsonaro-30-augusto-cury-10"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 37
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 30
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 10
+      }
+    ],
+    "observacao": "Corrigida em 16/09/2026: estes números (Lula 37, Flávio 30, Cury 10) são da rodada divulgada em 02/09 — primeira pesquisa presidencial da Quaest na campanha oficial, campo 30/08–01/09 —, não da rodada de 07/09, que trouxe Lula 36 e Flávio 29. O registro TSE desta rodada não foi confirmado."
   },
   {
     "id": "2026-09-03-futura-inteligencia-br-presidente-t1",
