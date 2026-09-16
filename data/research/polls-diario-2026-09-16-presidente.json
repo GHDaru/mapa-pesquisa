@@ -1,0 +1,846 @@
+[
+  {
+    "id": "2026-09-14-quaest-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "BR-03607/2026",
+    "contratante": "TV Globo e jornal O Globo",
+    "dataInicio": "2026-09-10",
+    "dataFim": "2026-09-13",
+    "publicadoEm": "2026-09-14",
+    "amostra": 2004,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Brasil de Fato",
+      "url": "https://www.brasildefato.com.br/2026/09/14/pesquisa-quaest-lula-registra-36-e-flavio-bolsonaro-alcanca-31-no-primeiro-turno/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 36
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 31
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 7
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 4
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 4
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 1
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 7
+      },
+      {
+        "candidato": "Não sabe/não respondeu",
+        "partido": null,
+        "pct": 10
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado). Entrevistas presenciais, 10 a 13/09/2026, registro TSE BR-03607/2026. Os resumos não citam Pablo Marçal neste cenário; brancos/nulos 7% e indecisos 10% conforme Brasil de Fato."
+  },
+  {
+    "id": "2026-09-14-quaest-br-presidente-t2-flavio-lula",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "BR-03607/2026",
+    "contratante": "TV Globo e jornal O Globo",
+    "dataInicio": "2026-09-10",
+    "dataFim": "2026-09-13",
+    "publicadoEm": "2026-09-14",
+    "amostra": 2004,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-42-contra-40-de-lula-no-2o-turno-diz-quaest/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 42
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 40
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 13
+      },
+      {
+        "candidato": "Não sabe/não respondeu",
+        "partido": null,
+        "pct": 5
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado). Entrevistas presenciais, 10 a 13/09/2026, registro TSE BR-03607/2026. Os resumos não citam Pablo Marçal neste cenário; brancos/nulos 7% e indecisos 10% conforme Brasil de Fato. Primeira vez em que Flávio aparece numericamente à frente de Lula na série Quaest (empate técnico)."
+  },
+  {
+    "id": "2026-09-14-quaest-br-presidente-t2-lula-cury",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "BR-03607/2026",
+    "contratante": "TV Globo e jornal O Globo",
+    "dataInicio": "2026-09-10",
+    "dataFim": "2026-09-13",
+    "publicadoEm": "2026-09-14",
+    "amostra": 2004,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Augusto Cury",
+    "fonte": {
+      "nome": "Gazeta da Amazônia",
+      "url": "https://gazetadaamazonia.com.br/14/09/2026/pesquisa-quaest-flavio-lula/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 38
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 36
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado). Entrevistas presenciais, 10 a 13/09/2026, registro TSE BR-03607/2026. Os resumos não citam Pablo Marçal neste cenário; brancos/nulos 7% e indecisos 10% conforme Brasil de Fato."
+  },
+  {
+    "id": "2026-09-14-quaest-br-presidente-t2-lula-caiado",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "BR-03607/2026",
+    "contratante": "TV Globo e jornal O Globo",
+    "dataInicio": "2026-09-10",
+    "dataFim": "2026-09-13",
+    "publicadoEm": "2026-09-14",
+    "amostra": 2004,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Ronaldo Caiado",
+    "fonte": {
+      "nome": "Gazeta da Amazônia",
+      "url": "https://gazetadaamazonia.com.br/14/09/2026/pesquisa-quaest-flavio-lula/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 41
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 39
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado). Entrevistas presenciais, 10 a 13/09/2026, registro TSE BR-03607/2026. Os resumos não citam Pablo Marçal neste cenário; brancos/nulos 7% e indecisos 10% conforme Brasil de Fato."
+  },
+  {
+    "id": "2026-09-14-quaest-br-presidente-t2-lula-renan",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "BR-03607/2026",
+    "contratante": "TV Globo e jornal O Globo",
+    "dataInicio": "2026-09-10",
+    "dataFim": "2026-09-13",
+    "publicadoEm": "2026-09-14",
+    "amostra": 2004,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Renan Santos",
+    "fonte": {
+      "nome": "Gazeta da Amazônia",
+      "url": "https://gazetadaamazonia.com.br/14/09/2026/pesquisa-quaest-flavio-lula/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 41
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 38
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado). Entrevistas presenciais, 10 a 13/09/2026, registro TSE BR-03607/2026. Os resumos não citam Pablo Marçal neste cenário; brancos/nulos 7% e indecisos 10% conforme Brasil de Fato."
+  },
+  {
+    "id": "2026-09-14-nexus-btg-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Nexus/FSB",
+    "registroTSE": "BR-04076/2026",
+    "contratante": "Banco BTG Pactual",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-13",
+    "publicadoEm": "2026-09-14",
+    "amostra": 2003,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Nexus (estudos divulgados)",
+      "url": "https://www.nexus.fsb.com.br/estudos-divulgados/pesquisa-btg-nexus-de-intencao-de-votos-para-presidente-do-brasil-14-de-setembro-de-2026/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 42
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 37
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 6
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 5
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 2
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 1
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado). Entrevistas telefônicas, 11 a 13/09/2026, registro TSE BR-04076/2026 (Gazeta do Povo). Brancos/nulos e indecisos não vieram nos resumos."
+  },
+  {
+    "id": "2026-09-14-nexus-btg-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Nexus/FSB",
+    "registroTSE": "BR-04076/2026",
+    "contratante": "Banco BTG Pactual",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-13",
+    "publicadoEm": "2026-09-14",
+    "amostra": 2003,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-tem-47-contra-46-de-flavio-no-2o-turno-mostra-btg-nexus/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 47
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 46
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado). Entrevistas telefônicas, 11 a 13/09/2026, registro TSE BR-04076/2026 (Gazeta do Povo). Brancos/nulos e indecisos não vieram nos resumos."
+  },
+  {
+    "id": "2026-09-14-nexus-btg-br-presidente-t2-lula-cury",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Nexus/FSB",
+    "registroTSE": "BR-04076/2026",
+    "contratante": "Banco BTG Pactual",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-13",
+    "publicadoEm": "2026-09-14",
+    "amostra": 2003,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Augusto Cury",
+    "fonte": {
+      "nome": "Portal 6",
+      "url": "https://portal6.com.br/2026/09/14/btg-nexus-lula-tem-42-e-flavio-bolsonaro-37-no-primeiro-turno/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 45
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 42
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado). Entrevistas telefônicas, 11 a 13/09/2026, registro TSE BR-04076/2026 (Gazeta do Povo). Brancos/nulos e indecisos não vieram nos resumos."
+  },
+  {
+    "id": "2026-09-15-cnt-mda-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "CNT/MDA",
+    "registroTSE": "BR-06902/2026",
+    "contratante": "Confederação Nacional do Transporte (CNT)",
+    "dataInicio": "2026-09-09",
+    "dataFim": "2026-09-13",
+    "publicadoEm": "2026-09-15",
+    "amostra": 2002,
+    "margem": 2.2,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/cnt-mda-lula-tem-405-flavio-304-e-cury-6-no-1o-turno/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 40.5
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 30.4
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 6
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 3
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 2.7
+      },
+      {
+        "candidato": "Pablo Marçal",
+        "partido": "PRTB",
+        "pct": 1.8
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 1
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado). Campo 9 a 13/09/2026, registro TSE BR-06902/2026. Money Times publicou Lula com 40,6%; CNN Brasil, Exame e Metrópoles trazem 40,5% (valor adotado). Brancos/nulos e indecisos não vieram nos resumos."
+  },
+  {
+    "id": "2026-09-15-cnt-mda-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "CNT/MDA",
+    "registroTSE": "BR-06902/2026",
+    "contratante": "Confederação Nacional do Transporte (CNT)",
+    "dataInicio": "2026-09-09",
+    "dataFim": "2026-09-13",
+    "publicadoEm": "2026-09-15",
+    "amostra": 2002,
+    "margem": 2.2,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/cnt-mda-lula-tem-473-e-flavio-bolsonaro-40-no-2o-turno/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 47.3
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 40
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado). Campo 9 a 13/09/2026, registro TSE BR-06902/2026. Money Times publicou Lula com 40,6%; CNN Brasil, Exame e Metrópoles trazem 40,5% (valor adotado). Brancos/nulos e indecisos não vieram nos resumos."
+  },
+  {
+    "id": "2026-09-15-cnt-mda-br-presidente-t2-lula-zema",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "CNT/MDA",
+    "registroTSE": "BR-06902/2026",
+    "contratante": "Confederação Nacional do Transporte (CNT)",
+    "dataInicio": "2026-09-09",
+    "dataFim": "2026-09-13",
+    "publicadoEm": "2026-09-15",
+    "amostra": 2002,
+    "margem": 2.2,
+    "cenario": "estimulada, 2º turno: Lula x Romeu Zema",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/cnt-mda-lula-tem-405-flavio-304-e-cury-6-no-1o-turno/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 47.7
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 34.5
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado). Campo 9 a 13/09/2026, registro TSE BR-06902/2026. Money Times publicou Lula com 40,6%; CNN Brasil, Exame e Metrópoles trazem 40,5% (valor adotado). Brancos/nulos e indecisos não vieram nos resumos."
+  },
+  {
+    "id": "2026-09-15-cnt-mda-br-presidente-t2-lula-caiado",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "CNT/MDA",
+    "registroTSE": "BR-06902/2026",
+    "contratante": "Confederação Nacional do Transporte (CNT)",
+    "dataInicio": "2026-09-09",
+    "dataFim": "2026-09-13",
+    "publicadoEm": "2026-09-15",
+    "amostra": 2002,
+    "margem": 2.2,
+    "cenario": "estimulada, 2º turno: Lula x Ronaldo Caiado",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/cnt-mda-lula-tem-405-flavio-304-e-cury-6-no-1o-turno/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 46.4
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 37.3
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado). Campo 9 a 13/09/2026, registro TSE BR-06902/2026. Money Times publicou Lula com 40,6%; CNN Brasil, Exame e Metrópoles trazem 40,5% (valor adotado). Brancos/nulos e indecisos não vieram nos resumos."
+  },
+  {
+    "id": "2026-09-15-cnt-mda-br-presidente-t2-lula-renan",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "CNT/MDA",
+    "registroTSE": "BR-06902/2026",
+    "contratante": "Confederação Nacional do Transporte (CNT)",
+    "dataInicio": "2026-09-09",
+    "dataFim": "2026-09-13",
+    "publicadoEm": "2026-09-15",
+    "amostra": 2002,
+    "margem": 2.2,
+    "cenario": "estimulada, 2º turno: Lula x Renan Santos",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/cnt-mda-lula-tem-405-flavio-304-e-cury-6-no-1o-turno/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 47.3
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 33.9
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado). Campo 9 a 13/09/2026, registro TSE BR-06902/2026. Money Times publicou Lula com 40,6%; CNN Brasil, Exame e Metrópoles trazem 40,5% (valor adotado). Brancos/nulos e indecisos não vieram nos resumos."
+  },
+  {
+    "id": "2026-09-15-cnt-mda-br-presidente-t2-lula-cury",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "CNT/MDA",
+    "registroTSE": "BR-06902/2026",
+    "contratante": "Confederação Nacional do Transporte (CNT)",
+    "dataInicio": "2026-09-09",
+    "dataFim": "2026-09-13",
+    "publicadoEm": "2026-09-15",
+    "amostra": 2002,
+    "margem": 2.2,
+    "cenario": "estimulada, 2º turno: Lula x Augusto Cury",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/cnt-mda-lula-tem-405-flavio-304-e-cury-6-no-1o-turno/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 45.3
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 38.4
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado). Campo 9 a 13/09/2026, registro TSE BR-06902/2026. Money Times publicou Lula com 40,6%; CNN Brasil, Exame e Metrópoles trazem 40,5% (valor adotado). Brancos/nulos e indecisos não vieram nos resumos."
+  },
+  {
+    "id": "2026-09-15-indexa-broadcast-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Indexa Pesquisas",
+    "registroTSE": "BR-03482/2026",
+    "contratante": "Agência Estado S.A. (Broadcast)",
+    "dataInicio": "2026-09-10",
+    "dataFim": "2026-09-13",
+    "publicadoEm": "2026-09-15",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Diário do Grande ABC (Estadão Conteúdo)",
+      "url": "https://www.dgabc.com.br/Noticia/4346959/em-cenario-de-1-turno-lula-tem-38-e-flavio-bolsonaro-34-aponta-pesquisa-indexa-broadcast"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 38
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 34
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 6
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 4
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 3
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 1
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado). Entrevistas telefônicas, 10 a 13/09/2026, registro TSE BR-03482/2026 (Revista Oeste). Brancos/nulos e indecisos não vieram nos resumos."
+  },
+  {
+    "id": "2026-09-15-indexa-broadcast-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Indexa Pesquisas",
+    "registroTSE": "BR-03482/2026",
+    "contratante": "Agência Estado S.A. (Broadcast)",
+    "dataInicio": "2026-09-10",
+    "dataFim": "2026-09-13",
+    "publicadoEm": "2026-09-15",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "Jornal de Brasília (Estadão Conteúdo)",
+      "url": "https://jornaldebrasilia.com.br/noticias/politica-e-poder/no-2o-turno-lula-tem-43-ante-42-de-flavio-bolsonaro-em-empate-tecnico-diz-indexa-broadcast/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 43
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 42
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado). Entrevistas telefônicas, 10 a 13/09/2026, registro TSE BR-03482/2026 (Revista Oeste). Brancos/nulos e indecisos não vieram nos resumos."
+  },
+  {
+    "id": "2026-09-15-indexa-broadcast-br-presidente-t2-lula-caiado",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Indexa Pesquisas",
+    "registroTSE": "BR-03482/2026",
+    "contratante": "Agência Estado S.A. (Broadcast)",
+    "dataInicio": "2026-09-10",
+    "dataFim": "2026-09-13",
+    "publicadoEm": "2026-09-15",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, 2º turno: Lula x Ronaldo Caiado",
+    "fonte": {
+      "nome": "Tribuna do Norte (Estadão Conteúdo)",
+      "url": "https://tribunadonorte.com.br/tn-nas-eleicoes-2026/no-2o-turno-lula-tem-43-ante-42-de-flavio-bolsonaro-em-empate-tecnico-diz-indexa-broadcast/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 43
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 39
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado). Entrevistas telefônicas, 10 a 13/09/2026, registro TSE BR-03482/2026 (Revista Oeste). Brancos/nulos e indecisos não vieram nos resumos."
+  },
+  {
+    "id": "2026-09-15-indexa-broadcast-br-presidente-t2-lula-cury",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Indexa Pesquisas",
+    "registroTSE": "BR-03482/2026",
+    "contratante": "Agência Estado S.A. (Broadcast)",
+    "dataInicio": "2026-09-10",
+    "dataFim": "2026-09-13",
+    "publicadoEm": "2026-09-15",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, 2º turno: Lula x Augusto Cury",
+    "fonte": {
+      "nome": "Tribuna do Norte (Estadão Conteúdo)",
+      "url": "https://tribunadonorte.com.br/tn-nas-eleicoes-2026/no-2o-turno-lula-tem-43-ante-42-de-flavio-bolsonaro-em-empate-tecnico-diz-indexa-broadcast/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 41
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 39
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado). Entrevistas telefônicas, 10 a 13/09/2026, registro TSE BR-03482/2026 (Revista Oeste). Brancos/nulos e indecisos não vieram nos resumos."
+  },
+  {
+    "id": "2026-09-15-indexa-broadcast-br-presidente-t2-lula-renan",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Indexa Pesquisas",
+    "registroTSE": "BR-03482/2026",
+    "contratante": "Agência Estado S.A. (Broadcast)",
+    "dataInicio": "2026-09-10",
+    "dataFim": "2026-09-13",
+    "publicadoEm": "2026-09-15",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, 2º turno: Lula x Renan Santos",
+    "fonte": {
+      "nome": "Tribuna do Norte (Estadão Conteúdo)",
+      "url": "https://tribunadonorte.com.br/tn-nas-eleicoes-2026/no-2o-turno-lula-tem-43-ante-42-de-flavio-bolsonaro-em-empate-tecnico-diz-indexa-broadcast/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 45
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 35
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado). Entrevistas telefônicas, 10 a 13/09/2026, registro TSE BR-03482/2026 (Revista Oeste). Brancos/nulos e indecisos não vieram nos resumos."
+  },
+  {
+    "id": "2026-09-15-indexa-broadcast-br-presidente-t2-lula-zema",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Indexa Pesquisas",
+    "registroTSE": "BR-03482/2026",
+    "contratante": "Agência Estado S.A. (Broadcast)",
+    "dataInicio": "2026-09-10",
+    "dataFim": "2026-09-13",
+    "publicadoEm": "2026-09-15",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, 2º turno: Lula x Romeu Zema",
+    "fonte": {
+      "nome": "Tribuna do Norte (Estadão Conteúdo)",
+      "url": "https://tribunadonorte.com.br/tn-nas-eleicoes-2026/no-2o-turno-lula-tem-43-ante-42-de-flavio-bolsonaro-em-empate-tecnico-diz-indexa-broadcast/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 45
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 34
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado). Entrevistas telefônicas, 10 a 13/09/2026, registro TSE BR-03482/2026 (Revista Oeste). Brancos/nulos e indecisos não vieram nos resumos."
+  },
+  {
+    "id": "2026-09-14-realtimebigdata-sp-presidente-t1",
+    "uf": "SP",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-05824/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-09",
+    "dataFim": "2026-09-12",
+    "publicadoEm": "2026-09-14",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno) — amostra estadual de São Paulo",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-39-contra-32-de-lula-no-1o-turno-em-sp-diz-pesquisa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 39
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 32
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 6
+      },
+      {
+        "candidato": "Pablo Marçal",
+        "partido": "PRTB",
+        "pct": 5
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 5
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 3
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 3
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 3
+      },
+      {
+        "candidato": "Não sabe/não respondeu",
+        "partido": null,
+        "pct": 3
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado). Amostra estadual de São Paulo (2.000 eleitores, 9 a 12/09/2026), registro TSE BR-05824/2026 (Poder360). Contratante não informado nos resumos."
+  },
+  {
+    "id": "2026-09-14-realtimebigdata-sp-presidente-t2",
+    "uf": "SP",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-05824/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-09",
+    "dataFim": "2026-09-12",
+    "publicadoEm": "2026-09-14",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno (Flávio Bolsonaro x Lula) — amostra estadual de São Paulo",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/real-time-big-data-flavio-bolsonaro-tem-vantagem-de-7-pontos-sobre-lula-no-maior-colegio-eleitoral/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 50
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 44
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado). Amostra estadual de São Paulo (2.000 eleitores, 9 a 12/09/2026), registro TSE BR-05824/2026 (Poder360). Contratante não informado nos resumos."
+  }
+]
