@@ -38,7 +38,7 @@ Dependências apontam para dentro: `adapters → application → domain`. O dom�
 
 ## Fluxo de dados
 
-1. Routine diária (Claude) roda em sessão nova: pesquisa novas pesquisas (WebSearch; scrapers quando a rede permitir), atualiza `data/*.json`, roda `npm test`, faz commit/push na branch principal.
+1. Routine diária (Claude) acorda a sessão principal (única com credenciais de push): subagentes pesquisam novas pesquisas (WebSearch), gravam `data/research/polls-diario-*.json`, a sessão roda merge + validação + `npm test` e faz commit/push na branch publicada (ver `docs/routine-diaria.md`).
 2. GitHub Actions (`deploy.yml`) constrói com Vite e publica em Pages a cada push.
 3. O site carrega os JSON embutidos no bundle; `meta.json` traz `atualizadoEm`.
 

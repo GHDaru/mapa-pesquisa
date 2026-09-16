@@ -1,17 +1,58 @@
 # Rotina diária de atualização (Claude Routine)
 
-Roda todo dia em sessão nova no repositório `GHDaru/mapa-pesquisa`. Prompt usado na Routine:
+Roda todo dia às 12:00 UTC (09:00 em Brasília). A Routine **acorda a sessão
+principal do projeto** (a mesma sessão do Claude Code que desenvolve o site),
+porque só ela tem credenciais de push para `GHDaru/mapa-pesquisa`. Sessões
+novas criadas pela Routine não recebem o repositório como fonte (o push
+volta 403 pelo proxy e não há conector GitHub) — foi o que travou a
+primeira versão da rotina entre 13 e 15/09.
 
----
-Você atualiza os dados do site Mapa das Pesquisas 2026 (repositório GHDaru/mapa-pesquisa, branch principal). Hoje é a data do sistema.
+## Contrato da execução
 
-1. Leia `docs/data-schema.md`, `docs/architecture.md` e `data/meta.json`.
-2. Busque pesquisas eleitorais publicadas desde `atualizadoEm` (presidente, governador e senador nos 27 estados). Use WebSearch com termos por instituto (Quaest, Datafolha, AtlasIntel, PoderData, Paraná Pesquisas, Real Time Big Data, Futura, Meta) e por estado. Se WebFetch funcionar para poder360.com.br ou pt.wikipedia.org, prefira essas páginas: agregador do Poder360 e as páginas "Pesquisas de opinião para a eleição ... 2026" da Wikipédia.
-3. Para cada pesquisa nova, adicione uma entrada em `data/polls.json` seguindo o esquema, com número de registro no TSE quando disponível e URL exata da fonte. Nunca invente números; sem fonte, não inclua.
-4. Atualize `data/senate-seats.json` se algum senador mudou de partido ou foi substituído por suplente; atualize `data/parties.json` se houver partido novo ou fusão.
-5. Rode `npm ci`, `npm run data:validate` e `npm test`. Corrija erros de formato até passar.
-6. Atualize `data/meta.json` com `atualizadoEm` = hoje e faça commit ("dados: pesquisas até AAAA-MM-DD") e push na branch principal. O deploy no GitHub Pages é automático.
-7. Se nada novo foi encontrado, não faça commit. Termine com um resumo de 5 linhas do que mudou.
----
+Data de hoje (UTC) = `HOJE`. Última atualização = `atualizadoEm` em `data/meta.json`.
 
-Limitação conhecida: o ambiente pode bloquear WebFetch para os sites das fontes; nesse caso a rotina depende dos resumos do WebSearch. Para melhorar, libere no ambiente da Routine os domínios poder360.com.br, pt.wikipedia.org, en.wikipedia.org e divulgacandcontas.tse.jus.br.
+1. **Sincronizar**: `git pull origin claude/mapa-eleitoral-brasil-uhl8ol`.
+2. **Buscar** (3 subagentes em paralelo, só WebSearch — WebFetch às fontes está bloqueado):
+   - presidente (nacional `BR` e presidenciais por estado);
+   - governador (27 UFs);
+   - senador (27 UFs, 2 vagas por estado).
+
+   Cada subagente procura pesquisas **publicadas entre `atualizadoEm` e `HOJE`**
+   que ainda não estejam na base (mesmo instituto + mesma data de campo + mesma
+   UF + mesmo turno = já existe) e grava
+   `data/research/polls-diario-HOJE-<cargo>.json` (array no esquema de
+   `docs/data-schema.md`; `[]` se não houver nada). Regras duras:
+   - nunca inventar números: só entra pesquisa com instituto, percentuais,
+     período de campo ou data de publicação e URL da fonte no resumo da busca;
+   - `registroTSE` quando aparecer; senão `null` com explicação em `observacao`;
+   - id `AAAA-MM-DD-instituto-uf-cargo-tN` pela data de publicação; 2º turno
+     com um registro por confronto (`-t2-lula-flavio`);
+   - siglas de partido como em `data/parties.json`;
+   - conferir o próprio arquivo com `npm run data:merge -- --date HOJE` e
+     `npm run data:validate`, depois desfazer a mesclagem
+     (`git checkout -- data/polls.json data/meta.json data/parties.json data/senate-seats.json data/electorate.json`).
+3. **Mesclar e validar**: `npm run data:merge -- --date HOJE`,
+   `npm run data:validate`, `npm test`. Corrigir só formato dos arquivos novos.
+4. **Publicar**: commit `dados: pesquisas até HOJE` (ou
+   `dados: verificação HOJE, sem pesquisas novas` — `meta.json` muda mesmo
+   assim, para o site mostrar quando foi a última checagem) e
+   `git push -u origin claude/mapa-eleitoral-brasil-uhl8ol` com retry
+   (2/4/8/16 s). O deploy no GitHub Pages é automático.
+5. **Backlog**: pesquisas anteriores à janela que os agentes notarem faltando
+   vão para `docs/backlog-pesquisas.md` (não são buscadas no mesmo dia).
+6. **Resumo** de 5 linhas: novas por cargo, institutos, lacunas, push/deploy.
+
+Regras gerais: nunca editar pesquisas antigas para "passar" na validação;
+nunca incluir identificador de modelo em commits ou arquivos; orçamento
+de ~20 min por execução.
+
+## Arquivos por dia
+
+Os arquivos `data/research/polls-diario-AAAA-MM-DD-*.json` são cumulativos:
+`ingest/merge-research.ts` lê todos os `polls-*.json`, deduplica por `id` e
+reescreve `data/polls.json`. Não é preciso mexer nos blocos antigos.
+
+## Histórico
+
+- 2026-09-13: Routine criada em modo "sessão nova" — nunca conseguiu fazer push (sem credenciais). Desativada em 2026-09-16.
+- 2026-09-16: primeira atualização aplicada manualmente com o contrato acima (pesquisas de 12–16/09) e Routine recriada acordando a sessão principal.
