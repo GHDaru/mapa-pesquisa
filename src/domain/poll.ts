@@ -180,6 +180,8 @@ export function criarPesquisa(dados: DadosPesquisa): Pesquisa {
 
 /** Grafias diferentes do mesmo instituto encontradas nas fontes → nome canônico. */
 const APELIDOS_INSTITUTO: Readonly<Record<string, string>> = {
+  'instituto veritá': 'Instituto Veritá',
+  'veritá': 'Instituto Veritá',
   'instituto anova': 'Anova',
   'anova (pb agora)': 'Anova',
   'anova': 'Anova',

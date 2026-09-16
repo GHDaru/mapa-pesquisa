@@ -99,6 +99,7 @@ describe('normalizarInstituto', () => {
     expect(normalizarInstituto('Instituto Anova')).toBe('Anova');
     expect(normalizarInstituto('Anova (PB Agora)')).toBe('Anova');
     expect(normalizarInstituto('AtlasIntel/MeioNorte')).toBe('AtlasIntel');
+    expect(normalizarInstituto('Veritá')).toBe('Instituto Veritá');
     expect(normalizarInstituto('  Quaest ')).toBe('Quaest');
   });
 });
