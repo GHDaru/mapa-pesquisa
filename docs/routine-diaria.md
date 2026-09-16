@@ -1,11 +1,17 @@
 # Rotina diária de atualização (Claude Routine)
 
-Roda todo dia às 12:00 UTC (09:00 em Brasília). A Routine **acorda a sessão
+Roda todo dia às 21:00 UTC (18:00 em Brasília). A Routine **acorda a sessão
 principal do projeto** (a mesma sessão do Claude Code que desenvolve o site),
 porque só ela tem credenciais de push para `GHDaru/mapa-pesquisa`. Sessões
 novas criadas pela Routine não recebem o repositório como fonte (o push
 volta 403 pelo proxy e não há conector GitHub) — foi o que travou a
 primeira versão da rotina entre 13 e 15/09.
+
+O horário é 18:00 de Brasília, e não de manhã, porque os institutos
+liberam as rodadas ao longo do dia: a execução de 16/09 às 09:15 varreu
+os três cargos e voltou vazia, com a leva seguinte (Datafolha, AtlasIntel,
+Gerp, PoderData) marcada para o dia seguinte. Rodar no fim da tarde pega
+o dia inteiro.
 
 ## Contrato da execução
 
@@ -56,3 +62,4 @@ reescreve `data/polls.json`. Não é preciso mexer nos blocos antigos.
 
 - 2026-09-13: Routine criada em modo "sessão nova" — nunca conseguiu fazer push (sem credenciais). Desativada em 2026-09-16.
 - 2026-09-16: primeira atualização aplicada manualmente com o contrato acima (pesquisas de 12–16/09) e Routine recriada acordando a sessão principal.
+- 2026-09-16 (12:14 UTC): primeira execução automática. Os três agentes voltaram vazios — nada havia sido publicado às 09:15 BRT. Horário movido para 18:00 BRT. Na mesma execução, a auditoria da Quaest de 07/09 foi resolvida (ver `docs/backlog-pesquisas.md`).

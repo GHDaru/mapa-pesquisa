@@ -26,3 +26,27 @@ acrescenta aqui; um agente de "preenchimento de lacunas" limpa a lista.
 - RTBD MS (pub. 10/9); RTBD MT (pub. 3/9, MT-07156/2026); Indexa PA; Anova PB 2ª vaga; Quaest SC (Amin 19, Carlos B. 16, De Toni 12).
 - Sem confirmação de data de divulgação (já incluídas com `publicadoEm: null`): RTBD PA (campo 10–14/9) e Veritá RO (campo 7–12/9).
 - Previstas para 16–18/9 (buscar na próxima rodada): RTBD PR (Record), AtlasIntel PR e PE, Datafolha PI, mais rodadas no PR.
+
+## Anotadas em 2026-09-16 (execução automática das 09:15)
+
+Nenhuma pesquisa publicada em 16/09 até as 09:15 BRT (os três cargos varridos).
+Divulgações confirmadas para os próximos dias, a buscar na rodada das 18:00:
+
+- 17/09: Datafolha nacional (BR-04029/2026, campo 15–17/09), AtlasIntel nacional
+  com recortes PR e PE (BR-06221/2026, campo 11–16/09), Gerp nacional
+  (BR-00535/2026, campo 14–16/09), PoderData nacional, Datafolha PI (campo 14–17/09).
+- 18/09: Datafolha CE. Mais rodadas no PR em 17–18/09.
+- Real Time Big Data PR: a rodada da Record que se esperava para 16/09 não saiu;
+  a última do estado continua sendo a de 11/09.
+
+Lacunas novas notadas (fora da janela, ausentes da base):
+
+- Doxa AP (AP-05423/2026, divulgada 11/09 após liminar do TRE-AP): Furlan 50,8 x
+  Clécio 39,6; amostra e campo só em forma aproximada na fonte, precisa de
+  confirmação — https://selesnafes.com/2026/09/tre-diz-nao-a-furlan-e-libera-pesquisa-que-mostra-avanco-de-clecio/
+- Governador, últimas rodadas por estado ainda ausentes: BA (RTBD 09/09,
+  Jerônimo 45 x ACM Neto 44), CE (Quaest 04/09, RTBD 08/09), GO (Paraná
+  Pesquisas 11/09, Daniel Vilela 45,1), ES (RTBD 09/09), AM (AtlasIntel,
+  Omar Aziz 31), MS (RTBD 09/09), PI (AtlasIntel/MeioNorte 03/09).
+- Senador: Travessia AC (campo 3–5/09), Veritá AM, Paraná Pesquisas em GO, AM,
+  MT, ES, AC e AP.
