@@ -50,3 +50,33 @@ Lacunas novas notadas (fora da janela, ausentes da base):
   Omar Aziz 31), MS (RTBD 09/09), PI (AtlasIntel/MeioNorte 03/09).
 - Senador: Travessia AC (campo 3–5/09), Veritá AM, Paraná Pesquisas em GO, AM,
   MT, ES, AC e AP.
+
+## Anotadas em 2026-09-16 (execução das 18:00)
+
+A varredura do fim do dia achou uma pesquisa nova: DataTrends nacional
+(BR-08691/2026), primeira do instituto para presidente. O calendário do
+TSE noticiado pelo O POVO listava 44 registros liberáveis a partir de
+16/09 com Real Time Big Data, Veritá e DataTrends, mas só a DataTrends
+divulgou números no dia.
+
+Agenda confirmada para os próximos dias:
+
+- **17/09**: Datafolha nacional (BR-04029/2026, campo 15–17/09), AtlasIntel
+  nacional com recortes PR e PE (BR-06221/2026, campo 11–16/09, 5.000
+  entrevistas), Gerp nacional (BR-00535/2026, campo 14–16/09), PoderData
+  nacional, Datafolha PI (PI-03643/2026), AtlasIntel PR (1.800 entrevistas)
+  e mais duas rodadas no PR.
+- **18/09**: Datafolha CE, Paraná Pesquisas PR (1.280 presenciais),
+  Instituto Veritá PR (2.010 por celular, inclui presidente).
+- Real Time Big Data PR (Record, 1.600 entrevistas): estava na agenda de
+  16/09 mas não saiu; pode ter escorregado para 17/09.
+
+### Qualidade de dados
+
+- 17 das 301 pesquisas estão sem `publicadoEm` (só com data de campo). Na
+  tela "Base de pesquisas" elas aparecem com "—" e vão para o fim quando se
+  ordena por Publicada. Confirmar as datas exige abrir as fontes, o que o
+  proxy bloqueia; fica para quando houver acesso.
+- O validador segue apontando a sigla "Democrata" (candidato menor no RJ e
+  no PA) ausente de `data/parties.json`. A sigla foi mantida como divulgada
+  pela fonte; provavelmente é o DC.

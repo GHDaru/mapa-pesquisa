@@ -1,0 +1,128 @@
+[
+  {
+    "id": "2026-09-16-datatrends-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "DataTrends",
+    "registroTSE": "BR-08691/2026",
+    "contratante": "Instituto DataTrends (recursos próprios)",
+    "dataInicio": "2026-09-12",
+    "dataFim": "2026-09-14",
+    "publicadoEm": "2026-09-16",
+    "amostra": 2000,
+    "margem": 2.19,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Correio Braziliense",
+      "url": "https://www.correiobraziliense.com.br/politica/2026/09/7501704-datatrends-aponta-lula-na-lideranca-do-1-turno-e-empates-tecnicos-no-2.html"
+    },
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 39 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 35 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 6 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 4 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 3 },
+      { "candidato": "Romeu Zema", "partido": "Novo", "pct": 1 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 4 },
+      { "candidato": "Não sabe/indecisos", "partido": null, "pct": 8 }
+    ],
+    "observacao": "Primeira pesquisa nacional do Instituto DataTrends para presidente, divulgada em 16/09/2026. Entrevistas telefônicas por sistema automatizado (URA) nas 27 unidades da Federação, eleitores de 16 anos ou mais, campo de 12 a 14/09/2026. Registro TSE BR-08691/2026; pesquisa custeada com recursos próprios do instituto (custo declarado de R$ 25 mil). Dados obtidos via WebSearch (WebFetch não utilizado nesta rodada); números corroborados também por Revista Oeste e Blog do Mário Flávio."
+  },
+  {
+    "id": "2026-09-16-datatrends-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "DataTrends",
+    "registroTSE": "BR-08691/2026",
+    "contratante": "Instituto DataTrends (recursos próprios)",
+    "dataInicio": "2026-09-12",
+    "dataFim": "2026-09-14",
+    "publicadoEm": "2026-09-16",
+    "amostra": 2000,
+    "margem": 2.19,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "Revista Oeste",
+      "url": "https://revistaoeste.com/politica/flavio-bolsonaro-lidera-simulacao-de-2o-turno-contra-lula-indica-datatrends/"
+    },
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 45 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 44 }
+    ],
+    "observacao": "Empate técnico (1 ponto de diferença, margem de 2,19 p.p.). Brancos/nulos e indecisos não vieram detalhados nos resumos das fontes, por isso não constam. Registro TSE BR-08691/2026. Dados obtidos via WebSearch; mesmos números em Correio Braziliense e Folha do Estado."
+  },
+  {
+    "id": "2026-09-16-datatrends-br-presidente-t2-lula-zema",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "DataTrends",
+    "registroTSE": "BR-08691/2026",
+    "contratante": "Instituto DataTrends (recursos próprios)",
+    "dataInicio": "2026-09-12",
+    "dataFim": "2026-09-14",
+    "publicadoEm": "2026-09-16",
+    "amostra": 2000,
+    "margem": 2.19,
+    "cenario": "estimulada, 2º turno: Lula x Romeu Zema",
+    "fonte": {
+      "nome": "Correio Braziliense",
+      "url": "https://www.correiobraziliense.com.br/politica/2026/09/7501704-datatrends-aponta-lula-na-lideranca-do-1-turno-e-empates-tecnicos-no-2.html"
+    },
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 46 },
+      { "candidato": "Romeu Zema", "partido": "Novo", "pct": 39 }
+    ],
+    "observacao": "Brancos/nulos e indecisos não detalhados nas fontes consultadas. Registro TSE BR-08691/2026. Dados obtidos via WebSearch."
+  },
+  {
+    "id": "2026-09-16-datatrends-br-presidente-t2-lula-caiado",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "DataTrends",
+    "registroTSE": "BR-08691/2026",
+    "contratante": "Instituto DataTrends (recursos próprios)",
+    "dataInicio": "2026-09-12",
+    "dataFim": "2026-09-14",
+    "publicadoEm": "2026-09-16",
+    "amostra": 2000,
+    "margem": 2.19,
+    "cenario": "estimulada, 2º turno: Lula x Ronaldo Caiado",
+    "fonte": {
+      "nome": "Correio Braziliense",
+      "url": "https://www.correiobraziliense.com.br/politica/2026/09/7501704-datatrends-aponta-lula-na-lideranca-do-1-turno-e-empates-tecnicos-no-2.html"
+    },
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 44 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 41 }
+    ],
+    "observacao": "Brancos/nulos e indecisos não detalhados nas fontes consultadas. Registro TSE BR-08691/2026. Dados obtidos via WebSearch."
+  },
+  {
+    "id": "2026-09-16-datatrends-br-presidente-t2-lula-cury",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "DataTrends",
+    "registroTSE": "BR-08691/2026",
+    "contratante": "Instituto DataTrends (recursos próprios)",
+    "dataInicio": "2026-09-12",
+    "dataFim": "2026-09-14",
+    "publicadoEm": "2026-09-16",
+    "amostra": 2000,
+    "margem": 2.19,
+    "cenario": "estimulada, 2º turno: Lula x Augusto Cury",
+    "fonte": {
+      "nome": "Correio Braziliense",
+      "url": "https://www.correiobraziliense.com.br/politica/2026/09/7501704-datatrends-aponta-lula-na-lideranca-do-1-turno-e-empates-tecnicos-no-2.html"
+    },
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 42 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 37 }
+    ],
+    "observacao": "Brancos/nulos e indecisos não detalhados nas fontes consultadas. Registro TSE BR-08691/2026. Dados obtidos via WebSearch."
+  }
+]
