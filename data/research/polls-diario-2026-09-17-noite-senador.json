@@ -1,0 +1,30 @@
+[
+  {
+    "id": "2026-09-17-alfa-inteligencia-pr-senador-t1",
+    "uf": "PR",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Alfa Inteligência",
+    "registroTSE": "PR-03640/2026",
+    "contratante": "TMC (Rádio Transamérica de São Paulo Ltda.)",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 1200,
+    "margem": 2.8,
+    "cenario": "estimulada, soma do 1º e do 2º voto (base = 2 votos por eleitor)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/alfa-inteligencia-senador-parana-setembro-2026/"
+    },
+    "resultados": [
+      { "candidato": "Alexandre Curi", "partido": "Republicanos", "pct": 32 },
+      { "candidato": "Deltan Dallagnol", "partido": "Novo", "pct": 30 },
+      { "candidato": "Gleisi Hoffmann", "partido": "PT", "pct": 28 },
+      { "candidato": "Filipe Barros", "partido": "PL", "pct": 27 },
+      { "candidato": "Dr. Rosinha", "partido": "PT", "pct": 14 },
+      { "candidato": "Cristina Graeml", "partido": "PSD", "pct": 13 }
+    ],
+    "observacao": "Rodada Alfa Inteligência/TMC no Paraná divulgada na quinta-feira 17/09/2026 (campo 11–16/09, 1.200 entrevistas por telefone, margem de 2,8 p.p., 95% de confiança), registro TSE PR-03640/2026. Como o eleitor escolhe 2 nomes, o resultado é a soma do 1º e do 2º voto e por isso ultrapassa 100%. Quatro candidatos em empate técnico na liderança pelas duas vagas: Curi 32%, Dallagnol 30%, Gleisi 28% e Filipe Barros 27%. Curi cresceu 7 p.p. em menos de um mês (era 4º no início de agosto). No espontâneo: Dallagnol 19%, Gleisi 11%, Filipe Barros 8%, Curi 8%, Graeml 5%, Dr. Rosinha 4%. Brancos/nulos e indecisos não foram discriminados nos resumos consultados. Também noticiada por Tribuna do Paraná (https://www.tribunapr.com.br/eleicoes/2026/disputa-para-o-senado-no-parana-segue-embolada-curi-lidera-corrida/) e TMC (https://tmc.com.br/politica/pesquisa-tmc-instituto-alfa-alexandre-curi-lidera-corrida-ao-senado-no-parana-aponta-pesquisa-alfa/). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  }
+]

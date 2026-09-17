@@ -148,7 +148,7 @@ export function criarPesquisa(dados: DadosPesquisa): Pesquisa {
       );
     }
     return [{
-      candidato: r.candidato.trim(),
+      candidato: normalizarCandidato(r.candidato),
       partido: normalizarSigla(r.partido),
       pct: r.pct,
     }];
@@ -201,4 +201,32 @@ const APELIDOS_INSTITUTO: Readonly<Record<string, string>> = {
 export function normalizarInstituto(instituto: string): string {
   const limpo = instituto.trim();
   return APELIDOS_INSTITUTO[limpo.toLowerCase()] ?? limpo;
+}
+
+/**
+ * Grafias diferentes do mesmo candidato → nome canônico.
+ *
+ * A agregação em `aggregate.ts` agrupa por `candidato.toLowerCase().trim()`,
+ * então "Lula" e "Luiz Inácio Lula da Silva" virariam dois candidatos e a
+ * média de cada um sairia errada (foi o que quase aconteceu com a Datafolha
+ * de 17/09). Só entram aqui grafias que a imprensa usa de fato.
+ */
+const APELIDOS_CANDIDATO: Readonly<Record<string, string>> = {
+  'lula': 'Luiz Inácio Lula da Silva',
+  'luiz inacio lula da silva': 'Luiz Inácio Lula da Silva',
+  'luiz inácio lula da silva (lula)': 'Luiz Inácio Lula da Silva',
+  'presidente lula': 'Luiz Inácio Lula da Silva',
+  'flávio': 'Flávio Bolsonaro',
+  'flavio bolsonaro': 'Flávio Bolsonaro',
+  'senador flávio bolsonaro': 'Flávio Bolsonaro',
+  'cury': 'Augusto Cury',
+  'caiado': 'Ronaldo Caiado',
+  'zema': 'Romeu Zema',
+  'renan': 'Renan Santos',
+};
+
+/** Normaliza o nome do candidato; mantém o original (aparado) quando não há apelido conhecido. */
+export function normalizarCandidato(candidato: string): string {
+  const limpo = candidato.trim();
+  return APELIDOS_CANDIDATO[limpo.toLowerCase()] ?? limpo;
 }

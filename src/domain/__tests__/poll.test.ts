@@ -93,6 +93,37 @@ describe('domain/poll', () => {
 });
 
 
+describe('normalizarCandidato', () => {
+  it('unifica grafias do mesmo candidato', async () => {
+    const { normalizarCandidato } = await import('../poll.js');
+    expect(normalizarCandidato('Lula')).toBe('Luiz Inácio Lula da Silva');
+    expect(normalizarCandidato('  lula ')).toBe('Luiz Inácio Lula da Silva');
+    expect(normalizarCandidato('Flavio Bolsonaro')).toBe('Flávio Bolsonaro');
+    expect(normalizarCandidato('Cury')).toBe('Augusto Cury');
+  });
+
+  it('mantém nomes desconhecidos como vieram', async () => {
+    const { normalizarCandidato } = await import('../poll.js');
+    expect(normalizarCandidato('  Fulano de Tal ')).toBe('Fulano de Tal');
+    expect(normalizarCandidato('Brancos/nulos')).toBe('Brancos/nulos');
+  });
+
+  it('a pesquisa já nasce com o nome canônico, para a agregação não dividir o candidato', async () => {
+    const { criarPesquisa } = await import('../poll.js');
+    const p = criarPesquisa({
+      id: 'teste-apelido',
+      uf: 'BR',
+      cargo: 'presidente',
+      turno: 1,
+      instituto: 'Teste',
+      dataFim: '2026-09-17',
+      fonte: { nome: 'Fonte', url: 'https://exemplo.org' },
+      resultados: [{ candidato: 'Lula', partido: 'PT', pct: 39 }],
+    });
+    expect(p.resultados[0]?.candidato).toBe('Luiz Inácio Lula da Silva');
+  });
+});
+
 describe('normalizarInstituto', () => {
   it('unifica grafias do mesmo instituto', async () => {
     const { normalizarInstituto } = await import('../poll.js');

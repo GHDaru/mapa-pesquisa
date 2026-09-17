@@ -108,3 +108,34 @@ Divergências registradas nas próprias pesquisas (campo `observacao`):
 - AtlasIntel PR, 2º turno Sandro Alex x Requião Filho: os percentuais divulgados
   somam mais de 100 e não foram registrados.
 - RTBD TO, 2º turno Dorinha x Vicentinho: fontes divergem, não registrado.
+
+## Anotadas em 2026-09-17 (execução das 20:00)
+
+Mais 10 pesquisas na varredura noturna: Datafolha nacional (5 registros) e
+Alfa Inteligência/TMC no PR (governador com três cenários de 2º turno, e
+senador). O dia fechou com 36 pesquisas novas e a base em 338.
+
+**A conferir na próxima rodada:**
+
+- **Datafolha nacional de 17/09** (Lula 39 x Flávio 36; 2º turno 46 x 44):
+  a ficha técnica foi confirmada em busca independente (2.002 entrevistas,
+  campo 15–17/09, BR-04029/2026, Globo e Folha, divulgação às 19h15), mas o
+  índice de busca ainda não trazia os percentuais poucas horas depois. Os
+  números vêm da cobertura citada na entrada. Reconferir.
+- **AtlasIntel PE e PR, parte do Senado**: os questionários testaram os
+  candidatos ao Senado, mas nenhuma matéria publicou os percentuais em duas
+  varreduras. Armadilha registrada pelo agente: buscas devolvem números do
+  Real Time Big Data de 15/09 (PE) e da rodada AtlasIntel de março (PR)
+  colados ao nome da rodada de setembro. Não confundir.
+- **Real Time Big Data PR (Record, 1.600 entrevistas)**: agendada para 16 e
+  para 17/09, não saiu em nenhum dos dois dias.
+
+**Divergências de sigla resolvidas hoje:** Cristina Graeml é PSD (filiada em
+março, chapa do Ratinho Jr.), não União Brasil como traziam matérias antigas.
+Alexandre Curi é Republicanos nas matérias de setembro, PSD na rodada de março.
+
+**Bug encontrado e fechado:** a Datafolha veio com o candidato grafado como
+"Lula", enquanto o resto da base usa "Luiz Inácio Lula da Silva". Como a
+agregação agrupa pelo nome em minúsculas, isso teria partido a média em dois
+candidatos. Foi criada `normalizarCandidato` em `src/domain/poll.ts`, com
+testes, e o arquivo bruto foi alinhado.

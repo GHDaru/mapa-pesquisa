@@ -1,0 +1,192 @@
+[
+  {
+    "id": "2026-09-17-datafolha-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "BR-04029/2026",
+    "contratante": "Folha de S.Paulo e Globo",
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-17",
+    "publicadoEm": "2026-09-17",
+    "amostra": 2002,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "O Tempo",
+      "url": "https://www.otempo.com.br/eleicoes/2026/pesquisas/2026/9/17/no-1-turno-lula-tem-39-ante-36-de-flavio-bolsonaro-e-empate-continua-no-2-turno-diz-pesquisa"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 39
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 36
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 6
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 4
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 3
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 2
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 6
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 3
+      }
+    ],
+    "observacao": "Divulgada às 19h15 (BRT) de 17/09/2026. Entrevistas presenciais com 2.002 eleitores de 16 anos ou mais, nas cinco regiões; confiança de 95%. Em relação à rodada anterior (divulgada em 11/09), Lula manteve 39% e Flávio subiu 1 ponto (de 35% para 36%); brancos/nulos/nenhum ficaram estáveis em 6% e os indecisos caíram de 4% para 3%. Alguns veículos descrevem o campo como 15 e 16/09 (Brasil de Fato); a maioria da cobertura e o próprio release indicam 15 a 17/09. Verificação independente na sessão principal confirmou a ficha técnica (2.002 entrevistas, campo 15–17/09, BR-04029/2026, contratantes Globo e Folha, divulgação às 19h15), mas o índice de busca ainda não trazia os percentuais poucas horas após a divulgação; os números vêm da cobertura citada e devem ser reconferidos na próxima rodada."
+  },
+  {
+    "id": "2026-09-17-datafolha-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Datafolha",
+    "registroTSE": "BR-04029/2026",
+    "contratante": "Folha de S.Paulo e Globo",
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-17",
+    "publicadoEm": "2026-09-17",
+    "amostra": 2002,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno, Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "O Tempo",
+      "url": "https://www.otempo.com.br/eleicoes/2026/pesquisas/2026/9/17/no-1-turno-lula-tem-39-ante-36-de-flavio-bolsonaro-e-empate-continua-no-2-turno-diz-pesquisa"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 46
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 44
+      }
+    ],
+    "observacao": "Empate técnico dentro da margem de 2 pontos; números idênticos aos da rodada anterior (11/09). Brancos/nulos e indecisos deste confronto não foram discriminados nos resumos consultados. Verificação independente na sessão principal confirmou a ficha técnica (2.002 entrevistas, campo 15–17/09, BR-04029/2026, contratantes Globo e Folha, divulgação às 19h15), mas o índice de busca ainda não trazia os percentuais poucas horas após a divulgação; os números vêm da cobertura citada e devem ser reconferidos na próxima rodada."
+  },
+  {
+    "id": "2026-09-17-datafolha-br-presidente-t2-lula-caiado",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Datafolha",
+    "registroTSE": "BR-04029/2026",
+    "contratante": "Folha de S.Paulo e Globo",
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-17",
+    "publicadoEm": "2026-09-17",
+    "amostra": 2002,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno, Lula x Ronaldo Caiado",
+    "fonte": {
+      "nome": "O Tempo",
+      "url": "https://www.otempo.com.br/eleicoes/2026/pesquisas/2026/9/17/no-1-turno-lula-tem-39-ante-36-de-flavio-bolsonaro-e-empate-continua-no-2-turno-diz-pesquisa"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 46
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 41
+      }
+    ],
+    "observacao": "Cenário secundário de 2º turno. Números corroborados por Exame e Metrópoles na cobertura da mesma divulgação; um resumo isolado trouxe Caiado com 42%, valor não confirmado pelas demais fontes. Brancos/nulos e indecisos não discriminados. Verificação independente na sessão principal confirmou a ficha técnica (2.002 entrevistas, campo 15–17/09, BR-04029/2026, contratantes Globo e Folha, divulgação às 19h15), mas o índice de busca ainda não trazia os percentuais poucas horas após a divulgação; os números vêm da cobertura citada e devem ser reconferidos na próxima rodada."
+  },
+  {
+    "id": "2026-09-17-datafolha-br-presidente-t2-lula-renan",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Datafolha",
+    "registroTSE": "BR-04029/2026",
+    "contratante": "Folha de S.Paulo e Globo",
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-17",
+    "publicadoEm": "2026-09-17",
+    "amostra": 2002,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno, Lula x Renan Santos",
+    "fonte": {
+      "nome": "O Tempo",
+      "url": "https://www.otempo.com.br/eleicoes/2026/pesquisas/2026/9/17/no-1-turno-lula-tem-39-ante-36-de-flavio-bolsonaro-e-empate-continua-no-2-turno-diz-pesquisa"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 47
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 38
+      }
+    ],
+    "observacao": "Cenário secundário de 2º turno, com números consistentes em todas as coberturas consultadas da mesma divulgação. Brancos/nulos e indecisos não discriminados. Verificação independente na sessão principal confirmou a ficha técnica (2.002 entrevistas, campo 15–17/09, BR-04029/2026, contratantes Globo e Folha, divulgação às 19h15), mas o índice de busca ainda não trazia os percentuais poucas horas após a divulgação; os números vêm da cobertura citada e devem ser reconferidos na próxima rodada."
+  },
+  {
+    "id": "2026-09-17-datafolha-br-presidente-t2-lula-zema",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Datafolha",
+    "registroTSE": "BR-04029/2026",
+    "contratante": "Folha de S.Paulo e Globo",
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-17",
+    "publicadoEm": "2026-09-17",
+    "amostra": 2002,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno, Lula x Romeu Zema",
+    "fonte": {
+      "nome": "O Tempo",
+      "url": "https://www.otempo.com.br/eleicoes/2026/pesquisas/2026/9/17/no-1-turno-lula-tem-39-ante-36-de-flavio-bolsonaro-e-empate-continua-no-2-turno-diz-pesquisa"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 48
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 39
+      }
+    ],
+    "observacao": "Cenário secundário de 2º turno. Números corroborados por Exame e Metrópoles; um resumo isolado trouxe Lula com 49%, valor não confirmado pelas demais fontes. Brancos/nulos e indecisos não discriminados. Verificação independente na sessão principal confirmou a ficha técnica (2.002 entrevistas, campo 15–17/09, BR-04029/2026, contratantes Globo e Folha, divulgação às 19h15), mas o índice de busca ainda não trazia os percentuais poucas horas após a divulgação; os números vêm da cobertura citada e devem ser reconferidos na próxima rodada."
+  }
+]

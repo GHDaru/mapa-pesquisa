@@ -1,0 +1,106 @@
+[
+  {
+    "id": "2026-09-17-alfa-inteligencia-pr-governador-t1",
+    "uf": "PR",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Alfa Inteligência",
+    "registroTSE": "PR-03640/2026",
+    "contratante": "TMC (Rádio Transamérica de São Paulo Ltda.)",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 1200,
+    "margem": 2.8,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/alfa-inteligencia-governador-parana-setembro-2026-2/"
+    },
+    "resultados": [
+      { "candidato": "Sergio Moro", "partido": "PL", "pct": 39 },
+      { "candidato": "Sandro Alex", "partido": "PSD", "pct": 28 },
+      { "candidato": "Requião Filho", "partido": "PDT", "pct": 23 },
+      { "candidato": "Luiz França", "partido": "Missão", "pct": 2 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 2 },
+      { "candidato": "Não sabe", "partido": null, "pct": 6 }
+    ],
+    "observacao": "Rodada Alfa Inteligência/TMC no Paraná divulgada na quinta-feira 17/09/2026 (campo 11–16/09, 1.200 entrevistas por telefone, margem de 2,8 p.p., 95% de confiança), registro TSE PR-03640/2026. Percentuais somam 100. No espontâneo: Moro 28%, Sandro Alex 17%, Requião Filho 15%. Sandro Alex subiu de 26% para 28% e Requião Filho de 20% para 23% em relação à rodada Alfa anterior. Avaliação do governo Ratinho Junior: 76% aprovam, 21% desaprovam; 64% dizem ter convicção do voto, 18% podem mudar e 15% ainda não decidiram. Também noticiada por Folha de Londrina (https://www.folhadelondrina.com.br/politica/sandro-alex-avanca-em-nova-pesquisa-e-chega-a-28-no-parana-3327770e.html) e TMC (https://tmc.com.br/politica/alfa-inteligencia-moro-lidera-no-pr-com-39-contra-28-de-sandro/). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-17-alfa-inteligencia-pr-governador-t2-moro-sandro",
+    "uf": "PR",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Alfa Inteligência",
+    "registroTSE": "PR-03640/2026",
+    "contratante": "TMC (Rádio Transamérica de São Paulo Ltda.)",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 1200,
+    "margem": 2.8,
+    "cenario": "estimulada, 2º turno, Moro x Sandro Alex",
+    "fonte": {
+      "nome": "Impacto PR",
+      "url": "https://impactopr.com.br/pesquisa-alfa-tmc-sandro-alex-chega-a-28-e-empata-com-moro-em-eventual-segundo-turno/"
+    },
+    "resultados": [
+      { "candidato": "Sergio Moro", "partido": "PL", "pct": 47 },
+      { "candidato": "Sandro Alex", "partido": "PSD", "pct": 43 }
+    ],
+    "observacao": "Cenário de 2º turno da mesma rodada Alfa Inteligência/TMC (PR-03640/2026), divulgada em 17/09/2026. Diferença de 4 p.p. configura empate técnico dentro da margem de 2,8 p.p. Brancos/nulos e indecisos (~10 p.p.) não foram discriminados nos resumos consultados para este cenário específico — por isso não foram incluídos. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-17-alfa-inteligencia-pr-governador-t2-moro-requiao",
+    "uf": "PR",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Alfa Inteligência",
+    "registroTSE": "PR-03640/2026",
+    "contratante": "TMC (Rádio Transamérica de São Paulo Ltda.)",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 1200,
+    "margem": 2.8,
+    "cenario": "estimulada, 2º turno, Moro x Requião Filho",
+    "fonte": {
+      "nome": "Impacto PR",
+      "url": "https://impactopr.com.br/pesquisa-alfa-tmc-sandro-alex-chega-a-28-e-empata-com-moro-em-eventual-segundo-turno/"
+    },
+    "resultados": [
+      { "candidato": "Sergio Moro", "partido": "PL", "pct": 53 },
+      { "candidato": "Requião Filho", "partido": "PDT", "pct": 38 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 6 },
+      { "candidato": "Não sabe", "partido": null, "pct": 3 }
+    ],
+    "observacao": "Cenário de 2º turno da mesma rodada Alfa Inteligência/TMC (PR-03640/2026), divulgada em 17/09/2026. Percentuais somam 100. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-17-alfa-inteligencia-pr-governador-t2-sandro-requiao",
+    "uf": "PR",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Alfa Inteligência",
+    "registroTSE": "PR-03640/2026",
+    "contratante": "TMC (Rádio Transamérica de São Paulo Ltda.)",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 1200,
+    "margem": 2.8,
+    "cenario": "estimulada, 2º turno, Sandro Alex x Requião Filho",
+    "fonte": {
+      "nome": "Impacto PR",
+      "url": "https://impactopr.com.br/pesquisa-alfa-tmc-sandro-alex-chega-a-28-e-empata-com-moro-em-eventual-segundo-turno/"
+    },
+    "resultados": [
+      { "candidato": "Sandro Alex", "partido": "PSD", "pct": 47 },
+      { "candidato": "Requião Filho", "partido": "PDT", "pct": 35 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 12 },
+      { "candidato": "Não sabe", "partido": null, "pct": 6 }
+    ],
+    "observacao": "Cenário de 2º turno da mesma rodada Alfa Inteligência/TMC (PR-03640/2026), divulgada em 17/09/2026. Percentuais somam 100. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  }
+]
