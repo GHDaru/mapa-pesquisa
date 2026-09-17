@@ -67,5 +67,6 @@ reescreve `data/polls.json`. Não é preciso mexer nos blocos antigos.
 
 - 2026-09-13: Routine criada em modo "sessão nova" — nunca conseguiu fazer push (sem credenciais). Desativada em 2026-09-16.
 - 2026-09-16: primeira atualização aplicada manualmente com o contrato acima (pesquisas de 12–16/09) e Routine recriada acordando a sessão principal.
-- 2026-09-17: dia cheio (26 pesquisas novas: AtlasIntel nacional/PR/PE, Gerp, PoderData, Datafolha PI, Neokemp PR, RTBD SC e TO, DataTempo, F5 Atualiza Dados). Horário movido de 18:00 para 20:00 BRT porque o Datafolha nacional divulga às 19:15. Documentada a corrida entre o `git checkout` dos subagentes e a mesclagem da sessão principal.
 - 2026-09-16 (12:14 UTC): primeira execução automática. Os três agentes voltaram vazios — nada havia sido publicado às 09:15 BRT. Horário movido para 18:00 BRT. Na mesma execução, a auditoria da Quaest de 07/09 foi resolvida (ver `docs/backlog-pesquisas.md`).
+- 2026-09-16 (21:04 UTC): execução das 18:00. Uma pesquisa nova, a DataTrends nacional (primeira do instituto para presidente).
+- 2026-09-17: dia cheio (26 pesquisas novas: AtlasIntel nacional/PR/PE, Gerp, PoderData, Datafolha PI, Neokemp PR, RTBD SC e TO, DataTempo, F5 Atualiza Dados). Horário movido de 18:00 para 20:00 BRT porque o Datafolha nacional divulga às 19:15. Documentada a corrida entre o `git checkout` dos subagentes e a mesclagem da sessão principal.
