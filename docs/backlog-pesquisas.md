@@ -80,3 +80,31 @@ Agenda confirmada para os próximos dias:
 - O validador segue apontando a sigla "Democrata" (candidato menor no RJ e
   no PA) ausente de `data/parties.json`. A sigla foi mantida como divulgada
   pela fonte; provavelmente é o DC.
+
+## Anotadas em 2026-09-17
+
+Dia cheio: 26 pesquisas novas (AtlasIntel nacional, PR e PE; Gerp; PoderData;
+Datafolha PI; Neokemp PR; Real Time Big Data SC e TO; F5 Atualiza Dados MG).
+
+Pendências criadas hoje:
+
+- **Datafolha nacional** (BR-04029/2026, 2.002 entrevistas, campo 15–17/09):
+  divulgação às 19h15 de Brasília, depois da varredura. Entra na rodada de 18/09.
+- **AtlasIntel PE, parte do Senado**: a rodada de 17/09 testou 12 candidatos com
+  dois votos, mas nenhuma matéria publicou os percentuais do Senado. Tentar de novo.
+- **Real Time Big Data PR (Record, 1.600 entrevistas)**: escorregou de 16 para 17
+  e não saiu nos dois dias. Continuar acompanhando.
+- **Instituto Veritá PR** (PR-03910/2026, 2.010 por celular, campo 06–11/09,
+  inclui presidente): prevista para 18/09. Atenção: houve suspensão judicial de
+  pesquisas do instituto em agosto por questionamento de metodologia.
+- Previstas para 18/09: Datafolha CE, Paraná Pesquisas PR (1.280 presenciais).
+  Quaest PB para 22/09.
+
+Divergências registradas nas próprias pesquisas (campo `observacao`):
+
+- Datafolha PI: campo 14–16/09 pela maioria das fontes, 14–17/09 pelo O Povo.
+- Neokemp PR: Requião Filho com 24,5 na aRede e 24,4 no Bem Paraná.
+- Gerp: o 1º turno soma 97; os demais nomes testados não foram discriminados.
+- AtlasIntel PR, 2º turno Sandro Alex x Requião Filho: os percentuais divulgados
+  somam mais de 100 e não foram registrados.
+- RTBD TO, 2º turno Dorinha x Vicentinho: fontes divergem, não registrado.

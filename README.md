@@ -29,7 +29,7 @@ DDD + hexagonal, descrita em `docs/architecture.md`: `src/domain` (puro), `src/a
 
 ## Atualização diária
 
-Uma Routine do Claude acorda a sessão principal do projeto todos os dias às 18:00 (Brasília): três subagentes buscam pesquisas novas (presidente, governador, senador), gravam `data/research/polls-diario-AAAA-MM-DD-*.json`, e a sessão roda merge, validação e testes e faz push. Contrato em `docs/routine-diaria.md`; pendências em `docs/backlog-pesquisas.md`.
+Uma Routine do Claude acorda a sessão principal do projeto todos os dias às 20:00 (Brasília): três subagentes buscam pesquisas novas (presidente, governador, senador), gravam `data/research/polls-diario-AAAA-MM-DD-*.json`, e a sessão roda merge, validação e testes e faz push. Contrato em `docs/routine-diaria.md`; pendências em `docs/backlog-pesquisas.md`.
 
 ## Créditos
 

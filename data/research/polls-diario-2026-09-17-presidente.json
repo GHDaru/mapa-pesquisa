@@ -1,0 +1,374 @@
+[
+  {
+    "id": "2026-09-17-atlasintel-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-06221/2026",
+    "contratante": "Bloomberg",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 5018,
+    "margem": 1,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "Terra",
+      "url": "https://www.terra.com.br/noticias/eleicoes/pesquisas/pesquisa-atlasbloomberg-lula-tem-441-das-intencoes-de-voto-no-1-turno-flavio-bolsonaro-417,a408e2c8ddfd8ca627c28472025f2424zhmx7ev7.html"
+    },
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 44.1 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 41.7 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 5.1 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 3.5 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 1.7 },
+      { "candidato": "Romeu Zema", "partido": "Novo", "pct": 1.1 },
+      { "candidato": "Samara Martins", "partido": "UP", "pct": 0.7 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 1.6 },
+      { "candidato": "Não sabe", "partido": null, "pct": 0.5 }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado pelo proxy). Recrutamento digital aleatório, 5.018 entrevistados de 16 anos ou mais, 11 a 16/09/2026. Registro TSE conforme agenda interna (BR-06221/2026), não confirmado nos resumos noticiosos."
+  },
+  {
+    "id": "2026-09-17-atlasintel-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-06221/2026",
+    "contratante": "Bloomberg",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 5018,
+    "margem": 1,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-472-contra-468-de-lula-no-2o-turno-diz-pesquisa/"
+    },
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 47.2 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 46.8 },
+      { "candidato": "Brancos/nulos/não sabe", "partido": null, "pct": 6 }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado pelo proxy). Empate técnico dentro da margem de 1 p.p. As fontes trazem brancos, nulos e indecisos agregados em 6%; por isso a linha única com partido null. Registro TSE conforme agenda interna."
+  },
+  {
+    "id": "2026-09-17-atlasintel-br-presidente-t2-lula-zema",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-06221/2026",
+    "contratante": "Bloomberg",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 5018,
+    "margem": 1,
+    "cenario": "estimulada, 2º turno: Lula x Romeu Zema",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-presidente-setembro-2026-2/"
+    },
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 46.3 },
+      { "candidato": "Romeu Zema", "partido": "Novo", "pct": 43.7 }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado pelo proxy). Brancos/nulos e indecisos deste confronto não foram informados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-17-atlasintel-br-presidente-t2-lula-caiado",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-06221/2026",
+    "contratante": "Bloomberg",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 5018,
+    "margem": 1,
+    "cenario": "estimulada, 2º turno: Lula x Ronaldo Caiado",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-presidente-setembro-2026-2/"
+    },
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 46 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 41.7 }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado pelo proxy). Brancos/nulos e indecisos deste confronto não foram informados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-17-atlasintel-br-presidente-t2-lula-cury",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-06221/2026",
+    "contratante": "Bloomberg",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 5018,
+    "margem": 1,
+    "cenario": "estimulada, 2º turno: Lula x Augusto Cury",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-presidente-setembro-2026-2/"
+    },
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 45.6 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 37.8 }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado pelo proxy). Brancos/nulos e indecisos deste confronto não foram informados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-17-atlasintel-br-presidente-t2-lula-renan",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-06221/2026",
+    "contratante": "Bloomberg",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 5018,
+    "margem": 1,
+    "cenario": "estimulada, 2º turno: Lula x Renan Santos",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-presidente-setembro-2026-2/"
+    },
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 46.1 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 29.7 }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado pelo proxy). Brancos/nulos e indecisos deste confronto não foram informados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-17-atlasintel-pr-presidente-t1",
+    "uf": "PR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": null,
+    "contratante": "Bloomberg",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 1794,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno — recorte Paraná",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-537-e-lula-tem-340-no-1o-turno-no-pr-diz-pesquisa/"
+    },
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 53.7 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 34 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 4.1 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 2.2 },
+      { "candidato": "Romeu Zema", "partido": "Novo", "pct": 1.8 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 1.7 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 0.4 },
+      { "candidato": "Não sabe", "partido": null, "pct": 1.8 }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado pelo proxy). Registro TSE do recorte estadual não localizado nos resumos noticiosos. 1.794 entrevistas no Paraná, 11 a 16/09/2026."
+  },
+  {
+    "id": "2026-09-17-atlasintel-pr-presidente-t2-lula-flavio",
+    "uf": "PR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": null,
+    "contratante": "Bloomberg",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 1794,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula — recorte Paraná",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-537-e-lula-tem-340-no-1o-turno-no-pr-diz-pesquisa/"
+    },
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 57.5 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 38.8 }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado pelo proxy). Registro TSE do recorte estadual não localizado. Brancos/nulos e indecisos deste confronto não foram informados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-17-atlasintel-pe-presidente-t1",
+    "uf": "PE",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-00357/2026",
+    "contratante": "Bloomberg",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 1793,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno — recorte Pernambuco",
+    "fonte": {
+      "nome": "Diario de Pernambuco",
+      "url": "https://www.diariodepernambuco.com.br/politica/2026/09/11724172-atlas-lula-lidera-com-549-contra-327-de-flavio-no-1-turno-em-pernambuco.html"
+    },
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 54.9 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 32.7 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 3.7 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 3.5 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 0.7 },
+      { "candidato": "Romeu Zema", "partido": "Novo", "pct": 0.3 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 2 },
+      { "candidato": "Não sabe", "partido": null, "pct": 1.8 }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado pelo proxy). 1.793 entrevistas em Pernambuco, 11 a 16/09/2026. Registro TSE BR-00357/2026 citado pelo Poder360 para o recorte estadual."
+  },
+  {
+    "id": "2026-09-17-atlasintel-pe-presidente-t2-lula-flavio",
+    "uf": "PE",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-00357/2026",
+    "contratante": "Bloomberg",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 1793,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — recorte Pernambuco",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-tem-575-contra-362-de-flavio-no-2o-turno-em-pe-diz-pesquisa/"
+    },
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 57.5 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 36.2 },
+      { "candidato": "Brancos/nulos/não sabe", "partido": null, "pct": 6.3 }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado pelo proxy). Brancos, nulos e indecisos vêm agregados em 6,3% nas fontes; por isso a linha única com partido null."
+  },
+  {
+    "id": "2026-09-17-gerp-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Gerp",
+    "registroTSE": "BR-00535/2026",
+    "contratante": "Gerp Marketing",
+    "dataInicio": "2026-09-14",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 2400,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno — votos totais",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/pesquisa-gerp-flavio-bolsonaro-tem-40-e-lula-37-no-1o-turno/"
+    },
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 40 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 37 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 7 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 3 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 2 },
+      { "candidato": "Brancos/nulos/nenhum", "partido": null, "pct": 4 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 4 }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado pelo proxy). Entrevistas por telefone, 14 a 16/09/2026. A Gerp divulgou dois cenários: votos válidos (Flávio 44% x Lula 40%) e votos totais, registrado aqui. A soma dos itens divulgados fica em 97% — os resumos não trazem os demais nomes testados."
+  },
+  {
+    "id": "2026-09-17-gerp-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Gerp",
+    "registroTSE": "BR-00535/2026",
+    "contratante": "Gerp Marketing",
+    "dataInicio": "2026-09-14",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 2400,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-50-contra-43-de-lula-no-2o-turno-diz-gerp/"
+    },
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 50 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 43 }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado pelo proxy). Vantagem de 7 pontos, fora da margem de erro. Brancos/nulos e indecisos deste confronto não foram informados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-17-poderdata-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "PoderData",
+    "registroTSE": "BR-00360/2026",
+    "contratante": "Poder360 e Aya",
+    "dataInicio": "2026-09-13",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 3000,
+    "margem": 1.8,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poderdata/poderdata-aya-lula-tem-37-contra-36-de-flavio-no-1o-turno/"
+    },
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 37 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 36 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 8 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 3 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 3 },
+      { "candidato": "Hertz Dias", "partido": "PSTU", "pct": 2 },
+      { "candidato": "Romeu Zema", "partido": "Novo", "pct": 1 },
+      { "candidato": "Rui Costa Pimenta", "partido": "PCO", "pct": 1 },
+      { "candidato": "Samara Martins", "partido": "UP", "pct": 1 },
+      { "candidato": "Clariana Barão", "partido": "DC", "pct": 1 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 4 },
+      { "candidato": "Não sabe", "partido": null, "pct": 2 }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado pelo proxy). 3.000 entrevistas por telefone (celular e fixo) em 623 municípios dos 27 estados, 13 a 16/09/2026. Wilson Grassi (Democrata) e Edmilson Costa (PCB) não pontuaram. Registro TSE BR-00360/2026 conforme resumo do Poder360."
+  },
+  {
+    "id": "2026-09-17-poderdata-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "PoderData",
+    "registroTSE": "BR-00360/2026",
+    "contratante": "Poder360 e Aya",
+    "dataInicio": "2026-09-13",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 3000,
+    "margem": 1.8,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poderdata/flavio-tem-46-e-lula-44-no-2o-turno-diz-poderdata-aya/"
+    },
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 46 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 44 }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado pelo proxy). Empate técnico dentro da margem. Brancos/nulos e indecisos deste confronto não foram informados nos resumos consultados."
+  }
+]

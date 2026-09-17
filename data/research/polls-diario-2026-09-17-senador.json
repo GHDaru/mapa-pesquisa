@@ -1,0 +1,105 @@
+[
+  {
+    "id": "2026-09-17-datafolha-pi-senador-t1",
+    "uf": "PI",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "PI-03643/2026",
+    "contratante": "TV Rádio Clube de Teresina S.A.",
+    "dataInicio": "2026-09-14",
+    "dataFim": "2026-09-17",
+    "publicadoEm": "2026-09-17",
+    "amostra": 826,
+    "margem": 3.0,
+    "cenario": "estimulada, total de menções sobre o conjunto dos 2 votos (base = 2 votos por eleitor)",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/datafolha-ciro-e-castro-tem-17-cada-e-julio-tem-15-ao-senado-no-piaui"
+    },
+    "resultados": [
+      { "candidato": "Ciro Nogueira", "partido": "PP", "pct": 17.0 },
+      { "candidato": "Marcelo Castro", "partido": "MDB", "pct": 17.0 },
+      { "candidato": "Júlio César", "partido": "PSD", "pct": 15.0 }
+    ],
+    "observacao": "Rodada do Datafolha no Piauí divulgada em 17/09/2026 (campo 14-17/09, 826 entrevistas, margem de 3 p.p., 95% de confiança); registro PI-03643/2026 (também registrada em âmbito nacional como BR-09377/2026). Como o eleitor escolhe 2 nomes, a imprensa divulgou o total de menções sobre o conjunto dos dois votos: Ciro 17%, Marcelo 17%, Júlio César 15% — empate técnico. Desdobramento divulgado: 1º voto — Ciro 24%, Marcelo 19%, Júlio César 14%; 2º voto — Júlio César 16%, Marcelo 15%, Ciro 11%. No espontâneo, 64% não souberam responder. Lista limitada aos três nomes com percentuais divulgados pela imprensa; brancos/nulos e demais candidatos não foram publicados nos resumos disponíveis. Também noticiada por O Povo (https://www.opovo.com.br/noticias/politica/eleicoes/2026/09/17/datafolha-senado-piaui-tem-empate-entre-ciro-marcelo-e-julio.html) e Conecta Piauí. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-17-neokemp-pr-senador-t1",
+    "uf": "PR",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Neokemp",
+    "registroTSE": "PR-08899/2026",
+    "contratante": "OCP News",
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 2016,
+    "margem": 2.2,
+    "cenario": "estimulada, soma do 1º e 2º voto (2 vagas; percentuais somam mais de 100 pois o eleitor escolhe 2 nomes)",
+    "fonte": {
+      "nome": "aRede",
+      "url": "https://arede.info/eleicoes/672285/deltan-tem-488-filipe-314-gleisi-285-e-curi-282-de-intencao-de-votos-aponta-neokemp"
+    },
+    "resultados": [
+      { "candidato": "Deltan Dallagnol", "partido": "Novo", "pct": 48.8 },
+      { "candidato": "Filipe Barros", "partido": "PL", "pct": 31.4 },
+      { "candidato": "Gleisi Hoffmann", "partido": "PT", "pct": 28.5 },
+      { "candidato": "Alexandre Curi", "partido": "Republicanos", "pct": 28.2 }
+    ],
+    "observacao": "Pesquisa Neokemp/OCP News divulgada em 17/09/2026; campo 15-16/09 com 2.016 eleitores em 266 municípios do Paraná, margem de 2,2 p.p. e 95% de confiança; registro PR-08899/2026 (levantamento conjunto de governador e senador). Percentuais são a soma do 1º e 2º voto. Desdobramento divulgado: 1º voto — Deltan 34,3%, Gleisi 18,6%, Alexandre Curi 15,9%; 2º voto (sem repetir o nome já escolhido) — Filipe Barros 23,2%, Deltan 14,5%, Cristina Graeml 13,2%, Alexandre Curi 12,3%. Cristina Graeml não foi incluída na lista porque o consolidado (1º+2º voto) dela não foi divulgado nos resumos disponíveis. Também noticiada por Gazeta do Povo (https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/neokemp-senado-parana-setembro-2026-2/), RIC e OCP News. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-17-real-time-big-data-sc-senador-t1",
+    "uf": "SC",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "SC-00866/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-12",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, consolidado do 1º e 2º voto (2 vagas)",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-carol-de-toni-tem-24-ao-senado-em-sc-espiridiao-e-carlos-20/"
+    },
+    "resultados": [
+      { "candidato": "Carol De Toni", "partido": "PL", "pct": 24.0 },
+      { "candidato": "Esperidião Amin", "partido": "PP", "pct": 20.0 },
+      { "candidato": "Carlos Bolsonaro", "partido": "PL", "pct": 20.0 },
+      { "candidato": "Décio Lima", "partido": "PT", "pct": 11.0 },
+      { "candidato": "Afrânio Boppré", "partido": "PSOL", "pct": 10.0 }
+    ],
+    "observacao": "Divulgada em 17/09/2026; campo 12-16/09 com 1.600 entrevistas, margem de 2 p.p. e registro SC-00866/2026. Carol De Toni, Esperidião Amin e Carlos Bolsonaro estão em empate técnico; Décio Lima e Afrânio Boppré também empatam entre si. Contratante não confirmado nos resumos de busca (as rodadas estaduais do Real Time Big Data em setembro/2026 vêm sendo contratadas pela Rede Record de Televisão, mas isso não foi explicitado para SC) — por isso `contratante: null`. Lista limitada aos nomes com percentuais divulgados pela imprensa. Também noticiada por Exame, InfoMoney e Gazeta do Povo (https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-senador-santa-catarina-setembro-2026/). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-16-f5-atualiza-dados-mg-senador-t1",
+    "uf": "MG",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "F5 Atualiza Dados",
+    "registroTSE": "MG-09035/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-09",
+    "dataFim": "2026-09-12",
+    "publicadoEm": "2026-09-16",
+    "amostra": 1560,
+    "margem": null,
+    "cenario": "estimulada",
+    "fonte": {
+      "nome": "Correio Braziliense",
+      "url": "https://1news.correiobraziliense.com.br/noticia/884753/noticias/pesquisa-para-o-senado-em-minas-gerais-aponta-carlos-viana-na-lideranca-com-14-16092026"
+    },
+    "resultados": [
+      { "candidato": "Carlos Viana", "partido": "PSD", "pct": 14.0 },
+      { "candidato": "Marília Campos", "partido": "PT", "pct": 12.0 },
+      { "candidato": "Domingos Sávio", "partido": "PL", "pct": 12.0 }
+    ],
+    "observacao": "Publicada em 16/09/2026 (não constava do arquivo diário de 16/09); campo 09-12/09 com 1.560 eleitores em todo o estado; registro MG-09035/2026. Carlos Viana lidera com 14%, com Marília Campos e Domingos Sávio empatados em 12%. Aécio Neves (PSDB) foi citado como quarto colocado, mas seu percentual não foi divulgado nos resumos disponíveis, por isso não entrou na lista. Margem de erro não informada nas matérias localizadas. Contratante não identificado. Partido de Carlos Viana registrado como PSD, em linha com o restante da base (há divergências de fonte entre PSD e Podemos). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  }
+]

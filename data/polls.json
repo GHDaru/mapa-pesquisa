@@ -1,5 +1,1053 @@
 [
   {
+    "id": "2026-09-17-datafolha-pi-senador-t1",
+    "uf": "PI",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "PI-03643/2026",
+    "contratante": "TV Rádio Clube de Teresina S.A.",
+    "dataInicio": "2026-09-14",
+    "dataFim": "2026-09-17",
+    "publicadoEm": "2026-09-17",
+    "amostra": 826,
+    "margem": 3,
+    "cenario": "estimulada, total de menções sobre o conjunto dos 2 votos (base = 2 votos por eleitor)",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/datafolha-ciro-e-castro-tem-17-cada-e-julio-tem-15-ao-senado-no-piaui"
+    },
+    "resultados": [
+      {
+        "candidato": "Ciro Nogueira",
+        "partido": "PP",
+        "pct": 17
+      },
+      {
+        "candidato": "Marcelo Castro",
+        "partido": "MDB",
+        "pct": 17
+      },
+      {
+        "candidato": "Júlio César",
+        "partido": "PSD",
+        "pct": 15
+      }
+    ],
+    "observacao": "Rodada do Datafolha no Piauí divulgada em 17/09/2026 (campo 14-17/09, 826 entrevistas, margem de 3 p.p., 95% de confiança); registro PI-03643/2026 (também registrada em âmbito nacional como BR-09377/2026). Como o eleitor escolhe 2 nomes, a imprensa divulgou o total de menções sobre o conjunto dos dois votos: Ciro 17%, Marcelo 17%, Júlio César 15% — empate técnico. Desdobramento divulgado: 1º voto — Ciro 24%, Marcelo 19%, Júlio César 14%; 2º voto — Júlio César 16%, Marcelo 15%, Ciro 11%. No espontâneo, 64% não souberam responder. Lista limitada aos três nomes com percentuais divulgados pela imprensa; brancos/nulos e demais candidatos não foram publicados nos resumos disponíveis. Também noticiada por O Povo (https://www.opovo.com.br/noticias/politica/eleicoes/2026/09/17/datafolha-senado-piaui-tem-empate-entre-ciro-marcelo-e-julio.html) e Conecta Piauí. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-17-datafolha-pi-governador-t1",
+    "uf": "PI",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "PI-03643/2026",
+    "contratante": "TV Rádio Clube de Teresina S/A",
+    "dataInicio": "2026-09-14",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 826,
+    "margem": 3,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/datafolha-rafael-fonteles-pt-lidera-corrida-ao-governo-do-piaui-com-55"
+    },
+    "resultados": [
+      {
+        "candidato": "Rafael Fonteles",
+        "partido": "PT",
+        "pct": 55
+      },
+      {
+        "candidato": "Joel Rodrigues",
+        "partido": "PP",
+        "pct": 25
+      },
+      {
+        "candidato": "Dra. Lúcia Santos",
+        "partido": "PSDB",
+        "pct": 1
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 7
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 8
+      }
+    ],
+    "observacao": "Também registrada no TSE sob BR-09377/2026. Há divergência entre as fontes sobre o período de campo (O Povo indica 14–17/09; a maioria das matérias, 14–16/09 — adotado 14–16/09). Os percentuais somam 96; os ~4 pp restantes correspondem a candidatos não discriminados nos resumos consultados. Em votos válidos, Fonteles 65% x Joel 29%. Aprovação do governo: 70% aprovam, 24% desaprovam."
+  },
+  {
+    "id": "2026-09-17-atlasintel-pr-governador-t1",
+    "uf": "PR",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "PR-02671/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 1794,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/moro-lidera-disputa-pelo-governo-do-parana-diz-atlasintel/"
+    },
+    "resultados": [
+      {
+        "candidato": "Sergio Moro",
+        "partido": "PL",
+        "pct": 49.1
+      },
+      {
+        "candidato": "Requião Filho",
+        "partido": "PDT",
+        "pct": 28.2
+      },
+      {
+        "candidato": "Sandro Alex",
+        "partido": "PSD",
+        "pct": 18.6
+      },
+      {
+        "candidato": "Luiz França",
+        "partido": "Missão",
+        "pct": 0.9
+      }
+    ],
+    "observacao": "Recrutamento digital aleatório. Também registrada no TSE sob BR-09264/2026. Brancos/nulos e indecisos (~3,2 pp) não discriminados nos resumos consultados. Em votos válidos: Moro 50,7%, Requião Filho 29,1%, Sandro Alex 19,2%. Contratante não identificado nos resumos (a rodada nacional da mesma leva foi contratada pela Bloomberg)."
+  },
+  {
+    "id": "2026-09-17-atlasintel-pr-governador-t2",
+    "uf": "PR",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "PR-02671/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 1794,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno (votos válidos), Moro x Requião Filho",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/moro-lidera-disputa-pelo-governo-do-parana-diz-atlasintel/"
+    },
+    "resultados": [
+      {
+        "candidato": "Sergio Moro",
+        "partido": "PL",
+        "pct": 60.6
+      },
+      {
+        "candidato": "Requião Filho",
+        "partido": "PDT",
+        "pct": 39.4
+      }
+    ],
+    "observacao": "Percentuais em votos válidos. A pesquisa testou outros dois confrontos de 2º turno: Moro 58,7% x Sandro Alex 41,3% (votos válidos) e Sandro Alex x Requião Filho, cujos números divulgados (61,6% x 39,4%) somam mais de 100% nos resumos consultados e por isso não foram registrados. Também registrada sob BR-09264/2026."
+  },
+  {
+    "id": "2026-09-17-atlasintel-pe-governador-t1",
+    "uf": "PE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "PE-02989/2026",
+    "contratante": "Bloomberg",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 1793,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/raquel-lyra-e-joao-campos-tecnicamente-empatados-no-pe-diz-atlasintel/"
+    },
+    "resultados": [
+      {
+        "candidato": "Raquel Lyra",
+        "partido": "PSD",
+        "pct": 48.7
+      },
+      {
+        "candidato": "João Campos",
+        "partido": "PSB",
+        "pct": 45.6
+      },
+      {
+        "candidato": "Ivan Moraes",
+        "partido": "PSOL",
+        "pct": 2
+      },
+      {
+        "candidato": "Renan Hallais",
+        "partido": "Missão",
+        "pct": 1.1
+      },
+      {
+        "candidato": "Professora Camila",
+        "partido": "UP",
+        "pct": 0.1
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 1
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 1.6
+      }
+    ],
+    "observacao": "Recorte estadual da leva AtlasIntel/Bloomberg de 11–16/09 (a rodada nacional é a BR-06221/2026); o levantamento em PE tem registro próprio PE-02989/2026. Recrutamento digital aleatório, nível de confiança de 95%."
+  },
+  {
+    "id": "2026-09-17-atlasintel-pe-governador-t2",
+    "uf": "PE",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "PE-02989/2026",
+    "contratante": "Bloomberg",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 1793,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno, Raquel Lyra x João Campos",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/pe-raquel-lyra-tem-511-e-joao-campos-473-no-2o-turno-diz-atlasintel"
+    },
+    "resultados": [
+      {
+        "candidato": "Raquel Lyra",
+        "partido": "PSD",
+        "pct": 51.1
+      },
+      {
+        "candidato": "João Campos",
+        "partido": "PSB",
+        "pct": 47.3
+      }
+    ],
+    "observacao": "Empate técnico dentro da margem de erro. Brancos/nulos e indecisos (~1,6 pp) não discriminados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-17-neokemp-pr-governador-t1",
+    "uf": "PR",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Neokemp",
+    "registroTSE": "PR-08899/2026",
+    "contratante": "Jornal O Correio do Povo (OCP News)",
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 2016,
+    "margem": 2.2,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "aRede",
+      "url": "https://arede.info/eleicoes/672284/neokemp-moro-tem-498-requiao-245-e-sandro-alex-194-em-intencoes-de-voto"
+    },
+    "resultados": [
+      {
+        "candidato": "Sergio Moro",
+        "partido": "PL",
+        "pct": 49.8
+      },
+      {
+        "candidato": "Requião Filho",
+        "partido": "PDT",
+        "pct": 24.5
+      },
+      {
+        "candidato": "Sandro Alex",
+        "partido": "PSD",
+        "pct": 19.4
+      }
+    ],
+    "observacao": "Entrevistas por telefone em 266 municípios do Paraná. Brancos/nulos, indecisos e demais candidatos não discriminados nos resumos consultados. Uma fonte (Bem Paraná) traz 24,4% para Requião Filho; adotado 24,5%, número repetido pela maioria das matérias. Rejeição: Requião Filho 46%, Moro 34%, Sandro Alex 6,5%."
+  },
+  {
+    "id": "2026-09-17-real-time-big-data-sc-governador-t1",
+    "uf": "SC",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": "Rádio e Televisão Record S/A",
+    "dataInicio": "2026-09-12",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "Diário do Grande ABC",
+      "url": "https://www.dgabc.com.br/Noticia/4347554/em-sc-jorginho-tem-49-no-1-turno-joao-rodrigues-15-merisio-8-aponta-real-time-big-data"
+    },
+    "resultados": [
+      {
+        "candidato": "Jorginho Mello",
+        "partido": "PL",
+        "pct": 49
+      },
+      {
+        "candidato": "João Rodrigues",
+        "partido": "PSD",
+        "pct": 15
+      },
+      {
+        "candidato": "Gelson Merisio",
+        "partido": "PSB",
+        "pct": 8
+      },
+      {
+        "candidato": "Marcelo Brigadeiro",
+        "partido": "Missão",
+        "pct": 2
+      },
+      {
+        "candidato": "Professor Marcus Sodré",
+        "partido": "PSTU",
+        "pct": 1
+      }
+    ],
+    "observacao": "Número de registro no TSE não localizado nos resumos consultados (a série de setembro da Record no Sul saiu sob registros estaduais não informados nas matérias). Bruno Pedreiro (PCO), Laís Chaud (UP) e Ralf Zimmer (PRD) somam 1% no conjunto, sem discriminação individual, e por isso não foram lançados; brancos/nulos e indecisos também não foram discriminados. Avaliação do governo: 75% aprovam, 22% desaprovam."
+  },
+  {
+    "id": "2026-09-17-atlasintel-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-06221/2026",
+    "contratante": "Bloomberg",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 5018,
+    "margem": 1,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "Terra",
+      "url": "https://www.terra.com.br/noticias/eleicoes/pesquisas/pesquisa-atlasbloomberg-lula-tem-441-das-intencoes-de-voto-no-1-turno-flavio-bolsonaro-417,a408e2c8ddfd8ca627c28472025f2424zhmx7ev7.html"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 44.1
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 41.7
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 5.1
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 3.5
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 1.7
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 1.1
+      },
+      {
+        "candidato": "Samara Martins",
+        "partido": "UP",
+        "pct": 0.7
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 1.6
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 0.5
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado pelo proxy). Recrutamento digital aleatório, 5.018 entrevistados de 16 anos ou mais, 11 a 16/09/2026. Registro TSE conforme agenda interna (BR-06221/2026), não confirmado nos resumos noticiosos."
+  },
+  {
+    "id": "2026-09-17-atlasintel-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-06221/2026",
+    "contratante": "Bloomberg",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 5018,
+    "margem": 1,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-472-contra-468-de-lula-no-2o-turno-diz-pesquisa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 47.2
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 46.8
+      },
+      {
+        "candidato": "Brancos/nulos/não sabe",
+        "partido": null,
+        "pct": 6
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado pelo proxy). Empate técnico dentro da margem de 1 p.p. As fontes trazem brancos, nulos e indecisos agregados em 6%; por isso a linha única com partido null. Registro TSE conforme agenda interna."
+  },
+  {
+    "id": "2026-09-17-atlasintel-br-presidente-t2-lula-zema",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-06221/2026",
+    "contratante": "Bloomberg",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 5018,
+    "margem": 1,
+    "cenario": "estimulada, 2º turno: Lula x Romeu Zema",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-presidente-setembro-2026-2/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 46.3
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 43.7
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado pelo proxy). Brancos/nulos e indecisos deste confronto não foram informados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-17-atlasintel-br-presidente-t2-lula-caiado",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-06221/2026",
+    "contratante": "Bloomberg",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 5018,
+    "margem": 1,
+    "cenario": "estimulada, 2º turno: Lula x Ronaldo Caiado",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-presidente-setembro-2026-2/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 46
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 41.7
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado pelo proxy). Brancos/nulos e indecisos deste confronto não foram informados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-17-atlasintel-br-presidente-t2-lula-cury",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-06221/2026",
+    "contratante": "Bloomberg",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 5018,
+    "margem": 1,
+    "cenario": "estimulada, 2º turno: Lula x Augusto Cury",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-presidente-setembro-2026-2/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 45.6
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 37.8
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado pelo proxy). Brancos/nulos e indecisos deste confronto não foram informados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-17-atlasintel-br-presidente-t2-lula-renan",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-06221/2026",
+    "contratante": "Bloomberg",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 5018,
+    "margem": 1,
+    "cenario": "estimulada, 2º turno: Lula x Renan Santos",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-presidente-setembro-2026-2/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 46.1
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 29.7
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado pelo proxy). Brancos/nulos e indecisos deste confronto não foram informados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-17-atlasintel-pr-presidente-t1",
+    "uf": "PR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": null,
+    "contratante": "Bloomberg",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 1794,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno — recorte Paraná",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-537-e-lula-tem-340-no-1o-turno-no-pr-diz-pesquisa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 53.7
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 34
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 4.1
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 2.2
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 1.8
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 1.7
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 0.4
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 1.8
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado pelo proxy). Registro TSE do recorte estadual não localizado nos resumos noticiosos. 1.794 entrevistas no Paraná, 11 a 16/09/2026."
+  },
+  {
+    "id": "2026-09-17-atlasintel-pr-presidente-t2-lula-flavio",
+    "uf": "PR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": null,
+    "contratante": "Bloomberg",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 1794,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula — recorte Paraná",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-537-e-lula-tem-340-no-1o-turno-no-pr-diz-pesquisa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 57.5
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 38.8
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado pelo proxy). Registro TSE do recorte estadual não localizado. Brancos/nulos e indecisos deste confronto não foram informados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-17-atlasintel-pe-presidente-t1",
+    "uf": "PE",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-00357/2026",
+    "contratante": "Bloomberg",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 1793,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno — recorte Pernambuco",
+    "fonte": {
+      "nome": "Diario de Pernambuco",
+      "url": "https://www.diariodepernambuco.com.br/politica/2026/09/11724172-atlas-lula-lidera-com-549-contra-327-de-flavio-no-1-turno-em-pernambuco.html"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 54.9
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 32.7
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 3.7
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 3.5
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 0.7
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 0.3
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 2
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 1.8
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado pelo proxy). 1.793 entrevistas em Pernambuco, 11 a 16/09/2026. Registro TSE BR-00357/2026 citado pelo Poder360 para o recorte estadual."
+  },
+  {
+    "id": "2026-09-17-atlasintel-pe-presidente-t2-lula-flavio",
+    "uf": "PE",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-00357/2026",
+    "contratante": "Bloomberg",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 1793,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — recorte Pernambuco",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-tem-575-contra-362-de-flavio-no-2o-turno-em-pe-diz-pesquisa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 57.5
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 36.2
+      },
+      {
+        "candidato": "Brancos/nulos/não sabe",
+        "partido": null,
+        "pct": 6.3
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado pelo proxy). Brancos, nulos e indecisos vêm agregados em 6,3% nas fontes; por isso a linha única com partido null."
+  },
+  {
+    "id": "2026-09-17-gerp-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Gerp",
+    "registroTSE": "BR-00535/2026",
+    "contratante": "Gerp Marketing",
+    "dataInicio": "2026-09-14",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 2400,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno — votos totais",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/pesquisa-gerp-flavio-bolsonaro-tem-40-e-lula-37-no-1o-turno/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 40
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 37
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 7
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 3
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 2
+      },
+      {
+        "candidato": "Brancos/nulos/nenhum",
+        "partido": null,
+        "pct": 4
+      },
+      {
+        "candidato": "Não sabe/não respondeu",
+        "partido": null,
+        "pct": 4
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado pelo proxy). Entrevistas por telefone, 14 a 16/09/2026. A Gerp divulgou dois cenários: votos válidos (Flávio 44% x Lula 40%) e votos totais, registrado aqui. A soma dos itens divulgados fica em 97% — os resumos não trazem os demais nomes testados."
+  },
+  {
+    "id": "2026-09-17-gerp-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Gerp",
+    "registroTSE": "BR-00535/2026",
+    "contratante": "Gerp Marketing",
+    "dataInicio": "2026-09-14",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 2400,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-50-contra-43-de-lula-no-2o-turno-diz-gerp/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 50
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 43
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado pelo proxy). Vantagem de 7 pontos, fora da margem de erro. Brancos/nulos e indecisos deste confronto não foram informados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-17-poderdata-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "PoderData",
+    "registroTSE": "BR-00360/2026",
+    "contratante": "Poder360 e Aya",
+    "dataInicio": "2026-09-13",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 3000,
+    "margem": 1.8,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poderdata/poderdata-aya-lula-tem-37-contra-36-de-flavio-no-1o-turno/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 37
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 36
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 8
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 3
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 3
+      },
+      {
+        "candidato": "Hertz Dias",
+        "partido": "PSTU",
+        "pct": 2
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 1
+      },
+      {
+        "candidato": "Rui Costa Pimenta",
+        "partido": "PCO",
+        "pct": 1
+      },
+      {
+        "candidato": "Samara Martins",
+        "partido": "UP",
+        "pct": 1
+      },
+      {
+        "candidato": "Clariana Barão",
+        "partido": "DC",
+        "pct": 1
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 4
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 2
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado pelo proxy). 3.000 entrevistas por telefone (celular e fixo) em 623 municípios dos 27 estados, 13 a 16/09/2026. Wilson Grassi (Democrata) e Edmilson Costa (PCB) não pontuaram. Registro TSE BR-00360/2026 conforme resumo do Poder360."
+  },
+  {
+    "id": "2026-09-17-poderdata-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "PoderData",
+    "registroTSE": "BR-00360/2026",
+    "contratante": "Poder360 e Aya",
+    "dataInicio": "2026-09-13",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 3000,
+    "margem": 1.8,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poderdata/flavio-tem-46-e-lula-44-no-2o-turno-diz-poderdata-aya/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 46
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 44
+      }
+    ],
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado pelo proxy). Empate técnico dentro da margem. Brancos/nulos e indecisos deste confronto não foram informados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-17-neokemp-pr-senador-t1",
+    "uf": "PR",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Neokemp",
+    "registroTSE": "PR-08899/2026",
+    "contratante": "OCP News",
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 2016,
+    "margem": 2.2,
+    "cenario": "estimulada, soma do 1º e 2º voto (2 vagas; percentuais somam mais de 100 pois o eleitor escolhe 2 nomes)",
+    "fonte": {
+      "nome": "aRede",
+      "url": "https://arede.info/eleicoes/672285/deltan-tem-488-filipe-314-gleisi-285-e-curi-282-de-intencao-de-votos-aponta-neokemp"
+    },
+    "resultados": [
+      {
+        "candidato": "Deltan Dallagnol",
+        "partido": "Novo",
+        "pct": 48.8
+      },
+      {
+        "candidato": "Filipe Barros",
+        "partido": "PL",
+        "pct": 31.4
+      },
+      {
+        "candidato": "Gleisi Hoffmann",
+        "partido": "PT",
+        "pct": 28.5
+      },
+      {
+        "candidato": "Alexandre Curi",
+        "partido": "Republicanos",
+        "pct": 28.2
+      }
+    ],
+    "observacao": "Pesquisa Neokemp/OCP News divulgada em 17/09/2026; campo 15-16/09 com 2.016 eleitores em 266 municípios do Paraná, margem de 2,2 p.p. e 95% de confiança; registro PR-08899/2026 (levantamento conjunto de governador e senador). Percentuais são a soma do 1º e 2º voto. Desdobramento divulgado: 1º voto — Deltan 34,3%, Gleisi 18,6%, Alexandre Curi 15,9%; 2º voto (sem repetir o nome já escolhido) — Filipe Barros 23,2%, Deltan 14,5%, Cristina Graeml 13,2%, Alexandre Curi 12,3%. Cristina Graeml não foi incluída na lista porque o consolidado (1º+2º voto) dela não foi divulgado nos resumos disponíveis. Também noticiada por Gazeta do Povo (https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/neokemp-senado-parana-setembro-2026-2/), RIC e OCP News. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-17-real-time-big-data-sc-senador-t1",
+    "uf": "SC",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "SC-00866/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-12",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, consolidado do 1º e 2º voto (2 vagas)",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-carol-de-toni-tem-24-ao-senado-em-sc-espiridiao-e-carlos-20/"
+    },
+    "resultados": [
+      {
+        "candidato": "Carol De Toni",
+        "partido": "PL",
+        "pct": 24
+      },
+      {
+        "candidato": "Esperidião Amin",
+        "partido": "PP",
+        "pct": 20
+      },
+      {
+        "candidato": "Carlos Bolsonaro",
+        "partido": "PL",
+        "pct": 20
+      },
+      {
+        "candidato": "Décio Lima",
+        "partido": "PT",
+        "pct": 11
+      },
+      {
+        "candidato": "Afrânio Boppré",
+        "partido": "PSOL",
+        "pct": 10
+      }
+    ],
+    "observacao": "Divulgada em 17/09/2026; campo 12-16/09 com 1.600 entrevistas, margem de 2 p.p. e registro SC-00866/2026. Carol De Toni, Esperidião Amin e Carlos Bolsonaro estão em empate técnico; Décio Lima e Afrânio Boppré também empatam entre si. Contratante não confirmado nos resumos de busca (as rodadas estaduais do Real Time Big Data em setembro/2026 vêm sendo contratadas pela Rede Record de Televisão, mas isso não foi explicitado para SC) — por isso `contratante: null`. Lista limitada aos nomes com percentuais divulgados pela imprensa. Também noticiada por Exame, InfoMoney e Gazeta do Povo (https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-senador-santa-catarina-setembro-2026/). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
     "id": "2026-09-15-real-time-big-data-pa-governador-t1",
     "uf": "PA",
     "cargo": "governador",
@@ -612,6 +1660,75 @@
       }
     ],
     "observacao": "Pesquisa presencial em 75 municípios. Também em Revista Oeste, Gazeta do Cerrado ('Paraná Pesquisas/Fieto') e Coluna do CT. Lista limitada aos nomes divulgados pela imprensa."
+  },
+  {
+    "id": "2026-09-17-real-time-big-data-to-governador-t1",
+    "uf": "TO",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": "Rádio e Televisão Record S/A",
+    "dataInicio": "2026-09-10",
+    "dataFim": "2026-09-14",
+    "publicadoEm": "2026-09-17",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "CartaCapital",
+      "url": "https://www.cartacapital.com.br/politica/real-time-big-data-em-tocantins-dorinha-e-vicentinho-empatam-em-1o-e-2o-turnos/"
+    },
+    "resultados": [
+      {
+        "candidato": "Professora Dorinha",
+        "partido": "União Brasil",
+        "pct": 35
+      },
+      {
+        "candidato": "Vicentinho Júnior",
+        "partido": "PSDB",
+        "pct": 33
+      },
+      {
+        "candidato": "Laurez Moreira",
+        "partido": "PSD",
+        "pct": 9
+      }
+    ],
+    "observacao": "Número de registro no TSE não localizado nos resumos consultados. Empate técnico entre Dorinha e Vicentinho Júnior dentro da margem de erro. Brancos/nulos e indecisos não discriminados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-17-real-time-big-data-to-governador-t2",
+    "uf": "TO",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": "Rádio e Televisão Record S/A",
+    "dataInicio": "2026-09-10",
+    "dataFim": "2026-09-14",
+    "publicadoEm": "2026-09-17",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno, Professora Dorinha x Laurez Moreira",
+    "fonte": {
+      "nome": "CartaCapital",
+      "url": "https://www.cartacapital.com.br/politica/pesquisa-real-time-big-data-professora-dorinha-lidera-a-disputa-pelo-governo-do-tocantins/"
+    },
+    "resultados": [
+      {
+        "candidato": "Professora Dorinha",
+        "partido": "União Brasil",
+        "pct": 50
+      },
+      {
+        "candidato": "Laurez Moreira",
+        "partido": "PSD",
+        "pct": 32
+      }
+    ],
+    "observacao": "Número de registro no TSE não localizado nos resumos consultados. A pesquisa testou outros cenários de 2º turno: Vicentinho Júnior 48% x Laurez Moreira 34%; e Dorinha x Vicentinho Júnior, em que Vicentinho aparece 2 pontos à frente — mas os percentuais exatos desse confronto não apareceram de forma consistente nos resumos (uma manchete da CNN traz 41% x 40%, sem confirmação de que se refira a esta rodada), por isso não foram registrados."
   },
   {
     "id": "2026-09-14-quaest-br-presidente-t1",
@@ -1859,6 +2976,43 @@
       }
     ],
     "observacao": "Também em CNN Brasil (https://www.cnnbrasil.com.br/eleicoes/verita-bruno-scheid-e-fernando-maximo-sao-favoritos-ao-senado-por-ro/). No 1º voto isolado: Bruno Scheid 33,2%, Fernando Máximo 20,6%, Silvia Cristina 11,3%. A data exata de divulgação não foi confirmada (campo encerrado em 12/9, matérias de setembro); o id usa 2026-09-14 por estimativa. O registro TSE apareceu truncado ('RO-01935/20') no resumo consultado; assumido /2026. Partidos de Scheid, Máximo, Silvia Cristina e Mariana Carvalho seguem a grafia já usada na base (pesquisa Brasil Dados/RO); Acir Gurgacz (PDT) e Luciana Oliveira (PT) conforme fontes."
+  },
+  {
+    "id": "2026-09-16-f5-atualiza-dados-mg-senador-t1",
+    "uf": "MG",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "F5 Atualiza Dados",
+    "registroTSE": "MG-09035/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-09",
+    "dataFim": "2026-09-12",
+    "publicadoEm": "2026-09-16",
+    "amostra": 1560,
+    "margem": null,
+    "cenario": "estimulada",
+    "fonte": {
+      "nome": "Correio Braziliense",
+      "url": "https://1news.correiobraziliense.com.br/noticia/884753/noticias/pesquisa-para-o-senado-em-minas-gerais-aponta-carlos-viana-na-lideranca-com-14-16092026"
+    },
+    "resultados": [
+      {
+        "candidato": "Carlos Viana",
+        "partido": "PSD",
+        "pct": 14
+      },
+      {
+        "candidato": "Marília Campos",
+        "partido": "PT",
+        "pct": 12
+      },
+      {
+        "candidato": "Domingos Sávio",
+        "partido": "PL",
+        "pct": 12
+      }
+    ],
+    "observacao": "Publicada em 16/09/2026 (não constava do arquivo diário de 16/09); campo 09-12/09 com 1.560 eleitores em todo o estado; registro MG-09035/2026. Carlos Viana lidera com 14%, com Marília Campos e Domingos Sávio empatados em 12%. Aécio Neves (PSDB) foi citado como quarto colocado, mas seu percentual não foi divulgado nos resumos disponíveis, por isso não entrou na lista. Margem de erro não informada nas matérias localizadas. Contratante não identificado. Partido de Carlos Viana registrado como PSD, em linha com o restante da base (há divergências de fonte entre PSD e Podemos). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
   },
   {
     "id": "2026-09-14-neokemp-sc-governador-t1",

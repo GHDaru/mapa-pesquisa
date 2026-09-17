@@ -1,0 +1,233 @@
+[
+  {
+    "id": "2026-09-17-datafolha-pi-governador-t1",
+    "uf": "PI",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "PI-03643/2026",
+    "contratante": "TV Rádio Clube de Teresina S/A",
+    "dataInicio": "2026-09-14",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 826,
+    "margem": 3.0,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/datafolha-rafael-fonteles-pt-lidera-corrida-ao-governo-do-piaui-com-55"
+    },
+    "resultados": [
+      { "candidato": "Rafael Fonteles", "partido": "PT", "pct": 55.0 },
+      { "candidato": "Joel Rodrigues", "partido": "PP", "pct": 25.0 },
+      { "candidato": "Dra. Lúcia Santos", "partido": "PSDB", "pct": 1.0 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 7.0 },
+      { "candidato": "Não sabe", "partido": null, "pct": 8.0 }
+    ],
+    "observacao": "Também registrada no TSE sob BR-09377/2026. Há divergência entre as fontes sobre o período de campo (O Povo indica 14–17/09; a maioria das matérias, 14–16/09 — adotado 14–16/09). Os percentuais somam 96; os ~4 pp restantes correspondem a candidatos não discriminados nos resumos consultados. Em votos válidos, Fonteles 65% x Joel 29%. Aprovação do governo: 70% aprovam, 24% desaprovam."
+  },
+  {
+    "id": "2026-09-17-atlasintel-pr-governador-t1",
+    "uf": "PR",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "PR-02671/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 1794,
+    "margem": 2.0,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/moro-lidera-disputa-pelo-governo-do-parana-diz-atlasintel/"
+    },
+    "resultados": [
+      { "candidato": "Sergio Moro", "partido": "PL", "pct": 49.1 },
+      { "candidato": "Requião Filho", "partido": "PDT", "pct": 28.2 },
+      { "candidato": "Sandro Alex", "partido": "PSD", "pct": 18.6 },
+      { "candidato": "Luiz França", "partido": "Missão", "pct": 0.9 }
+    ],
+    "observacao": "Recrutamento digital aleatório. Também registrada no TSE sob BR-09264/2026. Brancos/nulos e indecisos (~3,2 pp) não discriminados nos resumos consultados. Em votos válidos: Moro 50,7%, Requião Filho 29,1%, Sandro Alex 19,2%. Contratante não identificado nos resumos (a rodada nacional da mesma leva foi contratada pela Bloomberg)."
+  },
+  {
+    "id": "2026-09-17-atlasintel-pr-governador-t2",
+    "uf": "PR",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "PR-02671/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 1794,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno (votos válidos), Moro x Requião Filho",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/moro-lidera-disputa-pelo-governo-do-parana-diz-atlasintel/"
+    },
+    "resultados": [
+      { "candidato": "Sergio Moro", "partido": "PL", "pct": 60.6 },
+      { "candidato": "Requião Filho", "partido": "PDT", "pct": 39.4 }
+    ],
+    "observacao": "Percentuais em votos válidos. A pesquisa testou outros dois confrontos de 2º turno: Moro 58,7% x Sandro Alex 41,3% (votos válidos) e Sandro Alex x Requião Filho, cujos números divulgados (61,6% x 39,4%) somam mais de 100% nos resumos consultados e por isso não foram registrados. Também registrada sob BR-09264/2026."
+  },
+  {
+    "id": "2026-09-17-atlasintel-pe-governador-t1",
+    "uf": "PE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "PE-02989/2026",
+    "contratante": "Bloomberg",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 1793,
+    "margem": 2.0,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/raquel-lyra-e-joao-campos-tecnicamente-empatados-no-pe-diz-atlasintel/"
+    },
+    "resultados": [
+      { "candidato": "Raquel Lyra", "partido": "PSD", "pct": 48.7 },
+      { "candidato": "João Campos", "partido": "PSB", "pct": 45.6 },
+      { "candidato": "Ivan Moraes", "partido": "PSOL", "pct": 2.0 },
+      { "candidato": "Renan Hallais", "partido": "Missão", "pct": 1.1 },
+      { "candidato": "Professora Camila", "partido": "UP", "pct": 0.1 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 1.0 },
+      { "candidato": "Não sabe", "partido": null, "pct": 1.6 }
+    ],
+    "observacao": "Recorte estadual da leva AtlasIntel/Bloomberg de 11–16/09 (a rodada nacional é a BR-06221/2026); o levantamento em PE tem registro próprio PE-02989/2026. Recrutamento digital aleatório, nível de confiança de 95%."
+  },
+  {
+    "id": "2026-09-17-atlasintel-pe-governador-t2",
+    "uf": "PE",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "PE-02989/2026",
+    "contratante": "Bloomberg",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 1793,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno, Raquel Lyra x João Campos",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/pe-raquel-lyra-tem-511-e-joao-campos-473-no-2o-turno-diz-atlasintel"
+    },
+    "resultados": [
+      { "candidato": "Raquel Lyra", "partido": "PSD", "pct": 51.1 },
+      { "candidato": "João Campos", "partido": "PSB", "pct": 47.3 }
+    ],
+    "observacao": "Empate técnico dentro da margem de erro. Brancos/nulos e indecisos (~1,6 pp) não discriminados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-17-neokemp-pr-governador-t1",
+    "uf": "PR",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Neokemp",
+    "registroTSE": "PR-08899/2026",
+    "contratante": "Jornal O Correio do Povo (OCP News)",
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 2016,
+    "margem": 2.2,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "aRede",
+      "url": "https://arede.info/eleicoes/672284/neokemp-moro-tem-498-requiao-245-e-sandro-alex-194-em-intencoes-de-voto"
+    },
+    "resultados": [
+      { "candidato": "Sergio Moro", "partido": "PL", "pct": 49.8 },
+      { "candidato": "Requião Filho", "partido": "PDT", "pct": 24.5 },
+      { "candidato": "Sandro Alex", "partido": "PSD", "pct": 19.4 }
+    ],
+    "observacao": "Entrevistas por telefone em 266 municípios do Paraná. Brancos/nulos, indecisos e demais candidatos não discriminados nos resumos consultados. Uma fonte (Bem Paraná) traz 24,4% para Requião Filho; adotado 24,5%, número repetido pela maioria das matérias. Rejeição: Requião Filho 46%, Moro 34%, Sandro Alex 6,5%."
+  },
+  {
+    "id": "2026-09-17-real-time-big-data-sc-governador-t1",
+    "uf": "SC",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": "Rádio e Televisão Record S/A",
+    "dataInicio": "2026-09-12",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "Diário do Grande ABC",
+      "url": "https://www.dgabc.com.br/Noticia/4347554/em-sc-jorginho-tem-49-no-1-turno-joao-rodrigues-15-merisio-8-aponta-real-time-big-data"
+    },
+    "resultados": [
+      { "candidato": "Jorginho Mello", "partido": "PL", "pct": 49.0 },
+      { "candidato": "João Rodrigues", "partido": "PSD", "pct": 15.0 },
+      { "candidato": "Gelson Merisio", "partido": "PSB", "pct": 8.0 },
+      { "candidato": "Marcelo Brigadeiro", "partido": "Missão", "pct": 2.0 },
+      { "candidato": "Professor Marcus Sodré", "partido": "PSTU", "pct": 1.0 }
+    ],
+    "observacao": "Número de registro no TSE não localizado nos resumos consultados (a série de setembro da Record no Sul saiu sob registros estaduais não informados nas matérias). Bruno Pedreiro (PCO), Laís Chaud (UP) e Ralf Zimmer (PRD) somam 1% no conjunto, sem discriminação individual, e por isso não foram lançados; brancos/nulos e indecisos também não foram discriminados. Avaliação do governo: 75% aprovam, 22% desaprovam."
+  },
+  {
+    "id": "2026-09-17-real-time-big-data-to-governador-t1",
+    "uf": "TO",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": "Rádio e Televisão Record S/A",
+    "dataInicio": "2026-09-10",
+    "dataFim": "2026-09-14",
+    "publicadoEm": "2026-09-17",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "CartaCapital",
+      "url": "https://www.cartacapital.com.br/politica/real-time-big-data-em-tocantins-dorinha-e-vicentinho-empatam-em-1o-e-2o-turnos/"
+    },
+    "resultados": [
+      { "candidato": "Professora Dorinha", "partido": "União Brasil", "pct": 35.0 },
+      { "candidato": "Vicentinho Júnior", "partido": "PSDB", "pct": 33.0 },
+      { "candidato": "Laurez Moreira", "partido": "PSD", "pct": 9.0 }
+    ],
+    "observacao": "Número de registro no TSE não localizado nos resumos consultados. Empate técnico entre Dorinha e Vicentinho Júnior dentro da margem de erro. Brancos/nulos e indecisos não discriminados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-17-real-time-big-data-to-governador-t2",
+    "uf": "TO",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": "Rádio e Televisão Record S/A",
+    "dataInicio": "2026-09-10",
+    "dataFim": "2026-09-14",
+    "publicadoEm": "2026-09-17",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno, Professora Dorinha x Laurez Moreira",
+    "fonte": {
+      "nome": "CartaCapital",
+      "url": "https://www.cartacapital.com.br/politica/pesquisa-real-time-big-data-professora-dorinha-lidera-a-disputa-pelo-governo-do-tocantins/"
+    },
+    "resultados": [
+      { "candidato": "Professora Dorinha", "partido": "União Brasil", "pct": 50.0 },
+      { "candidato": "Laurez Moreira", "partido": "PSD", "pct": 32.0 }
+    ],
+    "observacao": "Número de registro no TSE não localizado nos resumos consultados. A pesquisa testou outros cenários de 2º turno: Vicentinho Júnior 48% x Laurez Moreira 34%; e Dorinha x Vicentinho Júnior, em que Vicentinho aparece 2 pontos à frente — mas os percentuais exatos desse confronto não apareceram de forma consistente nos resumos (uma manchete da CNN traz 41% x 40%, sem confirmação de que se refira a esta rodada), por isso não foram registrados."
+  }
+]
