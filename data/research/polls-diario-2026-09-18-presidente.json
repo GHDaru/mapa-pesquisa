@@ -1,0 +1,59 @@
+[
+  {
+    "id": "2026-09-18-real-time-big-data-ce-presidente-t1",
+    "uf": "CE",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-03822/2026",
+    "contratante": "Record",
+    "dataInicio": "2026-09-14",
+    "dataFim": "2026-09-17",
+    "publicadoEm": "2026-09-18",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-tem-64-contra-27-de-flavio-no-2o-turno-no-ce-diz-pesquisa/"
+    },
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 59 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 23 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 7 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 3 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 1 },
+      { "candidato": "Romeu Zema", "partido": "Novo", "pct": 1 },
+      { "candidato": "Outros", "partido": null, "pct": 1 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 3 },
+      { "candidato": "Não sabe", "partido": null, "pct": 2 }
+    ],
+    "observacao": "Recorte presidencial do Ceará da rodada Real Time Big Data divulgada em 18/09/2026, contratada pela Rede Record de Televisão; 1.600 entrevistas no estado entre 14 e 17/09, confiança de 95%. A linha \"Outros\" (1%) soma os demais candidatos testados (Rui Costa Pimenta, Samara Martins, Edmilson Costa, Hertz Dias, Clariana Barão, Wilson Grassi e Pablo Marçal), que não foram discriminados individualmente na cobertura. O registro BR-03822/2026 é o citado pela cobertura para o recorte presidencial; a mesma rodada aparece registrada como CE-04380/2026 para os cenários de governador e senador — reconferir na próxima rodada. Números confirmados por Poder360, CNN Brasil, Exame e CartaCapital. Rodada anterior do mesmo instituto no CE (divulgada em 08/09) trazia Lula com 62% e Flávio com 21% no 1º turno."
+  },
+  {
+    "id": "2026-09-18-real-time-big-data-ce-presidente-t2-lula-flavio",
+    "uf": "CE",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-03822/2026",
+    "contratante": "Record",
+    "dataInicio": "2026-09-14",
+    "dataFim": "2026-09-17",
+    "publicadoEm": "2026-09-18",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno, Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-tem-64-contra-27-de-flavio-no-2o-turno-no-ce-diz-pesquisa/"
+    },
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 64 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 27 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 4 },
+      { "candidato": "Não sabe", "partido": null, "pct": 5 }
+    ],
+    "observacao": "Único confronto de 2º turno divulgado para o Ceará nesta rodada. Mesma ficha técnica do cenário de 1º turno (1.600 entrevistas, 14–17/09, contratante Rede Record, margem de 2 pontos, confiança de 95%). A linha \"Não sabe\" corresponde aos 5% que não responderam. Números corroborados por CNN Brasil, Exame e CartaCapital."
+  }
+]

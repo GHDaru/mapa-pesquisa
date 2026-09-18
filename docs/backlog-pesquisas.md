@@ -141,3 +141,46 @@ Alexandre Curi é Republicanos nas matérias de setembro, PSD na rodada de març
 agregação agrupa pelo nome em minúsculas, isso teria partido a média em dois
 candidatos. Foi criada `normalizarCandidato` em `src/domain/poll.ts`, com
 testes, e o arquivo bruto foi alinhado.
+
+## Anotadas em 2026-09-18
+
+### ALERTA DE INTEGRIDADE — Instituto Veritá
+
+Confirmado em busca independente na sessão principal: o Instituto Veritá teve
+pesquisas **suspensas pela Justiça Eleitoral em 13 estados e no Distrito
+Federal** em 2026. Motivos: falhas de metodologia, composição de amostra e
+transparência sobre como os contatos telefônicos são gerados e abordados. Em
+pelo menos um caso há indício de fraude — no Amazonas o TRE apontou cerca de
+380 pares de linhas idênticas na planilha, 62% de uma amostra de 1.220
+entrevistas. Há multas por reincidência e por divulgação após liminar
+contrária (PB, 17/09). Decisões também em PR (11/09, multa diária de
+R$ 200 mil), CE (15/09), DF, RO, PI, PE, AL, GO, PA, MA.
+
+Quatro pesquisas do instituto estão na base e alimentam as médias:
+
+| id | onde pesa |
+|---|---|
+| `2026-09-06-verita-br-presidente-t1` e `-t2-flavio-lula` | média presidencial nacional |
+| `2026-09-12-verita-pa-governador-t1` | mapa de governadores (PA) |
+| `2026-09-14-verita-ro-senador-t1` | projeção do Senado (RO) |
+
+Nenhuma consta individualmente como suspensa, então foram **mantidas com um
+alerta no campo `observacao`**, visível no detalhe de cada pesquisa. A decisão
+sobre excluí-las da agregação, mantê-las só como registro histórico ou
+removê-las é editorial e está com o dono do projeto. Enquanto isso, **não
+incluir novas pesquisas do Veritá** sem checar se a rodada específica está
+liberada.
+
+### Pesquisas do dia
+
+- Real Time Big Data CE, recorte presidencial (Lula 59 x Flávio 23 no 1º
+  turno; 64 x 27 no 2º), 1.600 entrevistas, campo 14–17/09. Ressalva: a
+  cobertura cita BR-03822/2026 para o recorte presidencial e CE-04380/2026
+  para governador e Senado na mesma rodada — reconferir.
+- **Datafolha CE não saiu** em 18/09, ao contrário do que a agenda indicava.
+  A última do estado é de 14/08.
+- **Paraná Pesquisas PR** saiu (1.280 entrevistas, campo 15–17/09) com
+  governador e Senado, sem recorte presidencial.
+- A agenda que apontava Veritá PR com campo 06–11/09 estava errada: o par de
+  registros PR-03910/2026 e BR-02249/2026 é de uma rodada de campo 28/07–01/08,
+  divulgada em 02/08.

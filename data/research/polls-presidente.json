@@ -288,7 +288,7 @@
         "pct": 12.2
       }
     ],
-    "observacao": "Contratante não identificado nos resultados de busca."
+    "observacao": "Contratante não identificado nos resultados de busca. ALERTA DE INTEGRIDADE (registrado em 18/09/2026): o Instituto Veritá teve pesquisas suspensas pela Justiça Eleitoral em 13 estados e no DF em 2026, por falhas de metodologia, composição de amostra e transparência, e por indícios de fraude — no Amazonas o TRE apontou cerca de 380 pares de linhas idênticas, 62% de uma amostra de 1.220 entrevistas. Esta pesquisa específica não consta como suspensa, mas o instituto está sob questionamento judicial amplo. Ver docs/backlog-pesquisas.md."
   },
   {
     "id": "2026-09-01-real-time-big-data-br-presidente-t1",
@@ -719,7 +719,7 @@
         "pct": 43.1
       }
     ],
-    "observacao": null
+    "observacao": "ALERTA DE INTEGRIDADE (registrado em 18/09/2026): o Instituto Veritá teve pesquisas suspensas pela Justiça Eleitoral em 13 estados e no DF em 2026, por falhas de metodologia, composição de amostra e transparência, e por indícios de fraude — no Amazonas o TRE apontou cerca de 380 pares de linhas idênticas, 62% de uma amostra de 1.220 entrevistas. Esta pesquisa específica não consta como suspensa, mas o instituto está sob questionamento judicial amplo. Ver docs/backlog-pesquisas.md."
   },
   {
     "id": "2026-09-01-real-time-big-data-br-presidente-t2-lula-flavio",

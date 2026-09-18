@@ -227,6 +227,115 @@
     "observacao": "Rodada do Datafolha no Piauí divulgada em 17/09/2026 (campo 14-17/09, 826 entrevistas, margem de 3 p.p., 95% de confiança); registro PI-03643/2026 (também registrada em âmbito nacional como BR-09377/2026). Como o eleitor escolhe 2 nomes, a imprensa divulgou o total de menções sobre o conjunto dos dois votos: Ciro 17%, Marcelo 17%, Júlio César 15% — empate técnico. Desdobramento divulgado: 1º voto — Ciro 24%, Marcelo 19%, Júlio César 14%; 2º voto — Júlio César 16%, Marcelo 15%, Ciro 11%. No espontâneo, 64% não souberam responder. Lista limitada aos três nomes com percentuais divulgados pela imprensa; brancos/nulos e demais candidatos não foram publicados nos resumos disponíveis. Também noticiada por O Povo (https://www.opovo.com.br/noticias/politica/eleicoes/2026/09/17/datafolha-senado-piaui-tem-empate-entre-ciro-marcelo-e-julio.html) e Conecta Piauí. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
   },
   {
+    "id": "2026-09-18-real-time-big-data-ce-presidente-t1",
+    "uf": "CE",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-03822/2026",
+    "contratante": "Record",
+    "dataInicio": "2026-09-14",
+    "dataFim": "2026-09-17",
+    "publicadoEm": "2026-09-18",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-tem-64-contra-27-de-flavio-no-2o-turno-no-ce-diz-pesquisa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 59
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 23
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 7
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 3
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 1
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 1
+      },
+      {
+        "candidato": "Outros",
+        "partido": null,
+        "pct": 1
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 3
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 2
+      }
+    ],
+    "observacao": "Recorte presidencial do Ceará da rodada Real Time Big Data divulgada em 18/09/2026, contratada pela Rede Record de Televisão; 1.600 entrevistas no estado entre 14 e 17/09, confiança de 95%. A linha \"Outros\" (1%) soma os demais candidatos testados (Rui Costa Pimenta, Samara Martins, Edmilson Costa, Hertz Dias, Clariana Barão, Wilson Grassi e Pablo Marçal), que não foram discriminados individualmente na cobertura. O registro BR-03822/2026 é o citado pela cobertura para o recorte presidencial; a mesma rodada aparece registrada como CE-04380/2026 para os cenários de governador e senador — reconferir na próxima rodada. Números confirmados por Poder360, CNN Brasil, Exame e CartaCapital. Rodada anterior do mesmo instituto no CE (divulgada em 08/09) trazia Lula com 62% e Flávio com 21% no 1º turno."
+  },
+  {
+    "id": "2026-09-18-real-time-big-data-ce-presidente-t2-lula-flavio",
+    "uf": "CE",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-03822/2026",
+    "contratante": "Record",
+    "dataInicio": "2026-09-14",
+    "dataFim": "2026-09-17",
+    "publicadoEm": "2026-09-18",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno, Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-tem-64-contra-27-de-flavio-no-2o-turno-no-ce-diz-pesquisa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 64
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 27
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 4
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 5
+      }
+    ],
+    "observacao": "Único confronto de 2º turno divulgado para o Ceará nesta rodada. Mesma ficha técnica do cenário de 1º turno (1.600 entrevistas, 14–17/09, contratante Rede Record, margem de 2 pontos, confiança de 95%). A linha \"Não sabe\" corresponde aos 5% que não responderam. Números corroborados por CNN Brasil, Exame e CartaCapital."
+  },
+  {
     "id": "2026-09-17-datafolha-pi-governador-t1",
     "uf": "PI",
     "cargo": "governador",
@@ -3385,7 +3494,7 @@
         "pct": 6.7
       }
     ],
-    "observacao": "Também em CNN Brasil (https://www.cnnbrasil.com.br/eleicoes/verita-bruno-scheid-e-fernando-maximo-sao-favoritos-ao-senado-por-ro/). No 1º voto isolado: Bruno Scheid 33,2%, Fernando Máximo 20,6%, Silvia Cristina 11,3%. A data exata de divulgação não foi confirmada (campo encerrado em 12/9, matérias de setembro); o id usa 2026-09-14 por estimativa. O registro TSE apareceu truncado ('RO-01935/20') no resumo consultado; assumido /2026. Partidos de Scheid, Máximo, Silvia Cristina e Mariana Carvalho seguem a grafia já usada na base (pesquisa Brasil Dados/RO); Acir Gurgacz (PDT) e Luciana Oliveira (PT) conforme fontes."
+    "observacao": "Também em CNN Brasil (https://www.cnnbrasil.com.br/eleicoes/verita-bruno-scheid-e-fernando-maximo-sao-favoritos-ao-senado-por-ro/). No 1º voto isolado: Bruno Scheid 33,2%, Fernando Máximo 20,6%, Silvia Cristina 11,3%. A data exata de divulgação não foi confirmada (campo encerrado em 12/9, matérias de setembro); o id usa 2026-09-14 por estimativa. O registro TSE apareceu truncado ('RO-01935/20') no resumo consultado; assumido /2026. Partidos de Scheid, Máximo, Silvia Cristina e Mariana Carvalho seguem a grafia já usada na base (pesquisa Brasil Dados/RO); Acir Gurgacz (PDT) e Luciana Oliveira (PT) conforme fontes. ALERTA DE INTEGRIDADE (registrado em 18/09/2026): o Instituto Veritá teve pesquisas suspensas pela Justiça Eleitoral em 13 estados e no DF em 2026, por falhas de metodologia, composição de amostra e transparência, e por indícios de fraude — no Amazonas o TRE apontou cerca de 380 pares de linhas idênticas, 62% de uma amostra de 1.220 entrevistas. Esta pesquisa específica não consta como suspensa, mas o instituto está sob questionamento judicial amplo. Ver docs/backlog-pesquisas.md."
   },
   {
     "id": "2026-09-16-f5-atualiza-dados-mg-senador-t1",
@@ -3637,7 +3746,7 @@
         "pct": 3.7
       }
     ],
-    "observacao": "Contratante não identificado nos resumos consultados. Partido 'Democrata' citado na fonte não consta em data/parties.json (mantida a sigla como divulgada). Uma pesquisa anterior do mesmo instituto no PA (PA-04167/2026) foi anulada pela Justiça Eleitoral; esta (PA-07151/2026) é registro distinto."
+    "observacao": "Contratante não identificado nos resumos consultados. Partido 'Democrata' citado na fonte não consta em data/parties.json (mantida a sigla como divulgada). Uma pesquisa anterior do mesmo instituto no PA (PA-04167/2026) foi anulada pela Justiça Eleitoral; esta (PA-07151/2026) é registro distinto. ALERTA DE INTEGRIDADE (registrado em 18/09/2026): o Instituto Veritá teve pesquisas suspensas pela Justiça Eleitoral em 13 estados e no DF em 2026, por falhas de metodologia, composição de amostra e transparência, e por indícios de fraude — no Amazonas o TRE apontou cerca de 380 pares de linhas idênticas, 62% de uma amostra de 1.220 entrevistas. Esta pesquisa específica não consta como suspensa, mas o instituto está sob questionamento judicial amplo. Ver docs/backlog-pesquisas.md."
   },
   {
     "id": "2026-09-14-ipsensus-ma-governador-t1",
@@ -7582,7 +7691,7 @@
         "pct": 12.2
       }
     ],
-    "observacao": "Contratante não identificado nos resultados de busca."
+    "observacao": "Contratante não identificado nos resultados de busca. ALERTA DE INTEGRIDADE (registrado em 18/09/2026): o Instituto Veritá teve pesquisas suspensas pela Justiça Eleitoral em 13 estados e no DF em 2026, por falhas de metodologia, composição de amostra e transparência, e por indícios de fraude — no Amazonas o TRE apontou cerca de 380 pares de linhas idênticas, 62% de uma amostra de 1.220 entrevistas. Esta pesquisa específica não consta como suspensa, mas o instituto está sob questionamento judicial amplo. Ver docs/backlog-pesquisas.md."
   },
   {
     "id": "2026-09-06-verita-br-presidente-t2-flavio-lula",
@@ -7614,7 +7723,7 @@
         "pct": 43.1
       }
     ],
-    "observacao": null
+    "observacao": "ALERTA DE INTEGRIDADE (registrado em 18/09/2026): o Instituto Veritá teve pesquisas suspensas pela Justiça Eleitoral em 13 estados e no DF em 2026, por falhas de metodologia, composição de amostra e transparência, e por indícios de fraude — no Amazonas o TRE apontou cerca de 380 pares de linhas idênticas, 62% de uma amostra de 1.220 entrevistas. Esta pesquisa específica não consta como suspensa, mas o instituto está sob questionamento judicial amplo. Ver docs/backlog-pesquisas.md."
   },
   {
     "id": "2026-09-05-parana-pesquisas-am-senador-t1",
