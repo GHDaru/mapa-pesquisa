@@ -117,11 +117,13 @@ senador). O dia fechou com 36 pesquisas novas e a base em 338.
 
 **A conferir na próxima rodada:**
 
-- **Datafolha nacional de 17/09** (Lula 39 x Flávio 36; 2º turno 46 x 44):
-  a ficha técnica foi confirmada em busca independente (2.002 entrevistas,
-  campo 15–17/09, BR-04029/2026, Globo e Folha, divulgação às 19h15), mas o
-  índice de busca ainda não trazia os percentuais poucas horas depois. Os
-  números vêm da cobertura citada na entrada. Reconferir.
+- ~~**Datafolha nacional de 17/09**: reconferir os percentuais~~ **RESOLVIDO
+  em 18/09.** A busca independente agora devolve a manchete completa e bate
+  número por número: Lula 39, Flávio 36, Cury 6, Caiado 4, Renan 3, Zema 2,
+  com 2.002 entrevistas e registro BR-04029/2026. Fica uma divergência menor
+  sobre o campo: duas fontes dizem 15–16/09 e a maioria diz 15–17/09; a base
+  adota 15–17/09, com a divergência anotada na própria pesquisa. A diferença
+  de um dia não muda o peso por recência.
 - **AtlasIntel PE e PR, parte do Senado**: os questionários testaram os
   candidatos ao Senado, mas nenhuma matéria publicou os percentuais em duas
   varreduras. Armadilha registrada pelo agente: buscas devolvem números do
