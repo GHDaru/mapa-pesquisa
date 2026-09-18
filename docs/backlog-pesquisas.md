@@ -177,10 +177,29 @@ liberada.
   turno; 64 x 27 no 2º), 1.600 entrevistas, campo 14–17/09. Ressalva: a
   cobertura cita BR-03822/2026 para o recorte presidencial e CE-04380/2026
   para governador e Senado na mesma rodada — reconferir.
-- **Datafolha CE não saiu** em 18/09, ao contrário do que a agenda indicava.
-  A última do estado é de 14/08.
+- **Datafolha CE saiu sim** em 18/09 (Ciro Gomes 47 x Elmano de Freitas 40,
+  1.204 entrevistas, campo 14–17/09, contratante O Povo). O agente de
+  presidente relatou que não tinha saído porque procurava um recorte
+  presidencial, que de fato não houve; o agente de estados achou a rodada
+  estadual. Confirmado em busca independente. Lição: um agente dizer que
+  "não saiu" só vale para o cargo que ele varreu.
 - **Paraná Pesquisas PR** saiu (1.280 entrevistas, campo 15–17/09) com
   governador e Senado, sem recorte presidencial.
 - A agenda que apontava Veritá PR com campo 06–11/09 estava errada: o par de
   registros PR-03910/2026 e BR-02249/2026 é de uma rodada de campo 28/07–01/08,
   divulgada em 02/08.
+
+### Divergência real no Ceará, governador (18/09)
+
+Três institutos publicaram no mesmo dia, com campos quase coincidentes, e o
+líder muda conforme o instituto:
+
+| Instituto | 1º turno | 2º turno |
+|---|---|---|
+| Datafolha (1.204, campo 14–17/09) | Ciro 47 x Elmano 40 | Ciro 51 x Elmano 43 |
+| Paraná Pesquisas (campo 15–17/09) | Ciro 47,4 x Elmano 39,9 | Ciro 50,4 x Elmano 42,4 |
+| Real Time Big Data (1.600, campo 14–17/09) | Elmano 47 x Ciro 42 | Elmano 48 x Ciro 45 |
+
+Não é erro de coleta nossa: são leituras divergentes de institutos
+diferentes. A média ponderada do site resolve pelo peso de amostra e
+recência, mas vale saber que o CE está com o resultado em disputa.

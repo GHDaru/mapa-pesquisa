@@ -1,0 +1,114 @@
+[
+  {
+    "id": "2026-09-18-datafolha-ce-senador-t1",
+    "uf": "CE",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "CE-01290/2026",
+    "contratante": "Jornal O Povo",
+    "dataInicio": "2026-09-14",
+    "dataFim": "2026-09-17",
+    "publicadoEm": "2026-09-18",
+    "amostra": 1204,
+    "margem": 3.0,
+    "cenario": "estimulada (2 vagas em disputa; eleitor indica 1º e 2º voto)",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/eleicoes/2026/09/18/pesquisa-datafolha-senado-ceara-tem-cid-com-24-wagner-21-e-luizianne-18.html"
+    },
+    "resultados": [
+      { "candidato": "Cid Gomes", "partido": "PSB", "pct": 24.0 },
+      { "candidato": "Capitão Wagner", "partido": "União Brasil", "pct": 21.0 },
+      { "candidato": "Luizianne Lins", "partido": "Rede", "pct": 18.0 },
+      { "candidato": "Alcides Fernandes", "partido": "PL", "pct": 9.0 },
+      { "candidato": "Lino Alves", "partido": "PCO", "pct": 0.0 },
+      { "candidato": "Reginaldo", "partido": "PSTU", "pct": 0.0 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 5.0 }
+    ],
+    "observacao": "Rodada Datafolha/O Povo no Ceará divulgada em 18/09/2026 (campo 14–17/09, 1.204 entrevistas, margem de 3 p.p., 95% de confiança); registro informado pela imprensa como CE-01290/2026 (mesma rodada do levantamento para governador; conferir no PesqEle, pois a rodada anterior de 03/09 usava CE-04122/2026). São 2 vagas e o questionário admite duas respostas ('em qual candidato votaria para a primeira vaga? e para a segunda?'), mas as matérias consultadas não explicitam se os percentuais publicados são do 1º voto ou do total de menções — registrado aqui como divulgado. Cid manteve os 24% de 03/09; Wagner oscilou +1 (21%), Luizianne +1 (18%) e Alcides +1 (9%). Lino Alves (PCO) e Reginaldo (PSTU) não pontuaram. Recorte regional: na Região Metropolitana, Wagner 24%, Cid 23%, Luizianne 18%; no interior, Cid 29%, Wagner 20%, Luizianne 12%. Também noticiada por Diário do Nordeste (https://diariodonordeste.verdesmares.com.br/pontopoder/datafolha-para-senado-ce-cid-tem-24-wagner-21-luizianne-18-1.3792529) e Poder360 (https://www.poder360.com.br/poder-eleicoes-2026/cid-e-wagner-lideram-disputa-para-o-senado-no-ce-diz-datafolha/). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-18-real-time-big-data-ce-senador-t1",
+    "uf": "CE",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "CE-04380/2026",
+    "contratante": "Rede Record de Televisão",
+    "dataInicio": "2026-09-14",
+    "dataFim": "2026-09-17",
+    "publicadoEm": "2026-09-18",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada (2 vagas em disputa)",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/real-time-big-data-no-ce-cid-lidera-ao-senado-2a-vaga-tem-empate-tecnico"
+    },
+    "resultados": [
+      { "candidato": "Cid Gomes", "partido": "PSB", "pct": 26.0 },
+      { "candidato": "Capitão Wagner", "partido": "União Brasil", "pct": 20.0 },
+      { "candidato": "Luizianne Lins", "partido": "Rede", "pct": 20.0 },
+      { "candidato": "Alcides Fernandes", "partido": "PL", "pct": 19.0 }
+    ],
+    "observacao": "Rodada Real Time Big Data/Record no Ceará divulgada em 18/09/2026 (campo 14–17/09, 1.600 entrevistas, margem de 2 p.p., 95% de confiança), registro CE-04380/2026. Cid lidera para a 1ª vaga; a 2ª vaga tem empate técnico entre Wagner, Luizianne (20% cada) e Alcides Fernandes (19%). Demais candidatos, brancos/nulos e indecisos não foram discriminados nos resumos consultados e por isso não foram incluídos. Também noticiada por GCMais (https://gcmais.com.br/noticias/2026/09/18/senado-no-ceara-cid-tem-26-wagner-e-luizianne-20-e-alcides-19-aponta-pesquisa). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-18-parana-pesquisas-ce-senador-t1",
+    "uf": "CE",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "CE-04259/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-17",
+    "publicadoEm": "2026-09-18",
+    "amostra": 1352,
+    "margem": 2.7,
+    "cenario": "estimulada, soma do 1º e 2º voto (2 vagas; percentuais somam mais de 100 pois o eleitor escolhe 2 nomes)",
+    "fonte": {
+      "nome": "Band",
+      "url": "https://www.band.com.br/politica/eleicoes/capitao-wagner-e-cid-gomes-tem-empate-tecnico-em-disputa-ao-senado-no-ceara"
+    },
+    "resultados": [
+      { "candidato": "Capitão Wagner", "partido": "União Brasil", "pct": 44.4 },
+      { "candidato": "Cid Gomes", "partido": "PSB", "pct": 43.3 },
+      { "candidato": "Luizianne Lins", "partido": "Rede", "pct": 35.1 },
+      { "candidato": "Alcides Fernandes", "partido": "PL", "pct": 18.6 }
+    ],
+    "observacao": "Rodada Paraná Pesquisas no Ceará divulgada em 18/09/2026 (campo 15–17/09, 1.352 entrevistas presenciais em 58 municípios, margem de 2,7 p.p., 95% de confiança), registro CE-04259/2026. Wagner (44,4%) e Cid (43,3%) estão em empate técnico na liderança. Como são 2 vagas e o eleitor indica dois nomes, os percentuais somam mais de 100. Demais candidatos, brancos/nulos e indecisos não foram discriminados nos resumos consultados. Contratante não informado (null). Também noticiada por Sobral em Revista (https://sobralemrevista.com.br/2026/09/18/senado-wagner-lidera-com-444-cid-tem-433-luizianne-351-e-alcides-186/) e Poder News (https://podernews.com.br/2026/09/18/instituto-parana-aponta-wagner-e-cid-na-lideranca-para-o-senado-no-ceara/). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-18-parana-pesquisas-pr-senador-t1",
+    "uf": "PR",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "PR-01022/2026",
+    "contratante": "Sedek Serviços, Tecnologia & Informação Ltda.",
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-17",
+    "publicadoEm": "2026-09-18",
+    "amostra": 1280,
+    "margem": 2.8,
+    "cenario": "estimulada (2 vagas; eleitor escolhe 2 nomes, percentuais somam mais de 100)",
+    "fonte": {
+      "nome": "RIC Mais",
+      "url": "https://ric.com.br/politica/eleicoes/parana-pesquisa-deltan-316-curi-304-e-filipe-barros-263-senado-parana/"
+    },
+    "resultados": [
+      { "candidato": "Deltan Dallagnol", "partido": "Novo", "pct": 31.6 },
+      { "candidato": "Alexandre Curi", "partido": "Republicanos", "pct": 30.4 },
+      { "candidato": "Filipe Barros", "partido": "PL", "pct": 26.3 },
+      { "candidato": "Gleisi Hoffmann", "partido": "PT", "pct": 25.9 },
+      { "candidato": "Cristina Graeml", "partido": "PSD", "pct": 14.8 },
+      { "candidato": "Dr. Rosinha", "partido": "PT", "pct": 12.5 },
+      { "candidato": "Marcelo Marcelino", "partido": "PCO", "pct": 1.3 },
+      { "candidato": "Karen Guerreiro", "partido": "Missão", "pct": 0.9 },
+      { "candidato": "Joaquim do MLB", "partido": "UP", "pct": 0.9 }
+    ],
+    "observacao": "Rodada Paraná Pesquisas no Paraná divulgada em 18/09/2026 (campo 15–17/09, 1.280 entrevistas presenciais em 57 municípios, margem de 2,8 p.p., 95% de confiança), registro PR-01022/2026, contratada pela Sedek. Quatro nomes em empate técnico na liderança pelas 2 vagas: Deltan 31,6%, Curi 30,4%, Filipe Barros 26,3% e Gleisi 25,9%. Brancos/nulos e indecisos não foram discriminados nos resumos consultados. Também noticiada por Poder360 (https://www.poder360.com.br/poder-eleicoes-2026/deltan-curi-gleisi-e-filipe-lideram-disputa-ao-senado-no-parana/) e CNN Brasil (https://www.cnnbrasil.com.br/eleicoes/parana-pesquisas-dallagnol-curi-filipe-e-gleisi-lideram-senado-no-pr/). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  }
+]

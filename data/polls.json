@@ -227,6 +227,395 @@
     "observacao": "Rodada do Datafolha no Piauí divulgada em 17/09/2026 (campo 14-17/09, 826 entrevistas, margem de 3 p.p., 95% de confiança); registro PI-03643/2026 (também registrada em âmbito nacional como BR-09377/2026). Como o eleitor escolhe 2 nomes, a imprensa divulgou o total de menções sobre o conjunto dos dois votos: Ciro 17%, Marcelo 17%, Júlio César 15% — empate técnico. Desdobramento divulgado: 1º voto — Ciro 24%, Marcelo 19%, Júlio César 14%; 2º voto — Júlio César 16%, Marcelo 15%, Ciro 11%. No espontâneo, 64% não souberam responder. Lista limitada aos três nomes com percentuais divulgados pela imprensa; brancos/nulos e demais candidatos não foram publicados nos resumos disponíveis. Também noticiada por O Povo (https://www.opovo.com.br/noticias/politica/eleicoes/2026/09/17/datafolha-senado-piaui-tem-empate-entre-ciro-marcelo-e-julio.html) e Conecta Piauí. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
   },
   {
+    "id": "2026-09-18-datafolha-ce-governador-t1",
+    "uf": "CE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "CE-01290/2026",
+    "contratante": "Jornal O Povo",
+    "dataInicio": "2026-09-14",
+    "dataFim": "2026-09-17",
+    "publicadoEm": "2026-09-18",
+    "amostra": 1204,
+    "margem": 3,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/datafolha-ciro-tem-47-no-1o-turno-no-ce-elmano-40/"
+    },
+    "resultados": [
+      {
+        "candidato": "Ciro Gomes",
+        "partido": "PSDB",
+        "pct": 47
+      },
+      {
+        "candidato": "Elmano de Freitas",
+        "partido": "PT",
+        "pct": 40
+      },
+      {
+        "candidato": "Vera Lúcia",
+        "partido": "Novo",
+        "pct": 2
+      },
+      {
+        "candidato": "Danilo Soares",
+        "partido": "DC",
+        "pct": 1
+      },
+      {
+        "candidato": "Delegado Huggo",
+        "partido": "Missão",
+        "pct": 1
+      },
+      {
+        "candidato": "Ieri Braga",
+        "partido": "PCO",
+        "pct": 0
+      },
+      {
+        "candidato": "Serley Leal",
+        "partido": "UP",
+        "pct": 0
+      },
+      {
+        "candidato": "Zé Batista",
+        "partido": "PSTU",
+        "pct": 0
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 6
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 3
+      }
+    ],
+    "observacao": "Rodada Datafolha/O Povo no Ceará divulgada na sexta-feira 18/09/2026 (campo 14–17/09, 1.204 entrevistas em 59 municípios, margem de 3 p.p., 95% de confiança). Registro informado pela imprensa: CE-01290/2026 (também citado o registro nacional BR-00180/2026) — atenção: a rodada anterior do Datafolha no CE, de 03/09, tinha registro CE-04122/2026, então o número desta rodada deve ser reconferido no PesqEle. No espontâneo: Ciro 33%, Elmano 30%. Rejeição: Elmano 37%, Ciro 29%. Ciro oscilou de 46% para 47% e Elmano subiu de 37% para 40% em relação a 03/09. Ieri Braga, Serley Leal e Zé Batista não pontuaram (registrados como 0). O nome do candidato do partido Democracia Cristã aparece na imprensa ora como 'Danilo Soares', ora como 'Danio Soares', e a sigla é noticiada como 'Democrata' — mapeada aqui para DC (Democracia Cristã) de data/parties.json; confirmar no TSE. Também noticiada por Metrópoles (https://www.metropoles.com/brasil/datafolha-ciro-lidera-1o-turno-com-47-e-elmano-soma-40-ao-governo-do-ce) e Diário do Nordeste (https://diariodonordeste.verdesmares.com.br/pontopoder/datafolha-ciro-tem-47-e-elmano-40-no-1-turno-para-governo-do-ceara-1.3792488). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-18-datafolha-ce-governador-t2",
+    "uf": "CE",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Datafolha",
+    "registroTSE": "CE-01290/2026",
+    "contratante": "Jornal O Povo",
+    "dataInicio": "2026-09-14",
+    "dataFim": "2026-09-17",
+    "publicadoEm": "2026-09-18",
+    "amostra": 1204,
+    "margem": 3,
+    "cenario": "estimulada, 2º turno, Ciro Gomes x Elmano de Freitas",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/datafolha-ciro-tem-51-em-2o-turno-no-ce-elmano-43/"
+    },
+    "resultados": [
+      {
+        "candidato": "Ciro Gomes",
+        "partido": "PSDB",
+        "pct": 51
+      },
+      {
+        "candidato": "Elmano de Freitas",
+        "partido": "PT",
+        "pct": 43
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 3
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 2
+      }
+    ],
+    "observacao": "Cenário de 2º turno da mesma rodada Datafolha/O Povo divulgada em 18/09/2026. CNN Brasil e O Povo publicaram Ciro 51% x Elmano 43% (com 3% de brancos/nulos e 2% de indecisos, fechando 99). Há um título do Poder360 com 'Ciro 50% x Elmano 42%' que, pela soma, corresponde à rodada Datafolha anterior (03/09) e não a esta — por isso foram usados os números 51/43. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-18-real-time-big-data-ce-governador-t1",
+    "uf": "CE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "CE-04380/2026",
+    "contratante": "Rede Record de Televisão",
+    "dataInicio": "2026-09-14",
+    "dataFim": "2026-09-17",
+    "publicadoEm": "2026-09-18",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/pesquisa-real-time-elmano-tem-47-e-ciro-42-no-1o-turno-no-ceara/"
+    },
+    "resultados": [
+      {
+        "candidato": "Elmano de Freitas",
+        "partido": "PT",
+        "pct": 47
+      },
+      {
+        "candidato": "Ciro Gomes",
+        "partido": "PSDB",
+        "pct": 42
+      },
+      {
+        "candidato": "Delegado Huggo",
+        "partido": "Missão",
+        "pct": 2
+      },
+      {
+        "candidato": "Vera Lúcia",
+        "partido": "Novo",
+        "pct": 1
+      },
+      {
+        "candidato": "Outros candidatos (Danilo Soares, Ieri Braga, Serley Leal e Zé Batista, somados)",
+        "partido": null,
+        "pct": 1
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 4
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 3
+      }
+    ],
+    "observacao": "Rodada Real Time Big Data/Record no Ceará divulgada em 18/09/2026 (campo 14–17/09, 1.600 entrevistas, margem de 2 p.p., 95% de confiança), registro CE-04380/2026. Resultado inverte a ordem do Datafolha do mesmo dia (Ciro 47 x Elmano 40): aqui Elmano lidera com 47% contra 42% de Ciro. Danilo Soares (Democrata/DC), Ieri Braga (PCO), Serley Leal (UP) e Zé Batista (PSTU) foram divulgados apenas de forma agregada (1% somados), por isso a linha única com partido null. Também noticiada por O Povo (https://www.opovo.com.br/noticias/politica/eleicoes/2026/09/18/pesquisa-realtime-big-data-traz-elmano-47-e-ciro-gomes-42.html) e GCMais. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-18-real-time-big-data-ce-governador-t2",
+    "uf": "CE",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "CE-04380/2026",
+    "contratante": "Rede Record de Televisão",
+    "dataInicio": "2026-09-14",
+    "dataFim": "2026-09-17",
+    "publicadoEm": "2026-09-18",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno, Elmano de Freitas x Ciro Gomes",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/elmano-tem-48-contra-45-de-ciro-no-2o-turno-no-ce-diz-pesquisa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Elmano de Freitas",
+        "partido": "PT",
+        "pct": 48
+      },
+      {
+        "candidato": "Ciro Gomes",
+        "partido": "PSDB",
+        "pct": 45
+      }
+    ],
+    "observacao": "Cenário de 2º turno da mesma rodada Real Time Big Data/Record (CE-04380/2026) divulgada em 18/09/2026: Elmano 48% x Ciro 45%, diferença de 3 p.p. acima da margem de 2 p.p. mas tratada como disputa acirrada pela imprensa. Brancos/nulos e indecisos deste cenário não foram discriminados nos resumos consultados e por isso não foram incluídos. Também noticiada por O Cafezinho (https://www.ocafezinho.com/2026/09/18/gangorra-no-ceara-real-time-big-data-mostra-elmano-a-frente-de-ciro). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-18-parana-pesquisas-ce-governador-t1",
+    "uf": "CE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "CE-04259/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-17",
+    "publicadoEm": "2026-09-18",
+    "amostra": 1352,
+    "margem": 2.7,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": {
+      "nome": "Band",
+      "url": "https://www.band.com.br/politica/eleicoes/ciro-gomes-lidera-corrida-ao-governo-do-ceara-com-474-elmano-tem-399"
+    },
+    "resultados": [
+      {
+        "candidato": "Ciro Gomes",
+        "partido": "PSDB",
+        "pct": 47.4
+      },
+      {
+        "candidato": "Elmano de Freitas",
+        "partido": "PT",
+        "pct": 39.9
+      },
+      {
+        "candidato": "Delegado Huggo",
+        "partido": "Missão",
+        "pct": 1.3
+      },
+      {
+        "candidato": "Zé Batista",
+        "partido": "PSTU",
+        "pct": 0.5
+      },
+      {
+        "candidato": "Vera Lúcia",
+        "partido": "Novo",
+        "pct": 0.4
+      },
+      {
+        "candidato": "Danilo Soares",
+        "partido": "DC",
+        "pct": 0.3
+      },
+      {
+        "candidato": "Ieri Braga",
+        "partido": "PCO",
+        "pct": 0.1
+      },
+      {
+        "candidato": "Serley Leal",
+        "partido": "UP",
+        "pct": 0.1
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 5.3
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 4.7
+      }
+    ],
+    "observacao": "Rodada Paraná Pesquisas no Ceará divulgada em 18/09/2026 (campo 15–17/09, 1.352 entrevistas presenciais em 58 municípios, margem de 2,7 p.p., 95% de confiança), registro CE-04259/2026. No espontâneo: Ciro 32,2%, Elmano 25,1%, 36,6% não souberam responder. Contratante não informado nos resumos consultados (null). Uma matéria da Jovem Pan traz 'Ciro Gomes (PDT)' — trata-se de erro da fonte: o candidato é do PSDB, como registram Band, Revista Oeste e as demais rodadas já na base. Também noticiada por Revista Oeste (https://revistaoeste.com/politica/ciro-abre-8-pontos-sobre-elmano-no-ceara-mostra-parana-pesquisas/). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-18-parana-pesquisas-ce-governador-t2",
+    "uf": "CE",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "CE-04259/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-17",
+    "publicadoEm": "2026-09-18",
+    "amostra": 1352,
+    "margem": 2.7,
+    "cenario": "estimulada, 2º turno, Ciro Gomes x Elmano de Freitas",
+    "fonte": {
+      "nome": "Band",
+      "url": "https://www.band.com.br/politica/eleicoes/vantagem-de-ciro-para-elmano-cai-de-169-para-8-pontos-no-2o-turno-no-ceara"
+    },
+    "resultados": [
+      {
+        "candidato": "Ciro Gomes",
+        "partido": "PSDB",
+        "pct": 50.4
+      },
+      {
+        "candidato": "Elmano de Freitas",
+        "partido": "PT",
+        "pct": 42.4
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 4.7
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 2.4
+      }
+    ],
+    "observacao": "Cenário de 2º turno da mesma rodada Paraná Pesquisas no Ceará (CE-04259/2026), divulgada em 18/09/2026. A vantagem de Ciro caiu de 16,9 p.p. na rodada anterior do instituto para 8 p.p. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-18-parana-pesquisas-pr-governador-t1",
+    "uf": "PR",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "PR-01022/2026",
+    "contratante": "Sedek Serviços, Tecnologia & Informação Ltda.",
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-17",
+    "publicadoEm": "2026-09-18",
+    "amostra": 1280,
+    "margem": 2.8,
+    "cenario": "estimulada, primeiro turno",
+    "fonte": {
+      "nome": "Diário dos Campos (dcmais)",
+      "url": "https://dcmais.com.br/eleicoes-2026/parana-pesquisas-moro-tem-447-requiao-filho-23-e-sandro-alex-197/"
+    },
+    "resultados": [
+      {
+        "candidato": "Sergio Moro",
+        "partido": "PL",
+        "pct": 44.7
+      },
+      {
+        "candidato": "Requião Filho",
+        "partido": "PDT",
+        "pct": 23
+      },
+      {
+        "candidato": "Sandro Alex",
+        "partido": "PSD",
+        "pct": 19.7
+      },
+      {
+        "candidato": "Luiz França",
+        "partido": "Missão",
+        "pct": 0.7
+      },
+      {
+        "candidato": "Alexandre Salomão",
+        "partido": "Mobiliza",
+        "pct": 0.4
+      },
+      {
+        "candidato": "Tayná Miessa",
+        "partido": "UP",
+        "pct": 0.4
+      },
+      {
+        "candidato": "Adriano Funileiro",
+        "partido": "PCO",
+        "pct": 0.3
+      },
+      {
+        "candidato": "Samuel de Mattos",
+        "partido": "PSTU",
+        "pct": 0.3
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 5.8
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 4.8
+      }
+    ],
+    "observacao": "Rodada Paraná Pesquisas no Paraná divulgada em 18/09/2026 (campo 15–17/09, 1.280 entrevistas presenciais em 57 municípios, margem de 2,8 p.p., 95% de confiança), registro PR-01022/2026, contratada pela Sedek. É a pesquisa de 1.280 entrevistas presenciais que estava na agenda. Moro oscilou de 45% (rodada 31/08–02/09 do mesmo instituto) para 44,7%; Sandro Alex subiu de 17,5% para 19,7% e Requião Filho caiu de 24% para 23%. Requião Filho e Sandro Alex ficam em empate técnico na 2ª colocação. Cenários de 2º turno desta rodada não foram localizados nos resumos consultados — os números 47x43, 53x38 e 47x35 que aparecem em buscas correspondem à rodada Alfa Inteligência de 17/09, já na base, e por isso não foram incluídos aqui. Também noticiada por Band (https://www.band.com.br/politica/eleicoes/parana-pesquisas-moro-lidera-no-pr-com-447-requiao-filho-registra-23) e aRede (https://arede.info/eleicoes/672486/parana-pesquisas-moro-tem-447-requiao-23-e-sandro-197-no-pr). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
     "id": "2026-09-18-real-time-big-data-ce-presidente-t1",
     "uf": "CE",
     "cargo": "presidente",
@@ -334,6 +723,214 @@
       }
     ],
     "observacao": "Único confronto de 2º turno divulgado para o Ceará nesta rodada. Mesma ficha técnica do cenário de 1º turno (1.600 entrevistas, 14–17/09, contratante Rede Record, margem de 2 pontos, confiança de 95%). A linha \"Não sabe\" corresponde aos 5% que não responderam. Números corroborados por CNN Brasil, Exame e CartaCapital."
+  },
+  {
+    "id": "2026-09-18-datafolha-ce-senador-t1",
+    "uf": "CE",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "CE-01290/2026",
+    "contratante": "Jornal O Povo",
+    "dataInicio": "2026-09-14",
+    "dataFim": "2026-09-17",
+    "publicadoEm": "2026-09-18",
+    "amostra": 1204,
+    "margem": 3,
+    "cenario": "estimulada (2 vagas em disputa; eleitor indica 1º e 2º voto)",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/eleicoes/2026/09/18/pesquisa-datafolha-senado-ceara-tem-cid-com-24-wagner-21-e-luizianne-18.html"
+    },
+    "resultados": [
+      {
+        "candidato": "Cid Gomes",
+        "partido": "PSB",
+        "pct": 24
+      },
+      {
+        "candidato": "Capitão Wagner",
+        "partido": "União Brasil",
+        "pct": 21
+      },
+      {
+        "candidato": "Luizianne Lins",
+        "partido": "Rede",
+        "pct": 18
+      },
+      {
+        "candidato": "Alcides Fernandes",
+        "partido": "PL",
+        "pct": 9
+      },
+      {
+        "candidato": "Lino Alves",
+        "partido": "PCO",
+        "pct": 0
+      },
+      {
+        "candidato": "Reginaldo",
+        "partido": "PSTU",
+        "pct": 0
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 5
+      }
+    ],
+    "observacao": "Rodada Datafolha/O Povo no Ceará divulgada em 18/09/2026 (campo 14–17/09, 1.204 entrevistas, margem de 3 p.p., 95% de confiança); registro informado pela imprensa como CE-01290/2026 (mesma rodada do levantamento para governador; conferir no PesqEle, pois a rodada anterior de 03/09 usava CE-04122/2026). São 2 vagas e o questionário admite duas respostas ('em qual candidato votaria para a primeira vaga? e para a segunda?'), mas as matérias consultadas não explicitam se os percentuais publicados são do 1º voto ou do total de menções — registrado aqui como divulgado. Cid manteve os 24% de 03/09; Wagner oscilou +1 (21%), Luizianne +1 (18%) e Alcides +1 (9%). Lino Alves (PCO) e Reginaldo (PSTU) não pontuaram. Recorte regional: na Região Metropolitana, Wagner 24%, Cid 23%, Luizianne 18%; no interior, Cid 29%, Wagner 20%, Luizianne 12%. Também noticiada por Diário do Nordeste (https://diariodonordeste.verdesmares.com.br/pontopoder/datafolha-para-senado-ce-cid-tem-24-wagner-21-luizianne-18-1.3792529) e Poder360 (https://www.poder360.com.br/poder-eleicoes-2026/cid-e-wagner-lideram-disputa-para-o-senado-no-ce-diz-datafolha/). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-18-real-time-big-data-ce-senador-t1",
+    "uf": "CE",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "CE-04380/2026",
+    "contratante": "Rede Record de Televisão",
+    "dataInicio": "2026-09-14",
+    "dataFim": "2026-09-17",
+    "publicadoEm": "2026-09-18",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada (2 vagas em disputa)",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/real-time-big-data-no-ce-cid-lidera-ao-senado-2a-vaga-tem-empate-tecnico"
+    },
+    "resultados": [
+      {
+        "candidato": "Cid Gomes",
+        "partido": "PSB",
+        "pct": 26
+      },
+      {
+        "candidato": "Capitão Wagner",
+        "partido": "União Brasil",
+        "pct": 20
+      },
+      {
+        "candidato": "Luizianne Lins",
+        "partido": "Rede",
+        "pct": 20
+      },
+      {
+        "candidato": "Alcides Fernandes",
+        "partido": "PL",
+        "pct": 19
+      }
+    ],
+    "observacao": "Rodada Real Time Big Data/Record no Ceará divulgada em 18/09/2026 (campo 14–17/09, 1.600 entrevistas, margem de 2 p.p., 95% de confiança), registro CE-04380/2026. Cid lidera para a 1ª vaga; a 2ª vaga tem empate técnico entre Wagner, Luizianne (20% cada) e Alcides Fernandes (19%). Demais candidatos, brancos/nulos e indecisos não foram discriminados nos resumos consultados e por isso não foram incluídos. Também noticiada por GCMais (https://gcmais.com.br/noticias/2026/09/18/senado-no-ceara-cid-tem-26-wagner-e-luizianne-20-e-alcides-19-aponta-pesquisa). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-18-parana-pesquisas-ce-senador-t1",
+    "uf": "CE",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "CE-04259/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-17",
+    "publicadoEm": "2026-09-18",
+    "amostra": 1352,
+    "margem": 2.7,
+    "cenario": "estimulada, soma do 1º e 2º voto (2 vagas; percentuais somam mais de 100 pois o eleitor escolhe 2 nomes)",
+    "fonte": {
+      "nome": "Band",
+      "url": "https://www.band.com.br/politica/eleicoes/capitao-wagner-e-cid-gomes-tem-empate-tecnico-em-disputa-ao-senado-no-ceara"
+    },
+    "resultados": [
+      {
+        "candidato": "Capitão Wagner",
+        "partido": "União Brasil",
+        "pct": 44.4
+      },
+      {
+        "candidato": "Cid Gomes",
+        "partido": "PSB",
+        "pct": 43.3
+      },
+      {
+        "candidato": "Luizianne Lins",
+        "partido": "Rede",
+        "pct": 35.1
+      },
+      {
+        "candidato": "Alcides Fernandes",
+        "partido": "PL",
+        "pct": 18.6
+      }
+    ],
+    "observacao": "Rodada Paraná Pesquisas no Ceará divulgada em 18/09/2026 (campo 15–17/09, 1.352 entrevistas presenciais em 58 municípios, margem de 2,7 p.p., 95% de confiança), registro CE-04259/2026. Wagner (44,4%) e Cid (43,3%) estão em empate técnico na liderança. Como são 2 vagas e o eleitor indica dois nomes, os percentuais somam mais de 100. Demais candidatos, brancos/nulos e indecisos não foram discriminados nos resumos consultados. Contratante não informado (null). Também noticiada por Sobral em Revista (https://sobralemrevista.com.br/2026/09/18/senado-wagner-lidera-com-444-cid-tem-433-luizianne-351-e-alcides-186/) e Poder News (https://podernews.com.br/2026/09/18/instituto-parana-aponta-wagner-e-cid-na-lideranca-para-o-senado-no-ceara/). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-18-parana-pesquisas-pr-senador-t1",
+    "uf": "PR",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "PR-01022/2026",
+    "contratante": "Sedek Serviços, Tecnologia & Informação Ltda.",
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-17",
+    "publicadoEm": "2026-09-18",
+    "amostra": 1280,
+    "margem": 2.8,
+    "cenario": "estimulada (2 vagas; eleitor escolhe 2 nomes, percentuais somam mais de 100)",
+    "fonte": {
+      "nome": "RIC Mais",
+      "url": "https://ric.com.br/politica/eleicoes/parana-pesquisa-deltan-316-curi-304-e-filipe-barros-263-senado-parana/"
+    },
+    "resultados": [
+      {
+        "candidato": "Deltan Dallagnol",
+        "partido": "Novo",
+        "pct": 31.6
+      },
+      {
+        "candidato": "Alexandre Curi",
+        "partido": "Republicanos",
+        "pct": 30.4
+      },
+      {
+        "candidato": "Filipe Barros",
+        "partido": "PL",
+        "pct": 26.3
+      },
+      {
+        "candidato": "Gleisi Hoffmann",
+        "partido": "PT",
+        "pct": 25.9
+      },
+      {
+        "candidato": "Cristina Graeml",
+        "partido": "PSD",
+        "pct": 14.8
+      },
+      {
+        "candidato": "Dr. Rosinha",
+        "partido": "PT",
+        "pct": 12.5
+      },
+      {
+        "candidato": "Marcelo Marcelino",
+        "partido": "PCO",
+        "pct": 1.3
+      },
+      {
+        "candidato": "Karen Guerreiro",
+        "partido": "Missão",
+        "pct": 0.9
+      },
+      {
+        "candidato": "Joaquim do MLB",
+        "partido": "UP",
+        "pct": 0.9
+      }
+    ],
+    "observacao": "Rodada Paraná Pesquisas no Paraná divulgada em 18/09/2026 (campo 15–17/09, 1.280 entrevistas presenciais em 57 municípios, margem de 2,8 p.p., 95% de confiança), registro PR-01022/2026, contratada pela Sedek. Quatro nomes em empate técnico na liderança pelas 2 vagas: Deltan 31,6%, Curi 30,4%, Filipe Barros 26,3% e Gleisi 25,9%. Brancos/nulos e indecisos não foram discriminados nos resumos consultados. Também noticiada por Poder360 (https://www.poder360.com.br/poder-eleicoes-2026/deltan-curi-gleisi-e-filipe-lideram-disputa-ao-senado-no-parana/) e CNN Brasil (https://www.cnnbrasil.com.br/eleicoes/parana-pesquisas-dallagnol-curi-filipe-e-gleisi-lideram-senado-no-pr/). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
   },
   {
     "id": "2026-09-17-datafolha-pi-governador-t1",
