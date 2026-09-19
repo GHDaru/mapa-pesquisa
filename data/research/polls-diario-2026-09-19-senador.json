@@ -1,0 +1,58 @@
+[
+  {
+    "id": "2026-09-19-parana-pesquisas-rs-senador-t1",
+    "uf": "RS",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "RS-00319/2026",
+    "contratante": "Partido Liberal (PL)",
+    "dataInicio": "2026-09-16",
+    "dataFim": "2026-09-18",
+    "publicadoEm": "2026-09-19",
+    "amostra": 1352,
+    "margem": 2.7,
+    "cenario": "estimulada (2 vagas; cada entrevistado podia citar até 2 nomes, por isso a soma passa de 100)",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/parana-pesquisas-indica-empate-tecnico-na-disputa-ao-senado-no-rs"
+    },
+    "resultados": [
+      { "candidato": "Manuela d'Ávila", "partido": "PSOL", "pct": 32.2 },
+      { "candidato": "Marcel van Hattem", "partido": "Novo", "pct": 29.5 },
+      { "candidato": "Paulo Pimenta", "partido": "PT", "pct": 25.4 },
+      { "candidato": "Sanderson", "partido": "PL", "pct": 21.2 },
+      { "candidato": "Germano Rigotto", "partido": "MDB", "pct": 20.6 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 8.4 },
+      { "candidato": "Não sabe", "partido": null, "pct": 7.8 }
+    ],
+    "observacao": "Rodada Paraná Pesquisas no Rio Grande do Sul divulgada no sábado 19/09/2026 (campo 16–18/09, 1.352 entrevistas presenciais e domiciliares em 63 municípios, margem de 2,7 p.p., 95% de confiança). Registro no TSE: RS-00319/2026; contratada/paga pelo PL. São 2 vagas em disputa no RS e cada entrevistado podia citar até dois nomes — os percentuais somam mais de 100. Manuela d'Ávila e Marcel van Hattem estão em empate técnico (2,7 p.p. de diferença, exatamente a margem de erro); Pimenta empata tecnicamente com Van Hattem. 'Brancos/nulos' agrega a resposta 'branco, nulo ou nenhum dos candidatos' (8,4%) e 'Não sabe' agrega 'não sabe/não respondeu' (7,8%). Evolução citada pela imprensa em relação a agosto: Manuela 33,6% → 32,2%; Van Hattem 26,9% → 29,5%. A lista pode conter outros nomes com percentuais menores não divulgados nos resumos consultados. Também noticiada por Poder360 (https://www.poder360.com.br/poder-eleicoes-2026/manuela-davila-lidera-disputa-pelo-senado-no-rs/), Band (https://www.band.com.br/politica/eleicoes/manuela-e-van-hattem-lideram-disputa-ao-senado-no-rs-diz-parana-pesquisas), Brasil de Fato (https://www.brasildefato.com.br/2026/09/19/manuela-davila-aparece-a-frente-em-disputa-pelo-senado-no-rs-aponta-parana-pesquisas/) e Gazeta do Povo (https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-senador-rio-grande-do-sul-setembro-2026/). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-19-datatrends-pe-senador-t1",
+    "uf": "PE",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "DataTrends",
+    "registroTSE": "PE-05602/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-17",
+    "publicadoEm": "2026-09-19",
+    "amostra": 1200,
+    "margem": 2.83,
+    "cenario": "estimulada (2 vagas em disputa)",
+    "fonte": {
+      "nome": "Blog do Mário Flávio",
+      "url": "https://blogdomarioflavio.com.br/datatrends-marilia-lidera-disputa-pelo-senado-em-pernambuco-humberto-mendonca-eduardo-e-tulio-avancam/"
+    },
+    "resultados": [
+      { "candidato": "Marília Arraes", "partido": "PDT", "pct": 16.0 },
+      { "candidato": "Humberto Costa", "partido": "PT", "pct": 14.0 },
+      { "candidato": "Mendonça Filho", "partido": "PL", "pct": 13.0 },
+      { "candidato": "Eduardo da Fonte", "partido": "PP", "pct": 11.0 },
+      { "candidato": "Túlio Gadêlha", "partido": "PSD", "pct": 6.0 }
+    ],
+    "observacao": "Rodada DataTrends em Pernambuco divulgada no sábado 19/09/2026 (campo 15–17/09, 1.200 entrevistas, margem máxima de 2,83 p.p., 95% de confiança). Registros informados pela imprensa: PE-05602/2026 e BR-08061/2026 — mesma rodada da pesquisa de governador. São 2 vagas em disputa em PE. ATENÇÃO à base: os percentuais aqui (16/14/13/11/6, soma 60) correspondem à leitura divulgada como 1ª menção/1º voto; a mesma casa já publicou em rodadas anteriores uma leitura de soma do 1º + 2º voto com números bem maiores (ex.: 29/24/21/19/11 na rodada de 25–27/08) — não misturar as duas séries. Brancos/nulos e indecisos não foram informados nas fontes consultadas. Evolução citada pela imprensa em relação à rodada DataTrends de 11/09: Marília 15→16, Humberto 13→14, Mendonça 11→13, Eduardo 10→11, Túlio 5→6. NÃO confundir com a rodada Real Time Big Data de 15/09 (Marília 27, Mendonça 21, Humberto 20), já na base, nem com o Datafolha de 11/09 (Marília 18, Humberto 16, Mendonça 12, Eduardo 10). Também noticiada por Blog do Mário Martins (https://mariomartins.blog.br/marilia-15-humberto-13-mendonca-11-eduardo-10-e-tulio-5-datatrends-mostra-disputa-aberta-pelo-senado-em-pernambuco/). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  }
+]

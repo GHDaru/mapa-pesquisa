@@ -1,0 +1,82 @@
+[
+  {
+    "id": "2026-09-19-parana-pesquisas-rs-governador-t1",
+    "uf": "RS",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "RS-00319/2026",
+    "contratante": "Partido Liberal (PL)",
+    "dataInicio": "2026-09-16",
+    "dataFim": "2026-09-18",
+    "publicadoEm": "2026-09-19",
+    "amostra": 1352,
+    "margem": 2.7,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/governo-do-rs-zucco-marca-364-brizola-tem-313-diz-parana-pesquisas"
+    },
+    "resultados": [
+      { "candidato": "Zucco", "partido": "PL", "pct": 36.4 },
+      { "candidato": "Juliana Brizola", "partido": "PDT", "pct": 31.3 },
+      { "candidato": "Gabriel Souza", "partido": "MDB", "pct": 12.9 },
+      { "candidato": "Marcelo Maranata", "partido": null, "pct": 3.1 },
+      { "candidato": "Cesar Pontes", "partido": null, "pct": 2.0 },
+      { "candidato": "Priscila Voigt", "partido": null, "pct": 1.0 },
+      { "candidato": "Rejane de Oliveira", "partido": null, "pct": 0.8 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 6.7 },
+      { "candidato": "Não sabe", "partido": null, "pct": 5.7 }
+    ],
+    "observacao": "Rodada Paraná Pesquisas no Rio Grande do Sul divulgada no sábado 19/09/2026 (campo 16–18/09, 1.352 entrevistas presenciais e domiciliares em 63 municípios, margem de 2,7 p.p., 95% de confiança). Registro no TSE: RS-00319/2026; pesquisa contratada/paga pelo Partido Liberal (PL), segundo a imprensa. O instituto NÃO simulou cenário de 2º turno nesta rodada. Zucco e Juliana Brizola estão em empate técnico (diferença de 5,1 p.p. é citada pela imprensa como dentro/limítrofe à margem; Poder360, CartaCapital e Brasil de Fato falam em empate técnico, enquanto Diário do Poder fala em vantagem ampliada — tratar a leitura com cautela). Os partidos de Marcelo Maranata, Cesar Pontes, Priscila Voigt e Rejane de Oliveira não foram informados nas fontes consultadas e ficaram como null — confirmar no DivulgaCand/TSE. Também noticiada por Poder360 (https://www.poder360.com.br/poder-eleicoes-2026/zucco-e-brizola-empatam-em-1o-turno-no-rs-diz-pesquisa/), Exame (https://exame.com/brasil/pesquisa-parana-zucco-tem-364-e-brizola-313-no-1o-turno-no-rio-grande-do-sul/), Brasil de Fato (https://www.brasildefato.com.br/2026/09/19/parana-pesquisas-zucco-e-juliana-brizola-estao-tecnicamente-empatados-na-disputa-pelo-governo-do-rs/) e Gazeta do Povo (https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-senador-rio-grande-do-sul-setembro-2026/). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-19-datatrends-pe-governador-t1",
+    "uf": "PE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "DataTrends",
+    "registroTSE": "PE-05602/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-17",
+    "publicadoEm": "2026-09-19",
+    "amostra": 1200,
+    "margem": 2.83,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "Blog da Polo",
+      "url": "https://blogdapolo.com.br/datatrends-aponta-raquel-lyra-com-46-e-joao-campos-com-38-na-corrida-pelo-governo-de-pernambuco/"
+    },
+    "resultados": [
+      { "candidato": "Raquel Lyra", "partido": "PSD", "pct": 46.0 },
+      { "candidato": "João Campos", "partido": "PSB", "pct": 38.0 },
+      { "candidato": "Ivan Moraes", "partido": "PSOL", "pct": 1.0 }
+    ],
+    "observacao": "Rodada DataTrends em Pernambuco divulgada no sábado 19/09/2026 (campo 15–17/09, 1.200 entrevistas, margem máxima de 2,83 p.p., 95% de confiança). Registros informados pela imprensa: PE-05602/2026 e BR-08061/2026. ATENÇÃO: as fontes consultadas divulgaram apenas os três nomes acima (Raquel Lyra 46%, João Campos 38%, Ivan Moraes 1%), somando 85% — os percentuais de brancos/nulos e de indecisos NÃO foram informados e por isso não constam aqui; completar quando o relatório integral estiver disponível. A mesma rodada mediu potencial de voto (Raquel: 34% votam com certeza + 21% podem votar = 55%; João: 29% + 23% = 52%) e aprovação do governo Raquel Lyra (67% aprovam, 28% desaprovam, 5% não sabem). Também noticiada por Interior da Bahia (https://interiordabahia.com.br/2026/09/19/pesquisa-raquel-lyra-tem-46-contra-38-de-joao-campos-no-1o-turno-de-pernambuco/), Blog do Didi Galvão (https://didigalvao.com.br/datatrends-raquel-lyra-lidera-novo-levantamento-para-o-governo-de-pernambuco/) e Blog da Renata Gondim (https://blogdarenata.com.br/datatrends-raquel-lyra-lidera-novo-levantamento-para-o-governo-de-pernambuco/). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-19-datatrends-pe-governador-t2",
+    "uf": "PE",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "DataTrends",
+    "registroTSE": "PE-05602/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-17",
+    "publicadoEm": "2026-09-19",
+    "amostra": 1200,
+    "margem": 2.83,
+    "cenario": "estimulada, 2º turno, Raquel Lyra x João Campos",
+    "fonte": {
+      "nome": "Blog da Polo",
+      "url": "https://blogdapolo.com.br/datatrends-aponta-raquel-lyra-com-46-e-joao-campos-com-38-na-corrida-pelo-governo-de-pernambuco/"
+    },
+    "resultados": [
+      { "candidato": "Raquel Lyra", "partido": "PSD", "pct": 49.0 },
+      { "candidato": "João Campos", "partido": "PSB", "pct": 41.0 }
+    ],
+    "observacao": "Cenário de 2º turno da mesma rodada DataTrends/PE divulgada em 19/09/2026 (campo 15–17/09, 1.200 entrevistas, margem 2,83 p.p.). Registros PE-05602/2026 e BR-08061/2026. Os percentuais de brancos/nulos e indecisos deste cenário (que fechariam os 10% restantes) não foram informados pelas fontes consultadas e por isso não constam aqui. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  }
+]

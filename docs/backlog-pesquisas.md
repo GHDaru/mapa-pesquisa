@@ -203,3 +203,34 @@ líder muda conforme o instituto:
 Não é erro de coleta nossa: são leituras divergentes de institutos
 diferentes. A média ponderada do site resolve pelo peso de amostra e
 recência, mas vale saber que o CE está com o resultado em disputa.
+
+## Anotadas em 2026-09-19
+
+Sábado fraco em divulgação. O O Povo noticiou 25 pesquisas com divulgação
+registrada no TSE para o dia, citando DataTrends, Veritá e Vox Brasil, mas
+o registro no TSE só reserva a data: cada instituto decide se apresenta os
+resultados. Nenhuma divulgação presidencial com percentuais apareceu.
+
+### Veritá: o quadro piorou
+
+Dois casos novos, encontrados na varredura de hoje:
+
+- **TRE-CE** suspendeu a pesquisa CE-04298/2026, que sairia em 16/09, por
+  indícios de irregularidade metodológica.
+- **TRE-MT** suspendeu a MT-06319/2026, prevista para 17/09, por um motivo
+  diferente e mais grave: o registro declarava "Governador, Senador", mas o
+  questionário perguntava sobre a disputa presidencial, extrapolando o
+  objeto registrado.
+
+Há ainda suspensão na BA. O instituto aparecia na lista de divulgações de
+19/09, então pode surgir material dele a qualquer momento. **Os agentes de
+busca estão instruídos a não ingerir nada do Veritá** até haver decisão
+sobre as quatro pesquisas dele que já estão na base.
+
+### A conferir na próxima rodada
+
+- DataTrends e Vox Brasil tinham divulgação registrada para 19/09 e não
+  apareceram. Se saírem tarde, entram na varredura de domingo com a data
+  efetiva de divulgação.
+- Paraná Pesquisas divulgou em 19/09 uma rodada no RS (RS-00319/2026),
+  registrada só para governador e senador.
