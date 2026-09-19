@@ -234,3 +234,29 @@ sobre as quatro pesquisas dele que já estão na base.
   efetiva de divulgação.
 - Paraná Pesquisas divulgou em 19/09 uma rodada no RS (RS-00319/2026),
   registrada só para governador e senador.
+
+### Pendências encerradas em 19/09
+
+**AtlasIntel, parte do Senado em PE e PR: encerrada sem sucesso.** Quatro
+varreduras em quatro dias não acharam os percentuais. A ficha técnica das
+rodadas está confirmada (PE-02989/2026, 1.793 entrevistas; PR, 1.794; campo
+11–16/09), mas todas as matérias publicam só governador. O tracker da Gazeta
+do Povo tem página de AtlasIntel para Senado no PR apenas de abril de 2026, e
+nenhuma de setembro para PE ou PR. A conclusão é que o recorte de Senado
+existiu no questionário mas não foi divulgado. Não é lacuna nossa.
+
+**Real Time Big Data PR (Record, 1.600 entrevistas): encerrada.** Estava na
+agenda de 16, 17, 18 e 19/09 e não saiu em nenhum dos quatro dias. A rodada
+mais recente do instituto no Paraná continua sendo a de 11/09. Se aparecer,
+entra pela varredura normal.
+
+### Verificar no DivulgaCand quando houver acesso
+
+Partidos de Marcelo Maranata, Cesar Pontes, Priscila Voigt e Rejane de
+Oliveira (governador, RS) ficaram `null`: as fontes não informaram a sigla.
+
+### Risco de série no DataTrends/PE, senador
+
+Os 16, 14, 13, 11 e 6 registrados são leitura de primeira menção. A mesma
+casa já publicou leitura de soma do primeiro com o segundo voto (29, 24, 21,
+19, 11, na rodada de 25–27/08). Não misturar as duas leituras na série.
