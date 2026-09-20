@@ -2404,6 +2404,95 @@
     "observacao": "Divulgada em 17/09/2026; campo 12-16/09 com 1.600 entrevistas, margem de 2 p.p. e registro SC-00866/2026. Carol De Toni, Esperidião Amin e Carlos Bolsonaro estão em empate técnico; Décio Lima e Afrânio Boppré também empatam entre si. Contratante não confirmado nos resumos de busca (as rodadas estaduais do Real Time Big Data em setembro/2026 vêm sendo contratadas pela Rede Record de Televisão, mas isso não foi explicitado para SC) — por isso `contratante: null`. Lista limitada aos nomes com percentuais divulgados pela imprensa. Também noticiada por Exame, InfoMoney e Gazeta do Povo (https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-senador-santa-catarina-setembro-2026/). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
   },
   {
+    "id": "2026-09-17-futura-100-cidades-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Futura/100% Cidades",
+    "registroTSE": "BR-00749/2026",
+    "contratante": "100% Cidades",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-15",
+    "publicadoEm": "2026-09-17",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-481-contra-437-de-lula-no-2o-turno-diz-pesquisa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 38.3
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 37.7
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 6.5
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 4.5
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 3.4
+      },
+      {
+        "candidato": "Pablo Marçal",
+        "partido": "PRTB",
+        "pct": 1.9
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 1
+      }
+    ],
+    "observacao": "Lacuna preenchida em 20/09/2026: a rodada saiu em 17/09 e escapou da varredura daquele dia. A ficha técnica (2.000 entrevistas, campo 11–15/09, margem 2,2, registro BR-00749/2026) e os números do 2º turno foram confirmados em busca independente na sessão principal; os percentuais do 1º turno vêm da mesma cobertura (Poder360, Revista Oeste, Viva, Gilberto Léda), que descreve empate técnico nos dois turnos. Brancos, nulos e indecisos não discriminados nas fontes."
+  },
+  {
+    "id": "2026-09-17-futura-100-cidades-br-presidente-t2-flavio-lula",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Futura/100% Cidades",
+    "registroTSE": "BR-00749/2026",
+    "contratante": "100% Cidades",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-15",
+    "publicadoEm": "2026-09-17",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, 2º turno Flávio Bolsonaro x Lula",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-481-contra-437-de-lula-no-2o-turno-diz-pesquisa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 48.1
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 43.7
+      }
+    ],
+    "observacao": "Lacuna preenchida em 20/09/2026. Números e ficha técnica confirmados em busca independente na sessão principal. Diferença de 4,4 pontos com margem de 2,2, descrita pelas fontes como empate técnico. Brancos, nulos e indecisos não discriminados."
+  },
+  {
     "id": "2026-09-15-real-time-big-data-pa-governador-t1",
     "uf": "PA",
     "cargo": "governador",

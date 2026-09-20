@@ -260,3 +260,41 @@ Oliveira (governador, RS) ficaram `null`: as fontes não informaram a sigla.
 Os 16, 14, 13, 11 e 6 registrados são leitura de primeira menção. A mesma
 casa já publicou leitura de soma do primeiro com o segundo voto (29, 24, 21,
 19, 11, na rodada de 25–27/08). Não misturar as duas leituras na série.
+
+## Anotadas em 2026-09-20
+
+Domingo sem nenhuma divulgação nova nos três cargos. Confirmado por duas
+varreduras independentes: a próxima onda começa segunda, 21/09, com Quaest,
+Datafolha, Real Time Big Data, AtlasIntel e Alfa Inteligência registrados
+para divulgar entre 21 e 24/09.
+
+### Lacuna preenchida
+
+**Futura/100% Cidades, nacional, 17/09** entrou hoje. Tinha escapado da
+varredura daquele dia. 1º turno Lula 38,3 x Flávio 37,7; 2º turno Flávio
+48,1 x Lula 43,7. Campo 11–15/09, 2.000 entrevistas, margem 2,2,
+BR-00749/2026. Ficha técnica e 2º turno confirmados em busca independente.
+
+### Lacunas mapeadas, ainda fora da base
+
+- **Palver, nacional, ~09/09**: instituto que nunca entrou na base. Rodada de
+  estreia com 5.000 entrevistas online, campo 04–08/09, margem 2,5. 1º turno
+  Lula 40 x Flávio 39 no cenário sem Pablo Marçal, e empate em 40 no cenário
+  com ele; 2º turno Flávio 46 x Lula 44. Fontes: JOTA e CartaCapital. Não
+  incluída ainda porque a data exata de divulgação e o registro no TSE
+  precisam de confirmação.
+- **DataTrends, PE, presidencial**, campo 07–09/09, 1.200 entrevistas,
+  PE-08122/2026 e BR-06128/2026: Lula 55 x Flávio 24 no 1º turno; 60 x 26 no
+  2º. Publicação provável entre 10 e 11/09. Fonte secundária fraca, precisa
+  de confirmação antes de entrar.
+
+### Contradição entre agentes, resolvida
+
+O agente de estados relatou uma Palver divulgada hoje, com 5.000 entrevistas,
+campo 15–20/09 e margem 4. O agente de presidente, com 26 buscas focadas,
+não achou nada de hoje. Minha busca própria só encontrou a rodada de 09/09.
+Além disso a ficha relatada é internamente inconsistente: 5.000 entrevistas
+não produzem margem de 4 pontos, e campo terminando no mesmo dia da
+divulgação é implausível. **Nada foi incluído.** É o segundo caso de agente
+relatando data errada; a regra de conferir por fora antes de mesclar se
+mostrou útil de novo.

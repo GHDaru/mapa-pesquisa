@@ -1,0 +1,55 @@
+[
+  {
+    "id": "2026-09-17-futura-100-cidades-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Futura/100% Cidades",
+    "registroTSE": "BR-00749/2026",
+    "contratante": "100% Cidades",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-15",
+    "publicadoEm": "2026-09-17",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-481-contra-437-de-lula-no-2o-turno-diz-pesquisa/"
+    },
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 38.3 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 37.7 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 6.5 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 4.5 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 3.4 },
+      { "candidato": "Pablo Marçal", "partido": "PRTB", "pct": 1.9 },
+      { "candidato": "Romeu Zema", "partido": "Novo", "pct": 1.0 }
+    ],
+    "observacao": "Lacuna preenchida em 20/09/2026: a rodada saiu em 17/09 e escapou da varredura daquele dia. A ficha técnica (2.000 entrevistas, campo 11–15/09, margem 2,2, registro BR-00749/2026) e os números do 2º turno foram confirmados em busca independente na sessão principal; os percentuais do 1º turno vêm da mesma cobertura (Poder360, Revista Oeste, Viva, Gilberto Léda), que descreve empate técnico nos dois turnos. Brancos, nulos e indecisos não discriminados nas fontes."
+  },
+  {
+    "id": "2026-09-17-futura-100-cidades-br-presidente-t2-flavio-lula",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Futura/100% Cidades",
+    "registroTSE": "BR-00749/2026",
+    "contratante": "100% Cidades",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-15",
+    "publicadoEm": "2026-09-17",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, 2º turno Flávio Bolsonaro x Lula",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-481-contra-437-de-lula-no-2o-turno-diz-pesquisa/"
+    },
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 48.1 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 43.7 }
+    ],
+    "observacao": "Lacuna preenchida em 20/09/2026. Números e ficha técnica confirmados em busca independente na sessão principal. Diferença de 4,4 pontos com margem de 2,2, descrita pelas fontes como empate técnico. Brancos, nulos e indecisos não discriminados."
+  }
+]
