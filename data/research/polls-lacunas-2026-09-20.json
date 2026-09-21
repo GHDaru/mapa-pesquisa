@@ -18,15 +18,43 @@
       "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-481-contra-437-de-lula-no-2o-turno-diz-pesquisa/"
     },
     "resultados": [
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 38.3 },
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 37.7 },
-      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 6.5 },
-      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 4.5 },
-      { "candidato": "Renan Santos", "partido": "Missão", "pct": 3.4 },
-      { "candidato": "Pablo Marçal", "partido": "PRTB", "pct": 1.9 },
-      { "candidato": "Romeu Zema", "partido": "Novo", "pct": 1.0 }
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 38.3
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 37.7
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 6.5
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 4.5
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 3.4
+      },
+      {
+        "candidato": "Pablo Marçal",
+        "partido": "PRTB",
+        "pct": 1.9
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 1.0
+      }
     ],
-    "observacao": "Lacuna preenchida em 20/09/2026: a rodada saiu em 17/09 e escapou da varredura daquele dia. A ficha técnica (2.000 entrevistas, campo 11–15/09, margem 2,2, registro BR-00749/2026) e os números do 2º turno foram confirmados em busca independente na sessão principal; os percentuais do 1º turno vêm da mesma cobertura (Poder360, Revista Oeste, Viva, Gilberto Léda), que descreve empate técnico nos dois turnos. Brancos, nulos e indecisos não discriminados nas fontes."
+    "observacao": "Lacuna preenchida em 20/09/2026: a rodada saiu em 17/09 e escapou da varredura daquele dia. A ficha técnica (2.000 entrevistas, campo 11–15/09, margem 2,2, registro BR-00749/2026) e os números do 2º turno foram confirmados em busca independente na sessão principal; os percentuais do 1º turno vêm da mesma cobertura (Poder360, Revista Oeste, Viva, Gilberto Léda), que descreve empate técnico nos dois turnos. Brancos, nulos e indecisos não discriminados nas fontes. Contexto: Pablo Marçal teve o registro de candidatura indeferido por unanimidade pelo TSE em 11/09/2026 (falta de filiação ao PRTB na janela partidária de abril) e renunciou em 14/09; o PRTB o substituiu por Leonardo Avalanche. Esta pesquisa o testou porque o campo é anterior ou simultâneo à decisão. Ver docs/backlog-pesquisas.md."
   },
   {
     "id": "2026-09-17-futura-100-cidades-br-presidente-t2-flavio-lula",
@@ -47,8 +75,16 @@
       "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-481-contra-437-de-lula-no-2o-turno-diz-pesquisa/"
     },
     "resultados": [
-      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 48.1 },
-      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 43.7 }
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 48.1
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 43.7
+      }
     ],
     "observacao": "Lacuna preenchida em 20/09/2026. Números e ficha técnica confirmados em busca independente na sessão principal. Diferença de 4,4 pontos com margem de 2,2, descrita pelas fontes como empate técnico. Brancos, nulos e indecisos não discriminados."
   }

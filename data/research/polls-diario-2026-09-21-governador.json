@@ -1,0 +1,287 @@
+[
+  {
+    "id": "2026-09-21-real-time-big-data-ac-governador-t1",
+    "uf": "AC",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "AC-01699/2026",
+    "contratante": "Rede Record de Televisão",
+    "dataInicio": "2026-09-16",
+    "dataFim": "2026-09-19",
+    "publicadoEm": "2026-09-21",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "ac24horas",
+      "url": "https://ac24horas.com/2026/09/21/real-time-governo-mailza-tem-36-alan-33-bocalom-15-e-thor-9/"
+    },
+    "resultados": [
+      { "candidato": "Mailza Assis", "partido": "PP", "pct": 36 },
+      { "candidato": "Alan Rick", "partido": "Republicanos", "pct": 33 },
+      { "candidato": "Tião Bocalom", "partido": "PSDB", "pct": 15 },
+      { "candidato": "Thor Dantas", "partido": "PSB", "pct": 9 }
+    ],
+    "observacao": "Rodada Real Time Big Data no Acre divulgada na segunda-feira 21/09/2026 (campo 16–19/09, 1.600 entrevistas por telefone e recrutamento digital, 95% de confiança). Registro TSE AC-01699/2026; contratante Rede Record de Televisão, custo declarado de R$ 20 mil, recursos próprios. O instituto declara margem de 2 p.p.; para n=1.600 o cálculo clássico daria ~2,5 p.p. — margem reproduzida como divulgada pelo instituto. Brancos/nulos e não sabe não foram detalhados pelas fontes consultadas para o cenário de governador (o somatório dos quatro candidatos é 93%). Também noticiada por Poder360 (https://www.poder360.com.br/poder-eleicoes-2026/mailza-tem-45-e-alan-rick-42-no-2o-turno-no-acre-diz-pesquisa/), Gazeta do Povo (https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senado-acre-setembro-2026/), Brasil 247 e Jurua24horas. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-21-real-time-big-data-ac-governador-t2",
+    "uf": "AC",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "AC-01699/2026",
+    "contratante": "Rede Record de Televisão",
+    "dataInicio": "2026-09-16",
+    "dataFim": "2026-09-19",
+    "publicadoEm": "2026-09-21",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno — Mailza Assis x Alan Rick",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/mailza-tem-45-e-alan-rick-42-no-2o-turno-no-acre-diz-pesquisa/"
+    },
+    "resultados": [
+      { "candidato": "Mailza Assis", "partido": "PP", "pct": 45 },
+      { "candidato": "Alan Rick", "partido": "Republicanos", "pct": 42 }
+    ],
+    "observacao": "Simulação de 2º turno da mesma rodada Real Time Big Data no Acre (registro TSE AC-01699/2026, campo 16–19/09/2026, divulgação 21/09). Empate técnico dentro da margem de 2 p.p. declarada pelo instituto. Brancos/nulos e não sabe não foram informados pelas fontes consultadas. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-21-parana-pesquisas-al-governador-t1",
+    "uf": "AL",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "AL-05775/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-18",
+    "dataFim": "2026-09-20",
+    "publicadoEm": "2026-09-21",
+    "amostra": 1400,
+    "margem": 2.7,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-senado-alagoas-setembro-2026/"
+    },
+    "resultados": [
+      { "candidato": "João Henrique Caldas (JHC)", "partido": "PSDB", "pct": 48.6 },
+      { "candidato": "Renan Filho", "partido": "MDB", "pct": 41.6 },
+      { "candidato": "Lenilda Luna", "partido": "UP", "pct": 0.6 },
+      { "candidato": "Márcio Jambo", "partido": null, "pct": 0.6 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 4.8 },
+      { "candidato": "Não sabe", "partido": null, "pct": 3.6 }
+    ],
+    "observacao": "Rodada Paraná Pesquisas em Alagoas divulgada na segunda-feira 21/09/2026 (campo 18–20/09, 1.400 entrevistas, margem de 2,7 p.p., 95% de confiança). Registro TSE AL-05775/2026; contratante não informado pelas fontes consultadas (null). Márcio Jambo aparece nas fontes como 'Democrata', sigla que não consta em data/parties.json — partido deixado como null; confirmar no DivulgaCand/TSE. JHC é grafado ora como PSDB ora como PSD nas fontes; mantida a sigla PSDB por coerência com os registros de AL já existentes na base. Também noticiada por Metrópoles (https://www.metropoles.com/brasil/parana-pesquisas-jhc-tem-486-e-renan-filho-416-para-governo-de-alagoas), CartaCapital (https://www.cartacapital.com.br/politica/jhc-lidera-disputa-com-renan-filho-pelo-governo-de-alagoas-indica-parana-pesquisas/), Exame e Band. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-21-parana-pesquisas-al-governador-t2",
+    "uf": "AL",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "AL-05775/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-18",
+    "dataFim": "2026-09-20",
+    "publicadoEm": "2026-09-21",
+    "amostra": 1400,
+    "margem": 2.7,
+    "cenario": "estimulada, 2º turno — JHC x Renan Filho",
+    "fonte": {
+      "nome": "Portal Bandeirantes (Band)",
+      "url": "https://www.band.com.br/politica/eleicoes/al-jhc-lidera-contra-renan-filho-em-1o-e-2o-turnos-senado-tem-empate-triplo"
+    },
+    "resultados": [
+      { "candidato": "João Henrique Caldas (JHC)", "partido": "PSDB", "pct": 49.6 },
+      { "candidato": "Renan Filho", "partido": "MDB", "pct": 43.2 },
+      { "candidato": "Nenhum/Brancos/nulos", "partido": null, "pct": 4.4 },
+      { "candidato": "Não sabe", "partido": null, "pct": 2.9 }
+    ],
+    "observacao": "Simulação de 2º turno (cenário JHC x Renan Filho) da mesma rodada Paraná Pesquisas em Alagoas, registro TSE AL-05775/2026, campo 18–20/09/2026, divulgação 21/09. Atenção: circulam manchetes antigas do Poder360 com números diferentes para o 2º turno em AL ('Renan Filho tem 47% contra 43% de JHC' e 'JHC e Renan Filho empatam'), referentes a rodadas anteriores e/ou de outros institutos — não confundir com esta. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-21-real-time-big-data-mg-governador-t1",
+    "uf": "MG",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "MG-07331/2026",
+    "contratante": "Rede Record Minas",
+    "dataInicio": "2026-09-16",
+    "dataFim": "2026-09-19",
+    "publicadoEm": "2026-09-21",
+    "amostra": 2000,
+    "margem": 2.0,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/cleitinho-e-patrus-empatam-no-2o-turno-pelo-governo-de-minas-gerais/"
+    },
+    "resultados": [
+      { "candidato": "Cleitinho Azevedo", "partido": "Republicanos", "pct": 35 },
+      { "candidato": "Patrus Ananias", "partido": "PT", "pct": 19 },
+      { "candidato": "Alexandre Kalil", "partido": "PDT", "pct": 10 },
+      { "candidato": "Mateus Simões", "partido": "PSD", "pct": 10 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 4 },
+      { "candidato": "Não sabe", "partido": null, "pct": 4 }
+    ],
+    "observacao": "Rodada Real Time Big Data em Minas Gerais divulgada na segunda-feira 21/09/2026 (campo 16–19/09, 2.000 entrevistas, margem de 2 p.p., 95% de confiança). Registro TSE MG-07331/2026; pesquisa paga pela Rede Record Minas. O somatório dos itens listados é 82% — as fontes consultadas não detalharam os demais candidatos do cenário estimulado. Também noticiada por Metrópoles (https://www.metropoles.com/minas-gerais/real-time-big-data-lider-no-1o-turno-cleitinho-empata-com-patrus-no-2o), Exame (https://exame.com/brasil/pesquisa-real-time-cleitinho-tem-35-e-patrus-19-no-1o-turno-em-minas/), CartaCapital e Gazeta do Povo (https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senado-minas-gerais-setembro-2026-2/). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-21-real-time-big-data-mg-governador-t2",
+    "uf": "MG",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "MG-07331/2026",
+    "contratante": "Rede Record Minas",
+    "dataInicio": "2026-09-16",
+    "dataFim": "2026-09-19",
+    "publicadoEm": "2026-09-21",
+    "amostra": 2000,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno — Cleitinho x Patrus Ananias",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/cleitinho-e-patrus-empatam-no-2o-turno-pelo-governo-de-minas-gerais/"
+    },
+    "resultados": [
+      { "candidato": "Cleitinho Azevedo", "partido": "Republicanos", "pct": 43 },
+      { "candidato": "Patrus Ananias", "partido": "PT", "pct": 42 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 9 },
+      { "candidato": "Não sabe", "partido": null, "pct": 6 }
+    ],
+    "observacao": "Simulação de 2º turno da mesma rodada Real Time Big Data em MG (registro TSE MG-07331/2026, campo 16–19/09/2026, divulgação 21/09). Empate técnico: diferença de 1 p.p. com margem de 2 p.p. O instituto testou outros 5 cenários de 2º turno, não detalhados nas fontes consultadas. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-21-real-time-big-data-pr-governador-t1",
+    "uf": "PR",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "PR-00532/2026",
+    "contratante": "Rádio e Televisão Record S.A. / Rede Record de Televisão",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-15",
+    "publicadoEm": "2026-09-21",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "CartaCapital",
+      "url": "https://www.cartacapital.com.br/politica/real-time-big-data-mostra-lideranca-de-moro-na-disputa-pelo-governo-do-parana/"
+    },
+    "resultados": [
+      { "candidato": "Sergio Moro", "partido": "PL", "pct": 35 },
+      { "candidato": "Sandro Alex", "partido": "PSD", "pct": 27 },
+      { "candidato": "Requião Filho", "partido": "PDT", "pct": 22 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 5 },
+      { "candidato": "Não sabe", "partido": null, "pct": 8 }
+    ],
+    "observacao": "Rodada Real Time Big Data no Paraná divulgada na segunda-feira 21/09/2026 (1.600 entrevistas, margem de 2 p.p. declarada pelo instituto, 95% de confiança). Registro TSE PR-00532/2026; contratante Rádio e Televisão Record S.A./Rede Record. ATENÇÃO À DATA: as fontes informam campo de 11 a 15/09/2026, seis dias antes da divulgação — folga incomum para o instituto (as rodadas de MG, SP e AC divulgadas no mesmo dia têm campo 16–19/09). O período de campo foi reproduzido como consta nas fontes (Poder360, CartaCapital, RIC, Tribuna PR, Exame), mas convém conferir a ficha técnica no DivulgaCandContas antes do merge. Luiz França (Missão) aparece na sequência sem percentual informado; Adriano Teixeira (PCO), Alexandre Salomão (Mobiliza), Samuel de Mattos (PSTU) e Tayná Miessa (UP) somam 1% no conjunto — não lançados individualmente por falta de número próprio. Também noticiada por Poder360 (https://www.poder360.com.br/poder-eleicoes-2026/moro-a-frente-na-disputa-ao-governo-do-parana-diz-real-time-big-data/), RIC (https://ric.com.br/politica/eleicoes/pesquisa-real-time-big-data-moro-tem-35-sandro-alex-27-e-requiao-filho-22-ao-governo/) e Gazeta do Povo (https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-parana-setembro-2026-2/). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-21-real-time-big-data-pr-governador-t2-moro-sandro",
+    "uf": "PR",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "PR-00532/2026",
+    "contratante": "Rádio e Televisão Record S.A. / Rede Record de Televisão",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-15",
+    "publicadoEm": "2026-09-21",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno — Sergio Moro x Sandro Alex",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-moro-lidera-cenarios-de-1o-e-2o-turnos-ao-governo-do-parana/"
+    },
+    "resultados": [
+      { "candidato": "Sergio Moro", "partido": "PL", "pct": 42 },
+      { "candidato": "Sandro Alex", "partido": "PSD", "pct": 38 }
+    ],
+    "observacao": "Simulação de 2º turno da mesma rodada Real Time Big Data no PR (registro TSE PR-00532/2026, divulgação 21/09/2026). Brancos/nulos e não sabe não informados pelas fontes. Vale a mesma ressalva de data do registro de 1º turno: campo informado como 11–15/09, seis dias antes da divulgação — conferir ficha técnica no TSE. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-21-real-time-big-data-pr-governador-t2-sandro-requiao",
+    "uf": "PR",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "PR-00532/2026",
+    "contratante": "Rádio e Televisão Record S.A. / Rede Record de Televisão",
+    "dataInicio": "2026-09-11",
+    "dataFim": "2026-09-15",
+    "publicadoEm": "2026-09-21",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno — Sandro Alex x Requião Filho",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/pesquisa-real-time-moro-tem-35-e-sandro-alex-27-no-1o-turno-no-parana/"
+    },
+    "resultados": [
+      { "candidato": "Sandro Alex", "partido": "PSD", "pct": 42 },
+      { "candidato": "Requião Filho", "partido": "PDT", "pct": 31 }
+    ],
+    "observacao": "Segundo cenário de 2º turno da mesma rodada Real Time Big Data no PR (registro TSE PR-00532/2026, divulgação 21/09/2026). Brancos/nulos e não sabe não informados pelas fontes. Vale a mesma ressalva de data do registro de 1º turno. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-21-real-time-big-data-sp-governador-t1",
+    "uf": "SP",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "SP-07495/2026",
+    "contratante": "Real Time Big Data (recursos próprios)",
+    "dataInicio": "2026-09-16",
+    "dataFim": "2026-09-19",
+    "publicadoEm": "2026-09-21",
+    "amostra": 2000,
+    "margem": 2.0,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/tarcisio-vence-no-1o-turno-em-sao-paulo-diz-real-time-big-data/"
+    },
+    "resultados": [
+      { "candidato": "Tarcísio de Freitas", "partido": "Republicanos", "pct": 53 },
+      { "candidato": "Fernando Haddad", "partido": "PT", "pct": 38 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 5 },
+      { "candidato": "Não sabe", "partido": null, "pct": 3 }
+    ],
+    "observacao": "Rodada Real Time Big Data em São Paulo divulgada na segunda-feira 21/09/2026 (campo 16–19/09, 2.000 entrevistas por telefone e recrutamento digital, margem de 2 p.p., 95% de confiança). Registro TSE SP-07495/2026; realizada com recursos próprios do instituto. Carlos Machado (PCB), Izadora Dias (PCO), Policial Edjane (Agir), Vera Lúcia (PSTU) e Vivian Mendes (UP) somam 1% no conjunto — não lançados individualmente por falta de número próprio. Rejeição: Haddad 41%, Tarcísio 33%. Também noticiada por Exame (https://exame.com/brasil/real-time-big-data-tarcisio-tem-53-e-haddad-38-no-1o-turno-em-sao-paulo/), Correio Braziliense, Money Times e Gazeta do Povo (https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-sao-paulo-setembro-2026-2/). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-21-real-time-big-data-sp-governador-t2",
+    "uf": "SP",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "SP-07495/2026",
+    "contratante": "Real Time Big Data (recursos próprios)",
+    "dataInicio": "2026-09-16",
+    "dataFim": "2026-09-19",
+    "publicadoEm": "2026-09-21",
+    "amostra": 2000,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno — Tarcísio x Haddad",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/tarcisio-vence-no-1o-turno-em-sao-paulo-diz-real-time-big-data/"
+    },
+    "resultados": [
+      { "candidato": "Tarcísio de Freitas", "partido": "Republicanos", "pct": 57 },
+      { "candidato": "Fernando Haddad", "partido": "PT", "pct": 39 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 3 },
+      { "candidato": "Não sabe", "partido": null, "pct": 1 }
+    ],
+    "observacao": "Simulação de 2º turno da mesma rodada Real Time Big Data em SP (registro TSE SP-07495/2026, campo 16–19/09/2026, divulgação 21/09). Registro mantido mesmo com o instituto apontando vitória de Tarcísio em 1º turno, por ser cenário efetivamente simulado e divulgado. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  }
+]

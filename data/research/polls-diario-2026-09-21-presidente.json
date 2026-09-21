@@ -1,0 +1,596 @@
+[
+  {
+    "id": "2026-09-21-quaest-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "BR-06004/2026",
+    "contratante": "Globo Comunicação e Participações S.A. e Editora Globo",
+    "dataInicio": "2026-09-17",
+    "dataFim": "2026-09-20",
+    "publicadoEm": "2026-09-21",
+    "amostra": 2004,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-presidente-setembro-2026-4/"
+    },
+    "observacao": "Apuradas apenas as duas primeiras colocações nas fontes consultadas (Luiz Inácio Lula da Silva 37% e Flávio Bolsonaro 33%); demais nomes do cenário estimulado não foram detalhados. Primeira rodada Quaest que inclui Leonardo Avalanche (PRTB) no lugar de Pablo Marçal, cuja candidatura foi indeferida pelo TSE. Verificação independente na sessão principal confirmou a ficha técnica (2.004 entrevistas, campo 17–20/09, margem 2, BR-06004/2026, contratante Globo e O Globo), mas o índice de busca ainda não trazia os percentuais poucas horas após a divulgação. Reconferir na próxima rodada.",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 37
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 33
+      }
+    ]
+  },
+  {
+    "id": "2026-09-21-quaest-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "BR-06004/2026",
+    "contratante": "Globo Comunicação e Participações S.A. e Editora Globo",
+    "dataInicio": "2026-09-17",
+    "dataFim": "2026-09-20",
+    "publicadoEm": "2026-09-21",
+    "amostra": 2004,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
+    "fonte": {
+      "nome": "Rádio Itatiaia",
+      "url": "https://www.itatiaia.com.br/politica/eleicoes/pesquisas/a-nova-pesquisa-quaest-para-presidente-que-sera-divulgada-nesta-segunda-feira-21/"
+    },
+    "observacao": "Empate técnico dentro da margem de 2 pontos. Brancos/nulos e não sabe não detalhados pelas fontes consultadas. Verificação independente na sessão principal confirmou a ficha técnica (2.004 entrevistas, campo 17–20/09, margem 2, BR-06004/2026, contratante Globo e O Globo), mas o índice de busca ainda não trazia os percentuais poucas horas após a divulgação. Reconferir na próxima rodada.",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 42
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 41
+      }
+    ]
+  },
+  {
+    "id": "2026-09-21-quaest-br-presidente-t2-lula-caiado",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "BR-06004/2026",
+    "contratante": "Globo Comunicação e Participações S.A. e Editora Globo",
+    "dataInicio": "2026-09-17",
+    "dataFim": "2026-09-20",
+    "publicadoEm": "2026-09-21",
+    "amostra": 2004,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Ronaldo Caiado",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-presidente-setembro-2026-4/"
+    },
+    "observacao": "Empate técnico dentro da margem. Brancos/nulos e não sabe não detalhados pela fonte. Verificação independente na sessão principal confirmou a ficha técnica (2.004 entrevistas, campo 17–20/09, margem 2, BR-06004/2026, contratante Globo e O Globo), mas o índice de busca ainda não trazia os percentuais poucas horas após a divulgação. Reconferir na próxima rodada.",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 41
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 39
+      }
+    ]
+  },
+  {
+    "id": "2026-09-21-quaest-br-presidente-t2-lula-renan",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "BR-06004/2026",
+    "contratante": "Globo Comunicação e Participações S.A. e Editora Globo",
+    "dataInicio": "2026-09-17",
+    "dataFim": "2026-09-20",
+    "publicadoEm": "2026-09-21",
+    "amostra": 2004,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Renan Santos",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-presidente-setembro-2026-4/"
+    },
+    "observacao": "Brancos/nulos e não sabe não detalhados pela fonte. Verificação independente na sessão principal confirmou a ficha técnica (2.004 entrevistas, campo 17–20/09, margem 2, BR-06004/2026, contratante Globo e O Globo), mas o índice de busca ainda não trazia os percentuais poucas horas após a divulgação. Reconferir na próxima rodada.",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 41
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 38
+      }
+    ]
+  },
+  {
+    "id": "2026-09-21-quaest-br-presidente-t2-lula-cury",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "BR-06004/2026",
+    "contratante": "Globo Comunicação e Participações S.A. e Editora Globo",
+    "dataInicio": "2026-09-17",
+    "dataFim": "2026-09-20",
+    "publicadoEm": "2026-09-21",
+    "amostra": 2004,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Augusto Cury",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-presidente-setembro-2026-4/"
+    },
+    "observacao": "Brancos/nulos e não sabe não detalhados pela fonte. Verificação independente na sessão principal confirmou a ficha técnica (2.004 entrevistas, campo 17–20/09, margem 2, BR-06004/2026, contratante Globo e O Globo), mas o índice de busca ainda não trazia os percentuais poucas horas após a divulgação. Reconferir na próxima rodada.",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 39
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 35
+      }
+    ]
+  },
+  {
+    "id": "2026-09-21-nexus-btg-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Nexus/FSB",
+    "registroTSE": "BR-08900/2026",
+    "contratante": "Banco BTG Pactual",
+    "dataInicio": "2026-09-18",
+    "dataFim": "2026-09-20",
+    "publicadoEm": "2026-09-21",
+    "amostra": 2006,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Nexus (FSB) — estudos divulgados",
+      "url": "https://www.nexus.fsb.com.br/estudos-divulgados/pesquisa-btg-nexus-de-intencao-de-votos-para-presidente-do-brasil-21-de-setembro-de-2026/"
+    },
+    "observacao": "Entrevistas por telefone (CATI). Apuradas apenas as duas primeiras colocações nas fontes consultadas; demais nomes não detalhados.",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 40
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 37
+      }
+    ]
+  },
+  {
+    "id": "2026-09-21-nexus-btg-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Nexus/FSB",
+    "registroTSE": "BR-08900/2026",
+    "contratante": "Banco BTG Pactual",
+    "dataInicio": "2026-09-18",
+    "dataFim": "2026-09-20",
+    "publicadoEm": "2026-09-21",
+    "amostra": 2006,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-tem-46-ante-45-de-flavio-no-2o-turno-diz-btg-nexus/"
+    },
+    "observacao": "Empate técnico. Outros cenários de 2º turno (Lula x Augusto Cury, Lula x Ronaldo Caiado, Lula x Renan Santos, Lula x Romeu Zema) foram citados pelas fontes sem percentuais e por isso não foram registrados.",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 46
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 45
+      }
+    ]
+  },
+  {
+    "id": "2026-09-21-palver-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Palver",
+    "registroTSE": "BR-00860/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-18",
+    "publicadoEm": "2026-09-21",
+    "amostra": 5000,
+    "margem": 2.8,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "JOTA",
+      "url": "https://www.jota.info/eleicoes/eleicoes-2026/palver-mostra-flavio-bolsonaro-numericamente-a-frente-de-lula-no-1o-turno-em-empate-tecnico"
+    },
+    "observacao": "Coleta pela internet. Margem divergente entre fontes: JOTA/Correio Braziliense indicam 2,8 pontos; Focus Poder cita 3 pontos — adotado 2,8. Brancos/nulos e não sabe não detalhados.",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 42
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 41
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 11
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 2
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 1
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 1
+      }
+    ]
+  },
+  {
+    "id": "2026-09-21-palver-br-presidente-t1-espontanea",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Palver",
+    "registroTSE": "BR-00860/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-18",
+    "publicadoEm": "2026-09-21",
+    "amostra": 5000,
+    "margem": 2.8,
+    "cenario": "espontânea (1º turno, sem apresentação de nomes)",
+    "fonte": {
+      "nome": "Correio Braziliense",
+      "url": "https://www.correiobraziliense.com.br/politica/2026/09/7504821-palver-flavio-e-lula-empatados-na-estimulada-e-na-espontanea-no-1-turno.html"
+    },
+    "observacao": "Cenário espontâneo. Demais respostas (brancos/nulos, não sabe) não detalhadas pela fonte.",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 40
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 39
+      }
+    ]
+  },
+  {
+    "id": "2026-09-21-palver-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Palver",
+    "registroTSE": "BR-00860/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-18",
+    "publicadoEm": "2026-09-21",
+    "amostra": 5000,
+    "margem": 2.8,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
+    "fonte": {
+      "nome": "Revista Oeste",
+      "url": "https://revistaoeste.com/politica/flavio-tem-42-e-lula-41-em-pesquisa-palver/"
+    },
+    "observacao": "Coleta pela internet. Brancos/nulos e não sabe não detalhados pela fonte.",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 47
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 43
+      }
+    ]
+  },
+  {
+    "id": "2026-09-21-realtimebigdata-mg-presidente-t1",
+    "uf": "MG",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-01531/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-16",
+    "dataFim": "2026-09-19",
+    "publicadoEm": "2026-09-21",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno) — amostra estadual de Minas Gerais",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/minas-gerais/real-time-em-mg-lula-tem-39-das-intencoes-e-flavio-35-no-1o-turno"
+    },
+    "observacao": "Entrevistas por telefone e recrutamento digital. Apuradas apenas as duas primeiras colocações nas fontes consultadas.",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 39
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 35
+      }
+    ]
+  },
+  {
+    "id": "2026-09-21-realtimebigdata-mg-presidente-t2",
+    "uf": "MG",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-01531/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-16",
+    "dataFim": "2026-09-19",
+    "publicadoEm": "2026-09-21",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula — amostra estadual de Minas Gerais",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-flavio-tem-46-no-2o-turno-em-minas-lula-45/"
+    },
+    "observacao": "Empate técnico dentro da margem de 2 pontos.",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 46
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 45
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 5
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 4
+      }
+    ]
+  },
+  {
+    "id": "2026-09-21-realtimebigdata-sp-presidente-t1",
+    "uf": "SP",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-09702/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-16",
+    "dataFim": "2026-09-19",
+    "publicadoEm": "2026-09-21",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno) — amostra estadual de São Paulo",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-51-contra-45-de-lula-no-2o-turno-em-sp-diz-pesquisa/"
+    },
+    "observacao": "Registro informado pelas fontes como BR-09702/2026 (registro nacional), ainda que se trate de amostra estadual de São Paulo. Brancos/nulos e não sabe não detalhados.",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 41
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 35
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 6
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 4
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 4
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 3
+      }
+    ]
+  },
+  {
+    "id": "2026-09-21-realtimebigdata-sp-presidente-t2",
+    "uf": "SP",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-09702/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-16",
+    "dataFim": "2026-09-19",
+    "publicadoEm": "2026-09-21",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula — amostra estadual de São Paulo",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-51-contra-45-de-lula-no-2o-turno-em-sp-diz-pesquisa/"
+    },
+    "observacao": "Brancos/nulos e não sabe não detalhados pela fonte.",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 51
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 45
+      }
+    ]
+  },
+  {
+    "id": "2026-09-09-palver-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Palver",
+    "registroTSE": "BR-05420/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-04",
+    "dataFim": "2026-09-08",
+    "publicadoEm": "2026-09-09",
+    "amostra": 5000,
+    "margem": 2.5,
+    "cenario": "estimulada, cenário 1 (com Pablo Marçal) — rodada de estreia do instituto",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/palver-lula-e-flavio-empatam-em-40-no-1o-turno/"
+    },
+    "observacao": "Lacuna preenchida: rodada de estreia da Palver, coleta pela internet, divulgada na quarta-feira 09/09/2026. Registro TSE BR-05420/2026 confirmado. Demais nomes do cenário não detalhados pelas fontes.",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 40
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 40
+      }
+    ]
+  },
+  {
+    "id": "2026-09-09-palver-br-presidente-t1-sem-marcal",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Palver",
+    "registroTSE": "BR-05420/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-04",
+    "dataFim": "2026-09-08",
+    "publicadoEm": "2026-09-09",
+    "amostra": 5000,
+    "margem": 2.5,
+    "cenario": "estimulada, cenário 2 (sem Pablo Marçal)",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/palver-lula-e-flavio-empatam-em-40-no-1o-turno/"
+    },
+    "observacao": "Cenário alternativo sem Pablo Marçal. Demais nomes não detalhados pelas fontes.",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 40
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 39
+      }
+    ]
+  },
+  {
+    "id": "2026-09-09-palver-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Palver",
+    "registroTSE": "BR-05420/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-04",
+    "dataFim": "2026-09-08",
+    "publicadoEm": "2026-09-09",
+    "amostra": 5000,
+    "margem": 2.5,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
+    "fonte": {
+      "nome": "JOTA",
+      "url": "https://www.jota.info/eleicoes/eleicoes-2026/lula-lidera-primeiro-turno-mas-empata-com-flavio-bolsonaro-no-segundo-aponta-palver"
+    },
+    "observacao": "Empate técnico dentro da margem de 2,5 pontos. Brancos/nulos e não sabe não detalhados pelas fontes.",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 46
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 44
+      }
+    ]
+  }
+]

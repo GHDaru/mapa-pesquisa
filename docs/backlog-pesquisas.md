@@ -298,3 +298,62 @@ não produzem margem de 4 pontos, e campo terminando no mesmo dia da
 divulgação é implausível. **Nada foi incluído.** É o segundo caso de agente
 relatando data errada; a regra de conferir por fora antes de mesclar se
 mostrou útil de novo.
+
+## Anotadas em 2026-09-21
+
+Dia grande: 33 pesquisas novas, base de 358 para 391.
+
+### Fato novo que muda o domínio: Pablo Marçal não é mais candidato
+
+Confirmado em busca independente. O TSE indeferiu por unanimidade o registro
+da candidatura dele em **11/09/2026**, aceitando o argumento do Ministério
+Público Eleitoral de que não estava filiado ao PRTB no fim da janela
+partidária de abril. Marçal também está inelegível até 2032 por abuso de
+poder na campanha municipal de 2024. Ele renunciou em 14/09 e o PRTB o
+substituiu por **Leonardo Avalanche**, presidente nacional do partido.
+
+Cinco pesquisas da base o testaram, todas com campo anterior ou simultâneo à
+decisão: RTBD no CE (08/09), RS (10/09) e SP (14/09), CNT/MDA nacional
+(15/09) e Futura nacional (17/09). Elas ganharam o contexto no campo
+`observacao`. **Como todas estão dentro da janela de 45 dias, Marçal ainda
+aparece na média presidencial**, com cerca de 1,8% no nacional e até 5% em
+São Paulo. Isso precisa de decisão: manter como registro histórico do que as
+pesquisas mediram, ou excluir da agregação quem não é mais candidato. A
+Quaest de hoje já é a primeira rodada com Avalanche no lugar dele.
+
+### Lacuna resolvida: Palver
+
+O instituto entrou na base. A rodada de estreia foi divulgada em **09/09**
+(BR-05420/2026, 5.000 entrevistas por internet, campo 04–08/09), com Lula 40
+x Flávio 39 no cenário sem Marçal e empate em 40 no cenário com ele, e Flávio
+46 x Lula 44 no 2º turno. Hoje saiu uma segunda rodada (BR-00860/2026, campo
+15–18/09) com Flávio 42 x Lula 41 no 1º turno estimulado e Flávio 47 x Lula
+43 no 2º.
+
+Nota metodológica: 5.000 entrevistas com margem declarada de 2,5 e 2,8 não
+fecham com amostra probabilística, que daria cerca de 1,4. É coerente com
+painel online não probabilístico, que é o método da casa, mas vale saber.
+
+### A conferir na próxima rodada
+
+- **Quaest nacional de hoje** (Lula 37 x Flávio 33 no 1º turno; Flávio 42 x
+  Lula 41 no 2º): a ficha técnica foi confirmada em busca independente
+  (2.004 entrevistas, campo 17–20/09, margem 2, BR-06004/2026, Globo e O
+  Globo), mas os percentuais ainda não apareciam no índice de busca poucas
+  horas depois. Mesmo padrão do Datafolha em 17/09, que se confirmou no dia
+  seguinte. Reconferir.
+- **RTBD Paraná (PR-00532/2026)**: todas as fontes datam a divulgação em
+  21/09 mas o campo em 11–15/09, seis dias de folga, destoando das rodadas
+  RTBD de MG, SP e AC do mesmo dia, todas com campo 16–19/09. Conferir a
+  ficha no DivulgaCandContas.
+- **DataTrends PE presidencial**: continua fora. Os números (Lula 55 x Flávio
+  24) são idênticos aos do Datafolha PE de 11/09 que já está na base, e a
+  data de divulgação não foi encontrada. Coincidência exata entre dois
+  institutos pede olhar humano antes de entrar.
+
+### Siglas pendentes
+
+Márcio Jambo (AL) aparece como "Democrata", sigla que não existe em
+`parties.json`, e Davi Davino Filho (AL) sem sigla nas fontes. Ambos com
+`partido: null`. JHC aparece ora como PSDB ora como PSD; mantido PSDB por
+coerência com os registros de Alagoas já na base.

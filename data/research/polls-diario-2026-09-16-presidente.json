@@ -370,7 +370,7 @@
         "pct": 1
       }
     ],
-    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado). Campo 9 a 13/09/2026, registro TSE BR-06902/2026. Money Times publicou Lula com 40,6%; CNN Brasil, Exame e Metrópoles trazem 40,5% (valor adotado). Brancos/nulos e indecisos não vieram nos resumos."
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado). Campo 9 a 13/09/2026, registro TSE BR-06902/2026. Money Times publicou Lula com 40,6%; CNN Brasil, Exame e Metrópoles trazem 40,5% (valor adotado). Brancos/nulos e indecisos não vieram nos resumos. Contexto: Pablo Marçal teve o registro de candidatura indeferido por unanimidade pelo TSE em 11/09/2026 (falta de filiação ao PRTB na janela partidária de abril) e renunciou em 14/09; o PRTB o substituiu por Leonardo Avalanche. Esta pesquisa o testou porque o campo é anterior ou simultâneo à decisão. Ver docs/backlog-pesquisas.md."
   },
   {
     "id": "2026-09-15-cnt-mda-br-presidente-t2-lula-flavio",
@@ -809,7 +809,7 @@
         "pct": 3
       }
     ],
-    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado). Amostra estadual de São Paulo (2.000 eleitores, 9 a 12/09/2026), registro TSE BR-05824/2026 (Poder360). Contratante não informado nos resumos."
+    "observacao": "Dados obtidos via WebSearch (WebFetch bloqueado). Amostra estadual de São Paulo (2.000 eleitores, 9 a 12/09/2026), registro TSE BR-05824/2026 (Poder360). Contratante não informado nos resumos. Contexto: Pablo Marçal teve o registro de candidatura indeferido por unanimidade pelo TSE em 11/09/2026 (falta de filiação ao PRTB na janela partidária de abril) e renunciou em 14/09; o PRTB o substituiu por Leonardo Avalanche. Esta pesquisa o testou porque o campo é anterior ou simultâneo à decisão. Ver docs/backlog-pesquisas.md."
   },
   {
     "id": "2026-09-14-realtimebigdata-sp-presidente-t2",
