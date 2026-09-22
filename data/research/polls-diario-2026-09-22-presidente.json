@@ -1,0 +1,299 @@
+[
+  {
+    "id": "2026-09-22-atlasintel-pe-presidente-t1",
+    "uf": "PE",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "PE-02023/2026",
+    "contratante": "AtlasIntel (recursos próprios)",
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-20",
+    "publicadoEm": "2026-09-22",
+    "amostra": 1836,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno — eleitores de Pernambuco",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/atlasintel-em-pernambuco-lula-tem-583-no-1o-turno-flavio-marca-299"
+    },
+    "observacao": "Rodada nova, distinta da AtlasIntel PE de 17/09 (1.793 entrevistas, campo 11–16/09, BR-00357/2026). Registros informados: PE-02023/2026 e BR-09256/2026. Entrevistas com eleitores de 16 anos ou mais, recrutamento digital aleatório. Dados obtidos via WebSearch (WebFetch bloqueado); confirmados por Poder360, Band e Diário do Centro do Mundo. O cenário divulgado não traz Leonardo Avalanche (PRTB) nem Pablo Marçal entre os nomes estimulados; os demais candidatos aparecem agregados na linha 'Outros'.",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 58.3
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 29.9
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 3.2
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 2.6
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 1.8
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 0.3
+      },
+      {
+        "candidato": "Outros",
+        "partido": null,
+        "pct": 1.0
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 2.3
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 0.7
+      }
+    ]
+  },
+  {
+    "id": "2026-09-22-atlasintel-pe-presidente-t2-lula-flavio",
+    "uf": "PE",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "PE-02023/2026",
+    "contratante": "AtlasIntel (recursos próprios)",
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-20",
+    "publicadoEm": "2026-09-22",
+    "amostra": 1836,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — eleitores de Pernambuco",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-tem-605-contra-327-de-flavio-no-2o-turno-em-pe-diz-pesquisa/"
+    },
+    "observacao": "Registros informados: PE-02023/2026 e BR-09256/2026. Brancos, nulos e indecisos vêm agregados em 6,9% na fonte. Em votos válidos, Lula 64,9% e Flávio 35,1%. Dados obtidos via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 60.5
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 32.7
+      },
+      {
+        "candidato": "Brancos/nulos/não sabe",
+        "partido": null,
+        "pct": 6.9
+      }
+    ]
+  },
+  {
+    "id": "2026-09-22-realtimebigdata-se-presidente-t1",
+    "uf": "SE",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-03708/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-17",
+    "dataFim": "2026-09-21",
+    "publicadoEm": "2026-09-22",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno — eleitores de Sergipe",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-tem-62-no-2o-turno-em-sergipe-diz-pesquisa/"
+    },
+    "observacao": "Rodada divulgada na terça 22/09 junto com os recortes de governo e Senado em Sergipe. Registro informado pelas fontes como BR-03708/2026 (registro nacional que ampara o quesito presidencial); não foi localizado registro estadual SE específico. Contratante indicado pelo calendário de pesquisas (Rádio e Televisão Record) — não confirmado literalmente no texto das matérias. Não há Leonardo Avalanche (PRTB) nem Pablo Marçal entre os nomes estimulados divulgados. Dados obtidos via WebSearch (WebFetch bloqueado). Atenção: rodada RTBD anterior em SE (campo 28/07–01/08) trazia Lula 60% x Flávio 23%; os números aqui são da rodada nova. Contratante removido na mesclagem: vinha do calendário de pesquisas do O Povo, não do texto das matérias, e a regra do projeto é não registrar o que a fonte não afirma.",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 58
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 26
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 4
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 4
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 2
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 1
+      },
+      {
+        "candidato": "Outros",
+        "partido": null,
+        "pct": 1
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 2
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 2
+      }
+    ]
+  },
+  {
+    "id": "2026-09-22-realtimebigdata-se-presidente-t2-lula-flavio",
+    "uf": "SE",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-03708/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-17",
+    "dataFim": "2026-09-21",
+    "publicadoEm": "2026-09-22",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — eleitores de Sergipe",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-tem-62-no-2o-turno-em-sergipe-diz-pesquisa/"
+    },
+    "observacao": "Brancos/nulos e indecisos deste confronto não foram detalhados nas fontes consultadas. Registro informado como BR-03708/2026. Dados obtidos via WebSearch (WebFetch bloqueado). Contratante removido na mesclagem: vinha do calendário de pesquisas do O Povo, não do texto das matérias, e a regra do projeto é não registrar o que a fonte não afirma.",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 62
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 28
+      }
+    ]
+  },
+  {
+    "id": "2026-09-22-realtimebigdata-go-presidente-t1",
+    "uf": "GO",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "GO-04652/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-17",
+    "dataFim": "2026-09-21",
+    "publicadoEm": "2026-09-22",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno — eleitores de Goiás",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/caiado-tem-31-contra-30-de-flavio-e-26-de-lula-em-goias-diz-real-time"
+    },
+    "observacao": "Divulgada na terça 22/09 junto com os recortes de governo e Senado em Goiás. Caiado (31%), Flávio (30%) e Lula (26%) em empate técnico pela margem de 2 pontos. Brancos/nulos e não sabe do 1º turno não foram detalhados pelas fontes (somatório dos nomes = 96%). Contratante indicado pelo calendário de pesquisas (Rádio e Televisão Record) — não confirmado literalmente no texto das matérias. Não há Leonardo Avalanche (PRTB) nem Pablo Marçal entre os nomes estimulados divulgados. Atenção: circula também um recorte CNN com Caiado 37%, Lula 27% e Flávio 25%, que é de rodada anterior — não usar para esta data. Dados obtidos via WebSearch (WebFetch bloqueado). Contratante removido na mesclagem: vinha do calendário de pesquisas do O Povo, não do texto das matérias, e a regra do projeto é não registrar o que a fonte não afirma.",
+    "resultados": [
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 31
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 30
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 26
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 4
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 4
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 1
+      }
+    ]
+  },
+  {
+    "id": "2026-09-22-realtimebigdata-go-presidente-t2-flavio-lula",
+    "uf": "GO",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "GO-04652/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-17",
+    "dataFim": "2026-09-21",
+    "publicadoEm": "2026-09-22",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula — eleitores de Goiás",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-57-contra-33-de-lula-no-2o-turno-em-goias-diz-pesquisa/"
+    },
+    "observacao": "Brancos e nulos somam 6% e 4% não souberam responder, conforme a fonte. Dados obtidos via WebSearch (WebFetch bloqueado). Contratante removido na mesclagem: vinha do calendário de pesquisas do O Povo, não do texto das matérias, e a regra do projeto é não registrar o que a fonte não afirma.",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 57
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 33
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 6
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 4
+      }
+    ]
+  }
+]

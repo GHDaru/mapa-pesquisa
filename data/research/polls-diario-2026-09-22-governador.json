@@ -1,0 +1,277 @@
+[
+  {
+    "id": "2026-09-22-irg-pr-governador-t1",
+    "uf": "PR",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "IRG Pesquisas",
+    "registroTSE": "PR-01172/2026",
+    "contratante": "Grupo RIC / TV Independência",
+    "dataInicio": "2026-09-17",
+    "dataFim": "2026-09-20",
+    "publicadoEm": "2026-09-22",
+    "amostra": 1200,
+    "margem": 2.83,
+    "cenario": "estimulada, 1º turno, com chapas completas (governador e vice)",
+    "fonte": {
+      "nome": "RIC Mais",
+      "url": "https://ric.com.br/politica/eleicoes/ric-irg-pesquisa-traz-retrato-da-corrida-ao-governo-do-parana-com-vices-confira/"
+    },
+    "resultados": [
+      { "candidato": "Sergio Moro", "partido": "PL", "pct": 39.7 },
+      { "candidato": "Sandro Alex", "partido": "PSD", "pct": 27.8 },
+      { "candidato": "Requião Filho", "partido": "PDT", "pct": 21.3 },
+      { "candidato": "Luiz França", "partido": "Missão", "pct": 1.2 },
+      { "candidato": "Tayná Miessa", "partido": "UP", "pct": 0.4 },
+      { "candidato": "Samuel de Mattos", "partido": "PSTU", "pct": 0.3 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 4.7 },
+      { "candidato": "Não sabe", "partido": null, "pct": 4.6 }
+    ],
+    "observacao": "Rodada IRG Pesquisas/Grupo RIC divulgada na terça-feira 22/09/2026 (campo 17–20/09, 1.200 entrevistas, 95% de confiança, margem 2,83 p.p.). Registro TSE PR-01172/2026, o mesmo número citado pelas fontes para os cenários de governador e de Senado desta rodada. Cenário apresentado com as chapas completas: Moro tem Edson Vasconcelos (PL) como vice; Sandro Alex, Rafael Greca (MDB); Requião Filho, Michele Caputo (Solidariedade); Luiz França, João Adolfo (Missão); Tayná Miessa, William Araki (UP); Samuel de Mattos, Helena Figueiredo (PSTU). Soma dos itens = 100,0%. Também noticiada por Gazeta do Povo (https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/irg-pesquisas-governador-parana-setembro-2026-2/), Tribuna do Paraná, Bem Paraná, Diário dos Campos e Band B. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-22-irg-pr-governador-t2",
+    "uf": "PR",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "IRG Pesquisas",
+    "registroTSE": "PR-01172/2026",
+    "contratante": "Grupo RIC / TV Independência",
+    "dataInicio": "2026-09-17",
+    "dataFim": "2026-09-20",
+    "publicadoEm": "2026-09-22",
+    "amostra": 1200,
+    "margem": 2.83,
+    "cenario": "estimulada, 2º turno, Moro x Sandro Alex",
+    "fonte": {
+      "nome": "Massa News",
+      "url": "https://massa.com.br/politica/eleicoes2026/pesquisa-irg-setembro-sandro-alex"
+    },
+    "resultados": [
+      { "candidato": "Sergio Moro", "partido": "PL", "pct": 43.3 },
+      { "candidato": "Sandro Alex", "partido": "PSD", "pct": 39.8 }
+    ],
+    "observacao": "Cenário de 2º turno da mesma rodada IRG/Grupo RIC divulgada em 22/09/2026. Moro (com Edson Vasconcelos) 43,3% x Sandro Alex (com Rafael Greca) 39,8% — empate técnico dentro da margem de 2,83 p.p. Brancos/nulos e não sabe não foram detalhados pelas fontes consultadas para este cenário (soma dos dois nomes = 83,1%). As fontes também relatam que Requião Filho perderia tanto para Moro quanto para Sandro Alex em 2º turno, mas sem divulgar os percentuais desses dois cenários — por isso não foram registrados. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-22-parana-pesquisas-sp-governador-t1",
+    "uf": "SP",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "SP-03057/2026",
+    "contratante": "Paraná Pesquisas (recursos próprios)",
+    "dataInicio": "2026-09-19",
+    "dataFim": "2026-09-21",
+    "publicadoEm": "2026-09-22",
+    "amostra": 1600,
+    "margem": 2.5,
+    "cenario": "estimulada, 1º turno, cenário 1",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/sao-paulo/parana-pesquisas-tarcisio-507-bate-haddad-333-no-1o-turno-em-sp"
+    },
+    "resultados": [
+      { "candidato": "Tarcísio de Freitas", "partido": "Republicanos", "pct": 50.7 },
+      { "candidato": "Fernando Haddad", "partido": "PT", "pct": 33.3 },
+      { "candidato": "Vera Lúcia", "partido": "PSTU", "pct": 1.8 },
+      { "candidato": "Carlos Machado", "partido": "PCB", "pct": 1.0 },
+      { "candidato": "Izadora Dias", "partido": "PCO", "pct": 0.9 },
+      { "candidato": "Policial Edjane", "partido": "Agir", "pct": 0.8 },
+      { "candidato": "Vivian Mendes", "partido": "UP", "pct": 0.6 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 7.2 },
+      { "candidato": "Não sabe", "partido": null, "pct": 3.8 }
+    ],
+    "observacao": "Rodada Paraná Pesquisas em São Paulo divulgada na terça-feira 22/09/2026 (campo 19–21/09, 1.600 entrevistas em 70 municípios, 95% de confiança). Registro TSE SP-03057/2026. As fontes divergem levemente sobre a margem: Metrópoles e Gazeta do Povo indicam 2,5 p.p.; parte da cobertura cita 2,0 p.p. — adotada 2,5 p.p., a mais citada na ficha técnica. Soma dos itens = 100,1% (arredondamento). Não confundir com a rodada anterior do mesmo instituto em SP (Tarcísio 49,7% x Haddad 34,5%), de início de setembro. Também noticiada por Poder360 (https://www.poder360.com.br/poder-eleicoes-2026/tarcisio-tem-507-ante-333-de-haddad-no-1o-turno-em-sp/), Band, Brasil de Fato, CartaCapital e Gazeta do Povo. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-22-parana-pesquisas-sp-governador-t2",
+    "uf": "SP",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "SP-03057/2026",
+    "contratante": "Paraná Pesquisas (recursos próprios)",
+    "dataInicio": "2026-09-19",
+    "dataFim": "2026-09-21",
+    "publicadoEm": "2026-09-22",
+    "amostra": 1600,
+    "margem": 2.5,
+    "cenario": "estimulada, 2º turno, Tarcísio x Haddad",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/sao-paulo/parana-pesquisas-tarcisio-507-bate-haddad-333-no-1o-turno-em-sp"
+    },
+    "resultados": [
+      { "candidato": "Tarcísio de Freitas", "partido": "Republicanos", "pct": 54.0 },
+      { "candidato": "Fernando Haddad", "partido": "PT", "pct": 36.4 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 6.5 },
+      { "candidato": "Não sabe", "partido": null, "pct": 3.1 }
+    ],
+    "observacao": "Cenário de 2º turno (apenas Tarcísio e Haddad estimulados) da mesma rodada Paraná Pesquisas divulgada em 22/09/2026. Soma dos itens = 100,0%. Registro TSE SP-03057/2026. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-22-real-time-big-data-se-governador-t1",
+    "uf": "SE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "SE-02030/2026",
+    "contratante": "Rádio Atalaia",
+    "dataInicio": "2026-09-17",
+    "dataFim": "2026-09-21",
+    "publicadoEm": "2026-09-22",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-big-data-fabio-tem-43-no-1o-turno-em-se-valmir-38/"
+    },
+    "resultados": [
+      { "candidato": "Fábio Mitidieri", "partido": "PSD", "pct": 43 },
+      { "candidato": "Valmir de Francisquinho", "partido": "Republicanos", "pct": 38 },
+      { "candidato": "Ricardo Marques", "partido": "PL", "pct": 10 },
+      { "candidato": "Dr. Helton", "partido": "PSOL", "pct": 3 },
+      { "candidato": "Emanuel Cacho", "partido": "PSDB", "pct": 1 },
+      { "candidato": "Taty Cristina de Jesus", "partido": "DC", "pct": 0 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 3 },
+      { "candidato": "Não sabe", "partido": null, "pct": 2 }
+    ],
+    "observacao": "Rodada Real Time Big Data em Sergipe divulgada na terça-feira 22/09/2026 (campo 17–21/09, 1.600 entrevistas presenciais, 95% de confiança, margem declarada de 2 p.p.). Registro TSE SE-02030/2026; contratante Rádio Atalaia. Soma dos itens = 100%. Atenção: a sigla de Ricardo Marques aparece como PL nas fontes consultadas (CNN Brasil, Poder360, Gazeta do Povo) — conferir na página do TSE antes do merge, já que o candidato foi historicamente filiado ao Cidadania. Também noticiada por Poder360 (https://www.poder360.com.br/poder-eleicoes-2026/mitidieri-soma-43-e-lidera-disputa-pelo-governo-de-sergipe/), Metrópoles, Gazeta do Povo e Brasil 247. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-22-real-time-big-data-se-governador-t2",
+    "uf": "SE",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "SE-02030/2026",
+    "contratante": "Rádio Atalaia",
+    "dataInicio": "2026-09-17",
+    "dataFim": "2026-09-21",
+    "publicadoEm": "2026-09-22",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno, Fábio Mitidieri x Valmir de Francisquinho",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-fabio-tem-46-e-valmir-43-no-2o-turno-em-se/"
+    },
+    "resultados": [
+      { "candidato": "Fábio Mitidieri", "partido": "PSD", "pct": 46 },
+      { "candidato": "Valmir de Francisquinho", "partido": "Republicanos", "pct": 43 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 6 },
+      { "candidato": "Não sabe", "partido": null, "pct": 5 }
+    ],
+    "observacao": "Cenário de 2º turno da mesma rodada Real Time Big Data em Sergipe divulgada em 22/09/2026. Empate técnico dentro da margem de 2 p.p. Soma dos itens = 100%. Registro TSE SE-02030/2026. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-22-real-time-big-data-go-governador-t1",
+    "uf": "GO",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "GO-04616/2026",
+    "contratante": "Real Time Big Data (recursos próprios)",
+    "dataInicio": "2026-09-17",
+    "dataFim": "2026-09-21",
+    "publicadoEm": "2026-09-22",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/real-time-em-goias-daniel-vilela-tem-46-wilder-soma-19-e-marconi-18"
+    },
+    "resultados": [
+      { "candidato": "Daniel Vilela", "partido": "MDB", "pct": 46 },
+      { "candidato": "Wilder Morais", "partido": "PL", "pct": 19 },
+      { "candidato": "Marconi Perillo", "partido": "PSDB", "pct": 18 },
+      { "candidato": "Luis Cesar Bueno", "partido": "PT", "pct": 8 },
+      { "candidato": "Danilo Pinheiro", "partido": "PCO", "pct": 0 },
+      { "candidato": "Luciana Amorim", "partido": "UP", "pct": 0 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 5 },
+      { "candidato": "Não sabe", "partido": null, "pct": 4 }
+    ],
+    "observacao": "Rodada Real Time Big Data em Goiás divulgada na terça-feira 22/09/2026 (campo 17–21/09, 1.600 entrevistas, 95% de confiança, margem declarada de 2 p.p.). Registro TSE GO-04616/2026. Soma dos itens = 100%. Uma das coberturas (Jornal Opção, matéria sobre o Senado) cita 45% para Vilela; a maioria das fontes — Metrópoles, Poder360, Exame, CartaCapital, Diário de Goiás — traz 46%, valor adotado aqui. Também noticiada por Poder360 (https://www.poder360.com.br/poder-eleicoes-2026/vilela-lidera-disputa-ao-governo-de-goias-diz-pesquisa/) e Gazeta do Povo. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-22-real-time-big-data-go-governador-t2",
+    "uf": "GO",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "GO-04616/2026",
+    "contratante": "Real Time Big Data (recursos próprios)",
+    "dataInicio": "2026-09-17",
+    "dataFim": "2026-09-21",
+    "publicadoEm": "2026-09-22",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno, Daniel Vilela x Marconi Perillo",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/real-time-em-goias-daniel-vilela-tem-46-wilder-soma-19-e-marconi-18"
+    },
+    "resultados": [
+      { "candidato": "Daniel Vilela", "partido": "MDB", "pct": 58 },
+      { "candidato": "Marconi Perillo", "partido": "PSDB", "pct": 28 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 7 },
+      { "candidato": "Não sabe", "partido": null, "pct": 7 }
+    ],
+    "observacao": "Primeiro cenário de 2º turno da rodada Real Time Big Data em Goiás divulgada em 22/09/2026. Soma dos itens = 100%. Registro TSE GO-04616/2026. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-22-real-time-big-data-go-governador-t2-b",
+    "uf": "GO",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "GO-04616/2026",
+    "contratante": "Real Time Big Data (recursos próprios)",
+    "dataInicio": "2026-09-17",
+    "dataFim": "2026-09-21",
+    "publicadoEm": "2026-09-22",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno, Daniel Vilela x Wilder Morais",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/real-time-em-goias-daniel-vilela-tem-46-wilder-soma-19-e-marconi-18"
+    },
+    "resultados": [
+      { "candidato": "Daniel Vilela", "partido": "MDB", "pct": 55 },
+      { "candidato": "Wilder Morais", "partido": "PL", "pct": 31 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 7 },
+      { "candidato": "Não sabe", "partido": null, "pct": 7 }
+    ],
+    "observacao": "Segundo cenário de 2º turno da rodada Real Time Big Data em Goiás divulgada em 22/09/2026. Soma dos itens = 100%. Id com sufixo '-t2-b' para distinguir dos demais cenários de 2º turno da mesma rodada. Registro TSE GO-04616/2026. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-22-real-time-big-data-go-governador-t2-c",
+    "uf": "GO",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "GO-04616/2026",
+    "contratante": "Real Time Big Data (recursos próprios)",
+    "dataInicio": "2026-09-17",
+    "dataFim": "2026-09-21",
+    "publicadoEm": "2026-09-22",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno, Wilder Morais x Marconi Perillo",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/real-time-em-goias-daniel-vilela-tem-46-wilder-soma-19-e-marconi-18"
+    },
+    "resultados": [
+      { "candidato": "Wilder Morais", "partido": "PL", "pct": 42 },
+      { "candidato": "Marconi Perillo", "partido": "PSDB", "pct": 36 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 12 },
+      { "candidato": "Não sabe", "partido": null, "pct": 10 }
+    ],
+    "observacao": "Terceiro cenário de 2º turno da rodada Real Time Big Data em Goiás divulgada em 22/09/2026, sem Daniel Vilela. Soma dos itens = 100%. Id com sufixo '-t2-c' para distinguir dos demais cenários de 2º turno da mesma rodada. Registro TSE GO-04616/2026. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  }
+]
