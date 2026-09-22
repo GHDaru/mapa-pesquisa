@@ -358,3 +358,59 @@ Márcio Jambo (AL) aparece como "Democrata", sigla que não existe em
 `parties.json`, e Davi Davino Filho (AL) sem sigla nas fontes. Ambos com
 `partido: null`. JHC aparece ora como PSDB ora como PSD; mantido PSDB por
 coerência com os registros de Alagoas já na base.
+
+## Anotadas em 2026-09-22
+
+22 pesquisas novas no total (20 do dia + 2 de lacuna), base de 391 para 413.
+
+### A pista que eu mesmo dei estava errada
+
+Ao lançar o agente de preenchimento da lacuna da AtlasIntel, passei como
+pista que o recorte do CE de 21/09 trazia Lula 51,6 x Flávio 25,7. O agente
+checou e mostrou que esses números são da rodada anterior, de campo 28/08 a
+02/09 com 1.834 entrevistas, divulgada em 04/09. Só os metadados da pista
+estavam certos (1.815 entrevistas, BR-05493/2026).
+
+A rodada real de 21/09 traz **Lula 56,6 x Flávio 33,8** no 1º turno e
+**Lula 57,7 x Flávio 38,3** no 2º. O discriminador que resolveu foi a série
+histórica publicada pelo Focus Poder, que separa as rodadas: no 2º turno
+Lula fez 60,6 em agosto, 54,6 na rodada de 02/09 e 57,7 agora; Flávio fez
+31,8, depois 30,1 e agora 38,3. Minha busca independente confirmou o salto
+de Flávio de 24,5 para 33,8 e a estabilidade de Lula de 56,1 para 56,6.
+
+Fica uma inconsistência menor não resolvida: a rodada anterior aparece ora
+como Lula 51,6 (CNN, Band, CartaCapital) ora como Lula 56,1 (série do Focus
+Poder). Pode ser cenário ou ponderação diferente da mesma rodada. Não afeta
+a entrada nova.
+
+### Os outros cinco recortes da AtlasIntel não foram publicados
+
+A série de 21/09 tem seis recortes estaduais (SP, PE, CE, RS, MG, RJ), campo
+15–20/09, cerca de 1.800 entrevistas cada, confirmada pelo O Povo. Mas só o
+CE e o PE tiveram números publicados pela imprensa. Para SP, MG, RJ e RS,
+tudo que o buscador devolve é a rodada do começo de setembro, que já está na
+base. Não insistir sem acesso ao DivulgaCand ou ao site do instituto.
+
+### Outras anotações do dia
+
+- As rodadas de 22/09 não listam Pablo Marçal nem Leonardo Avalanche; ele
+  aparece diluído em "outros" ou ausente dos cenários divulgados.
+- Contratante inferido: o agente preencheu "Rede Record de Televisão" em
+  quatro registros a partir do calendário do O Povo, não do texto das
+  matérias. Removido na mesclagem.
+- Siglas a conferir no TSE: Ricardo Marques (SE, governador) aparece como PL
+  nas fontes mas foi historicamente do Cidadania; Cristina Graeml (PR,
+  senado) aparece como PSD mas era PMB em 2024.
+- Divergências adotadas: Daniel Vilela com 46 (maioria) contra 45 (Jornal
+  Opção); margem da rodada Paraná Pesquisas SP em 2,5 (ficha técnica) contra
+  2,0 em parte da cobertura.
+
+### Agenda dos próximos dias
+
+- **23/09**: AtlasIntel nacional (BR-04739/2026, 5.000 entrevistas, campo
+  17–22/09) e Quaest PE.
+- **24/09**: Datafolha nacional (BR-00304/2026, 2.002 entrevistas, campo
+  22–24/09) e Datafolha MG.
+- **25/09**: Real Time Big Data em ES, TO, CE, PE e AL (presidente, 1.600
+  cada, campo 21–24/09).
+- Quaest PR com campo 22–24/09, ainda sem data de divulgação.

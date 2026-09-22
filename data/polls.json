@@ -1420,6 +1420,90 @@
     "observacao": "Rodada IRG Pesquisas/Grupo RIC divulgada na terça-feira 22/09/2026 (campo 17–20/09, 1.200 entrevistas, 95% de confiança, margem 2,83 p.p.). Registro TSE PR-01172/2026. Cenário registrado é o do PRIMEIRO VOTO estimulado (são 2 vagas em disputa no PR). Brancos/nulos, não sabe e os demais candidatos do cenário não foram detalhados pelas fontes consultadas — a soma dos cinco nomes é 84,3%; as fontes destacam que cerca de metade dos eleitores ainda não definiu o voto para o Senado. O cenário de segundo voto também foi divulgado, mas sem percentuais completos nas fontes disponíveis, e por isso não foi registrado. Contexto: a maior parte do campo foi a campo antes de o TSE manter, em 21/09, a suspensão dos atos de campanha de Deltan Dallagnol — a decisão pode não estar refletida nestes números. Conferir a sigla de Cristina Graeml (divulgada como PSD) no TSE antes do merge. Também noticiada por Poder360 (https://www.poder360.com.br/poder-eleicoes-2026/deltan-curi-gleisi-e-filipe-lideram-disputa-ao-senado-no-parana/), Gazeta do Povo, Tribuna do Paraná, Band B e Revista Fórum. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
   },
   {
+    "id": "2026-09-21-atlasintel-ce-presidente-t1",
+    "uf": "CE",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-05493/2026",
+    "contratante": "Focus Poder",
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-20",
+    "publicadoEm": "2026-09-21",
+    "amostra": 1815,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno — amostra estadual do Ceará (recrutamento digital aleatório, método Atlas RDR)",
+    "fonte": {
+      "nome": "Focus Poder",
+      "url": "https://focuspoder.com.br/atlas-focus-lula-mantem-vantagem-larga-no-ceara-mas-avanco-de-flavio-reduz-distancia/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 56.6
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 33.8
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 3.8
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 1.9
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 1.9
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 0.7
+      }
+    ],
+    "observacao": "Preenchimento de lacuna feito em 22/09/2026: recorte estadual do CE da série de pesquisas presidenciais por estado que a AtlasIntel divulgou em 21/09/2026. A vinculação dos números à rodada de 21/09 (campo 15–20/09, 1.815 entrevistas, registro BR-05493/2026) é feita explicitamente pelo texto do Focus Poder ('nova rodada AtlasIntel/Focus Poder, realizada entre 15 e 20 de setembro', Lula 56,6% x Flávio 33,8%) e corroborada por O Cafezinho de 21/09/2026 (https://www.ocafezinho.com/2026/09/21/flavio-cresce-quase-10-pontos-em-um-mes-e-encurta-distancia-para-lula-no-ce), que registra a mesma distância de 22,8 pontos. O calendário da rodada está em O POVO, 21/09/2026 (https://www.opovo.com.br/noticias/politica/eleicoes/2026/09/21/atlasintel-e-real-time-big-data-divulgam-novas-pesquisas-de-21-a-25-de-setembro.html), que confirma seis recortes estaduais com cerca de 1.800 entrevistas entre 15 e 20 de setembro. ATENÇÃO: os números Lula 51,6% x Flávio 25,7% (1.834 entrevistas, campo 28/08–02/09, divulgados em 04/09) NÃO são desta rodada e foram descartados, apesar de circularem associados ao CE. Brancos/nulos e não sabe não foram divulgados nas fontes localizadas (soma dos nominais = 98,7%). Além de BR-05493/2026, as fontes citam o registro estadual CE-02298/2026 para a mesma pesquisa."
+  },
+  {
+    "id": "2026-09-21-atlasintel-ce-presidente-t2-lula-flavio",
+    "uf": "CE",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-05493/2026",
+    "contratante": "Focus Poder",
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-20",
+    "publicadoEm": "2026-09-21",
+    "amostra": 1815,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno (Lula x Flávio Bolsonaro) — amostra estadual do Ceará",
+    "fonte": {
+      "nome": "O Cafezinho",
+      "url": "https://www.ocafezinho.com/2026/09/21/flavio-cresce-quase-10-pontos-em-um-mes-e-encurta-distancia-para-lula-no-ce"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 57.7
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 38.3
+      }
+    ],
+    "observacao": "Preenchimento de lacuna feito em 22/09/2026: cenário de 2º turno do recorte estadual do CE da rodada AtlasIntel divulgada em 21/09/2026 (campo 15–20/09, 1.815 entrevistas, registro BR-05493/2026). A vinculação à rodada de 21/09 vem da matéria de O Cafezinho publicada em 21/09/2026 e da série histórica publicada pelo Focus Poder (https://focuspoder.com.br/atlas-focus-lula-mantem-vantagem-larga-no-ceara-mas-avanco-de-flavio-reduz-distancia/), que explicita a evolução do 2º turno no CE: Lula 60,6% em agosto, 54,6% na rodada de 2 de setembro e 57,7% agora; Flávio 31,8%, 30,1% e 38,3%. Em votos válidos, O Cafezinho registra 60,1% x 39,9%. ATENÇÃO: os números Lula 54,6% x Flávio 30,1% (manchete do Poder360) são da rodada anterior, de campo 28/08–02/09, e foram descartados. Brancos/nulos e não sabe não foram divulgados nas fontes localizadas."
+  },
+  {
     "id": "2026-09-21-real-time-big-data-ac-governador-t1",
     "uf": "AC",
     "cargo": "governador",
