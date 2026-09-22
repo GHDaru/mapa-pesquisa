@@ -111,7 +111,7 @@
       "nome": "Gazeta do Povo",
       "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-presidente-setembro-2026-4/"
     },
-    "observacao": "Apuradas apenas as duas primeiras colocações nas fontes consultadas (Luiz Inácio Lula da Silva 37% e Flávio Bolsonaro 33%); demais nomes do cenário estimulado não foram detalhados. Primeira rodada Quaest que inclui Leonardo Avalanche (PRTB) no lugar de Pablo Marçal, cuja candidatura foi indeferida pelo TSE. Verificação independente na sessão principal confirmou a ficha técnica (2.004 entrevistas, campo 17–20/09, margem 2, BR-06004/2026, contratante Globo e O Globo), mas o índice de busca ainda não trazia os percentuais poucas horas após a divulgação. Reconferir na próxima rodada.",
+    "observacao": "Reconferida em 22/09/2026: a busca independente devolveu a manchete completa e bate número por número (Lula 37, Flávio 33, Cury 6, Caiado 4, Avalanche 0, 8% de indecisos e 7% que não votariam em ninguém), além da ficha técnica (2.004 entrevistas, campo 17–20/09, margem 2, BR-06004/2026, contratante Globo e O Globo). Primeira rodada da Quaest em que os dois primeiros aparecem em empate técnico. Também é a primeira com Leonardo Avalanche no lugar de Pablo Marçal, cujo registro o TSE indeferiu em 11/09. Fontes: O Povo, Diário do Grande ABC, Imirante.",
     "resultados": [
       {
         "candidato": "Luiz Inácio Lula da Silva",
@@ -122,6 +122,31 @@
         "candidato": "Flávio Bolsonaro",
         "partido": "PL",
         "pct": 33
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 6
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 4
+      },
+      {
+        "candidato": "Leonardo Avalanche",
+        "partido": "PRTB",
+        "pct": 0
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 8
+      },
+      {
+        "candidato": "Nenhum",
+        "partido": null,
+        "pct": 7
       }
     ]
   },
@@ -143,7 +168,7 @@
       "nome": "Rádio Itatiaia",
       "url": "https://www.itatiaia.com.br/politica/eleicoes/pesquisas/a-nova-pesquisa-quaest-para-presidente-que-sera-divulgada-nesta-segunda-feira-21/"
     },
-    "observacao": "Empate técnico dentro da margem de 2 pontos. Brancos/nulos e não sabe não detalhados pelas fontes consultadas. Verificação independente na sessão principal confirmou a ficha técnica (2.004 entrevistas, campo 17–20/09, margem 2, BR-06004/2026, contratante Globo e O Globo), mas o índice de busca ainda não trazia os percentuais poucas horas após a divulgação. Reconferir na próxima rodada.",
+    "observacao": "Empate técnico dentro da margem de 2 pontos. Brancos/nulos e não sabe não detalhados pelas fontes consultadas. Reconferida em 22/09/2026 por busca independente: ficha técnica e resultado do 2º turno (Flávio 42 x Lula 41) confirmados.",
     "resultados": [
       {
         "candidato": "Flávio Bolsonaro",
@@ -175,7 +200,7 @@
       "nome": "Gazeta do Povo",
       "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-presidente-setembro-2026-4/"
     },
-    "observacao": "Empate técnico dentro da margem. Brancos/nulos e não sabe não detalhados pela fonte. Verificação independente na sessão principal confirmou a ficha técnica (2.004 entrevistas, campo 17–20/09, margem 2, BR-06004/2026, contratante Globo e O Globo), mas o índice de busca ainda não trazia os percentuais poucas horas após a divulgação. Reconferir na próxima rodada.",
+    "observacao": "Empate técnico dentro da margem. Brancos/nulos e não sabe não detalhados pela fonte. Reconferida em 22/09/2026 por busca independente: ficha técnica e resultado do 2º turno (Flávio 42 x Lula 41) confirmados.",
     "resultados": [
       {
         "candidato": "Luiz Inácio Lula da Silva",
@@ -207,7 +232,7 @@
       "nome": "Gazeta do Povo",
       "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-presidente-setembro-2026-4/"
     },
-    "observacao": "Brancos/nulos e não sabe não detalhados pela fonte. Verificação independente na sessão principal confirmou a ficha técnica (2.004 entrevistas, campo 17–20/09, margem 2, BR-06004/2026, contratante Globo e O Globo), mas o índice de busca ainda não trazia os percentuais poucas horas após a divulgação. Reconferir na próxima rodada.",
+    "observacao": "Brancos/nulos e não sabe não detalhados pela fonte. Reconferida em 22/09/2026 por busca independente: ficha técnica e resultado do 2º turno (Flávio 42 x Lula 41) confirmados.",
     "resultados": [
       {
         "candidato": "Luiz Inácio Lula da Silva",
@@ -239,7 +264,7 @@
       "nome": "Gazeta do Povo",
       "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-presidente-setembro-2026-4/"
     },
-    "observacao": "Brancos/nulos e não sabe não detalhados pela fonte. Verificação independente na sessão principal confirmou a ficha técnica (2.004 entrevistas, campo 17–20/09, margem 2, BR-06004/2026, contratante Globo e O Globo), mas o índice de busca ainda não trazia os percentuais poucas horas após a divulgação. Reconferir na próxima rodada.",
+    "observacao": "Brancos/nulos e não sabe não detalhados pela fonte. Reconferida em 22/09/2026 por busca independente: ficha técnica e resultado do 2º turno (Flávio 42 x Lula 41) confirmados.",
     "resultados": [
       {
         "candidato": "Luiz Inácio Lula da Silva",

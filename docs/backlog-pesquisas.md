@@ -336,12 +336,13 @@ painel online não probabilístico, que é o método da casa, mas vale saber.
 
 ### A conferir na próxima rodada
 
-- **Quaest nacional de hoje** (Lula 37 x Flávio 33 no 1º turno; Flávio 42 x
-  Lula 41 no 2º): a ficha técnica foi confirmada em busca independente
-  (2.004 entrevistas, campo 17–20/09, margem 2, BR-06004/2026, Globo e O
-  Globo), mas os percentuais ainda não apareciam no índice de busca poucas
-  horas depois. Mesmo padrão do Datafolha em 17/09, que se confirmou no dia
-  seguinte. Reconferir.
+- ~~**Quaest nacional de 21/09**: reconferir os percentuais~~ **RESOLVIDO em
+  22/09.** A busca independente devolveu a manchete completa e bate número
+  por número. Além disso trouxe o cenário inteiro, que na véspera só tinha
+  os dois primeiros colocados: Lula 37, Flávio 33, Cury 6, Caiado 4,
+  Avalanche 0, mais 8% de indecisos e 7% que não votariam em ninguém. O
+  registro foi completado. É a primeira rodada da Quaest com os dois
+  primeiros em empate técnico e a primeira com Avalanche no lugar de Marçal.
 - **RTBD Paraná (PR-00532/2026)**: todas as fontes datam a divulgação em
   21/09 mas o campo em 11–15/09, seis dias de folga, destoando das rodadas
   RTBD de MG, SP e AC do mesmo dia, todas com campo 16–19/09. Conferir a
