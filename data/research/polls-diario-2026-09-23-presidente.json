@@ -1,0 +1,315 @@
+[
+  {
+    "id": "2026-09-23-atlasintel-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-04739/2026",
+    "contratante": "Bloomberg",
+    "dataInicio": "2026-09-17",
+    "dataFim": "2026-09-22",
+    "publicadoEm": "2026-09-23",
+    "amostra": 5015,
+    "margem": 1.0,
+    "cenario": "estimulada, 1º turno — nacional",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/atlas-bloomberg-lula-tem-458-no-1o-turno-flavio-434/"
+    },
+    "observacao": "Rodada AtlasIntel/Bloomberg divulgada na quarta-feira 23/09/2026. Entrevistas por recrutamento digital aleatório (Atlas RDR), nível de confiança 95%. A tabela fecha em 100,0%. Em votos válidos a fonte informa Lula 46,3% e Flávio Bolsonaro 43,9%. Leonardo Avalanche (PRTB) não aparece nominalmente no cenário divulgado; está compreendido na linha 'Outros'. Dados obtidos via WebSearch (WebFetch bloqueado); confirmados por Poder360, Correio Braziliense, Jovem Pan e Brasil de Fato.",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 45.8 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 43.4 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 4.5 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 2.1 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 1.3 },
+      { "candidato": "Romeu Zema", "partido": "Novo", "pct": 0.9 },
+      { "candidato": "Outros", "partido": null, "pct": 0.8 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 0.7 },
+      { "candidato": "Não sabe", "partido": null, "pct": 0.5 }
+    ]
+  },
+  {
+    "id": "2026-09-23-atlasintel-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-04739/2026",
+    "contratante": "Bloomberg",
+    "dataInicio": "2026-09-17",
+    "dataFim": "2026-09-22",
+    "publicadoEm": "2026-09-23",
+    "amostra": 5015,
+    "margem": 1.0,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — nacional",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-pesquisas/lula-tem-477-e-flavio-474-no-2o-turno-diz-atlasintel/"
+    },
+    "observacao": "Empate técnico pela terceira semana seguida; diferença de 0,3 ponto, dentro da margem de 1 ponto. Brancos, nulos e indecisos vêm agregados em 4,9% na fonte. Tabela fecha em 100,0%. Na rodada anterior (17/09) do mesmo instituto Flávio tinha 47,2% e Lula 46,8%. Dados obtidos via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 47.7 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 47.4 },
+      { "candidato": "Brancos/nulos/não sabe", "partido": null, "pct": 4.9 }
+    ]
+  },
+  {
+    "id": "2026-09-23-atlasintel-br-presidente-t2-lula-cury",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-04739/2026",
+    "contratante": "Bloomberg",
+    "dataInicio": "2026-09-17",
+    "dataFim": "2026-09-22",
+    "publicadoEm": "2026-09-23",
+    "amostra": 5015,
+    "margem": 1.0,
+    "cenario": "estimulada, 2º turno: Lula x Augusto Cury — nacional",
+    "fonte": {
+      "nome": "Correio Braziliense",
+      "url": "https://www.correiobraziliense.com.br/politica/2026/09/7506437-atlasintel-bloomberg-lula-e-flavio-empatam-no-2-turno.html"
+    },
+    "observacao": "Cenário alternativo de 2º turno da mesma rodada AtlasIntel/Bloomberg. Brancos, nulos e indecisos agregados em 14,4% na fonte. Tabela fecha em 100,0%. Dados obtidos via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 46.2 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 39.4 },
+      { "candidato": "Brancos/nulos/não sabe", "partido": null, "pct": 14.4 }
+    ]
+  },
+  {
+    "id": "2026-09-23-atlasintel-br-presidente-t2-lula-renan",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-04739/2026",
+    "contratante": "Bloomberg",
+    "dataInicio": "2026-09-17",
+    "dataFim": "2026-09-22",
+    "publicadoEm": "2026-09-23",
+    "amostra": 5015,
+    "margem": 1.0,
+    "cenario": "estimulada, 2º turno: Lula x Renan Santos — nacional",
+    "fonte": {
+      "nome": "Correio Braziliense",
+      "url": "https://www.correiobraziliense.com.br/politica/2026/09/7506437-atlasintel-bloomberg-lula-e-flavio-empatam-no-2-turno.html"
+    },
+    "observacao": "Cenário alternativo de 2º turno da mesma rodada AtlasIntel/Bloomberg; é o confronto com maior parcela sem escolha. Brancos, nulos e indecisos agregados em 22,3% na fonte. Tabela fecha em 100,0%. Dados obtidos via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 46.5 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 31.2 },
+      { "candidato": "Brancos/nulos/não sabe", "partido": null, "pct": 22.3 }
+    ]
+  },
+  {
+    "id": "2026-09-10-atlasintel-al-presidente-t1",
+    "uf": "AL",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "AL-00447/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-04",
+    "dataFim": "2026-09-09",
+    "publicadoEm": "2026-09-10",
+    "amostra": 1208,
+    "margem": 3.0,
+    "cenario": "estimulada, 1º turno — eleitores de Alagoas",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/pesquisa-atlasintel-lula-tem-477-e-flavio-bolsonaro-37-em-alagoas/"
+    },
+    "observacao": "Registro duplo informado: AL-00447/2026 e BR-07020/2026. Recrutamento digital aleatório (Atlas RDR), confiança 95%. Rodada anterior a hoje, incluída para cobrir lacuna: Alagoas não tinha nenhuma pesquisa presidencial na base. As linhas divulgadas somam 99,7%; o residual de ~0,3% corresponde a outros candidatos não detalhados nas fontes consultadas. Dados obtidos via WebSearch (WebFetch bloqueado); confirmados por Poder360, Revista Fórum e A Tarde.",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 47.7 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 37.0 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 7.1 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 3.4 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 2.3 },
+      { "candidato": "Romeu Zema", "partido": "Novo", "pct": 0.3 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 1.3 },
+      { "candidato": "Não sabe", "partido": null, "pct": 0.6 }
+    ]
+  },
+  {
+    "id": "2026-09-10-atlasintel-al-presidente-t2-lula-flavio",
+    "uf": "AL",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "AL-00447/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-04",
+    "dataFim": "2026-09-09",
+    "publicadoEm": "2026-09-10",
+    "amostra": 1208,
+    "margem": 3.0,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — eleitores de Alagoas",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-tem-506-contra-400-de-flavio-no-2o-turno-em-al-diz-pesquisa/"
+    },
+    "observacao": "Registro duplo informado: AL-00447/2026 e BR-07020/2026. Brancos, nulos e indecisos agregados em 9,4% na fonte; a tabela fecha em 100,0%. Preenche lacuna: Alagoas não tinha nenhuma pesquisa de 2º turno presidencial na base. Dados obtidos via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 50.6 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 40.0 },
+      { "candidato": "Brancos/nulos/não sabe", "partido": null, "pct": 9.4 }
+    ]
+  },
+  {
+    "id": "2026-09-11-atlasintel-rr-presidente-t2-lula-flavio",
+    "uf": "RR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "RR-07280/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-04",
+    "dataFim": "2026-09-09",
+    "publicadoEm": "2026-09-11",
+    "amostra": 1200,
+    "margem": 3.0,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — eleitores de Roraima",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-bolsonaro-tem-664-contra-256-de-lula-no-2o-turno-em-rr/"
+    },
+    "observacao": "Registro duplo informado: RR-07280/2026 e BR-04752/2026. Recrutamento digital aleatório (Atlas RDR), confiança 95%. Preenche lacuna: Roraima não tinha nenhuma pesquisa de 2º turno presidencial na base. ATENÇÃO — registro incompleto: as fontes consultadas divulgaram apenas os dois nomes; o residual de 8,0% (brancos, nulos e indecisos) não foi detalhado e por isso NÃO foi lançado como linha, para não inventar número. Confirmar na ficha técnica do TSE antes de usar em gráfico de composição. Dados obtidos via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 66.4 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 25.6 }
+    ]
+  },
+  {
+    "id": "2026-09-17-real-time-big-data-sc-presidente-t2-lula-flavio",
+    "uf": "SC",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-09582/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-12",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — eleitores de Santa Catarina",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-big-data-flavio-lidera-cenarios-de-1o-e-2o-turnos-em-sc/"
+    },
+    "observacao": "Preenche lacuna: Santa Catarina não tinha nenhuma pesquisa de 2º turno presidencial na base. Tabela fecha em 100,0%. O cenário de 1º turno da mesma rodada NÃO foi incluído porque ainda listava Pablo Marçal (PRTB) com 2%, candidato indeferido pelo TSE em 11/09 e substituído por Leonardo Avalanche em 14/09 — o campo (12–16/09) atravessou a substituição e o questionário não foi atualizado. Dados obtidos via WebSearch (WebFetch bloqueado); confirmados por Exame e CartaCapital.",
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 62.0 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 30.0 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 5.0 },
+      { "candidato": "Não sabe", "partido": null, "pct": 3.0 }
+    ]
+  },
+  {
+    "id": "2026-09-17-datafolha-pi-presidente-t2-lula-flavio",
+    "uf": "PI",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Datafolha",
+    "registroTSE": "PI-03643/2026",
+    "contratante": "TV Rádio Clube (Teresina)",
+    "dataInicio": "2026-09-14",
+    "dataFim": "2026-09-16",
+    "publicadoEm": "2026-09-17",
+    "amostra": 826,
+    "margem": 3.0,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — eleitores do Piauí",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-tem-67-contra-27-de-flavio-no-2o-turno-no-pi-diz-datafolha/"
+    },
+    "observacao": "Atualiza lacuna: o registro de 2º turno do Piauí na base era de junho. Tabela fecha em 100,0%. Confiança 95%. Dados obtidos via WebSearch (WebFetch bloqueado); confirmados por CNN Brasil e Portal R10.",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 67.0 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 27.0 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 5.0 },
+      { "candidato": "Não sabe", "partido": null, "pct": 1.0 }
+    ]
+  },
+  {
+    "id": "2026-09-10-real-time-big-data-ms-presidente-t2-lula-flavio",
+    "uf": "MS",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-05",
+    "dataFim": "2026-09-09",
+    "publicadoEm": "2026-09-10",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — eleitores de Mato Grosso do Sul",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-big-data-flavio-supera-lula-em-cenarios-de-1o-e-2o-turnos-em-ms/"
+    },
+    "observacao": "Atualiza lacuna: o registro de 2º turno de MS na base era de agosto. Tabela fecha em 100,0%; confiança 95%. registroTSE nulo: o número de registro desta rodada não foi localizado nas fontes consultadas via WebSearch (WebFetch bloqueado) — confirmar no DivulgaCand/TSE.",
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 52.0 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 38.0 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 5.0 },
+      { "candidato": "Não sabe", "partido": null, "pct": 5.0 }
+    ]
+  },
+  {
+    "id": "2026-09-21-real-time-big-data-ac-presidente-t2-lula-flavio",
+    "uf": "AC",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-01620/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-16",
+    "dataFim": "2026-09-19",
+    "publicadoEm": "2026-09-21",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — eleitores do Acre",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-53-e-lula-29-no-acre-diz-real-time/"
+    },
+    "observacao": "Atualiza lacuna: o registro de 2º turno do Acre na base era de julho. Tabela fecha em 100,0%; confiança 95%. Em votos válidos a fonte informa Flávio Bolsonaro 66% e Lula 34%. Faz parte da leva de pesquisas estaduais da Real Time Big Data divulgada em 21/09. Dados obtidos via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 61.0 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 32.0 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 4.0 },
+      { "candidato": "Não sabe", "partido": null, "pct": 3.0 }
+    ]
+  },
+  {
+    "id": "2026-09-22-quaest-pb-presidente-t2-lula-flavio",
+    "uf": "PB",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "PB-01325/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-18",
+    "dataFim": "2026-09-21",
+    "publicadoEm": "2026-09-22",
+    "amostra": 804,
+    "margem": 3.0,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — eleitores da Paraíba",
+    "fonte": {
+      "nome": "CartaCapital",
+      "url": "https://www.cartacapital.com.br/politica/quaest-mostra-ampla-vantagem-de-lula-sobre-flavio-bolsonaro-na-paraiba/"
+    },
+    "observacao": "Atualiza lacuna: o registro de 2º turno da Paraíba na base era de agosto. Entrevistas presenciais com eleitores de 16 anos ou mais, confiança 95%. ATENÇÃO — registro incompleto: as fontes consultadas divulgaram apenas os dois nomes; o residual de 14,0% (brancos, nulos e indecisos) não foi detalhado e por isso NÃO foi lançado como linha, para não inventar número. Confirmar na ficha técnica do TSE antes de usar em gráfico de composição. Dados obtidos via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 60.0 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 26.0 }
+    ]
+  }
+]
