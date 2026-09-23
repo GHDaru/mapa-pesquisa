@@ -1,0 +1,380 @@
+[
+  {
+    "id": "2026-09-23-quaest-pe-governador-t1",
+    "uf": "PE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "PE-05671/2026",
+    "contratante": "Globo Comunicação e Participações S/A",
+    "dataInicio": "2026-09-19",
+    "dataFim": "2026-09-22",
+    "publicadoEm": "2026-09-23",
+    "amostra": 1302,
+    "margem": 3.0,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "CBN Recife",
+      "url": "https://www.cbnrecife.com/2026/09/23/quaest-raquel-lyra-tem-41-no-primeiro-turno-joao-campos-39/"
+    },
+    "resultados": [
+      { "candidato": "Raquel Lyra", "partido": "PSD", "pct": 41.0 },
+      { "candidato": "João Campos", "partido": "PSB", "pct": 39.0 },
+      { "candidato": "Ivan Moraes", "partido": "PSOL", "pct": 1.0 },
+      { "candidato": "Renan Hallais", "partido": "Missão", "pct": 1.0 },
+      { "candidato": "Professora Camila", "partido": "UP", "pct": 0.0 },
+      { "candidato": "Victor Assis", "partido": "PCO", "pct": 0.0 },
+      { "candidato": "Guilherme Fonseca", "partido": "PSTU", "pct": 0.0 },
+      { "candidato": "Professor Jeremias do Banco", "partido": "DC", "pct": 0.0 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 6.0 },
+      { "candidato": "Não sabe", "partido": null, "pct": 12.0 }
+    ],
+    "observacao": "Rodada Quaest em Pernambuco divulgada na quarta-feira 23/09/2026 (campo 19–22/09, 1.302 entrevistas, 95% de confiança, margem de 3 p.p.). Registro TSE PE-05671/2026. ATENÇÃO À DATA DE CAMPO: parte dos resumos de busca trouxe 'de 22 a 24 de setembro', o que é impossível (24/09 ainda não ocorreu); as fontes que detalham a ficha técnica (CBN Recife, Poder360, Exame, NC News) convergem em 19–22/09, que também bate com a agenda prevista para a rodada. Soma dos itens = 100,0%. Brancos/nulos inclui quem diz que não vai votar. Contratante registrado como Globo Comunicação e Participações S/A conforme a ficha técnica citada nas matérias. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-23-quaest-pe-governador-t2",
+    "uf": "PE",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "PE-05671/2026",
+    "contratante": "Globo Comunicação e Participações S/A",
+    "dataInicio": "2026-09-19",
+    "dataFim": "2026-09-22",
+    "publicadoEm": "2026-09-23",
+    "amostra": 1302,
+    "margem": 3.0,
+    "cenario": "estimulada, 2º turno, Raquel Lyra x João Campos",
+    "fonte": {
+      "nome": "CartaCapital",
+      "url": "https://www.cartacapital.com.br/politica/em-pernambuco-raquel-lyra-tem-41-e-joao-campos-39-diz-quaest/"
+    },
+    "resultados": [
+      { "candidato": "Raquel Lyra", "partido": "PSD", "pct": 43.0 },
+      { "candidato": "João Campos", "partido": "PSB", "pct": 41.0 }
+    ],
+    "observacao": "Cenário de 2º turno da mesma rodada Quaest/PE divulgada em 23/09/2026. Empate técnico dentro da margem de 3 p.p. Brancos/nulos e não sabe não foram detalhados pelas fontes consultadas para este cenário (soma dos dois nomes = 84,0%). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-23-quaest-rj-governador-t1",
+    "uf": "RJ",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "RJ-04982/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-19",
+    "dataFim": "2026-09-22",
+    "publicadoEm": "2026-09-23",
+    "amostra": 1302,
+    "margem": 3.0,
+    "cenario": "estimulada, 1º turno, com Garotinho",
+    "fonte": {
+      "nome": "Brasil de Fato",
+      "url": "https://www.brasildefato.com.br/2026/09/23/no-rio-paes-tem-36-e-ruas-23-diz-quaest-benedita-lidera-disputa-ao-senado/"
+    },
+    "resultados": [
+      { "candidato": "Eduardo Paes", "partido": "PSD", "pct": 36.0 },
+      { "candidato": "Douglas Ruas", "partido": "PL", "pct": 23.0 },
+      { "candidato": "Anthony Garotinho", "partido": "Republicanos", "pct": 8.0 },
+      { "candidato": "André Marinho", "partido": "Novo", "pct": 1.0 },
+      { "candidato": "Cyro Garcia", "partido": "PSTU", "pct": 1.0 },
+      { "candidato": "William Siri", "partido": "PSOL", "pct": 1.0 },
+      { "candidato": "Coronel Busnello", "partido": "Missão", "pct": 1.0 },
+      { "candidato": "Juliete Pantoja", "partido": "UP", "pct": 1.0 }
+    ],
+    "observacao": "Rodada Quaest no Rio de Janeiro divulgada em 23/09/2026 (campo 19–22/09, 1.302 entrevistas, 95% de confiança, margem de 3 p.p.). Registro TSE RJ-04982/2026. Brancos/nulos e não sabe não foram detalhados pelas fontes consultadas para este cenário — a soma dos nomes é 72,0%. Contratante NÃO informado pelas matérias consultadas: gravado como null (não inferir). O Quaest também divulgou um cenário SEM Garotinho, mas as fontes divergem sobre o número de Paes (28% em Gazeta do Povo/Brasil de Fato e 38% em Tempo Real, ambas com Ruas em 25%); por causa dessa divergência o cenário sem Garotinho NÃO foi registrado — conferir antes de incluir. Contexto: o TRE-RJ indeferiu o registro de Garotinho por unanimidade e o recurso aguarda julgamento de mérito no TSE. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-23-quaest-rj-governador-t2-paes-ruas",
+    "uf": "RJ",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "RJ-04982/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-19",
+    "dataFim": "2026-09-22",
+    "publicadoEm": "2026-09-23",
+    "amostra": 1302,
+    "margem": 3.0,
+    "cenario": "estimulada, 2º turno, Eduardo Paes x Douglas Ruas",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-rio-de-janeiro-setembro-2026-2/"
+    },
+    "resultados": [
+      { "candidato": "Eduardo Paes", "partido": "PSD", "pct": 44.0 },
+      { "candidato": "Douglas Ruas", "partido": "PL", "pct": 31.0 }
+    ],
+    "observacao": "Cenário de 2º turno da rodada Quaest/RJ de 23/09/2026. Brancos/nulos e não sabe não detalhados pelas fontes (soma dos dois nomes = 75,0%). Contratante não informado: null. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-23-quaest-rj-governador-t2-paes-garotinho",
+    "uf": "RJ",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "RJ-04982/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-19",
+    "dataFim": "2026-09-22",
+    "publicadoEm": "2026-09-23",
+    "amostra": 1302,
+    "margem": 3.0,
+    "cenario": "estimulada, 2º turno, Eduardo Paes x Anthony Garotinho",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-rio-de-janeiro-setembro-2026-2/"
+    },
+    "resultados": [
+      { "candidato": "Eduardo Paes", "partido": "PSD", "pct": 49.0 },
+      { "candidato": "Anthony Garotinho", "partido": "Republicanos", "pct": 18.0 }
+    ],
+    "observacao": "Segundo cenário de 2º turno da rodada Quaest/RJ de 23/09/2026. Brancos/nulos e não sabe não detalhados pelas fontes (soma dos dois nomes = 67,0%). Contratante não informado: null. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-23-quaest-ce-governador-t1",
+    "uf": "CE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "CE-08268/2026",
+    "contratante": "TV Verdes Mares",
+    "dataInicio": "2026-09-19",
+    "dataFim": "2026-09-22",
+    "publicadoEm": "2026-09-23",
+    "amostra": 900,
+    "margem": 3.0,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/eleicoes/2026/09/23/pesquisa-quaest-tem-empate-tecnico-entre-ciro-e-elmano.html"
+    },
+    "resultados": [
+      { "candidato": "Ciro Gomes", "partido": "PSDB", "pct": 43.0 },
+      { "candidato": "Elmano de Freitas", "partido": "PT", "pct": 41.0 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 6.0 },
+      { "candidato": "Não sabe", "partido": null, "pct": 8.0 }
+    ],
+    "observacao": "Rodada Quaest no Ceará divulgada em 23/09/2026 (campo 19–22/09, 900 entrevistas, 95% de confiança, margem de 3 p.p.). Registro TSE CE-08268/2026. Contratante TV Verdes Mares, explicitamente informado pelas matérias (Agência Caririceara). Empate técnico: Ciro 43% x Elmano 41%; Elmano cresceu 7 p.p. e Ciro oscilou -2 p.p. em relação à rodada anterior. Os demais candidatos do cenário somam cerca de 2% e não foram nominados pelas fontes consultadas — por isso a soma dos itens aqui é 98,0%. Brancos/nulos inclui quem diz que não vai votar. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-23-parana-pesquisas-sc-governador-t1",
+    "uf": "SC",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "SC-00523/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-20",
+    "dataFim": "2026-09-22",
+    "publicadoEm": "2026-09-23",
+    "amostra": 1384,
+    "margem": 2.7,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/2026/09/23/em-sc-jorginho-mello-tem-588-para-o-governo-e-joao-rodrigues-165-segundo-parana-pesquisas.html"
+    },
+    "resultados": [
+      { "candidato": "Jorginho Mello", "partido": "PL", "pct": 58.8 },
+      { "candidato": "João Rodrigues", "partido": "PSD", "pct": 16.5 },
+      { "candidato": "Gelson Merísio", "partido": "PSB", "pct": 11.3 },
+      { "candidato": "Marcelo Brigadeiro", "partido": "Missão", "pct": 1.2 },
+      { "candidato": "Professor Marcus Sodré", "partido": "PSTU", "pct": 1.0 },
+      { "candidato": "Laís Chaud", "partido": "UP", "pct": 0.9 },
+      { "candidato": "Ralf Zimmer", "partido": "PRD", "pct": 0.8 },
+      { "candidato": "Bruno Pedreiro", "partido": "PCO", "pct": 0.3 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 4.8 },
+      { "candidato": "Não sabe", "partido": null, "pct": 4.6 }
+    ],
+    "observacao": "Rodada Paraná Pesquisas em Santa Catarina divulgada em 23/09/2026 (campo 20–22/09, 1.384 entrevistas presenciais em 52 municípios, 95% de confiança, margem de 2,7 p.p.). Registro TSE SC-00523/2026. Soma dos itens = 100,2% (arredondamento das fontes). Contratante NÃO informado pelas matérias nem pela página do instituto: gravado como null (não inferir). A mesma rodada traz aprovação do governo Jorginho Mello em 78% e desaprovação de 19,4%. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-23-parana-pesquisas-rj-governador-t1",
+    "uf": "RJ",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "RJ-04036/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-20",
+    "dataFim": "2026-09-22",
+    "publicadoEm": "2026-09-23",
+    "amostra": 1600,
+    "margem": 2.5,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/paes-tem-431-e-douglas-ruas-267-no-rj-no-1o-turno-diz-pesquisa/"
+    },
+    "resultados": [
+      { "candidato": "Eduardo Paes", "partido": "PSD", "pct": 43.1 },
+      { "candidato": "Douglas Ruas", "partido": "PL", "pct": 26.7 },
+      { "candidato": "Anthony Garotinho", "partido": "Republicanos", "pct": 8.4 },
+      { "candidato": "André Marinho", "partido": "Novo", "pct": 2.7 },
+      { "candidato": "Cyro Garcia", "partido": "PSTU", "pct": 1.4 },
+      { "candidato": "Juliete Pantoja", "partido": "UP", "pct": 1.3 },
+      { "candidato": "William Siri", "partido": "PSOL", "pct": 1.3 },
+      { "candidato": "Coronel Busnello", "partido": "Missão", "pct": 1.2 },
+      { "candidato": "Luan Monteiro", "partido": null, "pct": 0.4 }
+    ],
+    "observacao": "Rodada Paraná Pesquisas no Rio de Janeiro divulgada em 23/09/2026 (campo 20–22/09, 1.600 entrevistas em 56 municípios, 95% de confiança, margem de 2,5 p.p.). Registro TSE RJ-04036/2026. Brancos/nulos e indecisos não foram detalhados pelas fontes consultadas — a soma dos nomes é 86,5%. O partido de Luan Monteiro não foi informado pelas fontes: gravado como null, conferir no TSE antes do merge. Contratante NÃO informado: null (não inferir). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-23-atlasintel-sp-governador-t1",
+    "uf": "SP",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "SP-02676/2026",
+    "contratante": "Estadão",
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-20",
+    "publicadoEm": "2026-09-23",
+    "amostra": 1800,
+    "margem": 2.0,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/pesquisa-atlasintel-tarcisio-cresce-e-chega-a-552-no-1o-turno-haddad-tem-41/"
+    },
+    "resultados": [
+      { "candidato": "Tarcísio de Freitas", "partido": "Republicanos", "pct": 55.2 },
+      { "candidato": "Fernando Haddad", "partido": "PT", "pct": 41.0 },
+      { "candidato": "Vivian Mendes", "partido": "UP", "pct": 0.4 },
+      { "candidato": "Carlos Machado", "partido": "PCB", "pct": 0.1 },
+      { "candidato": "Vera Lúcia", "partido": "PSTU", "pct": 0.0 }
+    ],
+    "observacao": "Rodada AtlasIntel/Estadão em São Paulo divulgada em 23/09/2026 (campo 15–20/09, 1.800 entrevistas por recrutamento digital aleatório — Atlas RDR, 95% de confiança, margem de 2 p.p.). Registros TSE SP-02676/2026 e BR-08437/2026 (rodada nacional com recortes estaduais); gravado o registro estadual no campo, o nacional fica nesta observação. Brancos/nulos e indecisos não foram detalhados pelas fontes consultadas — a soma dos nomes é 96,7%. Em votos válidos as fontes registram Tarcísio 57,1% x Haddad 42,2% (vantagem de 14,9 p.p.). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-23-atlasintel-sp-governador-t2",
+    "uf": "SP",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "SP-02676/2026",
+    "contratante": "Estadão",
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-20",
+    "publicadoEm": "2026-09-23",
+    "amostra": 1800,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno, Tarcísio de Freitas x Fernando Haddad",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/pesquisa-atlasintel-tarcisio-cresce-e-chega-a-552-no-1o-turno-haddad-tem-41/"
+    },
+    "resultados": [
+      { "candidato": "Tarcísio de Freitas", "partido": "Republicanos", "pct": 55.6 },
+      { "candidato": "Fernando Haddad", "partido": "PT", "pct": 41.7 }
+    ],
+    "observacao": "Cenário de 2º turno da rodada AtlasIntel/Estadão-SP de 23/09/2026. As fontes descrevem os números como 'votos válidos', mas 55,6 + 41,7 = 97,3%, o que indica percentuais sobre o total de entrevistados e não sobre válidos — conferir a ficha técnica original antes do merge. Brancos/nulos e indecisos não detalhados. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-23-atlasintel-rj-governador-t1",
+    "uf": "RJ",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "RJ-01150/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-17",
+    "dataFim": "2026-09-20",
+    "publicadoEm": "2026-09-23",
+    "amostra": 1829,
+    "margem": 2.0,
+    "cenario": "estimulada, 1º turno, com Garotinho",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/pesquisa-atlasintel-paes-tem-457-e-ruas-324-no-1o-turno-no-rio-de-janeiro/"
+    },
+    "resultados": [
+      { "candidato": "Eduardo Paes", "partido": "PSD", "pct": 45.7 },
+      { "candidato": "Douglas Ruas", "partido": "PL", "pct": 32.4 },
+      { "candidato": "Anthony Garotinho", "partido": "Republicanos", "pct": 8.9 }
+    ],
+    "observacao": "Rodada AtlasIntel no Rio de Janeiro divulgada em 23/09/2026 (campo 17–20/09, 1.829 entrevistas, 95% de confiança, margem de 2 p.p.). Registros TSE RJ-01150/2026 e BR-01622/2026; gravado o estadual no campo. Demais candidatos, brancos/nulos e indecisos não foram detalhados pelas fontes consultadas — a soma dos três nomes é 87,0%. As fontes citam ainda que Paes lidera dois cenários de 1º turno com 48,3% e 48,1% dos VOTOS VÁLIDOS, mas sem abrir os demais percentuais desses cenários; por isso não foram registrados. Contratante NÃO informado pelas matérias: null (não inferir) — o registro nacional desta rodada (BR-01622/2026) é diferente dos de SP e MG, então não se deve presumir que seja o mesmo cliente. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-23-atlasintel-rj-governador-t2",
+    "uf": "RJ",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "RJ-01150/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-17",
+    "dataFim": "2026-09-20",
+    "publicadoEm": "2026-09-23",
+    "amostra": 1829,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno, Eduardo Paes x Douglas Ruas",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/atlasintel-paes-lidera-cenarios-de-1-e-2o-turnos-para-governo-no-rj"
+    },
+    "resultados": [
+      { "candidato": "Eduardo Paes", "partido": "PSD", "pct": 49.2 },
+      { "candidato": "Douglas Ruas", "partido": "PL", "pct": 40.6 }
+    ],
+    "observacao": "Cenário de 2º turno da rodada AtlasIntel/RJ de 23/09/2026. Brancos/nulos e indecisos não detalhados pelas fontes (soma dos dois nomes = 89,8%). Contratante não informado: null. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-23-atlasintel-mg-governador-t1",
+    "uf": "MG",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "MG-03290/2026",
+    "contratante": "Estadão",
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-20",
+    "publicadoEm": "2026-09-23",
+    "amostra": 1799,
+    "margem": 2.0,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "Estado de Minas",
+      "url": "https://www.em.com.br/politica/2026/09/7506628-atlas-estadao-cleitinho-lidera-com-393-patrus-tem-31-em-mg.html"
+    },
+    "resultados": [
+      { "candidato": "Cleitinho Azevedo", "partido": "Republicanos", "pct": 39.3 },
+      { "candidato": "Patrus Ananias", "partido": "PT", "pct": 31.0 },
+      { "candidato": "Alexandre Kalil", "partido": "PDT", "pct": 8.3 },
+      { "candidato": "Flávio Roscoe", "partido": "PL", "pct": 7.3 },
+      { "candidato": "Mateus Simões", "partido": "PSD", "pct": 5.6 },
+      { "candidato": "Gabriel", "partido": "MDB", "pct": 2.7 },
+      { "candidato": "Ben Mendes", "partido": "Missão", "pct": 1.4 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 2.3 },
+      { "candidato": "Não sabe", "partido": null, "pct": 1.5 }
+    ],
+    "observacao": "Rodada AtlasIntel/Estadão em Minas Gerais divulgada em 23/09/2026 (campo 15–20/09, 1.799 entrevistas por recrutamento digital aleatório, 95% de confiança, margem de 2 p.p.). Registros TSE MG-03290/2026 e BR-06996/2026; gravado o estadual no campo. Soma dos itens = 99,4% (arredondamento). CUIDADO COM CONFUSÃO DE RODADAS: buscas retornam também números de 40,9% / 32,2% / 8,7% atribuídos a esta divulgação (Gazeta do Povo, descritos como 'votos válidos') e de 41% / 30% / 9,2% (post do AtlasIntel no X), que são de rodada anterior — os valores aqui gravados (39,3 / 31,0 / 8,3) são os confirmados por Estado de Minas, Exame, Money Times, NC News e Poços Jornal para a rodada de 23/09. Não confundir com a rodada AtlasIntel MG publicada em 08/09, já presente na base. Amanhã (24/09) sai o Datafolha MG. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-23-atlasintel-mg-governador-t2",
+    "uf": "MG",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "MG-03290/2026",
+    "contratante": "Estadão",
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-20",
+    "publicadoEm": "2026-09-23",
+    "amostra": 1799,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno, Cleitinho Azevedo x Patrus Ananias",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/atlas-estadao-cleitinho-lidera-1o-e-2o-turno-na-disputa-ao-governo-de-mg/"
+    },
+    "resultados": [
+      { "candidato": "Cleitinho Azevedo", "partido": "Republicanos", "pct": 53.1 },
+      { "candidato": "Patrus Ananias", "partido": "PT", "pct": 41.1 }
+    ],
+    "observacao": "Cenário de 2º turno da rodada AtlasIntel/Estadão-MG de 23/09/2026. Brancos/nulos e indecisos não detalhados (soma dos dois nomes = 94,2%). A mesma rodada traz outros cenários de 2º turno sem Cleitinho — Patrus 43,8% x Mateus Simões 31,9% e Patrus 42,7% x Flávio Roscoe 33,9% —, mas as fontes que os citam misturam números da rodada anterior (56,4% x 43,6% etc.), então esses cenários NÃO foram registrados até confirmação. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  }
+]

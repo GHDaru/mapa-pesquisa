@@ -1,0 +1,154 @@
+[
+  {
+    "id": "2026-09-23-quaest-pe-senador-t1",
+    "uf": "PE",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "PE-05671/2026",
+    "contratante": "Globo Comunicação e Participações S/A",
+    "dataInicio": "2026-09-19",
+    "dataFim": "2026-09-22",
+    "publicadoEm": "2026-09-23",
+    "amostra": 1302,
+    "margem": 3.0,
+    "cenario": "estimulada, consolidado (soma das menções às 2 vagas)",
+    "fonte": {
+      "nome": "CBN Recife",
+      "url": "https://www.cbnrecife.com/2026/09/23/quaest-marilia-tem-18-humberto-14-mendonca-10-e-da-fonte-8/"
+    },
+    "resultados": [
+      { "candidato": "Marília Arraes", "partido": "PDT", "pct": 18.0 },
+      { "candidato": "Humberto Costa", "partido": "PT", "pct": 14.0 },
+      { "candidato": "Mendonça Filho", "partido": "PL", "pct": 10.0 },
+      { "candidato": "Eduardo da Fonte", "partido": "PP", "pct": 8.0 }
+    ],
+    "observacao": "Rodada Quaest em Pernambuco divulgada em 23/09/2026 (campo 19–22/09, 1.302 entrevistas, 95% de confiança, margem de 3 p.p.). Registro TSE PE-05671/2026. ATENÇÃO À DATA DE CAMPO: alguns resumos trouxeram '22 a 24 de setembro', data impossível; as fontes com ficha técnica (CBN Recife, Poder360, NC News) convergem em 19–22/09. Os percentuais somam as menções às DUAS vagas em disputa (cada eleitor escolhe dois nomes), portanto não somam 100%. Demais candidatos, brancos/nulos e indecisos não foram detalhados pelas fontes consultadas. ATENÇÃO A NÚMERO DIVERGENTE: a manchete da Exame traz 'Marília 14%', mas CBN Recife, NC News e Poder360 registram 18% — adotado 18%. Não confundir com as rodadas Quaest/PE anteriores (17/14/11 em 08/09 e 16/13/9 em agosto). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-23-quaest-rj-senador-t1",
+    "uf": "RJ",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "RJ-04982/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-19",
+    "dataFim": "2026-09-22",
+    "publicadoEm": "2026-09-23",
+    "amostra": 1302,
+    "margem": 3.0,
+    "cenario": "estimulada, consolidado (soma das menções às 2 vagas)",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/2026/09/23/benedita-tem-15-para-o-senado-do-rio-jordy-e-portinho-10-aponta-quaest.html"
+    },
+    "resultados": [
+      { "candidato": "Benedita da Silva", "partido": "PT", "pct": 15.0 },
+      { "candidato": "Carlos Jordy", "partido": "PL", "pct": 10.0 },
+      { "candidato": "Carlos Portinho", "partido": "PL", "pct": 10.0 },
+      { "candidato": "Marcelo Crivella", "partido": "Republicanos", "pct": 7.0 },
+      { "candidato": "Pedro Paulo", "partido": "PSD", "pct": 6.0 },
+      { "candidato": "Monica Benicio", "partido": "PSOL", "pct": 4.0 },
+      { "candidato": "Waguinho", "partido": "Republicanos", "pct": 3.0 },
+      { "candidato": "Helio Secco", "partido": "Missão", "pct": 1.0 },
+      { "candidato": "Michelly Xavier", "partido": "UP", "pct": 1.0 },
+      { "candidato": "Marcos Dias", "partido": "Podemos", "pct": 1.0 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 21.0 },
+      { "candidato": "Não sabe", "partido": null, "pct": 21.0 }
+    ],
+    "observacao": "Rodada Quaest no Rio de Janeiro divulgada em 23/09/2026 (campo 19–22/09, 1.302 entrevistas, 95% de confiança, margem de 3 p.p.). Registro TSE RJ-04982/2026. Percentuais somam as menções às DUAS vagas em disputa, então a soma (100,0%) não deve ser lida como distribuição de um único voto. Brancos/nulos inclui quem diz que não vai votar. A mesma rodada traz o estimulado espontâneo (Benedita 7%, Jordy e Portinho 3% cada, Pedro Paulo e Monica Benicio 2% cada, Crivella 1%), não registrado aqui por ser cenário distinto. Contratante NÃO informado pelas matérias: null (não inferir). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-23-quaest-ce-senador-t1",
+    "uf": "CE",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "CE-08268/2026",
+    "contratante": "TV Verdes Mares",
+    "dataInicio": "2026-09-19",
+    "dataFim": "2026-09-22",
+    "publicadoEm": "2026-09-23",
+    "amostra": 900,
+    "margem": 3.0,
+    "cenario": "estimulada, consolidado (soma das menções às 2 vagas)",
+    "fonte": {
+      "nome": "NC News",
+      "url": "https://ncnews.com.br/2026/09/23/quaest-mostra-empate-entre-ciro-elmano-ceara/"
+    },
+    "resultados": [
+      { "candidato": "Cid Gomes", "partido": "PSB", "pct": 25.0 },
+      { "candidato": "Capitão Wagner", "partido": "União Brasil", "pct": 21.0 },
+      { "candidato": "Luizianne Lins", "partido": "Rede", "pct": 19.0 },
+      { "candidato": "Alcides Fernandes", "partido": "PL", "pct": 8.0 },
+      { "candidato": "Catarina Matos", "partido": "UP", "pct": 1.0 },
+      { "candidato": "Guilherme Theophilo", "partido": "Novo", "pct": 0.0 },
+      { "candidato": "Lino Alves", "partido": "PCO", "pct": 0.0 },
+      { "candidato": "Reginaldo", "partido": "PSTU", "pct": 0.0 }
+    ],
+    "observacao": "Rodada Quaest no Ceará divulgada em 23/09/2026 (campo 19–22/09, 900 entrevistas, 95% de confiança, margem de 3 p.p.). Registro TSE CE-08268/2026. Contratante TV Verdes Mares, explicitamente informado pelas matérias. Os percentuais reúnem as menções às DUAS cadeiras em disputa (cada eleitor escolhe dois nomes), por isso não somam 100%. Brancos/nulos e indecisos não foram detalhados pelas fontes consultadas. Cid, Wagner e Luizianne estão tecnicamente empatados dentro da margem. Conferir a sigla de Luizianne Lins (divulgada como Rede) e de Capitão Wagner (União Brasil) no TSE antes do merge. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-23-parana-pesquisas-sc-senador-t1",
+    "uf": "SC",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "SC-00523/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-20",
+    "dataFim": "2026-09-22",
+    "publicadoEm": "2026-09-23",
+    "amostra": 1384,
+    "margem": 2.7,
+    "cenario": "estimulada, 2 vagas (cada eleitor podia escolher dois nomes)",
+    "fonte": {
+      "nome": "Band",
+      "url": "https://www.band.com.br/politica/eleicoes/2026/carol-de-toni-lidera-disputa-acirrada-pelo-senado-em-sc-com-423"
+    },
+    "resultados": [
+      { "candidato": "Carol de Toni", "partido": "PL", "pct": 42.3 },
+      { "candidato": "Carlos Bolsonaro", "partido": "PL", "pct": 36.0 },
+      { "candidato": "Esperidião Amin", "partido": "PP", "pct": 34.2 },
+      { "candidato": "Décio Lima", "partido": "PT", "pct": 15.6 },
+      { "candidato": "Lunelli", "partido": "MDB", "pct": 7.2 },
+      { "candidato": "Afrânio Boppré", "partido": "PSOL", "pct": 6.6 },
+      { "candidato": "Carol", "partido": "PCO", "pct": 2.8 },
+      { "candidato": "Ana Lucia da Silveira Machado", "partido": "UP", "pct": 2.3 },
+      { "candidato": "Jeferson Rocha", "partido": "PRD", "pct": 1.6 },
+      { "candidato": "Marcos Dorval", "partido": "PSTU", "pct": 1.4 },
+      { "candidato": "Túlio de Amorim Pfuetzenreiter", "partido": "Missão", "pct": 1.4 },
+      { "candidato": "Joaninha de Oliveira", "partido": "PSTU", "pct": 0.8 },
+      { "candidato": "Marlene Soccas", "partido": "UP", "pct": 0.7 }
+    ],
+    "observacao": "Rodada Paraná Pesquisas em Santa Catarina divulgada em 23/09/2026 (campo 20–22/09, 1.384 entrevistas presenciais em 52 municípios, 95% de confiança, margem de 2,7 p.p.). Registro TSE SC-00523/2026. São 2 vagas em disputa e cada eleitor podia indicar dois nomes, por isso a soma passa de 100%. Carlos Bolsonaro e Esperidião Amin estão em empate técnico pela segunda vaga. Brancos/nulos e indecisos não foram detalhados pelas fontes consultadas. Contratante NÃO informado: null (não inferir). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-23-parana-pesquisas-rj-senador-t1",
+    "uf": "RJ",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "RJ-04036/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-20",
+    "dataFim": "2026-09-22",
+    "publicadoEm": "2026-09-23",
+    "amostra": 1600,
+    "margem": 2.5,
+    "cenario": "estimulada, 2 vagas (cada eleitor podia escolher dois nomes)",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/benedita-lidera-disputa-ao-senado-no-rio-diz-pesquisa/"
+    },
+    "resultados": [
+      { "candidato": "Benedita da Silva", "partido": "PT", "pct": 32.0 },
+      { "candidato": "Marcelo Crivella", "partido": "Republicanos", "pct": 19.5 },
+      { "candidato": "Pedro Paulo", "partido": "PSD", "pct": 17.3 },
+      { "candidato": "Carlos Jordy", "partido": "PL", "pct": 16.8 },
+      { "candidato": "Carlos Portinho", "partido": "PL", "pct": 16.2 }
+    ],
+    "observacao": "Rodada Paraná Pesquisas no Rio de Janeiro divulgada em 23/09/2026 (campo 20–22/09, 1.600 entrevistas em 56 municípios, 95% de confiança, margem de 2,5 p.p.). Registro TSE RJ-04036/2026. São 2 vagas em disputa e cada eleitor podia indicar dois nomes. Crivella, Pedro Paulo, Jordy e Portinho estão em empate técnico pela segunda vaga. Os demais candidatos, brancos/nulos e indecisos não foram detalhados pelas fontes consultadas. Contratante NÃO informado: null (não inferir). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  }
+]
