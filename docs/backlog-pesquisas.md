@@ -414,3 +414,54 @@ base. Não insistir sem acesso ao DivulgaCand ou ao site do instituto.
 - **25/09**: Real Time Big Data em ES, TO, CE, PE e AL (presidente, 1.600
   cada, campo 21–24/09).
 - Quaest PR com campo 22–24/09, ainda sem data de divulgação.
+
+## Anotadas em 2026-09-23
+
+31 pesquisas novas, base de 413 para 444.
+
+### Cobertura de 2º turno por estado: 27 de 27
+
+As três lacunas totais foram fechadas (AL pela AtlasIntel, RR pela
+AtlasIntel, SC pelo Real Time Big Data) e PI, MS, AC e PB ganharam rodadas
+recentes. Rondônia e Tocantins seguem com dado antigo (RTBD de julho e de
+agosto); a leva do RTBD prevista para 25/09 inclui TO e deve resolver.
+
+Com isso a tela de 2º turno por estado é viável sem nenhum estado vazio.
+
+### Recusas e armadilhas bloqueadas hoje
+
+- **Veritá em Tocantins**, 2º turno Flávio 52,8 x Lula 47,2 em válidos,
+  campo 07–12/09. Recusada pela suspensão judicial, justamente num estado
+  prioritário. Vai reaparecer em buscas futuras; manter o bloqueio.
+- **1º turno da RTBD em SC** descartado porque a tabela ainda trazia Pablo
+  Marçal com 2%: o campo (12–16/09) atravessou a substituição e o
+  questionário não foi atualizado. O 2º turno da mesma rodada entrou.
+- **Resíduo não virou branco/nulo.** Em RR (soma 92) e PB (soma 86) as
+  fontes publicaram só dois nomes. Lançar o resto como brancos e nulos
+  seria inventar a divisão entre branco e indeciso. Ficou o alerta.
+- **Campo impossível.** Vários resumos davam o campo da Quaest PE como
+  22–24/09, data de fim no futuro para uma divulgação de 23/09. As fontes
+  com ficha técnica convergem em 19–22/09.
+- **AtlasIntel MG com três conjuntos de números** circulando como se
+  fossem de hoje. Adotado 39,3 / 31,0 / 8,3, confirmado por cinco veículos;
+  os outros dois conjuntos são de rodada anterior.
+- **Totais x válidos na AtlasIntel nacional**: as buscas devolviam
+  45,8/43,4 e 46,3/43,9 como se fossem a mesma coisa. Adotados os totais,
+  com os válidos anotados.
+- **Cenário Quaest RJ sem Garotinho** não gravado: fontes divergem em Paes
+  (28% contra 38%), ambas com Ruas em 25%.
+
+### A conferir
+
+- Partido de Luan Monteiro (RJ, governador) ficou `null`.
+- Siglas de Luizianne Lins (Rede) e Capitão Wagner (União Brasil) no CE.
+- 2º turno da AtlasIntel em SP: as fontes dizem votos válidos, mas
+  55,6 + 41,7 soma 97,3, o que sugere percentual sobre o total.
+- **AtlasIntel CE, governador e Senado**, divulgada em 21/09, ainda ausente
+  da base. Lacuna a preencher.
+
+### Agenda
+
+- **24/09**: Datafolha nacional (BR-00304/2026, campo 22–24/09), Datafolha
+  MG e Quaest BA (campo 20–23/09).
+- **25/09**: Real Time Big Data em ES, TO, CE, PE e AL.
