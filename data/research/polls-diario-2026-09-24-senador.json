@@ -1,0 +1,395 @@
+[
+  {
+    "id": "2026-09-21-atlasintel-ce-senador-t1",
+    "uf": "CE",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-20",
+    "publicadoEm": "2026-09-21",
+    "amostra": 1815,
+    "margem": 2.0,
+    "cenario": "estimulada, consolidado das 2 vagas em disputa",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/eleicoes/2026/09/21/pesquisa-atlas-para-senado-no-ceara-e-divulgada-veja-numeros.html"
+    },
+    "resultados": [
+      {
+        "candidato": "Cid Gomes",
+        "partido": "PSB",
+        "pct": 26.9
+      },
+      {
+        "candidato": "Luizianne Lins",
+        "partido": "Rede",
+        "pct": 24.8
+      },
+      {
+        "candidato": "Capitão Wagner",
+        "partido": "União Brasil",
+        "pct": 22.4
+      },
+      {
+        "candidato": "Alcides Fernandes",
+        "partido": "PL",
+        "pct": 17.9
+      }
+    ],
+    "observacao": "Rodada AtlasIntel/Focus no Ceara divulgada em 21/09/2026 (campo 15-20/09, 1.815 entrevistas por recrutamento digital aleatorio, 95% de confianca, margem de 2 p.p.). NAO confundir com a rodada AtlasIntel CE de campo 28/08-02/09 divulgada em 04/09, ja presente na base. Numero de registro no TSE nao informado pelas materias consultadas — por isso registroTSE nulo. Contratante nao declarado explicitamente nas materias (a serie e divulgada como 'AtlasIntel/Focus'), por isso contratante nulo. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Apenas os quatro primeiros colocados foram nominados pelas materias; os itens somam 92,0%, o restante (demais nomes, brancos/nulos e indecisos) nao foi detalhado."
+  },
+  {
+    "id": "2026-09-24-datafolha-mg-senador-t1",
+    "uf": "MG",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "MG-07400/2026",
+    "contratante": "Folha de S.Paulo e TV Globo",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-24",
+    "amostra": 1204,
+    "margem": 3.0,
+    "cenario": "estimulada, consolidado das 2 vagas em disputa",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/datafolha-marilia-tem-13-aecio-e-viana-11-e-savio-9-no-senado-em-mg/"
+    },
+    "resultados": [
+      {
+        "candidato": "Marília Campos",
+        "partido": "PT",
+        "pct": 13
+      },
+      {
+        "candidato": "Aécio Neves",
+        "partido": "PSDB",
+        "pct": 11
+      },
+      {
+        "candidato": "Carlos Viana",
+        "partido": "PSD",
+        "pct": 11
+      },
+      {
+        "candidato": "Domingos Sávio",
+        "partido": "PL",
+        "pct": 9
+      },
+      {
+        "candidato": "Marcelo Aro",
+        "partido": "PP",
+        "pct": 6
+      },
+      {
+        "candidato": "Áurea Carolina",
+        "partido": "PSOL",
+        "pct": 5
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 14
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 21
+      }
+    ],
+    "observacao": "Datafolha em Minas Gerais divulgado em 24/09/2026; campo de 22 a 24/09 (entrevistas presenciais), 1.204 eleitores, 95% de confianca, margem de 3 p.p., registro TSE MG-07400/2026. O campo terminou no proprio dia da divulgacao, conforme ficha tecnica informada por Folha/CNN/O Tempo. Contratantes Folha de S.Paulo e TV Globo, informados pelas materias. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Demais candidatos, com percentuais menores, nao foram nominados pelas materias; por isso os itens somam 90,0%."
+  },
+  {
+    "id": "2026-09-24-datafolha-sp-senador-t1",
+    "uf": "SP",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "SP-03730/2026",
+    "contratante": "TV Globo e Folha de S.Paulo",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-24",
+    "amostra": 1610,
+    "margem": 2.0,
+    "cenario": "estimulada, consolidado do 1o e 2o voto (2 vagas), total 100%",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/disputa-pelo-senado-em-sp-tem-empate-entre-4-candidatos-diz-datafolha/"
+    },
+    "resultados": [
+      {
+        "candidato": "Marina Silva",
+        "partido": "Rede",
+        "pct": 15
+      },
+      {
+        "candidato": "Simone Tebet",
+        "partido": "PSB",
+        "pct": 14
+      },
+      {
+        "candidato": "André do Prado",
+        "partido": "PL",
+        "pct": 12
+      },
+      {
+        "candidato": "Guilherme Derrite",
+        "partido": "PP",
+        "pct": 12
+      }
+    ],
+    "observacao": "Datafolha em Sao Paulo divulgado em 24/09/2026; campo de 22 a 24/09, 1.610 eleitores em 65 municipios, 95% de confianca, margem de 2 p.p., registros TSE SP-03730/2026 e BR-09355/2026. Contratantes TV Globo e Folha de S.Paulo, informados pelas materias. NAO confundir com a rodada Datafolha SP de campo 08-10/09 (registro SP-04189/2026), ja na base. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Empate tecnico quadruplo. Somente os quatro primeiros foram nominados; demais nomes, brancos/nulos e indecisos nao detalhados."
+  },
+  {
+    "id": "2026-09-24-datafolha-rj-senador-t1",
+    "uf": "RJ",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "RJ-02205/2026",
+    "contratante": "Folha de S.Paulo e TV Globo",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-24",
+    "amostra": 1204,
+    "margem": 3.0,
+    "cenario": "estimulada, consolidado das 2 vagas em disputa",
+    "fonte": {
+      "nome": "Revista Fórum",
+      "url": "https://revistaforum.com.br/politica/a-disputa-pelo-governo-do-rj-segundo-novo-datafolha/"
+    },
+    "resultados": [
+      {
+        "candidato": "Benedita da Silva",
+        "partido": "PT",
+        "pct": 19
+      },
+      {
+        "candidato": "Carlos Portinho",
+        "partido": "PL",
+        "pct": 12
+      },
+      {
+        "candidato": "Carlos Jordy",
+        "partido": "PL",
+        "pct": 12
+      },
+      {
+        "candidato": "Pedro Paulo",
+        "partido": "PSD",
+        "pct": 9
+      }
+    ],
+    "observacao": "Datafolha no Rio de Janeiro divulgado em 24/09/2026; campo de 22 a 24/09, 1.204 entrevistas, 95% de confianca, margem de 3 p.p., registro TSE RJ-02205/2026. Contratantes Folha de S.Paulo e Globo, informados pelas materias. NAO confundir com a rodada Datafolha RJ de campo 08-10/09 (registro RJ-09217/2026), ja na base. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Apenas os quatro primeiros colocados foram nominados pelas materias; demais nomes, brancos/nulos e indecisos nao detalhados."
+  },
+  {
+    "id": "2026-09-24-datafolha-pe-senador-t1",
+    "uf": "PE",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "PE-08125/2026",
+    "contratante": "TV Globo e Folha de S.Paulo",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-24",
+    "amostra": 1204,
+    "margem": 3.0,
+    "cenario": "estimulada, consolidado das 2 vagas em disputa",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/datafolha-senado-pe-marilia-tem-19-humberto-17-e-mendonca-13/"
+    },
+    "resultados": [
+      {
+        "candidato": "Marília Arraes",
+        "partido": "PDT",
+        "pct": 19
+      },
+      {
+        "candidato": "Humberto Costa",
+        "partido": "PT",
+        "pct": 17
+      },
+      {
+        "candidato": "Mendonça Filho",
+        "partido": "PL",
+        "pct": 13
+      },
+      {
+        "candidato": "Eduardo da Fonte",
+        "partido": "PP",
+        "pct": 10
+      }
+    ],
+    "observacao": "Datafolha em Pernambuco divulgado em 24/09/2026; campo de 22 a 24/09, 1.204 entrevistas, 95% de confianca, margem de 3 p.p., registro TSE PE-08125/2026. Contratantes TV Globo e Folha de S.Paulo, informados pelas materias. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Apenas os quatro primeiros colocados foram nominados pelas materias; demais nomes, brancos/nulos e indecisos nao detalhados."
+  },
+  {
+    "id": "2026-09-24-datafolha-df-senador-t1",
+    "uf": "DF",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "DF-01888/2026",
+    "contratante": "Grupo Globo e Folha de S.Paulo",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-24",
+    "amostra": 910,
+    "margem": 3.0,
+    "cenario": "estimulada, consolidado das 2 vagas em disputa",
+    "fonte": {
+      "nome": "CartaCapital",
+      "url": "https://www.cartacapital.com.br/politica/datafolha-saiba-as-intencoes-de-voto-para-o-senado-em-sp-rj-mg-pe-e-df-2/"
+    },
+    "resultados": [
+      {
+        "candidato": "Michelle Bolsonaro",
+        "partido": "PL",
+        "pct": 22
+      },
+      {
+        "candidato": "Leila do Vôlei",
+        "partido": "PDT",
+        "pct": 19
+      },
+      {
+        "candidato": "Bia Kicis",
+        "partido": "PL",
+        "pct": 15
+      },
+      {
+        "candidato": "Erika Kokay",
+        "partido": "PT",
+        "pct": 15
+      }
+    ],
+    "observacao": "Datafolha no Distrito Federal divulgado em 24/09/2026; campo de 22 a 24/09, 910 entrevistas, 95% de confianca, margem de 3 p.p., registros TSE DF-01888/2026 e BR-06769/2026. Contratantes Grupo Globo e Folha de S.Paulo, informados pelas materias. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Quase metade do eleitorado ainda nao decidiu o voto; brancos/nulos e indecisos nao foram discriminados numericamente pelas materias. Apenas os quatro primeiros colocados foram nominados."
+  },
+  {
+    "id": "2026-09-24-quaest-ba-senador-t1",
+    "uf": "BA",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "BA-01850/2026",
+    "contratante": "TV Bahia",
+    "dataInicio": "2026-09-20",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 900,
+    "margem": 3.0,
+    "cenario": "estimulada, consolidado das 2 vagas em disputa",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/rui-costa-e-jaques-wagner-lideram-corrida-ao-senado-na-bahia-5/"
+    },
+    "resultados": [
+      {
+        "candidato": "Rui Costa",
+        "partido": "PT",
+        "pct": 23
+      },
+      {
+        "candidato": "Jaques Wagner",
+        "partido": "PT",
+        "pct": 17
+      },
+      {
+        "candidato": "João Roma",
+        "partido": "PL",
+        "pct": 11
+      },
+      {
+        "candidato": "Ângelo Coronel",
+        "partido": "Republicanos",
+        "pct": 9
+      }
+    ],
+    "observacao": "Quaest na Bahia divulgada em 24/09/2026; campo de 20 a 23/09, 900 entrevistas presenciais com eleitores de 16 anos ou mais, 95% de confianca, margem de 3 p.p., registro TSE BA-01850/2026. Contratante TV Bahia, informado pelas materias. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Apenas os quatro primeiros colocados foram nominados pelas materias; demais nomes, brancos/nulos e indecisos nao detalhados."
+  },
+  {
+    "id": "2026-09-24-parana-pesquisas-ba-senador-t1",
+    "uf": "BA",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "BA-00759/2026",
+    "contratante": "Bahia Notícias",
+    "dataInicio": "2026-09-21",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 1400,
+    "margem": 2.7,
+    "cenario": "estimulada, 2 vagas em disputa; percentuais somam mais de 100 (eleitor escolhe 2 nomes)",
+    "fonte": {
+      "nome": "Jornal Grande Bahia",
+      "url": "https://jornalgrandebahia.com.br/2026/09/parana-pesquisas-na-bahia-registra-acm-neto-com-467-e-jeronimo-com-42-rui-costa-tem-463-ao-senado-e-governo-alcanca-561-de-aprovacao/"
+    },
+    "resultados": [
+      {
+        "candidato": "Rui Costa",
+        "partido": "PT",
+        "pct": 46.3
+      },
+      {
+        "candidato": "Jaques Wagner",
+        "partido": "PT",
+        "pct": 34.0
+      },
+      {
+        "candidato": "João Roma",
+        "partido": "PL",
+        "pct": 27.3
+      },
+      {
+        "candidato": "Ângelo Coronel",
+        "partido": "Republicanos",
+        "pct": 25.1
+      }
+    ],
+    "observacao": "Parana Pesquisas na Bahia divulgada em 24/09/2026; campo de 21 a 23/09, 1.400 entrevistas presenciais em 60 municipios, 95% de confianca, margem de 2,7 p.p., registro TSE BA-00759/2026. Contratante portal Bahia Noticias, informado pelas materias. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Como sao 2 vagas, cada eleitor cita ate dois nomes e a soma passa de 100%. Na rodada anterior: Rui 43,5%, Wagner 32,2%, Roma 26,6%, Coronel 25,1%."
+  },
+  {
+    "id": "2026-09-24-parana-pesquisas-es-senador-t1",
+    "uf": "ES",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "ES-05719/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-18",
+    "dataFim": "2026-09-22",
+    "publicadoEm": "2026-09-24",
+    "amostra": 1304,
+    "margem": 2.8,
+    "cenario": "estimulada, 2 vagas em disputa; percentuais somam mais de 100 (eleitor escolhe 2 nomes)",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/pazolini-e-ferraco-tem-empate-tecnico-pelo-governo-do-espirito-santo/"
+    },
+    "resultados": [
+      {
+        "candidato": "Renato Casagrande",
+        "partido": "PSB",
+        "pct": 49.8
+      },
+      {
+        "candidato": "Fabiano Contarato",
+        "partido": "PT",
+        "pct": 22.7
+      },
+      {
+        "candidato": "Sergio Meneguelli",
+        "partido": "PSD",
+        "pct": 19.9
+      }
+    ],
+    "observacao": "Parana Pesquisas no Espirito Santo divulgada em 24/09/2026; campo de 18 a 22/09, 1.304 entrevistas presenciais/domiciliares, 95% de confianca, margem de 2,8 p.p., registro TSE ES-05719/2026. Contratante nao informado pelas materias consultadas — por isso contratante nulo. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Casagrande lidera com folga; Contarato e Meneguelli empatam tecnicamente. Demais nomes, brancos/nulos e indecisos nao foram detalhados pelas materias."
+  }
+]

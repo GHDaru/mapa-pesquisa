@@ -1,0 +1,60 @@
+[
+  {
+    "id": "2026-09-24-datafolha-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "BR-00304/2026",
+    "contratante": "Folha de S.Paulo e Grupo Globo",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 2002,
+    "margem": 2.0,
+    "cenario": "estimulada, 1º turno — nacional",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/datafolha-lula-tem-40-no-1o-turno-flavio-36/"
+    },
+    "observacao": "Rodada Datafolha/Folha-Globo divulgada na quinta-feira 24/09/2026, a partir das 18h45 (Brasília). ATENÇÃO À FICHA TÉCNICA: as matérias de resultado (CNN Brasil, Poder360, Exame, O Povo, Estado de Minas) informam entrevistas presenciais nos dias 22 e 23/09 em 136 municípios das cinco regiões, nível de confiança 95%; já as matérias de anúncio prévio (Gazeta do Povo, NSC Total) falavam em campo de 22 a 24/09. Adotado 22–23/09 por ser o que consta nas matérias com os números e por ser incompatível divulgar às 18h45 do dia 24 com campo encerrando no mesmo dia. A tabela divulgada soma 97% (arredondamentos e candidatos sem pontuação). Segundo a listagem da CNN Brasil, também não pontuaram Edmilson Costa (PCB), Rui Costa Pimenta (PCO), Wilson Grassi (Democrata), Clariana Barão (DC) e Hertz Dias (PSTU) — não incluídos nos resultados porque a grafia desses nomes não pôde ser confirmada em segunda fonte. Leonardo Avalanche (PRTB), que substituiu Pablo Marçal após o indeferimento pelo TSE em 11/09, aparece no cenário sem pontuação (0%); nenhuma fonte desta rodada listou Marçal. Linha 'Brancos/nulos' corresponde a brancos, nulos e 'nenhum' (5%). Rodada anterior (17/09): Lula 39% e Flávio 36%. Dados obtidos via WebSearch (WebFetch bloqueado); números conferidos em CNN Brasil, Exame, Poder360, O Povo, Estado de Minas e Jovem Pan.",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 40 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 36 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 5 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 4 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 3 },
+      { "candidato": "Romeu Zema", "partido": "Novo", "pct": 1 },
+      { "candidato": "Samara Martins", "partido": "UP", "pct": 1 },
+      { "candidato": "Leonardo Avalanche", "partido": "PRTB", "pct": 0 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 5 },
+      { "candidato": "Não sabe", "partido": null, "pct": 2 }
+    ]
+  },
+  {
+    "id": "2026-09-24-datafolha-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Datafolha",
+    "registroTSE": "BR-00304/2026",
+    "contratante": "Folha de S.Paulo e Grupo Globo",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 2002,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — nacional",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-e-flavio-empatam-em-2o-turno-diz-datafolha/"
+    },
+    "observacao": "Empate técnico: diferença de 2 pontos, no limite da margem de erro de 2 pontos. A tabela fecha em 100%. Rodada anterior (17/09) do mesmo instituto: Lula 46% x Flávio 44%. Mesma ficha técnica do registro de 1º turno (ver observação lá sobre a divergência 22–23 x 22–24/09). Outros confrontos de 2º turno (Lula x Ronaldo Caiado, Lula x Augusto Cury, Lula x Romeu Zema, Lula x Renan Santos) foram mencionados por veículos secundários com números CONTRADITÓRIOS entre si (ex.: Caiado 44% em uma versão e 41% em outra) e por isso NÃO foram registrados — precisam de confirmação em fonte primária. O cenário espontâneo de 1º turno (Lula 36%, Flávio 27%) também ficou de fora por falta do detalhamento de brancos/nulos e indecisos. Dados obtidos via WebSearch (WebFetch bloqueado); números conferidos em Poder360, CNN Brasil, Exame e O Povo.",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 47 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 45 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 7 },
+      { "candidato": "Não sabe", "partido": null, "pct": 1 }
+    ]
+  }
+]

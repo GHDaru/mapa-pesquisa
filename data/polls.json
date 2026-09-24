@@ -1,5 +1,1018 @@
 [
   {
+    "id": "2026-09-24-datafolha-mg-governador-t1",
+    "uf": "MG",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "MG-07400/2026",
+    "contratante": "Folha de S.Paulo e TV Globo",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-24",
+    "amostra": 1204,
+    "margem": 3,
+    "cenario": "estimulada, 1o turno",
+    "fonte": {
+      "nome": "O Tempo",
+      "url": "https://www.otempo.com.br/eleicoes/2026/pesquisas/2026/9/24/cleitinho-chega-a-40-e-patrus-se-consolida-com-15-no-primeiro-turno-mostra-pesquisa"
+    },
+    "resultados": [
+      {
+        "candidato": "Cleitinho Azevedo",
+        "partido": "Republicanos",
+        "pct": 40
+      },
+      {
+        "candidato": "Patrus Ananias",
+        "partido": "PT",
+        "pct": 15
+      },
+      {
+        "candidato": "Alexandre Kalil",
+        "partido": "PDT",
+        "pct": 9
+      },
+      {
+        "candidato": "Mateus Simões",
+        "partido": "PSD",
+        "pct": 5
+      },
+      {
+        "candidato": "Flávio Roscoe",
+        "partido": "PL",
+        "pct": 5
+      },
+      {
+        "candidato": "Gabriel Azevedo",
+        "partido": "MDB",
+        "pct": 3
+      },
+      {
+        "candidato": "Túlio Lopes",
+        "partido": "PCB",
+        "pct": 2
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 9
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 10
+      }
+    ],
+    "observacao": "Datafolha em Minas Gerais divulgado em 24/09/2026; campo de 22 a 24/09 (entrevistas presenciais), 1.204 eleitores, 95% de confianca, margem de 3 p.p., registro TSE MG-07400/2026. O campo terminou no proprio dia da divulgacao, conforme ficha tecnica informada por Folha/CNN/O Tempo. Contratantes Folha de S.Paulo e TV Globo, informados pelas materias. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Em votos validos, Cleitinho chega a 49%. Os itens listados somam 98,0%: candidatos de menor expressao nao nominados pelas materias respondem pela diferenca."
+  },
+  {
+    "id": "2026-09-24-datafolha-mg-governador-t2-cleitinho-patrus",
+    "uf": "MG",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Datafolha",
+    "registroTSE": "MG-07400/2026",
+    "contratante": "Folha de S.Paulo e TV Globo",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-24",
+    "amostra": 1204,
+    "margem": 3,
+    "cenario": "estimulada, 2o turno (Cleitinho Azevedo x Patrus Ananias)",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/datafolha-cleitinho-tem-40-no-1o-turno-em-mg-patrus-15-e-kalil-9/"
+    },
+    "resultados": [
+      {
+        "candidato": "Cleitinho Azevedo",
+        "partido": "Republicanos",
+        "pct": 60
+      },
+      {
+        "candidato": "Patrus Ananias",
+        "partido": "PT",
+        "pct": 23
+      }
+    ],
+    "observacao": "Datafolha em Minas Gerais divulgado em 24/09/2026; campo de 22 a 24/09 (entrevistas presenciais), 1.204 eleitores, 95% de confianca, margem de 3 p.p., registro TSE MG-07400/2026. O campo terminou no proprio dia da divulgacao, conforme ficha tecnica informada por Folha/CNN/O Tempo. Contratantes Folha de S.Paulo e TV Globo, informados pelas materias. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Brancos/nulos e indecisos deste cenario nao foram detalhados pelas materias."
+  },
+  {
+    "id": "2026-09-24-datafolha-mg-governador-t2-cleitinho-kalil",
+    "uf": "MG",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Datafolha",
+    "registroTSE": "MG-07400/2026",
+    "contratante": "Folha de S.Paulo e TV Globo",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-24",
+    "amostra": 1204,
+    "margem": 3,
+    "cenario": "estimulada, 2o turno (Cleitinho Azevedo x Alexandre Kalil)",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/datafolha-cleitinho-tem-40-no-1o-turno-em-mg-patrus-15-e-kalil-9/"
+    },
+    "resultados": [
+      {
+        "candidato": "Cleitinho Azevedo",
+        "partido": "Republicanos",
+        "pct": 57
+      },
+      {
+        "candidato": "Alexandre Kalil",
+        "partido": "PDT",
+        "pct": 26
+      }
+    ],
+    "observacao": "Datafolha em Minas Gerais divulgado em 24/09/2026; campo de 22 a 24/09 (entrevistas presenciais), 1.204 eleitores, 95% de confianca, margem de 3 p.p., registro TSE MG-07400/2026. O campo terminou no proprio dia da divulgacao, conforme ficha tecnica informada por Folha/CNN/O Tempo. Contratantes Folha de S.Paulo e TV Globo, informados pelas materias. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Brancos/nulos e indecisos deste cenario nao foram detalhados pelas materias."
+  },
+  {
+    "id": "2026-09-24-datafolha-sp-governador-t1",
+    "uf": "SP",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "SP-03730/2026",
+    "contratante": "TV Globo e Folha de S.Paulo",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-24",
+    "amostra": 1610,
+    "margem": 2,
+    "cenario": "estimulada, 1o turno",
+    "fonte": {
+      "nome": "A Cidade ON",
+      "url": "https://www.acidadeon.com/campinas/politica/datafolha-divulga-pesquisa-para-governo-e-senado-de-sp-veja-os-numeros/"
+    },
+    "resultados": [
+      {
+        "candidato": "Tarcísio de Freitas",
+        "partido": "Republicanos",
+        "pct": 50
+      },
+      {
+        "candidato": "Fernando Haddad",
+        "partido": "PT",
+        "pct": 30
+      }
+    ],
+    "observacao": "Datafolha em Sao Paulo divulgado em 24/09/2026; campo de 22 a 24/09, 1.610 eleitores em 65 municipios, 95% de confianca, margem de 2 p.p., registros TSE SP-03730/2026 e BR-09355/2026. Contratantes TV Globo e Folha de S.Paulo, informados pelas materias. NAO confundir com a rodada Datafolha SP de campo 08-10/09 (registro SP-04189/2026), ja na base. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. As materias consultadas nominaram apenas os dois primeiros colocados; demais candidatos, brancos/nulos e indecisos nao foram detalhados. Em votos validos, Tarcisio tem 56%."
+  },
+  {
+    "id": "2026-09-24-datafolha-sp-governador-t2",
+    "uf": "SP",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Datafolha",
+    "registroTSE": "SP-03730/2026",
+    "contratante": "TV Globo e Folha de S.Paulo",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-24",
+    "amostra": 1610,
+    "margem": 2,
+    "cenario": "estimulada, 2o turno (Tarcísio de Freitas x Fernando Haddad)",
+    "fonte": {
+      "nome": "A Cidade ON",
+      "url": "https://www.acidadeon.com/campinas/politica/datafolha-divulga-pesquisa-para-governo-e-senado-de-sp-veja-os-numeros/"
+    },
+    "resultados": [
+      {
+        "candidato": "Tarcísio de Freitas",
+        "partido": "Republicanos",
+        "pct": 55
+      },
+      {
+        "candidato": "Fernando Haddad",
+        "partido": "PT",
+        "pct": 36
+      }
+    ],
+    "observacao": "Datafolha em Sao Paulo divulgado em 24/09/2026; campo de 22 a 24/09, 1.610 eleitores em 65 municipios, 95% de confianca, margem de 2 p.p., registros TSE SP-03730/2026 e BR-09355/2026. Contratantes TV Globo e Folha de S.Paulo, informados pelas materias. NAO confundir com a rodada Datafolha SP de campo 08-10/09 (registro SP-04189/2026), ja na base. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Brancos/nulos e indecisos deste cenario nao foram detalhados pelas materias."
+  },
+  {
+    "id": "2026-09-24-datafolha-rj-governador-t1",
+    "uf": "RJ",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "RJ-02205/2026",
+    "contratante": "Folha de S.Paulo e TV Globo",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-24",
+    "amostra": 1204,
+    "margem": 3,
+    "cenario": "estimulada, 1o turno (cenário com Anthony Garotinho)",
+    "fonte": {
+      "nome": "Revista Fórum",
+      "url": "https://revistaforum.com.br/politica/a-disputa-pelo-governo-do-rj-segundo-novo-datafolha/"
+    },
+    "resultados": [
+      {
+        "candidato": "Eduardo Paes",
+        "partido": "PSD",
+        "pct": 43
+      },
+      {
+        "candidato": "Douglas Ruas",
+        "partido": "PL",
+        "pct": 30
+      },
+      {
+        "candidato": "Anthony Garotinho",
+        "partido": "Republicanos",
+        "pct": 8
+      }
+    ],
+    "observacao": "Datafolha no Rio de Janeiro divulgado em 24/09/2026; campo de 22 a 24/09, 1.204 entrevistas, 95% de confianca, margem de 3 p.p., registro TSE RJ-02205/2026. Contratantes Folha de S.Paulo e Globo, informados pelas materias. NAO confundir com a rodada Datafolha RJ de campo 08-10/09 (registro RJ-09217/2026), ja na base. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Ha tambem um cenario sem Garotinho, em que Paes chega a 46%, mas as materias consultadas nao trouxeram os demais percentuais desse cenario — por isso ele nao foi registrado. Demais candidatos, brancos/nulos e indecisos do cenario aqui registrado nao foram detalhados."
+  },
+  {
+    "id": "2026-09-24-datafolha-rj-governador-t2",
+    "uf": "RJ",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Datafolha",
+    "registroTSE": "RJ-02205/2026",
+    "contratante": "Folha de S.Paulo e TV Globo",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-24",
+    "amostra": 1204,
+    "margem": 3,
+    "cenario": "estimulada, 2o turno (Eduardo Paes x Douglas Ruas)",
+    "fonte": {
+      "nome": "Revista Fórum",
+      "url": "https://revistaforum.com.br/politica/a-disputa-pelo-governo-do-rj-segundo-novo-datafolha/"
+    },
+    "resultados": [
+      {
+        "candidato": "Eduardo Paes",
+        "partido": "PSD",
+        "pct": 54
+      },
+      {
+        "candidato": "Douglas Ruas",
+        "partido": "PL",
+        "pct": 38
+      }
+    ],
+    "observacao": "Datafolha no Rio de Janeiro divulgado em 24/09/2026; campo de 22 a 24/09, 1.204 entrevistas, 95% de confianca, margem de 3 p.p., registro TSE RJ-02205/2026. Contratantes Folha de S.Paulo e Globo, informados pelas materias. NAO confundir com a rodada Datafolha RJ de campo 08-10/09 (registro RJ-09217/2026), ja na base. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Brancos/nulos e indecisos deste cenario nao foram detalhados pelas materias."
+  },
+  {
+    "id": "2026-09-24-datafolha-pe-governador-t1",
+    "uf": "PE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "PE-08125/2026",
+    "contratante": "TV Globo e Folha de S.Paulo",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-24",
+    "amostra": 1204,
+    "margem": 3,
+    "cenario": "estimulada, 1o turno",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/datafolha-raquel-lyra-tem-48-no-1o-turno-joao-campos-44/"
+    },
+    "resultados": [
+      {
+        "candidato": "Raquel Lyra",
+        "partido": "PSD",
+        "pct": 48
+      },
+      {
+        "candidato": "João Campos",
+        "partido": "PSB",
+        "pct": 44
+      }
+    ],
+    "observacao": "Datafolha em Pernambuco divulgado em 24/09/2026; campo de 22 a 24/09, 1.204 entrevistas, 95% de confianca, margem de 3 p.p., registro TSE PE-08125/2026. Contratantes TV Globo e Folha de S.Paulo, informados pelas materias. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Comparacao com a rodada de 11/09 (Raquel 47%, Joao Campos 42%) confirma que sao intencoes de voto do cenario estimulado. Demais candidatos, brancos/nulos e indecisos nao foram detalhados pelas materias."
+  },
+  {
+    "id": "2026-09-24-datafolha-pe-governador-t2",
+    "uf": "PE",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Datafolha",
+    "registroTSE": "PE-08125/2026",
+    "contratante": "TV Globo e Folha de S.Paulo",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-24",
+    "amostra": 1204,
+    "margem": 3,
+    "cenario": "estimulada, 2o turno (Raquel Lyra x João Campos)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-governador-senador-pernambuco-setembro-2026-2/"
+    },
+    "resultados": [
+      {
+        "candidato": "Raquel Lyra",
+        "partido": "PSD",
+        "pct": 51
+      },
+      {
+        "candidato": "João Campos",
+        "partido": "PSB",
+        "pct": 45
+      }
+    ],
+    "observacao": "Datafolha em Pernambuco divulgado em 24/09/2026; campo de 22 a 24/09, 1.204 entrevistas, 95% de confianca, margem de 3 p.p., registro TSE PE-08125/2026. Contratantes TV Globo e Folha de S.Paulo, informados pelas materias. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Brancos/nulos e indecisos deste cenario nao foram detalhados pelas materias."
+  },
+  {
+    "id": "2026-09-24-datafolha-df-governador-t1",
+    "uf": "DF",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "DF-01888/2026",
+    "contratante": "Grupo Globo e Folha de S.Paulo",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-24",
+    "amostra": 910,
+    "margem": 3,
+    "cenario": "estimulada, 1o turno (cenário com José Roberto Arruda)",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/2026/09/24/datafolha-df-celina-tem-37-grass-soma-21-e-arruda-pontua-18.html"
+    },
+    "resultados": [
+      {
+        "candidato": "Celina Leão",
+        "partido": "PP",
+        "pct": 37
+      },
+      {
+        "candidato": "Leandro Grass",
+        "partido": "PT",
+        "pct": 21
+      },
+      {
+        "candidato": "José Roberto Arruda",
+        "partido": "PSD",
+        "pct": 18
+      },
+      {
+        "candidato": "Paula Belmonte",
+        "partido": "PSDB",
+        "pct": 6
+      },
+      {
+        "candidato": "Ricardo Cappelli",
+        "partido": "PSB",
+        "pct": 2
+      },
+      {
+        "candidato": "Kiko Caputo",
+        "partido": "Novo",
+        "pct": 2
+      },
+      {
+        "candidato": "Professora Samara Mineiro",
+        "partido": "UP",
+        "pct": 2
+      }
+    ],
+    "observacao": "Datafolha no Distrito Federal divulgado em 24/09/2026; campo de 22 a 24/09, 910 entrevistas, 95% de confianca, margem de 3 p.p., registros TSE DF-01888/2026 e BR-06769/2026. Contratantes Grupo Globo e Folha de S.Paulo, informados pelas materias. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Os itens somam 88,0%: brancos/nulos e indecisos deste cenario nao foram discriminados pelas materias."
+  },
+  {
+    "id": "2026-09-24-datafolha-df-governador-t1-sem-arruda",
+    "uf": "DF",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "DF-01888/2026",
+    "contratante": "Grupo Globo e Folha de S.Paulo",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-24",
+    "amostra": 910,
+    "margem": 3,
+    "cenario": "estimulada, 1o turno (cenário sem José Roberto Arruda)",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/distrito-federal/datafolha-celina-lidera-com-42-dos-votos-grass-soma-23-e-paula-tem-7"
+    },
+    "resultados": [
+      {
+        "candidato": "Celina Leão",
+        "partido": "PP",
+        "pct": 42
+      },
+      {
+        "candidato": "Leandro Grass",
+        "partido": "PT",
+        "pct": 23
+      },
+      {
+        "candidato": "Paula Belmonte",
+        "partido": "PSDB",
+        "pct": 7
+      },
+      {
+        "candidato": "Ricardo Cappelli",
+        "partido": "PSB",
+        "pct": 5
+      }
+    ],
+    "observacao": "Datafolha no Distrito Federal divulgado em 24/09/2026; campo de 22 a 24/09, 910 entrevistas, 95% de confianca, margem de 3 p.p., registros TSE DF-01888/2026 e BR-06769/2026. Contratantes Grupo Globo e Folha de S.Paulo, informados pelas materias. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Cenario alternativo sem Arruda. Os itens somam 77,0%: demais candidatos, brancos/nulos e indecisos nao foram discriminados pelas materias."
+  },
+  {
+    "id": "2026-09-24-datafolha-mg-senador-t1",
+    "uf": "MG",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "MG-07400/2026",
+    "contratante": "Folha de S.Paulo e TV Globo",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-24",
+    "amostra": 1204,
+    "margem": 3,
+    "cenario": "estimulada, consolidado das 2 vagas em disputa",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/datafolha-marilia-tem-13-aecio-e-viana-11-e-savio-9-no-senado-em-mg/"
+    },
+    "resultados": [
+      {
+        "candidato": "Marília Campos",
+        "partido": "PT",
+        "pct": 13
+      },
+      {
+        "candidato": "Aécio Neves",
+        "partido": "PSDB",
+        "pct": 11
+      },
+      {
+        "candidato": "Carlos Viana",
+        "partido": "PSD",
+        "pct": 11
+      },
+      {
+        "candidato": "Domingos Sávio",
+        "partido": "PL",
+        "pct": 9
+      },
+      {
+        "candidato": "Marcelo Aro",
+        "partido": "PP",
+        "pct": 6
+      },
+      {
+        "candidato": "Áurea Carolina",
+        "partido": "PSOL",
+        "pct": 5
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 14
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 21
+      }
+    ],
+    "observacao": "Datafolha em Minas Gerais divulgado em 24/09/2026; campo de 22 a 24/09 (entrevistas presenciais), 1.204 eleitores, 95% de confianca, margem de 3 p.p., registro TSE MG-07400/2026. O campo terminou no proprio dia da divulgacao, conforme ficha tecnica informada por Folha/CNN/O Tempo. Contratantes Folha de S.Paulo e TV Globo, informados pelas materias. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Demais candidatos, com percentuais menores, nao foram nominados pelas materias; por isso os itens somam 90,0%."
+  },
+  {
+    "id": "2026-09-24-datafolha-sp-senador-t1",
+    "uf": "SP",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "SP-03730/2026",
+    "contratante": "TV Globo e Folha de S.Paulo",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-24",
+    "amostra": 1610,
+    "margem": 2,
+    "cenario": "estimulada, consolidado do 1o e 2o voto (2 vagas), total 100%",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/disputa-pelo-senado-em-sp-tem-empate-entre-4-candidatos-diz-datafolha/"
+    },
+    "resultados": [
+      {
+        "candidato": "Marina Silva",
+        "partido": "Rede",
+        "pct": 15
+      },
+      {
+        "candidato": "Simone Tebet",
+        "partido": "PSB",
+        "pct": 14
+      },
+      {
+        "candidato": "André do Prado",
+        "partido": "PL",
+        "pct": 12
+      },
+      {
+        "candidato": "Guilherme Derrite",
+        "partido": "PP",
+        "pct": 12
+      }
+    ],
+    "observacao": "Datafolha em Sao Paulo divulgado em 24/09/2026; campo de 22 a 24/09, 1.610 eleitores em 65 municipios, 95% de confianca, margem de 2 p.p., registros TSE SP-03730/2026 e BR-09355/2026. Contratantes TV Globo e Folha de S.Paulo, informados pelas materias. NAO confundir com a rodada Datafolha SP de campo 08-10/09 (registro SP-04189/2026), ja na base. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Empate tecnico quadruplo. Somente os quatro primeiros foram nominados; demais nomes, brancos/nulos e indecisos nao detalhados."
+  },
+  {
+    "id": "2026-09-24-datafolha-rj-senador-t1",
+    "uf": "RJ",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "RJ-02205/2026",
+    "contratante": "Folha de S.Paulo e TV Globo",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-24",
+    "amostra": 1204,
+    "margem": 3,
+    "cenario": "estimulada, consolidado das 2 vagas em disputa",
+    "fonte": {
+      "nome": "Revista Fórum",
+      "url": "https://revistaforum.com.br/politica/a-disputa-pelo-governo-do-rj-segundo-novo-datafolha/"
+    },
+    "resultados": [
+      {
+        "candidato": "Benedita da Silva",
+        "partido": "PT",
+        "pct": 19
+      },
+      {
+        "candidato": "Carlos Portinho",
+        "partido": "PL",
+        "pct": 12
+      },
+      {
+        "candidato": "Carlos Jordy",
+        "partido": "PL",
+        "pct": 12
+      },
+      {
+        "candidato": "Pedro Paulo",
+        "partido": "PSD",
+        "pct": 9
+      }
+    ],
+    "observacao": "Datafolha no Rio de Janeiro divulgado em 24/09/2026; campo de 22 a 24/09, 1.204 entrevistas, 95% de confianca, margem de 3 p.p., registro TSE RJ-02205/2026. Contratantes Folha de S.Paulo e Globo, informados pelas materias. NAO confundir com a rodada Datafolha RJ de campo 08-10/09 (registro RJ-09217/2026), ja na base. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Apenas os quatro primeiros colocados foram nominados pelas materias; demais nomes, brancos/nulos e indecisos nao detalhados."
+  },
+  {
+    "id": "2026-09-24-datafolha-pe-senador-t1",
+    "uf": "PE",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "PE-08125/2026",
+    "contratante": "TV Globo e Folha de S.Paulo",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-24",
+    "amostra": 1204,
+    "margem": 3,
+    "cenario": "estimulada, consolidado das 2 vagas em disputa",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/datafolha-senado-pe-marilia-tem-19-humberto-17-e-mendonca-13/"
+    },
+    "resultados": [
+      {
+        "candidato": "Marília Arraes",
+        "partido": "PDT",
+        "pct": 19
+      },
+      {
+        "candidato": "Humberto Costa",
+        "partido": "PT",
+        "pct": 17
+      },
+      {
+        "candidato": "Mendonça Filho",
+        "partido": "PL",
+        "pct": 13
+      },
+      {
+        "candidato": "Eduardo da Fonte",
+        "partido": "PP",
+        "pct": 10
+      }
+    ],
+    "observacao": "Datafolha em Pernambuco divulgado em 24/09/2026; campo de 22 a 24/09, 1.204 entrevistas, 95% de confianca, margem de 3 p.p., registro TSE PE-08125/2026. Contratantes TV Globo e Folha de S.Paulo, informados pelas materias. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Apenas os quatro primeiros colocados foram nominados pelas materias; demais nomes, brancos/nulos e indecisos nao detalhados."
+  },
+  {
+    "id": "2026-09-24-datafolha-df-senador-t1",
+    "uf": "DF",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "DF-01888/2026",
+    "contratante": "Grupo Globo e Folha de S.Paulo",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-24",
+    "amostra": 910,
+    "margem": 3,
+    "cenario": "estimulada, consolidado das 2 vagas em disputa",
+    "fonte": {
+      "nome": "CartaCapital",
+      "url": "https://www.cartacapital.com.br/politica/datafolha-saiba-as-intencoes-de-voto-para-o-senado-em-sp-rj-mg-pe-e-df-2/"
+    },
+    "resultados": [
+      {
+        "candidato": "Michelle Bolsonaro",
+        "partido": "PL",
+        "pct": 22
+      },
+      {
+        "candidato": "Leila do Vôlei",
+        "partido": "PDT",
+        "pct": 19
+      },
+      {
+        "candidato": "Bia Kicis",
+        "partido": "PL",
+        "pct": 15
+      },
+      {
+        "candidato": "Erika Kokay",
+        "partido": "PT",
+        "pct": 15
+      }
+    ],
+    "observacao": "Datafolha no Distrito Federal divulgado em 24/09/2026; campo de 22 a 24/09, 910 entrevistas, 95% de confianca, margem de 3 p.p., registros TSE DF-01888/2026 e BR-06769/2026. Contratantes Grupo Globo e Folha de S.Paulo, informados pelas materias. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Quase metade do eleitorado ainda nao decidiu o voto; brancos/nulos e indecisos nao foram discriminados numericamente pelas materias. Apenas os quatro primeiros colocados foram nominados."
+  },
+  {
+    "id": "2026-09-24-quaest-ba-governador-t1",
+    "uf": "BA",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "BA-01850/2026",
+    "contratante": "TV Bahia",
+    "dataInicio": "2026-09-20",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 900,
+    "margem": 3,
+    "cenario": "estimulada, 1o turno",
+    "fonte": {
+      "nome": "bahia.ba",
+      "url": "https://bahia.ba/politica/quaest-acm-neto-tem-42-e-jeronimo-rodrigues-40-no-1o-turno/"
+    },
+    "resultados": [
+      {
+        "candidato": "ACM Neto",
+        "partido": "União Brasil",
+        "pct": 42
+      },
+      {
+        "candidato": "Jerônimo Rodrigues",
+        "partido": "PT",
+        "pct": 40
+      },
+      {
+        "candidato": "Maria Bona",
+        "partido": "PCO",
+        "pct": 1
+      },
+      {
+        "candidato": "Ronaldo Mansur",
+        "partido": "PSOL",
+        "pct": 0
+      },
+      {
+        "candidato": "Aroldo Félix",
+        "partido": "UP",
+        "pct": 0
+      },
+      {
+        "candidato": "Ariel Capistrano",
+        "partido": "DC",
+        "pct": 0
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 8
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 9
+      }
+    ],
+    "observacao": "Quaest na Bahia divulgada em 24/09/2026; campo de 20 a 23/09, 900 entrevistas presenciais com eleitores de 16 anos ou mais, 95% de confianca, margem de 3 p.p., registro TSE BA-01850/2026. Contratante TV Bahia, informado pelas materias. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Empate tecnico. Na rodada anterior (27/08) eram ACM Neto 39% e Jeronimo 37%; os indecisos cairam de 12% para 9%. Brancos/nulos inclui quem diz que nao pretende votar."
+  },
+  {
+    "id": "2026-09-24-quaest-ba-governador-t2",
+    "uf": "BA",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "BA-01850/2026",
+    "contratante": "TV Bahia",
+    "dataInicio": "2026-09-20",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 900,
+    "margem": 3,
+    "cenario": "estimulada, 2o turno (ACM Neto x Jerônimo Rodrigues)",
+    "fonte": {
+      "nome": "Alô Alô Bahia",
+      "url": "https://aloalobahia.com/noticias/2026/09/24/quaest-na-bahia-acm-neto-tem-42-e-jeronimo-rodrigues-40/"
+    },
+    "resultados": [
+      {
+        "candidato": "ACM Neto",
+        "partido": "União Brasil",
+        "pct": 45
+      },
+      {
+        "candidato": "Jerônimo Rodrigues",
+        "partido": "PT",
+        "pct": 43
+      }
+    ],
+    "observacao": "Quaest na Bahia divulgada em 24/09/2026; campo de 20 a 23/09, 900 entrevistas presenciais com eleitores de 16 anos ou mais, 95% de confianca, margem de 3 p.p., registro TSE BA-01850/2026. Contratante TV Bahia, informado pelas materias. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Brancos/nulos e indecisos deste cenario nao foram detalhados pelas materias."
+  },
+  {
+    "id": "2026-09-24-parana-pesquisas-ba-governador-t1",
+    "uf": "BA",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "BA-00759/2026",
+    "contratante": "Bahia Notícias",
+    "dataInicio": "2026-09-21",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 1400,
+    "margem": 2.7,
+    "cenario": "estimulada, 1o turno",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/2026/09/24/acm-neto-e-jeronimo-lideram-na-bahia-aponta-parana-pesquisas.html"
+    },
+    "resultados": [
+      {
+        "candidato": "ACM Neto",
+        "partido": "União Brasil",
+        "pct": 46.7
+      },
+      {
+        "candidato": "Jerônimo Rodrigues",
+        "partido": "PT",
+        "pct": 42
+      }
+    ],
+    "observacao": "Parana Pesquisas na Bahia divulgada em 24/09/2026; campo de 21 a 23/09, 1.400 entrevistas presenciais em 60 municipios, 95% de confianca, margem de 2,7 p.p., registro TSE BA-00759/2026. Contratante portal Bahia Noticias, informado pelas materias. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Empate tecnico. As materias consultadas nominaram apenas os dois primeiros colocados; demais candidatos, brancos/nulos e indecisos nao foram detalhados."
+  },
+  {
+    "id": "2026-09-24-parana-pesquisas-ba-governador-t2",
+    "uf": "BA",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "BA-00759/2026",
+    "contratante": "Bahia Notícias",
+    "dataInicio": "2026-09-21",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 1400,
+    "margem": 2.7,
+    "cenario": "estimulada, 2o turno (ACM Neto x Jerônimo Rodrigues)",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/parana-pesquisas-na-ba-acm-neto-tem-484-e-jeronimo-rodrigues-442"
+    },
+    "resultados": [
+      {
+        "candidato": "ACM Neto",
+        "partido": "União Brasil",
+        "pct": 48.4
+      },
+      {
+        "candidato": "Jerônimo Rodrigues",
+        "partido": "PT",
+        "pct": 44.2
+      }
+    ],
+    "observacao": "Parana Pesquisas na Bahia divulgada em 24/09/2026; campo de 21 a 23/09, 1.400 entrevistas presenciais em 60 municipios, 95% de confianca, margem de 2,7 p.p., registro TSE BA-00759/2026. Contratante portal Bahia Noticias, informado pelas materias. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Na rodada anterior o 2o turno era 49,3% x 41,0%. Brancos/nulos e indecisos deste cenario nao foram detalhados."
+  },
+  {
+    "id": "2026-09-24-datafolha-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "BR-00304/2026",
+    "contratante": "Folha de S.Paulo e Grupo Globo",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 2002,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno — nacional",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/datafolha-lula-tem-40-no-1o-turno-flavio-36/"
+    },
+    "observacao": "Rodada Datafolha/Folha-Globo divulgada na quinta-feira 24/09/2026, a partir das 18h45 (Brasília). ATENÇÃO À FICHA TÉCNICA: as matérias de resultado (CNN Brasil, Poder360, Exame, O Povo, Estado de Minas) informam entrevistas presenciais nos dias 22 e 23/09 em 136 municípios das cinco regiões, nível de confiança 95%; já as matérias de anúncio prévio (Gazeta do Povo, NSC Total) falavam em campo de 22 a 24/09. Adotado 22–23/09 por ser o que consta nas matérias com os números e por ser incompatível divulgar às 18h45 do dia 24 com campo encerrando no mesmo dia. A tabela divulgada soma 97% (arredondamentos e candidatos sem pontuação). Segundo a listagem da CNN Brasil, também não pontuaram Edmilson Costa (PCB), Rui Costa Pimenta (PCO), Wilson Grassi (Democrata), Clariana Barão (DC) e Hertz Dias (PSTU) — não incluídos nos resultados porque a grafia desses nomes não pôde ser confirmada em segunda fonte. Leonardo Avalanche (PRTB), que substituiu Pablo Marçal após o indeferimento pelo TSE em 11/09, aparece no cenário sem pontuação (0%); nenhuma fonte desta rodada listou Marçal. Linha 'Brancos/nulos' corresponde a brancos, nulos e 'nenhum' (5%). Rodada anterior (17/09): Lula 39% e Flávio 36%. Dados obtidos via WebSearch (WebFetch bloqueado); números conferidos em CNN Brasil, Exame, Poder360, O Povo, Estado de Minas e Jovem Pan.",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 40
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 36
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 5
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 4
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 3
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 1
+      },
+      {
+        "candidato": "Samara Martins",
+        "partido": "UP",
+        "pct": 1
+      },
+      {
+        "candidato": "Leonardo Avalanche",
+        "partido": "PRTB",
+        "pct": 0
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 5
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 2
+      }
+    ]
+  },
+  {
+    "id": "2026-09-24-datafolha-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Datafolha",
+    "registroTSE": "BR-00304/2026",
+    "contratante": "Folha de S.Paulo e Grupo Globo",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 2002,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — nacional",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-e-flavio-empatam-em-2o-turno-diz-datafolha/"
+    },
+    "observacao": "Empate técnico: diferença de 2 pontos, no limite da margem de erro de 2 pontos. A tabela fecha em 100%. Rodada anterior (17/09) do mesmo instituto: Lula 46% x Flávio 44%. Mesma ficha técnica do registro de 1º turno (ver observação lá sobre a divergência 22–23 x 22–24/09). Outros confrontos de 2º turno (Lula x Ronaldo Caiado, Lula x Augusto Cury, Lula x Romeu Zema, Lula x Renan Santos) foram mencionados por veículos secundários com números CONTRADITÓRIOS entre si (ex.: Caiado 44% em uma versão e 41% em outra) e por isso NÃO foram registrados — precisam de confirmação em fonte primária. O cenário espontâneo de 1º turno (Lula 36%, Flávio 27%) também ficou de fora por falta do detalhamento de brancos/nulos e indecisos. Dados obtidos via WebSearch (WebFetch bloqueado); números conferidos em Poder360, CNN Brasil, Exame e O Povo.",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 47
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 45
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 7
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 1
+      }
+    ]
+  },
+  {
+    "id": "2026-09-24-quaest-ba-senador-t1",
+    "uf": "BA",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "BA-01850/2026",
+    "contratante": "TV Bahia",
+    "dataInicio": "2026-09-20",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 900,
+    "margem": 3,
+    "cenario": "estimulada, consolidado das 2 vagas em disputa",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/rui-costa-e-jaques-wagner-lideram-corrida-ao-senado-na-bahia-5/"
+    },
+    "resultados": [
+      {
+        "candidato": "Rui Costa",
+        "partido": "PT",
+        "pct": 23
+      },
+      {
+        "candidato": "Jaques Wagner",
+        "partido": "PT",
+        "pct": 17
+      },
+      {
+        "candidato": "João Roma",
+        "partido": "PL",
+        "pct": 11
+      },
+      {
+        "candidato": "Ângelo Coronel",
+        "partido": "Republicanos",
+        "pct": 9
+      }
+    ],
+    "observacao": "Quaest na Bahia divulgada em 24/09/2026; campo de 20 a 23/09, 900 entrevistas presenciais com eleitores de 16 anos ou mais, 95% de confianca, margem de 3 p.p., registro TSE BA-01850/2026. Contratante TV Bahia, informado pelas materias. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Apenas os quatro primeiros colocados foram nominados pelas materias; demais nomes, brancos/nulos e indecisos nao detalhados."
+  },
+  {
+    "id": "2026-09-24-parana-pesquisas-ba-senador-t1",
+    "uf": "BA",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "BA-00759/2026",
+    "contratante": "Bahia Notícias",
+    "dataInicio": "2026-09-21",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 1400,
+    "margem": 2.7,
+    "cenario": "estimulada, 2 vagas em disputa; percentuais somam mais de 100 (eleitor escolhe 2 nomes)",
+    "fonte": {
+      "nome": "Jornal Grande Bahia",
+      "url": "https://jornalgrandebahia.com.br/2026/09/parana-pesquisas-na-bahia-registra-acm-neto-com-467-e-jeronimo-com-42-rui-costa-tem-463-ao-senado-e-governo-alcanca-561-de-aprovacao/"
+    },
+    "resultados": [
+      {
+        "candidato": "Rui Costa",
+        "partido": "PT",
+        "pct": 46.3
+      },
+      {
+        "candidato": "Jaques Wagner",
+        "partido": "PT",
+        "pct": 34
+      },
+      {
+        "candidato": "João Roma",
+        "partido": "PL",
+        "pct": 27.3
+      },
+      {
+        "candidato": "Ângelo Coronel",
+        "partido": "Republicanos",
+        "pct": 25.1
+      }
+    ],
+    "observacao": "Parana Pesquisas na Bahia divulgada em 24/09/2026; campo de 21 a 23/09, 1.400 entrevistas presenciais em 60 municipios, 95% de confianca, margem de 2,7 p.p., registro TSE BA-00759/2026. Contratante portal Bahia Noticias, informado pelas materias. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Como sao 2 vagas, cada eleitor cita ate dois nomes e a soma passa de 100%. Na rodada anterior: Rui 43,5%, Wagner 32,2%, Roma 26,6%, Coronel 25,1%."
+  },
+  {
     "id": "2026-09-23-quaest-pe-governador-t1",
     "uf": "PE",
     "cargo": "governador",
@@ -907,6 +1920,100 @@
       }
     ],
     "observacao": "Rodada Paraná Pesquisas no Rio de Janeiro divulgada em 23/09/2026 (campo 20–22/09, 1.600 entrevistas em 56 municípios, 95% de confiança, margem de 2,5 p.p.). Registro TSE RJ-04036/2026. São 2 vagas em disputa e cada eleitor podia indicar dois nomes. Crivella, Pedro Paulo, Jordy e Portinho estão em empate técnico pela segunda vaga. Os demais candidatos, brancos/nulos e indecisos não foram detalhados pelas fontes consultadas. Contratante NÃO informado: null (não inferir). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-24-parana-pesquisas-es-governador-t1",
+    "uf": "ES",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "ES-05719/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-18",
+    "dataFim": "2026-09-22",
+    "publicadoEm": "2026-09-24",
+    "amostra": 1304,
+    "margem": 2.8,
+    "cenario": "estimulada, 1o turno",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/parana-pesquisas-pazolini-tem-40-e-ferraco-383-no-1o-turno-no-espirito-santo/"
+    },
+    "resultados": [
+      {
+        "candidato": "Lorenzo Pazolini",
+        "partido": "Republicanos",
+        "pct": 40
+      },
+      {
+        "candidato": "Ricardo Ferraço",
+        "partido": "MDB",
+        "pct": 38.3
+      },
+      {
+        "candidato": "Helder Salomão",
+        "partido": "PT",
+        "pct": 9
+      },
+      {
+        "candidato": "Breno Barcelos",
+        "partido": "Missão",
+        "pct": 1.1
+      },
+      {
+        "candidato": "Rafael Demuner",
+        "partido": "UP",
+        "pct": 0.5
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 5.8
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 5.2
+      }
+    ],
+    "observacao": "Parana Pesquisas no Espirito Santo divulgada em 24/09/2026; campo de 18 a 22/09, 1.304 entrevistas presenciais/domiciliares, 95% de confianca, margem de 2,8 p.p., registro TSE ES-05719/2026. Contratante nao informado pelas materias consultadas — por isso contratante nulo. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Empate tecnico entre Pazolini e Ferraco. O instituto testou apenas o cenario de 1o turno. Itens somam 99,9% (arredondamento)."
+  },
+  {
+    "id": "2026-09-24-parana-pesquisas-es-senador-t1",
+    "uf": "ES",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "ES-05719/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-18",
+    "dataFim": "2026-09-22",
+    "publicadoEm": "2026-09-24",
+    "amostra": 1304,
+    "margem": 2.8,
+    "cenario": "estimulada, 2 vagas em disputa; percentuais somam mais de 100 (eleitor escolhe 2 nomes)",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/pazolini-e-ferraco-tem-empate-tecnico-pelo-governo-do-espirito-santo/"
+    },
+    "resultados": [
+      {
+        "candidato": "Renato Casagrande",
+        "partido": "PSB",
+        "pct": 49.8
+      },
+      {
+        "candidato": "Fabiano Contarato",
+        "partido": "PT",
+        "pct": 22.7
+      },
+      {
+        "candidato": "Sergio Meneguelli",
+        "partido": "PSD",
+        "pct": 19.9
+      }
+    ],
+    "observacao": "Parana Pesquisas no Espirito Santo divulgada em 24/09/2026; campo de 18 a 22/09, 1.304 entrevistas presenciais/domiciliares, 95% de confianca, margem de 2,8 p.p., registro TSE ES-05719/2026. Contratante nao informado pelas materias consultadas — por isso contratante nulo. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Casagrande lidera com folga; Contarato e Meneguelli empatam tecnicamente. Demais nomes, brancos/nulos e indecisos nao foram detalhados pelas materias."
   },
   {
     "id": "2026-09-22-parana-pesquisas-sp-governador-t1",
@@ -2606,6 +3713,112 @@
       }
     ],
     "observacao": "Cenário de 2º turno da rodada AtlasIntel/Estadão-MG de 23/09/2026. Brancos/nulos e indecisos não detalhados (soma dos dois nomes = 94,2%). A mesma rodada traz outros cenários de 2º turno sem Cleitinho — Patrus 43,8% x Mateus Simões 31,9% e Patrus 42,7% x Flávio Roscoe 33,9% —, mas as fontes que os citam misturam números da rodada anterior (56,4% x 43,6% etc.), então esses cenários NÃO foram registrados até confirmação. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca."
+  },
+  {
+    "id": "2026-09-21-atlasintel-ce-governador-t1",
+    "uf": "CE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-20",
+    "publicadoEm": "2026-09-21",
+    "amostra": 1815,
+    "margem": 2,
+    "cenario": "estimulada, 1o turno",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/eleicoes/2026/09/21/pesquisa-atlasintel-ceara-traz-elmano-485-e-ciro-gomes-48.html"
+    },
+    "resultados": [
+      {
+        "candidato": "Elmano de Freitas",
+        "partido": "PT",
+        "pct": 48.5
+      },
+      {
+        "candidato": "Ciro Gomes",
+        "partido": "PSDB",
+        "pct": 48
+      }
+    ],
+    "observacao": "Rodada AtlasIntel/Focus no Ceara divulgada em 21/09/2026 (campo 15-20/09, 1.815 entrevistas por recrutamento digital aleatorio, 95% de confianca, margem de 2 p.p.). NAO confundir com a rodada AtlasIntel CE de campo 28/08-02/09 divulgada em 04/09, ja presente na base. Numero de registro no TSE nao informado pelas materias consultadas — por isso registroTSE nulo. Contratante nao declarado explicitamente nas materias (a serie e divulgada como 'AtlasIntel/Focus'), por isso contratante nulo. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. As materias so nominaram os dois primeiros colocados; demais candidatos, brancos/nulos e indecisos (cerca de 3,5%) nao foram detalhados."
+  },
+  {
+    "id": "2026-09-21-atlasintel-ce-governador-t2",
+    "uf": "CE",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-20",
+    "publicadoEm": "2026-09-21",
+    "amostra": 1815,
+    "margem": 2,
+    "cenario": "estimulada, 2o turno (Elmano de Freitas x Ciro Gomes)",
+    "fonte": {
+      "nome": "CartaCapital",
+      "url": "https://www.cartacapital.com.br/politica/atlasintel-elmano-e-ciro-empatam-no-ceara-a-menos-de-duas-semanas-da-eleicao/"
+    },
+    "resultados": [
+      {
+        "candidato": "Elmano de Freitas",
+        "partido": "PT",
+        "pct": 49.7
+      },
+      {
+        "candidato": "Ciro Gomes",
+        "partido": "PSDB",
+        "pct": 49.4
+      }
+    ],
+    "observacao": "Rodada AtlasIntel/Focus no Ceara divulgada em 21/09/2026 (campo 15-20/09, 1.815 entrevistas por recrutamento digital aleatorio, 95% de confianca, margem de 2 p.p.). NAO confundir com a rodada AtlasIntel CE de campo 28/08-02/09 divulgada em 04/09, ja presente na base. Numero de registro no TSE nao informado pelas materias consultadas — por isso registroTSE nulo. Contratante nao declarado explicitamente nas materias (a serie e divulgada como 'AtlasIntel/Focus'), por isso contratante nulo. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Simulacao de 2o turno: diferenca de 0,3 p.p., empate tecnico."
+  },
+  {
+    "id": "2026-09-21-atlasintel-ce-senador-t1",
+    "uf": "CE",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-20",
+    "publicadoEm": "2026-09-21",
+    "amostra": 1815,
+    "margem": 2,
+    "cenario": "estimulada, consolidado das 2 vagas em disputa",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/eleicoes/2026/09/21/pesquisa-atlas-para-senado-no-ceara-e-divulgada-veja-numeros.html"
+    },
+    "resultados": [
+      {
+        "candidato": "Cid Gomes",
+        "partido": "PSB",
+        "pct": 26.9
+      },
+      {
+        "candidato": "Luizianne Lins",
+        "partido": "Rede",
+        "pct": 24.8
+      },
+      {
+        "candidato": "Capitão Wagner",
+        "partido": "União Brasil",
+        "pct": 22.4
+      },
+      {
+        "candidato": "Alcides Fernandes",
+        "partido": "PL",
+        "pct": 17.9
+      }
+    ],
+    "observacao": "Rodada AtlasIntel/Focus no Ceara divulgada em 21/09/2026 (campo 15-20/09, 1.815 entrevistas por recrutamento digital aleatorio, 95% de confianca, margem de 2 p.p.). NAO confundir com a rodada AtlasIntel CE de campo 28/08-02/09 divulgada em 04/09, ja presente na base. Numero de registro no TSE nao informado pelas materias consultadas — por isso registroTSE nulo. Contratante nao declarado explicitamente nas materias (a serie e divulgada como 'AtlasIntel/Focus'), por isso contratante nulo. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca. Apenas os quatro primeiros colocados foram nominados pelas materias; os itens somam 92,0%, o restante (demais nomes, brancos/nulos e indecisos) nao foi detalhado."
   },
   {
     "id": "2026-09-21-atlasintel-ce-presidente-t1",

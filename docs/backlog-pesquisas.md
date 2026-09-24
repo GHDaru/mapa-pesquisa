@@ -465,3 +465,43 @@ Com isso a tela de 2º turno por estado é viável sem nenhum estado vazio.
 - **24/09**: Datafolha nacional (BR-00304/2026, campo 22–24/09), Datafolha
   MG e Quaest BA (campo 20–23/09).
 - **25/09**: Real Time Big Data em ES, TO, CE, PE e AL.
+
+## Anotadas em 2026-09-24
+
+29 pesquisas novas, base de 444 para 473.
+
+### Datafolha nacional
+
+Lula 40 x Flávio 36 no 1º turno, 47 x 45 no 2º. O 1º turno e a ficha
+técnica (2.002 entrevistas, BR-00304/2026, Folha e Globo) foram
+confirmados em busca independente na sessão principal.
+
+**Campo corrigido pelo agente.** As matérias de anúncio prévio diziam campo
+22 a 24/09, mas todas as que trazem os números dizem 22 e 23/09, em 136
+municípios. Divulgar às 18h45 do dia 24 com campo encerrando no mesmo dia
+não fecha. Adotado 22–23/09, e a busca independente confirmou.
+
+Esta rodada já traz Leonardo Avalanche com 0% e não lista mais Marçal.
+
+### Lacuna preenchida
+
+**AtlasIntel CE, governador e Senado**, divulgada em 21/09, entrou. No
+governo o estado está em empate quase perfeito: Elmano 48,5 x Ciro 48,0 no
+1º turno e 49,7 x 49,4 no 2º.
+
+### A fechar amanhã
+
+- **Cenários secundários de 2º turno do Datafolha** (Lula contra Caiado,
+  Cury, Zema e Renan Santos): existem, mas os veículos devolveram números
+  contraditórios entre si, com Caiado ora em 44 ora em 41 e três versões
+  para os demais. Não gravados por falta de fonte primária.
+- **PoderData nacional**: indício forte de rodada nova de 24/09 (3.000
+  entrevistas, campo 20–23/09, Lula 43 x Flávio 42 no 1º turno), mas as
+  buscas devolveram dois pares diferentes para o 2º turno e uma delas
+  atribuiu os mesmos números a um campo do fim de agosto. O instituto não
+  aparece na base desde 20/09.
+- **2º turno em RO**: sem rodada nova à vista. A Quaest divulgou nove
+  estados hoje incluindo Rondônia, mas só governador e Senado. O Veritá tem
+  rodada no estado e está suspenso lá desde 01/09, com multa diária.
+- **2º turno em TO**: a leva do Real Time Big Data de amanhã inclui
+  Tocantins e deve fechar a última lacuna.
