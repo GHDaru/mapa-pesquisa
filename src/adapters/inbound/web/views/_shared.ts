@@ -1,5 +1,7 @@
+import { JANELA_DIAS_PADRAO } from '../../../../domain/aggregate.js';
 import type { Espectro } from '../../../../domain/spectrum.js';
 import type { Fonte } from '../../../../domain/poll.js';
+import { nomeCurto } from './candidate-names.js';
 
 /**
  * Helpers locais e específicos das views que este módulo possui (presidential,
@@ -175,4 +177,106 @@ export function calcularFaixaIncerteza(pct: number, margemReferencia: number): F
   const esquerda = Math.max(0, pctLimitado - margemReferencia);
   const direita = Math.min(100, pctLimitado + margemReferencia);
   return { esquerda, largura: Math.max(0, direita - esquerda) };
+}
+
+/* ============ Recorte de turno (1º/2º) e recência do dado ============ */
+
+/**
+ * Turno da disputa presidencial exibido pelas telas. É o mesmo domínio dos
+ * casos de uso (`getPresidentialByState(turno)`, `getVoteEstimate(turno)`),
+ * repetido aqui só para as views não dependerem do tipo inline deles.
+ */
+export type Turno = 1 | 2;
+
+/** Rótulo curto do turno: "1º turno" / "2º turno". */
+export function rotuloTurno(turno: Turno): string {
+  return `${turno}º turno`;
+}
+
+/**
+ * Rótulo de um confronto de 2º turno pelos nomes com que os candidatos são
+ * conhecidos ("Lula x Flávio Bolsonaro"), preservando a ordem do confronto.
+ * `null` no 1º turno (confronto ausente/vazio), onde não há confronto a
+ * nomear — nunca inventa um rótulo.
+ */
+export function rotuloConfronto(confronto: readonly string[] | null | undefined): string | null {
+  if (confronto == null || confronto.length === 0) return null;
+  return confronto.map(nomeCurto).join(' x ');
+}
+
+/**
+ * Nome completo do recorte que a tela está mostrando, para cabeçalho,
+ * tooltip, cartão e painel do estado: "1º turno" ou
+ * "2º turno · Lula x Flávio Bolsonaro". É o texto que torna o turno
+ * escolhido explícito em cada peça da tela, em vez de deixar o leitor
+ * deduzir pelos números.
+ */
+export function rotuloRecorte(turno: Turno, confronto?: readonly string[] | null): string {
+  const confrontoTexto = rotuloConfronto(confronto);
+  return confrontoTexto ? `${rotuloTurno(turno)} · ${confrontoTexto}` : rotuloTurno(turno);
+}
+
+/**
+ * Marca curta de um agregado que usou pesquisa fora da janela de recência
+ * (`Agregado.foraDaJanela` — nenhuma pesquisa do recorte nos últimos
+ * `janelaDias` dias, então a mais recente disponível foi usada mesmo
+ * assim). Ex.: "Pesquisa de 15/07/2026 — fora da janela de 45 dias".
+ * Sem data conhecida, omite a data em vez de inventar uma.
+ */
+export function rotuloForaDaJanela(
+  dataIso: string | null | undefined,
+  janelaDias: number = JANELA_DIAS_PADRAO,
+): string {
+  const data = formatarData(dataIso);
+  return data === '—'
+    ? `Pesquisa fora da janela de ${janelaDias} dias`
+    : `Pesquisa de ${data} — fora da janela de ${janelaDias} dias`;
+}
+
+/** Enumeração em português: "A", "A e B", "A, B e C". Lista vazia vira "". */
+export function listaEmPortugues(itens: readonly string[]): string {
+  if (itens.length === 0) return '';
+  if (itens.length === 1) return itens[0]!;
+  return `${itens.slice(0, -1).join(', ')} e ${itens[itens.length - 1]!}`;
+}
+
+/** Uma UF cujo agregado usou pesquisa fora da janela, com a data dessa pesquisa. */
+export interface UfForaDaJanela {
+  /** Nome por extenso do estado (ex.: "Rondônia"). */
+  readonly nome: string;
+  /** Data (ISO) da pesquisa efetivamente usada, quando conhecida. */
+  readonly dataIso?: string | null;
+}
+
+/**
+ * Aviso de página sobre as UFs cujo dado é real mas antigo — o caso de
+ * Rondônia no 2º turno, cuja única pesquisa do confronto Lula x Flávio é de
+ * julho. Diz o que é e o que foi feito, sem esconder nem fingir recência.
+ * `null` quando nenhuma UF está nessa situação (a tela então não mostra
+ * aviso nenhum).
+ */
+export interface OpcoesAvisoForaDaJanela {
+  /** Onde o leitor vai ver a marca, para o aviso apontar o lugar certo em cada tela. */
+  readonly onde?: string;
+  readonly janelaDias?: number;
+}
+
+export function avisoForaDaJanela(
+  ufs: readonly UfForaDaJanela[],
+  opcoes: OpcoesAvisoForaDaJanela = {},
+): string | null {
+  if (ufs.length === 0) return null;
+  const janelaDias = opcoes.janelaDias ?? JANELA_DIAS_PADRAO;
+  const onde = opcoes.onde ?? 'no mapa "Quem lidera", no cartão de tendência e no painel do estado';
+  const lista = listaEmPortugues(
+    ufs.map((u) => {
+      const data = formatarData(u.dataIso);
+      return data === '—' ? u.nome : `${u.nome} (${data})`;
+    }),
+  );
+  const verbo = ufs.length === 1 ? 'não tem' : 'não têm';
+  return (
+    `${lista} ${verbo} pesquisa deste recorte nos últimos ${janelaDias} dias. ` +
+    `Em vez de estimar, usamos a pesquisa mais recente disponível: o número é real, mas antigo — e vem marcado ${onde}.`
+  );
 }

@@ -357,6 +357,18 @@
   border-color: var(--color-accent);
   color: var(--color-text);
 }
+/* Marca discreta ao lado da origem: a UF tem pesquisa própria, mas nenhuma
+   dentro da janela de recência — o número é o da pesquisa mais recente. */
+.ve-badge-recencia {
+  display: inline-block;
+  margin-left: var(--space-1);
+  font: var(--text-caption);
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-pill);
+  border: 1px dashed var(--color-text-tertiary);
+  color: var(--color-text-subtle);
+  white-space: nowrap;
+}
 .ve-meta-inline {
   color: var(--color-text-tertiary);
 }

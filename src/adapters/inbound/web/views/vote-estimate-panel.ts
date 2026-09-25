@@ -8,8 +8,18 @@ import type {
   OrigemVotoCandidato,
   UfOrigemVotos,
 } from '../../../../domain/vote-estimate.js';
+import { JANELA_DIAS_PADRAO } from '../../../../domain/aggregate.js';
+import { CONFRONTO_LULA_FLAVIO } from '../../../../domain/runoff.js';
 import { formatarNumeroPt, formatarPct, formatarVantagem } from '../format.js';
-import { criarEl, rotuloEspectro, tokenFillEspectro, tokenSolidEspectro } from './_shared.js';
+import {
+  criarEl,
+  listaEmPortugues,
+  rotuloEspectro,
+  rotuloRecorte,
+  tokenFillEspectro,
+  tokenSolidEspectro,
+  type Turno,
+} from './_shared.js';
 
 /**
  * Painel "Votos estimados por agregação estadual": consome apenas
@@ -25,20 +35,30 @@ import { criarEl, rotuloEspectro, tokenFillEspectro, tokenSolidEspectro } from '
  * textual em vez de qualquer número.
  */
 
-/** Renderiza o painel de votos estimados dentro de `container`. */
-export function renderVoteEstimate(container: HTMLElement, casos: CasosDeUso): void {
+/**
+ * Renderiza o painel de votos estimados dentro de `container`, no `turno`
+ * pedido (1 por padrão — o 2º turno usa o confronto padrão dos casos de uso,
+ * Lula x Flávio Bolsonaro). O turno escolhido aparece no título e no método,
+ * para a tabela nunca ficar ambígua sobre de que eleição ela fala.
+ */
+export function renderVoteEstimate(container: HTMLElement, casos: CasosDeUso, turno: Turno = 1): void {
   container.innerHTML = '';
+
+  const confronto = turno === 2 ? CONFRONTO_LULA_FLAVIO : null;
+  const recorte = rotuloRecorte(turno, confronto);
+  const titulo = `Votos estimados por agregação estadual — ${recorte}`;
 
   const raiz = criarEl('section', { className: 've-view', attrs: { 'aria-labelledby': 've-titulo' } });
 
-  const estimativa = casos.getVoteEstimate();
+  const estimativa = casos.getVoteEstimate(turno);
   if (estimativa === null || estimativa.candidatos.length === 0) {
     raiz.append(
-      criarEl('h1', { className: 've-title', texto: 'Votos estimados por agregação estadual', attrs: { id: 've-titulo' } }),
+      criarEl('h1', { className: 've-title', texto: titulo, attrs: { id: 've-titulo' } }),
       criarEl('p', {
         className: 've-empty',
         texto:
-          'Ainda não há dados suficientes (eleitorado cadastrado e pesquisas presidenciais, estaduais ou nacional) para calcular esta estimativa.',
+          `Ainda não há dados suficientes de ${recorte} (eleitorado cadastrado e pesquisas presidenciais, ` +
+          'estaduais ou nacional) para calcular esta estimativa.',
       }),
     );
     container.append(raiz);
@@ -47,7 +67,7 @@ export function renderVoteEstimate(container: HTMLElement, casos: CasosDeUso): v
 
   const partidos = casos.listParties();
 
-  raiz.append(criarCabecalho(estimativa));
+  raiz.append(criarCabecalho(estimativa, titulo, recorte));
   raiz.append(criarSecaoComparacaoBarras(estimativa, partidos));
   raiz.append(criarSecaoComparacao(estimativa));
   raiz.append(criarLinhaNaoAtribuidos(estimativa));
@@ -102,18 +122,18 @@ export function montarSegmentosBarra(
 
 /* ========================= Cabeçalho ========================= */
 
-function criarCabecalho(e: EstimativaVotos): HTMLElement {
+function criarCabecalho(e: EstimativaVotos, titulo: string, recorte: string): HTMLElement {
   const parcela = e.eleitoradoTotal > 0 ? (e.eleitoradoComPesquisaEstadual / e.eleitoradoTotal) * 100 : 0;
 
   return criarEl('header', { className: 've-header' }, [
-    criarEl('h1', { className: 've-title', texto: 'Votos estimados por agregação estadual', attrs: { id: 've-titulo' } }),
+    criarEl('h1', { className: 've-title', texto: titulo, attrs: { id: 've-titulo' } }),
     criarEl('p', {
       className: 've-method',
       texto:
-        'Método em uma frase: cada UF contribui com o seu eleitorado apto — o total de eleitores registrados no ' +
+        `Método em uma frase: cada UF contribui com o seu eleitorado apto — o total de eleitores registrados no ` +
         'TSE, sem descontar abstenção (em 2022 o comparecimento nacional foi de cerca de 79%) — multiplicado pelo ' +
-        'percentual da própria pesquisa presidencial estadual, ou pelo percentual do agregado nacional quando falta ' +
-        'pesquisa estadual.',
+        `percentual da própria pesquisa presidencial estadual de ${recorte}, ou pelo percentual do agregado ` +
+        'nacional do mesmo recorte quando falta pesquisa estadual.',
     }),
     criarEl('p', {
       className: 've-meta',
@@ -412,7 +432,16 @@ function criarLinhaUf(uf: UfOrigemVotos): HTMLElement {
   return criarEl('tr', {}, [
     criarEl('td', { texto: uf.uf, attrs: { 'data-rotulo': 'UF' } }),
     criarEl('td', { className: 've-col-num', texto: formatarInteiro(uf.eleitores), attrs: { 'data-rotulo': 'Eleitores' } }),
-    criarEl('td', { attrs: { 'data-rotulo': 'Origem' } }, [criarBadgeOrigem(uf.origem)]),
+    criarEl('td', { attrs: { 'data-rotulo': 'Origem' } }, [
+      criarBadgeOrigem(uf.origem),
+      uf.foraDaJanela
+        ? criarEl('span', {
+            className: 've-badge-recencia',
+            texto: 'fora da janela',
+            attrs: { title: `Sem pesquisa deste recorte nos últimos ${JANELA_DIAS_PADRAO} dias: usou a mais recente disponível.` },
+          })
+        : null,
+    ]),
     criarEl('td', { attrs: { 'data-rotulo': '1º colocado' } }, [c1 ? celulaCandidatoUf(c1) : '—']),
     criarEl('td', { attrs: { 'data-rotulo': '2º colocado' } }, [c2 ? celulaCandidatoUf(c2) : '—']),
     criarEl('td', { attrs: { 'data-rotulo': 'Outros' } }, [
@@ -447,6 +476,14 @@ function criarSecaoPorUf(e: EstimativaVotos): HTMLElement {
       className: 've-meta',
       texto: '* candidato ausente da pesquisa estadual dessa UF — parcela suprida pelo percentual do agregado nacional.',
     }),
+    e.ufsForaDaJanela.length > 0
+      ? criarEl('p', {
+          className: 've-meta',
+          texto:
+            `"Fora da janela" (${listaEmPortugues([...e.ufsForaDaJanela])}): a UF tem pesquisa própria deste recorte, ` +
+            `mas nenhuma nos últimos ${JANELA_DIAS_PADRAO} dias — vale a mais recente que existe, sem nada estimado no lugar.`,
+        })
+      : null,
     wrap,
   ]);
 }

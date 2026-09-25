@@ -1,12 +1,31 @@
 import { renderVoteEstimate } from './vote-estimate-panel.js';
 import '../styles/presidential-states.css';
 import brazilMapDados from '@svg-maps/brazil';
-import type { CasosDeUso, PresidencialPorEstado, PresidencialUf } from '../../../../application/use-cases/index.js';
-import { MARGEM_REFERENCIA_PADRAO, type Agregado, type CandidatoAgregado } from '../../../../domain/aggregate.js';
+import {
+  usouPesquisaForaDaJanela,
+  type CasosDeUso,
+  type PresidencialPorEstado,
+  type PresidencialUf,
+} from '../../../../application/use-cases/index.js';
+import {
+  JANELA_DIAS_PADRAO,
+  MARGEM_REFERENCIA_PADRAO,
+  type Agregado,
+  type CandidatoAgregado,
+} from '../../../../domain/aggregate.js';
 import type { SerieTemporal } from '../../../../domain/aggregate.js';
 import type { Pesquisa } from '../../../../domain/poll.js';
 import { espectroDoPartido } from '../../../../domain/spectrum.js';
 import { nomeCurtissimo } from './candidate-names.js';
+import {
+  avisoForaDaJanela,
+  listaEmPortugues,
+  rotuloForaDaJanela,
+  rotuloRecorte,
+  rotuloTurno,
+  type Turno,
+  type UfForaDaJanela,
+} from './_shared.js';
 import {
   corEspectro,
   corEspectroSolido,
@@ -133,19 +152,59 @@ function itemFallback(uf: string): PresidencialUf {
 type ModoMapa = 'lideranca' | 'eleitorado';
 type Partidos = ReturnType<CasosDeUso['listParties']>;
 
+/**
+ * Contexto de recorte que toda peça da tela (mapa, tooltip, miniatura,
+ * painel do estado) recebe para deixar explícito QUAL turno está sendo
+ * mostrado — o dado sozinho não diz isso ao leitor.
+ */
+interface Recorte {
+  readonly turno: Turno;
+  /** "1º turno" ou "2º turno · Lula x Flávio Bolsonaro". */
+  readonly rotulo: string;
+}
+
+function recorteDe(dados: PresidencialPorEstado): Recorte {
+  return { turno: dados.turno, rotulo: rotuloRecorte(dados.turno, dados.confronto) };
+}
+
+/** Data (ISO) da pesquisa que o agregado da UF efetivamente usou, ou null. */
+function dataUltimaPesquisa(item: PresidencialUf): string | null {
+  const p = item.ultimaPesquisa;
+  if (!p) return null;
+  return p.dataFim ?? p.publicadoEm ?? p.dataInicio ?? null;
+}
+
+/**
+ * As UFs (nome por extenso + data da pesquisa usada) cujo agregado ficou
+ * fora da janela de recência — a lista que vira o aviso do cabeçalho, a
+ * legenda "Recência do dado" e o contorno tracejado no mapa. Exportada para
+ * teste: com os dados reais, é `[]` no 1º turno de hoje e `[Rondônia]` no
+ * 2º turno, e é ela que garante que a tela não apresente julho como se
+ * fosse setembro.
+ */
+export function ufsComDadoForaDaJanela(dados: PresidencialPorEstado): UfForaDaJanela[] {
+  return dados.ufs
+    .filter((item) => usouPesquisaForaDaJanela(item))
+    .map((item) => ({ nome: NOME_POR_UF.get(item.uf) ?? item.uf, dataIso: dataUltimaPesquisa(item) }));
+}
+
 /** Renderiza a tela "Presidente por estado" dentro de `container` (o `<main>` da app). */
 export function renderPresidentialStates(container: HTMLElement, casos: CasosDeUso): void {
   container.innerHTML = '';
 
-  const dados = casos.getPresidentialByState();
   const partidos = casos.listParties();
-  const ufPorSigla = new Map(dados.ufs.map((u) => [u.uf, u] as const));
+
+  let turno: Turno = 1;
+  let dados = casos.getPresidentialByState(turno);
+  let ufPorSigla = new Map(dados.ufs.map((u) => [u.uf, u] as const));
+  let recorte = recorteDe(dados);
 
   const raiz = document.createElement('section');
   raiz.className = 'ps-view';
   raiz.setAttribute('aria-labelledby', 'ps-titulo');
 
-  raiz.appendChild(criarCabecalho(dados));
+  const cabecalho = criarCabecalho(dados, (novoTurno) => aplicarTurno(novoTurno));
+  raiz.appendChild(cabecalho.el);
 
   let modo: ModoMapa = 'lideranca';
 
@@ -188,8 +247,10 @@ export function renderPresidentialStates(container: HTMLElement, casos: CasosDeU
     tooltip.hidden = true;
     mapWrap.appendChild(tooltip);
 
-    mapWrap.appendChild(construirSvgMapa(modo, dados, ufPorSigla, partidos, tooltip, container));
-    legendWrap.appendChild(modo === 'lideranca' ? criarLegendaLideranca() : criarLegendaEleitorado(dados));
+    mapWrap.appendChild(construirSvgMapa(modo, dados, ufPorSigla, partidos, tooltip, container, recorte));
+    legendWrap.appendChild(
+      modo === 'lideranca' ? criarLegendaLideranca(dados) : criarLegendaEleitorado(dados, recorte),
+    );
   }
   redesenharMapa();
 
@@ -199,18 +260,48 @@ export function renderPresidentialStates(container: HTMLElement, casos: CasosDeU
 
   const painelMapa = abas.paineis[0]!;
   painelMapa.appendChild(mapSection);
-  painelMapa.appendChild(criarSecaoGrade(dados, partidos, container));
+
+  const gradeWrap = document.createElement('div');
+  painelMapa.appendChild(gradeWrap);
+  function redesenharGrade(): void {
+    gradeWrap.innerHTML = '';
+    gradeWrap.appendChild(criarSecaoGrade(dados, partidos, container, recorte));
+  }
+  redesenharGrade();
   raiz.appendChild(painelMapa);
 
   const painelVotos = abas.paineis[1]!;
-  let votosRenderizado = false;
+  // Turno já renderizado na aba de votos — null enquanto nunca renderizou ou
+  // depois de uma troca de turno que a invalidou (a aba só recalcula quando
+  // fica visível, para não pagar `getVoteEstimate` de um turno que ninguém
+  // vai olhar).
+  let turnoDosVotos: Turno | null = null;
+  function renderizarVotos(): void {
+    renderVoteEstimate(painelVotos, casos, turno);
+    turnoDosVotos = turno;
+  }
   abas.aoSelecionar((indice) => {
-    if (indice === 1 && !votosRenderizado) {
-      renderVoteEstimate(painelVotos, casos);
-      votosRenderizado = true;
-    }
+    if (indice === 1 && turnoDosVotos !== turno) renderizarVotos();
   });
   raiz.appendChild(painelVotos);
+
+  function aplicarTurno(novoTurno: Turno): void {
+    if (novoTurno === turno) return;
+    turno = novoTurno;
+    dados = casos.getPresidentialByState(turno);
+    ufPorSigla = new Map(dados.ufs.map((u) => [u.uf, u] as const));
+    recorte = recorteDe(dados);
+
+    // O painel aberto é de uma UF no turno antigo: fecha em vez de deixar
+    // números de um recorte sob o seletor de outro.
+    fecharPainelUf();
+
+    cabecalho.atualizar(dados);
+    redesenharMapa();
+    redesenharGrade();
+    if (!painelVotos.hidden) renderizarVotos();
+    else turnoDosVotos = null;
+  }
 
   container.appendChild(raiz);
 }
@@ -288,7 +379,16 @@ function criarAbas(): Abas {
   return abas;
 }
 
-function criarCabecalho(dados: PresidencialPorEstado): HTMLElement {
+interface Cabecalho {
+  readonly el: HTMLElement;
+  /** Reescreve os textos que dependem do turno (cobertura, intro e aviso de recência). */
+  atualizar(dados: PresidencialPorEstado): void;
+}
+
+function criarCabecalho(
+  dados: PresidencialPorEstado,
+  aoTrocarTurno: (turno: Turno) => void,
+): Cabecalho {
   const header = document.createElement('header');
   header.className = 'ps-header';
 
@@ -300,54 +400,165 @@ function criarCabecalho(dados: PresidencialPorEstado): HTMLElement {
 
   const metaEleitorado = document.createElement('p');
   metaEleitorado.className = 'ps-meta';
-  if (dados.eleitoradoNacional != null && dados.eleitoradoNacional > 0) {
-    const parcela = (dados.eleitoradoComPesquisa / dados.eleitoradoNacional) * 100;
-    metaEleitorado.innerHTML = `Eleitorado nacional: <strong>${escaparHtml(
-      formatarEleitorado(dados.eleitoradoNacional),
-    )}</strong> de eleitores aptos. Pesquisa presidencial estadual cobre <strong>${escaparHtml(
-      formatarPct(parcela),
-    )}</strong> desse eleitorado.`;
-  } else {
-    metaEleitorado.textContent = 'Eleitorado nacional: dado ainda não cadastrado.';
-  }
   header.appendChild(metaEleitorado);
 
   const intro = document.createElement('p');
   intro.className = 'ps-meta';
-  intro.textContent =
-    'A cor do mapa mostra o espectro do partido que lidera a média ponderada de pesquisas presidenciais (1º turno) de cada estado; a opacidade indica a confiança da liderança. Alterne para "Eleitorado" para ver o tamanho do colégio eleitoral por estado. Passe o mouse para uma prévia ou clique/Enter para abrir os detalhes.';
   header.appendChild(intro);
 
-  return header;
+  header.appendChild(
+    criarSeletorTurno(dados.turno, (turno) => {
+      aoTrocarTurno(turno);
+    }),
+  );
+
+  const aviso = document.createElement('p');
+  aviso.className = 'ps-aviso';
+  header.appendChild(aviso);
+
+  function atualizar(novos: PresidencialPorEstado): void {
+    const recorte = recorteDe(novos);
+
+    if (novos.eleitoradoNacional != null && novos.eleitoradoNacional > 0) {
+      const parcela = (novos.eleitoradoComPesquisa / novos.eleitoradoNacional) * 100;
+      metaEleitorado.innerHTML = `Eleitorado nacional: <strong>${escaparHtml(
+        formatarEleitorado(novos.eleitoradoNacional),
+      )}</strong> de eleitores aptos. Pesquisa presidencial estadual de ${escaparHtml(
+        recorte.rotulo,
+      )} cobre <strong>${escaparHtml(formatarPct(parcela))}</strong> desse eleitorado.`;
+    } else {
+      metaEleitorado.textContent = 'Eleitorado nacional: dado ainda não cadastrado.';
+    }
+
+    intro.textContent =
+      `A cor do mapa mostra o espectro do partido que lidera a média ponderada de pesquisas presidenciais ` +
+      `de ${recorte.rotulo} em cada estado; a opacidade indica a confiança da liderança. ` +
+      'Alterne para "Eleitorado" para ver o tamanho do colégio eleitoral por estado. ' +
+      'Passe o mouse para uma prévia ou clique/Enter para abrir os detalhes.';
+
+    const texto = avisoForaDaJanela(ufsComDadoForaDaJanela(novos));
+    aviso.textContent = texto ?? '';
+    aviso.hidden = texto == null;
+  }
+
+  atualizar(dados);
+  return { el: header, atualizar };
 }
 
-function criarToggleModo(onChange: (modo: ModoMapa) => void): HTMLElement {
+/** Uma opção de um grupo de alternância (segmented control). */
+interface OpcaoAlternancia<T> {
+  readonly valor: T;
+  readonly rotulo: string;
+  /** Texto adicional só para leitor de tela, quando o rótulo visível é curto demais. */
+  readonly rotuloAcessivel?: string;
+}
+
+/**
+ * Grupo de alternância acessível (segmented control), o padrão visual do
+ * toggle "Quem lidera / Eleitorado" desta tela, agora compartilhado com o
+ * seletor de turno: botões com `aria-pressed`, um `role=group` rotulado,
+ * tabindex roving e navegação por ←/→/Home/End (que também trocam a
+ * seleção, como num grupo de rádio). O foco visível vem de
+ * `.ps-view *:focus-visible` na folha de estilos.
+ */
+function criarGrupoAlternancia<T>(
+  opcoes: readonly OpcaoAlternancia<T>[],
+  valorInicial: T,
+  rotuloGrupo: string,
+  onChange: (valor: T) => void,
+): HTMLElement {
   const group = document.createElement('div');
   group.className = 'ps-toggle-group';
   group.setAttribute('role', 'group');
-  group.setAttribute('aria-label', 'Modo do mapa');
-
-  const opcoes: readonly { readonly modo: ModoMapa; readonly rotulo: string }[] = [
-    { modo: 'lideranca', rotulo: 'Quem lidera' },
-    { modo: 'eleitorado', rotulo: 'Eleitorado' },
-  ];
+  group.setAttribute('aria-label', rotuloGrupo);
 
   const botoes: HTMLButtonElement[] = [];
-  for (const opcao of opcoes) {
+
+  const selecionar = (indice: number, focar: boolean): void => {
+    botoes.forEach((b, i) => {
+      const ativo = i === indice;
+      b.setAttribute('aria-pressed', ativo ? 'true' : 'false');
+      b.tabIndex = ativo ? 0 : -1;
+    });
+    if (focar) botoes[indice]!.focus();
+    onChange(opcoes[indice]!.valor);
+  };
+
+  opcoes.forEach((opcao, i) => {
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'ps-toggle-btn';
     btn.textContent = opcao.rotulo;
-    btn.setAttribute('aria-pressed', opcao.modo === 'lideranca' ? 'true' : 'false');
-    btn.addEventListener('click', () => {
-      for (const b of botoes) b.setAttribute('aria-pressed', 'false');
-      btn.setAttribute('aria-pressed', 'true');
-      onChange(opcao.modo);
+    const ativo = opcao.valor === valorInicial;
+    btn.setAttribute('aria-pressed', ativo ? 'true' : 'false');
+    btn.tabIndex = ativo ? 0 : -1;
+    if (opcao.rotuloAcessivel) btn.setAttribute('aria-label', opcao.rotuloAcessivel);
+    btn.addEventListener('click', () => selecionar(i, false));
+    btn.addEventListener('keydown', (ev) => {
+      const teclas: Readonly<Record<string, number>> = {
+        ArrowRight: (i + 1) % opcoes.length,
+        ArrowDown: (i + 1) % opcoes.length,
+        ArrowLeft: (i + opcoes.length - 1) % opcoes.length,
+        ArrowUp: (i + opcoes.length - 1) % opcoes.length,
+        Home: 0,
+        End: opcoes.length - 1,
+      };
+      const destino = teclas[ev.key];
+      if (destino == null) return;
+      ev.preventDefault();
+      selecionar(destino, true);
     });
     botoes.push(btn);
     group.appendChild(btn);
-  }
+  });
+
   return group;
+}
+
+function criarToggleModo(onChange: (modo: ModoMapa) => void): HTMLElement {
+  return criarGrupoAlternancia<ModoMapa>(
+    [
+      { valor: 'lideranca', rotulo: 'Quem lidera' },
+      { valor: 'eleitorado', rotulo: 'Eleitorado' },
+    ],
+    'lideranca',
+    'Modo do mapa',
+    onChange,
+  );
+}
+
+/**
+ * Seletor de turno da página inteira (mapa, miniaturas, painel do estado e
+ * aba "Votos estimados" seguem o mesmo valor). Fica no cabeçalho, acima das
+ * abas, justamente para continuar visível em todas elas.
+ */
+function criarSeletorTurno(turnoInicial: Turno, onChange: (turno: Turno) => void): HTMLElement {
+  const linha = document.createElement('div');
+  linha.className = 'ps-turno-bar';
+
+  const rotulo = document.createElement('span');
+  rotulo.className = 'ps-turno-bar__rotulo';
+  rotulo.textContent = 'Turno';
+  linha.appendChild(rotulo);
+
+  linha.appendChild(
+    criarGrupoAlternancia<Turno>(
+      [
+        { valor: 1, rotulo: rotuloTurno(1) },
+        { valor: 2, rotulo: rotuloTurno(2), rotuloAcessivel: '2º turno: Lula x Flávio Bolsonaro' },
+      ],
+      turnoInicial,
+      'Turno da disputa presidencial',
+      onChange,
+    ),
+  );
+
+  const nota = document.createElement('span');
+  nota.className = 'ps-turno-bar__nota';
+  nota.textContent = 'No 2º turno, o confronto é Lula x Flávio Bolsonaro.';
+  linha.appendChild(nota);
+
+  return linha;
 }
 
 function posicionarTooltipPerto(tooltip: HTMLElement, x: number, y: number): void {
@@ -374,13 +585,16 @@ function conteudoTooltip(
   modo: ModoMapa,
   breakpointsEleitorado: readonly number[],
   partidos: Partidos,
+  recorte: Recorte,
 ): string {
   const nome = NOME_POR_UF.get(item.uf) ?? item.uf;
   const eleitoresTexto = item.eleitores != null ? formatarEleitorado(item.eleitores) : 'não cadastrado';
+  const linhaRecorte = `<span class="ps-tooltip__recorte">${escaparHtml(recorte.rotulo)}</span>`;
 
   if (item.semDados || !item.agregado || !item.lider) {
     return `
       <strong>${escaparHtml(nome)}</strong>
+      ${linhaRecorte}
       <span class="ps-tooltip__sub">Sem pesquisa presidencial estadual</span>
       <span class="ps-tooltip__meta">Eleitores: ${escaparHtml(eleitoresTexto)}</span>
     `;
@@ -397,30 +611,49 @@ function conteudoTooltip(
       ? `<span class="ps-tooltip__meta">Faixa do mapa: ${classificarPorQuantil(item.eleitores, breakpointsEleitorado) + 1} de 5</span>`
       : '';
 
+  // A data já aparece na linha do instituto logo acima — aqui basta dizer o
+  // que ela significa, sem repeti-la num espaço tão apertado.
+  const avisoRecencia = usouPesquisaForaDaJanela(item)
+    ? `<span class="ps-tooltip__aviso">Fora da janela de ${JANELA_DIAS_PADRAO} dias: é a pesquisa mais recente do estado neste recorte</span>`
+    : '';
+
   return `
     <strong>${escaparHtml(nome)}</strong>
+    ${linhaRecorte}
     <span class="ps-tooltip__meta">Eleitores: ${escaparHtml(eleitoresTexto)}</span>
     <span class="ps-tooltip__lider">${escaparHtml(item.lider)} <span class="ps-tooltip__partido">(${escaparHtml(item.partido ?? 'sem partido')})</span></span>
     <span class="ps-tooltip__vantagem">${vantagemTexto}</span>
     <span class="ps-tooltip__meta">${escaparHtml(institutoUltima)} · ${dataUltima}</span>
+    ${avisoRecencia}
     ${linhaClasse}
   `;
 }
 
-function ariaLabelLideranca(nomeEstado: string, item: PresidencialUf): string {
+/** Sufixo de leitor de tela para UF cujo dado é real mas fora da janela de recência. */
+function sufixoRecencia(item: PresidencialUf): string {
+  return usouPesquisaForaDaJanela(item) ? ` ${rotuloForaDaJanela(dataUltimaPesquisa(item))}.` : '';
+}
+
+function ariaLabelLideranca(nomeEstado: string, item: PresidencialUf, recorte: Recorte): string {
   if (item.semDados || !item.lider) {
-    return `${nomeEstado}: sem pesquisa presidencial estadual suficiente.`;
+    return `${nomeEstado}: sem pesquisa presidencial estadual suficiente no ${recorte.rotulo}.`;
   }
   const pontos = formatarNumeroPt(item.vantagem);
   const partido = item.partido ?? 'sem partido';
   const sufixo = item.empateTecnico ? ', empate técnico' : '';
-  return `${nomeEstado}: ${item.lider} (${partido}) lidera com ${pontos} pontos${sufixo}.`;
+  return `${nomeEstado}, ${recorte.rotulo}: ${item.lider} (${partido}) lidera com ${pontos} pontos${sufixo}.${sufixoRecencia(item)}`;
 }
 
-function ariaLabelEleitorado(nomeEstado: string, item: PresidencialUf, breakpoints: readonly number[]): string {
+function ariaLabelEleitorado(
+  nomeEstado: string,
+  item: PresidencialUf,
+  breakpoints: readonly number[],
+  recorte: Recorte,
+): string {
   if (item.eleitores == null) return `${nomeEstado}: eleitorado não cadastrado.`;
   const classe = classificarPorQuantil(item.eleitores, breakpoints) + 1;
-  return `${nomeEstado}: ${formatarEleitorado(item.eleitores)} de eleitores (faixa ${classe} de 5).`;
+  const lideranca = item.lider ? ` No ${recorte.rotulo}, quem lidera é ${item.lider}.` : '';
+  return `${nomeEstado}: ${formatarEleitorado(item.eleitores)} de eleitores (faixa ${classe} de 5).${lideranca}`;
 }
 
 function construirSvgMapa(
@@ -430,6 +663,7 @@ function construirSvgMapa(
   partidos: Partidos,
   tooltip: HTMLDivElement,
   hostElement: HTMLElement,
+  recorte: Recorte,
 ): SVGSVGElement {
   const valoresEleitorado = dados.ufs
     .map((u) => u.eleitores)
@@ -443,8 +677,8 @@ function construirSvgMapa(
   svg.setAttribute(
     'aria-label',
     modo === 'lideranca'
-      ? 'Mapa do Brasil: quem lidera as pesquisas presidenciais por estado'
-      : 'Mapa do Brasil: eleitorado por estado',
+      ? `Mapa do Brasil: quem lidera as pesquisas presidenciais por estado — ${recorte.rotulo}`
+      : `Mapa do Brasil: eleitorado por estado (o eleitorado não muda com o turno; a prévia e o painel de cada estado mostram o ${recorte.rotulo})`,
   );
   svg.setAttribute('focusable', 'false');
 
@@ -482,12 +716,12 @@ function construirSvgMapa(
     tooltip.hidden = true;
   }
   function mostrarTooltipMouse(item: PresidencialUf, evento: PointerEvent): void {
-    tooltip.innerHTML = conteudoTooltip(item, modo, breakpointsEleitorado, partidos);
+    tooltip.innerHTML = conteudoTooltip(item, modo, breakpointsEleitorado, partidos, recorte);
     tooltip.hidden = false;
     posicionarTooltipPerto(tooltip, evento.clientX, evento.clientY);
   }
   function mostrarTooltipFoco(item: PresidencialUf, alvo: SVGElement): void {
-    tooltip.innerHTML = conteudoTooltip(item, modo, breakpointsEleitorado, partidos);
+    tooltip.innerHTML = conteudoTooltip(item, modo, breakpointsEleitorado, partidos, recorte);
     tooltip.hidden = false;
     const rect = alvo.getBoundingClientRect();
     posicionarTooltipPerto(tooltip, rect.left + rect.width / 2, rect.top + rect.height / 2);
@@ -513,7 +747,11 @@ function construirSvgMapa(
       const nivel: NivelConfianca = nivelConfianca(item.vantagem, margemReferencia, item.semDados);
       path.style.fill = corEspectro(espectro, nivel);
       path.style.opacity = opacidadeConfianca(nivel);
-      path.setAttribute('aria-label', ariaLabelLideranca(loc.name, item));
+      path.setAttribute('aria-label', ariaLabelLideranca(loc.name, item, recorte));
+      // Contorno tracejado: a UF tem dado real, mas de fora da janela de
+      // recência (RO no 2º turno). Marcar no próprio mapa evita que a cor
+      // sugira um número tão fresco quanto o dos vizinhos.
+      if (usouPesquisaForaDaJanela(item)) path.classList.add('ps-uf--fora-janela');
       if (nivel === 'empate') corOverlay = corEspectroSolido(espectro);
       else if (nivel === 'semDados') corOverlay = 'var(--color-text-tertiary)';
     } else {
@@ -525,7 +763,7 @@ function construirSvgMapa(
         corOverlay = 'var(--color-text-tertiary)';
       }
       path.style.opacity = '1';
-      path.setAttribute('aria-label', ariaLabelEleitorado(loc.name, item, breakpointsEleitorado));
+      path.setAttribute('aria-label', ariaLabelEleitorado(loc.name, item, breakpointsEleitorado, recorte));
     }
 
     path.setAttribute('role', 'button');
@@ -556,7 +794,7 @@ function construirSvgMapa(
       alvoInterativo = alvo;
     }
 
-    const abrir = (): void => abrirPainelUf(item, loc.name, path, hostElement, partidos);
+    const abrir = (): void => abrirPainelUf(item, loc.name, path, hostElement, partidos, recorte);
 
     for (const el of [path, alvoInterativo]) {
       el.addEventListener('pointerenter', (e) => mostrarTooltipMouse(item, e as PointerEvent));
@@ -616,7 +854,21 @@ function criarItemLegendaConfianca(opacidade: string, rotulo: string, hachura: b
   return item;
 }
 
-function criarLegendaLideranca(): HTMLElement {
+/** Item de legenda com o mesmo contorno tracejado usado nas UFs fora da janela. */
+function criarItemLegendaForaDaJanela(janelaTexto: string): HTMLLIElement {
+  const item = document.createElement('li');
+  item.className = 'ps-legend-item';
+  const swatch = document.createElement('span');
+  swatch.className = 'ps-legend-swatch ps-legend-swatch--fora-janela';
+  swatch.style.background = 'var(--color-surface-3)';
+  swatch.setAttribute('aria-hidden', 'true');
+  const texto = document.createElement('span');
+  texto.textContent = janelaTexto;
+  item.append(swatch, texto);
+  return item;
+}
+
+function criarLegendaLideranca(dados: PresidencialPorEstado): HTMLElement {
   const legenda = document.createElement('div');
   legenda.className = 'ps-legend';
   legenda.setAttribute('aria-label', 'Legenda do mapa — quem lidera');
@@ -657,10 +909,31 @@ function criarLegendaLideranca(): HTMLElement {
   grupoConfianca.appendChild(listaConfianca);
   legenda.appendChild(grupoConfianca);
 
+  // Só existe quando alguma UF realmente está nessa situação — legenda de
+  // uma marca que não aparece no mapa seria ruído.
+  const fora = ufsComDadoForaDaJanela(dados);
+  if (fora.length > 0) {
+    const grupoRecencia = document.createElement('div');
+    grupoRecencia.className = 'ps-legend-grupo';
+    const tituloRecencia = document.createElement('h3');
+    tituloRecencia.className = 'ps-legend-grupo__titulo';
+    tituloRecencia.textContent = 'Recência do dado';
+    grupoRecencia.appendChild(tituloRecencia);
+    const listaRecencia = document.createElement('ul');
+    listaRecencia.className = 'ps-legend-lista';
+    listaRecencia.appendChild(
+      criarItemLegendaForaDaJanela(
+        `Pesquisa fora da janela de ${JANELA_DIAS_PADRAO} dias (${listaEmPortugues(fora.map((u) => u.nome))})`,
+      ),
+    );
+    grupoRecencia.appendChild(listaRecencia);
+    legenda.appendChild(grupoRecencia);
+  }
+
   return legenda;
 }
 
-function criarLegendaEleitorado(dados: PresidencialPorEstado): HTMLElement {
+function criarLegendaEleitorado(dados: PresidencialPorEstado, recorte: Recorte): HTMLElement {
   const legenda = document.createElement('div');
   legenda.className = 'ps-legend';
   legenda.setAttribute('aria-label', 'Legenda do mapa — eleitorado');
@@ -697,6 +970,14 @@ function criarLegendaEleitorado(dados: PresidencialPorEstado): HTMLElement {
 
   grupo.appendChild(lista);
   legenda.appendChild(grupo);
+
+  // O seletor de turno continua valendo aqui: o mapa não muda, mas tudo o
+  // que ele abre (prévia e painel do estado) segue o turno escolhido.
+  const nota = document.createElement('p');
+  nota.className = 'ps-legend-nota';
+  nota.textContent = `O eleitorado não muda com o turno. A prévia e o painel de cada estado mostram o ${recorte.rotulo}.`;
+  legenda.appendChild(nota);
+
   return legenda;
 }
 
@@ -709,7 +990,12 @@ const MINI_PAD_BOTTOM = 16;
 const MINI_PAD_RIGHT = 32;
 const MINI_PLOT_H = MINI_H - MINI_PAD_TOP - MINI_PAD_BOTTOM;
 
-function criarSecaoGrade(dados: PresidencialPorEstado, partidos: Partidos, hostElement: HTMLElement): HTMLElement {
+function criarSecaoGrade(
+  dados: PresidencialPorEstado,
+  partidos: Partidos,
+  hostElement: HTMLElement,
+  recorte: Recorte,
+): HTMLElement {
   const secao = document.createElement('section');
   secao.className = 'ps-grid-section';
   secao.setAttribute('aria-labelledby', 'ps-grid-heading');
@@ -717,26 +1003,32 @@ function criarSecaoGrade(dados: PresidencialPorEstado, partidos: Partidos, hostE
   const heading = document.createElement('h2');
   heading.id = 'ps-grid-heading';
   heading.className = 'ps-section-title';
-  heading.textContent = 'Tendência por estado';
+  heading.textContent = `Tendência por estado — ${recorte.rotulo}`;
   secao.appendChild(heading);
 
   const intro = document.createElement('p');
   intro.className = 'ps-meta';
   intro.textContent =
+    `Cada miniatura traz a série de pesquisas de ${recorte.rotulo} do estado. ` +
     'Ordenado pelo tamanho do eleitorado (maior primeiro); estados sem pesquisa presidencial estadual aparecem ao final.';
   secao.appendChild(intro);
 
   const grid = document.createElement('div');
   grid.className = 'ps-grid';
   for (const item of ordenarParaGrade(dados.ufs)) {
-    grid.appendChild(criarCardMiniatura(item, partidos, hostElement));
+    grid.appendChild(criarCardMiniatura(item, partidos, hostElement, recorte));
   }
   secao.appendChild(grid);
 
   return secao;
 }
 
-function criarCardMiniatura(item: PresidencialUf, partidos: Partidos, hostElement: HTMLElement): HTMLElement {
+function criarCardMiniatura(
+  item: PresidencialUf,
+  partidos: Partidos,
+  hostElement: HTMLElement,
+  recorte: Recorte,
+): HTMLElement {
   const nome = NOME_POR_UF.get(item.uf) ?? item.uf;
   const eleitoresTexto = item.eleitores != null ? `${formatarEleitorado(item.eleitores)} de eleitores` : 'Eleitorado não cadastrado';
 
@@ -746,7 +1038,7 @@ function criarCardMiniatura(item: PresidencialUf, partidos: Partidos, hostElemen
     card.innerHTML = `
       <p class="ps-card__titulo"><span class="ps-card__uf">${escaparHtml(nome)}</span></p>
       <p class="ps-card__eleitores">${escaparHtml(eleitoresTexto)}</p>
-      <div class="ps-mini-chart-placeholder">Sem pesquisa estadual</div>
+      <div class="ps-mini-chart-placeholder">Sem pesquisa estadual de ${escaparHtml(recorte.rotulo)}</div>
     `;
     return card;
   }
@@ -767,7 +1059,7 @@ function criarCardMiniatura(item: PresidencialUf, partidos: Partidos, hostElemen
   btn.setAttribute('aria-haspopup', 'dialog');
   btn.setAttribute(
     'aria-label',
-    `${nome}: ${rotuloCompleto}. ${eleitoresTexto}. Abrir detalhes das pesquisas presidenciais do estado.`,
+    `${nome}, ${recorte.rotulo}: ${rotuloCompleto}. ${eleitoresTexto}.${sufixoRecencia(item)} Abrir detalhes das pesquisas presidenciais do estado.`,
   );
 
   const titulo = document.createElement('p');
@@ -780,9 +1072,17 @@ function criarCardMiniatura(item: PresidencialUf, partidos: Partidos, hostElemen
   eleitoresP.textContent = eleitoresTexto;
   btn.appendChild(eleitoresP);
 
+  if (usouPesquisaForaDaJanela(item)) {
+    btn.classList.add('ps-card--fora-janela');
+    const avisoP = document.createElement('p');
+    avisoP.className = 'ps-card__aviso';
+    avisoP.textContent = rotuloForaDaJanela(dataUltimaPesquisa(item));
+    btn.appendChild(avisoP);
+  }
+
   btn.appendChild(construirMiniGrafico(item.agregado, item.serie, partidos));
 
-  btn.addEventListener('click', () => abrirPainelUf(item, nome, btn, hostElement, partidos));
+  btn.addEventListener('click', () => abrirPainelUf(item, nome, btn, hostElement, partidos, recorte));
 
   return btn;
 }
@@ -1009,6 +1309,7 @@ function abrirPainelUf(
   origem: HTMLElement | SVGElement,
   hostElement: HTMLElement,
   partidos: Partidos,
+  recorte: Recorte,
 ): void {
   fecharPainelUf();
 
@@ -1023,7 +1324,7 @@ function abrirPainelUf(
   painel.setAttribute('role', 'dialog');
   painel.setAttribute('aria-modal', 'true');
   painel.setAttribute('aria-labelledby', 'ps-panel-titulo');
-  painel.innerHTML = psMontarConteudo(item, nomeEstado, partidos);
+  painel.innerHTML = psMontarConteudo(item, nomeEstado, partidos, recorte);
 
   backdrop.appendChild(painel);
   hostElement.appendChild(backdrop);
@@ -1038,7 +1339,12 @@ function abrirPainelUf(
   psFocar(painel.querySelector<HTMLElement>('.ps-panel__fechar'));
 }
 
-function psMontarConteudo(item: PresidencialUf, nomeEstado: string, partidos: Partidos): string {
+function psMontarConteudo(
+  item: PresidencialUf,
+  nomeEstado: string,
+  partidos: Partidos,
+  recorte: Recorte,
+): string {
   const eleitoresTexto =
     item.eleitores != null ? `${formatarEleitorado(item.eleitores)} de eleitores aptos` : 'Eleitorado não cadastrado';
 
@@ -1047,6 +1353,7 @@ function psMontarConteudo(item: PresidencialUf, nomeEstado: string, partidos: Pa
     <header class="ps-panel__header">
       <div>
         <h2 id="ps-panel-titulo" class="ps-panel__titulo">${escaparHtml(nomeEstado)} <span class="ps-panel__uf">(${item.uf})</span></h2>
+        <p class="ps-panel__recorte">${escaparHtml(recorte.rotulo)}</p>
         <p class="ps-panel__eleitores">${escaparHtml(eleitoresTexto)}</p>
       </div>
       <button type="button" class="ps-panel__fechar" aria-label="Fechar painel">
@@ -1054,20 +1361,22 @@ function psMontarConteudo(item: PresidencialUf, nomeEstado: string, partidos: Pa
       </button>
     </header>
     <div class="ps-panel__corpo">
-      ${psRenderSecao(item, partidos)}
+      ${psRenderSecao(item, partidos, recorte)}
     </div>
     <footer class="ps-panel__footer">
-      ${psRenderRodape(item)}
+      ${psRenderRodape(item, recorte)}
     </footer>
   `;
 }
 
-function psRenderSecao(item: PresidencialUf, partidos: Partidos): string {
+function psRenderSecao(item: PresidencialUf, partidos: Partidos, recorte: Recorte): string {
   const agregado = item.agregado;
   if (!agregado || !agregado.lider) {
     return `
       <section class="ps-panel__secao">
-        <p class="ps-panel__vazio">Sem pesquisas presidenciais suficientes para ${escaparHtml(item.uf)} nesta janela.</p>
+        <p class="ps-panel__vazio">Sem pesquisas presidenciais de ${escaparHtml(
+          recorte.rotulo,
+        )} para ${escaparHtml(item.uf)} nesta janela.</p>
       </section>
     `;
   }
@@ -1093,6 +1402,12 @@ function psRenderSecao(item: PresidencialUf, partidos: Partidos): string {
         .join(', ')}</p>`
     : '';
 
+  const avisoRecencia = agregado.foraDaJanela
+    ? `<p class="ps-panel__aviso">${escaparHtml(
+        rotuloForaDaJanela(dataUltimaPesquisa(item)),
+      )}. É a pesquisa mais recente deste recorte no estado — nada foi estimado para completar.</p>`
+    : '';
+
   return `
     <section class="ps-panel__secao">
       <div class="ps-panel__lider">
@@ -1101,6 +1416,7 @@ function psRenderSecao(item: PresidencialUf, partidos: Partidos): string {
         <span class="ps-panel__vantagem">${formatarVantagem(agregado.vantagem)}</span>
         ${seloEmpate}
       </div>
+      ${avisoRecencia}
       <ul class="ps-bar-list">${listaCandidatos}</ul>
       <p class="ps-bar-list__legenda">
         <span class="ps-bar-list__legenda-swatch" aria-hidden="true"></span>
@@ -1198,13 +1514,15 @@ function psRenderPesquisa(p: Pesquisa): string {
   `;
 }
 
-function psRenderRodape(item: PresidencialUf): string {
+function psRenderRodape(item: PresidencialUf, recorte: Recorte): string {
   if (!item.ultimaPesquisa) {
-    return '<p>Nenhuma pesquisa presidencial estadual disponível para esta UF.</p>';
+    return `<p>Nenhuma pesquisa presidencial estadual de ${escaparHtml(
+      recorte.rotulo,
+    )} disponível para esta UF.</p>`;
   }
-  const data = item.ultimaPesquisa.dataFim ?? item.ultimaPesquisa.publicadoEm ?? item.ultimaPesquisa.dataInicio ?? '';
+  const data = dataUltimaPesquisa(item) ?? '';
   return `
-    <p class="ps-panel__ultima">Última pesquisa em ${formatarData(data)}.</p>
+    <p class="ps-panel__ultima">Última pesquisa deste recorte em ${formatarData(data)}.</p>
     <p class="ps-panel__metodologia">Média ponderada por recência e tamanho de amostra. <a href="#/presidente">Como calculamos</a>.</p>
   `;
 }

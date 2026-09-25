@@ -64,6 +64,41 @@
   font-weight: var(--font-variation-nav);
 }
 
+/* Seletor de turno: fica no cabeçalho, acima das abas, para continuar
+   visível em todas as telas da página (mapa, miniaturas e votos estimados).
+   Em 400px a nota desce para a própria linha e nada estoura a largura. */
+.ps-turno-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+  margin-top: var(--space-2);
+}
+.ps-turno-bar__rotulo {
+  font: var(--text-caption);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+  color: var(--color-text-subtle);
+}
+.ps-turno-bar__nota {
+  font: var(--text-caption);
+  color: var(--color-text-tertiary);
+  min-width: 0;
+}
+
+/* Aviso de recência (dado real, porém fora da janela): discreto, mas com
+   barra lateral para não passar como texto secundário qualquer. */
+.ps-aviso {
+  margin: 0;
+  font: var(--text-body-sm);
+  color: var(--color-text-subtle);
+  border-left: 3px solid var(--color-border-strong);
+  padding-left: var(--space-3);
+}
+.ps-aviso[hidden] {
+  display: none;
+}
+
 /* ================= Mapa ================= */
 
 .ps-map-section {
@@ -152,6 +187,14 @@
   pointer-events: all;
   cursor: pointer;
 }
+/* UF cujo agregado usou pesquisa de fora da janela de recência: contorno
+   tracejado de contraste. Não altera a cor (o líder e a confiança continuam
+   sendo lidos do preenchimento), só avisa que o dado é antigo. */
+.ps-uf--fora-janela {
+  stroke: var(--color-text);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
 .ps-uf-label {
   fill: #ffffff;
   stroke: #000000;
@@ -210,6 +253,19 @@
   font-variant-numeric: tabular-nums;
   color: var(--color-text-muted);
 }
+.ps-tooltip__recorte {
+  font: var(--text-caption);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+  color: var(--color-text-tertiary);
+}
+.ps-tooltip__aviso {
+  font: var(--text-caption);
+  color: var(--color-text-muted);
+  border-top: 1px dashed var(--color-border-strong);
+  margin-top: 2px;
+  padding-top: 4px;
+}
 
 /* --- Legenda --- */
 
@@ -254,6 +310,14 @@
   inset: 0;
   background-image: var(--confidence-sem-dados-pattern);
   border-radius: inherit;
+}
+.ps-legend-swatch--fora-janela {
+  border: 1.5px dashed var(--color-text);
+}
+.ps-legend-nota {
+  margin: 0;
+  font: var(--text-caption);
+  color: var(--color-text-tertiary);
 }
 
 /* Escala sequencial (modo Eleitorado): 5 degraus de um único matiz. */
@@ -375,6 +439,15 @@
   margin: 0 0 var(--space-2);
   font: var(--text-caption);
   color: var(--color-text-subtle);
+}
+.ps-card--fora-janela {
+  border-style: dashed;
+  border-color: var(--color-border-strong);
+}
+.ps-card__aviso {
+  margin: calc(-1 * var(--space-1)) 0 var(--space-2);
+  font: var(--text-caption);
+  color: var(--color-text-muted);
 }
 
 .ps-mini-chart {
@@ -514,6 +587,20 @@
   margin: 0;
   font: var(--text-caption);
   color: var(--color-text-subtle);
+}
+.ps-panel__recorte {
+  margin: 2px 0 0;
+  font: var(--text-caption);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+  color: var(--color-text-tertiary);
+}
+.ps-panel__aviso {
+  margin: calc(-1 * var(--space-2)) 0 var(--space-3);
+  font: var(--text-caption);
+  color: var(--color-text-muted);
+  border-left: 3px solid var(--color-border-strong);
+  padding-left: var(--space-2);
 }
 .ps-panel__vazio {
   color: var(--color-text-subtle);
