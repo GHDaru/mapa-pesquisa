@@ -381,3 +381,123 @@ describe('domain/vote-estimate', () => {
     });
   });
 });
+
+/**
+ * Recorte de 2º turno: os agregados chegam a `estimarVotos` já filtrados por
+ * confronto (ver `domain/runoff.ts` e `get-vote-estimate.ts`), com dois
+ * candidatos por UF. O que muda de comportamento aqui é a propagação da marca
+ * `foraDaJanela` do agregado estadual — o caso de RO, cuja única pesquisa do
+ * confronto Lula x Flávio é de julho, fora da janela de 45 dias.
+ */
+describe('domain/vote-estimate — 2º turno e pesquisa fora da janela', () => {
+  // Confronto de 2º turno na UF, dentro da janela.
+  const PR_T2 = agregarPesquisas(
+    [
+      pesquisa({
+        uf: 'PR',
+        turno: 2,
+        resultados: [
+          { candidato: 'Candidato A', partido: 'PT', pct: 44 },
+          { candidato: 'Candidato B', partido: 'PL', pct: 50 },
+          { candidato: 'Brancos/nulos', partido: null, pct: 6 },
+        ],
+      }),
+    ],
+    {},
+    HOJE,
+  )!;
+
+  // Mesma UF, mas a única pesquisa é de julho: `agregarPesquisas` usa a mais
+  // recente disponível e marca `foraDaJanela` (nunca descarta o dado real).
+  const RO_T2_JULHO = agregarPesquisas(
+    [
+      pesquisa({
+        uf: 'RO',
+        turno: 2,
+        dataInicio: '2026-07-14',
+        dataFim: '2026-07-15',
+        publicadoEm: '2026-07-16',
+        resultados: [
+          { candidato: 'Candidato A', partido: 'PT', pct: 24 },
+          { candidato: 'Candidato B', partido: 'PL', pct: 66 },
+        ],
+      }),
+    ],
+    {},
+    HOJE,
+  )!;
+
+  const NACIONAL_T2 = agregarPesquisas(
+    [
+      pesquisa({
+        uf: 'BR',
+        turno: 2,
+        resultados: [
+          { candidato: 'Candidato A', partido: 'PT', pct: 46 },
+          { candidato: 'Candidato B', partido: 'PL', pct: 45 },
+          { candidato: 'Brancos/nulos', partido: null, pct: 9 },
+        ],
+      }),
+    ],
+    {},
+    HOJE,
+  )!;
+
+  it('o agregado de julho realmente está marcado como fora da janela', () => {
+    expect(RO_T2_JULHO.foraDaJanela).toBe(true);
+    expect(PR_T2.foraDaJanela).toBe(false);
+  });
+
+  it('UF com pesquisa só fora da janela mantém o dado estadual real e fica marcada', () => {
+    const porUf: EstimativaVotosUfEntrada[] = [
+      { uf: 'PR', eleitores: 1_000_000, agregado: PR_T2 },
+      { uf: 'RO', eleitores: 100_000, agregado: RO_T2_JULHO },
+    ];
+    const estimativa = estimarVotos(porUf, NACIONAL_T2);
+
+    const ro = estimativa.porUf.find((u) => u.uf === 'RO')!;
+    expect(ro.origem).toBe('estadual');
+    expect(ro.foraDaJanela).toBe(true);
+    // Usa os 66% da pesquisa de julho, não os 45% do nacional.
+    expect(ro.votosPorCandidato['Candidato B']!.votos).toBeCloseTo(100_000 * 0.66, 6);
+    expect(ro.votosPorCandidato['Candidato B']!.origem).toBe('estadual');
+
+    expect(estimativa.ufsForaDaJanela).toEqual(['RO']);
+    expect(estimativa.ufsComPesquisa).toEqual(['PR', 'RO']);
+    expect(estimativa.ufsSemPesquisa).toEqual([]);
+  });
+
+  it('UF dentro da janela não é marcada como fora da janela', () => {
+    const porUf: EstimativaVotosUfEntrada[] = [{ uf: 'PR', eleitores: 1_000_000, agregado: PR_T2 }];
+    const estimativa = estimarVotos(porUf, NACIONAL_T2);
+    expect(estimativa.porUf[0]!.foraDaJanela).toBe(false);
+    expect(estimativa.ufsForaDaJanela).toEqual([]);
+  });
+
+  it('UF sem pesquisa alguma cai no nacional e nunca é marcada como fora da janela', () => {
+    const porUf: EstimativaVotosUfEntrada[] = [{ uf: 'AC', eleitores: 500_000, agregado: null }];
+    const estimativa = estimarVotos(porUf, NACIONAL_T2);
+    const ac = estimativa.porUf[0]!;
+    expect(ac.origem).toBe('nacional');
+    expect(ac.foraDaJanela).toBe(false);
+    expect(estimativa.ufsForaDaJanela).toEqual([]);
+    expect(estimativa.ufsSemPesquisa).toEqual(['AC']);
+  });
+
+  it('no 2º turno não há complemento nacional: os dois candidatos estão em toda UF', () => {
+    const porUf: EstimativaVotosUfEntrada[] = [
+      { uf: 'PR', eleitores: 1_000_000, agregado: PR_T2 },
+      { uf: 'RO', eleitores: 100_000, agregado: RO_T2_JULHO },
+    ];
+    const estimativa = estimarVotos(porUf, NACIONAL_T2);
+    expect(estimativa.candidatos).toHaveLength(2);
+    for (const c of estimativa.candidatos) {
+      expect(c.votosComplementoNacional).toBe(0);
+      expect(c.votosDeUfSemPesquisa).toBe(0);
+    }
+    expect(estimativa.ufsNormalizadas).toEqual([]);
+    // B: 500_000 (PR) + 66_000 (RO) = 566_000; A: 440_000 + 24_000 = 464_000.
+    const b = estimativa.candidatos.find((c) => c.candidato === 'Candidato B')!;
+    expect(b.votos).toBeCloseTo(566_000, 6);
+  });
+});

@@ -1,6 +1,7 @@
 import type { Clock, Repositorios } from '../ports.js';
-import { type Agregado, agregarPesquisas, ehLinhaNaoCandidato } from '../../domain/aggregate.js';
+import { type Agregado, agregarPesquisas } from '../../domain/aggregate.js';
 import { dataReferencia, type Pesquisa } from '../../domain/poll.js';
+import { chaveConfronto, confrontoDaPesquisa } from '../../domain/runoff.js';
 import { criarDisputa, UF_NACIONAL } from '../../domain/race.js';
 
 const CENARIO_PADRAO = 'sem cenário';
@@ -65,18 +66,15 @@ export function criarGetPresidentialAggregate(repos: Repositorios, clock: Clock)
 
 
 /**
- * Chave de agrupamento do 2º turno: o conjunto de candidatos (linhas que são
- * candidatos) em ordem alfabética, para que "Lula x Flávio" e "Flávio x Lula"
- * caiam no mesmo cenário mesmo com rótulos diferentes entre institutos.
+ * Chave de agrupamento do 2º turno: a chave canônica do confronto testado
+ * pela pesquisa (`domain/runoff.ts` — conjunto de candidatos normalizado e em
+ * ordem alfabética), para que "Lula x Flávio" e "Flávio x Lula" caiam no
+ * mesmo cenário mesmo com rótulos diferentes entre institutos.
  * Exportada para reúso em get-presidential-timeline.ts.
  */
 export function chaveDoCenario(p: Pesquisa): string {
-  const nomes = p.resultados
-    .map((r) => r.candidato)
-    .filter((nome) => !ehLinhaNaoCandidato(nome, new Set()))
-    .map((nome) => nome.trim().toLowerCase())
-    .sort();
-  return nomes.length > 0 ? nomes.join(' x ') : (p.cenario ?? CENARIO_PADRAO);
+  const chave = chaveConfronto(confrontoDaPesquisa(p));
+  return chave.length > 0 ? chave : (p.cenario ?? CENARIO_PADRAO);
 }
 
 function rotuloDoCenario(candidatosOrdenados: readonly string[], fallback: string): string {

@@ -1,13 +1,20 @@
 import type { Agregado } from './aggregate.js';
 
 /**
- * Serviço de domínio: estimativa de votos presidenciais (1º turno) a partir
- * da agregação por UF (`get-presidential-by-state.ts`). Puro — sem I/O.
+ * Serviço de domínio: estimativa de votos presidenciais a partir da agregação
+ * por UF (`get-presidential-by-state.ts`). Puro — sem I/O. Serve tanto ao 1º
+ * turno quanto ao 2º: a função não conhece turno nem confronto, só recebe os
+ * agregados já recortados por quem chama (`get-vote-estimate.ts` cuida de
+ * filtrar o confronto do 2º turno — ver `domain/runoff.ts`).
  *
  * Para cada UF, se houver pesquisa presidencial estadual (agregado próprio),
  * a estimativa usa os percentuais desse agregado; quando a UF ainda não tem
- * pesquisa estadual, usa os percentuais do agregado nacional (1º turno) como
- * substituto e marca a UF com `origem: 'nacional'` em `porUf`. Nunca inventa
+ * pesquisa estadual, usa os percentuais do agregado nacional (do mesmo
+ * recorte) como substituto e marca a UF com `origem: 'nacional'` em `porUf`.
+ * Quando a UF só tem pesquisa fora da janela de recência, `agregarPesquisas`
+ * já usou a mais recente disponível e marcou `foraDaJanela` — a estimativa
+ * propaga essa marca em `porUf[].foraDaJanela` e `ufsForaDaJanela`, em vez de
+ * descartar o dado real ou substituí-lo pelo nacional. Nunca inventa
  * dados: se uma UF não tem agregado estadual E não há agregado nacional para
  * suprir a lacuna, `estimarVotos` lança `EstimativaVotosError` em vez de
  * silenciosamente ignorar a UF.
@@ -30,7 +37,7 @@ import type { Agregado } from './aggregate.js';
 export interface EstimativaVotosUfEntrada {
   readonly uf: string;
   readonly eleitores: number;
-  /** Agregado da disputa presidencial (1º turno) nessa UF, ou null sem pesquisa estadual. */
+  /** Agregado da disputa presidencial (do turno/confronto em recorte) nessa UF, ou null sem pesquisa estadual. */
   readonly agregado: Agregado | null;
 }
 
@@ -86,6 +93,12 @@ export interface UfOrigemVotos {
   readonly eleitores: number;
   /** 'estadual' quando a UF tinha agregado próprio; 'nacional' quando usou o substituto nacional. */
   readonly origem: 'estadual' | 'nacional';
+  /**
+   * true quando o agregado estadual desta UF não tinha nenhuma pesquisa dentro
+   * da janela de recência e usou a mais recente disponível
+   * (`Agregado.foraDaJanela`). Sempre false quando `origem` é 'nacional'.
+   */
+  readonly foraDaJanela: boolean;
   /** Votos estimados por candidato nesta UF, com a origem de cada parcela (chave = nome do candidato). */
   readonly votosPorCandidato: Readonly<Record<string, VotosCandidatoUf>>;
 }
@@ -112,6 +125,12 @@ export interface EstimativaVotos {
   readonly eleitoradoComPesquisaEstadual: number;
   readonly ufsComPesquisa: readonly string[];
   readonly ufsSemPesquisa: readonly string[];
+  /**
+   * UFs que tinham pesquisa estadual, mas só fora da janela de recência: o
+   * agregado usou a pesquisa mais recente disponível (ver
+   * `UfOrigemVotos.foraDaJanela`). Subconjunto de `ufsComPesquisa`.
+   */
+  readonly ufsForaDaJanela: readonly string[];
   readonly porUf: readonly UfOrigemVotos[];
   /** Um item por candidato do agregado nacional, comparando pct nacional vs. estimado. */
   readonly comparacaoNacional: readonly ComparacaoNacional[];
@@ -161,7 +180,8 @@ function chaveComparacao(nome: string): string {
 }
 
 /**
- * Estima votos presidenciais (1º turno) por candidato, combinando o
+ * Estima votos presidenciais por candidato (mesmo algoritmo para 1º e 2º
+ * turno — o recorte de turno/confronto é responsabilidade de quem chama), combinando o
  * eleitorado de cada UF com os percentuais do agregado estadual quando
  * disponível (mais o complemento nacional para candidatos ausentes dessa
  * pesquisa estadual), ou do agregado nacional inteiro como substituto quando
@@ -188,6 +208,7 @@ export function estimarVotos(
   const porUfResultado: UfOrigemVotos[] = [];
   const ufsComPesquisa: string[] = [];
   const ufsSemPesquisa: string[] = [];
+  const ufsForaDaJanela: string[] = [];
   const ufsNormalizadas: string[] = [];
 
   let eleitoradoTotal = 0;
@@ -206,6 +227,7 @@ export function estimarVotos(
       eleitoradoComPesquisaEstadual += entrada.eleitores;
 
       const estadual = entrada.agregado!;
+      if (estadual.foraDaJanela) ufsForaDaJanela.push(entrada.uf);
       const chavesEstaduais = new Set(estadual.candidatos.map((c) => chaveComparacao(c.candidato)));
 
       contribuicoes = estadual.candidatos.map(
@@ -295,6 +317,7 @@ export function estimarVotos(
       uf: entrada.uf,
       eleitores: entrada.eleitores,
       origem: origemUf,
+      foraDaJanela: entrada.agregado?.foraDaJanela ?? false,
       votosPorCandidato,
     });
   }
@@ -340,6 +363,7 @@ export function estimarVotos(
     eleitoradoComPesquisaEstadual,
     ufsComPesquisa,
     ufsSemPesquisa,
+    ufsForaDaJanela,
     porUf: porUfResultado,
     comparacaoNacional,
     ufsNormalizadas,
