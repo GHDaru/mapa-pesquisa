@@ -1,0 +1,170 @@
+[
+  {
+    "id": "2026-09-25-realtimebigdata-to-presidente-t1",
+    "uf": "TO",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-07147/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-21",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-25",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno — eleitores do Tocantins",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes/flavio-tem-48-contra-40-de-lula-no-to-no-2o-turno-diz-pesquisa/"
+    },
+    "observacao": "Rodada RTBD em Tocantins divulgada na sexta 25/09/2026; fecha a lacuna do estado, cuja pesquisa presidencial anterior era de 26/08 (campo 21–25/08: Lula 37% x Flávio 37% no 1º turno). 1.600 eleitores do Tocantins, campo 21 a 24/09, margem de 2 pontos, confiança 95%, pesquisa paga com recursos do próprio instituto e registrada no TSE sob BR-07147/2026 (conforme Poder360). ATENÇÃO totais x válidos: os percentuais aqui são sobre o total de entrevistados; a tabela soma 99% por arredondamento. CUIDADO com a atribuição de brancos/nulos: as fontes traziam DOIS pares de rodapé na mesma matéria — brancos/nulos 3% e não sabe 3% pertencem a ESTE cenário de 1º turno, enquanto brancos/nulos 7% e não sabe 5% pertencem ao cenário de 2º turno (lá a soma fecha exatamente 100%). Nenhuma fonte listou Leonardo Avalanche (PRTB) nem Pablo Marçal (que deixou de ser candidato após o indeferimento pelo TSE em 11/09) entre os nomes estimulados. Contratante não informado no texto das matérias — não inferido. Matéria da tmc.com.br que traz 'Flávio 45% x Lula 39% no 2º turno no Tocantins' é da rodada ANTERIOR (26/08), não desta. Dados obtidos via WebSearch (WebFetch bloqueado); números conferidos em Poder360, CNN Brasil, Exame e CartaCapital.",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 40 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 40 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 5 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 4 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 3 },
+      { "candidato": "Romeu Zema", "partido": "Novo", "pct": 1 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 3 },
+      { "candidato": "Não sabe", "partido": null, "pct": 3 }
+    ]
+  },
+  {
+    "id": "2026-09-25-realtimebigdata-to-presidente-t2-flavio-lula",
+    "uf": "TO",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-07147/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-21",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-25",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula — eleitores do Tocantins",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes/flavio-tem-48-contra-40-de-lula-no-to-no-2o-turno-diz-pesquisa/"
+    },
+    "observacao": "Vantagem de Flávio Bolsonaro fora da margem de erro (8 pontos, margem de 2). A tabela fecha exatamente 100% (48+40+7+5), o que confirma que brancos/nulos 7% e não sabe 5% pertencem a este cenário de 2º turno, e não ao de 1º turno. Rodada anterior do mesmo instituto em TO (26/08, campo 21–25/08): Flávio 45% x Lula 39%. Mesma ficha técnica do registro de 1º turno (1.600 eleitores do Tocantins, campo 21–24/09, margem 2, registro BR-07147/2026). Contratante não informado no texto das matérias — não inferido. Dados obtidos via WebSearch (WebFetch bloqueado); números conferidos em Poder360, CNN Brasil, Exame e CartaCapital.",
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 48 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 40 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 7 },
+      { "candidato": "Não sabe", "partido": null, "pct": 5 }
+    ]
+  },
+  {
+    "id": "2026-09-25-realtimebigdata-es-presidente-t1",
+    "uf": "ES",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-09948/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-21",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-25",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno — eleitores do Espírito Santo",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-48-e-lula-41-no-2o-turno-no-es-diz-pesquisa/"
+    },
+    "observacao": "Rodada RTBD no Espírito Santo divulgada na sexta 25/09/2026. 1.600 eleitores do ES, campo 21 a 24/09, margem de 2 pontos, confiança 95%, registro no TSE BR-09948/2026. Percentuais sobre o total de entrevistados; a tabela soma 99% por arredondamento. ATENÇÃO à convivência de rodadas antigas nas buscas: matérias da Exame com 'Flávio 35% x Lula 34%' e 'Flávio 36% x Lula 34%' são de rodadas ANTERIORES do ES (27/08, campo 22–26/08, e 09/09, campo 04–08/09), já na base — não desta rodada. Nenhuma fonte listou Leonardo Avalanche (PRTB) nem Pablo Marçal (que deixou de ser candidato após o indeferimento pelo TSE em 11/09). Contratante não informado no texto das matérias — não inferido. Dados obtidos via WebSearch (WebFetch bloqueado); números conferidos em Poder360 e CNN Brasil.",
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 39 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 37 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 4 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 4 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 4 },
+      { "candidato": "Romeu Zema", "partido": "Novo", "pct": 2 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 7 },
+      { "candidato": "Não sabe", "partido": null, "pct": 2 }
+    ]
+  },
+  {
+    "id": "2026-09-25-realtimebigdata-es-presidente-t2-flavio-lula",
+    "uf": "ES",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-09948/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-21",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-25",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula — eleitores do Espírito Santo",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-48-e-lula-41-no-2o-turno-no-es-diz-pesquisa/"
+    },
+    "observacao": "Vantagem de Flávio Bolsonaro fora da margem de erro (7 pontos, margem de 2). A tabela fecha exatamente 100% (48+41+8+3). DIVERGÊNCIA DE FONTE: Metrópoles publicou 'Flávio 48% e Lula 42%' para este mesmo confronto; adotado 48% x 41% porque é o que traz o par Poder360 + CNN Brasil (duas fontes independentes) e é o único valor compatível com o fechamento em 100% junto com brancos/nulos 8% e não sabe 3%. Rodada anterior do mesmo instituto em ES (09/09, campo 04–08/09): Flávio 47% x Lula 42%. Mesma ficha técnica do registro de 1º turno (1.600 eleitores do ES, campo 21–24/09, margem 2, registro BR-09948/2026). Contratante não informado no texto das matérias — não inferido. Dados obtidos via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 48 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 41 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 8 },
+      { "candidato": "Não sabe", "partido": null, "pct": 3 }
+    ]
+  },
+  {
+    "id": "2026-09-25-realtimebigdata-al-presidente-t1",
+    "uf": "AL",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-07734/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-21",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-25",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno — eleitores de Alagoas",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/real-time-big-data-lula-tem-51-e-flavio-bolsonaro-33-no-1o-turno-em-alagoas/"
+    },
+    "observacao": "Rodada RTBD em Alagoas divulgada na sexta 25/09/2026. 1.600 eleitores de Alagoas, campo 21 a 24/09, margem de 2 pontos, confiança 95%, registro no TSE BR-07734/2026. Percentuais sobre o total de entrevistados; a tabela soma 99% por arredondamento. Rodada presidencial anterior de AL na base é de 01/09 (Lula 51% x Flávio 30%, sem detalhamento). Nenhuma fonte listou Leonardo Avalanche (PRTB) nem Pablo Marçal (que deixou de ser candidato após o indeferimento pelo TSE em 11/09). Contratante não informado no texto das matérias — não inferido. Dados obtidos via WebSearch (WebFetch bloqueado); números conferidos em Exame, Poder360, Metrópoles, CNN Brasil e Gazetaweb.",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 51 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 33 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 4 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 3 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 2 },
+      { "candidato": "Romeu Zema", "partido": "Novo", "pct": 1 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 3 },
+      { "candidato": "Não sabe", "partido": null, "pct": 2 }
+    ]
+  },
+  {
+    "id": "2026-09-25-realtimebigdata-al-presidente-t2-lula-flavio",
+    "uf": "AL",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-07734/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-21",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-25",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — eleitores de Alagoas",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/em-alagoas-lula-tem-53-e-flavio-38-no-2o-turno-diz-pesquisa/"
+    },
+    "observacao": "Vantagem de Lula fora da margem de erro (15 pontos, margem de 2). A tabela fecha exatamente 100% (53+38+5+4). Mesma ficha técnica do registro de 1º turno (1.600 eleitores de Alagoas, campo 21–24/09, margem 2, registro BR-07734/2026). Contratante não informado no texto das matérias — não inferido. Dados obtidos via WebSearch (WebFetch bloqueado); números conferidos em Poder360, Exame e CartaCapital.",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 53 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 38 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 5 },
+      { "candidato": "Não sabe", "partido": null, "pct": 4 }
+    ]
+  }
+]

@@ -505,3 +505,30 @@ governo o estado está em empate quase perfeito: Elmano 48,5 x Ciro 48,0 no
   rodada no estado e está suspenso lá desde 01/09, com multa diária.
 - **2º turno em TO**: a leva do Real Time Big Data de amanhã inclui
   Tocantins e deve fechar a última lacuna.
+
+## Decisão editorial sobre o Instituto Veritá — 2026-09-25
+
+**Decidido pelo dono do projeto: manter as quatro pesquisas na base, com o
+alerta.** Elas continuam pesando na média, e o alerta de integridade segue
+visível no detalhe de cada uma na tela "Base de pesquisas".
+
+As quatro são a nacional de 06/09 (1º e 2º turno), a de governador no PA de
+12/09 e a de senador em RO de 14/09. Nenhuma consta individualmente como
+suspensa.
+
+O que se sabe sobre o instituto, confirmado em buscas independentes ao longo
+da semana: pesquisas barradas pela Justiça Eleitoral em 13 estados e no
+Distrito Federal, com uma apuração já falando em 14. Motivos: falhas de
+metodologia, composição de amostra e transparência. No Amazonas o TRE
+apontou cerca de 380 pares de linhas idênticas consecutivas, perto de 62% de
+uma amostra de 1.220 entrevistas. Em RN e SE, amostra divergente da
+realidade do estado. No DF, bloco final do questionário induzindo o
+entrevistado. Em MT, registro declarando governador e senador enquanto o
+questionário perguntava sobre presidente. Em RO, multa diária de R$ 5 mil
+com teto de R$ 100 mil e condenação de R$ 53 mil. Em TO, "vício substancial"
+na origem dos dados.
+
+**A regra operacional continua valendo: os agentes de busca não devem
+ingerir nenhuma rodada nova do instituto.** A decisão de hoje é sobre o que
+já está na base, não sobre o que pode entrar. Rodadas novas do Veritá
+seguem sendo relatadas e não incluídas, até decisão em contrário.
