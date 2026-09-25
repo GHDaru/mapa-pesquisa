@@ -1,0 +1,401 @@
+[
+  {
+    "id": "2026-09-25-real-time-big-data-es-senador-t1",
+    "uf": "ES",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "ES-00877/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-21",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-25",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-casagrande-lidera-para-o-senado-no-es-2a-vaga-esta-em-aberto/"
+    },
+    "resultados": [
+      {
+        "candidato": "Renato Casagrande",
+        "partido": "PSB",
+        "pct": 29.0
+      },
+      {
+        "candidato": "Sergio Meneguelli",
+        "partido": "PSD",
+        "pct": 13.0
+      },
+      {
+        "candidato": "Fabiano Contarato",
+        "partido": "PT",
+        "pct": 11.0
+      },
+      {
+        "candidato": "Evair de Melo",
+        "partido": "Republicanos",
+        "pct": 10.0
+      },
+      {
+        "candidato": "Maguinha Malta",
+        "partido": "PL",
+        "pct": 10.0
+      },
+      {
+        "candidato": "Rose de Freitas",
+        "partido": "MDB",
+        "pct": 9.0
+      }
+    ],
+    "observacao": "ES elege duas cadeiras em 2026; as materias publicaram um unico bloco de percentuais (sem rotular 1o/2o voto) e nao detalharam brancos/nulos nem indecisos, por isso a soma fica abaixo de 100. O nome 'Maguinha Malta (PL)' foi grafado assim pelas fontes consultadas (CNN, CartaCapital) e provavelmente se refere a Magno Malta (PL) — mantido como publicado, sem correcao nossa. Leva Real Time Big Data divulgada em 25/09/2026, campo 21-24/09, 1.600 entrevistas, 95% de confianca, margem de 2 p.p., registro TSE ES-00877/2026. Contratante nulo porque as materias divergem: parte da cobertura atribui a Record TV e a CartaCapital afirma que a pesquisa foi feita 'com recursos proprios' do instituto — nao inferimos. ATENCAO: uma primeira leitura de agregadores trouxe 47%/37% para Ferraco/Pazolini; a cobertura detalhada (Exame, Poder360, CNN, ES Fala) confirma 44%/35% no estimulado de 1o turno — os 47/37 nao se sustentaram. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-25-real-time-big-data-to-senador-t1",
+    "uf": "TO",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "TO-04340/2026",
+    "contratante": "Rádio e Televisão Record S/A",
+    "dataInicio": "2026-09-21",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-25",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-tocantins-setembro-2026/"
+    },
+    "resultados": [
+      {
+        "candidato": "Eduardo Gomes",
+        "partido": "PL",
+        "pct": 25.0
+      },
+      {
+        "candidato": "Alexandre Guimarães",
+        "partido": "MDB",
+        "pct": 16.0
+      },
+      {
+        "candidato": "Gaguim",
+        "partido": "União Brasil",
+        "pct": 16.0
+      },
+      {
+        "candidato": "Paulo Mourão",
+        "partido": "PT",
+        "pct": 11.0
+      },
+      {
+        "candidato": "Vanderlei Luxemburgo",
+        "partido": "Podemos",
+        "pct": 10.0
+      },
+      {
+        "candidato": "Ronaldo Dimas",
+        "partido": "Podemos",
+        "pct": 9.0
+      },
+      {
+        "candidato": "Eli Borges",
+        "partido": "Republicanos",
+        "pct": 6.0
+      }
+    ],
+    "observacao": "TO elege duas cadeiras em 2026 (dai dois nomes do Podemos na lista). Brancos/nulos e indecisos nao detalhados pelas materias, por isso a soma fica abaixo de 100. Leva Real Time Big Data divulgada em 25/09/2026, campo 21-24/09, 1.600 entrevistas, 95% de confianca, margem de 2 p.p., registro TSE TO-04340/2026, contratante Radio e Televisao Record S/A. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-25-real-time-big-data-al-senador-t1",
+    "uf": "AL",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "AL-06597/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-21",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-25",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/real-time-big-data-3-candidatos-empatam-tecnicamente-ao-senado-em-alagoas"
+    },
+    "resultados": [
+      {
+        "candidato": "Marina JHC",
+        "partido": "PSDB",
+        "pct": 23.0
+      },
+      {
+        "candidato": "Renan Calheiros",
+        "partido": "MDB",
+        "pct": 22.0
+      },
+      {
+        "candidato": "Arthur Lira",
+        "partido": "PP",
+        "pct": 20.0
+      },
+      {
+        "candidato": "Davi Davino Filho",
+        "partido": "Republicanos",
+        "pct": 17.0
+      },
+      {
+        "candidato": "Dr. Wanderley",
+        "partido": "MDB",
+        "pct": 6.0
+      },
+      {
+        "candidato": "Alexandre Fleming",
+        "partido": "UP",
+        "pct": 1.0
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 5.0
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 6.0
+      }
+    ],
+    "observacao": "AL elege duas cadeiras em 2026; as materias publicaram um unico bloco de percentuais (soma 100 com brancos/nulos e indecisos), sem rotular 1o/2o voto — por isso o cenario esta registrado apenas como 'estimulada'. Ha uma manchete (Tribuna do Sertao) dizendo que Renan Calheiros lidera 'como 1o voto', o que sugere que o instituto divulgou tambem um recorte por voto que as fontes consultadas nao numeraram. Leva Real Time Big Data divulgada em 25/09/2026, campo 21-24/09, 1.600 entrevistas presenciais, 95% de confianca, margem de 2 p.p., registro TSE AL-06597/2026. Contratante nao declarado explicitamente pelas materias consultadas, por isso nulo. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-24-quaest-ro-senador-t1",
+    "uf": "RO",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "RO-08556/2026",
+    "contratante": "Rede Amazônica",
+    "dataInicio": "2026-09-20",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 804,
+    "margem": 3.0,
+    "cenario": "estimulada",
+    "fonte": {
+      "nome": "ROLNEWS",
+      "url": "https://www.rolnews.com.br/noticia/quaest-para-o-senado-em-rondonia-fernando-maximo-tem-18-silvia-cristina-16-mariana-carvalho-11"
+    },
+    "resultados": [
+      {
+        "candidato": "Dr. Fernando Máximo",
+        "partido": "PL",
+        "pct": 18.0
+      },
+      {
+        "candidato": "Sílvia Cristina",
+        "partido": "PP",
+        "pct": 16.0
+      },
+      {
+        "candidato": "Mariana Carvalho",
+        "partido": "Republicanos",
+        "pct": 11.0
+      },
+      {
+        "candidato": "Bruno Bolsonaro Sheid",
+        "partido": "PL",
+        "pct": 8.0
+      },
+      {
+        "candidato": "Acir Gurgacz",
+        "partido": "PDT",
+        "pct": 4.0
+      },
+      {
+        "candidato": "Luciana Oliveira",
+        "partido": "PT",
+        "pct": 3.0
+      },
+      {
+        "candidato": "Luis Fernando",
+        "partido": "PSD",
+        "pct": 1.0
+      },
+      {
+        "candidato": "Neidinha",
+        "partido": "PSB",
+        "pct": 1.0
+      },
+      {
+        "candidato": "Engenheiro Thulio",
+        "partido": "Missão",
+        "pct": 1.0
+      },
+      {
+        "candidato": "Aires Mota",
+        "partido": "PV",
+        "pct": 0.0
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 10.0
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 27.0
+      }
+    ],
+    "observacao": "RO elege duas cadeiras em 2026; o bloco divulgado soma 100 com brancos/nulos (10%) e indecisos (27%), compativel com um unico voto declarado. Dois candidatos do PL na lista, o que e possivel com duas vagas em disputa. A Quaest divulgou tambem o espontaneo (Maximo e Silvia Cristina 6% cada, Bruno Bolsonaro Scheid 4%, Mariana Carvalho 3%, Acir Gurgacz e Luciana Oliveira 1% cada), nao registrado aqui. Rodada Quaest em Rondonia divulgada em 24/09/2026, campo 20-23/09, 804 entrevistados de 16 anos ou mais, 95% de confianca, margem de 3 p.p., contratante Rede Amazonica (Radio TV do Amazonas). IMPORTANTE: o registro desta rodada e RO-08556/2026 (com registro nacional associado BR-06511/2026), e NAO RO-05711/2026 — este ultimo pertence a rodada Quaest de agosto/2026 em RO, que ja consta na base. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-25-datafolha-ce-senador-t1",
+    "uf": "CE",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-25",
+    "amostra": 1204,
+    "margem": 3.0,
+    "cenario": "estimulada",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/eleicoes/2026/09/25/datafolha-senado-ce-tem-cid-23-wagner-20-e-luizianne-19.html"
+    },
+    "resultados": [
+      {
+        "candidato": "Cid Gomes",
+        "partido": "PSB",
+        "pct": 23.0
+      },
+      {
+        "candidato": "Capitão Wagner",
+        "partido": "União Brasil",
+        "pct": 20.0
+      },
+      {
+        "candidato": "Luizianne Lins",
+        "partido": "Rede",
+        "pct": 19.0
+      },
+      {
+        "candidato": "Alcides Fernandes",
+        "partido": "PL",
+        "pct": 9.0
+      }
+    ],
+    "observacao": "CE elege duas cadeiras em 2026; Cid, Wagner e Luizianne em empate tecnico dentro dos 3 p.p. As materias detalharam apenas os quatro primeiros no estimulado e nao publicaram brancos/nulos nem indecisos desse cenario, por isso a soma fica abaixo de 100. No espontaneo: Cid 11%, Luizianne 10%, Wagner 6%, Alcides 4%, candidatos do PT 1%, outros 4%, brancos/nulos/nenhum 7% e 57% nao sabem. Datafolha no Ceara divulgada em 25/09/2026, campo 22-24/09, 1.204 eleitores em 59 municipios, 95% de confianca, margem de 3 p.p. Registro TSE nao informado pelas materias consultadas, por isso nulo. Contratante nao declarado explicitamente (a divulgacao foi feita pelo grupo O POVO, no programa Jogo Politico BR), por isso nulo — nao inferimos. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-25-quaest-mt-senador-t1",
+    "uf": "MT",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "MT-08098/2026",
+    "contratante": "Rádio e Televisão Matogrossense Ltda (TV Centro América)",
+    "dataInicio": "2026-09-21",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-25",
+    "amostra": 804,
+    "margem": 3.0,
+    "cenario": "estimulada",
+    "fonte": {
+      "nome": "Rdnews",
+      "url": "https://www.rdnews.com.br/eleicoes-2026/mauro-e-janaina-seguem-favoritos-para-o-senado-aponta-pesquisa-da-quaest/249675"
+    },
+    "resultados": [
+      {
+        "candidato": "Mauro Mendes",
+        "partido": "União Brasil",
+        "pct": 27.0
+      },
+      {
+        "candidato": "Janaína Riva",
+        "partido": "MDB",
+        "pct": 19.0
+      },
+      {
+        "candidato": "José Medeiros",
+        "partido": "PL",
+        "pct": 9.0
+      },
+      {
+        "candidato": "Pedro Taques",
+        "partido": "PSB",
+        "pct": 9.0
+      },
+      {
+        "candidato": "Carlos Fávaro",
+        "partido": "PSD",
+        "pct": 8.0
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 5.0
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 18.0
+      }
+    ],
+    "observacao": "MT elege duas cadeiras em 2026. Os cinco nomes detalhados mais brancos/nulos (5%) e indecisos (18%) somam 95%: os cerca de 5% restantes correspondem a candidatos menores que as materias consultadas nao numeraram (o estado tem 10 candidatos ao Senado). Rodada Quaest em Mato Grosso divulgada em 25/09/2026, campo 21-24/09, 804 entrevistados, 95% de confianca, margem de 3 p.p., registro TSE MT-08098/2026, contratante Radio e Televisao Matogrossense Ltda (TV Centro America). WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-25-neokemp-rs-senador-t1",
+    "uf": "RS",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Neokemp",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-25",
+    "amostra": 1008,
+    "margem": null,
+    "cenario": "estimulada, soma de 1a e 2a escolha (duas vagas)",
+    "fonte": {
+      "nome": "OCP News",
+      "url": "https://ocp.news/politica/pesquisa-neokemp-ocp-news-confira-os-numeros-da-disputa-ao-senado-pelo-rs"
+    },
+    "resultados": [
+      {
+        "candidato": "Manuela d'Ávila",
+        "partido": "PSOL",
+        "pct": 32.2
+      },
+      {
+        "candidato": "Marcel Van Hattem",
+        "partido": "Novo",
+        "pct": 29.5
+      },
+      {
+        "candidato": "Pimenta",
+        "partido": "PT",
+        "pct": 25.4
+      },
+      {
+        "candidato": "Sanderson",
+        "partido": "PL",
+        "pct": 21.2
+      },
+      {
+        "candidato": "Rigotto",
+        "partido": "MDB",
+        "pct": 20.6
+      }
+    ],
+    "observacao": "RS elege duas cadeiras em 2026 e os percentuais publicados correspondem a soma de 1a e 2a escolha do eleitor, por isso somam mais de 100. Brancos/nulos e indecisos nao publicados. Rodada Neokemp no Rio Grande do Sul divulgada em 25/09/2026, campo 23-24/09, 1.008 entrevistados. Margem de erro e nivel de confianca nao informados pelas materias consultadas, por isso margem nula. Registro TSE nao informado, por isso nulo. Contratante nulo: a pesquisa circula como 'Neokemp/OCP News', mas nenhuma materia declarou explicitamente o contratante — nao inferimos. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  }
+]

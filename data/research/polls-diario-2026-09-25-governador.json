@@ -1,0 +1,449 @@
+[
+  {
+    "id": "2026-09-25-real-time-big-data-es-governador-t1",
+    "uf": "ES",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "ES-00877/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-21",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-25",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 1o turno",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/real-time-big-data-ferraco-tem-44-e-pazolini-35-no-1o-turno-no-espirito-santo/"
+    },
+    "resultados": [
+      {
+        "candidato": "Ricardo Ferraco",
+        "partido": "MDB",
+        "pct": 44.0
+      },
+      {
+        "candidato": "Lorenzo Pazolini",
+        "partido": "Republicanos",
+        "pct": 35.0
+      },
+      {
+        "candidato": "Helder Salomao",
+        "partido": "PT",
+        "pct": 14.0
+      },
+      {
+        "candidato": "Breno Barcelos",
+        "partido": "Missão",
+        "pct": 1.0
+      },
+      {
+        "candidato": "Rafael Demuner",
+        "partido": "UP",
+        "pct": 0.0
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 4.0
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 2.0
+      }
+    ],
+    "observacao": "Leva Real Time Big Data divulgada em 25/09/2026, campo 21-24/09, 1.600 entrevistas, 95% de confianca, margem de 2 p.p., registro TSE ES-00877/2026. Contratante nulo porque as materias divergem: parte da cobertura atribui a Record TV e a CartaCapital afirma que a pesquisa foi feita 'com recursos proprios' do instituto — nao inferimos. ATENCAO: uma primeira leitura de agregadores trouxe 47%/37% para Ferraco/Pazolini; a cobertura detalhada (Exame, Poder360, CNN, ES Fala) confirma 44%/35% no estimulado de 1o turno — os 47/37 nao se sustentaram. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-25-real-time-big-data-es-governador-t2",
+    "uf": "ES",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "ES-00877/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-21",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-25",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "2o turno, Ferraco x Pazolini",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/real-time-big-data-ferraco-tem-44-e-pazolini-35-no-1o-turno-no-espirito-santo/"
+    },
+    "resultados": [
+      {
+        "candidato": "Ricardo Ferraco",
+        "partido": "MDB",
+        "pct": 48.0
+      },
+      {
+        "candidato": "Lorenzo Pazolini",
+        "partido": "Republicanos",
+        "pct": 40.0
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 7.0
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 5.0
+      }
+    ],
+    "observacao": "O instituto testou tres cenarios de 2o turno; as materias detalharam apenas este (Ferraco x Pazolini, o mais competitivo). Mesma ficha tecnica do 1o turno. Leva Real Time Big Data divulgada em 25/09/2026, campo 21-24/09, 1.600 entrevistas, 95% de confianca, margem de 2 p.p., registro TSE ES-00877/2026. Contratante nulo porque as materias divergem: parte da cobertura atribui a Record TV e a CartaCapital afirma que a pesquisa foi feita 'com recursos proprios' do instituto — nao inferimos. ATENCAO: uma primeira leitura de agregadores trouxe 47%/37% para Ferraco/Pazolini; a cobertura detalhada (Exame, Poder360, CNN, ES Fala) confirma 44%/35% no estimulado de 1o turno — os 47/37 nao se sustentaram. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-25-real-time-big-data-to-governador-t1",
+    "uf": "TO",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "TO-04340/2026",
+    "contratante": "Rádio e Televisão Record S/A",
+    "dataInicio": "2026-09-21",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-25",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 1o turno",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/2026/09/25/no-tocantins-dorinha-tem-40-e-vicentinho-junior-33-aponta-real-time-big-data.html"
+    },
+    "resultados": [
+      {
+        "candidato": "Professora Dorinha",
+        "partido": "União Brasil",
+        "pct": 40.0
+      },
+      {
+        "candidato": "Vicentinho Júnior",
+        "partido": "PSDB",
+        "pct": 33.0
+      }
+    ],
+    "observacao": "ATENCAO: 44%/37% que circulam para Dorinha/Vicentinho sao VOTOS VALIDOS; no estimulado bruto de 1o turno os numeros sao 40%/33% (O Povo, Diario do Grande ABC, Jornal Opcao). Demais candidatos, brancos/nulos e indecisos nao foram detalhados pelas materias, por isso a soma fica abaixo de 100. Leva Real Time Big Data divulgada em 25/09/2026, campo 21-24/09, 1.600 entrevistas, 95% de confianca, margem de 2 p.p., registro TSE TO-04340/2026, contratante Radio e Televisao Record S/A. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-25-real-time-big-data-to-governador-t2",
+    "uf": "TO",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "TO-04340/2026",
+    "contratante": "Rádio e Televisão Record S/A",
+    "dataInicio": "2026-09-21",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-25",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "2o turno, Dorinha x Vicentinho Junior",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/dorinha-tem-45-contra-42-de-vicentinho-no-2o-turno-no-to-diz-pesquisa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Professora Dorinha",
+        "partido": "União Brasil",
+        "pct": 45.0
+      },
+      {
+        "candidato": "Vicentinho Júnior",
+        "partido": "PSDB",
+        "pct": 42.0
+      }
+    ],
+    "observacao": "Circula tambem uma manchete da CNN com 'Vicentinho 41% e Dorinha 40% no 2o turno': ela corresponde a rodada RTBD anterior no TO (campo 10-14/09, divulgada em 17/09, ja na base), nao a esta. O numero desta rodada, datado de 25/09/2026, e 45% x 42% (Poder360). Brancos/nulos e indecisos do 2o turno nao detalhados. Leva Real Time Big Data divulgada em 25/09/2026, campo 21-24/09, 1.600 entrevistas, 95% de confianca, margem de 2 p.p., registro TSE TO-04340/2026, contratante Radio e Televisao Record S/A. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-25-real-time-big-data-al-governador-t1",
+    "uf": "AL",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "AL-06597/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-21",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-25",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 1o turno",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/real-time-big-data-renan-filho-tem-47-e-jhc-44-no-1o-turno-em-alagoas/"
+    },
+    "resultados": [
+      {
+        "candidato": "Renan Filho",
+        "partido": "MDB",
+        "pct": 47.0
+      },
+      {
+        "candidato": "JHC",
+        "partido": "PSDB",
+        "pct": 44.0
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 5.0
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 4.0
+      }
+    ],
+    "observacao": "ATENCAO: 52%/48% que aparecem em alguns agregadores sao VOTOS VALIDOS (Renan Filho passa de 51% dos validos); o estimulado bruto e 47%/44%, com 5% de brancos/nulos e 4% de indecisos, somando 100 (Exame, TNH1, Tribuna do Agreste). Leva Real Time Big Data divulgada em 25/09/2026, campo 21-24/09, 1.600 entrevistas presenciais, 95% de confianca, margem de 2 p.p., registro TSE AL-06597/2026. Contratante nao declarado explicitamente pelas materias consultadas, por isso nulo. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-25-real-time-big-data-al-governador-t2",
+    "uf": "AL",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "AL-06597/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-21",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-25",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "2o turno, Renan Filho x JHC",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/real-time-big-data-renan-filho-tem-47-e-jhc-45-em-2o-turno-em-alagoas"
+    },
+    "resultados": [
+      {
+        "candidato": "Renan Filho",
+        "partido": "MDB",
+        "pct": 47.0
+      },
+      {
+        "candidato": "JHC",
+        "partido": "PSDB",
+        "pct": 45.0
+      }
+    ],
+    "observacao": "Brancos/nulos e indecisos do cenario de 2o turno nao foram detalhados pelas materias. Leva Real Time Big Data divulgada em 25/09/2026, campo 21-24/09, 1.600 entrevistas presenciais, 95% de confianca, margem de 2 p.p., registro TSE AL-06597/2026. Contratante nao declarado explicitamente pelas materias consultadas, por isso nulo. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-24-quaest-ro-governador-t1",
+    "uf": "RO",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "RO-08556/2026",
+    "contratante": "Rede Amazônica",
+    "dataInicio": "2026-09-20",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 804,
+    "margem": 3.0,
+    "cenario": "estimulada, 1o turno",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/quaest-marcos-rogerio-tem-37-e-adailton-furia-21-no-1o-turno-em-ro/"
+    },
+    "resultados": [
+      {
+        "candidato": "Marcos Rogério",
+        "partido": "PL",
+        "pct": 37.0
+      },
+      {
+        "candidato": "Adailton Fúria",
+        "partido": "PSD",
+        "pct": 21.0
+      },
+      {
+        "candidato": "Hildon Chaves",
+        "partido": "União Brasil",
+        "pct": 9.0
+      },
+      {
+        "candidato": "Expedito Netto",
+        "partido": null,
+        "pct": 6.0
+      },
+      {
+        "candidato": "Samuel Costa",
+        "partido": "Rede",
+        "pct": 1.0
+      },
+      {
+        "candidato": "Pedro Abib",
+        "partido": "MDB",
+        "pct": 1.0
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 6.0
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 19.0
+      }
+    ],
+    "observacao": "Partido de Expedito Netto deixado nulo: apenas uma das fontes consultadas o atribuiu ao PT, o que nao foi confirmado pelas demais materias — nao inferimos. Em votos validos Marcos Rogerio chega a 49,3% (Rondoniaovivo). Rodada Quaest em Rondonia divulgada em 24/09/2026, campo 20-23/09, 804 entrevistados de 16 anos ou mais, 95% de confianca, margem de 3 p.p., contratante Rede Amazonica (Radio TV do Amazonas). IMPORTANTE: o registro desta rodada e RO-08556/2026 (com registro nacional associado BR-06511/2026), e NAO RO-05711/2026 — este ultimo pertence a rodada Quaest de agosto/2026 em RO, que ja consta na base. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-24-quaest-ro-governador-t2",
+    "uf": "RO",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "RO-08556/2026",
+    "contratante": "Rede Amazônica",
+    "dataInicio": "2026-09-20",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 804,
+    "margem": 3.0,
+    "cenario": "2o turno, Marcos Rogerio x Adailton Furia",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-rondonia-setembro-2026/"
+    },
+    "resultados": [
+      {
+        "candidato": "Marcos Rogério",
+        "partido": "PL",
+        "pct": 45.0
+      },
+      {
+        "candidato": "Adailton Fúria",
+        "partido": "PSD",
+        "pct": 27.0
+      }
+    ],
+    "observacao": "A Quaest testou outros dois cenarios de 2o turno nesta rodada: Marcos Rogerio 50% x Hildon Chaves 17% e Marcos Rogerio 53% x Expedito Netto 14%. Registramos aqui apenas o confronto com o 2o colocado do 1o turno; brancos/nulos e indecisos dos cenarios de 2o turno nao foram detalhados. Rodada Quaest em Rondonia divulgada em 24/09/2026, campo 20-23/09, 804 entrevistados de 16 anos ou mais, 95% de confianca, margem de 3 p.p., contratante Rede Amazonica (Radio TV do Amazonas). IMPORTANTE: o registro desta rodada e RO-08556/2026 (com registro nacional associado BR-06511/2026), e NAO RO-05711/2026 — este ultimo pertence a rodada Quaest de agosto/2026 em RO, que ja consta na base. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-25-datafolha-ce-governador-t1",
+    "uf": "CE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-25",
+    "amostra": 1204,
+    "margem": 3.0,
+    "cenario": "estimulada, 1o turno",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/eleicoes/2026/09/25/pesquisa-datafolha-ceara-tem-ciro-e-elmano-em-empate-tecnico.html"
+    },
+    "resultados": [
+      {
+        "candidato": "Ciro Gomes",
+        "partido": "PSDB",
+        "pct": 44.0
+      },
+      {
+        "candidato": "Elmano de Freitas",
+        "partido": "PT",
+        "pct": 43.0
+      }
+    ],
+    "observacao": "Primeiro empate tecnico da serie Datafolha no CE: Ciro oscilou -3 e Elmano +3 em relacao a rodada de 18/09. Em votos validos, Ciro 49% e Elmano 48%. Demais candidatos, brancos/nulos e indecisos nao foram detalhados pelas materias consultadas, por isso a soma fica abaixo de 100. Datafolha no Ceara divulgada em 25/09/2026, campo 22-24/09, 1.204 eleitores em 59 municipios, 95% de confianca, margem de 3 p.p. Registro TSE nao informado pelas materias consultadas, por isso nulo. Contratante nao declarado explicitamente (a divulgacao foi feita pelo grupo O POVO, no programa Jogo Politico BR), por isso nulo — nao inferimos. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-25-quaest-mt-governador-t1",
+    "uf": "MT",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "MT-08098/2026",
+    "contratante": "Rádio e Televisão Matogrossense Ltda (TV Centro América)",
+    "dataInicio": "2026-09-21",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-25",
+    "amostra": 804,
+    "margem": 3.0,
+    "cenario": "estimulada, 1o turno",
+    "fonte": {
+      "nome": "Rdnews",
+      "url": "https://www.rdnews.com.br/eleicoes-2026/com-29-pivetta-passa-wellington-que-tem-27-os-2-seguem-empatados/249673"
+    },
+    "resultados": [
+      {
+        "candidato": "Otaviano Pivetta",
+        "partido": "Republicanos",
+        "pct": 29.0
+      },
+      {
+        "candidato": "Wellington Fagundes",
+        "partido": "PL",
+        "pct": 27.0
+      },
+      {
+        "candidato": "Doutora Natasha",
+        "partido": "PSD",
+        "pct": 11.0
+      },
+      {
+        "candidato": "Sargento Laudicério",
+        "partido": "Agir",
+        "pct": 2.0
+      },
+      {
+        "candidato": "Maurício Coelho",
+        "partido": "Mobiliza",
+        "pct": 2.0
+      },
+      {
+        "candidato": "Rafaell Milas",
+        "partido": "Missão",
+        "pct": 1.0
+      }
+    ],
+    "observacao": "Pivetta subiu 6 pontos e passou Wellington, mas os dois seguem em empate tecnico. Brancos/nulos e indecisos nao foram publicados pelas materias consultadas, por isso a soma fica abaixo de 100. NAO registramos cenario de 2o turno: circula uma materia ('Quaest: Wellington vence em todos cenarios de 2o turno') que contradiz a lideranca de Pivetta neste 1o turno e aparenta ser de rodada anterior — sem confirmacao, nao incluimos. O TRE-MT negou pedido para suspender esta pesquisa. Rodada Quaest em Mato Grosso divulgada em 25/09/2026, campo 21-24/09, 804 entrevistados, 95% de confianca, margem de 3 p.p., registro TSE MT-08098/2026, contratante Radio e Televisao Matogrossense Ltda (TV Centro America). WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-25-neokemp-rs-governador-t1",
+    "uf": "RS",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Neokemp",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-25",
+    "amostra": 1008,
+    "margem": null,
+    "cenario": "estimulada, 1o turno",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/neokemp-governador-senador-rio-grande-do-sul-setembro-2026/"
+    },
+    "resultados": [
+      {
+        "candidato": "Zucco",
+        "partido": "PL",
+        "pct": 44.9
+      },
+      {
+        "candidato": "Juliana Brizola",
+        "partido": "PDT",
+        "pct": 28.8
+      }
+    ],
+    "observacao": "Demais candidatos, brancos/nulos e indecisos nao detalhados pelas materias consultadas, por isso a soma fica abaixo de 100. NAO confundir com outras rodadas do RS que circularam na mesma semana (ha materias com 'Zucco 36,4%' e com 'Zucco e Brizola empatados', de outros institutos/datas). Rodada Neokemp no Rio Grande do Sul divulgada em 25/09/2026, campo 23-24/09, 1.008 entrevistados. Margem de erro e nivel de confianca nao informados pelas materias consultadas, por isso margem nula. Registro TSE nao informado, por isso nulo. Contratante nulo: a pesquisa circula como 'Neokemp/OCP News', mas nenhuma materia declarou explicitamente o contratante — nao inferimos. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  }
+]

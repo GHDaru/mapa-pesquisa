@@ -532,3 +532,59 @@ na origem dos dados.
 ingerir nenhuma rodada nova do instituto.** A decisão de hoje é sobre o que
 já está na base, não sobre o que pode entrar. Rodadas novas do Veritá
 seguem sendo relatadas e não incluídas, até decisão em contrário.
+
+## Anotadas em 2026-09-25
+
+24 pesquisas novas, base de 473 para 497.
+
+### Tocantins fechado
+
+Era a penúltima lacuna de 2º turno por estado. O Real Time Big Data
+divulgou hoje em ES, TO e AL, com campo 21–24/09 e 1.600 entrevistas cada.
+Em TO, Lula e Flávio empataram em 40 no 1º turno e Flávio fez 48 x 40 no
+2º. Conferido em busca independente, inclusive a divisão de brancos, nulos
+e indecisos.
+
+**Armadilha evitada em TO**: as matérias trazem dois rodapés na mesma
+página. O par 7 e 5 é do 2º turno, onde fecha 100% exato; atribuí-lo ao 1º
+turno daria 105%. O par correto do 1º turno é 3 e 3.
+
+**Em ES o agente escolheu entre fontes**: o Metrópoles publicou 48 x 42 no
+2º turno, mas 48 x 41 é o único valor que fecha 100% com os 8 de brancos e
+nulos e os 3 de indecisos, e tem duas fontes (Poder360 e CNN). Adotado
+48 x 41.
+
+### Rondônia é a última lacuna
+
+Único estado cuja pesquisa de 2º turno ainda é de julho. Não há rodada
+nova à vista. A Quaest divulgou o estado em 24/09, mas só governador e
+Senado (entrou hoje). A única rodada presidencial disponível seria do
+Veritá, que está suspenso justamente em RO, com multa diária de R$ 5 mil,
+teto de R$ 100 mil e condenação de R$ 53 mil.
+
+### Mistério do PoderData resolvido
+
+Os 43 x 42 que apareciam e não fechavam são **votos válidos**, não totais.
+O cartão de válidos fecha 100% exato (43, 42, Cury 6, Renan 3, Caiado 2, e
+quatro nomes com 1 cada). Em totais as fontes dão Lula 41 x Flávio 39, sem
+a quebra de brancos e indecisos. O 2º turno segue com três pares
+diferentes e dois registros no TSE, então continua fora.
+
+### Duas nacionais de 24/09 ausentes da base
+
+- **Real Time Big Data nacional**: 2.000 entrevistas, campo 19–23/09,
+  Lula 41 x Flávio 37 no 1º turno; 2º turno Flávio 45 x Lula 44.
+  BR-04202/2026.
+- **Futura Inteligência nacional**: 2.000 entrevistas, campo 19–23/09,
+  Flávio 40,4 x Lula 38,4 no 1º turno; 2º turno Flávio 49,4 x Lula 43,7.
+  BR-05268/2026.
+
+Ambas valem uma rodada de recuperação.
+
+### Ainda sem cartão completo
+
+Os cenários secundários de 2º turno do Datafolha de 24/09 (contra Caiado,
+Cury, Zema e Renan Santos) seguem sem fonte consistente. Confirmado que a
+rodada testou cinco cenários, mas nenhuma matéria deu o cartão inteiro, e
+surgiu uma contradição nova no 1º turno (uma fonte dá Cury com 6 e o 2º
+turno em 46 x 45, contra os 5 e 47 x 45 já confirmados).
