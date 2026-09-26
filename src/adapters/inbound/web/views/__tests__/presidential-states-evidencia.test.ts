@@ -557,3 +557,97 @@ describe('dados reais: a série sai da mesma base que o cartão declara', () => 
     }
   });
 });
+
+/**
+ * A linha de base em 50% custa resolução vertical, e antes ela era cobrada de
+ * todo cartão, em qualquer turno.
+ *
+ * Medido sobre as 64 unidades de altura útil do mini-gráfico: no 1º turno o dado
+ * ocupava em média 66,1% da altura, e 12 dos 22 cartões tinham o dado INTEIRO
+ * abaixo de 50 — o Amapá, com dado entre 32,0 e 36,0 e domínio forçado a 30–52,
+ * ficava com 18,2% (11,6 unidades de 64) para representar 2,6 pontos de vantagem,
+ * com 14 pontos percentuais de domínio vazio em cima para caber uma linha que o
+ * dado nunca toca. No 2º turno a linha é o limiar de vitória e paga o que custa
+ * (78,4% de média), e é isso que o critério tem de preservar.
+ */
+describe('dados reais: a linha de 50% é condicional ao dado do cartão', () => {
+  const ALTURA_UTIL = 64;
+
+  async function cartoes(turno: 1 | 2) {
+    const { carregarDados } = await import('../../../../outbound/json/carregar-dados.js');
+    const { criarCasosDeUso } = await import('../../../../../application/use-cases/index.js');
+    const { baselineDeCinquenta, calcularDominioY, escalaY } = await import(
+      '../presidential-states-layout.js'
+    );
+    const { valoresPlotadosUf } = await import('../presidential-states-view.js');
+    const casos = criarCasosDeUso(carregarDados(), { hoje: () => new Date('2026-09-26T12:00:00Z') });
+    const dados = casos.getPresidentialByState(turno);
+    return {
+      dados,
+      cartoes: dados.ufs
+        .filter((u) => !u.semDados && u.agregado?.lider && u.serie)
+        .map((u) => {
+          const valores = valoresPlotadosUf(u);
+          const datas = new Set(
+            u.serie!.pontos
+              .filter((p) => new Set(u.agregado!.pesquisasUsadas.map((x) => x.id)).has(p.pollId))
+              .map((p) => p.data),
+          );
+          const comLinha = baselineDeCinquenta(valores);
+          const fracao = (dominio: { min: number; max: number }): number => {
+            const ys = valores.map((v) => escalaY(v, dominio, ALTURA_UTIL));
+            return (Math.max(...ys) - Math.min(...ys)) / ALTURA_UTIL;
+          };
+          return {
+            uf: u.uf,
+            serie: datas.size > 1,
+            comLinha,
+            fracaoAntes: fracao(calcularDominioY(valores, undefined, true)),
+            fracaoDepois: fracao(calcularDominioY(valores, undefined, comLinha)),
+          };
+        })
+        .filter((c) => c.serie),
+    };
+  }
+
+  it('2º turno: nenhum cartão perde a linha — ali ela é o limiar de vitória', async () => {
+    const { cartoes: cs } = await cartoes(2);
+    expect(cs).toHaveLength(11);
+    expect(cs.filter((c) => c.comLinha)).toHaveLength(11);
+    // E nada mudou de resolução no 2º turno.
+    for (const c of cs) expect(c.fracaoDepois).toBeCloseTo(c.fracaoAntes, 10);
+  });
+
+  it('1º turno: 12 dos 22 cartões mantêm a linha; os 10 que a perdem não chegam perto de 50', async () => {
+    const { cartoes: cs } = await cartoes(1);
+    expect(cs).toHaveLength(22);
+    expect(cs.filter((c) => c.comLinha)).toHaveLength(12);
+    expect(cs.filter((c) => !c.comLinha).map((c) => c.uf)).toEqual([
+      'AP', 'AM', 'DF', 'ES', 'GO', 'MG', 'PA', 'RJ', 'SP', 'TO',
+    ]);
+  });
+
+  it('nenhum cartão perde resolução, e o pior do 1º turno sai de 18,2% para 50,0% da altura', async () => {
+    for (const turno of [1, 2] as const) {
+      const { cartoes: cs } = await cartoes(turno);
+      for (const c of cs) expect(c.fracaoDepois).toBeGreaterThanOrEqual(c.fracaoAntes - 1e-9);
+    }
+    const t1 = (await cartoes(1)).cartoes;
+    const ap = t1.find((c) => c.uf === 'AP')!;
+    expect(ap.fracaoAntes * 100).toBeCloseTo(18.2, 1);
+    expect(ap.fracaoDepois * 100).toBeCloseTo(50.0, 1);
+    const media = (xs: number[]) => xs.reduce((a, b) => a + b, 0) / xs.length;
+    expect(media(t1.map((c) => c.fracaoAntes)) * 100).toBeCloseTo(66.1, 1);
+    expect(media(t1.map((c) => c.fracaoDepois)) * 100).toBeCloseTo(79.6, 1);
+  });
+
+  it('a nota da seção afirma a contagem que o desenho usa', async () => {
+    const { linhasDeCinquenta } = await import('../presidential-states-view.js');
+    for (const turno of [1, 2] as const) {
+      const { dados, cartoes: cs } = await cartoes(turno);
+      const l = linhasDeCinquenta(dados);
+      expect(l.cartoes).toBe(cs.length);
+      expect(l.comLinha).toBe(cs.filter((c) => c.comLinha).length);
+    }
+  });
+});

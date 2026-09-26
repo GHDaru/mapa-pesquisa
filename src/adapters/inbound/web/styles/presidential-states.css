@@ -82,7 +82,7 @@
 }
 .ps-turno-bar__nota {
   font: var(--text-caption);
-  color: var(--color-text-tertiary);
+  color: var(--ps-text-tertiary);
   min-width: 0;
 }
 
@@ -219,14 +219,40 @@
   fill: var(--color-text);
   pointer-events: none;
 }
+/* Sigla do estado. O `font-size` é dimensionado em PIXEL RENDERIZADO, não em
+   unidade de `viewBox`: `--ps-map-escala` é publicada no próprio `<svg>` por
+   `observarEscalaDoMapa` (presidential-states-view.ts) como px de tela por
+   unidade, e a divisão devolve o tamanho de usuário que sai do outro lado da
+   escala no tamanho pedido.
+
+   Enquanto era `font-size: 9px` fixo, o tamanho na tela era o que a largura da
+   janela decidisse: medido, 13,18px a 1280 (o mapa ocupa 898px para um viewBox de
+   613 unidades) e 4,90px a 400 (334px, escala 0,545) — com o contorno de 2
+   unidades comendo o miolo, "MT*" virava uma mancha de 11,8 × 8,0px sem uma letra
+   reconhecível. A escala não é monotônica na largura da janela (898px a 1280,
+   642px a 1024, 670px a 768), então media query não daria conta: é preciso medir.
+   O contorno também passa a ser proporcional (`em`), para o halo nunca crescer
+   sobre o glifo. O fallback (escala 1) é o que vale se o observador não rodar.
+
+   Por que `max(9px, ...)` e não só a divisão: a sigla nunca deve ficar MENOR em
+   unidades de usuário do que os 9 de antes, senão um mapa largo (escala 1,46 a
+   1280px) perderia tamanho de tela que já tinha. Com o piso, a 1280px a sigla
+   continua saindo exatamente como saía (9 unidades, 13,2px) e é só no mapa
+   pequeno que ela cresce em unidades para render os 10px pedidos — medido, 10,0px
+   a 400px contra 4,90px antes. Crescer em unidades aproxima siglas vizinhas: nas
+   larguras medidas sobra no máximo UM par de caixas se tocando (Maranhão e Piauí
+   a 400px, 2,1 × 6,4px; Alagoas e Sergipe a 640px, 7,5 × 2,7px), contra 27 siglas
+   ilegíveis antes. O
+   Brasil desenhado em 334px não cabe 27 siglas legíveis sem nenhum encosto, e
+   ilegível não é a saída. */
 .ps-uf-label {
   fill: #ffffff;
   stroke: #000000;
-  stroke-width: 2px;
+  stroke-width: 0.15em;
   paint-order: stroke fill;
   font-family: var(--font-sans);
   font-weight: 600;
-  font-size: 9px;
+  font-size: max(9px, calc(var(--ps-map-rotulo-px, 10px) / var(--ps-map-escala, 1)));
   text-anchor: middle;
   dominant-baseline: middle;
   pointer-events: none;
@@ -241,9 +267,9 @@
    que as letras e subido meio ponto, para ler como marca de nota de rodapé e não
    como terceira letra da sigla. */
 .ps-uf-label__marca {
-  font-size: 12px;
+  /* Relativo à sigla, para acompanhar a escala do mapa (ver `.ps-uf-label`). */
+  font-size: 1.3em;
   /* `dy` é atributo, não propriedade CSS — vai no elemento. */
-  stroke-width: 1.7px;
 }
 /* Estado minúsculo cuja sigla não cabe dentro do polígono (só o Distrito
    Federal, 22,3 × 12,9 px a 1280): a sigla sai para fora e esta linha liga o
@@ -258,25 +284,15 @@
   pointer-events: none;
 }
 /* Abaixo de 640px a sigla de estado estreito some para o mapa não virar uma
-   mancha de texto. O asterisco de pesquisa única NÃO pode sumir com ela: a
-   legenda afirma uma contagem de estados marcados, lida do dado e não do
-   viewport, e a 400px do 2º turno ela dizia "16 de 27 estados" enquanto o mapa
-   desenhava 12 — RJ, RN, SC e SE perdiam a sigla e, como o asterisco era um
-   `<tspan>` dela, perdiam a marca. Agora o mapa emite, só para esses estados,
-   um asterisco SOLTO na posição do rótulo, e as duas peças são exclusivas pela
-   mesma largura: a sigla-com-asterisco acima de 640px, o asterisco sozinho
-   abaixo. A contagem passa a valer nas duas larguras. */
+   mancha de texto — mas o estado MARCADO com asterisco nunca recebe esta classe
+   (ver `siglaSomeEstreito` em presidential-states-view.ts). A marca tem de
+   identificar um estado: a versão anterior desenhava, no lugar da sigla, um
+   asterisco SOLTO, e a 400px do 2º turno os 4 de RJ, RN, SC e SE eram glifos de
+   6,5px que diziam "algum polígono aqui tem uma pesquisa só" sem dizer qual —
+   o mesmo defeito do tracejado aberto do Piauí. A contagem da legenda continua
+   valendo nas duas larguras, agora com o nome do estado ao lado da marca. */
 @media (max-width: 639px) {
   .ps-uf-label--pequena {
-    display: none;
-  }
-}
-.ps-uf-marca-solta {
-  font-size: 12px;
-  stroke-width: 1.7px;
-}
-@media (min-width: 640px) {
-  .ps-uf-marca-solta {
     display: none;
   }
 }
@@ -324,7 +340,7 @@
   font: var(--text-caption);
   text-transform: uppercase;
   letter-spacing: var(--tracking-eyebrow);
-  color: var(--color-text-tertiary);
+  color: var(--ps-text-tertiary);
 }
 .ps-tooltip__aviso {
   font: var(--text-caption);
@@ -387,13 +403,10 @@
    desenha, na mesma classe tipográfica, só reduzida para caber nos 28px do chip
    (o chip é 19 unidades ampliadas 1,47×, então 6,5px viram ~9,6px na tela — o
    tamanho da sigla no mapa a 1280px). */
+/* O chip vive num `<svg>` próprio, sem `--ps-map-escala`: aqui o tamanho é fixo
+   mesmo, calibrado para o azulejo de 28px. */
 .ps-legend-sigla {
   font-size: 6.5px;
-  stroke-width: 1.5px;
-}
-.ps-legend-sigla .ps-uf-label__marca {
-  font-size: 8.5px;
-  stroke-width: 1.2px;
 }
 .ps-legend-swatch--fora-janela {
   border: 1.5px dashed var(--color-text);
@@ -416,7 +429,43 @@
 .ps-legend-nota {
   margin: 0;
   font: var(--text-caption);
-  color: var(--color-text-tertiary);
+  color: var(--ps-text-tertiary);
+}
+
+/* ============ Cinza terciário de TEXTO desta tela ============
+
+   `--color-text-tertiary` (tokens.css) não passa a AA como cor de texto: no tema
+   claro é #8a8f98, que dá 3,00:1 sobre o cartão (--color-surface-1, #f5f6f7),
+   3,25:1 sobre o fundo da página e 2,65:1 sobre o tooltip (--color-surface-3);
+   no escuro é #62666d, que dá 3,30:1 sobre o cartão. A AA pede 4,5:1 para texto
+   abaixo de 18,66px, e é exatamente aí que este cinza estava sendo usado nesta
+   tela: a nota da legenda (12px, 10 linhas a 400px, a peça que explica a rampa
+   inteira), a linha de procedência dos 27 cartões (`.ps-card__meta`, 12px) e o
+   rótulo do eixo do mini-gráfico.
+
+   O token global NÃO foi mexido porque ele também pinta GRÁFICO em outras telas —
+   o preenchimento de "sem dados" do mapa de governadores (map-view.ts), a hachura
+   de origem indefinida do hemiciclo, o traço de divisa do senado — e ali a cor
+   está calibrada contra outros fundos e contra rampas de luminância medida. Este é
+   um token local, só de texto, só desta tela.
+
+   Valores escolhidos pelo PIOR fundo em que este texto aparece aqui (tooltip, no
+   claro; superfícies 2 e 3 do painel, no escuro), não só pelo cartão:
+   claro 4,55:1 no pior caso e 5,16:1 sobre o cartão; escuro 4,56:1 e 4,99:1.
+   No tema claro o cinza resultante fica quase encostado em
+   `--color-text-subtle` (#62666d): o degrau de cor entre "apoio" e "apoio de
+   apoio" é o que a AA deixa num fundo tão claro, e a hierarquia dessas linhas
+   passa a ser carregada por tamanho e peso, não por mais um degrau de cinza. */
+:root {
+  --ps-text-tertiary: #7d838c;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    --ps-text-tertiary: #65686f;
+  }
+}
+:root[data-theme='light'] {
+  --ps-text-tertiary: #65686f;
 }
 
 /* ============ Rampa EQUILUMINANTE da vantagem do líder ============
@@ -665,7 +714,7 @@
   max-width: 100%;
 }
 .ps-card__separador {
-  color: var(--color-text-tertiary);
+  color: var(--ps-text-tertiary);
   flex-shrink: 0;
 }
 .ps-card__vantagem {
@@ -688,7 +737,7 @@
 .ps-card__meta {
   margin: 2px 0 var(--space-2);
   font: var(--text-caption);
-  color: var(--color-text-tertiary);
+  color: var(--ps-text-tertiary);
 }
 .ps-card__ressalva {
   font-style: italic;
@@ -777,7 +826,7 @@
   font-variant-numeric: tabular-nums;
 }
 .ps-mini-ponto__nota {
-  fill: var(--color-text-tertiary);
+  fill: var(--ps-text-tertiary);
   font: var(--text-caption);
   font-size: 9px;
 }
@@ -785,42 +834,74 @@
   stroke: var(--color-border-strong);
   stroke-width: 1;
 }
+/* Rótulo do único eixo do gráfico, na canaleta ESQUERDA (ver
+   `LARGURA_ROTULO_BASE`). Saía a 8 unidades na coluna dos rótulos de fim, à
+   direita, e era apagado por colisão em 11 dos 22 cartões do 1º turno e 5 dos 11
+   do 2º. Agora nunca colide — e o tamanho sobe de 8 para 9 unidades, porque a 8
+   ele renderizava a 8,2px a 1280 (a escala do mini-gráfico medida vai de 1,03 a
+   1,81). */
 .ps-mini-chart__baseline-label {
-  fill: var(--color-text-tertiary);
+  fill: var(--ps-text-tertiary);
   font: var(--text-eyebrow);
-  font-size: 8px;
+  font-size: 9px;
+  text-anchor: start;
 }
+/* A LINHA é interpretação (média ponderada suavizada), não evidência: sai mais
+   fina que o ponto de pesquisa. Ver `.ps-mini-chart__ponto`. */
 .ps-mini-chart__line {
   fill: none;
-  stroke-width: 2;
+  stroke-width: 1.5;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+/* O PONTO DE PESQUISA é o dado publicado e é o elemento mais forte do gráfico.
+   Era o mais fraco: a 35% de opacidade, o disco azul saía a #aac7e1 sobre o
+   cartão #f5f6f7 (contraste 1,62:1) e o vermelho a #e0b1b2 (1,74:1), contra os
+   3:1 que a WCAG 1.4.11 pede de objeto gráfico essencial — no tema escuro, 1,43:1
+   e 1,34:1. A linha suavizada, que é o MODELO, passava por cima a 4,82:1. Num
+   agregador cujo princípio é nunca inventar número, era a evidência que estava
+   apagada e a interpretação que estava firme.
+
+   Opaco, o ponto fica no contraste da própria cor do candidato (4,82:1 e 5,48:1
+   no claro; 3,65:1 e 3,21:1 no escuro) e o halo na cor do cartão separa discos
+   que se tocam — sem ele, dois pontos vizinhos viram uma mancha só (a menor
+   distância medida entre dois pontos do mesmo cartão é de 2,8 unidades, em Goiás).
+   O raio caiu de 6 para 5 pelo mesmo motivo (ver `RAIO_PONTO`).
+
+   O que nem o halo nem o raio resolvem: 5 pares de pontos do 1º turno (4 em
+   Tocantins, 1 no Espírito Santo) caem EXATAMENTE no mesmo x e y, porque as duas
+   pesquisas publicaram o mesmo número na mesma data. O disco de cima cobre o de
+   baixo. Separá-los exigiria deslocar um ponto para uma posição que a fonte não
+   publicou — o que esta base não faz em lugar nenhum. A 35% de opacidade o par
+   virava uma mancha de cor misturada, que também não se lia; a contagem de
+   pesquisas continua declarada na linha de procedência do cartão. */
 .ps-mini-chart__ponto {
-  opacity: 0.35;
-}
-/* Pesquisa cuja amostra não foi publicada: anel vazado, do mesmo raio dos
-   demais pontos. O canal de tamanho por amostra saiu (ver `RAIO_PONTO` em
-   presidential-states-layout.ts) porque assumia 1000 entrevistados onde a
-   fonte não publicou nada e variava só de 6,3 a 7,2px de raio, sem legenda
-   nenhuma. O anel precisa de mais opacidade que o disco para ter o mesmo peso
-   visual, já que só o contorno é pintado. */
-.ps-mini-chart__ponto--sem-amostra {
-  opacity: 0.6;
-  stroke-width: 1.6;
-}
-.ps-mini-chart__ponto-final {
   opacity: 1;
+}
+/* O halo é SÓ do disco. `stroke` aqui não pode valer para o anel de amostra não
+   publicada: o anel pinta o contorno na cor do candidato por ATRIBUTO, e
+   qualquer declaração de folha de estilo vence atributo de apresentação — com a
+   regra valendo para os dois, o anel saía contornado na cor do cartão, ou seja,
+   invisível (confirmado no cartão do Amapá, cujas duas pesquisas mais antigas não
+   publicam amostra). */
+.ps-mini-chart__ponto:not(.ps-mini-chart__ponto--sem-amostra) {
   stroke: var(--color-surface-1);
-  stroke-width: 2;
+  stroke-width: 1.4;
+}
+/* Pesquisa cuja amostra não foi publicada: anel vazado, do mesmo tamanho
+   aparente dos demais pontos. O canal de tamanho por amostra saiu (ver
+   `RAIO_PONTO` em presidential-states-layout.ts) porque assumia 1000
+   entrevistados onde a fonte não publicou nada e variava só de 6,3 a 7,2px de
+   raio, sem legenda nenhuma. O anel não leva halo: ele é vazado, então o vizinho
+   aparece por dentro em vez de ser coberto. */
+.ps-mini-chart__ponto--sem-amostra {
+  opacity: 1;
+  stroke-width: 1.8;
 }
 .ps-mini-chart__rotulo {
   font: var(--text-caption);
   font-weight: var(--font-variation-nav);
   fill: var(--color-text);
-}
-.ps-mini-chart__rotulo-chave {
-  opacity: 1;
 }
 
 .ps-card--vazio .ps-mini-chart-placeholder {
@@ -828,7 +909,7 @@
   align-items: center;
   justify-content: center;
   height: 90px;
-  color: var(--color-text-tertiary);
+  color: var(--ps-text-tertiary);
   font: var(--text-body-sm);
   border-top: 1px dashed var(--color-border);
   margin-top: auto;
@@ -929,7 +1010,7 @@
   font: var(--text-caption);
   text-transform: uppercase;
   letter-spacing: var(--tracking-eyebrow);
-  color: var(--color-text-tertiary);
+  color: var(--ps-text-tertiary);
 }
 .ps-panel__aviso {
   margin: calc(-1 * var(--space-2)) 0 var(--space-3);
@@ -951,13 +1032,13 @@
   font: var(--text-body-sm);
 }
 .ps-panel__parcial {
-  color: var(--color-text-tertiary);
+  color: var(--ps-text-tertiary);
   font: var(--text-caption);
   font-style: italic;
 }
 .ps-panel__soma {
   margin: 0 0 var(--space-3);
-  color: var(--color-text-tertiary);
+  color: var(--ps-text-tertiary);
   font: var(--text-caption);
 }
 .ps-panel__secao {
@@ -1016,7 +1097,7 @@
    * consegue identificar.
    */
   flex: 0 0 100%;
-  color: var(--color-text-tertiary);
+  color: var(--ps-text-tertiary);
   font: var(--text-caption);
   font-style: italic;
   line-height: 1.2;
@@ -1061,7 +1142,7 @@
   gap: var(--space-2);
   margin: calc(-1 * var(--space-1)) 0 var(--space-3);
   font: var(--text-caption);
-  color: var(--color-text-tertiary);
+  color: var(--ps-text-tertiary);
 }
 .ps-bar-list__legenda-swatch {
   display: inline-block;
@@ -1111,7 +1192,7 @@
   font: var(--text-caption);
 }
 .ps-poll-item__sem-registro {
-  color: var(--color-text-tertiary);
+  color: var(--ps-text-tertiary);
 }
 .ps-poll-item__contratante {
   color: var(--color-text-subtle);

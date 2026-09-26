@@ -145,15 +145,55 @@ export interface DominioY {
 }
 
 /**
- * Domínio vertical do mini-gráfico: sempre inclui 50 (linha de empate
- * técnico/tossup, o único "eixo" do gráfico) e garante ao menos `folga * 2`
- * pontos percentuais de amplitude, para que a linha nunca vire um traço
- * reto colado nas bordas quando os valores estão muito próximos.
+ * Proximidade (em pontos percentuais) em que o dado de um cartão precisa
+ * chegar de 50 para que a linha de base valha o que custa de resolução
+ * vertical. Ver `baselineDeCinquenta`.
  */
-export function calcularDominioY(valores: readonly number[], folga = 4): DominioY {
+export const PROXIMIDADE_BASE_50 = 4;
+
+/**
+ * Se o mini-gráfico deste cartão leva a linha de base em 50 — e, com ela, o 50
+ * dentro do domínio vertical.
+ *
+ * A linha só entra quando o dado CRUZA 50 ou chega a menos de `proximidade`
+ * pontos dela. Enquanto era incondicional, ela cobrava até 82% da resolução
+ * vertical de um cartão que nunca a toca: medido sobre as 64 unidades de altura
+ * útil, o dado ocupava em média 66,1% da altura no 1º turno, e o Amapá (dado
+ * entre 32,0 e 36,0, domínio forçado a 30–52) ficava com 18,2% — 11,6 unidades
+ * de 64 para 2,6 pontos de vantagem, e 14 pontos percentuais de nada em cima
+ * para caber uma linha que o dado nunca alcança. 12 dos 22 cartões do 1º turno
+ * tinham o dado inteiro abaixo de 50.
+ *
+ * No 2º turno o critério praticamente nunca dispensa a linha (o líder de um
+ * confronto de dois nomes fica perto de 50 por construção), e é ali que ela paga
+ * o que custa: é o limiar de vitória, e em São Paulo a série do Flávio termina
+ * em cima dela. No 1º turno é o limiar de não haver 2º turno — leitura real para
+ * quem chega perto, ruído para quem está 14 pontos abaixo.
+ */
+export function baselineDeCinquenta(
+  valores: readonly number[],
+  proximidade = PROXIMIDADE_BASE_50,
+): boolean {
+  if (valores.length === 0) return false;
+  return Math.max(...valores) >= 50 - proximidade && Math.min(...valores) <= 50 + proximidade;
+}
+
+/**
+ * Domínio vertical do mini-gráfico. Inclui 50 (a linha de base) só quando
+ * `incluirCinquenta` pede — ver `baselineDeCinquenta`, que é quem decide — e
+ * garante ao menos `folga * 2` pontos percentuais de amplitude, para que a
+ * linha nunca vire um traço reto colado nas bordas quando os valores estão
+ * muito próximos.
+ */
+export function calcularDominioY(
+  valores: readonly number[],
+  folga = 4,
+  incluirCinquenta = true,
+): DominioY {
   if (valores.length === 0) return { min: 50 - folga, max: 50 + folga };
-  let min = Math.min(...valores, 50);
-  let max = Math.max(...valores, 50);
+  const ancora = incluirCinquenta ? [50] : [];
+  let min = Math.min(...valores, ...ancora);
+  let max = Math.max(...valores, ...ancora);
   if (max - min < folga * 2) {
     const centro = (max + min) / 2;
     min = centro - folga;
@@ -224,8 +264,32 @@ export function caminhoSuavizado(pontos: readonly PontoXY[]): string {
  *
  * O que a amostra tem de informativo e legível — se foi publicada ou não —
  * passou para a FORMA do ponto (anel vazado quando não foi), não o tamanho.
+ *
+ * Caiu de 6 para 5 quando o ponto deixou de ser desenhado a 35% de opacidade e
+ * passou a ser opaco (ver `.ps-mini-chart__ponto` em presidential-states.css):
+ * um disco opaco de raio 6 cobre o vizinho quando duas pesquisas caem perto no
+ * tempo — medido nos dados reais, a menor distância entre dois pontos do mesmo
+ * cartão é de 1,8 unidade em Goiás e 2,6 em São Paulo (1º turno). Com raio 5 e o
+ * halo na cor do cartão, os discos se separam sem que a evidência volte a ser o
+ * elemento mais fraco do gráfico.
  */
-export const RAIO_PONTO = 6;
+export const RAIO_PONTO = 5;
+
+/**
+ * Largura reservada, em unidades do `viewBox`, para o rótulo "50%" da linha de
+ * base à ESQUERDA da área de plotagem. O rótulo saía na mesma coluna dos
+ * rótulos de fim, à direita, e era APAGADO quando um deles chegava a menos de
+ * 14 unidades — 11 dos 22 cartões do 1º turno e 5 dos 11 do 2º ficavam com uma
+ * linha cinza atravessando o gráfico sem dizer o que era, inclusive São Paulo no
+ * 2º turno, onde ela é o dado mais importante do cartão. Numa canaleta própria,
+ * o rótulo não tem com o que colidir e nunca precisa ser apagado.
+ *
+ * 21 unidades: o texto "50%" a 9 unidades de corpo mede 20,5 no DOM (x de 1 a
+ * 21,5) e o ponto mais antigo tem a borda esquerda em `padEsquerdo - RAIO_PONTO`.
+ * Com 17 a borda caía em 19,0, dentro do rótulo — um ponto de valor perto de 50
+ * na data mais antiga encostaria no texto.
+ */
+export const LARGURA_ROTULO_BASE = 21;
 
 /**
  * Padding esquerdo do mini-gráfico: raio do ponto mais 2px de folga. Sem essa
@@ -233,9 +297,12 @@ export const RAIO_PONTO = 6;
  * útil) fica com o centro do círculo exatamente na borda esquerda do `viewBox`
  * e metade dele é cortada — bug confirmado via DOM (`cx=0`) em 20 dos 27
  * mini-gráficos por estado.
+ *
+ * `comRotuloBase` soma a canaleta do rótulo "50%" (ver `LARGURA_ROTULO_BASE`):
+ * só o cartão que desenha a linha de base paga essa largura.
  */
-export function padEsquerdoMiniChart(): number {
-  return RAIO_PONTO + 2;
+export function padEsquerdoMiniChart(comRotuloBase = false): number {
+  return RAIO_PONTO + 2 + (comRotuloBase ? LARGURA_ROTULO_BASE : 0);
 }
 
 /**

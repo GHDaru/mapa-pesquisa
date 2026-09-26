@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+  baselineDeCinquenta,
   calcularDominioY,
   calcularQuantis,
   caminhoSuavizado,
@@ -9,10 +10,12 @@ import {
   escalaY,
   formatarEleitorado,
   formatarVantagemTitulo,
+  LARGURA_ROTULO_BASE,
   ordenarParaGrade,
   padEsquerdoMiniChart,
   pctCobertura,
   pontosDaBase,
+  PROXIMIDADE_BASE_50,
   RAIO_PONTO,
   rotuloVantagemMini,
   serieCandidatoPorDia,
@@ -136,10 +139,24 @@ describe('presidential-states-layout: calcularDominioY / escalaY', () => {
     expect(calcularDominioY([], 4)).toEqual({ min: 46, max: 54 });
   });
 
-  it('sempre inclui 50 mesmo quando todos os valores estão bem acima', () => {
+  it('inclui 50 quando pedido, mesmo com todos os valores bem acima', () => {
     const dominio = calcularDominioY([70, 75, 72]);
     expect(dominio.min).toBeLessThanOrEqual(50);
     expect(dominio.max).toBeGreaterThanOrEqual(75);
+  });
+
+  it('sem a linha de base, o domínio é o do próprio dado — é o que devolve a resolução', () => {
+    // Amapá, 1º turno: dado entre 32 e 36. Com 50 forçado, o domínio era 30–52 e
+    // as duas séries ficavam colhidas em 18,2% da altura útil (11,6 de 64
+    // unidades) para 2,6 pontos de vantagem.
+    const forcado = calcularDominioY([32, 34.59, 36], 4, true);
+    expect([forcado.min, forcado.max]).toEqual([30, 52]);
+    // Sem o 50, o domínio é o do dado com a amplitude mínima de `folga * 2`
+    // (30–38): a amplitude mínima continua valendo, para 4 pontos de variação
+    // real não virarem uma oscilação de altura cheia.
+    const doDado = calcularDominioY([32, 34.59, 36], 4, false);
+    expect([doDado.min, doDado.max]).toEqual([30, 38]);
+    expect((forcado.max - forcado.min) / (doDado.max - doDado.min)).toBeCloseTo(2.75, 2);
   });
 
   it('amplia valores muito próximos para nunca achatar a linha (amplitude mínima)', () => {
@@ -200,12 +217,44 @@ describe('presidential-states-layout: RAIO_PONTO e padEsquerdoMiniChart', () => 
     // A escala por amostra saiu por dois motivos: assumia 1000 entrevistados
     // onde a fonte não publicou amostra (11 dos 63 pontos do 1º turno) e
     // variava só de 6,31 a 7,24px de raio nos dados reais, sem legenda nenhuma.
-    expect(RAIO_PONTO).toBe(6);
+    // O raio caiu de 6 para 5 quando o ponto passou a ser opaco: opaco, um disco
+    // de raio 6 cobre o vizinho onde duas pesquisas caem perto no tempo (1,8
+    // unidade de distância em Goiás, 2,6 em São Paulo).
+    expect(RAIO_PONTO).toBe(5);
   });
 
   it('reserva o raio do ponto mais 2px de folga (nenhum ponto em cx=0 é cortado)', () => {
     expect(padEsquerdoMiniChart()).toBe(RAIO_PONTO + 2);
     expect(padEsquerdoMiniChart()).toBeGreaterThanOrEqual(RAIO_PONTO);
+  });
+
+  it('o cartão com linha de base paga a canaleta do rótulo "50%"; o sem linha, não', () => {
+    expect(padEsquerdoMiniChart(true)).toBe(padEsquerdoMiniChart(false) + LARGURA_ROTULO_BASE);
+    expect(padEsquerdoMiniChart(false)).toBe(padEsquerdoMiniChart());
+  });
+});
+
+describe('presidential-states-layout: baselineDeCinquenta', () => {
+  it('dado que cruza os 50% leva a linha', () => {
+    expect(baselineDeCinquenta([44, 51, 47])).toBe(true);
+  });
+
+  it('dado que chega a menos da proximidade leva a linha mesmo sem cruzar', () => {
+    expect(baselineDeCinquenta([40, 48])).toBe(true);
+    expect(baselineDeCinquenta([40, 50 - PROXIMIDADE_BASE_50])).toBe(true);
+  });
+
+  it('dado longe dos 50% não leva a linha — o Amapá está 14 pontos abaixo', () => {
+    expect(baselineDeCinquenta([32, 34.59, 36])).toBe(false);
+    expect(baselineDeCinquenta([40, 50 - PROXIMIDADE_BASE_50 - 0.1])).toBe(false);
+  });
+
+  it('dado inteiro muito acima dos 50% também não força a linha', () => {
+    expect(baselineDeCinquenta([70, 75])).toBe(false);
+  });
+
+  it('sem valores não há o que aproximar de 50', () => {
+    expect(baselineDeCinquenta([])).toBe(false);
   });
 });
 

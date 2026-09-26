@@ -40,6 +40,7 @@ import {
   type NivelConfianca,
 } from '../format.js';
 import {
+  baselineDeCinquenta,
   calcularDominioY,
   calcularQuantis,
   caminhoSuavizado,
@@ -58,6 +59,7 @@ import {
   notaSomaDoPainel,
   ordenarParaGrade,
   padEsquerdoMiniChart,
+  PROXIMIDADE_BASE_50,
   pctCobertura,
   pontosDaBase,
   pontosDesenhadosPorCandidato,
@@ -296,6 +298,65 @@ export function datasDesenhadasUf(item: PresidencialUf): string[] {
   return datasDosPontos(pontosDaBase(item.serie.pontos, idsUsadosUf(item)), candidatos);
 }
 
+/**
+ * Os percentuais que o mini-gráfico de uma UF plota: os pontos de pesquisa
+ * desenhados mais a média de hoje de cada candidato traçado. É a entrada de
+ * `calcularDominioY` e de `baselineDeCinquenta`.
+ *
+ * Existe como função própria para que a DECISÃO de desenhar a linha de base (o
+ * que `linhasDeCinquenta` conta e a nota da seção afirma) e o DESENHO do cartão
+ * saiam do mesmo conjunto de valores — a mesma exigência que já vale para as
+ * datas (`datasDesenhadasUf`) e para os glifos (`glifosDaGrade`).
+ */
+function valoresPlotados(agregado: Agregado, serie: SerieTemporal): number[] {
+  const candidatos = agregado.candidatos.slice(0, 2);
+  const pontos = pontosDesenhadosPorCandidato(
+    serie.pontos,
+    candidatos.map((c) => c.candidato),
+    new Set(agregado.pesquisasUsadas.map((p) => p.id)),
+  );
+  return [...pontos.flat().map((ponto) => ponto.pct), ...candidatos.map((c) => c.pct)];
+}
+
+/**
+ * `valoresPlotados` a partir da UF da grade. Exportada para teste: é a entrada
+ * de `calcularDominioY`, e é medindo sobre ela que se verifica quanta resolução
+ * vertical o dado de cada cartão recebe.
+ */
+export function valoresPlotadosUf(item: PresidencialUf): number[] {
+  if (!item.agregado || !item.serie) return [];
+  return valoresPlotados(item.agregado, item.serie);
+}
+
+/**
+ * Quantos cartões da grade têm sparkline e em quantos deles a linha de base em
+ * 50 é desenhada, pelo MESMO critério que o desenho usa (`baselineDeCinquenta`
+ * sobre `valoresPlotadosUf`).
+ *
+ * Exportada para teste e para a nota da seção: a linha deixou de ser
+ * incondicional, então o leitor que compara dois cartões precisa saber por que
+ * um tem a linha e o outro não — e o número que a nota afirma tem de vir do dado,
+ * não de uma contagem escrita à mão.
+ */
+export interface LinhasDeCinquenta {
+  /** Cartões que desenham sparkline (os de ponto único não têm eixo nenhum). */
+  readonly cartoes: number;
+  /** Desses, quantos desenham a linha de base em 50 e seu rótulo. */
+  readonly comLinha: number;
+}
+
+export function linhasDeCinquenta(dados: PresidencialPorEstado): LinhasDeCinquenta {
+  let cartoes = 0;
+  let comLinha = 0;
+  for (const item of dados.ufs) {
+    if (item.semDados || !item.agregado || !item.serie || !item.agregado.lider) continue;
+    if (ehPontoUnico(item)) continue;
+    cartoes++;
+    if (baselineDeCinquenta(valoresPlotadosUf(item))) comLinha++;
+  }
+  return { cartoes, comLinha };
+}
+
 /** Quantas das pesquisas usadas pela UF não publicaram o tamanho da amostra. */
 function pesquisasSemAmostra(item: PresidencialUf): number {
   return (item.agregado?.pesquisasUsadas ?? []).filter((p) => p.amostra == null).length;
@@ -325,12 +386,19 @@ export interface GlifosDaGrade {
   /** Pontos vazados (pesquisa sem amostra publicada). */
   readonly aneis: number;
   /**
-   * Marcadores no fim das linhas do sparkline. NÃO são pesquisa: cada um é a
-   * média ponderada de hoje daquele candidato. Nada na tela dizia isso — em São
-   * Paulo no 1º turno são 8 discos + 2 desses num cartão que declara 4
-   * pesquisas.
+   * Números anotados no fim das linhas do sparkline. NÃO são pesquisa: cada um é
+   * a média ponderada de hoje daquele candidato, escrita na canaleta direita,
+   * fora da área de plotagem.
+   *
+   * Eram DISCOS opacos (r=4) desenhados dentro do gráfico, em
+   * `x = padEsquerdo + larguraPlot` — o x da pesquisa mais recente, não o de
+   * hoje: 12 dos 22 cartões do 1º turno punham "a média de hoje" 14 dias ou mais
+   * atrás (Paraíba, 33 dias), e o disco caía em cima do ponto da própria pesquisa
+   * (38 de 44 pares a menos de 7 unidades, 16 a menos de 2). Em São Paulo no 1º
+   * turno eram 8 discos de pesquisa + 2 desses num cartão que declara 4
+   * pesquisas. O glifo saiu; o número ficou.
    */
-  readonly marcadoresDeMedia: number;
+  readonly rotulosDeMedia: number;
 }
 
 export function glifosDaGrade(dados: PresidencialPorEstado): GlifosDaGrade {
@@ -338,7 +406,7 @@ export function glifosDaGrade(dados: PresidencialPorEstado): GlifosDaGrade {
   let semAmostra = 0;
   let discos = 0;
   let aneis = 0;
-  let marcadoresDeMedia = 0;
+  let rotulosDeMedia = 0;
   for (const item of dados.ufs) {
     if (item.semDados || !item.agregado || !item.serie || !item.agregado.lider) continue;
     const usadas = item.agregado.pesquisasUsadas;
@@ -358,9 +426,9 @@ export function glifosDaGrade(dados: PresidencialPorEstado): GlifosDaGrade {
         else discos++;
       }
     }
-    marcadoresDeMedia += candidatos.length;
+    rotulosDeMedia += candidatos.length;
   }
-  return { pesquisas, pesquisasSemAmostra: semAmostra, discos, aneis, marcadoresDeMedia };
+  return { pesquisas, pesquisasSemAmostra: semAmostra, discos, aneis, rotulosDeMedia };
 }
 
 /**
@@ -377,8 +445,10 @@ export function pesquisasSemAmostraDesenhadas(dados: PresidencialPorEstado): num
 
 /**
  * A frase que declara os glifos da grade, contada de `glifosDaGrade`: quantas
- * pesquisas, em quantos pontos, quantos deles vazados, e o que é o marcador do
- * fim da linha. É o texto que antes tratava ponto como pesquisa.
+ * pesquisas, em quantos pontos, quantos deles vazados, e o que é o número do
+ * fim da linha. É o texto que antes tratava ponto como pesquisa — e que
+ * declarava um marcador de "média de hoje" desenhado no x da pesquisa mais
+ * recente, glifo que saiu do gráfico.
  */
 export function notaDosGlifos(dados: PresidencialPorEstado): string {
   const g = glifosDaGrade(dados);
@@ -394,10 +464,10 @@ export function notaDosGlifos(dados: PresidencialPorEstado): string {
       `${pluralizar(g.pesquisasSemAmostra, 'publicou', 'publicaram')} a amostra, o que dá ${g.aneis} ` +
       `${pluralizar(g.aneis, 'anel vazado', 'anéis vazados')}; os outros ${g.discos} pontos são discos cheios.`;
   }
-  if (g.marcadoresDeMedia > 0) {
+  if (g.rotulosDeMedia > 0) {
     texto +=
-      ` O marcador menor no fim de cada linha não é pesquisa: é a média ponderada de hoje ` +
-      `(${g.marcadoresDeMedia} ${pluralizar(g.marcadoresDeMedia, 'marcador', 'marcadores')} na seção).`;
+      ` A linha termina na pesquisa mais recente, e o número à direita dela não é pesquisa: é a média ` +
+      `ponderada de hoje (${g.rotulosDeMedia} ${pluralizar(g.rotulosDeMedia, 'número', 'números')} na seção).`;
   }
   return texto;
 }
@@ -442,35 +512,45 @@ function temPesquisaUnicaUf(item: PresidencialUf): boolean {
  * 640px. Medido nos dados reais do 2º turno: a legenda imprimia "16 de 27
  * estados" e o mapa desenhava 12 a 400px (RJ, RN, SC e SE perdiam a sigla). Os
  * três números têm de ser iguais.
+ *
+ * A primeira correção emitiu, para esses 4, um asterisco SOLTO na posição da
+ * sigla escondida: a contagem passou a bater, mas a 400px cada marca era um
+ * glifo de 6,5px sem sigla ao lado — dizia que ALGUM polígono tinha uma
+ * pesquisa só, sem dizer qual. Agora a sigla desses estados NÃO some: a marca
+ * anda com o nome do estado nas duas larguras, que é a mesma saída que resolveu
+ * o tracejado aberto do Piauí.
  */
 export interface MarcasDePesquisaUnica {
   /** O número que a legenda imprime. */
   readonly declaradas: number;
   /** Asteriscos emitidos como `<tspan>` da sigla (um por UF marcada). */
   readonly naSigla: number;
-  /** Asteriscos soltos, emitidos só para as UFs cuja sigla some abaixo de 640px. */
-  readonly soltos: number;
-  /** Marcas VISÍVEIS a partir de 640px (o asterisco solto está escondido). */
+  /**
+   * UFs marcadas que são estreitas o bastante para a sigla sumir abaixo de 640px
+   * e, por carregarem a marca, mantêm a sigla de qualquer forma. No 2º turno são
+   * RJ, RN, SC e SE; no 1º, nenhuma.
+   */
+  readonly siglasPreservadas: number;
+  /** Marcas VISÍVEIS a partir de 640px. */
   readonly desenhadasLargo: number;
-  /** Marcas VISÍVEIS abaixo de 640px (a sigla de estado estreito está escondida). */
+  /** Marcas VISÍVEIS abaixo de 640px — as mesmas, com a sigla ao lado. */
   readonly desenhadasEstreito: number;
 }
 
 export function marcasDePesquisaUnica(dados: PresidencialPorEstado): MarcasDePesquisaUnica {
   const marcadas = dados.ufs.filter((item) => temPesquisaUnicaUf(item));
-  const soltos = marcadas.filter(
+  const siglasPreservadas = marcadas.filter(
     (item) => colocacaoDoRotulo(AREA_POR_UF.get(item.uf) ?? Infinity).someEstreito,
   ).length;
   const naSigla = marcadas.length;
-  // As duas peças são exclusivas pela mesma media query: abaixo de 640px, as UFs
-  // cuja sigla some perdem o asterisco do `<tspan>` e ganham um solto no lugar.
-  const siglaVisivelEstreito = naSigla - soltos;
   return {
     declaradas: marcadas.length,
     naSigla,
-    soltos,
+    siglasPreservadas,
+    // Nenhuma marca depende mais da largura: o asterisco é sempre `<tspan>` de
+    // uma sigla que não some.
     desenhadasLargo: naSigla,
-    desenhadasEstreito: siglaVisivelEstreito + soltos,
+    desenhadasEstreito: naSigla,
   };
 }
 
@@ -1336,11 +1416,14 @@ function construirSvgMapa(
     texto.setAttribute('y', String(rotuloY));
     texto.setAttribute('class', 'ps-uf-label');
     // Sigla que some abaixo de 640px (estado estreito, para o mapa não virar uma
-    // mancha de texto). Guardado porque a marca de pesquisa única não pode sumir
-    // com ela: a legenda afirma uma CONTAGEM de estados marcados, lida do dado e
-    // não do viewport, e a 400px do 2º turno ela dizia 16 enquanto o mapa
-    // desenhava 12 (RJ, RN, SC e SE perdiam a sigla e, com ela, o asterisco).
-    const siglaSomeEstreito = colocacao.someEstreito;
+    // mancha de texto) — EXCETO quando o estado carrega o asterisco de pesquisa
+    // única. A marca tem de identificar um estado: enquanto a sigla sumia, o mapa
+    // desenhava no lugar dela um asterisco SOLTO, e a 400px do 2º turno os 4
+    // asteriscos de RJ, RN, SC e SE viravam pontinhos de 6,5px que não diziam
+    // qual polígono estava marcado — o mesmo defeito do tracejado aberto do Piauí,
+    // resolvido lá fazendo a marca apontar para o estado. Aqui a solução é a
+    // mesma: quem tem marca mantém a sigla, nas duas larguras.
+    const siglaSomeEstreito = colocacao.someEstreito && !marcarPesquisaUnica;
     if (siglaSomeEstreito) {
       texto.classList.add('ps-uf-label--pequena');
     }
@@ -1353,18 +1436,52 @@ function construirSvgMapa(
     // sigla, some com ela, e a legenda mostra o mesmo glifo.
     if (marcarPesquisaUnica) texto.appendChild(tspanMarcaPesquisaUnica());
     grupoRotulos.appendChild(texto);
-    // Estado estreito e marcado: um asterisco SOLTO no lugar da sigla, visível
-    // só na faixa em que a sigla está escondida (as duas peças são exclusivas
-    // pela mesma media query, então nunca aparecem juntas). Sem a sigla ao lado
-    // ele não diz qual é o estado, mas continua dizendo "este polígono tem uma
-    // única pesquisa" — que é o que a legenda conta — e o nome do estado segue
-    // disponível na prévia, no cartão e no aria-label.
-    if (marcarPesquisaUnica && siglaSomeEstreito) {
-      grupoRotulos.appendChild(marcaPesquisaUnicaSolta(rotuloX, rotuloY));
-    }
   }
 
+  observarEscalaDoMapa(svg);
   return svg;
+}
+
+/**
+ * Largura, em unidades do `viewBox`, que a escala do mapa é medida contra — a
+ * mesma do `viewBox` do @svg-maps/brazil (613 × 639).
+ */
+const LARGURA_VIEWBOX_MAPA = Number.parseFloat(brazilMap.viewBox.split(/\s+/)[2] ?? '613') || 613;
+
+/**
+ * Publica a escala do mapa (px de tela por unidade de `viewBox`) na própria
+ * árvore, como `--ps-map-escala`, para que a sigla do estado possa ser dimensionada
+ * em PIXEL RENDERIZADO e não em unidade de usuário.
+ *
+ * `.ps-uf-label` era `font-size: 9px` em unidades do `viewBox`. Como o SVG escala
+ * com o contêiner, o tamanho na tela variava com a largura da janela sem que nada
+ * o controlasse: medido, o mapa ocupa 898px a 1280 (escala 1,465 → sigla de
+ * 13,2px) e 334px a 400 (escala 0,545 → sigla de 4,90px, com o contorno comendo
+ * o miolo do glifo — "MT*" saía como uma mancha de 11,8 × 8,0px sem uma letra
+ * reconhecível, e o asterisco a 6,5px). A escala do contêiner não é monotônica na
+ * largura da janela (898px a 1280, 642px a 1024, 670px a 768), então media query
+ * não resolve: é preciso medir.
+ *
+ * Um observador por tela; o anterior é desconectado a cada redesenho do mapa
+ * (troca de turno ou de modo), que descarta o SVG antigo.
+ */
+let observadorEscalaMapa: ResizeObserver | null = null;
+
+function observarEscalaDoMapa(svg: SVGSVGElement): void {
+  const aplicar = (larguraPx: number): void => {
+    if (larguraPx > 0) {
+      svg.style.setProperty('--ps-map-escala', (larguraPx / LARGURA_VIEWBOX_MAPA).toFixed(4));
+    }
+  };
+  observadorEscalaMapa?.disconnect();
+  if (typeof ResizeObserver === 'undefined') return;
+  observadorEscalaMapa = new ResizeObserver((entradas) => {
+    for (const entrada of entradas) aplicar(entrada.contentRect.width);
+  });
+  observadorEscalaMapa.observe(svg);
+  // Primeira medição imediata: o observador só dispara no próximo quadro, e sem
+  // isto a sigla apareceria no tamanho de fallback por um frame.
+  aplicar(svg.getBoundingClientRect().width);
 }
 
 const ANCORA_RAIO = 4.6;
@@ -1383,20 +1500,6 @@ const DESLOCAMENTO_ROTULO_EXTERNO = { dx: 21, dy: -13 } as const;
 
 /** Glifo de "uma única pesquisa" que acompanha a sigla do estado no mapa. */
 const MARCA_PESQUISA_UNICA = '*';
-
-/**
- * Asterisco de pesquisa única sem sigla: o que o mapa desenha abaixo de 640px,
- * onde a sigla de estado estreito está escondida. Mesmo glifo, mesma posição do
- * rótulo que sumiu.
- */
-function marcaPesquisaUnicaSolta(x: number, y: number): SVGTextElement {
-  const marca = document.createElementNS(SVG_NS, 'text');
-  marca.setAttribute('x', String(x));
-  marca.setAttribute('y', String(y));
-  marca.setAttribute('class', 'ps-uf-label ps-uf-marca-solta');
-  marca.textContent = MARCA_PESQUISA_UNICA;
-  return marca;
-}
 
 /** `<tspan>` do asterisco de pesquisa única — mesma peça no mapa e na legenda. */
 function tspanMarcaPesquisaUnica(): SVGTSpanElement {
@@ -1887,11 +1990,24 @@ function criarSecaoGrade(
         `não existe série a traçar, e o cartão mostra o ponto único com a data, não um gráfico.`
       : '';
 
+  // A linha de 50% deixou de ser incondicional, então a nota diz em quantos
+  // cartões ela aparece e por quê — contado do dado, pelo mesmo critério que
+  // desenha o gráfico. Sem isso, quem compara dois cartões lê a ausência da
+  // linha como falha de renderização.
+  const linhas50 = linhasDeCinquenta(dados);
+  const nota50 =
+    linhas50.cartoes > 0
+      ? ` A linha de 50% aparece em ${linhas50.comLinha} dos ${linhas50.cartoes} cartões com série: ` +
+        `só naqueles cujo dado cruza os 50% ou chega a menos de ${PROXIMIDADE_BASE_50} pontos deles ` +
+        `— no 2º turno é o limiar de vitória, no 1º o de não haver 2º turno. Nos outros, a escala ` +
+        'vertical é a do próprio dado, e não há linha de base para ler.'
+      : '';
+
   const intro = document.createElement('p');
   intro.className = 'ps-meta';
   intro.textContent =
     `Cada miniatura traz a série de pesquisas de ${recorteEmProsa(recorte)} do estado, quando há pesquisas ` +
-    `de datas diferentes.${notaPontoUnico}${notaDosGlifos(dados)} ` +
+    `de datas diferentes.${notaPontoUnico}${notaDosGlifos(dados)}${nota50} ` +
     'Ordenado pelo tamanho do eleitorado (maior primeiro); estados sem pesquisa presidencial estadual aparecem ao final.';
   secao.appendChild(intro);
 
@@ -2145,11 +2261,20 @@ function construirMarcadorUnico(
  * Mini-gráfico de tendência (estilo NYT): um ponto por pesquisa USADA pelo
  * agregado — as mesmas que o rótulo de procedência do cartão declara, nunca
  * mais que isso — e uma linha suavizada por candidato (2 primeiros do
- * agregado) que termina no valor atual da média ponderada, rotulado no fim.
+ * agregado) que termina na pesquisa mais recente, com a média de hoje anotada
+ * na canaleta direita.
+ *
+ * A HIERARQUIA é a da evidência: o ponto de pesquisa é o dado publicado e sai
+ * opaco; a linha é interpretação (média ponderada, suavizada) e sai mais fina.
+ * Era o contrário — o ponto a 35% de opacidade dava 1,62:1 de contraste contra
+ * o cartão no tema claro (a WCAG 1.4.11 pede 3:1 para objeto gráfico essencial)
+ * enquanto a linha, que é o modelo, saía a 4,82:1 por cima dele.
+ *
  * Todos os pontos têm o mesmo raio; o anel vazado marca pesquisa cuja amostra
- * não foi publicada. Sem eixos, exceto a linha de base em 50% (o limiar de
- * empate técnico) e seu rótulo. Com apenas 1 data desenhada não há linha
- * (nada para suavizar/tender) e o cartão troca o gráfico pelo marcador de
+ * não foi publicada. Sem eixos, exceto a linha de base em 50% — desenhada só
+ * quando o dado do cartão chega perto dela (ver `baselineDeCinquenta`) e sempre
+ * rotulada, numa canaleta própria à esquerda. Com apenas 1 data desenhada não há
+ * linha (nada para suavizar/tender) e o cartão troca o gráfico pelo marcador de
  * ponto único.
  */
 function construirMiniGrafico(agregado: Agregado, serie: SerieTemporal, partidos: Partidos): SVGSVGElement {
@@ -2190,14 +2315,25 @@ function construirMiniGrafico(agregado: Agregado, serie: SerieTemporal, partidos
   // já que só há 1 data distinta.
   const temLinha = temEvolucaoParaLinha(todasDatas);
 
-  const todosPct = [...pontosPorCandidato.flat().map((p) => p.pct), ...candidatos.map((c) => c.pct)];
-  const dominioY = calcularDominioY(todosPct);
+  // Mesma lista que `linhasDeCinquenta` percorre para afirmar, na nota da seção,
+  // em quantos cartões a linha de base aparece.
+  const todosPct = valoresPlotados(agregado, serie);
+  // A linha de base em 50 é CONDICIONAL ao dado do cartão (ver
+  // `baselineDeCinquenta`): quando o dado nem chega perto dela, ela cobrava a
+  // resolução vertical que a vantagem precisa para ser vista — no Amapá, 14
+  // pontos percentuais de domínio vazio para caber uma linha que o dado nunca
+  // toca, e 11,6 das 64 unidades de altura útil para os 2,6 pontos de vantagem
+  // que são o assunto do cartão.
+  const temBase50 = baselineDeCinquenta(todosPct);
+  const dominioY = calcularDominioY(todosPct, undefined, temBase50);
 
   // Reserva a largura equivalente ao raio do ponto + 2px como padding
   // esquerdo: sem isso, o ponto mais antigo (mapeado para x=0 pela escala)
   // fica com o centro do círculo na borda esquerda do viewBox e é cortado
   // ao meio (bug confirmado via DOM em 20 de 27 mini-gráficos por estado).
-  const padEsquerdo = padEsquerdoMiniChart();
+  // Quando há linha de base, soma a canaleta do rótulo "50%" à esquerda — é o
+  // que o tira da coluna dos rótulos de fim, onde ele era apagado por colisão.
+  const padEsquerdo = padEsquerdoMiniChart(temBase50);
   const larguraPlot = MINI_W - padEsquerdo - MINI_PAD_RIGHT;
 
   const svg = document.createElementNS(SVG_NS, 'svg');
@@ -2207,14 +2343,30 @@ function construirMiniGrafico(agregado: Agregado, serie: SerieTemporal, partidos
   svg.setAttribute('role', 'img');
   svg.setAttribute('aria-label', descricaoAcessivelMiniGrafico(candidatos));
 
-  const yBase = MINI_PAD_TOP + escalaY(50, dominioY, MINI_PLOT_H);
-  const baseline = document.createElementNS(SVG_NS, 'line');
-  baseline.setAttribute('x1', String(padEsquerdo));
-  baseline.setAttribute('x2', String(padEsquerdo + larguraPlot));
-  baseline.setAttribute('y1', String(yBase));
-  baseline.setAttribute('y2', String(yBase));
-  baseline.setAttribute('class', 'ps-mini-chart__baseline');
-  svg.appendChild(baseline);
+  if (temBase50) {
+    const yBase = MINI_PAD_TOP + escalaY(50, dominioY, MINI_PLOT_H);
+    const baseline = document.createElementNS(SVG_NS, 'line');
+    baseline.setAttribute('x1', String(padEsquerdo));
+    baseline.setAttribute('x2', String(padEsquerdo + larguraPlot));
+    baseline.setAttribute('y1', String(yBase));
+    baseline.setAttribute('y2', String(yBase));
+    baseline.setAttribute('class', 'ps-mini-chart__baseline');
+    svg.appendChild(baseline);
+
+    // O rótulo "50%" vive na canaleta ESQUERDA, como rótulo de eixo, e por isso
+    // é desenhado SEMPRE que a linha existe. Enquanto saía à direita, na mesma
+    // coluna dos rótulos de fim, era apagado quando um deles chegava a menos de
+    // 14 unidades: 11 dos 22 cartões do 1º turno e 5 dos 11 do 2º ficavam com
+    // uma linha cinza atravessando o gráfico sem dizer o que era — inclusive São
+    // Paulo no 2º turno, onde ela é o limiar de vitória e o dado mais importante
+    // do cartão. Resolver a colisão apagando o rótulo é apagar o significado.
+    const baselineLabel = document.createElementNS(SVG_NS, 'text');
+    baselineLabel.setAttribute('x', '1');
+    baselineLabel.setAttribute('y', String(yBase + 3));
+    baselineLabel.setAttribute('class', 'ps-mini-chart__baseline-label');
+    baselineLabel.textContent = '50%';
+    svg.appendChild(baselineLabel);
+  }
 
   // Posição final (valor atual da média ponderada) de cada candidato,
   // ajustada para os rótulos nunca colidirem quando as duas linhas terminam
@@ -2232,17 +2384,42 @@ function construirMiniGrafico(agregado: Agregado, serie: SerieTemporal, partidos
     }
   }
 
-  // O rótulo "50%" da linha de base sai na mesma coluna dos rótulos de fim, e
-  // some quando um deles chega perto: com a Bahia (55,3) ou o Ceará (58,4), os
-  // dois textos caíam um sobre o outro e nenhum dos dois se lia. A linha de
-  // base continua desenhada — o que se perde é só a repetição do rótulo.
-  if (rotuloYs.every((y) => Math.abs(y - yBase) >= 14)) {
-    const baselineLabel = document.createElementNS(SVG_NS, 'text');
-    baselineLabel.setAttribute('x', String(padEsquerdo + larguraPlot + 3));
-    baselineLabel.setAttribute('y', String(yBase + 3));
-    baselineLabel.setAttribute('class', 'ps-mini-chart__baseline-label');
-    baselineLabel.textContent = '50%';
-    svg.appendChild(baselineLabel);
+  // ORDEM DE PINTURA: todas as linhas primeiro, todos os pontos depois. Em SVG
+  // quem vem depois fica por cima, e enquanto cada candidato desenhava a própria
+  // linha DEPOIS dos próprios pontos, o modelo passava literalmente por cima da
+  // evidência — o traço da média cobrindo o disco da pesquisa que a sustenta.
+  // Com dois passes, a pesquisa publicada é sempre a camada de cima.
+  if (temLinha) {
+    candidatos.forEach((candidato) => {
+      const cor = corEspectroSolido(espectroDoPartido(candidato.partido, partidos));
+      // Linha construída a partir de `serie.dias` (já suave — no máximo 1
+      // valor por candidato por data), não dos pontos brutos de pesquisa:
+      // evita o laço quando 2+ pesquisas caem na mesma data (mesmo x).
+      //
+      // A linha TERMINA na pesquisa mais recente, que é onde a evidência
+      // termina. Antes ela era prolongada até um ponto extra em
+      // `x = padEsquerdo + larguraPlot` chamado de "média ponderada de hoje" —
+      // mas esse x é exatamente onde a escala mapeia a DATA DA PESQUISA MAIS
+      // RECENTE, não hoje: no 1º turno, 12 dos 22 cartões punham "hoje" num x de
+      // 14 dias ou mais atrás (Paraíba, 33 dias). O ponto extra também era
+      // redundante: `mediaBilateral` pondera por distância no tempo, e o fator
+      // comum de decaimento se cancela na média, então o valor é CONSTANTE de
+      // um dia depois da última pesquisa até hoje — medido, a diferença entre a
+      // média de hoje e a do dia da última pesquisa é 0,00 ponto em todos os 33
+      // cartões dos dois turnos. O último dia da série já está exatamente onde o
+      // ponto extra estava.
+      const coordsDias: PontoXY[] = serieCandidatoPorDia(serie.dias, candidato.candidato, dominioX).map((d) => ({
+        x: padEsquerdo + escalaX(d.data, dominioX, larguraPlot),
+        y: MINI_PAD_TOP + escalaY(d.pct, dominioY, MINI_PLOT_H),
+      }));
+      const d = caminhoSuavizado(coordsDias);
+      if (!d) return;
+      const path = document.createElementNS(SVG_NS, 'path');
+      path.setAttribute('d', d);
+      path.setAttribute('class', 'ps-mini-chart__line');
+      path.setAttribute('stroke', cor);
+      svg.appendChild(path);
+    });
   }
 
   candidatos.forEach((candidato, i) => {
@@ -2278,41 +2455,20 @@ function construirMiniGrafico(agregado: Agregado, serie: SerieTemporal, partidos
       svg.appendChild(circulo);
     }
 
-    const finalCoord: PontoXY = { x: padEsquerdo + larguraPlot, y: finaisY[i]! };
-    if (temLinha) {
-      // Linha construída a partir de `serie.dias` (já suave — no máximo 1
-      // valor por candidato por data), não dos pontos brutos de pesquisa:
-      // evita o laço quando 2+ pesquisas caem na mesma data (mesmo x).
-      const coordsDias: PontoXY[] = serieCandidatoPorDia(serie.dias, candidato.candidato, dominioX).map((d) => ({
-        x: padEsquerdo + escalaX(d.data, dominioX, larguraPlot),
-        y: MINI_PAD_TOP + escalaY(d.pct, dominioY, MINI_PLOT_H),
-      }));
-      const coordsLinha = coordsDias.length > 0 ? [...coordsDias, finalCoord] : [finalCoord];
-      const d = caminhoSuavizado(coordsLinha);
-      if (d) {
-        const path = document.createElementNS(SVG_NS, 'path');
-        path.setAttribute('d', d);
-        path.setAttribute('class', 'ps-mini-chart__line');
-        path.setAttribute('stroke', cor);
-        svg.appendChild(path);
-      }
-    }
-
-    const marcador = document.createElementNS(SVG_NS, 'circle');
-    marcador.setAttribute('cx', String(finalCoord.x));
-    marcador.setAttribute('cy', String(finalCoord.y));
-    marcador.setAttribute('r', '4');
-    marcador.setAttribute('fill', cor);
-    marcador.setAttribute('class', 'ps-mini-chart__ponto-final');
-    svg.appendChild(marcador);
-
     const rotuloY = Math.min(MINI_H - 4, Math.max(MINI_PAD_TOP, rotuloYs[i]!));
     // Uma casa decimal, a mesma do título do cartão. Com inteiros, o Distrito
     // Federal no 2º turno mostrava "Flávio +4,9" sobre "47%" e "43%" — dois
     // números que dão 4, contradizendo o título em quase um ponto. O "%" sai:
     // a linha de base já está rotulada "50%" e o espaço é o que é.
+    //
+    // O número fica na canaleta DIREITA, fora da área de plotagem: é anotação da
+    // média de hoje, não um glifo posicionado numa data. O disco opaco que ficava
+    // no lugar dele (r=4, sobre a pesquisa mais recente, r=6 a 35% de opacidade)
+    // saiu: em 38 dos 44 pares do 1º turno os dois centros estavam a menos de 7
+    // unidades, 16 deles a menos de 2, e no cartão do Amapá o leitor via 4 glifos
+    // onde a nota afirmava 4 pontos de pesquisa mais 2 marcadores.
     const rotulo = document.createElementNS(SVG_NS, 'text');
-    rotulo.setAttribute('x', String(finalCoord.x + 5));
+    rotulo.setAttribute('x', String(padEsquerdo + larguraPlot + 5));
     rotulo.setAttribute('y', String(rotuloY + 3));
     rotulo.setAttribute('class', 'ps-mini-chart__rotulo');
     rotulo.textContent = formatarNumeroPt(candidato.pct);

@@ -22,8 +22,11 @@ import {
  *    pontos e 6 anéis na tela; no 1º dizia 11, com 59 pesquisas, 118 pontos e 22
  *    anéis. O cartão de São Paulo no 1º turno declara 4 pesquisas e desenha 8
  *    discos.
- * 2. O marcador no fim de cada linha não é pesquisa nenhuma — é a média
- *    ponderada de hoje — e nada na tela dizia isso.
+ * 2. O número no fim de cada linha não é pesquisa nenhuma — é a média ponderada
+ *    de hoje — e nada na tela dizia isso. Ele era um DISCO opaco desenhado no x
+ *    da pesquisa mais recente, chamado de "média de hoje" (12 dos 22 cartões do
+ *    1º turno punham esse x 14 dias ou mais atrás; Paraíba, 33), em cima do ponto
+ *    daquela pesquisa. O glifo saiu do gráfico e o número ficou na canaleta.
  * 3. A contagem de estados com asterisco na legenda é lida do dado, não do
  *    viewport: a 400px do 2º turno ela dizia "16 de 27 estados" enquanto o mapa
  *    desenhava 12, porque o asterisco era um `<tspan>` da sigla e a sigla de
@@ -48,19 +51,20 @@ describe('glifos da grade: ponto não é pesquisa', () => {
       expect(nota).toContain(`${g.pesquisas} pesquisas em ${g.discos + g.aneis} pontos`);
       expect(nota).toContain(`${g.aneis} anéis vazados`);
       expect(nota).toContain(`${g.discos} pontos são discos cheios`);
-      // Item 6: o marcador de fim de linha é declarado, e declarado como média.
+      // Item 6: o número de fim de linha é declarado, e declarado como média.
       expect(nota).toContain('não é pesquisa');
-      expect(nota).toContain(`${g.marcadoresDeMedia} marcadores`);
+      expect(nota).toContain('termina na pesquisa mais recente');
+      expect(nota).toContain(`${g.rotulosDeMedia} números`);
     });
   }
 
   it('os números de hoje: 59 pesquisas/118 pontos/22 anéis no 1º turno, 41/82/6 no 2º', () => {
     const t1 = glifosDaGrade(casos.getPresidentialByState(1));
-    expect([t1.pesquisas, t1.discos + t1.aneis, t1.aneis, t1.marcadoresDeMedia]).toEqual([
+    expect([t1.pesquisas, t1.discos + t1.aneis, t1.aneis, t1.rotulosDeMedia]).toEqual([
       59, 118, 22, 44,
     ]);
     const t2 = glifosDaGrade(casos.getPresidentialByState(2));
-    expect([t2.pesquisas, t2.discos + t2.aneis, t2.aneis, t2.marcadoresDeMedia]).toEqual([
+    expect([t2.pesquisas, t2.discos + t2.aneis, t2.aneis, t2.rotulosDeMedia]).toEqual([
       41, 82, 6, 22,
     ]);
   });
@@ -82,19 +86,21 @@ describe('marca de pesquisa única: a contagem da legenda vale em qualquer largu
     });
   }
 
-  it('no 2º turno são 16 estados, 4 deles com a sigla escondida abaixo de 640px', () => {
+  it('no 2º turno são 16 estados, 4 deles estreitos que mantêm a sigla por causa da marca', () => {
     const m = marcasDePesquisaUnica(casos.getPresidentialByState(2));
     expect(m.declaradas).toBe(16);
-    // RJ, RN, SC e SE: são estes os 4 que perdiam a marca a 400px, quando o
-    // asterisco vivia dentro do `<tspan>` da sigla.
-    expect(m.soltos).toBe(4);
+    // RJ, RN, SC e SE: são estes os 4 que perdiam a sigla a 400px. Perder a sigla
+    // era perder o nome do estado ao lado da marca — o asterisco solto que ficava
+    // no lugar dela contava certo e não identificava polígono nenhum.
+    expect(m.siglasPreservadas).toBe(4);
     expect(m.desenhadasEstreito).toBe(16);
+    expect(m.naSigla).toBe(16);
   });
 
   it('no 1º turno nenhum dos estados marcados é estreito, então nada mudou lá', () => {
     const m = marcasDePesquisaUnica(casos.getPresidentialByState(1));
     expect(m.declaradas).toBe(5);
-    expect(m.soltos).toBe(0);
+    expect(m.siglasPreservadas).toBe(0);
   });
 });
 
