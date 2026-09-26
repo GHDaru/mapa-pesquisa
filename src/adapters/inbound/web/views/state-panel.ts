@@ -150,11 +150,26 @@ function montarConteudo(
     <footer class="state-panel__footer">
       ${renderRodape(resumo)}
       <p class="state-panel__metodologia">
-        Média ponderada por recência e tamanho de amostra.
+        ${textoMetodologia(resumo)}
         <a href="#/presidente">Como calculamos</a>.
       </p>
     </footer>
   `;
+}
+
+/**
+ * Texto de metodologia do rodapé. Com uma única pesquisa em cada recorte
+ * mostrado não existe média a ponderar — dizer "média ponderada por recência e
+ * tamanho de amostra" descreveria um cálculo que não aconteceu.
+ */
+function textoMetodologia(resumo: ResumoEstado): string {
+  const contagens = [resumo.governador, resumo.senador]
+    .filter((a): a is Agregado => Boolean(a))
+    .map((a) => a.pesquisasUsadas.length);
+  if (contagens.length > 0 && contagens.every((n) => n === 1)) {
+    return 'Cada número vem de uma única pesquisa — não há média a ponderar.';
+  }
+  return 'Média ponderada por recência e tamanho de amostra.';
 }
 
 function renderRodape(resumo: ResumoEstado): string {
@@ -192,6 +207,7 @@ function renderSecaoCargo(
 
   const espectroLider = espectroDoPartido(agregado.lider.partido, partidos);
   const nivel = nivelConfianca(agregado.vantagem, agregado.margemReferencia, false);
+  const n = agregado.pesquisasUsadas.length;
 
   const badgeLider = `
     <span class="badge" style="background:${corEspectroSolido(espectroLider)}">
@@ -199,9 +215,14 @@ function renderSecaoCargo(
     </span>
   `;
 
+  // O selo afirma a confiança da liderança; a contagem de pesquisas que a
+  // sustenta vem no mesmo selo, antes de o leitor abrir o `<details>` — um
+  // "LIDERA COM FOLGA" sobre uma única pesquisa promete mais do que o dado tem
+  // (mesma correção aplicada ao painel de presidente por estado).
+  const contagem = `${n} ${pluralizar(n, 'pesquisa', 'pesquisas')}`;
   const seloEmpate = agregado.empateTecnico
-    ? '<span class="pill pill--empate">EMPATE TÉCNICO</span>'
-    : `<span class="pill pill--confianca">${rotuloConfianca(nivel)}</span>`;
+    ? `<span class="pill pill--empate">EMPATE TÉCNICO · ${contagem}</span>`
+    : `<span class="pill pill--confianca">${rotuloConfianca(nivel)} · ${contagem}</span>`;
 
   const maxPct = Math.max(...agregado.candidatos.map((c) => c.pct), 1);
   const candidatosMostrados = agregado.candidatos.slice(0, opcoes.destacarDoisPrimeiros ? 4 : 3);

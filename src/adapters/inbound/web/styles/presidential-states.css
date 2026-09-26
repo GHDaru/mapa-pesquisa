@@ -154,8 +154,13 @@
     flex: 1 1 auto;
     min-width: 0;
   }
-  .ps-legend {
-    flex: 0 0 240px;
+  /* A coluna da legenda é o ELEMENTO FILHO do layout (o `<div>` que embrulha
+     a legenda), não `.ps-legend` lá dentro: com a regra no filho errado, a
+     coluna crescia até o max-content do texto mais longo da legenda e comia a
+     largura do mapa. */
+  .ps-map-legend-col {
+    flex: 0 0 260px;
+    min-width: 0;
   }
 }
 
@@ -187,13 +192,32 @@
   pointer-events: all;
   cursor: pointer;
 }
-/* UF cujo agregado usou pesquisa de fora da janela de recência: contorno
-   tracejado de contraste. Não altera a cor (o líder e a confiança continuam
-   sendo lidos do preenchimento), só avisa que o dado é antigo. */
-.ps-uf--fora-janela {
+/* UF cujo agregado usou pesquisa de fora da janela de recência. A marca NÃO
+   é mais um `stroke` no path de preenchimento: os estados são desenhados em
+   sequência e cada vizinho pintava o próprio stroke branco por cima, então o
+   tracejado nunca fechava (o Piauí ficava com tracejado só no norte, oeste e
+   na divisa com o Ceará — uma linha aberta dentro da mancha vermelha do
+   Nordeste, sem dizer qual polígono era). Agora o contorno vem em
+   `.ps-uf-marca`, num grupo desenhado DEPOIS de todos os preenchimentos, e
+   `.ps-uf-ancora` repete a marca dentro do estado, junto ao rótulo. */
+.ps-uf-marca {
+  fill: none;
   stroke: var(--color-text);
-  stroke-width: 1.5;
+  stroke-width: 1.8;
   stroke-dasharray: 4 3;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+.ps-uf-ancora {
+  fill: var(--color-canvas);
+  stroke: var(--color-text);
+  stroke-width: 1.4;
+  stroke-dasharray: 2.4 1.8;
+  pointer-events: none;
+}
+.ps-uf-ancora__miolo {
+  fill: var(--color-text);
+  pointer-events: none;
 }
 .ps-uf-label {
   fill: #ffffff;
@@ -313,11 +337,38 @@
 }
 .ps-legend-swatch--fora-janela {
   border: 1.5px dashed var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Mesma âncora que o mapa desenha dentro do estado marcado, para a legenda
+   explicar as DUAS marcas (contorno fechado + âncora interna). */
+.ps-legend-swatch--fora-janela::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1px dashed var(--color-text);
+  background: var(--color-text);
+  background-clip: content-box;
+  padding: 1px;
 }
 .ps-legend-nota {
   margin: 0;
   font: var(--text-caption);
   color: var(--color-text-tertiary);
+}
+
+/* Degraus de opacidade da força da evidência no mapa "Quem lidera" (ver
+   `faixaEvidencia` em presidential-states-layout.ts). Com os 3 níveis de
+   `nivelConfianca`, 25 das 27 UFs do 2º turno caíam na opacidade cheia e o
+   canal não dizia mais nada; 4 degraus devolvem magnitude, e o desconto de
+   uma única pesquisa tira a UF do topo da escala. */
+:root {
+  --ps-evidencia-1: 0.58;
+  --ps-evidencia-2: 0.72;
+  --ps-evidencia-3: 0.86;
+  --ps-evidencia-4: 1;
 }
 
 /* Escala sequencial (modo Eleitorado): 5 degraus de um único matiz. */
@@ -372,8 +423,14 @@
   }
 }
 
+/* Coluna flex (não `block`) para que a miniatura possa ser empurrada para o
+   rodapé do cartão com `margin-top:auto`: as linhas da grade esticam os
+   cartões à mesma altura, então os gráficos de uma fileira ficam alinhados
+   mesmo quando um cartão tem uma linha de texto a mais (era o que
+   desalinhava a fileira dos estados com ressalva de recência). */
 .ps-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   text-align: left;
   background: var(--color-surface-1);
@@ -436,24 +493,59 @@
   font-weight: var(--font-variation-nav);
 }
 .ps-card__eleitores {
-  margin: 0 0 var(--space-2);
+  margin: 0;
   font: var(--text-caption);
   color: var(--color-text-subtle);
+}
+/* Procedência ("1 pesquisa · 10/09/2026"): informação de apoio, portanto mais
+   leve que o eleitorado e muito mais leve que o título — antes a ressalva de
+   recência era um parágrafo com peso e cor MAIORES que o subtítulo do
+   eleitorado, invertendo a hierarquia (a ressalva pesava mais que o dado). */
+.ps-card__meta {
+  margin: 2px 0 var(--space-2);
+  font: var(--text-caption);
+  color: var(--color-text-tertiary);
+}
+.ps-card__ressalva {
+  font-style: italic;
 }
 .ps-card--fora-janela {
   border-style: dashed;
   border-color: var(--color-border-strong);
-}
-.ps-card__aviso {
-  margin: calc(-1 * var(--space-1)) 0 var(--space-2);
-  font: var(--text-caption);
-  color: var(--color-text-muted);
 }
 
 .ps-mini-chart {
   display: block;
   width: 100%;
   height: auto;
+  /* Alinha a miniatura ao rodapé do cartão (ver nota em `.ps-card`). */
+  margin-top: auto;
+}
+
+/* Marcador de ponto único (estado com pesquisa de uma só data): texto, não
+   gráfico — sem eixo, sem baseline de 50% e sem bolinha duplicada. */
+.ps-mini-ponto__marca {
+  stroke: var(--color-surface-1);
+  stroke-width: 2;
+}
+.ps-mini-ponto__nome {
+  fill: var(--color-text-muted);
+  font: var(--text-caption);
+  font-size: 11px;
+  dominant-baseline: auto;
+}
+.ps-mini-ponto__pct {
+  fill: var(--color-text);
+  font: var(--text-caption);
+  font-size: 12px;
+  font-weight: var(--font-variation-announce);
+  text-anchor: end;
+  font-variant-numeric: tabular-nums;
+}
+.ps-mini-ponto__nota {
+  fill: var(--color-text-tertiary);
+  font: var(--text-caption);
+  font-size: 9px;
 }
 .ps-mini-chart__baseline {
   stroke: var(--color-border-strong);
@@ -495,7 +587,7 @@
   color: var(--color-text-tertiary);
   font: var(--text-body-sm);
   border-top: 1px dashed var(--color-border);
-  margin-top: var(--space-2);
+  margin-top: auto;
   padding-top: var(--space-2);
 }
 
@@ -605,6 +697,24 @@
 .ps-panel__vazio {
   color: var(--color-text-subtle);
   font: var(--text-body-sm);
+}
+/* Linhas de brancos/nulos/não sabe e a nota de soma do recorte: informação de
+   procedência, portanto mais leve que os números dos candidatos — mas
+   presente, porque é ela que explica por que o recorte não soma 100%. */
+.ps-panel__outros {
+  margin: 0 0 var(--space-2);
+  color: var(--color-text-subtle);
+  font: var(--text-body-sm);
+}
+.ps-panel__parcial {
+  color: var(--color-text-tertiary);
+  font: var(--text-caption);
+  font-style: italic;
+}
+.ps-panel__soma {
+  margin: 0 0 var(--space-3);
+  color: var(--color-text-tertiary);
+  font: var(--text-caption);
 }
 .ps-panel__secao {
   display: flex;

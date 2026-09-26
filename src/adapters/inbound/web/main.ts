@@ -3,6 +3,16 @@ import { criarCasosDeUso, type CasosDeUso } from '../../../application/use-cases
 import type { Clock } from '../../../application/ports.js';
 import { formatarData } from './format.js';
 import { renderMap } from './views/map-view.js';
+/**
+ * `rotaDoHash` (função pura, testada em
+ * views/__tests__/presidential-states-hash.test.ts) separa a ROTA dos
+ * parâmetros do hash: uma tela pode guardar estado no próprio endereço (ex.:
+ * `#/presidente-estados?turno=2`, o 2º turno com URL própria e resistente a
+ * reload) e continuar sendo a mesma rota para o roteador e para o item ativo
+ * da navegação. Fica ao lado de `turnoDoHash`, que lê o parâmetro, para as
+ * duas leituras do hash nunca divergirem.
+ */
+import { rotaDoHash } from './views/presidential-states-layout.js';
 import { fecharPainelEstado } from './views/state-panel.js';
 import './styles/tokens.css';
 import './styles/app.css';
@@ -175,7 +185,7 @@ async function renderPaginaOpcional(
 
 async function renderizarRota(main: HTMLElement, nav: HTMLElement, casos: CasosDeUso): Promise<void> {
   fecharPainelEstado();
-  const hashAtual = normalizarHash(window.location.hash);
+  const hashAtual = rotaDoHash(normalizarHash(window.location.hash));
 
   for (const link of nav.querySelectorAll<HTMLAnchorElement>('.site-nav__link')) {
     const ativo = link.getAttribute('href') === hashAtual;

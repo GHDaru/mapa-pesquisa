@@ -286,3 +286,248 @@ export function rotuloVantagemMini(
   if (empateTecnico) return 'Empate técnico';
   return `${liderNome} ${formatarVantagemTitulo(vantagem)}`;
 }
+
+/* ============ Força da evidência (tinta do mapa) ============ */
+
+/**
+ * Faixa de tinta de uma UF no mapa "Quem lidera". Substitui o uso direto de
+ * `nivelConfianca` (que só olha vantagem × margem) como canal de opacidade,
+ * por dois motivos medidos na revisão do 2º turno:
+ *
+ * 1. `nivelConfianca` ignora QUANTAS pesquisas sustentam o número. No 2º
+ *    turno, 16 das 27 UFs rodam com uma única pesquisa, e o Rio de Janeiro
+ *    (1 pesquisa, amostra não informada, +8,0) saía mais opaco — logo, mais
+ *    confiável — que São Paulo (3 pesquisas, +5,6). Aqui uma UF com uma só
+ *    pesquisa desce um degrau: a tela deixa de afirmar mais confiança do que
+ *    o dado tem.
+ * 2. Com 3 níveis, o canal ficava inerte: 25 das 27 UFs do 2º turno caíam em
+ *    `solid` (opacidade cheia), então São Paulo (+5,6) tinha exatamente a
+ *    mesma tinta de Roraima (+40,8). Os degraus são medidos em múltiplos da
+ *    margem de erro (2×, 4×, 8×), o que devolve magnitude ao mapa.
+ *
+ * A escala é relativa à margem de erro DE CADA UF (que varia de ± 1,8 a
+ * ± 3,0 pontos nos dados atuais) — é isso que explica a aparente
+ * não-monotonicidade (Amapá +4,0 mais forte que o Distrito Federal +4,9) e é
+ * o que a nota da legenda diz ao leitor em vez de deixá-lo achar que é bug.
+ */
+export type FaixaEvidencia = 'semDados' | 'empate' | 'lidera1' | 'lidera2' | 'lidera3' | 'lidera4';
+
+/** Limiares dos degraus, em múltiplos da margem de erro do agregado. */
+export const LIMIARES_EVIDENCIA = [2, 4, 8] as const;
+
+export interface EntradaEvidencia {
+  readonly vantagem: number;
+  readonly margemReferencia: number;
+  /** Quantas pesquisas o agregado usou (`Agregado.pesquisasUsadas.length`). */
+  readonly nPesquisas: number;
+  readonly semDados: boolean;
+}
+
+/**
+ * Degrau de tinta do mapa. `semDados` tem prioridade; vantagem dentro da
+ * margem é empate técnico (mesmo corte de `nivelConfianca`, para o texto do
+ * selo e a tinta nunca se contradizerem); acima disso, o degrau vem da razão
+ * vantagem/margem e cai um nível quando há uma única pesquisa (nunca abaixo
+ * do primeiro degrau — uma pesquisa real ainda é mais que nenhuma).
+ */
+export function faixaEvidencia(entrada: EntradaEvidencia): FaixaEvidencia {
+  if (entrada.semDados) return 'semDados';
+  const margem = entrada.margemReferencia;
+  if (entrada.vantagem <= 0) return 'empate';
+  if (margem > 0 && entrada.vantagem <= margem) return 'empate';
+  const razao = margem > 0 ? entrada.vantagem / margem : Infinity;
+  const [p1, p2, p3] = LIMIARES_EVIDENCIA;
+  let passo = razao < p1 ? 1 : razao < p2 ? 2 : razao < p3 ? 3 : 4;
+  if (entrada.nPesquisas <= 1) passo = Math.max(1, passo - 1);
+  return `lidera${passo}` as FaixaEvidencia;
+}
+
+/** Variável CSS de opacidade do degrau (tokens `--ps-evidencia-*` em presidential-states.css). */
+export function opacidadeEvidencia(faixa: FaixaEvidencia): string {
+  switch (faixa) {
+    case 'semDados':
+      return '1';
+    case 'empate':
+      return 'var(--confidence-empate-opacity)';
+    case 'lidera1':
+      return 'var(--ps-evidencia-1)';
+    case 'lidera2':
+      return 'var(--ps-evidencia-2)';
+    case 'lidera3':
+      return 'var(--ps-evidencia-3)';
+    case 'lidera4':
+      return 'var(--ps-evidencia-4)';
+  }
+}
+
+/** Rótulo da faixa na legenda — diz o critério (múltiplos da margem), não só a cor. */
+export function rotuloFaixaEvidencia(faixa: FaixaEvidencia): string {
+  const [p1, p2, p3] = LIMIARES_EVIDENCIA;
+  switch (faixa) {
+    case 'semDados':
+      return 'Sem dados';
+    case 'empate':
+      return 'Empate técnico (vantagem dentro da margem)';
+    case 'lidera1':
+      return `Lidera por até ${p1}× a margem`;
+    case 'lidera2':
+      return `Lidera por ${p1}× a ${p2}× a margem`;
+    case 'lidera3':
+      return `Lidera por ${p2}× a ${p3}× a margem`;
+    case 'lidera4':
+      return `Lidera por mais de ${p3}× a margem`;
+  }
+}
+
+/* ============ Quantas pesquisas, e de quando ============ */
+
+const MESES_ABREV = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'] as const;
+
+function partesData(dataIso: string): { ano: string; mes: string; dia: string } | null {
+  const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(dataIso);
+  if (!m) return null;
+  return { ano: m[1]!, mes: m[2]!, dia: m[3]! };
+}
+
+function mesAbrev(mes: string): string {
+  return MESES_ABREV[Number.parseInt(mes, 10) - 1] ?? mes;
+}
+
+/**
+ * Período coberto por um conjunto de datas ISO, no espaço curto do cartão e
+ * do tooltip: uma data vira "10/09/2026"; várias no mesmo mês, "set/2026";
+ * várias no mesmo ano, "ago–set/2026"; anos diferentes, "dez/2025–set/2026".
+ * `null` quando não há nenhuma data válida — nunca inventa período.
+ */
+export function rotuloPeriodoPesquisas(datasIso: readonly string[]): string | null {
+  const validas = datasIso
+    .map(partesData)
+    .filter((p): p is { ano: string; mes: string; dia: string } => p != null)
+    .sort((a, b) => `${a.ano}${a.mes}${a.dia}`.localeCompare(`${b.ano}${b.mes}${b.dia}`));
+  if (validas.length === 0) return null;
+  const primeira = validas[0]!;
+  const ultima = validas[validas.length - 1]!;
+  const mesmaData = primeira.ano === ultima.ano && primeira.mes === ultima.mes && primeira.dia === ultima.dia;
+  if (mesmaData) return `${primeira.dia}/${primeira.mes}/${primeira.ano}`;
+  if (primeira.ano === ultima.ano) {
+    if (primeira.mes === ultima.mes) return `${mesAbrev(primeira.mes)}/${primeira.ano}`;
+    return `${mesAbrev(primeira.mes)}–${mesAbrev(ultima.mes)}/${primeira.ano}`;
+  }
+  return `${mesAbrev(primeira.mes)}/${primeira.ano}–${mesAbrev(ultima.mes)}/${ultima.ano}`;
+}
+
+/** "1 pesquisa" / "3 pesquisas" — a contagem que sustenta o número, sem período. */
+export function rotuloContagemPesquisas(n: number): string {
+  return `${n} ${n === 1 ? 'pesquisa' : 'pesquisas'}`;
+}
+
+/**
+ * Linha de procedência do cartão/tooltip: "1 pesquisa · 10/09/2026" ou
+ * "3 pesquisas · ago–set/2026". É a informação que faltava na superfície: a
+ * confiança era afirmada (selo, opacidade, tooltip) sem dizer sobre quantas
+ * pesquisas, e o leitor só descobria abrindo o `<details>` do painel.
+ */
+export function rotuloPesquisasComPeriodo(n: number, datasIso: readonly string[]): string {
+  const periodo = rotuloPeriodoPesquisas(datasIso);
+  return periodo ? `${rotuloContagemPesquisas(n)} · ${periodo}` : rotuloContagemPesquisas(n);
+}
+
+/** Ponto de pesquisa desenhado no mini-gráfico (`SerieTemporal.pontos`). */
+export interface PontoCandidatoData {
+  readonly candidato: string;
+  readonly data: string;
+}
+
+/**
+ * Datas distintas (crescentes) desenhadas como pontos no mini-gráfico, ou
+ * seja: as datas dos pontos dos candidatos que o cartão realmente plota (os
+ * 2 primeiros do agregado). É a entrada de `temEvolucaoParaLinha` e o que
+ * decide entre sparkline e marcador de ponto único — as duas leituras têm de
+ * sair do MESMO cálculo, senão a contagem da seção e o desenho do cartão
+ * divergem.
+ */
+export function datasDosPontos(
+  pontos: readonly PontoCandidatoData[],
+  candidatos: readonly string[],
+): string[] {
+  const nomes = new Set(candidatos);
+  const datas = new Set<string>();
+  for (const p of pontos) {
+    if (nomes.has(p.candidato)) datas.add(p.data);
+  }
+  return [...datas].sort((a, b) => a.localeCompare(b));
+}
+
+/* ============ Turno no endereço (hash) ============ */
+
+/** Rota desta tela, sem parâmetros. */
+export const ROTA_PRESIDENTE_ESTADOS = '#/presidente-estados';
+
+/**
+ * Turno pedido pelo hash (`#/presidente-estados?turno=2`). O 1º turno é o
+ * padrão e não precisa de parâmetro; qualquer valor inesperado cai no 1º
+ * turno em vez de quebrar a montagem da tela.
+ */
+export function turnoDoHash(hash: string): 1 | 2 {
+  const inicioQuery = hash.indexOf('?');
+  if (inicioQuery < 0) return 1;
+  const params = new URLSearchParams(hash.slice(inicioQuery + 1));
+  return params.get('turno') === '2' ? 2 : 1;
+}
+
+/**
+ * Hash canônico de um turno desta tela: o 2º turno ganha endereço próprio
+ * (`#/presidente-estados?turno=2`, compartilhável e resistente a reload) e o
+ * 1º turno fica na rota limpa, sem parâmetro redundante.
+ */
+export function hashDoTurno(turno: 1 | 2): string {
+  return turno === 2 ? `${ROTA_PRESIDENTE_ESTADOS}?turno=2` : ROTA_PRESIDENTE_ESTADOS;
+}
+
+/** Parte de rota de um hash, sem os parâmetros: `#/presidente-estados?turno=2` → `#/presidente-estados`. */
+export function rotaDoHash(hash: string): string {
+  const inicioQuery = hash.indexOf('?');
+  return inicioQuery < 0 ? hash : hash.slice(0, inicioQuery);
+}
+
+/* ============ Procedência de cada linha do painel e soma do recorte ============ */
+
+/**
+ * "de 1 de 3 pesquisas": de quantas das pesquisas usadas aquela linha do
+ * painel realmente saiu. `null` quando a linha aparece em todas elas (aí não
+ * há ressalva a fazer).
+ *
+ * Existe porque uma linha pode vir de menos pesquisas que as médias dos
+ * candidatos — no Ceará (2º turno), das 3 pesquisas do confronto só 1 publica
+ * brancos/nulos, e é por isso que a soma do recorte dá 102,4%. Completar para
+ * fechar 100 seria estimar número que a fonte não publicou.
+ */
+export function rotuloBaseParcial(pesquisasDaLinha: number, pesquisasUsadas: number): string | null {
+  if (pesquisasDaLinha >= pesquisasUsadas || pesquisasDaLinha <= 0) return null;
+  return `de ${pesquisasDaLinha} de ${pesquisasUsadas} ${pesquisasUsadas === 1 ? 'pesquisa' : 'pesquisas'}`;
+}
+
+/**
+ * Nota sobre a soma das linhas mostradas, quando ela NÃO fecha 100% — o que é
+ * a regra, não a exceção: de 125 recortes auditados, só 32 somam entre 97% e
+ * 103%. Abaixo de 100 porque a matéria só publicou os nomes da frente (o
+ * resto não é zero: é o que não foi publicado); acima de 100 porque cada média
+ * usa apenas as pesquisas que trazem aquela linha. `null` quando fecha dentro
+ * da tolerância — aí não há nada a ressalvar.
+ */
+export function notaSomaDoPainel(soma: number, tolerancia = 0.5): string | null {
+  const texto = `As linhas acima somam ${comVirgula(soma)}%`;
+  if (soma < 100 - tolerancia) {
+    return (
+      `${texto} — o que falta não é zero: é o que as pesquisas deste recorte não publicaram ` +
+      '(candidatos fora da lista divulgada, brancos, nulos e indecisos). Nada foi completado para fechar 100%.'
+    );
+  }
+  if (soma > 100 + tolerancia) {
+    return (
+      `${texto} — cada média usa só as pesquisas que publicaram aquela linha, então elas não se somam a ` +
+      '100%. Nada foi ajustado para fechar.'
+    );
+  }
+  return null;
+}
