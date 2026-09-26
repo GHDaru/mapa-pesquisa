@@ -207,33 +207,33 @@ export function caminhoSuavizado(pontos: readonly PontoXY[]): string {
   return d;
 }
 
-const RAIO_MIN = 3;
-const RAIO_MAX = 9;
-const AMOSTRA_REFERENCIA = 1000;
+/**
+ * Raio (px) de TODO ponto de pesquisa do mini-gráfico. Um valor só, de
+ * propósito: a escala anterior era por tamanho de amostra e tinha dois
+ * defeitos medidos.
+ *
+ * 1. Amostra não publicada caía numa referência de 1000 entrevistados e era
+ *    desenhada do tamanho de uma pesquisa de mil — 11 dos 63 pontos do 1º
+ *    turno. Era um número inventado para preencher o que a fonte não
+ *    publicou, exatamente o que esta base não faz em nenhum outro lugar.
+ * 2. Nos dados reais a escala variava de 6,31 a 7,24 px de raio (medido no
+ *    DOM), diferença que ninguém lê, e nenhuma legenda da tela declarava
+ *    esse canal. Um canal que não se lê nem se explica afirma sem informar.
+ *
+ * O que a amostra tem de informativo e legível — se foi publicada ou não —
+ * passou para a FORMA do ponto (anel vazado quando não foi), não o tamanho.
+ */
+export const RAIO_PONTO = 6;
 
 /**
- * Raio (px) de um ponto de pesquisa no mini-gráfico, numa escala de raiz
- * quadrada do tamanho da amostra (percepção de área ~ proporcional ao
- * valor), clampada a [3, 9]px. Amostra ausente usa a referência padrão de
- * agregação (1000, ver domain/aggregate.ts).
+ * Padding esquerdo do mini-gráfico: raio do ponto mais 2px de folga. Sem essa
+ * reserva, o ponto mais antigo (o que `escalaX` mapeia para x=0 dentro da área
+ * útil) fica com o centro do círculo exatamente na borda esquerda do `viewBox`
+ * e metade dele é cortada — bug confirmado via DOM (`cx=0`) em 20 dos 27
+ * mini-gráficos por estado.
  */
-export function raioAmostra(amostra: number | null): number {
-  const base = amostra != null && amostra > 0 ? amostra : AMOSTRA_REFERENCIA;
-  const raio = RAIO_MIN + Math.sqrt(base / AMOSTRA_REFERENCIA) * 3;
-  return Math.min(RAIO_MAX, Math.max(RAIO_MIN, raio));
-}
-
-/**
- * Padding esquerdo do mini-gráfico: raio do maior ponto que será desenhado
- * (entre as amostras informadas) mais 2px de folga. Sem essa reserva, o
- * ponto mais antigo (o que `escalaX` mapeia para x=0 dentro da área útil)
- * fica com o centro do círculo exatamente na borda esquerda do `viewBox` e
- * metade dele é cortada — bug confirmado via DOM (`cx=0`) em 20 dos 27
- * mini-gráficos por estado. Lista vazia usa o raio mínimo como piso.
- */
-export function padEsquerdoMiniChart(amostras: readonly (number | null)[]): number {
-  const raioMax = amostras.length > 0 ? Math.max(...amostras.map(raioAmostra)) : RAIO_MIN;
-  return raioMax + 2;
+export function padEsquerdoMiniChart(): number {
+  return RAIO_PONTO + 2;
 }
 
 /**
@@ -250,22 +250,16 @@ export function formatarVantagemTitulo(vantagem: number): string {
 
 /**
  * Verdadeiro quando há pelo menos 2 datas distintas entre as pesquisas
- * plotadas no mini-gráfico — o critério correto para desenhar a linha de
- * tendência é "existe evolução real para suavizar", não quantas pesquisas
- * sobreviveram ao filtro de recência do agregado
- * (`agregado.pesquisasUsadas`, janela de 45 dias por padrão — ver
- * `domain/aggregate.ts`). `datas` deve vir da série real desenhada como
- * pontos (`serie.pontos`/`serie.dias`, não filtrados por janela), nunca de
- * `agregado.pesquisasUsadas` diretamente.
+ * plotadas no mini-gráfico — o critério para desenhar a linha de tendência é
+ * "existe evolução real para suavizar".
  *
- * Bug corrigido (P0 da revisão): Goiás, Acre e Rondônia têm 2 pesquisas de
- * datas bem distantes (ex.: GO — 2026-09-01 e 2026-05-12, 112 dias de
- * diferença), mas só 1 sobrevivia à janela de 45 dias de
- * `agregado.pesquisasUsadas`, escondendo a linha mesmo havendo os dois
- * pontos reais desenhados no gráfico (`serie.pontos` não é filtrado por
- * janela). O gate antigo (`agregado.pesquisasUsadas.length > 1`) confundia
- * "quantas pesquisas contam para a média ponderada" com "quantas datas
- * distintas foram desenhadas" — são perguntas diferentes.
+ * `datas` deve vir da série efetivamente desenhada como pontos, que é a
+ * MESMA base que o rótulo de procedência do cartão declara
+ * (`agregado.pesquisasUsadas`, via `pontosDaBase`). Os dois têm de sair do
+ * mesmo conjunto: enquanto os pontos vinham de `serie.pontos` inteiro (não
+ * filtrado pela janela de recência) e o rótulo de `pesquisasUsadas`, o cartão
+ * afirmava uma base e desenhava outra — Piauí no 2º turno dizia "1 pesquisa ·
+ * 16/09/2026" e traçava uma tendência entre 21/06 e 16/09, 87 dias de vão.
  */
 export function temEvolucaoParaLinha(datas: readonly string[]): boolean {
   return new Set(datas).size > 1;
@@ -287,82 +281,109 @@ export function rotuloVantagemMini(
   return `${liderNome} ${formatarVantagemTitulo(vantagem)}`;
 }
 
-/* ============ Força da evidência (tinta do mapa) ============ */
+/* ============ Vantagem do líder em margens de erro (tinta do mapa) ============ */
 
 /**
- * Faixa de tinta de uma UF no mapa "Quem lidera". Substitui o uso direto de
- * `nivelConfianca` (que só olha vantagem × margem) como canal de opacidade,
- * por dois motivos medidos na revisão do 2º turno:
+ * Faixa de tinta de uma UF no mapa "Quem lidera". Codifica UMA coisa só: o
+ * tamanho da vantagem do líder sobre o 2º colocado, medido em múltiplos da
+ * margem de erro daquele estado (2×, 4×, 8×). Nada mais entra aqui — nem
+ * quantas pesquisas sustentam o número, nem a idade delas.
  *
- * 1. `nivelConfianca` ignora QUANTAS pesquisas sustentam o número. No 2º
- *    turno, 16 das 27 UFs rodam com uma única pesquisa, e o Rio de Janeiro
- *    (1 pesquisa, amostra não informada, +8,0) saía mais opaco — logo, mais
- *    confiável — que São Paulo (3 pesquisas, +5,6). Aqui uma UF com uma só
- *    pesquisa desce um degrau: a tela deixa de afirmar mais confiança do que
- *    o dado tem.
- * 2. Com 3 níveis, o canal ficava inerte: 25 das 27 UFs do 2º turno caíam em
- *    `solid` (opacidade cheia), então São Paulo (+5,6) tinha exatamente a
- *    mesma tinta de Roraima (+40,8). Os degraus são medidos em múltiplos da
- *    margem de erro (2×, 4×, 8×), o que devolve magnitude ao mapa.
+ * Por que o desconto de pesquisa única SAIU deste cálculo: enquanto ele
+ * existia, a legenda rotulava as faixas por razão ("Lidera por 4× a 8× a
+ * margem") e o degrau vinha de razão MENOS um passo, então o rótulo era
+ * factualmente falso sobre a UF pintada. Medido nos dados reais: 15 das 27 UFs
+ * do 2º turno e 4 das 27 do 1º caíam numa faixa cujo rótulo não descrevia sua
+ * razão — Rondônia lidera por 21,0× a margem e era pintada na faixa "4× a 8×".
+ * Pior, o canal se invertia justamente onde importava: a razão movia o degrau
+ * em até 3 passos e a contagem de pesquisas em 1, então Rondônia (uma pesquisa,
+ * de 15/07, fora da janela de recência) saía em opacidade 0,86 e São Paulo
+ * (três pesquisas em 19 dias) em 0,72 — a tinta passava a significar "vantagem
+ * grande" enquanto o cabeçalho prometia "força da evidência".
  *
- * A escala é relativa à margem de erro DE CADA UF (que varia de ± 1,8 a
- * ± 3,0 pontos nos dados atuais) — é isso que explica a aparente
+ * As ressalvas de evidência que a tinta NÃO carrega são marcadas no mapa por
+ * canais não-cromáticos, cada um com seu item de legenda: pesquisa única
+ * (hachura de poros, ver `temPesquisaUnica`) e dado fora da janela de recência
+ * (contorno tracejado + âncora). Assim os rótulos de razão voltam a ser
+ * verdadeiros sem que a evidência fraca fique invisível.
+ *
+ * A escala é relativa à margem de erro DE CADA UF (que varia de ± 1,8 a ± 3,0
+ * pontos nos dados atuais) — é isso que explica a aparente
  * não-monotonicidade (Amapá +4,0 mais forte que o Distrito Federal +4,9) e é
  * o que a nota da legenda diz ao leitor em vez de deixá-lo achar que é bug.
  */
-export type FaixaEvidencia = 'semDados' | 'empate' | 'lidera1' | 'lidera2' | 'lidera3' | 'lidera4';
+export type FaixaVantagem = 'semDados' | 'empate' | 'lidera1' | 'lidera2' | 'lidera3' | 'lidera4';
 
 /** Limiares dos degraus, em múltiplos da margem de erro do agregado. */
-export const LIMIARES_EVIDENCIA = [2, 4, 8] as const;
+export const LIMIARES_VANTAGEM = [2, 4, 8] as const;
 
-export interface EntradaEvidencia {
+export interface EntradaVantagem {
   readonly vantagem: number;
   readonly margemReferencia: number;
-  /** Quantas pesquisas o agregado usou (`Agregado.pesquisasUsadas.length`). */
-  readonly nPesquisas: number;
   readonly semDados: boolean;
 }
 
 /**
  * Degrau de tinta do mapa. `semDados` tem prioridade; vantagem dentro da
  * margem é empate técnico (mesmo corte de `nivelConfianca`, para o texto do
- * selo e a tinta nunca se contradizerem); acima disso, o degrau vem da razão
- * vantagem/margem e cai um nível quando há uma única pesquisa (nunca abaixo
- * do primeiro degrau — uma pesquisa real ainda é mais que nenhuma).
+ * selo e a tinta nunca se contradizerem); acima disso, o degrau é SÓ a razão
+ * vantagem/margem — o que garante que o rótulo da faixa na legenda seja
+ * verdadeiro sobre toda UF pintada nela.
  */
-export function faixaEvidencia(entrada: EntradaEvidencia): FaixaEvidencia {
+export function faixaVantagem(entrada: EntradaVantagem): FaixaVantagem {
   if (entrada.semDados) return 'semDados';
   const margem = entrada.margemReferencia;
   if (entrada.vantagem <= 0) return 'empate';
   if (margem > 0 && entrada.vantagem <= margem) return 'empate';
-  const razao = margem > 0 ? entrada.vantagem / margem : Infinity;
-  const [p1, p2, p3] = LIMIARES_EVIDENCIA;
-  let passo = razao < p1 ? 1 : razao < p2 ? 2 : razao < p3 ? 3 : 4;
-  if (entrada.nPesquisas <= 1) passo = Math.max(1, passo - 1);
-  return `lidera${passo}` as FaixaEvidencia;
+  return `lidera${degrauDaRazao(razaoVantagem(entrada.vantagem, margem))}` as FaixaVantagem;
 }
 
-/** Variável CSS de opacidade do degrau (tokens `--ps-evidencia-*` em presidential-states.css). */
-export function opacidadeEvidencia(faixa: FaixaEvidencia): string {
+/**
+ * Razão vantagem/margem de uma UF — o número que os rótulos da legenda
+ * afirmam. `Infinity` quando a margem não foi informada (margem 0): não há
+ * divisão por zero, e a UF cai no degrau mais alto.
+ */
+export function razaoVantagem(vantagem: number, margemReferencia: number): number {
+  return margemReferencia > 0 ? vantagem / margemReferencia : Infinity;
+}
+
+/** Degrau (1..4) de uma razão vantagem/margem, pelos limiares de `LIMIARES_VANTAGEM`. */
+export function degrauDaRazao(razao: number): 1 | 2 | 3 | 4 {
+  const [p1, p2, p3] = LIMIARES_VANTAGEM;
+  return razao < p1 ? 1 : razao < p2 ? 2 : razao < p3 ? 3 : 4;
+}
+
+/**
+ * Verdadeiro quando o número da UF vem de UMA pesquisa só — a ressalva de
+ * evidência que saiu do canal de cor e virou marca não-cromática no mapa
+ * (hachura de poros) com item próprio na legenda. UF sem dados não entra: ali
+ * não há pesquisa para ressalvar, e a hachura de "sem dados" já fala.
+ */
+export function temPesquisaUnica(nPesquisas: number, semDados: boolean): boolean {
+  return !semDados && nPesquisas === 1;
+}
+
+/** Variável CSS de opacidade do degrau (tokens `--ps-vantagem-*` em presidential-states.css). */
+export function opacidadeVantagem(faixa: FaixaVantagem): string {
   switch (faixa) {
     case 'semDados':
       return '1';
     case 'empate':
       return 'var(--confidence-empate-opacity)';
     case 'lidera1':
-      return 'var(--ps-evidencia-1)';
+      return 'var(--ps-vantagem-1)';
     case 'lidera2':
-      return 'var(--ps-evidencia-2)';
+      return 'var(--ps-vantagem-2)';
     case 'lidera3':
-      return 'var(--ps-evidencia-3)';
+      return 'var(--ps-vantagem-3)';
     case 'lidera4':
-      return 'var(--ps-evidencia-4)';
+      return 'var(--ps-vantagem-4)';
   }
 }
 
 /** Rótulo da faixa na legenda — diz o critério (múltiplos da margem), não só a cor. */
-export function rotuloFaixaEvidencia(faixa: FaixaEvidencia): string {
-  const [p1, p2, p3] = LIMIARES_EVIDENCIA;
+export function rotuloFaixaVantagem(faixa: FaixaVantagem): string {
+  const [p1, p2, p3] = LIMIARES_VANTAGEM;
   switch (faixa) {
     case 'semDados':
       return 'Sem dados';
@@ -377,6 +398,22 @@ export function rotuloFaixaEvidencia(faixa: FaixaEvidencia): string {
     case 'lidera4':
       return `Lidera por mais de ${p3}× a margem`;
   }
+}
+
+/**
+ * Percentual de cobertura para o cabeçalho: sem casa decimal quando o valor é
+ * exato ("100%"), com uma casa quando não é ("99,2%"). Imprimir "100,0%" ao
+ * lado de uma ressalva que diz que uma UF está fora da janela é precisão
+ * falsa: a casa decimal sugere uma medida fina de algo que a ressalva
+ * desmente duas linhas abaixo.
+ */
+export function pctCobertura(parte: number, total: number): string {
+  if (total <= 0) return '0%';
+  const pct = (parte / total) * 100;
+  const arredondado = Math.round(pct * 10) / 10;
+  return Number.isInteger(arredondado)
+    ? `${arredondado.toLocaleString('pt-BR')}%`
+    : `${comVirgula(arredondado)}%`;
 }
 
 /* ============ Quantas pesquisas, e de quando ============ */
@@ -436,6 +473,33 @@ export function rotuloPesquisasComPeriodo(n: number, datasIso: readonly string[]
 export interface PontoCandidatoData {
   readonly candidato: string;
   readonly data: string;
+}
+
+/** Ponto de série que sabe de qual pesquisa veio (`PontoSerieTemporal.pollId`). */
+export interface PontoComPesquisa {
+  readonly pollId: string;
+}
+
+/**
+ * Restringe os pontos de uma série às pesquisas que o agregado realmente usou
+ * (`Agregado.pesquisasUsadas`) — a base que o cartão, o tooltip e o painel
+ * DECLARAM em "1 pesquisa · 16/09/2026".
+ *
+ * `SerieTemporal.pontos` traz TODAS as pesquisas da disputa, inclusive as que
+ * a janela de recência de 45 dias descartou, então o cartão desenhava mais
+ * pesquisas do que dizia ter: medido nos dados reais, 4 UFs no 1º turno (AC,
+ * GO, RO, SE) e 3 no 2º (AC, PI, SE). Em Sergipe, o rótulo dizia "1 pesquisa ·
+ * 21/09/2026" e o gráfico traçava 01/08 → 21/09; no Piauí, "1 pesquisa ·
+ * 16/09/2026" com pontos em 21/06 e 16/09. Sem eixo x, não havia como o leitor
+ * descobrir. Filtrando aqui, o que é desenhado e o que é declarado saem do
+ * mesmo conjunto — o mesmo princípio que já vale para a contagem de "uma só
+ * data".
+ */
+export function pontosDaBase<T extends PontoComPesquisa>(
+  pontos: readonly T[],
+  idsUsados: ReadonlySet<string>,
+): T[] {
+  return pontos.filter((p) => idsUsados.has(p.pollId));
 }
 
 /**

@@ -11,7 +11,9 @@ import {
   formatarVantagemTitulo,
   ordenarParaGrade,
   padEsquerdoMiniChart,
-  raioAmostra,
+  pctCobertura,
+  pontosDaBase,
+  RAIO_PONTO,
   rotuloVantagemMini,
   serieCandidatoPorDia,
   temEvolucaoParaLinha,
@@ -193,47 +195,65 @@ describe('presidential-states-layout: caminhoSuavizado', () => {
   });
 });
 
-describe('presidential-states-layout: raioAmostra', () => {
-  it('amostra na referência padrão (1000) produz o raio de referência (mínimo + 3px)', () => {
-    expect(raioAmostra(1000)).toBeCloseTo(6, 5);
+describe('presidential-states-layout: RAIO_PONTO e padEsquerdoMiniChart', () => {
+  it('todo ponto tem o mesmo raio — o tamanho não codifica mais a amostra', () => {
+    // A escala por amostra saiu por dois motivos: assumia 1000 entrevistados
+    // onde a fonte não publicou amostra (11 dos 63 pontos do 1º turno) e
+    // variava só de 6,31 a 7,24px de raio nos dados reais, sem legenda nenhuma.
+    expect(RAIO_PONTO).toBe(6);
   });
 
-  it('amostra maior produz raio maior, mas nunca acima do máximo', () => {
-    expect(raioAmostra(4000)).toBeGreaterThan(raioAmostra(1000));
-    expect(raioAmostra(1_000_000)).toBeLessThanOrEqual(9);
-  });
-
-  it('amostra ausente (null) usa a referência padrão sem lançar erro', () => {
-    expect(raioAmostra(null)).toBeCloseTo(raioAmostra(1000), 5);
-  });
-
-  it('nunca fica abaixo do raio mínimo, mesmo com amostra minúscula', () => {
-    expect(raioAmostra(1)).toBeGreaterThanOrEqual(3);
+  it('reserva o raio do ponto mais 2px de folga (nenhum ponto em cx=0 é cortado)', () => {
+    expect(padEsquerdoMiniChart()).toBe(RAIO_PONTO + 2);
+    expect(padEsquerdoMiniChart()).toBeGreaterThanOrEqual(RAIO_PONTO);
   });
 });
 
-describe('presidential-states-layout: padEsquerdoMiniChart', () => {
-  it('reserva o raio do maior ponto (raiz da amostra) mais 2px de folga', () => {
-    // amostra 1000 -> raio 6 (referência); pad = 6 + 2 = 8.
-    expect(padEsquerdoMiniChart([1000])).toBeCloseTo(8, 5);
+describe('presidential-states-layout: pontosDaBase', () => {
+  const pontos = [
+    { pollId: 'p-antiga', data: '2026-06-21', candidato: 'Lula' },
+    { pollId: 'p-usada', data: '2026-09-16', candidato: 'Lula' },
+    { pollId: 'p-usada', data: '2026-09-16', candidato: 'Flávio Bolsonaro' },
+  ];
+
+  it('só deixa passar os pontos das pesquisas que o agregado declarou usar', () => {
+    // Caso real: Piauí no 2º turno declarava "1 pesquisa · 16/09/2026" e
+    // desenhava 21/06 e 16/09, uma tendência sobre 87 dias de vão.
+    const base = pontosDaBase(pontos, new Set(['p-usada']));
+    expect(base.map((p) => p.data)).toEqual(['2026-09-16', '2026-09-16']);
   });
 
-  it('usa o maior raio entre várias amostras, não a média nem a última', () => {
-    const padGrande = padEsquerdoMiniChart([100, 1_000_000, 500]);
-    const padPequeno = padEsquerdoMiniChart([100, 500]);
-    expect(padGrande).toBeGreaterThan(padPequeno);
+  it('com todas as pesquisas usadas, não descarta nada', () => {
+    expect(pontosDaBase(pontos, new Set(['p-antiga', 'p-usada']))).toHaveLength(3);
   });
 
-  it('lista vazia cai no raio mínimo (nunca fica sem padding)', () => {
-    expect(padEsquerdoMiniChart([])).toBeGreaterThan(0);
+  it('base vazia não desenha ponto nenhum', () => {
+    expect(pontosDaBase(pontos, new Set())).toEqual([]);
   });
 
-  it('garante que um ponto no início do domínio (cx = padding) nunca fica com cx < raio (sem corte)', () => {
-    const amostras = [200, 4000, null, 50_000];
-    const pad = padEsquerdoMiniChart(amostras);
-    for (const amostra of amostras) {
-      expect(pad).toBeGreaterThanOrEqual(raioAmostra(amostra));
-    }
+  it('o que o gráfico desenha e o que o rótulo declara saem do mesmo conjunto', () => {
+    const idsUsados = new Set(['p-usada']);
+    const datas = new Set(pontosDaBase(pontos, idsUsados).map((p) => p.data));
+    expect(datas.size).toBe(1);
+    expect(temEvolucaoParaLinha([...datas])).toBe(false);
+  });
+});
+
+describe('presidential-states-layout: pctCobertura', () => {
+  it('não imprime casa decimal quando o valor é exato', () => {
+    // "cobre 100,0%" duas linhas acima de uma ressalva que diz que uma UF está
+    // fora da janela é precisão falsa.
+    expect(pctCobertura(10, 10)).toBe('100%');
+    expect(pctCobertura(5, 10)).toBe('50%');
+  });
+
+  it('imprime uma casa decimal quando ela é real, com vírgula', () => {
+    expect(pctCobertura(992, 1000)).toBe('99,2%');
+    expect(pctCobertura(966, 1000)).toBe('96,6%');
+  });
+
+  it('total zero não vira divisão por zero', () => {
+    expect(pctCobertura(0, 0)).toBe('0%');
   });
 });
 

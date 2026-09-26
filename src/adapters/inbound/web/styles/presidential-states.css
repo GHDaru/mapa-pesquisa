@@ -321,19 +321,24 @@
   color: var(--color-text-muted);
 }
 .ps-legend-swatch {
-  width: 22px;
+  width: 28px;
   height: 14px;
   border-radius: var(--radius-xs);
   border: 1px solid var(--color-border-strong);
   flex-shrink: 0;
   position: relative;
 }
-.ps-legend-swatch--hachura::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: var(--confidence-sem-dados-pattern);
-  border-radius: inherit;
+/* Chip de legenda que carrega uma textura do mapa (hachura de empate/sem
+   dados, pontilhado de pesquisa única): é um `<svg>` preenchido pelo MESMO
+   construtor de `<pattern>` do mapa (`construirPatternMarca` em
+   presidential-states-view.ts), não uma imitação em CSS. Antes o chip era um
+   `repeating-linear-gradient` cinza claro de 4px e o mapa desenhava listra de
+   3px em `--color-text`: a legenda explicava uma marca que não existia na
+   tela. O `viewBox` do chip usa a mesma escala de unidades do mapa, para o
+   azulejo sair do mesmo tamanho na tela. */
+.ps-legend-swatch--marca {
+  display: block;
+  overflow: hidden;
 }
 .ps-legend-swatch--fora-janela {
   border: 1.5px dashed var(--color-text);
@@ -359,16 +364,18 @@
   color: var(--color-text-tertiary);
 }
 
-/* Degraus de opacidade da força da evidência no mapa "Quem lidera" (ver
-   `faixaEvidencia` em presidential-states-layout.ts). Com os 3 níveis de
-   `nivelConfianca`, 25 das 27 UFs do 2º turno caíam na opacidade cheia e o
-   canal não dizia mais nada; 4 degraus devolvem magnitude, e o desconto de
-   uma única pesquisa tira a UF do topo da escala. */
+/* Degraus de opacidade da VANTAGEM do líder em múltiplos da margem de erro do
+   estado, no mapa "Quem lidera" (ver `faixaVantagem` em
+   presidential-states-layout.ts). Com os 3 níveis de `nivelConfianca`, 25 das
+   27 UFs do 2º turno caíam na opacidade cheia e o canal não dizia mais nada.
+   As ressalvas de evidência (pesquisa única, dado fora da janela) NÃO estão
+   nesta escala: são marcas não-cromáticas, porque enquanto elas mexiam no
+   degrau o rótulo de razão da legenda ficava falso sobre a UF pintada. */
 :root {
-  --ps-evidencia-1: 0.58;
-  --ps-evidencia-2: 0.72;
-  --ps-evidencia-3: 0.86;
-  --ps-evidencia-4: 1;
+  --ps-vantagem-1: 0.58;
+  --ps-vantagem-2: 0.72;
+  --ps-vantagem-3: 0.86;
+  --ps-vantagem-4: 1;
 }
 
 /* Escala sequencial (modo Eleitorado): 5 degraus de um único matiz. */
@@ -564,6 +571,16 @@
 }
 .ps-mini-chart__ponto {
   opacity: 0.35;
+}
+/* Pesquisa cuja amostra não foi publicada: anel vazado, do mesmo raio dos
+   demais pontos. O canal de tamanho por amostra saiu (ver `RAIO_PONTO` em
+   presidential-states-layout.ts) porque assumia 1000 entrevistados onde a
+   fonte não publicou nada e variava só de 6,3 a 7,2px de raio, sem legenda
+   nenhuma. O anel precisa de mais opacidade que o disco para ter o mesmo peso
+   visual, já que só o contorno é pintado. */
+.ps-mini-chart__ponto--sem-amostra {
+  opacity: 0.6;
+  stroke-width: 1.6;
 }
 .ps-mini-chart__ponto-final {
   opacity: 1;

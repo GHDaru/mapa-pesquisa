@@ -1,116 +1,134 @@
 import { describe, expect, it } from 'vitest';
 import {
   datasDosPontos,
-  faixaEvidencia,
-  LIMIARES_EVIDENCIA,
+  degrauDaRazao,
+  faixaVantagem,
+  LIMIARES_VANTAGEM,
   notaSomaDoPainel,
-  opacidadeEvidencia,
+  opacidadeVantagem,
+  pontosDaBase,
+  razaoVantagem,
   rotuloBaseParcial,
   rotuloContagemPesquisas,
-  rotuloFaixaEvidencia,
+  rotuloFaixaVantagem,
   rotuloPeriodoPesquisas,
   rotuloPesquisasComPeriodo,
   temEvolucaoParaLinha,
-  type FaixaEvidencia,
+  temPesquisaUnica,
+  type FaixaVantagem,
 } from '../presidential-states-layout.js';
 import { nivelConfianca } from '../../format.js';
 
 /**
- * Força da evidência (tinta do mapa "Quem lidera") e procedência do número
- * ("1 pesquisa · 10/09/2026") na tela "Presidente por estado".
+ * Tinta do mapa "Quem lidera" e procedência do número ("1 pesquisa ·
+ * 10/09/2026") na tela "Presidente por estado".
  *
- * Os dois defeitos que estes testes travam foram medidos no 2º turno:
- *
- * 1. `nivelConfianca` (vantagem × margem, sem contar pesquisas) fazia o Rio de
- *    Janeiro — 1 pesquisa, +8,0 — sair MAIS opaco, isto é mais confiável, que
- *    São Paulo — 3 pesquisas, +5,6.
- * 2. Com 3 níveis, 25 das 27 UFs caíam na opacidade cheia: São Paulo (+5,6)
- *    tinha exatamente a mesma tinta de Roraima (+40,8), e a intro prometia um
- *    canal inerte.
+ * O defeito que estes testes travam: o cabeçalho prometia que "a opacidade
+ * indica a força da evidência", a legenda rotulava as faixas por razão
+ * vantagem/margem ("Lidera por 4× a 8× a margem") e o cálculo descia um degrau
+ * nas UFs de pesquisa única. Resultado medido nos dados reais: 15 das 27 UFs do
+ * 2º turno e 4 das 27 do 1º ficavam pintadas numa faixa cujo rótulo era
+ * factualmente falso sobre elas — Rondônia lidera por 21,0× a margem e saía na
+ * faixa "4× a 8×". Agora a tinta codifica SÓ a vantagem em margens de erro, e
+ * as ressalvas de evidência (pesquisa única, dado fora da janela) são marcas
+ * não-cromáticas com item próprio na legenda.
  */
 
 const MARGEM = 2;
 
-function faixa(vantagem: number, nPesquisas: number, margemReferencia = MARGEM): FaixaEvidencia {
-  return faixaEvidencia({ vantagem, margemReferencia, nPesquisas, semDados: false });
+function faixa(vantagem: number, margemReferencia = MARGEM): FaixaVantagem {
+  return faixaVantagem({ vantagem, margemReferencia, semDados: false });
 }
 
-describe('presidential-states-layout: faixaEvidencia', () => {
+describe('presidential-states-layout: faixaVantagem', () => {
   it('sem dados tem prioridade sobre qualquer vantagem', () => {
-    expect(faixaEvidencia({ vantagem: 30, margemReferencia: 2, nPesquisas: 3, semDados: true })).toBe('semDados');
+    expect(faixaVantagem({ vantagem: 30, margemReferencia: 2, semDados: true })).toBe('semDados');
   });
 
   it('vantagem dentro da margem é empate técnico, no mesmo corte de nivelConfianca', () => {
-    expect(faixa(1.9, 3)).toBe('empate');
-    expect(faixa(2, 3)).toBe('empate');
+    expect(faixa(1.9)).toBe('empate');
+    expect(faixa(2)).toBe('empate');
     expect(nivelConfianca(2, MARGEM, false)).toBe('empate');
     // Vantagem zero/negativa (sem segundo colocado, ou empate exato) nunca
     // vira liderança pintada.
-    expect(faixa(0, 3)).toBe('empate');
+    expect(faixa(0)).toBe('empate');
   });
 
   it('escalona os degraus por múltiplos da margem de erro', () => {
-    expect(LIMIARES_EVIDENCIA).toEqual([2, 4, 8]);
-    expect(faixa(3, 3)).toBe('lidera1'); // 1,5×
-    expect(faixa(5, 3)).toBe('lidera2'); // 2,5×
-    expect(faixa(10, 3)).toBe('lidera3'); // 5×
-    expect(faixa(20, 3)).toBe('lidera4'); // 10×
+    expect(LIMIARES_VANTAGEM).toEqual([2, 4, 8]);
+    expect(faixa(3)).toBe('lidera1'); // 1,5×
+    expect(faixa(5)).toBe('lidera2'); // 2,5×
+    expect(faixa(10)).toBe('lidera3'); // 5×
+    expect(faixa(20)).toBe('lidera4'); // 10×
   });
 
-  it('desce um degrau quando o estado tem uma única pesquisa', () => {
-    expect(faixa(20, 3)).toBe('lidera4');
-    expect(faixa(20, 1)).toBe('lidera3');
-    expect(faixa(10, 1)).toBe('lidera2');
-    expect(faixa(5, 1)).toBe('lidera1');
+  it('a contagem de pesquisas NÃO entra na tinta: é o que tornava os rótulos falsos', () => {
+    // 21× a margem com uma pesquisa (caso de Rondônia no 2º turno) tem de cair
+    // na faixa rotulada "mais de 8×", porque é isso que a razão diz. A ressalva
+    // de pesquisa única vai para `temPesquisaUnica`, não para a cor.
+    expect(faixa(42, 2)).toBe('lidera4');
+    expect(faixaVantagem({ vantagem: 42, margemReferencia: 2, semDados: false })).toBe('lidera4');
   });
 
-  it('nunca desce abaixo do primeiro degrau — uma pesquisa real ainda é mais que nenhuma', () => {
-    expect(faixa(3, 1)).toBe('lidera1');
-    expect(faixa(2.5, 1)).toBe('lidera1');
+  it('acima da margem, o degrau é exatamente o degrau da razão, sempre', () => {
+    for (const vantagem of [2.1, 3.9, 4.1, 7.9, 8.1, 16, 40]) {
+      expect(faixa(vantagem)).toBe(`lidera${degrauDaRazao(razaoVantagem(vantagem, MARGEM))}`);
+    }
+    // Dentro da margem não existe degrau de razão a respeitar: é empate.
+    expect(faixa(0.5)).toBe('empate');
   });
 
-  it('não dá bônus por muitas pesquisas: o degrau extra é só o desconto da pesquisa única', () => {
-    expect(faixa(20, 2)).toBe('lidera4');
-    expect(faixa(20, 8)).toBe('lidera4');
-  });
-
-  it('é monotônica na vantagem quando a margem e o nº de pesquisas são iguais', () => {
-    const ordem: readonly FaixaEvidencia[] = ['empate', 'lidera1', 'lidera2', 'lidera3', 'lidera4'];
+  it('é monotônica na vantagem quando a margem é igual', () => {
+    const ordem: readonly FaixaVantagem[] = ['empate', 'lidera1', 'lidera2', 'lidera3', 'lidera4'];
     const vantagens = [1, 3, 5, 10, 20, 40];
-    const indices = vantagens.map((v) => ordem.indexOf(faixa(v, 3)));
+    const indices = vantagens.map((v) => ordem.indexOf(faixa(v)));
     expect(indices).toEqual([...indices].sort((a, b) => a - b));
   });
 
   it('margem não informada/zero não vira divisão por zero', () => {
-    expect(faixaEvidencia({ vantagem: 5, margemReferencia: 0, nPesquisas: 3, semDados: false })).toBe('lidera4');
-    expect(faixaEvidencia({ vantagem: 0, margemReferencia: 0, nPesquisas: 3, semDados: false })).toBe('empate');
+    expect(faixaVantagem({ vantagem: 5, margemReferencia: 0, semDados: false })).toBe('lidera4');
+    expect(faixaVantagem({ vantagem: 0, margemReferencia: 0, semDados: false })).toBe('empate');
+    expect(razaoVantagem(5, 0)).toBe(Infinity);
   });
 });
 
-describe('presidential-states-layout: opacidadeEvidencia e rotuloFaixaEvidencia', () => {
+describe('presidential-states-layout: temPesquisaUnica', () => {
+  it('marca só quem tem exatamente uma pesquisa e tem dado', () => {
+    expect(temPesquisaUnica(1, false)).toBe(true);
+    expect(temPesquisaUnica(2, false)).toBe(false);
+    expect(temPesquisaUnica(0, false)).toBe(false);
+  });
+
+  it('UF sem dados não ganha a marca — a hachura de "sem dados" já fala por ela', () => {
+    expect(temPesquisaUnica(1, true)).toBe(false);
+    expect(temPesquisaUnica(0, true)).toBe(false);
+  });
+});
+
+describe('presidential-states-layout: opacidadeVantagem e rotuloFaixaVantagem', () => {
   it('dá 4 opacidades distintas e crescentes aos degraus de liderança', () => {
-    const faixas: readonly FaixaEvidencia[] = ['lidera1', 'lidera2', 'lidera3', 'lidera4'];
-    const vars = faixas.map(opacidadeEvidencia);
+    const faixas: readonly FaixaVantagem[] = ['lidera1', 'lidera2', 'lidera3', 'lidera4'];
+    const vars = faixas.map(opacidadeVantagem);
     expect(new Set(vars).size).toBe(4);
     expect(vars).toEqual([
-      'var(--ps-evidencia-1)',
-      'var(--ps-evidencia-2)',
-      'var(--ps-evidencia-3)',
-      'var(--ps-evidencia-4)',
+      'var(--ps-vantagem-1)',
+      'var(--ps-vantagem-2)',
+      'var(--ps-vantagem-3)',
+      'var(--ps-vantagem-4)',
     ]);
   });
 
   it('reaproveita a opacidade de empate e não apaga a hachura de sem dados', () => {
-    expect(opacidadeEvidencia('empate')).toBe('var(--confidence-empate-opacity)');
-    expect(opacidadeEvidencia('semDados')).toBe('1');
+    expect(opacidadeVantagem('empate')).toBe('var(--confidence-empate-opacity)');
+    expect(opacidadeVantagem('semDados')).toBe('1');
   });
 
   it('a legenda diz o critério (múltiplos da margem), não só a cor', () => {
-    expect(rotuloFaixaEvidencia('lidera1')).toBe('Lidera por até 2× a margem');
-    expect(rotuloFaixaEvidencia('lidera2')).toBe('Lidera por 2× a 4× a margem');
-    expect(rotuloFaixaEvidencia('lidera3')).toBe('Lidera por 4× a 8× a margem');
-    expect(rotuloFaixaEvidencia('lidera4')).toBe('Lidera por mais de 8× a margem');
-    expect(rotuloFaixaEvidencia('empate')).toContain('dentro da margem');
+    expect(rotuloFaixaVantagem('lidera1')).toBe('Lidera por até 2× a margem');
+    expect(rotuloFaixaVantagem('lidera2')).toBe('Lidera por 2× a 4× a margem');
+    expect(rotuloFaixaVantagem('lidera3')).toBe('Lidera por 4× a 8× a margem');
+    expect(rotuloFaixaVantagem('lidera4')).toBe('Lidera por mais de 8× a margem');
+    expect(rotuloFaixaVantagem('empate')).toContain('dentro da margem');
   });
 });
 
@@ -174,104 +192,161 @@ describe('presidential-states-layout: datasDosPontos', () => {
 
 /* ===== Regressões com os dados reais (relógio fixo, como turno-recorte.test.ts) ===== */
 
-async function carregarUfs(turno: 1 | 2) {
+async function recorteReal(turno: 1 | 2) {
   const { carregarDados } = await import('../../../../outbound/json/carregar-dados.js');
   const { criarCasosDeUso } = await import('../../../../../application/use-cases/index.js');
   const casos = criarCasosDeUso(carregarDados(), { hoje: () => new Date('2026-09-25T12:00:00Z') });
-  return casos.getPresidentialByState(turno).ufs.map((u) => {
+  return casos.getPresidentialByState(turno);
+}
+
+async function carregarUfs(turno: 1 | 2) {
+  const { datasDesenhadasUf } = await import('../presidential-states-view.js');
+  const dados = await recorteReal(turno);
+  return dados.ufs.map((u) => {
     const n = u.agregado?.pesquisasUsadas.length ?? 0;
-    const datas =
-      u.agregado && u.serie
-        ? datasDosPontos(
-            u.serie.pontos,
-            u.agregado.candidatos.slice(0, 2).map((c) => c.candidato),
-          )
-        : [];
+    const margem = u.agregado?.margemReferencia ?? 3;
+    const datasDesenhadas = datasDesenhadasUf(u);
+    const datasDeclaradas = (u.agregado?.pesquisasUsadas ?? []).map(
+      (p) => p.dataFim ?? p.publicadoEm ?? p.dataInicio ?? '',
+    );
     return {
       uf: u.uf,
       n,
       vantagem: u.vantagem,
-      faixa: faixaEvidencia({
-        vantagem: u.vantagem,
-        margemReferencia: u.agregado?.margemReferencia ?? 3,
-        nPesquisas: n,
-        semDados: u.semDados,
-      }),
-      nivel: nivelConfianca(u.vantagem, u.agregado?.margemReferencia ?? 3, u.semDados),
-      pontoUnico: !temEvolucaoParaLinha(datas),
+      margem,
+      razao: razaoVantagem(u.vantagem, margem),
+      faixa: faixaVantagem({ vantagem: u.vantagem, margemReferencia: margem, semDados: u.semDados }),
+      nivel: nivelConfianca(u.vantagem, margem, u.semDados),
+      unica: temPesquisaUnica(n, u.semDados),
+      datasDesenhadas,
+      datasDeclaradas: [...new Set(datasDeclaradas)].sort(),
+      pontoUnico: !temEvolucaoParaLinha(datasDesenhadas),
     };
   });
 }
 
-describe('dados reais: a tinta do mapa deixa de inverter a confiança (2º turno)', () => {
-  it('Rio de Janeiro (1 pesquisa, +8,0) não sai mais opaco que São Paulo (3 pesquisas, +5,6)', async () => {
+describe('dados reais: o rótulo da faixa é verdadeiro sobre toda UF pintada nela', () => {
+  for (const turno of [1, 2] as const) {
+    it(`${turno}º turno: nenhuma UF cai numa faixa que sua razão vantagem/margem desminta`, async () => {
+      const { ufsComRotuloDeFaixaFalso } = await import('../presidential-states-view.js');
+      const dados = await recorteReal(turno);
+      // Antes: 4 UFs no 1º turno e 15 no 2º. Este é o invariante da tela — se
+      // o rótulo diz "4× a 8×", tem de ser 4× a 8×.
+      expect(ufsComRotuloDeFaixaFalso(dados)).toEqual([]);
+    });
+  }
+
+  it('Rondônia (2º turno, 21,0× a margem) sai da faixa "4× a 8×" e vai para "mais de 8×"', async () => {
     const ufs = await carregarUfs(2);
-    const rj = ufs.find((u) => u.uf === 'RJ')!;
-    const sp = ufs.find((u) => u.uf === 'SP')!;
-    // O bug: os dois caíam em `solid`, e o RJ, com vantagem nominal maior,
-    // ficava na opacidade cheia com uma pesquisa de amostra não informada.
-    expect(rj.nivel).toBe('solid');
-    expect(sp.nivel).toBe('solid');
-    expect(rj.n).toBe(1);
-    expect(sp.n).toBe(3);
-    expect(rj.faixa).toBe('lidera1');
-    expect(sp.faixa).toBe('lidera2');
+    const ro = ufs.find((u) => u.uf === 'RO')!;
+    expect(ro.n).toBe(1);
+    expect(ro.razao).toBeCloseTo(21, 1);
+    expect(ro.faixa).toBe('lidera4');
+    expect(rotuloFaixaVantagem(ro.faixa)).toBe('Lidera por mais de 8× a margem');
+    // E a ressalva que a tinta deixou de carregar não desapareceu: vira marca
+    // não-cromática no mapa (pesquisa única) — somada ao contorno tracejado de
+    // "fora da janela", que RO também tem.
+    expect(ro.unica).toBe(true);
   });
 
-  it('nenhuma UF de uma só pesquisa fica na opacidade cheia', async () => {
-    const ufs = await carregarUfs(2);
-    expect(ufs.filter((u) => u.n === 1)).toHaveLength(16);
-    expect(ufs.filter((u) => u.n === 1 && u.faixa === 'lidera4')).toEqual([]);
+  it('o canal de opacidade continua espalhado pelos 5 degraus nos dois turnos', async () => {
+    const t1 = await carregarUfs(1);
+    const t2 = await carregarUfs(2);
+    expect(new Set(t1.map((u) => u.faixa)).size).toBe(5);
+    expect(new Set(t2.map((u) => u.faixa)).size).toBe(5);
+    // Com os 3 níveis de `nivelConfianca`, 25 das 27 UFs do 2º turno caíam na
+    // opacidade cheia; com a escala de razão, 14.
+    expect(t2.filter((u) => u.nivel === 'solid')).toHaveLength(25);
+    expect(t2.filter((u) => u.faixa === 'lidera4')).toHaveLength(14);
+    expect(t1.filter((u) => u.faixa === 'lidera4')).toHaveLength(10);
+    // São Paulo (+5,6) e Roraima (+40,8) continuam com tintas diferentes.
+    expect(t2.find((u) => u.uf === 'SP')!.faixa).not.toBe(t2.find((u) => u.uf === 'RR')!.faixa);
   });
 
-  it('o canal de opacidade volta a ter magnitude: 5 de 27 na tinta cheia, não 25', async () => {
-    const ufs = await carregarUfs(2);
-    expect(ufs.filter((u) => u.nivel === 'solid')).toHaveLength(25);
-    expect(ufs.filter((u) => u.faixa === 'lidera4')).toHaveLength(5);
-    // São Paulo (+5,6) e Roraima (+40,8) deixam de ter exatamente a mesma tinta.
-    const sp = ufs.find((u) => u.uf === 'SP')!;
-    const rr = ufs.find((u) => u.uf === 'RR')!;
-    expect(sp.faixa).not.toBe(rr.faixa);
-  });
-
-  it('o 1º turno continua espalhado pelos degraus (o canal não foi perdido)', async () => {
-    const ufs = await carregarUfs(1);
-    const cheia = ufs.filter((u) => u.faixa === 'lidera4').length;
-    expect(cheia).toBe(9);
-    expect(new Set(ufs.map((u) => u.faixa)).size).toBe(5);
+  it('a marca de pesquisa única cobre as UFs que a tinta não distingue mais', async () => {
+    const t1 = await carregarUfs(1);
+    const t2 = await carregarUfs(2);
+    expect(t1.filter((u) => u.unica).map((u) => u.uf)).toEqual(['AC', 'MT', 'PI', 'RS', 'RO']);
+    expect(t2.filter((u) => u.unica)).toHaveLength(16);
+    // Toda UF marcada tem mesmo uma pesquisa só — a marca não é decorativa.
+    for (const u of [...t1, ...t2].filter((x) => x.unica)) expect(u.n).toBe(1);
   });
 });
 
-describe('dados reais: cartões de ponto único', () => {
-  it('2º turno: 13 dos 27 estados têm pesquisa de uma só data', async () => {
-    const ufs = await carregarUfs(2);
-    expect(ufs.filter((u) => u.pontoUnico).map((u) => u.uf)).toEqual([
-      'AP',
-      'AM',
-      'BA',
-      'DF',
-      'MA',
-      'MT',
-      'PA',
-      'RJ',
-      'RN',
-      'RS',
-      'RO',
-      'RR',
-      'SC',
-    ]);
-  });
+describe('dados reais: o cartão desenha a base que declara', () => {
+  for (const turno of [1, 2] as const) {
+    it(`${turno}º turno: as datas plotadas são as datas das pesquisas usadas, em toda UF`, async () => {
+      const ufs = await carregarUfs(turno);
+      // Antes, `serie.pontos` não era filtrado pela janela de recência e o
+      // cartão desenhava mais pesquisas do que dizia ter: 4 UFs no 1º turno
+      // (AC, GO, RO, SE) e 3 no 2º (AC, PI, SE) — Piauí declarava "1 pesquisa ·
+      // 16/09/2026" e traçava uma tendência entre 21/06 e 16/09.
+      for (const u of ufs) {
+        expect(u.datasDesenhadas).toEqual(u.n > 0 ? u.datasDeclaradas : []);
+      }
+    });
+  }
 
-  it('1º turno: 3 estados (o gate não mudou para quem tem série de verdade)', async () => {
-    const ufs = await carregarUfs(1);
-    expect(ufs.filter((u) => u.pontoUnico).map((u) => u.uf)).toEqual(['MT', 'PI', 'RS']);
-  });
-
-  it('estado com 1 pesquisa mas 2 datas na série continua com linha (Piauí, 2º turno)', async () => {
+  it('Piauí (2º turno) para de traçar tendência sobre um vão de 87 dias', async () => {
     const ufs = await carregarUfs(2);
     const pi = ufs.find((u) => u.uf === 'PI')!;
     expect(pi.n).toBe(1);
-    expect(pi.pontoUnico).toBe(false);
+    expect(pi.datasDeclaradas).toEqual(['2026-09-16']);
+    expect(pi.datasDesenhadas).toEqual(['2026-09-16']);
+    expect(pi.pontoUnico).toBe(true);
+  });
+
+  it('Sergipe (2º turno) para de desenhar 01/08 sob o rótulo "1 pesquisa · 21/09/2026"', async () => {
+    const ufs = await carregarUfs(2);
+    const se = ufs.find((u) => u.uf === 'SE')!;
+    expect(se.n).toBe(1);
+    expect(se.datasDesenhadas).toEqual(['2026-09-21']);
+  });
+
+  it('Goiás (1º turno) desenhava 3 datas sob o rótulo "2 pesquisas · set/2026"', async () => {
+    // Medido no DOM antes da correção: cx distintos 8,8 / 177,8 / 208 —
+    // 12/05, 01/09 e 21/09. O ponto de 12/05 existia só para o 2º colocado, e é
+    // por isso que contar os pontos do LÍDER dava 2 e o cartão mostrava 3.
+    const ufs = await carregarUfs(1);
+    const go = ufs.find((u) => u.uf === 'GO')!;
+    expect(go.n).toBe(2);
+    expect(go.datasDesenhadas).toEqual(['2026-09-01', '2026-09-21']);
+  });
+
+  it('estado que perdeu pontos não perdeu a linha quando ainda tem 2 datas reais', async () => {
+    const ufs = await carregarUfs(1);
+    // Goiás mantém a sparkline (2 datas usadas); Acre e Rondônia passam a
+    // marcador de ponto único, que é o que o rótulo deles sempre disse.
+    expect(ufs.find((u) => u.uf === 'GO')!.pontoUnico).toBe(false);
+    expect(ufs.find((u) => u.uf === 'AC')!.pontoUnico).toBe(true);
+    expect(ufs.find((u) => u.uf === 'RO')!.pontoUnico).toBe(true);
+  });
+
+  it('cartões de ponto único: 5 estados no 1º turno, 16 no 2º', async () => {
+    const t1 = await carregarUfs(1);
+    const t2 = await carregarUfs(2);
+    expect(t1.filter((u) => u.pontoUnico).map((u) => u.uf)).toEqual(['AC', 'MT', 'PI', 'RS', 'RO']);
+    expect(t2.filter((u) => u.pontoUnico)).toHaveLength(16);
+  });
+});
+
+describe('dados reais: cobertura do eleitorado no cabeçalho', () => {
+  it('separa "tem alguma pesquisa" de "tem pesquisa dentro da janela"', async () => {
+    const { eleitoradoDentroDaJanela } = await import('../presidential-states-view.js');
+    const { pctCobertura } = await import('../presidential-states-layout.js');
+    for (const [turno, esperado] of [
+      [1, '96,6%'],
+      [2, '99,2%'],
+    ] as const) {
+      const dados = await recorteReal(turno);
+      const total = dados.eleitoradoNacional!;
+      // O cabeçalho anunciava só esta primeira linha, com uma casa decimal
+      // ("cobre 100,0%"), duas linhas acima da ressalva que dizia que uma UF
+      // está fora da janela.
+      expect(pctCobertura(dados.eleitoradoComPesquisa, total)).toBe('100%');
+      expect(pctCobertura(eleitoradoDentroDaJanela(dados), total)).toBe(esperado);
+      expect(eleitoradoDentroDaJanela(dados)).toBeLessThan(dados.eleitoradoComPesquisa);
+    }
   });
 });
 
