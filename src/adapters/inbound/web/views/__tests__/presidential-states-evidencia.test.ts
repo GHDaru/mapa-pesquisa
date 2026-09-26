@@ -6,8 +6,9 @@ import {
   formaDoPonto,
   LIMIARES_VANTAGEM,
   marcaDeAreaDaFaixa,
+  corDaFaixa,
+  degrauDaFaixa,
   notaSomaDoPainel,
-  opacidadeVantagem,
   pontosDaBase,
   razaoVantagem,
   rotuloBaseParcial,
@@ -107,22 +108,34 @@ describe('presidential-states-layout: temPesquisaUnica', () => {
   });
 });
 
-describe('presidential-states-layout: opacidadeVantagem e rotuloFaixaVantagem', () => {
-  it('dá 4 opacidades distintas e crescentes aos degraus de liderança', () => {
+describe('presidential-states-layout: corDaFaixa e rotuloFaixaVantagem', () => {
+  it('dá um degrau de tinta distinto a cada faixa de liderança, por matiz', () => {
     const faixas: readonly FaixaVantagem[] = ['lidera1', 'lidera2', 'lidera3', 'lidera4'];
-    const vars = faixas.map(opacidadeVantagem);
-    expect(new Set(vars).size).toBe(4);
-    expect(vars).toEqual([
-      'var(--ps-vantagem-1)',
-      'var(--ps-vantagem-2)',
-      'var(--ps-vantagem-3)',
-      'var(--ps-vantagem-4)',
+    expect(faixas.map((f) => corDaFaixa('esquerda', f))).toEqual([
+      'var(--ps-tinta-1-1)',
+      'var(--ps-tinta-1-2)',
+      'var(--ps-tinta-1-3)',
+      'var(--ps-tinta-1-4)',
+    ]);
+    expect(faixas.map((f) => corDaFaixa('direita', f))).toEqual([
+      'var(--ps-tinta-5-1)',
+      'var(--ps-tinta-5-2)',
+      'var(--ps-tinta-5-3)',
+      'var(--ps-tinta-5-4)',
     ]);
   });
 
-  it('reaproveita a opacidade de empate e não apaga a hachura de sem dados', () => {
-    expect(opacidadeVantagem('empate')).toBe('var(--confidence-empate-opacity)');
-    expect(opacidadeVantagem('semDados')).toBe('1');
+  it('o empate é o degrau 0 da rampa e "sem dados" fica fora dela', () => {
+    expect(degrauDaFaixa('empate')).toBe(0);
+    expect(corDaFaixa('esquerda', 'empate')).toBe('var(--ps-tinta-1-0)');
+    expect(degrauDaFaixa('semDados')).toBeNull();
+    expect(corDaFaixa('esquerda', 'semDados')).toBe('var(--confidence-sem-dados-fill)');
+  });
+
+  it('cada espectro tem sua própria rampa — a tinta nunca vem de dois matizes no mesmo token', () => {
+    const espectros = ['esquerda', 'centro-esquerda', 'centro', 'centro-direita', 'direita', 'indefinido'] as const;
+    const cores = espectros.map((e) => corDaFaixa(e, 'lidera4'));
+    expect(new Set(cores).size).toBe(espectros.length);
   });
 
   it('a legenda diz o critério (múltiplos da margem), não só a cor', () => {

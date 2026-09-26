@@ -3,7 +3,7 @@ import { carregarDados } from '../../../../outbound/json/carregar-dados.js';
 import { criarCasosDeUso } from '../../../../../application/use-cases/index.js';
 import { psMontarConteudo } from '../presidential-states-view.js';
 import { notaSomaDoPainel } from '../presidential-states-layout.js';
-import { rotuloRecorte } from '../_shared.js';
+import { rotuloConfronto, rotuloRecorte, rotuloTurno } from '../_shared.js';
 
 const casos = criarCasosDeUso(carregarDados(), { hoje: () => new Date('2026-09-25T12:00:00Z') });
 const partidos = casos.listParties();
@@ -12,7 +12,12 @@ function painelDe(uf: string, turno: 1 | 2): { html: string; agregado: NonNullab
   const dados = casos.getPresidentialByState(turno);
   const item = dados.ufs.find((u) => u.uf === uf);
   if (!item) throw new Error(`UF ${uf} ausente no recorte`);
-  const recorte = { turno, rotulo: rotuloRecorte(turno, dados.confronto) };
+  const recorte = {
+    turno,
+    rotulo: rotuloRecorte(turno, dados.confronto),
+    turnoTexto: rotuloTurno(turno),
+    confronto: rotuloConfronto(dados.confronto),
+  };
   return { html: psMontarConteudo(item, uf, partidos, recorte), agregado: item.agregado! };
 }
 

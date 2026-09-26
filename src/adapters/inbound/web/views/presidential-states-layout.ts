@@ -7,6 +7,8 @@
  * __tests__/presidential-states-layout.test.ts).
  */
 
+import type { Espectro } from '../../../../domain/spectrum.js';
+
 /** Campos mínimos para ordenar a grade de miniaturas por estado. */
 export interface ItemEleitoral {
   readonly eleitores: number | null;
@@ -431,22 +433,59 @@ export function formaDoPonto(amostras: readonly (number | null)[]): 'disco' | 'a
   return amostras.every((a) => a == null) ? 'anel' : 'disco';
 }
 
-/** Variável CSS de opacidade do degrau (tokens `--ps-vantagem-*` em presidential-states.css). */
-export function opacidadeVantagem(faixa: FaixaVantagem): string {
+/**
+ * Degrau numérico da faixa na rampa de tinta: 4 = mais de 8× a margem, ..., 1 =
+ * até 2×, 0 = empate técnico. `null` para `semDados`, que está fora da rampa.
+ */
+export function degrauDaFaixa(faixa: FaixaVantagem): 0 | 1 | 2 | 3 | 4 | null {
   switch (faixa) {
     case 'semDados':
-      return '1';
+      return null;
     case 'empate':
-      return 'var(--confidence-empate-opacity)';
+      return 0;
     case 'lidera1':
-      return 'var(--ps-vantagem-1)';
+      return 1;
     case 'lidera2':
-      return 'var(--ps-vantagem-2)';
+      return 2;
     case 'lidera3':
-      return 'var(--ps-vantagem-3)';
+      return 3;
     case 'lidera4':
-      return 'var(--ps-vantagem-4)';
+      return 4;
   }
+}
+
+/** Sufixo do token de tinta para cada espectro (`1`..`5`, ou `indefinido`). */
+const SUFIXO_ESPECTRO: Readonly<Record<Espectro, string>> = {
+  esquerda: '1',
+  'centro-esquerda': '2',
+  centro: '3',
+  'centro-direita': '4',
+  direita: '5',
+  indefinido: 'indefinido',
+};
+
+/**
+ * Cor de preenchimento da UF no mapa "Quem lidera": um degrau da rampa
+ * EQUILUMINANTE do espectro (tokens `--ps-tinta-<espectro>-<degrau>` em
+ * presidential-states.css), a opacidade cheia.
+ *
+ * Substitui o par `corEspectro()` + `opacidadeVantagem()`, que aplicava a MESMA
+ * opacidade a cores de luminância base diferente e por isso só era comparável
+ * dentro de um matiz. Medido sobre o fundo do painel claro: o degrau dentro do
+ * vermelho valia 0,0484 de luminância e a diferença entre vermelho e azul no
+ * mesmo degrau valia 0,0648 — mais que um degrau inteiro —, então todo estado
+ * vermelho da faixa de topo saía mais claro que todo estado azul da faixa
+ * imediatamente abaixo (40 pares invertidos no 1º turno, 24 no 2º; 227 e 201 no
+ * tema escuro, onde a relação se inverte). Com a rampa por matiz, o degrau é a
+ * cor, as luminâncias batem em cada degrau e a comparação de tinta entre
+ * estados de matizes diferentes passa a ser válida — que é o que a legenda
+ * promete. Ver o cabeçalho do bloco de tokens em presidential-states.css e
+ * __tests__/presidential-states-rampa.test.ts.
+ */
+export function corDaFaixa(espectro: Espectro, faixa: FaixaVantagem): string {
+  const degrau = degrauDaFaixa(faixa);
+  if (degrau == null) return 'var(--confidence-sem-dados-fill)';
+  return `var(--ps-tinta-${SUFIXO_ESPECTRO[espectro]}-${degrau})`;
 }
 
 /** Rótulo da faixa na legenda — diz o critério (múltiplos da margem), não só a cor. */
@@ -568,6 +607,31 @@ export function pontosDaBase<T extends PontoComPesquisa>(
   idsUsados: ReadonlySet<string>,
 ): T[] {
   return pontos.filter((p) => idsUsados.has(p.pollId));
+}
+
+/**
+ * Pontos de pesquisa desenhados no mini-gráfico, agrupados por candidato e
+ * ordenados pela data — exatamente o que `construirMiniGrafico` percorre para
+ * emitir um `<circle>` por ponto.
+ *
+ * Existe como função pura para que a CONTAGEM de glifos da seção e o DESENHO dos
+ * cartões saiam do mesmo cálculo. A nota da seção dizia "Cada ponto é uma das
+ * pesquisas usadas" e tratava ponto como pesquisa: cada pesquisa desenha um
+ * ponto por candidato traçado, e o cartão traça sempre os dois primeiros do
+ * agregado — a razão medida nos dados reais é exatamente 2,00 nos dois turnos
+ * (59 pesquisas → 118 pontos no 1º; 41 → 82 no 2º).
+ */
+export function pontosDesenhadosPorCandidato<T extends PontoComPesquisa & PontoCandidatoData>(
+  pontos: readonly T[],
+  candidatos: readonly string[],
+  idsUsados: ReadonlySet<string>,
+): T[][] {
+  return candidatos.map((candidato) =>
+    pontosDaBase(
+      pontos.filter((p) => p.candidato === candidato),
+      idsUsados,
+    ).sort((x, y) => x.data.localeCompare(y.data)),
+  );
 }
 
 /**

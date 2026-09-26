@@ -258,14 +258,25 @@
   pointer-events: none;
 }
 /* Abaixo de 640px a sigla de estado estreito some para o mapa não virar uma
-   mancha de texto — e o asterisco vai junto, porque um `*` solto, sem a sigla a
-   que se refere, não diz de qual estado se trata. Nos dados de hoje isso custa a
-   marca de 4 dos 16 estados de pesquisa única do 2º turno (RN, SE, RJ e SC); nos
-   quatro, a ressalva continua escrita na linha de procedência do cartão, no
-   tooltip e no aria-label. É o mesmo custo que a sigla já pagava, e é preferível
-   a devolver a ressalva ao canal de área. */
+   mancha de texto. O asterisco de pesquisa única NÃO pode sumir com ela: a
+   legenda afirma uma contagem de estados marcados, lida do dado e não do
+   viewport, e a 400px do 2º turno ela dizia "16 de 27 estados" enquanto o mapa
+   desenhava 12 — RJ, RN, SC e SE perdiam a sigla e, como o asterisco era um
+   `<tspan>` dela, perdiam a marca. Agora o mapa emite, só para esses estados,
+   um asterisco SOLTO na posição do rótulo, e as duas peças são exclusivas pela
+   mesma largura: a sigla-com-asterisco acima de 640px, o asterisco sozinho
+   abaixo. A contagem passa a valer nas duas larguras. */
 @media (max-width: 639px) {
   .ps-uf-label--pequena {
+    display: none;
+  }
+}
+.ps-uf-marca-solta {
+  font-size: 12px;
+  stroke-width: 1.7px;
+}
+@media (min-width: 640px) {
+  .ps-uf-marca-solta {
     display: none;
   }
 }
@@ -408,18 +419,140 @@
   color: var(--color-text-tertiary);
 }
 
-/* Degraus de opacidade da VANTAGEM do líder em múltiplos da margem de erro do
-   estado, no mapa "Quem lidera" (ver `faixaVantagem` em
-   presidential-states-layout.ts). Com os 3 níveis de `nivelConfianca`, 25 das
-   27 UFs do 2º turno caíam na opacidade cheia e o canal não dizia mais nada.
-   As ressalvas de evidência (pesquisa única, dado fora da janela) NÃO estão
-   nesta escala: são marcas não-cromáticas, porque enquanto elas mexiam no
-   degrau o rótulo de razão da legenda ficava falso sobre a UF pintada. */
+/* ============ Rampa EQUILUMINANTE da vantagem do líder ============
+
+   Cinco degraus de tinta para o mapa "Quem lidera" (`faixaVantagem` em
+   presidential-states-layout.ts), `--ps-tinta-<espectro>-<degrau>`, com
+   `<degrau>` 4 = mais de 8× a margem ... 1 = até 2×, e 0 = empate técnico.
+
+   ANTES ISTO ERA UMA RAMPA DE OPACIDADE (0,58 / 0,72 / 0,86 / 1 sobre o
+   `-fill` do espectro), e o degrau só era comparável DENTRO de um matiz. A
+   mesma opacidade sobre duas cores de luminância base diferente não produz a
+   mesma tinta: medido sobre o fundo do painel claro (--color-surface-1,
+   #f5f6f7), o vermelho #eb5757 ia de L=0,2517 (opacidade 1) a L=0,5207
+   (empate) e o azul #1f7cc4 de L=0,1869 a L=0,4903. O degrau dentro do
+   vermelho valia 0,0484 de luminância; a diferença ENTRE os matizes no topo
+   valia 0,0648 — mais que um degrau inteiro. Consequência medida nos dados
+   reais: todo estado vermelho da faixa de topo saía mais claro que todo estado
+   azul da faixa imediatamente abaixo (0,2517 contra 0,2435), 40 pares de
+   estados invertidos no 1º turno e 24 no 2º, e os chips da legenda repetiam a
+   inversão. No tema escuro a relação se invertia (azul #4ea7fc em L=0,3629
+   contra vermelho em L=0,2517), com 227 e 201 pares invertidos.
+
+   Agora o degrau é a COR, não a opacidade, e cada degrau tem uma luminância
+   relativa ALVO igual para todos os matizes. As cores foram derivadas de cada
+   `--spectrum-*-fill` em OKLCh: mesmo ângulo de matiz, mesma croma (reduzida
+   só quando o alvo sai do gamut sRGB) e claridade resolvida para bater o alvo.
+   Alvos e verificação em __tests__/presidential-states-rampa.test.ts, que
+   recalcula a luminância de cada hex e trava duas invariantes: (a) dentro de um
+   degrau, a luminância dos matizes não varia mais que 0,006 (medido: no máximo
+   0,004); (b) entre degraus vizinhos, a separação no pior par é de pelo menos
+   0,03 (medido: 0,031 no degrau mais apertado) — a separação é ~14× a amplitude
+   interna, então nenhuma inversão entre matizes é possível. No degrau de topo do
+   tema claro, vermelho e azul saem a L=0,1847 e L=0,1838 (Δ=0,0009) contra
+   0,2517 e 0,1869 (Δ=0,0648) da rampa de opacidade. Os degraus
+   ficam a contraste 1,25:1 um do vizinho, contra 1,16:1 da rampa de opacidade
+   anterior.
+
+   Tema escuro é o padrão (a tinta é mais CLARA que o fundo, então o degrau 4 é
+   o de maior luminância); o tema claro inverte o sentido. */
 :root {
-  --ps-vantagem-1: 0.58;
-  --ps-vantagem-2: 0.72;
-  --ps-vantagem-3: 0.86;
-  --ps-vantagem-4: 1;
+  --ps-tinta-1-4: #eb5757;
+  --ps-tinta-1-3: #d54245;
+  --ps-tinta-1-2: #c02d34;
+  --ps-tinta-1-1: #ac1224;
+  --ps-tinta-1-0: #920018;
+  --ps-tinta-2-4: #c3727c;
+  --ps-tinta-2-3: #af606b;
+  --ps-tinta-2-2: #9c4f59;
+  --ps-tinta-2-1: #8a3e4a;
+  --ps-tinta-2-0: #772e3b;
+  --ps-tinta-3-4: #858992;
+  --ps-tinta-3-3: #737780;
+  --ps-tinta-3-2: #62666f;
+  --ps-tinta-3-1: #52565f;
+  --ps-tinta-3-0: #42464e;
+  --ps-tinta-4-4: #7589b9;
+  --ps-tinta-4-3: #6476a6;
+  --ps-tinta-4-2: #536594;
+  --ps-tinta-4-1: #445582;
+  --ps-tinta-4-0: #354570;
+  --ps-tinta-5-4: #328de1;
+  --ps-tinta-5-3: #187acc;
+  --ps-tinta-5-2: #0068b5;
+  --ps-tinta-5-1: #00589a;
+  --ps-tinta-5-0: #004880;
+  --ps-tinta-indefinido-4: #868991;
+  --ps-tinta-indefinido-3: #74777f;
+  --ps-tinta-indefinido-2: #63666e;
+  --ps-tinta-indefinido-1: #53565e;
+  --ps-tinta-indefinido-0: #44464d;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    --ps-tinta-1-4: #d54245;
+    --ps-tinta-1-3: #e85555;
+    --ps-tinta-1-2: #fd6766;
+    --ps-tinta-1-1: #ff8883;
+    --ps-tinta-1-0: #ffa8a3;
+    --ps-tinta-2-4: #af5f6a;
+    --ps-tinta-2-3: #c1707a;
+    --ps-tinta-2-2: #d4818b;
+    --ps-tinta-2-1: #e8939d;
+    --ps-tinta-2-0: #fea7b1;
+    --ps-tinta-3-4: #727780;
+    --ps-tinta-3-3: #828790;
+    --ps-tinta-3-2: #9399a1;
+    --ps-tinta-3-1: #a6abb4;
+    --ps-tinta-3-0: #babfc8;
+    --ps-tinta-4-4: #5f76ac;
+    --ps-tinta-4-3: #6f86bd;
+    --ps-tinta-4-2: #8098d0;
+    --ps-tinta-4-1: #91abe3;
+    --ps-tinta-4-0: #a5bff8;
+    --ps-tinta-5-4: #1e7bc3;
+    --ps-tinta-5-3: #348cd5;
+    --ps-tinta-5-2: #479ee8;
+    --ps-tinta-5-1: #5bb1fc;
+    --ps-tinta-5-0: #85c4ff;
+    --ps-tinta-indefinido-4: #74777f;
+    --ps-tinta-indefinido-3: #84878f;
+    --ps-tinta-indefinido-2: #9598a0;
+    --ps-tinta-indefinido-1: #a8abb3;
+    --ps-tinta-indefinido-0: #bcbfc7;
+  }
+}
+:root[data-theme='light'] {
+  --ps-tinta-1-4: #d54245;
+  --ps-tinta-1-3: #e85555;
+  --ps-tinta-1-2: #fd6766;
+  --ps-tinta-1-1: #ff8883;
+  --ps-tinta-1-0: #ffa8a3;
+  --ps-tinta-2-4: #af5f6a;
+  --ps-tinta-2-3: #c1707a;
+  --ps-tinta-2-2: #d4818b;
+  --ps-tinta-2-1: #e8939d;
+  --ps-tinta-2-0: #fea7b1;
+  --ps-tinta-3-4: #727780;
+  --ps-tinta-3-3: #828790;
+  --ps-tinta-3-2: #9399a1;
+  --ps-tinta-3-1: #a6abb4;
+  --ps-tinta-3-0: #babfc8;
+  --ps-tinta-4-4: #5f76ac;
+  --ps-tinta-4-3: #6f86bd;
+  --ps-tinta-4-2: #8098d0;
+  --ps-tinta-4-1: #91abe3;
+  --ps-tinta-4-0: #a5bff8;
+  --ps-tinta-5-4: #1e7bc3;
+  --ps-tinta-5-3: #348cd5;
+  --ps-tinta-5-2: #479ee8;
+  --ps-tinta-5-1: #5bb1fc;
+  --ps-tinta-5-0: #85c4ff;
+  --ps-tinta-indefinido-4: #74777f;
+  --ps-tinta-indefinido-3: #84878f;
+  --ps-tinta-indefinido-2: #9598a0;
+  --ps-tinta-indefinido-1: #a8abb3;
+  --ps-tinta-indefinido-0: #bcbfc7;
 }
 
 /* Escala sequencial (modo Eleitorado): 5 degraus de um único matiz. */
@@ -560,6 +693,41 @@
 .ps-card__ressalva {
   font-style: italic;
 }
+/* Chave das duas linhas do sparkline: quem é cada cor. Sem ela o cartão não
+   nomeia candidato nenhum além do líder no título, e em Goiás no 1º turno as
+   duas linhas são Flávio e Ronaldo Caiado (ambas de espectro azul) — o "28,1"
+   do fim da segunda linha lia-se como Lula, que tem 26,2 e não está no cartão. */
+.ps-card__serie {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px var(--space-3);
+  margin: 0 0 var(--space-1);
+  /* Empurra a chave (e, com ela, o gráfico) para o rodapé do cartão: era o
+     `margin-top:auto` de `.ps-mini-chart` que alinhava as miniaturas de uma
+     fileira, e com a chave entre o texto e o gráfico o alinhamento passa a
+     depender dela. */
+  margin-top: auto;
+  font: var(--text-caption);
+  color: var(--color-text-subtle);
+  min-width: 0;
+}
+.ps-card__serie-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-width: 0;
+}
+.ps-card__serie-marca {
+  flex: 0 0 auto;
+  width: 10px;
+  height: 3px;
+  border-radius: 2px;
+}
+.ps-card__serie-nome {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .ps-card--fora-janela {
   border-style: dashed;
   border-color: var(--color-border-strong);
@@ -571,6 +739,12 @@
   height: auto;
   /* Alinha a miniatura ao rodapé do cartão (ver nota em `.ps-card`). */
   margin-top: auto;
+}
+/* Com a chave das séries logo acima, é ELA que carrega o `margin-top:auto` do
+   bloco: duas margens automáticas dividiriam a folga entre as duas e separariam
+   a chave do gráfico que ela explica. */
+.ps-card__serie + .ps-mini-chart {
+  margin-top: 0;
 }
 
 /* Marcador de ponto único (estado com pesquisa de uma só data): texto, não
