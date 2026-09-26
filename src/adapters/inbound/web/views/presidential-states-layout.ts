@@ -515,12 +515,20 @@ export function rotuloBaseParcial(pesquisasDaLinha: number, pesquisasUsadas: num
  * usa apenas as pesquisas que trazem aquela linha. `null` quando fecha dentro
  * da tolerância — aí não há nada a ressalvar.
  */
-export function notaSomaDoPainel(soma: number, tolerancia = 0.5): string | null {
+export function notaSomaDoPainel(soma: number, tolerancia = 0.5, turno: 1 | 2 = 1): string | null {
   const texto = `As linhas acima somam ${comVirgula(soma)}%`;
   if (soma < 100 - tolerancia) {
+    // No 2º turno o recorte é filtrado por confronto (`filtrarPorConfronto`),
+    // então só entram pesquisas que testam exatamente aqueles dois nomes:
+    // "candidatos fora da lista divulgada" não pode existir ali, e oferecer
+    // essa explicação seria descrever o recorte errado.
+    const faltante =
+      turno === 2
+        ? 'brancos, nulos e indecisos'
+        : 'candidatos fora da lista divulgada, brancos, nulos e indecisos';
     return (
       `${texto} — o que falta não é zero: é o que as pesquisas deste recorte não publicaram ` +
-      '(candidatos fora da lista divulgada, brancos, nulos e indecisos). Nada foi completado para fechar 100%.'
+      `(${faltante}). Nada foi completado para fechar 100%.`
     );
   }
   if (soma > 100 + tolerancia) {

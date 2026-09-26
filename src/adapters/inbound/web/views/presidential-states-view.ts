@@ -1618,7 +1618,13 @@ function abrirPainelUf(
   psFocar(painel.querySelector<HTMLElement>('.ps-panel__fechar'));
 }
 
-function psMontarConteudo(
+/**
+ * Exportada para teste: o invariante que interessa é que a nota de soma fale
+ * das linhas que estão de fato desenhadas. Um `.slice()` na lista de
+ * candidatos já fez a tela afirmar 99,2% sobre linhas que somavam 96,2%,
+ * escondendo um candidato real, e só um teste sobre o HTML pega isso.
+ */
+export function psMontarConteudo(
   item: PresidencialUf,
   nomeEstado: string,
   partidos: Partidos,
@@ -1675,16 +1681,21 @@ function psRenderSecao(item: PresidencialUf, partidos: Partidos, recorte: Recort
     : `<span class="pill pill--confianca">${rotuloConfianca(nivel)} · ${escaparHtml(contagem)}</span>`;
 
   const maxPct = Math.max(...agregado.candidatos.map((c) => c.pct), 1);
-  const listaCandidatos = agregado.candidatos
-    .slice(0, 6)
-    .map((c) => psRenderBarraCandidato(c, maxPct, agregado.margemReferencia, partidos))
+  const nUsadas = agregado.pesquisasUsadas.length;
+  // Sem corte: a lista tinha um `.slice(0, 6)` que escondia candidatos reais
+  // (Romeu Zema com 3,0% em SP no 1º turno) enquanto a nota de soma somava a
+  // lista inteira — a tela afirmava 99,2% sobre linhas que somavam 96,2%.
+  // `candidatosVisiveis` é a única fonte tanto do desenho quanto da soma, para
+  // que as duas não possam divergir de novo.
+  const candidatosVisiveis = agregado.candidatos;
+  const listaCandidatos = candidatosVisiveis
+    .map((c) => psRenderBarraCandidato(c, maxPct, agregado.margemReferencia, partidos, nUsadas))
     .join('');
 
   // Cada linha de "outros" diz de quantas pesquisas o número saiu quando não
   // saiu de todas: no Ceará (2º turno), das 3 pesquisas do confronto só 1
   // publica brancos/nulos, e é essa assimetria — não um erro de conta — que
   // faz o recorte somar 102,4%.
-  const nUsadas = agregado.pesquisasUsadas.length;
   const listaNaoRankeados = agregado.outros.length
     ? `<p class="ps-panel__outros">Outros: ${agregado.outros
         .map((o) => {
@@ -1699,8 +1710,8 @@ function psRenderSecao(item: PresidencialUf, partidos: Partidos, recorte: Recort
   // recortes ficam entre 97% e 103%). O painel diz isso em vez de deixar o
   // leitor supor que o que falta é zero — ou que a conta está errada quando
   // passa de 100.
-  const soma = [...agregado.candidatos, ...agregado.outros].reduce((total, c) => total + c.pct, 0);
-  const textoSoma = notaSomaDoPainel(soma);
+  const soma = [...candidatosVisiveis, ...agregado.outros].reduce((total, c) => total + c.pct, 0);
+  const textoSoma = notaSomaDoPainel(soma, undefined, recorte.turno);
   const notaSoma = textoSoma ? `<p class="ps-panel__soma">${escaparHtml(textoSoma)}</p>` : '';
 
   const avisoRecencia = agregado.foraDaJanela
@@ -1735,6 +1746,7 @@ function psRenderBarraCandidato(
   maxPct: number,
   margemReferencia: number,
   partidos: Partidos,
+  nUsadas: number,
 ): string {
   const espectro = espectroDoPartido(c.partido, partidos);
   const cor = corEspectroSolido(espectro);
@@ -1746,11 +1758,20 @@ function psRenderBarraCandidato(
   const badgePartido = c.partido
     ? `<span class="badge ps-bar-row__badge" style="background:${cor}">${escaparHtml(c.partido)}</span>`
     : '';
+  // Um candidato testado por 1 das 4 pesquisas era desenhado com a mesma barra
+  // e a mesma tipografia de outro testado pelas 4, sob um selo que diz "4
+  // PESQUISAS" e um rodapé que promete média ponderada. O painel já declarava
+  // isso nas linhas de "outros"; passa a declarar também nas de candidato.
+  const base = rotuloBaseParcial(c.pesquisas, nUsadas);
+  const ressalvaBase = base
+    ? `<span class="ps-bar-row__parcial">${escaparHtml(base)}</span>`
+    : '';
   return `
     <li class="ps-bar-row">
       <span class="ps-bar-row__info">
         <span class="ps-bar-row__nome" title="${escaparHtml(rotuloCompleto)}">${escaparHtml(c.candidato)}</span>
         ${badgePartido}
+        ${ressalvaBase}
       </span>
       <span class="ps-bar-track" role="presentation">
         <span

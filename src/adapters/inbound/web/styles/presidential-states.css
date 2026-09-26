@@ -755,8 +755,27 @@
 .ps-bar-row__info {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: var(--space-1);
   min-width: 0;
+}
+/*
+ * Base parcial ao lado do nome: um candidato testado por 1 das 4 pesquisas
+ * era desenhado igual a outro testado pelas 4. Fica discreto, mas dentro da
+ * linha — não em rodapé, que é onde a ressalva vira decoração.
+ */
+.ps-bar-row__parcial {
+  /*
+   * Ocupa a linha inteira abaixo do nome: ao lado dele, a ressalva empurrava
+   * o nome para a reticência ("Pabl...", "Rona...") e trocava um defeito por
+   * outro — de que adianta declarar a base de um candidato que o leitor não
+   * consegue identificar.
+   */
+  flex: 0 0 100%;
+  color: var(--color-text-tertiary);
+  font: var(--text-caption);
+  font-style: italic;
+  line-height: 1.2;
 }
 .ps-bar-row__nome {
   overflow: hidden;

@@ -765,8 +765,10 @@ function criarBlocoNaoAtribuidos(
   const rotulo = 'Não atribuídos a nenhum dos candidatos';
 
   const razao = vantagem ? razaoNaoAtribuidosSobreVantagem(e.naoAtribuidos.votos, vantagem.votos) : null;
+  // A razão só diz alguma coisa quando o resíduo supera a vantagem ("6,2 vezes"
+  // pesa; "0,5 vezes" é ruído impresso com ar de argumento).
   const comparacao =
-    razao != null && vantagem
+    razao != null && razao >= 1 && vantagem
       ? `${formatarNumeroPt(razao)} vezes a vantagem entre os dois primeiros ` +
         `(${formatarMilhoes(vantagem.votos)} de votos).`
       : null;
@@ -786,8 +788,10 @@ function criarBlocoNaoAtribuidos(
     criarEl('p', {
       className: 've-nao-atribuidos__rodape',
       texto:
-        'Inclui a abstenção: os percentuais das pesquisas são aplicados sobre o eleitorado apto, não sobre o ' +
-        'comparecimento (ver "Método em uma frase" no topo da página).',
+        'Não é estimativa de abstenção: nenhum ajuste de comparecimento foi feito em lugar nenhum desta ' +
+        'página. Os percentuais das pesquisas são aplicados sobre o eleitorado apto, então nem esta caixa ' +
+        'mede quem deixará de votar — a abstenção de 2022 foi de cerca de 21%, muito acima dela — nem os ' +
+        'percentuais dos candidatos são fatias do comparecimento (ver "Método em uma frase" no topo).',
     }),
   ]);
 }
