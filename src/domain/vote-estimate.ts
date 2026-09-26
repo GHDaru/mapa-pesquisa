@@ -111,15 +111,39 @@ export interface ComparacaoNacional {
   readonly pctEstimado: number;
 }
 
+/** Parcela do eleitorado sem candidato, separada pelo que a fonte publicou. */
+export interface NaoAtribuidos {
+  readonly votos: number;
+  readonly pct: number;
+  /**
+   * O que as pesquisas de fato publicaram como linha de não-candidato
+   * (brancos/nulos/não sabe, "outros"), de `Agregado.outros`.
+   */
+  readonly declarados: { readonly votos: number; readonly pct: number };
+  /**
+   * O resto: parcela do eleitorado que nenhuma linha publicada cobre, porque
+   * a matéria deu só os primeiros nomes e o percentual restante nunca foi
+   * divulgado. Não é voto em branco nem indeciso — é lacuna de divulgação, e
+   * no 2º turno é a maior parte do resíduo (≈2/3), porque as rodadas de
+   * returno costumam publicar só os dois nomes.
+   *
+   * Quem exibe **não pode** descrever isso como escolha do eleitor: dizer
+   * que "o voto que não vai para nenhum dos dois não tem para onde ir"
+   * transforma lacuna de divulgação em achado político.
+   */
+  readonly semLinhaPublicada: { readonly votos: number; readonly pct: number };
+}
+
 export interface EstimativaVotos {
   /** Candidatos com votos somados, ordenados por votos desc. */
   readonly candidatos: readonly CandidatoEstimado[];
   /**
-   * Parcela do eleitorado não atribuída a nenhum candidato (brancos, nulos,
-   * indecisos, "outros" — linhas que `agregarPesquisas` já separa em
-   * `Agregado.outros` e não soma aqui como candidato).
+   * Parcela do eleitorado não atribuída a nenhum candidato. Vem de duas
+   * origens muito diferentes, e `declarados`/`naoPublicados` as separam:
+   * confundi-las faz a tela apresentar lacuna de divulgação como
+   * comportamento de eleitor.
    */
-  readonly naoAtribuidos: { readonly votos: number; readonly pct: number };
+  readonly naoAtribuidos: NaoAtribuidos;
   readonly eleitoradoTotal: number;
   /** Soma do eleitorado apenas das UFs que tinham pesquisa presidencial estadual própria. */
   readonly eleitoradoComPesquisaEstadual: number;
@@ -175,6 +199,29 @@ interface Contribuicao {
 }
 
 /** Chave de comparação entre candidatos (não usada para exibição): trim + minúsculas. */
+/**
+ * Monta `naoAtribuidos` separando o resíduo entre o que as fontes publicaram
+ * como linha de não-candidato e o que nenhuma linha cobre. `declarados` é
+ * limitado ao próprio resíduo — nas UFs em que o agregado bruto passou de
+ * 100% e foi normalizado o resíduo é zero, e a linha publicada não cabe —,
+ * então `semLinhaPublicada` nunca é negativo.
+ */
+function montarNaoAtribuidos(
+  votos: number,
+  declaradosVotos: number,
+  eleitoradoTotal: number,
+): NaoAtribuidos {
+  const pctDe = (v: number): number => (eleitoradoTotal > 0 ? (v / eleitoradoTotal) * 100 : 0);
+  const declarados = Math.min(votos, Math.max(0, declaradosVotos));
+  const semLinha = votos - declarados;
+  return {
+    votos,
+    pct: pctDe(votos),
+    declarados: { votos: declarados, pct: pctDe(declarados) },
+    semLinhaPublicada: { votos: semLinha, pct: pctDe(semLinha) },
+  };
+}
+
 function chaveComparacao(nome: string): string {
   return nome.trim().toLowerCase();
 }
@@ -214,6 +261,7 @@ export function estimarVotos(
   let eleitoradoTotal = 0;
   let eleitoradoComPesquisaEstadual = 0;
   let naoAtribuidosVotos = 0;
+  let naoAtribuidosDeclaradosVotos = 0;
 
   for (const entrada of porUf) {
     eleitoradoTotal += entrada.eleitores;
@@ -311,7 +359,18 @@ export function estimarVotos(
     // Parcela do eleitorado desta UF não coberta por nenhum candidato
     // (brancos, nulos, indecisos, outros): nunca negativa — quando a
     // normalização acima já usou 100% do eleitorado, fica em 0.
-    naoAtribuidosVotos += Math.max(0, entrada.eleitores - somaVotosAtribuidosUf);
+    const residuoUf = Math.max(0, entrada.eleitores - somaVotosAtribuidosUf);
+    naoAtribuidosVotos += residuoUf;
+
+    // Quanto do resíduo desta UF as pesquisas realmente publicaram como linha
+    // de não-candidato. O `Math.min` evita que a linha publicada estoure o
+    // resíduo quando a normalização acima já consumiu o eleitorado da UF.
+    const agregadoDaUf = usaEstadual ? entrada.agregado! : agregadoNacional!;
+    const pctNaoCandidatoPublicado = agregadoDaUf.outros.reduce((soma, c) => soma + c.pct, 0);
+    naoAtribuidosDeclaradosVotos += Math.min(
+      residuoUf,
+      entrada.eleitores * (pctNaoCandidatoPublicado / 100),
+    );
 
     porUfResultado.push({
       uf: entrada.uf,
@@ -355,10 +414,11 @@ export function estimarVotos(
 
   return {
     candidatos,
-    naoAtribuidos: {
-      votos: naoAtribuidosVotos,
-      pct: eleitoradoTotal > 0 ? (naoAtribuidosVotos / eleitoradoTotal) * 100 : 0,
-    },
+    naoAtribuidos: montarNaoAtribuidos(
+      naoAtribuidosVotos,
+      naoAtribuidosDeclaradosVotos,
+      eleitoradoTotal,
+    ),
     eleitoradoTotal,
     eleitoradoComPesquisaEstadual,
     ufsComPesquisa,

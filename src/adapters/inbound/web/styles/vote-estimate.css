@@ -170,6 +170,14 @@
   border-top-color: transparent;
   border-bottom-color: transparent;
 }
+/* Reproduz a linha tracejada de 50% do eleitorado desenhada dentro da pista
+   (`.ve-chart-ref`): traço vertical no meio de um swatch transparente. */
+.ve-legend-swatch--referencia {
+  background-color: transparent;
+  border-color: transparent;
+  border-left: 2px dashed var(--color-text-muted);
+  width: 12px;
+}
 
 
 
@@ -236,9 +244,13 @@
   gap: 6px;
   min-width: 0;
 }
-.ve-chart-row:not(:last-child) {
-  padding-bottom: var(--space-4);
-  border-bottom: 1px solid var(--color-border);
+/* Separador ENTRE barras (`+`), não `:not(:last-child)`: o último filho do
+   cartão agora é a linha de vantagem (`.ve-chart-delta`), que traz o seu
+   próprio separador — com `:not(:last-child)` a última barra ganharia uma
+   borda dupla junto dele. */
+.ve-chart-row + .ve-chart-row {
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
 }
 .ve-chart-row__head {
   display: flex;
@@ -255,14 +267,22 @@
   white-space: nowrap;
   min-width: 0;
 }
+/* Valor EMPILHADO acima da pista, em qualquer largura. Antes ele era um item
+   lado a lado com a pista: em 400px comia 124 dos 318px da linha (39%), e no
+   desktop a sua largura variável dava a cada candidato uma pista diferente
+   (1030px na linha do líder contra 1045px na de um candidato pequeno),
+   quebrando a escala única. Empilhado, toda pista mede a linha inteira e
+   todas são idênticas. */
 .ve-chart-row__bar-line {
   display: flex;
-  align-items: center;
-  gap: var(--space-3);
+  flex-direction: column-reverse;
+  align-items: stretch;
+  gap: var(--space-1);
 }
 .ve-chart-track {
   position: relative;
-  flex: 1 1 auto;
+  flex: 0 0 auto;
+  width: 100%;
   min-width: 0;
   height: 20px;
   background: var(--color-surface-3);
@@ -298,11 +318,57 @@
 }
 .ve-chart-value {
   flex: 0 0 auto;
+  align-self: flex-start;
   font: var(--text-caption);
   color: var(--color-text);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
+
+/* Marca de 50% do eleitorado: linha vertical tracejada cruzando as barras, na
+   mesma escala compartilhada. Tracejada para não se confundir com os traços
+   sólidos dos extremos da faixa de incerteza. */
+.ve-chart-ref {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 34px;
+  border-left: 2px dashed var(--color-text-muted);
+  pointer-events: none;
+}
+
+/* Linha de vantagem: mesmo cartão das barras, logo abaixo delas, com o peso de
+   um rótulo de valor — é a frase que impede um empate técnico de ser lido
+   como liderança. */
+.ve-chart-delta {
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.ve-chart-delta__linha {
+  margin: 0;
+  font: var(--text-body);
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.ve-chart-delta__nota {
+  margin: 0;
+  font: var(--text-caption);
+  color: var(--color-text-subtle);
+  max-width: 72ch;
+}
+.ve-chart-delta__valor {
+  color: var(--color-text);
+  font-weight: var(--font-variation-announce);
+}
+.ve-chart-delta__veredito--empate {
+  color: var(--color-warning);
+  font-weight: var(--font-variation-nav);
+}
+
 
 /* ================= Tabelas (comparação e por UF) ================= */
 
@@ -415,9 +481,12 @@
     border: none;
     padding: var(--space-1) 0;
     display: flex;
+    /* O selo de recência agora carrega a data ("fora da janela · 15/07/2026"):
+       sem `flex-wrap` ele empurraria a célula além da largura do cartão. */
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    gap: var(--space-3);
+    gap: var(--space-1) var(--space-3);
     white-space: normal;
     text-align: right;
   }
@@ -432,19 +501,56 @@
 
 /* ================= Não atribuídos ================= */
 
+/* Não é rodapé: no 2º turno os não atribuídos são 8,7% do eleitorado — várias
+   vezes a vantagem entre os dois candidatos —, então o bloco vira um cartão
+   com rótulo, valor grande e as duas leituras que dão escala ao número. */
 .ve-nao-atribuidos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  background: var(--color-surface-1);
+  border: 1px solid var(--color-border-strong);
+  border-left: 3px solid var(--color-warning);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  font-variant-numeric: tabular-nums;
+}
+.ve-nao-atribuidos__rotulo {
+  margin: 0;
+  font: var(--text-caption);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+  color: var(--color-text-subtle);
+}
+.ve-nao-atribuidos__valor {
+  margin: 0;
+  font: var(--text-title);
+  font-weight: var(--font-variation-announce);
+  color: var(--color-text);
+}
+/*
+ * A quebra do resíduo é a informação que impede a leitura errada do número
+ * grande acima (no 2º turno, dois terços dele é percentual que fonte nenhuma
+ * publicou). Por isso tem cor de texto normal e não de nota secundária.
+ */
+.ve-nao-atribuidos__quebra {
+  margin: 0;
+  font: var(--text-body-sm);
+  color: var(--color-text);
+  max-width: 72ch;
+}
+.ve-nao-atribuidos__nota {
   margin: 0;
   font: var(--text-body-sm);
   color: var(--color-text-muted);
-  background: var(--color-surface-1);
-  border: 1px dashed var(--color-border-strong);
-  border-radius: var(--radius-md);
-  padding: var(--space-3) var(--space-4);
-  font-variant-numeric: tabular-nums;
+  max-width: 72ch;
 }
-.ve-nao-atribuidos strong {
-  color: var(--color-text);
-  font-weight: var(--font-variation-announce);
+.ve-nao-atribuidos__rodape {
+  margin: 0;
+  font: var(--text-body-sm);
+  color: var(--color-text-subtle);
+  max-width: 72ch;
 }
 
 @media (prefers-reduced-motion: reduce) {
