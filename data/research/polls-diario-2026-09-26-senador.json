@@ -1,0 +1,141 @@
+[
+  {
+    "id": "2026-09-26-parana-pesquisas-ce-senador-t1",
+    "uf": "CE",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "CE-03967/2026",
+    "contratante": "Don7 Media",
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-25",
+    "publicadoEm": "2026-09-26",
+    "amostra": 1352,
+    "margem": 2.7,
+    "cenario": "estimulada, soma do 1º e 2º voto (2 vagas; percentuais somam mais de 100 porque o eleitor declara dois votos)",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/parana-pesquisas-cid-gomes-tem-453-capitao-wagner-45-ao-senado-no-ce"
+    },
+    "resultados": [
+      {
+        "candidato": "Cid Gomes",
+        "partido": "PSB",
+        "pct": 45.3
+      },
+      {
+        "candidato": "Capitão Wagner",
+        "partido": "União Brasil",
+        "pct": 45.0
+      },
+      {
+        "candidato": "Luizianne Lins",
+        "partido": "Rede",
+        "pct": 36.3
+      },
+      {
+        "candidato": "Alcides Fernandes",
+        "partido": "PL",
+        "pct": 20.5
+      },
+      {
+        "candidato": "Catarina Matos",
+        "partido": "UP",
+        "pct": 3.1
+      },
+      {
+        "candidato": "Reginaldo",
+        "partido": "PSTU",
+        "pct": 2.6
+      },
+      {
+        "candidato": "Guilherme Theophilo",
+        "partido": "Novo",
+        "pct": 1.8
+      },
+      {
+        "candidato": "Lino Alves",
+        "partido": "PCO",
+        "pct": 1.1
+      },
+      {
+        "candidato": "Brancos/nulos/nenhum",
+        "partido": null,
+        "pct": 7.3
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 5.0
+      }
+    ],
+    "observacao": "METRICA: os percentuais registrados sao a SOMA DO 1o E DO 2o VOTO (cenario estimulado consolidado), porque o CE elege duas cadeiras em 2026 e cada eleitor declara dois nomes; a soma dos candidatos chega a 155,7 (base de 2 votos por eleitor, ou seja ate 200), e com brancos/nulos (7,3) e indecisos (5,0) o total citado pelas fontes fica em 168,0 — abaixo de 200 porque parte dos entrevistados indicou apenas um nome. A mesma rodada tambem publicou a primeira escolha isolada (Capitao Wagner 30,8%, Cid Gomes 28,0%, Luizianne 17,2%, Alcides Fernandes 8,0%) e a segunda escolha (Luizianne 19,2%, Cid 17,2%, Wagner 14,2%); nao registramos esses cortes aqui para nao misturar metricas. Divulgada no sabado 26/09/2026, campo de 23 a 25/09/2026, 1.352 entrevistas em 59 municipios do Ceara, 95% de confianca, margem de 2,7 p.p., registro TSE CE-03967/2026. Contratante nulo: as materias descrevem divulgacao 'em parceria' com o portal CN7, a Rede Plus FM e o Jornal do Cariri, mas nenhuma informa quem encomendou — nao inferimos. RESSALVA DE NUMERO: o portal OIntrigante traz '46,0%' para Capitao Wagner no slug da URL, mas o proprio titulo e o texto, alem de Metropoles, Band, CNN Brasil, CartaCapital, CN7, Capital Politica e Sobral em Revista, trazem 45,0% — adotamos 45,0%. Os percentuais dos candidatos menores e de brancos/indecisos vem da cobertura detalhada da mesma rodada (CN7, Sobral em Revista, Band, CNN). WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch). CORRIGIDO NA REVISÃO: o contratante é a Don7 Media, conforme o registro da pesquisa no TSE (CE-03967/2026, custo de R$ 160 mil), confirmado em duas buscas independentes. A varredura automática havia gravado \"Paraná Pesquisas (recursos próprios)\" num recorte e null no outro — o primeiro era inferência a partir da parceria de divulgação com CN7, Rede Plus FM e Jornal do Cariri, que são veículos divulgadores, não contratantes."
+  },
+  {
+    "id": "2026-09-26-datatrends-pe-senador-t1",
+    "uf": "PE",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "DataTrends",
+    "registroTSE": "PE-09157/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-26",
+    "amostra": 1200,
+    "margem": 2.83,
+    "cenario": "estimulada, primeiro cenário (base 100%)",
+    "fonte": {
+      "nome": "Blog Brito",
+      "url": "https://www.blogbrito.com/post/mar%C3%ADlia-arraes-tem-16-humberto-costa-13-mendon%C3%A7a-filho-10-eduardo-da-fonte-9-e-t%C3%BAlio-gad%C3%AAlha"
+    },
+    "resultados": [
+      {
+        "candidato": "Marília Arraes",
+        "partido": "PDT",
+        "pct": 16
+      },
+      {
+        "candidato": "Humberto Costa",
+        "partido": "PT",
+        "pct": 13
+      },
+      {
+        "candidato": "Mendonça Filho",
+        "partido": "PL",
+        "pct": 10
+      },
+      {
+        "candidato": "Eduardo da Fonte",
+        "partido": "PP",
+        "pct": 9
+      },
+      {
+        "candidato": "Túlio Gadêlha",
+        "partido": "PSD",
+        "pct": 3
+      },
+      {
+        "candidato": "Carlos Sant'Anna",
+        "partido": "Novo",
+        "pct": 1
+      },
+      {
+        "candidato": "Pastor Gilvan Costa",
+        "partido": null,
+        "pct": 1
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 24
+      },
+      {
+        "candidato": "Não sabe/não respondeu",
+        "partido": null,
+        "pct": 23
+      }
+    ],
+    "observacao": "METRICA: PE elege duas cadeiras em 2026, mas esta ficha NAO e a soma dos dois votos — os percentuais fecham exatamente 100 (candidatos 53 + brancos/nulos 24 + NS/NR 23), ou seja equivalem a um voto por entrevistado; a fonte chama o cenario de 'primeiro cenario' e nao explicita se e a primeira escolha declarada ou uma consolidacao reduzida a 100%, por isso nao rotulamos alem disso. Divulgada no sabado 26/09/2026, campo de 22 a 24/09/2026, 1.200 entrevistas, 95% de confianca, margem maxima de 2,83 p.p. Registro TSE: PE-09157/2026 (estadual); a mesma cobertura cita ainda o registro BR-00073/2026 — gravamos o registro estadual no campo e anotamos o nacional aqui. Contratante nulo: nenhuma materia informa quem encomendou. O partido de 'Pastor Gilvan Costa' nao foi publicado pelas fontes consultadas, por isso fica null (nao inferimos). ATENCAO NA COMPARACAO: esta rodada vem abaixo da rodada anterior do proprio DataTrends (campo 15-17/09, publicada em 19/09, registro PE-05602/2026: Marilia 16, Humberto 14, Mendonca 13, Eduardo 11, Tulio 6), com brancos/nulos e indecisos bem mais altos — pode indicar mudanca de cenario/pergunta entre as rodadas; a ficha e internamente consistente (fecha 100) e foi registrada como publicada, sem correcao nossa. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  }
+]

@@ -1,0 +1,79 @@
+[
+  {
+    "id": "2026-09-26-datafolha-ce-presidente-t1",
+    "uf": "CE",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "BR-03296/2026",
+    "contratante": "O Povo",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-26",
+    "amostra": 1204,
+    "margem": 3.0,
+    "cenario": "estimulada, 1º turno — eleitores do Ceará",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/eleicoes/2026/09/26/datafolha-ceara-tem-lula-com-vantagem-contra-flavio-bolsonaro.html"
+    },
+    "observacao": "Recorte presidencial da rodada estadual Datafolha/O POVO no Ceará, divulgado no sábado 26/09/2026 (os recortes de governador e Senado da mesma rodada saíram na sexta 25/09). Ficha técnica conferida em O Povo e Portal Ceará: 1.204 eleitores entrevistados entre 22 e 24/09 em 59 municípios do estado, margem de erro máxima de 3 pontos, nível de confiança 95%, pesquisa quantitativa por amostragem com entrevistas presenciais em pontos de fluxo. Registros informados para a rodada conjunta (governador, Senado e presidente): CE-00198/2026 e BR-03296/2026 — adotado o registro de abrangência nacional (BR-03296/2026) por ser o recorte presidencial; o registro específico do recorte presidencial não foi confirmado isoladamente. Contratante 'O Povo' consta explicitamente nas matérias. A tabela divulgada soma 90%: as linhas de brancos/nulos e não sabe NÃO foram publicadas nos resumos acessíveis e por isso não constam aqui (não estimadas). Rodada anterior do mesmo instituto no estado (divulgada em 19/09, campo 14–17/09, registros CE-01290/2026 e BR-00180/2026): Lula 54% e Flávio 26% — essa rodada de 19/09 NÃO está na base. Uma fonte secundária grafou o partido de Augusto Cury como 'Agir'; mantida a grafia 'Avante' já usada na base. Dados obtidos via WebSearch (WebFetch bloqueado); números conferidos em O Povo e Portal Ceará.",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 56 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 26 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 4 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 2 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 1 },
+      { "candidato": "Romeu Zema", "partido": "Novo", "pct": 1 }
+    ]
+  },
+  {
+    "id": "2026-09-26-datafolha-ce-presidente-t2-lula-flavio",
+    "uf": "CE",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Datafolha",
+    "registroTSE": "BR-03296/2026",
+    "contratante": "O Povo",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-26",
+    "amostra": 1204,
+    "margem": 3.0,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — eleitores do Ceará",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/eleicoes/2026/09/26/datafolha-ceara-tem-lula-com-vantagem-contra-flavio-bolsonaro.html"
+    },
+    "observacao": "Mesma ficha técnica do registro de 1º turno desta rodada (1.204 eleitores do Ceará, 22–24/09, 59 municípios, margem 3 pontos, 95%, contratante O Povo, registros CE-00198/2026 e BR-03296/2026). A tabela divulgada soma 92%: as linhas de brancos/nulos e não sabe não foram publicadas nos resumos acessíveis e não foram estimadas. Nenhum outro confronto de 2º turno foi divulgado para o recorte cearense nesta rodada. Dados obtidos via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 60 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 32 }
+    ]
+  },
+  {
+    "id": "2026-09-26-quaest-pa-presidente-t1",
+    "uf": "PA",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "BR-04603/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-25",
+    "publicadoEm": "2026-09-26",
+    "amostra": 804,
+    "margem": 3.0,
+    "cenario": "estimulada, 1º turno — eleitores do Pará",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/quaest-lula-atinge-40-flavio-marca-35-e-cury-tem-7-no-para"
+    },
+    "observacao": "Recorte estadual do Pará da série de pesquisas estaduais Quaest da reta final. Segundo o balanço da série, os recortes de 24 estados e do DF foram divulgados entre terça 22/09 e quarta 23/09, e o Pará foi o único divulgado no sábado 26/09 (não houve recorte do Piauí). Ficha técnica: 804 entrevistados entre 22 e 25/09, margem de erro de 3 pontos, registro TSE BR-04603/2026 — conferida em duas consultas independentes à matéria do Metrópoles; a matéria também informa que 83% dos eleitores consideram o voto definitivo e 17% admitem mudança até 04/10. n=804 é compatível com margem de ±3 a 95%. CONTRATANTE: nenhuma das matérias localizadas informa quem encomendou este recorte, por isso null (não deduzido da Globo nem de rodadas anteriores). A tabela divulgada soma 82% (Lula 40, Flávio 35, Cury 7): os demais candidatos e as linhas de brancos/nulos e indecisos não foram publicados nos resumos acessíveis e não foram estimados. Não foi localizado cenário de 2º turno para o recorte paraense desta rodada — há uma matéria do Diário do Pará com manchete de 2º turno atribuída à Quaest, mas os números que dela se pôde extrair são os da pesquisa NACIONAL de 21/09 (Lula 37% x Flávio 33%), então nenhum registro de 2º turno para o PA foi criado. Rodada Quaest anterior no estado já na base: publicada em 29/08 (Lula 39%, Flávio 28%), campo desconhecido — não é duplicata desta. Dados obtidos via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 40 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 35 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 7 }
+    ]
+  }
+]

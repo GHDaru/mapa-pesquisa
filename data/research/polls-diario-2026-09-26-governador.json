@@ -1,0 +1,230 @@
+[
+  {
+    "id": "2026-09-26-parana-pesquisas-ce-governador-t1",
+    "uf": "CE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "CE-03967/2026",
+    "contratante": "Don7 Media",
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-25",
+    "publicadoEm": "2026-09-26",
+    "amostra": 1352,
+    "margem": 2.7,
+    "cenario": "estimulada, 1o turno",
+    "fonte": {
+      "nome": "Band",
+      "url": "https://www.band.com.br/politica/eleicoes/parana-pesquisas-ciro-gomes-lidera-disputa-no-ce-com-46-elmano-tem-422"
+    },
+    "resultados": [
+      {
+        "candidato": "Ciro Gomes",
+        "partido": "PSDB",
+        "pct": 46
+      },
+      {
+        "candidato": "Elmano de Freitas",
+        "partido": "PT",
+        "pct": 42.2
+      },
+      {
+        "candidato": "Delegado Huggo",
+        "partido": "Missão",
+        "pct": 1.1
+      },
+      {
+        "candidato": "Zé Batista",
+        "partido": "PSTU",
+        "pct": 0.4
+      },
+      {
+        "candidato": "Vera Lúcia",
+        "partido": "Novo",
+        "pct": 0.4
+      },
+      {
+        "candidato": "Danilo Soares",
+        "partido": "DC",
+        "pct": 0.3
+      },
+      {
+        "candidato": "Ieri Braga",
+        "partido": "PCO",
+        "pct": 0.1
+      },
+      {
+        "candidato": "Serley Leal",
+        "partido": "UP",
+        "pct": 0.1
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 4.9
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 4.5
+      }
+    ],
+    "observacao": "Rodada Paraná Pesquisas no Ceará divulgada no sábado 26/09/2026 (campo 23–25/09, 1.352 entrevistas em 59 municípios, margem de 2,7 p.p., 95% de confiança). Registro TSE CE-03967/2026. NÚMEROS REGISTRADOS SÃO DO TOTAL (a ficha soma exatamente 100,0%: 46,0 + 42,2 + 1,1 + 0,4 + 0,4 + 0,3 + 0,1 + 0,1 + 4,9 brancos/nulos + 4,5 não sabe). Existe a outra leitura: nos votos válidos, Ciro aparece com 50,8% e Elmano com 46,5% — não é o critério usado nesta base. Linha 'Brancos/nulos' corresponde a branco, nulo ou 'nenhum dos candidatos' (4,9%). Contratante: as fontes locais (CN7, Sobral em Revista, Poder News) informam que o levantamento foi contratado pelo próprio Instituto Paraná Pesquisas, em parceria de divulgação com o portal CN7, a Rede Plus FM e o Jornal do Cariri — registrado como 'Paraná Pesquisas (recursos próprios)', seguindo a convenção já usada na base; não houve inferência a partir do veículo que publicou. O partido de Danilo Soares é noticiado como 'Democrata', sigla que não consta em data/parties.json — mapeado para DC (Democracia Cristã), mesmo tratamento dado na rodada Datafolha/CE de 18/09 já presente na base; confirmar no DivulgaCand/TSE. ATENÇÃO: manchetes de Exame ('Ciro tem 7,5 pontos de vantagem') e Revista Oeste ('Ciro abre 8 pontos') referem-se à rodada ANTERIOR do mesmo instituto (47,4% x 39,9%, divulgada em 18/09) — nesta rodada a diferença é de 3,8 pontos, dentro da margem. Também noticiada por CNN Brasil, Poder360, Metrópoles, Exame e CartaCapital. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch). CORRIGIDO NA REVISÃO: o contratante é a Don7 Media, conforme o registro da pesquisa no TSE (CE-03967/2026, custo de R$ 160 mil), confirmado em duas buscas independentes. A varredura automática havia gravado \"Paraná Pesquisas (recursos próprios)\" num recorte e null no outro — o primeiro era inferência a partir da parceria de divulgação com CN7, Rede Plus FM e Jornal do Cariri, que são veículos divulgadores, não contratantes."
+  },
+  {
+    "id": "2026-09-26-parana-pesquisas-ce-governador-t2",
+    "uf": "CE",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "CE-03967/2026",
+    "contratante": "Don7 Media",
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-25",
+    "publicadoEm": "2026-09-26",
+    "amostra": 1352,
+    "margem": 2.7,
+    "cenario": "estimulada, 2o turno — Ciro Gomes x Elmano de Freitas",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/parana-pesquisas-ciro-gomes-tem-487-e-elmano-443-ao-governo-do-ceara"
+    },
+    "resultados": [
+      {
+        "candidato": "Ciro Gomes",
+        "partido": "PSDB",
+        "pct": 48.7
+      },
+      {
+        "candidato": "Elmano de Freitas",
+        "partido": "PT",
+        "pct": 44.3
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 4.6
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 2.4
+      }
+    ],
+    "observacao": "Simulação de 2º turno da mesma rodada Paraná Pesquisas no Ceará divulgada em 26/09/2026 (campo 23–25/09, 1.352 entrevistas, margem de 2,7 p.p., 95% de confiança, registro CE-03967/2026). Ficha fecha em 100,0% (48,7 + 44,3 + 4,6 + 2,4), portanto são percentuais do total e não de votos válidos. Diferença de 4,4 pontos, acima da margem de 2,7 p.p. segundo parte da cobertura, mas CNN Brasil e Metrópoles descrevem empate técnico — divergência de interpretação, não de número; os percentuais são iguais em todas as fontes. Contratante conforme fontes locais: o próprio instituto, em parceria de divulgação com CN7, Rede Plus FM e Jornal do Cariri. ATENÇÃO: a manchete do Poder360 'Elmano tem 49% contra 43% de Ciro no 2º turno do CE' é de OUTRO instituto (Real Time Big Data) e não desta rodada. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch). CORRIGIDO NA REVISÃO: o contratante é a Don7 Media, conforme o registro da pesquisa no TSE (CE-03967/2026, custo de R$ 160 mil), confirmado em duas buscas independentes. A varredura automática havia gravado \"Paraná Pesquisas (recursos próprios)\" num recorte e null no outro — o primeiro era inferência a partir da parceria de divulgação com CN7, Rede Plus FM e Jornal do Cariri, que são veículos divulgadores, não contratantes."
+  },
+  {
+    "id": "2026-09-26-datatrends-pe-governador-t1",
+    "uf": "PE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "DataTrends",
+    "registroTSE": "PE-09157/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-26",
+    "amostra": 1200,
+    "margem": 2.83,
+    "cenario": "estimulada, 1o turno",
+    "fonte": {
+      "nome": "Blog Brito",
+      "url": "https://www.blogbrito.com/post/datatrends-raquel-lyra-tem-46-e-jo%C3%A3o-campos-41-na-disputa-pelo-governo-de-pernambuco"
+    },
+    "resultados": [
+      {
+        "candidato": "Raquel Lyra",
+        "partido": "PSD",
+        "pct": 46
+      },
+      {
+        "candidato": "João Campos",
+        "partido": "PSB",
+        "pct": 41
+      },
+      {
+        "candidato": "Ivan Moraes",
+        "partido": "PSOL",
+        "pct": 1
+      },
+      {
+        "candidato": "Renan Hallais",
+        "partido": "Missão",
+        "pct": 0
+      },
+      {
+        "candidato": "Guilherme Fonseca",
+        "partido": "PSTU",
+        "pct": 0
+      },
+      {
+        "candidato": "Professora Camila",
+        "partido": "UP",
+        "pct": 0
+      },
+      {
+        "candidato": "Professor Jeremias do Banco",
+        "partido": "DC",
+        "pct": 0
+      },
+      {
+        "candidato": "Victor Assis",
+        "partido": "PCO",
+        "pct": 0
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 6
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 6
+      }
+    ],
+    "observacao": "Rodada DataTrends em Pernambuco divulgada no sábado 26/09/2026 (campo 22–24/09, 1.200 entrevistas presenciais em todas as regiões do estado, margem máxima de 2,83 p.p., 95% de confiança). Registro TSE PE-09157/2026, registrado em 20/09. NÚMEROS DO TOTAL: a ficha soma exatamente 100 (46 + 41 + 1 + 6 brancos/nulos + 6 não sabe); nenhuma fonte consultada publicou a leitura em votos válidos desta rodada. Linha 'Brancos/nulos' corresponde a branco, nulo ou 'nenhum dos candidatos' (6%). Renan Hallais (Missão), Guilherme Fonseca (PSTU), Professora Camila (UP), Professor Jeremias do Banco ('Democrata') e Victor Assis (PCO) não pontuaram — registrados como 0. A sigla 'Democrata' de Professor Jeremias do Banco não consta em data/parties.json; mapeada para DC (Democracia Cristã), mesmo tratamento dado à rodada Datafolha/CE de 18/09 já presente na base — confirmar no DivulgaCand/TSE. Contratante: null — nenhuma das matérias consultadas informa quem encomendou (o anúncio de registro diz apenas que o instituto registrou a pesquisa; não inferimos). ATENÇÃO À DATA DE DIVULGAÇÃO: o anúncio prévio (Blog do Alberes Xavier, Blog Brito) previa divulgação na sexta-feira 25/09; a cobertura de resultado é unânime em dizer 'divulgada no sábado (26)', e adotamos 26/09. ATENÇÃO NA COMPARAÇÃO COM RODADAS ANTERIORES: o DataTrends fez várias rodadas em PE com Raquel sempre em 46% e João Campos em 36% (07–09/09), 38% (15–17/09) e agora 41% — manchetes de agregadores que falam em vantagem de 9 ou 10 pontos referem-se às rodadas anteriores, não a esta (aqui a diferença é de 5 pontos). Também noticiada por sramos.net, Blog Edmar Lyra, Blog do Ricardo Antunes, Blog da Renata Gondim e Blog do Mário Flávio. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-26-datatrends-pe-governador-t2",
+    "uf": "PE",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "DataTrends",
+    "registroTSE": "PE-09157/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-26",
+    "amostra": 1200,
+    "margem": 2.83,
+    "cenario": "estimulada, 2o turno — Raquel Lyra x João Campos",
+    "fonte": {
+      "nome": "Blog Brito",
+      "url": "https://www.blogbrito.com/post/datatrends-raquel-lyra-tem-46-e-jo%C3%A3o-campos-41-na-disputa-pelo-governo-de-pernambuco"
+    },
+    "resultados": [
+      {
+        "candidato": "Raquel Lyra",
+        "partido": "PSD",
+        "pct": 48
+      },
+      {
+        "candidato": "João Campos",
+        "partido": "PSB",
+        "pct": 43
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 5
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 4
+      }
+    ],
+    "observacao": "Simulação de 2º turno da mesma rodada DataTrends em Pernambuco divulgada em 26/09/2026 (campo 22–24/09, 1.200 entrevistas, margem máxima de 2,83 p.p., 95% de confiança, registro PE-09157/2026). Ficha fecha em 100 (48 + 43 + 5 brancos/nulos + 4 não sabe), portanto são percentuais do total e não de votos válidos. ATENÇÃO — DIVERGÊNCIA RESOLVIDA: resumos de busca trouxeram três leituras diferentes para este 2º turno (48x43, 49x41 e 46x38). Adotado 48% x 43% porque é a única leitura que aparece junto da ficha completa desta rodada (com brancos/nulos 5% e NS/NR 4%, fechando 100) e foi confirmada em duas consultas independentes; 46x38 é o 1º turno da rodada de 15–17/09 e 49x41 não se sustentou em nenhuma fonte com ficha fechada. Se a checagem no PesqEle/TSE apontar outro par, corrigir este registro. Contratante null: nenhuma matéria informa quem encomendou. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  }
+]
