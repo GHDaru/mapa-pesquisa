@@ -232,6 +232,38 @@
   pointer-events: none;
   user-select: none;
 }
+/* Marca de "uma única pesquisa neste recorte": asterisco na sigla do estado.
+   Substitui a hachura de poros, que era uma marca de ÁREA na cor do fundo — ela
+   clareava o estado em até +0,052 de luminância (mais que um degrau inteiro da
+   rampa de vantagem) e cobria 70,6% da área de terra no 2º turno, escrevendo no
+   único canal que a legenda reserva para o tamanho da vantagem. O asterisco não
+   cobre área do polígono: anda com a sigla e some junto com ela. Um pouco maior
+   que as letras e subido meio ponto, para ler como marca de nota de rodapé e não
+   como terceira letra da sigla. */
+.ps-uf-label__marca {
+  font-size: 12px;
+  /* `dy` é atributo, não propriedade CSS — vai no elemento. */
+  stroke-width: 1.7px;
+}
+/* Estado minúsculo cuja sigla não cabe dentro do polígono (só o Distrito
+   Federal, 22,3 × 12,9 px a 1280): a sigla sai para fora e esta linha liga o
+   texto ao centro do estado. Sem isso, 26% da área interna do DF era pixel de
+   rótulo e a cor do próprio estado não estava entre as três mais frequentes da
+   sua própria área — o único estado da faixa "Lidera por até 2× a margem" do 2º
+   turno não podia ser visto. */
+.ps-uf-guia {
+  stroke: var(--color-text);
+  stroke-width: 0.9;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+/* Abaixo de 640px a sigla de estado estreito some para o mapa não virar uma
+   mancha de texto — e o asterisco vai junto, porque um `*` solto, sem a sigla a
+   que se refere, não diz de qual estado se trata. Nos dados de hoje isso custa a
+   marca de 4 dos 16 estados de pesquisa única do 2º turno (RN, SE, RJ e SC); nos
+   quatro, a ressalva continua escrita na linha de procedência do cartão, no
+   tooltip e no aria-label. É o mesmo custo que a sigla já pagava, e é preferível
+   a devolver a ressalva ao canal de área. */
 @media (max-width: 639px) {
   .ps-uf-label--pequena {
     display: none;
@@ -339,6 +371,18 @@
 .ps-legend-swatch--marca {
   display: block;
   overflow: hidden;
+}
+/* Chip da marca de pesquisa única: a MESMA sigla com asterisco que o mapa
+   desenha, na mesma classe tipográfica, só reduzida para caber nos 28px do chip
+   (o chip é 19 unidades ampliadas 1,47×, então 6,5px viram ~9,6px na tela — o
+   tamanho da sigla no mapa a 1280px). */
+.ps-legend-sigla {
+  font-size: 6.5px;
+  stroke-width: 1.5px;
+}
+.ps-legend-sigla .ps-uf-label__marca {
+  font-size: 8.5px;
+  stroke-width: 1.2px;
 }
 .ps-legend-swatch--fora-janela {
   border: 1.5px dashed var(--color-text);
@@ -534,6 +578,15 @@
 .ps-mini-ponto__marca {
   stroke: var(--color-surface-1);
   stroke-width: 2;
+}
+/* Pesquisa única cuja amostra não foi publicada: o MESMO anel vazado que o
+   sparkline desenha nesse caso (ver `.ps-mini-chart__ponto--sem-amostra`). Sem
+   este ramo o marcador pintava disco cheio — o glifo que no resto da tela
+   significa "amostra publicada" — no Rio de Janeiro do 2º turno, cuja única
+   pesquisa (Datafolha, 10/09) não publica amostra. O anel pede mais peso de
+   contorno que o disco, porque só a borda é pintada. */
+.ps-mini-ponto__marca--sem-amostra {
+  stroke-width: 1.8;
 }
 .ps-mini-ponto__nome {
   fill: var(--color-text-muted);

@@ -3,7 +3,9 @@ import {
   datasDosPontos,
   degrauDaRazao,
   faixaVantagem,
+  formaDoPonto,
   LIMIARES_VANTAGEM,
+  marcaDeAreaDaFaixa,
   notaSomaDoPainel,
   opacidadeVantagem,
   pontosDaBase,
@@ -420,5 +422,125 @@ describe('dados reais: soma dos recortes no painel do estado', () => {
     expect(notaSomaDoPainel(soma)).toBeNull();
     const brancos = al.outros.find((o) => o.candidato.includes('rancos'))!;
     expect(rotuloBaseParcial(brancos.pesquisas, al.pesquisasUsadas.length)).toBeNull();
+  });
+});
+
+/**
+ * Onde cada ressalva pode ser escrita na tela.
+ *
+ * O defeito que estes testes travam: a ressalva de pesquisa única saiu do canal
+ * de cor e voltou por dentro dele como hachura de poros — uma marca de ÁREA na
+ * cor do fundo. Medido a 1280px com luminância relativa WCAG por área interna de
+ * cada UF, ela clareava o estado em até +0,052 (mais que um degrau inteiro da
+ * rampa de vantagem naquele matiz) e cobria 70,6% da área de terra no 2º turno.
+ * No mesmo canal, a hachura de empate em `corEspectroSolido` escurecia 0,118 e
+ * punha os dois maiores empates do 1º turno abaixo de dois estados que lideram.
+ */
+describe('presidential-states-layout: marcaDeAreaDaFaixa', () => {
+  it('nenhum degrau de liderança pode carregar marca de área', () => {
+    for (const faixa of ['lidera1', 'lidera2', 'lidera3', 'lidera4'] as const) {
+      expect(marcaDeAreaDaFaixa(faixa)).toBeNull();
+    }
+  });
+
+  it('empate marca com a cor do FUNDO — subtrair tinta só pode empurrar para o zero da rampa', () => {
+    expect(marcaDeAreaDaFaixa('empate')).toBe('fundo');
+  });
+
+  it('"sem dados" marca em cinza neutro, fora da rampa de espectro', () => {
+    expect(marcaDeAreaDaFaixa('semDados')).toBe('cinzaNeutro');
+  });
+
+  it('a ressalva de pesquisa única não tem porta nenhuma para o canal de área', async () => {
+    const { carregarDados } = await import('../../../../outbound/json/carregar-dados.js');
+    const { criarCasosDeUso } = await import('../../../../../application/use-cases/index.js');
+    const casos = criarCasosDeUso(carregarDados(), { hoje: () => new Date('2026-09-25T12:00:00Z') });
+    for (const turno of [1, 2] as const) {
+      const dados = casos.getPresidentialByState(turno);
+      const unicas = dados.ufs.filter((u) =>
+        temPesquisaUnica(u.agregado?.pesquisasUsadas.length ?? 0, u.semDados),
+      );
+      expect(unicas.length).toBeGreaterThan(0);
+      for (const u of unicas) {
+        const faixa = faixaVantagem({
+          vantagem: u.vantagem,
+          margemReferencia: u.agregado?.margemReferencia ?? 2,
+          semDados: u.semDados,
+        });
+        // A UF de pesquisa única só ganha marca de área se ela CAIR numa das
+        // duas faixas que podem ter uma — nunca por ser de pesquisa única.
+        expect(marcaDeAreaDaFaixa(faixa)).toBe(faixa === 'empate' ? 'fundo' : faixa === 'semDados' ? 'cinzaNeutro' : null);
+      }
+    }
+  });
+});
+
+describe('presidential-states-layout: formaDoPonto', () => {
+  it('amostra não publicada vira anel vazado', () => {
+    expect(formaDoPonto([null])).toBe('anel');
+    expect(formaDoPonto([null, null])).toBe('anel');
+  });
+
+  it('amostra publicada vira disco cheio', () => {
+    expect(formaDoPonto([1000])).toBe('disco');
+  });
+
+  it('com uma publicada e outra não, o disco cheio não é falso', () => {
+    expect(formaDoPonto([null, 1200])).toBe('disco');
+  });
+
+  it('sem pesquisa nenhuma não afirma amostra', () => {
+    expect(formaDoPonto([])).toBe('anel');
+  });
+});
+
+describe('dados reais: glifos de amostra na grade', () => {
+  async function dadosDe(turno: 1 | 2) {
+    const { carregarDados } = await import('../../../../outbound/json/carregar-dados.js');
+    const { criarCasosDeUso } = await import('../../../../../application/use-cases/index.js');
+    const casos = criarCasosDeUso(carregarDados(), { hoje: () => new Date('2026-09-25T12:00:00Z') });
+    return casos.getPresidentialByState(turno);
+  }
+
+  it('o marcador de ponto único do Rio de Janeiro (2º turno) é anel: a fonte não publicou a amostra', async () => {
+    const rj = (await dadosDe(2)).ufs.find((u) => u.uf === 'RJ')!;
+    expect(rj.agregado!.pesquisasUsadas).toHaveLength(1);
+    // `Pesquisa.amostra` é `number | null | undefined` — o que importa é que a
+    // fonte não publicou, e é isso que `formaDoPonto` lê.
+    expect(rj.agregado!.pesquisasUsadas[0]!.amostra ?? null).toBeNull();
+    expect(formaDoPonto(rj.agregado!.pesquisasUsadas.map((p) => p.amostra ?? null))).toBe('anel');
+  });
+
+  it('a contagem da nota inclui os cartões de ponto único, que são os de UMA pesquisa', async () => {
+    const { pesquisasSemAmostraDesenhadas } = await import('../presidential-states-view.js');
+    // 2º turno: Goiás, Mato Grosso do Sul e Rio de Janeiro. A conta anterior
+    // excluía os cartões de ponto único e dizia 2, deixando o Rio de fora.
+    expect(pesquisasSemAmostraDesenhadas(await dadosDe(2))).toBe(3);
+    expect(pesquisasSemAmostraDesenhadas(await dadosDe(1))).toBe(11);
+  });
+});
+
+describe('dados reais: a série sai da mesma base que o cartão declara', () => {
+  it('nem ponto nem linha usam pesquisa fora de `pesquisasUsadas`, nos dois turnos', async () => {
+    const { carregarDados } = await import('../../../../outbound/json/carregar-dados.js');
+    const { criarCasosDeUso } = await import('../../../../../application/use-cases/index.js');
+    const casos = criarCasosDeUso(carregarDados(), { hoje: () => new Date('2026-09-25T12:00:00Z') });
+    for (const turno of [1, 2] as const) {
+      for (const u of casos.getPresidentialByState(turno).ufs) {
+        if (!u.agregado || !u.serie) continue;
+        const ids = new Set(u.agregado.pesquisasUsadas.map((p) => p.id));
+        // Pontos: nenhum de fora da base.
+        expect(u.serie.pontos.filter((p) => !ids.has(p.pollId))).toEqual([]);
+        // Linha: `serieTemporal` pondera TODAS as pesquisas que recebe por
+        // distância no tempo, então uma pesquisa fora da base ainda moldaria a
+        // curva mesmo sem virar ponto. O primeiro dia da série é a primeira data
+        // da base — antes, Sergipe (1º turno, "2 pesquisas · ago–set/2026")
+        // começava em 01/08 e Goiás em 12/05.
+        const primeiraDaBase = u.agregado.pesquisasUsadas
+          .map((p) => p.dataFim ?? p.publicadoEm ?? p.dataInicio ?? '')
+          .sort()[0]!;
+        expect(u.serie.dias[0]!.data).toBe(primeiraDaBase);
+      }
+    }
   });
 });

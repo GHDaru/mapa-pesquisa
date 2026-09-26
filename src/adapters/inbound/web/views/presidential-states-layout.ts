@@ -302,10 +302,10 @@ export function rotuloVantagemMini(
  * grande" enquanto o cabeçalho prometia "força da evidência".
  *
  * As ressalvas de evidência que a tinta NÃO carrega são marcadas no mapa por
- * canais não-cromáticos, cada um com seu item de legenda: pesquisa única
- * (hachura de poros, ver `temPesquisaUnica`) e dado fora da janela de recência
- * (contorno tracejado + âncora). Assim os rótulos de razão voltam a ser
- * verdadeiros sem que a evidência fraca fique invisível.
+ * canais que não cobrem área, cada um com seu item de legenda: pesquisa única
+ * (asterisco na sigla, ver `temPesquisaUnica` e `marcaDeAreaDaFaixa`) e dado
+ * fora da janela de recência (contorno tracejado + âncora). Assim os rótulos de
+ * razão voltam a ser verdadeiros sem que a evidência fraca fique invisível.
  *
  * A escala é relativa à margem de erro DE CADA UF (que varia de ± 1,8 a ± 3,0
  * pontos nos dados atuais) — é isso que explica a aparente
@@ -355,12 +355,80 @@ export function degrauDaRazao(razao: number): 1 | 2 | 3 | 4 {
 
 /**
  * Verdadeiro quando o número da UF vem de UMA pesquisa só — a ressalva de
- * evidência que saiu do canal de cor e virou marca não-cromática no mapa
- * (hachura de poros) com item próprio na legenda. UF sem dados não entra: ali
- * não há pesquisa para ressalvar, e a hachura de "sem dados" já fala.
+ * evidência que saiu do canal de cor. Ela NÃO pode voltar como marca de área
+ * (ver `marcaDeAreaDaFaixa`): sai como asterisco na sigla do estado, que não
+ * cobre área nenhuma. UF sem dados não entra: ali não há pesquisa para
+ * ressalvar, e a hachura de "sem dados" já fala.
  */
 export function temPesquisaUnica(nPesquisas: number, semDados: boolean): boolean {
   return !semDados && nPesquisas === 1;
+}
+
+/* ============ Quais marcas podem cobrir área do polígono ============ */
+
+/**
+ * Se a faixa de tinta de uma UF leva hachura sobre o preenchimento, e de qual
+ * "lado" da rampa essa hachura empurra a luminância. `null` = nenhuma marca de
+ * área.
+ *
+ * A regra que este tipo existe para travar, medida na tela a 1280px com
+ * luminância relativa WCAG por área interna de cada UF:
+ *
+ * TODA marca de área desloca a luminância média do estado — ou seja, escreve no
+ * MESMO canal que a legenda reserva só para o tamanho da vantagem. Então uma
+ * marca de área só é admissível quando a categoria que ela marca já é uma ponta
+ * da rampa, porque aí o deslocamento não pode reordenar nada:
+ *
+ * - `empate` é o degrau mais baixo. Hachura na cor do FUNDO subtrai tinta, o que
+ *   sempre empurra na direção do fundo — o zero da rampa — nos dois temas. Antes
+ *   a hachura de empate era `corEspectroSolido` (espectro em saturação cheia)
+ *   sobre preenchimento a 0,45: tirava 0,118 de luminância e punha o empate
+ *   ABAIXO de quem lidera. Medido no 1º turno: Amazonas (empate, 0,16× a margem)
+ *   saía em L=0,4324 e Tocantins (empate, 0,30×) em L=0,4332, contra Minas
+ *   (lidera por 1,91×) em L=0,4349 e Amapá (1,29×) em L=0,4362 — os dois empates
+ *   mais escuros que dois estados que lideram.
+ * - `semDados` está fora da rampa (cinza, sem matiz de espectro), então sua
+ *   hachura cinza não compete com degrau nenhum.
+ * - Pesquisa única e dado fora da janela são ORTOGONAIS à rampa: qualquer marca
+ *   de área ali move o estado ao longo do canal da vantagem sem que a vantagem
+ *   tenha mudado. Foi o que a hachura de poros (8,5% de cobertura na cor do
+ *   fundo) fez: no 2º turno ela clareava 16 UFs — 70,6% da área de terra — em
+ *   até +0,052 de luminância, mais que um degrau inteiro da rampa naquele matiz.
+ *   Por isso elas não aparecem aqui: são marca fora do polígono.
+ */
+export type MarcaDeArea = 'fundo' | 'cinzaNeutro';
+
+/**
+ * Marca de área admissível para a faixa de tinta da UF — a única porta por onde
+ * uma textura pode cobrir o polígono no mapa "Quem lidera". Ver `MarcaDeArea`
+ * para por que só `empate` e `semDados` passam.
+ */
+export function marcaDeAreaDaFaixa(faixa: FaixaVantagem): MarcaDeArea | null {
+  if (faixa === 'empate') return 'fundo';
+  if (faixa === 'semDados') return 'cinzaNeutro';
+  return null;
+}
+
+/**
+ * Forma do glifo de uma pesquisa no mini-gráfico e no marcador de ponto único:
+ * `anel` (vazado) quando a fonte NÃO publicou o tamanho da amostra, `disco`
+ * (cheio) quando publicou.
+ *
+ * Existe como função pura porque o marcador de ponto único não tinha esse ramo:
+ * `construirMarcadorUnico` pintava `fill` incondicionalmente, então o Rio de
+ * Janeiro no 2º turno — uma pesquisa só, Datafolha de 10/09, `amostra: null` —
+ * desenhava disco cheio, o glifo que em todo o resto da tela significa "amostra
+ * publicada". O sparkline já tinha o ramo; os dois passam a sair daqui.
+ *
+ * `amostras` são as amostras das pesquisas que o glifo representa (uma só, no
+ * caso normal; mais de uma quando dois institutos publicaram na MESMA data e o
+ * cartão virou ponto único). Só é `anel` quando nenhuma delas foi publicada:
+ * com uma publicada e outra não, o glifo cheio não é falso, e a ressalva fica
+ * na nota e na lista de pesquisas do painel.
+ */
+export function formaDoPonto(amostras: readonly (number | null)[]): 'disco' | 'anel' {
+  if (amostras.length === 0) return 'anel';
+  return amostras.every((a) => a == null) ? 'anel' : 'disco';
 }
 
 /** Variável CSS de opacidade do degrau (tokens `--ps-vantagem-*` em presidential-states.css). */

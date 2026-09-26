@@ -15,7 +15,7 @@ import {
 } from '../../../../domain/aggregate.js';
 import type { SerieTemporal } from '../../../../domain/aggregate.js';
 import type { Pesquisa } from '../../../../domain/poll.js';
-import { espectroDoPartido } from '../../../../domain/spectrum.js';
+import { espectroDoPartido, type Espectro } from '../../../../domain/spectrum.js';
 import { nomeCurtissimo } from './candidate-names.js';
 import {
   avisoForaDaJanela,
@@ -49,9 +49,11 @@ import {
   escalaX,
   escalaY,
   faixaVantagem,
+  formaDoPonto,
   formatarEleitorado,
   hashDoTurno,
   LIMIARES_VANTAGEM,
+  marcaDeAreaDaFaixa,
   notaSomaDoPainel,
   opacidadeVantagem,
   ordenarParaGrade,
@@ -106,7 +108,13 @@ const NOME_POR_UF = new Map(brazilMap.locations.map((loc) => [loc.id.toUpperCase
 const AREA_ALVO_AMPLIADO = 3000;
 const AREA_ESCONDER_SIGLA_ESTREITO = 6000;
 
-const ESPECTROS_LEGENDA = ['esquerda', 'centro-esquerda', 'centro', 'centro-direita', 'direita'] as const;
+const ESPECTROS_LEGENDA: readonly Espectro[] = [
+  'esquerda',
+  'centro-esquerda',
+  'centro',
+  'centro-direita',
+  'direita',
+] as const;
 
 interface Bbox {
   readonly minX: number;
@@ -238,6 +246,21 @@ function pesquisasSemAmostra(item: PresidencialUf): number {
   return (item.agregado?.pesquisasUsadas ?? []).filter((p) => p.amostra == null).length;
 }
 
+/**
+ * Quantas pesquisas a grade desenha sem amostra publicada — TODAS as que viram
+ * glifo na tela, inclusive as dos cartões de ponto único. Exportada para teste:
+ * a nota da seção afirma esse número em palavras, e a conta anterior filtrava
+ * `!ehPontoUnico(u)`, ou seja, excluía justamente os cartões de UMA pesquisa.
+ * No 2º turno ela dizia 2 com 3 glifos vazados na tela (Rio de Janeiro, Mato
+ * Grosso do Sul e Goiás) — e o cartão do Rio, além de não ser contado, desenhava
+ * disco cheio.
+ */
+export function pesquisasSemAmostraDesenhadas(dados: PresidencialPorEstado): number {
+  return dados.ufs
+    .filter((u) => !u.semDados && u.agregado?.lider)
+    .reduce((n, u) => n + pesquisasSemAmostra(u), 0);
+}
+
 /** true quando o cartão da UF vira marcador de ponto único (só uma data de pesquisa). */
 function ehPontoUnico(item: PresidencialUf): boolean {
   if (item.semDados || !item.agregado || !item.serie || !item.agregado.lider) return false;
@@ -264,7 +287,7 @@ function faixaVantagemUf(item: PresidencialUf): FaixaVantagem {
   });
 }
 
-/** true quando a UF tem uma única pesquisa no recorte (marca de poros no mapa). */
+/** true quando a UF tem uma única pesquisa no recorte (asterisco na sigla do mapa). */
 function temPesquisaUnicaUf(item: PresidencialUf): boolean {
   return temPesquisaUnica(nPesquisasUsadas(item), item.semDados);
 }
@@ -382,7 +405,9 @@ export function renderPresidentialStates(container: HTMLElement, casos: CasosDeU
 
     mapWrap.appendChild(construirSvgMapa(modo, dados, ufPorSigla, partidos, tooltip, container, recorte));
     legendWrap.appendChild(
-      modo === 'lideranca' ? criarLegendaLideranca(dados) : criarLegendaEleitorado(dados, recorte),
+      modo === 'lideranca'
+        ? criarLegendaLideranca(dados, partidos)
+        : criarLegendaEleitorado(dados, recorte),
     );
   }
   redesenharMapa();
@@ -592,9 +617,9 @@ function criarCabecalho(
     intro.textContent =
       `A cor do mapa mostra o espectro do partido que lidera a média ponderada de pesquisas presidenciais ` +
       `de ${recorte.rotulo} em cada estado; a opacidade indica só o tamanho da vantagem sobre o 2º colocado, ` +
-      'em múltiplos da margem de erro daquele estado. A força da evidência vem em marcas próprias: o ' +
-      'pontilhado marca estado com uma única pesquisa e o contorno tracejado, estado cuja pesquisa está fora ' +
-      `da janela de ${JANELA_DIAS_PADRAO} dias. ` +
+      'em múltiplos da margem de erro daquele estado. A força da evidência vem em marcas que não cobrem área ' +
+      'do estado, para não mexerem na tinta: o asterisco na sigla marca estado com uma única pesquisa e o ' +
+      `contorno tracejado, estado cuja pesquisa está fora da janela de ${JANELA_DIAS_PADRAO} dias. ` +
       'Alterne para "Eleitorado" para ver o tamanho do colégio eleitoral por estado. ' +
       'Passe o mouse para uma prévia ou clique/Enter para abrir os detalhes.';
 
@@ -830,17 +855,23 @@ function ariaLabelEleitorado(
 /* ================= Marcas de textura do mapa (patterns SVG) ================= */
 
 /**
- * Tipos de textura que o mapa sobrepõe a um preenchimento:
+ * A ÚNICA textura que o mapa sobrepõe a um preenchimento: listras diagonais.
+ * Duas faixas a usam, e só elas podem (ver `marcaDeAreaDaFaixa` em
+ * presidential-states-layout.ts, que explica a medição):
  *
- * - `hachura` — listras diagonais. Empate técnico (na cor sólida do espectro
- *   do líder) e "sem dados" (no cinza terciário).
- * - `poros` — pontilhado na cor do fundo, que "fura" a UF sem mudar seu matiz
- *   nem seu degrau de opacidade. Marca as UFs sustentadas por UMA pesquisa.
+ * - empate técnico, na cor do FUNDO (`COR_HACHURA_EMPATE`) — subtrai tinta, o
+ *   que só pode empurrar a UF na direção do zero da rampa, onde o empate já
+ *   está. Antes era `corEspectroSolido`, que tirava 0,118 de luminância e punha
+ *   os dois maiores empates do 1º turno mais escuros que dois estados que
+ *   lideram;
+ * - "sem dados", no cinza terciário — fora da rampa, sem matiz de espectro.
+ *
+ * Ressalva ortogonal à rampa (pesquisa única, dado fora da janela) NÃO entra
+ * aqui: qualquer cobertura de área move o estado no canal que a legenda reserva
+ * só para a vantagem. Elas saem em marcas que não cobrem área — asterisco na
+ * sigla e contorno tracejado + âncora.
  */
-type TipoMarca = 'hachura' | 'poros';
-
-/** Cor dos poros: o próprio fundo da página, para a marca ser não-cromática. */
-const COR_POROS = 'var(--color-canvas)';
+const COR_HACHURA_EMPATE = 'var(--color-canvas)';
 
 interface RegistroMarcas {
   readonly defs: SVGDefsElement;
@@ -849,8 +880,8 @@ interface RegistroMarcas {
 }
 
 /**
- * Constrói um `<pattern>` POR (tipo, cor), com a cor num atributo explícito do
- * `<line>`/`<circle>`.
+ * Constrói um `<pattern>` de hachura POR cor, com a cor num atributo explícito
+ * do `<line>`.
  *
  * A versão anterior tinha um único `<pattern id="ps-mapa-hachura">` cuja
  * `<line>` usava `stroke="currentColor"`, e quem referenciava tentava tingir a
@@ -865,50 +896,38 @@ interface RegistroMarcas {
  * com a marca que o mapa desenhava. Com um pattern por cor, e com a legenda
  * chamando ESTE MESMO construtor, as duas não podem mais divergir.
  */
-function construirPatternMarca(id: string, tipo: TipoMarca, cor: string): SVGPatternElement {
+function construirPatternMarca(id: string, cor: string): SVGPatternElement {
   const pattern = document.createElementNS(SVG_NS, 'pattern');
   pattern.setAttribute('id', id);
   pattern.setAttribute('patternUnits', 'userSpaceOnUse');
-  if (tipo === 'hachura') {
-    pattern.setAttribute('width', '6');
-    pattern.setAttribute('height', '6');
-    pattern.setAttribute('patternTransform', 'rotate(45)');
-    const linha = document.createElementNS(SVG_NS, 'line');
-    linha.setAttribute('x1', '0');
-    linha.setAttribute('y1', '0');
-    linha.setAttribute('x2', '0');
-    linha.setAttribute('y2', '6');
-    linha.setAttribute('stroke', cor);
-    linha.setAttribute('stroke-width', '2.2');
-    pattern.appendChild(linha);
-  } else {
-    pattern.setAttribute('width', '7');
-    pattern.setAttribute('height', '7');
-    const ponto = document.createElementNS(SVG_NS, 'circle');
-    ponto.setAttribute('cx', '3.5');
-    ponto.setAttribute('cy', '3.5');
-    ponto.setAttribute('r', '1.15');
-    ponto.setAttribute('fill', cor);
-    pattern.appendChild(ponto);
-  }
+  pattern.setAttribute('width', '6');
+  pattern.setAttribute('height', '6');
+  pattern.setAttribute('patternTransform', 'rotate(45)');
+  const linha = document.createElementNS(SVG_NS, 'line');
+  linha.setAttribute('x1', '0');
+  linha.setAttribute('y1', '0');
+  linha.setAttribute('x2', '0');
+  linha.setAttribute('y2', '6');
+  linha.setAttribute('stroke', cor);
+  linha.setAttribute('stroke-width', '2.2');
+  pattern.appendChild(linha);
   return pattern;
 }
 
-/** Cria o `<defs>` do SVG e o registro que deduplica os patterns por (tipo, cor). */
+/** Cria o `<defs>` do SVG e o registro que deduplica os patterns por cor. */
 function criarRegistroMarcas(svg: SVGSVGElement, prefixo: string): RegistroMarcas {
   const defs = document.createElementNS(SVG_NS, 'defs');
   svg.appendChild(defs);
   return { defs, ids: new Map(), prefixo };
 }
 
-/** `url(#id)` da marca (tipo, cor) neste SVG, criando o `<pattern>` na primeira vez. */
-function refMarca(registro: RegistroMarcas, tipo: TipoMarca, cor: string): string {
-  const chave = `${tipo}|${cor}`;
-  let id = registro.ids.get(chave);
+/** `url(#id)` da hachura nesta cor neste SVG, criando o `<pattern>` na primeira vez. */
+function refMarca(registro: RegistroMarcas, cor: string): string {
+  let id = registro.ids.get(cor);
   if (id == null) {
-    id = `${registro.prefixo}-${tipo}-${registro.ids.size + 1}`;
-    registro.defs.appendChild(construirPatternMarca(id, tipo, cor));
-    registro.ids.set(chave, id);
+    id = `${registro.prefixo}-hachura-${registro.ids.size + 1}`;
+    registro.defs.appendChild(construirPatternMarca(id, cor));
+    registro.ids.set(cor, id);
   }
   return `url(#${id})`;
 }
@@ -1026,8 +1045,13 @@ function construirSvgMapa(
       // depois de todos os preenchimentos, em `grupoMarcas`.
       if (usouPesquisaForaDaJanela(item)) marcarForaDaJanela = true;
       marcarPesquisaUnica = temPesquisaUnicaUf(item);
-      if (faixa === 'empate') corHachura = corEspectroSolido(espectro);
-      else if (faixa === 'semDados') corHachura = 'var(--color-text-tertiary)';
+      // A única porta por onde uma textura cobre o polígono, e ela só abre para
+      // as duas faixas que não podem ser reordenadas por isso (ver
+      // `marcaDeAreaDaFaixa`): o empate, com hachura na cor do fundo, e "sem
+      // dados", no cinza terciário.
+      const marcaArea = marcaDeAreaDaFaixa(faixa);
+      if (marcaArea === 'fundo') corHachura = COR_HACHURA_EMPATE;
+      else if (marcaArea === 'cinzaNeutro') corHachura = 'var(--color-text-tertiary)';
     } else {
       if (item.eleitores != null) {
         const classe = classificarPorQuantil(item.eleitores, breakpointsEleitorado);
@@ -1046,15 +1070,7 @@ function construirSvgMapa(
     grupoEstados.appendChild(path);
 
     if (corHachura) {
-      grupoEstados.appendChild(overlayMarca(loc.path, refMarca(marcas, 'hachura', corHachura)));
-    }
-    // Pesquisa única: hachura de poros na cor do fundo — a UF fica "furada",
-    // sem mudar de matiz nem de degrau de opacidade. É a ressalva de evidência
-    // que saiu do canal de cor quando o desconto de pesquisa única deixou de
-    // mexer na tinta (era ele que tornava falsos os rótulos de razão da
-    // legenda em 15 das 27 UFs do 2º turno).
-    if (marcarPesquisaUnica) {
-      grupoEstados.appendChild(overlayMarca(loc.path, refMarca(marcas, 'poros', COR_POROS)));
+      grupoEstados.appendChild(overlayMarca(loc.path, refMarca(marcas, corHachura)));
     }
 
     let alvoInterativo: SVGElement = path;
@@ -1092,14 +1108,40 @@ function construirSvgMapa(
 
     if (marcarForaDaJanela) desenharMarcaForaDaJanela(grupoMarcas, uf, loc.path, cx, cy);
 
+    // Estado minúsculo (só o Distrito Federal, 22,3 × 12,9 px a 1280): a sigla
+    // NÃO cabe dentro dele. Medido no DOM antes desta linha existir: dos 249 px
+    // internos do DF, 26% eram pixel de rótulo (12,9% do contorno preto, 8,8%
+    // do miolo branco) e a cor do próprio estado não aparecia entre as três
+    // cores mais frequentes da sua própria área — o polígono existia e não
+    // podia ser visto, apagando o único estado da faixa "Lidera por até 2× a
+    // margem" no 2º turno. A sigla sai para fora, com uma linha-guia até o
+    // polígono, e a tinta do estado fica visível.
+    const rotuloForaDoPoligono = area < AREA_ROTULO_EXTERNO;
+    const rotuloX = rotuloForaDoPoligono ? cx + DESLOCAMENTO_ROTULO_EXTERNO.dx : cx;
+    const rotuloY = rotuloForaDoPoligono
+      ? cy + DESLOCAMENTO_ROTULO_EXTERNO.dy
+      : // Com a âncora dentro do estado, a sigla sobe um pouco para as duas não
+        // se sobreporem (e para a âncora continuar visível com a sigla coberta).
+        marcarForaDaJanela
+        ? cy - ANCORA_RAIO - 1
+        : cy;
+    if (rotuloForaDoPoligono) desenharGuiaDoRotulo(grupoMarcas, cx, cy, rotuloX, rotuloY);
+
     const texto = document.createElementNS(SVG_NS, 'text');
-    texto.setAttribute('x', String(cx));
-    // Com a âncora dentro do estado, a sigla sobe um pouco para as duas não
-    // se sobreporem (e para a âncora continuar visível com a sigla coberta).
-    texto.setAttribute('y', String(marcarForaDaJanela ? cy - ANCORA_RAIO - 1 : cy));
+    texto.setAttribute('x', String(rotuloX));
+    texto.setAttribute('y', String(rotuloY));
     texto.setAttribute('class', 'ps-uf-label');
-    if (area < AREA_ESCONDER_SIGLA_ESTREITO) texto.classList.add('ps-uf-label--pequena');
+    if (area < AREA_ESCONDER_SIGLA_ESTREITO && !rotuloForaDoPoligono) {
+      texto.classList.add('ps-uf-label--pequena');
+    }
     texto.textContent = uf;
+    // Pesquisa única: asterisco na sigla. É a ressalva de evidência que saiu do
+    // canal de cor e NÃO pode voltar como marca de área — a hachura de poros
+    // anterior (8,5% de cobertura na cor do fundo) clareava a UF em até +0,052
+    // de luminância, mais que um degrau inteiro da rampa, e cobria 70,6% da área
+    // de terra no 2º turno. O asterisco não cobre área do polígono: anda com a
+    // sigla, some com ela, e a legenda mostra o mesmo glifo.
+    if (marcarPesquisaUnica) texto.appendChild(tspanMarcaPesquisaUnica());
     grupoRotulos.appendChild(texto);
   }
 
@@ -1107,6 +1149,52 @@ function construirSvgMapa(
 }
 
 const ANCORA_RAIO = 4.6;
+
+/**
+ * Área de bbox (em unidades do viewBox 613 × 639) abaixo da qual a sigla não
+ * cabe dentro do polígono e sai para fora, com linha-guia. Só o Distrito
+ * Federal fica abaixo dela nos dados reais: bbox de ~167 unidades², contra
+ * ~1.159 do segundo menor (Sergipe) — o corte em 400 isola o caso real com
+ * folga de quase 3× para os dois lados.
+ */
+const AREA_ROTULO_EXTERNO = 400;
+
+/** Para onde a sigla de estado minúsculo vai, em unidades do viewBox. */
+const DESLOCAMENTO_ROTULO_EXTERNO = { dx: 21, dy: -13 } as const;
+
+/** Glifo de "uma única pesquisa" que acompanha a sigla do estado no mapa. */
+const MARCA_PESQUISA_UNICA = '*';
+
+/** `<tspan>` do asterisco de pesquisa única — mesma peça no mapa e na legenda. */
+function tspanMarcaPesquisaUnica(): SVGTSpanElement {
+  const marca = document.createElementNS(SVG_NS, 'tspan');
+  marca.setAttribute('class', 'ps-uf-label__marca');
+  marca.setAttribute('dy', '-1');
+  marca.textContent = MARCA_PESQUISA_UNICA;
+  return marca;
+}
+
+/**
+ * Linha-guia da sigla que foi para fora do polígono (estado minúsculo): sai da
+ * borda do texto e vai até o centro do estado, para que o leitor saiba a qual
+ * polígono a sigla pertence quando ela está pousada sobre o vizinho.
+ */
+function desenharGuiaDoRotulo(
+  grupo: SVGGElement,
+  cxEstado: number,
+  cyEstado: number,
+  xRotulo: number,
+  yRotulo: number,
+): void {
+  const guia = document.createElementNS(SVG_NS, 'line');
+  guia.setAttribute('x1', String(cxEstado));
+  guia.setAttribute('y1', String(cyEstado));
+  guia.setAttribute('x2', String(xRotulo - 6));
+  guia.setAttribute('y2', String(yRotulo + 3));
+  guia.setAttribute('class', 'ps-uf-guia');
+  guia.setAttribute('pointer-events', 'none');
+  grupo.appendChild(guia);
+}
 
 /**
  * Marca de "dado fora da janela de recência" de uma UF, desenhada num grupo
@@ -1170,11 +1258,10 @@ function criarItemLegenda(cor: string, rotulo: string): HTMLLIElement {
 let psSeqChip = 0;
 
 interface ChipMarca {
-  /** Preenchimento de base do chip (o que o mapa pinta antes da textura). */
-  readonly corBase: string;
+  /** Preenchimentos de base do chip (o que o mapa pinta antes da textura). */
+  readonly coresBase: readonly string[];
   /** Opacidade do preenchimento de base, como no mapa. */
   readonly opacidadeBase?: string;
-  readonly tipo: TipoMarca;
   /** Cor da textura — a MESMA que o mapa usa para essa marca. */
   readonly corMarca: string;
 }
@@ -1194,26 +1281,14 @@ interface ChipMarca {
 function criarItemLegendaMarca(chip: ChipMarca, rotulo: string): HTMLLIElement {
   const item = document.createElement('li');
   item.className = 'ps-legend-item';
-
-  const svg = document.createElementNS(SVG_NS, 'svg');
-  svg.setAttribute('viewBox', '0 0 19 9.5');
-  svg.setAttribute('preserveAspectRatio', 'none');
-  svg.setAttribute('class', 'ps-legend-swatch ps-legend-swatch--marca');
-  svg.setAttribute('aria-hidden', 'true');
-  svg.setAttribute('focusable', 'false');
+  const svg = criarSvgChip();
   const marcas = criarRegistroMarcas(svg, `ps-chip-${++psSeqChip}`);
-
-  const base = document.createElementNS(SVG_NS, 'rect');
-  base.setAttribute('width', '19');
-  base.setAttribute('height', '9.5');
-  base.setAttribute('fill', chip.corBase);
-  if (chip.opacidadeBase) base.setAttribute('opacity', chip.opacidadeBase);
-  svg.appendChild(base);
+  desenharBaseDoChip(svg, chip.coresBase, chip.opacidadeBase);
 
   const textura = document.createElementNS(SVG_NS, 'rect');
-  textura.setAttribute('width', '19');
-  textura.setAttribute('height', '9.5');
-  textura.setAttribute('fill', refMarca(marcas, chip.tipo, chip.corMarca));
+  textura.setAttribute('width', String(CHIP_W));
+  textura.setAttribute('height', String(CHIP_H));
+  textura.setAttribute('fill', refMarca(marcas, chip.corMarca));
   svg.appendChild(textura);
 
   const texto = document.createElement('span');
@@ -1222,43 +1297,101 @@ function criarItemLegendaMarca(chip: ChipMarca, rotulo: string): HTMLLIElement {
   return item;
 }
 
-/** Chip de faixa de vantagem: só o degrau de opacidade, sem textura. */
-function criarItemLegendaVantagem(opacidade: string, rotulo: string): HTMLLIElement {
+const CHIP_W = 19;
+const CHIP_H = 9.5;
+
+function criarSvgChip(): SVGSVGElement {
+  const svg = document.createElementNS(SVG_NS, 'svg');
+  svg.setAttribute('viewBox', `0 0 ${CHIP_W} ${CHIP_H}`);
+  svg.setAttribute('preserveAspectRatio', 'none');
+  svg.setAttribute('class', 'ps-legend-swatch ps-legend-swatch--marca');
+  svg.setAttribute('aria-hidden', 'true');
+  svg.setAttribute('focusable', 'false');
+  return svg;
+}
+
+/**
+ * Base do chip: uma faixa vertical por cor, para o chip poder mostrar TODAS as
+ * cores que o mapa está usando naquele recorte em vez de uma cor que não está
+ * lá. Os chips da rampa eram índigo (`--color-accent`), matiz que não existe no
+ * mapa — o leitor tinha de casar vermelho saturado contra índigo, e o chip de
+ * "mais de 8×" (L=0,238) ficava a ΔL=0,013 do chip "Centro-direita" do grupo
+ * logo acima, dois significados encostados.
+ */
+function desenharBaseDoChip(svg: SVGSVGElement, cores: readonly string[], opacidade?: string): void {
+  const lista = cores.length > 0 ? cores : ['var(--confidence-sem-dados-fill)'];
+  const largura = CHIP_W / lista.length;
+  lista.forEach((cor, i) => {
+    const faixa = document.createElementNS(SVG_NS, 'rect');
+    faixa.setAttribute('x', String(i * largura));
+    faixa.setAttribute('width', String(largura));
+    faixa.setAttribute('height', String(CHIP_H));
+    faixa.setAttribute('fill', cor);
+    if (opacidade) faixa.setAttribute('opacity', opacidade);
+    svg.appendChild(faixa);
+  });
+}
+
+/** Chip de faixa de vantagem: só o degrau de opacidade, nas cores que o mapa usa. */
+function criarItemLegendaVantagem(
+  coresDoMapa: readonly string[],
+  opacidade: string,
+  rotulo: string,
+): HTMLLIElement {
   const item = document.createElement('li');
   item.className = 'ps-legend-item';
-  const swatch = document.createElement('span');
-  swatch.className = 'ps-legend-swatch';
-  swatch.style.background = 'var(--color-accent)';
-  swatch.style.opacity = opacidade;
-  swatch.setAttribute('aria-hidden', 'true');
+  const svg = criarSvgChip();
+  desenharBaseDoChip(svg, coresDoMapa, opacidade);
   const texto = document.createElement('span');
   texto.textContent = rotulo;
-  item.append(swatch, texto);
+  item.append(svg, texto);
   return item;
 }
 
-/** Chip de "empate técnico": base na opacidade de empate + hachura sólida, como no mapa. */
-function chipEmpate(): ChipMarca {
+/**
+ * Chip de "empate técnico": as cores do mapa na opacidade de empate + hachura na
+ * cor do fundo, exatamente como o mapa pinta agora. Antes era índigo com hachura
+ * índigo, e ficava a ΔL=0,007 do chip "Lidera por até 2×" e 0,07 mais claro que
+ * qualquer empate real da tela — a legenda desenhava uma marca que o mapa não
+ * tinha.
+ */
+function chipEmpate(coresDoMapa: readonly string[]): ChipMarca {
   return {
-    corBase: 'var(--color-accent)',
-    opacidadeBase: 'var(--confidence-empate-opacity)',
-    tipo: 'hachura',
-    corMarca: 'var(--color-accent)',
+    coresBase: coresDoMapa,
+    opacidadeBase: opacidadeVantagem('empate'),
+    corMarca: COR_HACHURA_EMPATE,
   };
 }
 
 /** Chip de "sem dados": exatamente o par cinza que o mapa usa. */
 function chipSemDados(): ChipMarca {
   return {
-    corBase: 'var(--confidence-sem-dados-fill)',
-    tipo: 'hachura',
+    coresBase: ['var(--confidence-sem-dados-fill)'],
     corMarca: 'var(--color-text-tertiary)',
   };
 }
 
-/** Chip de "uma única pesquisa": poros na cor do fundo sobre a tinta cheia. */
-function chipPesquisaUnica(): ChipMarca {
-  return { corBase: 'var(--color-accent)', tipo: 'poros', corMarca: COR_POROS };
+/**
+ * Chip de "uma única pesquisa": a MESMA sigla com asterisco que o mapa desenha,
+ * na mesma classe tipográfica (`.ps-uf-label`), sobre a primeira cor presente no
+ * mapa. Não é mais uma textura: a marca deixou de cobrir área do polígono.
+ */
+function criarItemLegendaPesquisaUnica(coresDoMapa: readonly string[], rotulo: string): HTMLLIElement {
+  const item = document.createElement('li');
+  item.className = 'ps-legend-item';
+  const svg = criarSvgChip();
+  desenharBaseDoChip(svg, coresDoMapa.slice(0, 1));
+  const sigla = document.createElementNS(SVG_NS, 'text');
+  sigla.setAttribute('x', String(CHIP_W / 2));
+  sigla.setAttribute('y', String(CHIP_H / 2));
+  sigla.setAttribute('class', 'ps-uf-label ps-legend-sigla');
+  sigla.textContent = 'UF';
+  sigla.appendChild(tspanMarcaPesquisaUnica());
+  svg.appendChild(sigla);
+  const texto = document.createElement('span');
+  texto.textContent = rotulo;
+  item.append(svg, texto);
+  return item;
 }
 
 /** Item de legenda com o mesmo contorno tracejado usado nas UFs fora da janela. */
@@ -1280,6 +1413,21 @@ function criarItemLegendaForaDaJanela(janelaTexto: string): HTMLLIElement {
  * lido das margens reais dos agregados — nunca um intervalo inventado. Vazio
  * quando não há agregado nenhum; sem faixa quando todas as margens são iguais.
  */
+/**
+ * Espectros efetivamente pintados no mapa "Quem lidera" deste recorte, na ordem
+ * canônica da escala ideológica. É a lista que a legenda descreve e a paleta que
+ * os chips da rampa de vantagem usam — nunca uma cor que não está na tela.
+ */
+function espectrosNoMapa(dados: PresidencialPorEstado, partidos: Partidos): Espectro[] {
+  const presentes = new Set<Espectro>();
+  for (const item of dados.ufs) {
+    if (item.semDados || !item.lider) continue;
+    presentes.add(espectroDoPartido(item.partido, partidos));
+  }
+  const ordem: readonly Espectro[] = [...ESPECTROS_LEGENDA, 'indefinido'];
+  return ordem.filter((e) => presentes.has(e));
+}
+
 function textoFaixaDeMargens(dados: PresidencialPorEstado): string {
   const margens = dados.ufs
     .map((u) => u.agregado?.margemReferencia)
@@ -1291,11 +1439,18 @@ function textoFaixaDeMargens(dados: PresidencialPorEstado): string {
   return ` (de ± ${formatarNumeroPt(min)} a ± ${formatarNumeroPt(max)} pontos neste recorte)`;
 }
 
-function criarLegendaLideranca(dados: PresidencialPorEstado): HTMLElement {
+function criarLegendaLideranca(dados: PresidencialPorEstado, partidos: Partidos): HTMLElement {
   const legenda = document.createElement('div');
   legenda.className = 'ps-legend';
   legenda.setAttribute('aria-label', 'Legenda do mapa — quem lidera');
 
+  // Só os espectros que a tela está PINTANDO. A regra já valia para o grupo de
+  // ressalvas ("legenda de marca que não está no mapa seria ruído") e não estava
+  // sendo aplicada aqui: os dois recortes só têm esquerda (PT) e direita (PL), e
+  // a legenda listava seis espectros — quatro linhas descrevendo estado nenhum,
+  // mais a linha "Sem dados", que também era incondicional. Eram 5 das 12 linhas
+  // da legenda sem referente na tela.
+  const espectros = espectrosNoMapa(dados, partidos);
   const grupoEspectro = document.createElement('div');
   grupoEspectro.className = 'ps-legend-grupo';
   const tituloEspectro = document.createElement('h3');
@@ -1304,10 +1459,9 @@ function criarLegendaLideranca(dados: PresidencialPorEstado): HTMLElement {
   grupoEspectro.appendChild(tituloEspectro);
   const listaEspectro = document.createElement('ul');
   listaEspectro.className = 'ps-legend-lista';
-  for (const espectro of ESPECTROS_LEGENDA) {
+  for (const espectro of espectros) {
     listaEspectro.appendChild(criarItemLegenda(corEspectro(espectro, 'solid'), rotuloEspectro(espectro)));
   }
-  listaEspectro.appendChild(criarItemLegenda(corEspectro('indefinido', 'solid'), rotuloEspectro('indefinido')));
   grupoEspectro.appendChild(listaEspectro);
   legenda.appendChild(grupoEspectro);
 
@@ -1326,12 +1480,24 @@ function criarLegendaLideranca(dados: PresidencialPorEstado): HTMLElement {
   const listaVantagem = document.createElement('ul');
   listaVantagem.className = 'ps-legend-lista';
   // 4 degraus de liderança, do mais forte ao mais fraco, na mesma ordem em que
-  // a tinta escurece.
+  // a tinta escurece. Estes quatro ficam SEMPRE (ao contrário das linhas
+  // categóricas do resto da legenda): são os degraus de uma escala contínua, e
+  // omitir um degrau vazio deixaria os vizinhos ambíguos sobre a amplitude. Nos
+  // dados de hoje nenhum deles está vazio nos dois recortes.
+  const coresDoMapa = espectros.map((e) => corEspectro(e, 'solid'));
   for (const faixa of ['lidera4', 'lidera3', 'lidera2', 'lidera1'] as const) {
-    listaVantagem.appendChild(criarItemLegendaVantagem(opacidadeVantagem(faixa), rotuloFaixaVantagem(faixa)));
+    listaVantagem.appendChild(
+      criarItemLegendaVantagem(coresDoMapa, opacidadeVantagem(faixa), rotuloFaixaVantagem(faixa)),
+    );
   }
-  listaVantagem.appendChild(criarItemLegendaMarca(chipEmpate(), rotuloFaixaVantagem('empate')));
-  listaVantagem.appendChild(criarItemLegendaMarca(chipSemDados(), rotuloConfianca('semDados')));
+  // Empate e "sem dados" são categorias, não degraus: entram só quando há UF
+  // naquela situação. "Sem dados" descreve zero UFs nos dois recortes de hoje.
+  if (dados.ufs.some((item) => faixaVantagemUf(item) === 'empate')) {
+    listaVantagem.appendChild(criarItemLegendaMarca(chipEmpate(coresDoMapa), rotuloFaixaVantagem('empate')));
+  }
+  if (dados.ufs.some((item) => item.semDados)) {
+    listaVantagem.appendChild(criarItemLegendaMarca(chipSemDados(), rotuloConfianca('semDados')));
+  }
   grupoVantagem.appendChild(listaVantagem);
 
   // Sem esta nota, a escada parece quebrada (no 2º turno o Amapá com +4,0 sai
@@ -1363,9 +1529,9 @@ function criarLegendaLideranca(dados: PresidencialPorEstado): HTMLElement {
     listaEvidencia.className = 'ps-legend-lista';
     if (unicas.length > 0) {
       listaEvidencia.appendChild(
-        criarItemLegendaMarca(
-          chipPesquisaUnica(),
-          `Uma única pesquisa neste recorte (${unicas.length} de ${dados.ufs.length} estados)`,
+        criarItemLegendaPesquisaUnica(
+          coresDoMapa,
+          `Asterisco na sigla: uma única pesquisa neste recorte (${unicas.length} de ${dados.ufs.length} estados)`,
         ),
       );
     }
@@ -1467,10 +1633,17 @@ function criarSecaoGrade(
         `não existe série a traçar, e o cartão mostra o ponto único com a data, não um gráfico.`
       : '';
 
-  // Quantas pesquisas o gráfico desenha sem amostra publicada, contado do
-  // próprio dado: o ponto vazado precisa ser declarado em algum lugar, e antes
-  // o tamanho do ponto afirmava a amostra sem que nenhuma legenda dissesse.
-  const semAmostra = comDados.filter((u) => !ehPontoUnico(u)).reduce((n, u) => n + pesquisasSemAmostra(u), 0);
+  // Quantas pesquisas a seção desenha sem amostra publicada, contado do próprio
+  // dado: o ponto vazado precisa ser declarado em algum lugar, e antes o tamanho
+  // do ponto afirmava a amostra sem que nenhuma legenda dissesse.
+  //
+  // A conta EXCLUÍA os cartões de ponto único (`.filter((u) => !ehPontoUnico(u))`),
+  // que são justamente os que têm uma pesquisa só — e o marcador de ponto único
+  // também não tinha o ramo de amostra ausente. No 2º turno isso escondia o Rio
+  // de Janeiro (uma pesquisa, Datafolha de 10/09, `amostra: null`): o cartão
+  // desenhava disco cheio e a nota dizia 2 quando os glifos sem amostra na tela
+  // são 3 (RJ, MS e Goiás). Agora os dois lados saem do mesmo conjunto.
+  const semAmostra = pesquisasSemAmostraDesenhadas(dados);
   const notaSemAmostra =
     semAmostra > 0
       ? ` Cada ponto é uma das pesquisas usadas; ${semAmostra} ${pluralizar(semAmostra, 'delas', 'delas')} ` +
@@ -1577,6 +1750,7 @@ function criarCardMiniatura(
       : construirMarcadorUnico(item.agregado, datasDesenhadas, partidos),
   );
 
+
   btn.addEventListener('click', () => abrirPainelUf(item, nome, btn, hostElement, partidos, recorte));
 
   return btn;
@@ -1596,6 +1770,12 @@ function descricaoAcessivelMiniGrafico(candidatos: readonly CandidatoAgregado[])
  * sólida à direita, "a média atual" — o mesmo número duas vezes, que o leitor
  * lia como falha de renderização). Aqui é um ponto por candidato, rotulado, e
  * a data dita por extenso.
+ *
+ * O glifo segue a MESMA regra do sparkline (`formaDoPonto`): anel vazado quando
+ * a fonte não publicou o tamanho da amostra. Este ramo não existia — o `fill`
+ * era pintado incondicionalmente —, então o Rio de Janeiro no 2º turno (uma
+ * pesquisa, Datafolha de 10/09, `amostra: null`) desenhava disco cheio, o glifo
+ * que em todo o resto da tela significa "amostra publicada".
  */
 function construirMarcadorUnico(
   agregado: Agregado,
@@ -1605,6 +1785,8 @@ function construirMarcadorUnico(
   const candidatos = agregado.candidatos.slice(0, 2);
   const dataIso = datasDesenhadas[0] ?? dataPesquisa(agregado.ultimaPesquisa);
   const dataTexto = dataIso ? formatarData(dataIso) : null;
+  const forma = formaDoPonto(agregado.pesquisasUsadas.map((p) => p.amostra ?? null));
+  const semAmostra = forma === 'anel';
 
   const svg = document.createElementNS(SVG_NS, 'svg');
   svg.setAttribute('viewBox', `0 0 ${MINI_W} ${MINI_H}`);
@@ -1614,9 +1796,9 @@ function construirMarcadorUnico(
   const partes = candidatos.map((c) => `${c.candidato} ${formatarPct(c.pct, 1)}`);
   svg.setAttribute(
     'aria-label',
-    `Uma única pesquisa${dataTexto ? `, de ${dataTexto}` : ''}: ${partes.join(
-      ', ',
-    )}. Sem série temporal para traçar neste estado.`,
+    `Uma única pesquisa${dataTexto ? `, de ${dataTexto}` : ''}: ${partes.join(', ')}.${
+      semAmostra ? ' A fonte não publicou o tamanho da amostra.' : ''
+    } Sem série temporal para traçar neste estado.`,
   );
 
   candidatos.forEach((candidato, i) => {
@@ -1626,9 +1808,20 @@ function construirMarcadorUnico(
     const ponto = document.createElementNS(SVG_NS, 'circle');
     ponto.setAttribute('cx', '12');
     ponto.setAttribute('cy', String(y));
-    ponto.setAttribute('r', '5');
-    ponto.setAttribute('fill', cor);
-    ponto.setAttribute('class', 'ps-mini-ponto__marca');
+    if (semAmostra) {
+      ponto.setAttribute('r', '4');
+      ponto.setAttribute('fill', 'none');
+      // `stroke` vai no `style`, não em atributo: `.ps-mini-ponto__marca` pinta
+      // um halo em `--color-surface-1` no `stroke`, e qualquer declaração de
+      // folha de estilo vence um atributo de apresentação — o anel sairia da cor
+      // do cartão, invisível.
+      ponto.style.stroke = cor;
+      ponto.setAttribute('class', 'ps-mini-ponto__marca ps-mini-ponto__marca--sem-amostra');
+    } else {
+      ponto.setAttribute('r', '5');
+      ponto.setAttribute('fill', cor);
+      ponto.setAttribute('class', 'ps-mini-ponto__marca');
+    }
     svg.appendChild(ponto);
 
     const nome = document.createElementNS(SVG_NS, 'text');
@@ -1650,12 +1843,26 @@ function construirMarcadorUnico(
 
   const nota = document.createElementNS(SVG_NS, 'text');
   nota.setAttribute('x', '2');
-  nota.setAttribute('y', String(MINI_H - 6));
   nota.setAttribute('class', 'ps-mini-ponto__nota');
+  // A ressalva da amostra fica em LINHA PRÓPRIA, não emendada na nota da data: o
+  // texto corrido não cabe nas 240 unidades do viewBox (medido: a frase única
+  // saía cortada em "— se" no cartão do Rio de Janeiro). O anel sozinho não se
+  // explica num cartão sem legenda de glifo, e a nota da seção fala de "anel
+  // vazado" — é esta linha que liga as duas coisas.
+  nota.setAttribute('y', String(semAmostra ? MINI_H - 18 : MINI_H - 6));
   nota.textContent = dataTexto
     ? `Uma só data: ${dataTexto} — sem série a traçar`
     : 'Uma só data de pesquisa — sem série a traçar';
   svg.appendChild(nota);
+
+  if (semAmostra) {
+    const ressalva = document.createElementNS(SVG_NS, 'text');
+    ressalva.setAttribute('x', '2');
+    ressalva.setAttribute('y', String(MINI_H - 6));
+    ressalva.setAttribute('class', 'ps-mini-ponto__nota');
+    ressalva.textContent = 'Amostra não publicada — anel vazado';
+    svg.appendChild(ressalva);
+  }
 
   return svg;
 }

@@ -88,7 +88,22 @@ export function criarGetPresidentialByState(repos: Repositorios, clock: Clock) {
       const todas = repos.polls.porDisputa(criarDisputa(uf, 'presidente', turno));
       const polls = confronto ? filtrarPorConfronto(todas, confronto) : todas;
       const agregado = agregarPesquisas(polls, {}, hoje);
-      const serie = polls.length > 0 ? serieTemporal(polls, {}, hoje) : null;
+      // A série sai da MESMA base que o agregado declara
+      // (`agregado.pesquisasUsadas`), não de todas as pesquisas da disputa. A
+      // rodada anterior já havia filtrado os PONTOS do mini-gráfico por essa base
+      // na camada de view (`pontosDaBase`), mas a LINHA suavizada continuava
+      // vindo de `serieTemporal(polls)`: como `mediaBilateral` pondera todas as
+      // pesquisas por distância no tempo, uma pesquisa fora da base ainda moldava
+      // a curva. Medido nos dados reais, no 1º turno: Sergipe, cartão "2 pesquisas
+      // · ago–set/2026", tinha a curva deslocada em até 1,15 ponto por uma
+      // pesquisa de 03/08; Goiás, mesmo rótulo, em 0,05 ponto por uma de 13/05.
+      // Com a série restrita à base, o que é desenhado e o que é declarado saem
+      // do mesmo conjunto nos dois canais (pontos e linha).
+      const serie = agregado
+        ? serieTemporal(agregado.pesquisasUsadas, {}, hoje)
+        : polls.length > 0
+          ? serieTemporal(polls, {}, hoje)
+          : null;
       const eleitores = repos.electorate.porUf(uf)?.eleitores ?? null;
 
       if (agregado && eleitores != null) {
