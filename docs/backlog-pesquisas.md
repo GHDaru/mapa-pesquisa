@@ -689,3 +689,64 @@ No 2º turno a Real Time Big Data responde por 25 das 41 pesquisas usadas
 nacional. A tela conta pesquisas, nunca institutos, e a estatística "cobre
 100,0% do eleitorado" mede cobertura de UF, não profundidade de evidência.
 `votosDeUfComPesquisa` já existe no domínio e daria a métrica honesta.
+
+## O agregador completa a amostra que a fonte não publicou (26/09)
+
+Achado na 5ª rodada de crítica do mapa, e é o mais grave do loop porque
+contraria a regra central do projeto dentro do domínio, não na tela.
+
+`pesoRecenciaEAmostra` em `src/domain/aggregate.ts` faz
+`Math.sqrt(pesquisa.amostra ?? AMOSTRA_PADRAO)`, com `AMOSTRA_PADRAO = 1000`.
+Quando o instituto não divulga o tamanho da amostra, o agregador supõe mil
+entrevistados e pondera a pesquisa como se soubesse disso. A tela marca o
+anel vazado e diz "não publicaram a amostra" — e atrás do anel usa 1.000.
+
+**Não é inócuo.** Amazonas, presidente, 1º turno, duas pesquisas:
+AtlasIntel de 04/09 (n=1.185, Flávio 41,3 x Lula 39,1) e Quaest de 26/08
+(**amostra não publicada**, Lula 38 x Flávio 33). Variando só a suposição:
+
+| amostra suposta | agregado | cor do estado no mapa |
+| --- | --- | --- |
+| 400 | Flávio 39,05 x Lula 38,80 | azul |
+| 540 | Flávio 38,79 x Lula 38,77 | azul |
+| 600 | Lula 38,76 x Flávio 38,70 | vermelho |
+| 1.000 (o que o site usa) | Lula 38,69 x Flávio 38,23 | vermelho |
+
+A virada está entre 540 e 600. O Amazonas é o maior polígono pintado do
+mapa, e a legenda diz que a cor indica o espectro de quem lidera. Quem
+lidera ali é decidido por um número que ninguém publicou.
+
+Atenuante: as outras rodadas estaduais da Quaest nesta base têm n=804 e
+n=826, então 1.000 não é uma suposição absurda. Mas a tela não dá ao
+leitor nenhum meio de saber que existe uma suposição.
+
+Exposição medida: no 1º turno, **10 de 27** recortes têm o número do
+título dependente da suposição (oscilação máxima: MS 2,28 pontos, RR 1,66,
+AM 1,52); no 2º turno, 2 de 27, com oscilação máxima de 0,16 e nenhuma
+troca de líder.
+
+### Três saídas, e a escolha é de método, não de código
+
+1. **Declarar.** Manter a ponderação e dizer na tela que amostra não
+   publicada entra como 1.000, e marcar o recorte quando o líder depende
+   disso. Não muda número nenhum; só para de esconder a suposição.
+2. **Não supor.** Ponderar só por recência quando a amostra não foi
+   publicada. Muda números no site, e tem o efeito colateral de dar a uma
+   pesquisa sem amostra o mesmo peso de amostra de qualquer outra.
+3. **Excluir.** Não agregar pesquisa sem amostra publicada. Perde
+   informação real — em AM sobraria uma pesquisa só, e o estado passaria a
+   ter o asterisco de pesquisa única.
+
+Decisão pendente do humano do projeto.
+
+## Custo assumido da rampa equiluminante
+
+Igualar a luminância dos degraus entre os matizes (commit `3687608`) fez o
+mapa perder "quem lidera" **em escala de cinza**: a diferença entre
+vermelho e azul no mesmo degrau é de no máximo 0,0022 de luminância, então
+impresso em preto-e-branco, ou sob filtro monocromático, os 27 estados
+viram uma rampa de 5 tons sem informação de espectro. Não há redundância —
+o mapa não traz rótulo de líder nem padrão por espectro. É troca
+consciente: a comparação entre estados passou a ser válida, a leitura sem
+cor deixou de existir. Uma redundância não-cromática por espectro
+resolveria as duas.
