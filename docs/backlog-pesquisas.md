@@ -750,3 +750,53 @@ o mapa não traz rótulo de líder nem padrão por espectro. É troca
 consciente: a comparação entre estados passou a ser válida, a leitura sem
 cor deixou de existir. Uma redundância não-cromática por espectro
 resolveria as duas.
+
+## O agregado do Senado mistura métricas de um e de dois votos (26/09)
+
+Em 2026 cada estado elege **duas** cadeiras, então o eleitor declara dois
+votos. Os institutos publicam isso de duas formas incompatíveis: uns dão a
+**primeira escolha** (os percentuais somam perto de 100) e outros dão a
+**soma do 1º e do 2º voto** (somam até 200). `get-senate-by-state.ts`
+chama `agregarPesquisas(polls, {}, hoje)` sem separar por `cenario`, então
+as duas métricas entram na mesma média ponderada.
+
+O Ceará é o caso mais claro. Somas das pesquisas de senador na base:
+
+| publicada | instituto | soma dos percentuais |
+| --- | --- | --- |
+| 25/09 | Datafolha | 71,0 |
+| 23/09 | Quaest | 74,0 |
+| 21/09 | AtlasIntel | 92,0 |
+| 18/09 | Datafolha | 77,0 |
+| 18/09 | Real Time Big Data | 85,0 |
+| **18/09** | **Paraná Pesquisas** | **141,4** |
+| 07/09 | Real Time Big Data | 89,0 |
+| 04/09 | AtlasIntel | 83,4 |
+| **26/09** | **Paraná Pesquisas** | **168,0** |
+
+Uma média ponderada entre 71 e 168 não é percentual de nada. O campo
+`cenario` já distingue as duas leituras em todas as entradas — o que falta
+é a agregação olhar para ele, como o presidencial já faz com `Confronto`.
+
+Não é causado pela rodada de hoje: a entrada de 141,4 está na base desde
+18/09. A de hoje agrava.
+
+**Rodada própria**, junto com o bug irmão dos confrontos de governador no
+2º turno — os dois são o mesmo defeito: agregar pesquisas que respondem a
+perguntas diferentes.
+
+## Lacunas de senador apontadas na varredura de 26/09
+
+A rodada da Quaest divulgada em 24–25/09 cobriu vários estados que não
+estão na base. Reportado pelo agente, **não conferido por mim** — cada uma
+precisa da ficha completa antes de entrar:
+
+- Quaest em **AM, AP, GO, RS, SC, SE** (a base só tem BA e RO dessa leva);
+- Quaest **SC** (campo 20–23/09, 804 entrevistas, SC-04783/2026);
+- Quaest **SP** (campo 19–22/09, 1.800 entrevistas, SP-02456/2026) — a base
+  só tem a Quaest SP de 08/09;
+- Quaest **TO**, **PB**, **MA**, **RN**, **MS**, **AC**, **AL** (rodadas de
+  22 a 25/09, 804 entrevistas cada);
+- **MT Dados** em MT, 4ª rodada (campo 11–17/09, 3.080 entrevistas,
+  metodologia híbrida, consolidado 1º+2º voto). Instituto ainda ausente da
+  base.
