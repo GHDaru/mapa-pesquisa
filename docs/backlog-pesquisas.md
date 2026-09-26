@@ -626,3 +626,66 @@ candidatos; `senador t1 PI`, 50,56%. Nenhuma correção de código cabe aqui
 — completar seria estimar número que a fonte não publicou, o que a regra
 do projeto proíbe. O que cabe é a tela dizer de quantas pesquisas cada
 número vem e não sugerir que a soma fecha.
+
+## Achados da crítica de 26/09 ainda em aberto
+
+Três críticos independentes avaliaram mapa, painel e aba de votos contra o
+dado. O que foi corrigido está nos commits do dia; o que segue não foi, com
+o motivo.
+
+### Dado: Goiás no 2º turno carrega a amostra nacional inteira
+
+A entrada `GO presidente t2` da Real Time Big Data de 01/09 traz
+`amostra: 2000` com a observação dizendo, ela mesma, que é *"pesquisa
+nacional (n=2000) com recorte para Goiás; tamanho da subamostra goiana não
+informado"*. Como o peso da agregação é √amostra, ela entra como a pesquisa
+mais pesada do recorte, empresta sua margem nacional de ±2 ao
+`margemReferencia` de GO — que é o divisor da razão que decide a tinta do
+estado no mapa — e desenha o maior ponto do cartão.
+
+O projeto já tem o precedente certo no mesmo arquivo: as duas entradas do
+**RJ** do Datafolha estão na mesma situação e foram gravadas com
+`amostra: null`, com a ressalva explícita de que não é amostra estadual
+dedicada. GO deveria seguir o RJ.
+
+**Não corrigido agora de propósito**: mudar a amostra muda o peso, a margem
+e a tinta de Goiás, e há uma rodada de correção do mapa em andamento medindo
+antes-e-depois. Aplicar no fim dessa rodada, com a verificação de quanto a
+tinta de GO muda.
+
+### Tela: a faixa de incerteza é plana entre candidatos
+
+`estimarVotos` acumula `margemVotos += eleitores × margemPct/100`, sem
+depender de `pct`. A semi-margem sai praticamente igual para quem tem 39,6%
+e para quem tem 0,0%: no 1º turno, Leonardo Avalanche aparece com estimativa
+de 0,0 milhões e faixa de 0 a 3,1 milhões de votos; Rui Costa Pimenta, 1,57
+milhão com faixa de 0 a 4,68 milhões — intervalo três vezes maior que o
+ponto. A margem declarada de uma pesquisa é o erro em p≈0,5; para p≈0,01 o
+erro amostral real é de outra ordem. A tela infla a incerteza dos pequenos e
+apresenta como a mesma grandeza da faixa do líder.
+
+Corrigir exige mexer na propagação da margem no domínio e decidir qual
+fórmula usar — rodada própria.
+
+### Tela: `ufsNormalizadas` é calculado e nunca exibido
+
+Quando o agregado bruto de uma UF passa de 100%, os percentuais são
+espremidos e o resíduo daquela UF vira zero por construção. No 1º turno isso
+acontece em sete UFs (AL, BA, CE, GO, MA, PE, RS) e a tabela não traz marca
+nenhuma nessas linhas. Parte do bloco de não atribuídos do 1º turno é
+artefato dessa normalização, não retrato do que as fontes publicaram.
+
+### Tela: precisão espúria na tabela por UF
+
+Os votos saem na unidade ("17.021.213" para SP) sob margem declarada de
+±1,82 pt, que em SP são ±621 mil votos. São nove algarismos significativos
+num número bom até a casa das centenas de milhar, na mesma página cujo
+gráfico usa "milhões, 1 casa".
+
+### Tela: concentração de instituto não está dita
+
+No 2º turno a Real Time Big Data responde por 25 das 41 pesquisas usadas
+(61%), e 16 das 27 UFs rodam com uma pesquisa só — 42,8% do eleitorado
+nacional. A tela conta pesquisas, nunca institutos, e a estatística "cobre
+100,0% do eleitorado" mede cobertura de UF, não profundidade de evidência.
+`votosDeUfComPesquisa` já existe no domínio e daria a métrica honesta.
