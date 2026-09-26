@@ -504,6 +504,15 @@
 /* Não é rodapé: no 2º turno os não atribuídos são 8,7% do eleitorado — várias
    vezes a vantagem entre os dois candidatos —, então o bloco vira um cartão
    com rótulo, valor grande e as duas leituras que dão escala ao número. */
+/* Marca de empate técnico na tabela por UF, ao lado do 1º colocado. */
+.ve-uf-empate {
+  display: block;
+  color: var(--color-warning);
+  font: var(--text-caption);
+  font-style: italic;
+  line-height: 1.2;
+}
+
 .ve-nao-atribuidos {
   display: flex;
   flex-direction: column;

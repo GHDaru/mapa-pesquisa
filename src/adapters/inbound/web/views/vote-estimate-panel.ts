@@ -609,11 +609,14 @@ function criarLinhaVantagem(v: VantagemAgregada): HTMLElement {
     criarEl('p', {
       className: 've-chart-delta__nota',
       texto:
-        'A margem agregada é a soma das margens declaradas de cada UF, não um intervalo de confiança ' +
-        'estatístico: somar em vez de propagar em quadratura é o pior caso, então ela é mais larga que a ' +
-        'incerteza real e o "empate técnico" é declarado mais facilmente do que o necessário. Vantagem e ' +
-        'margem saem dos valores exatos (não arredondados) e podem divergir em até 0,1 pt da subtração ' +
-        'direta dos dois rótulos acima, já arredondados para exibição.',
+        'A margem agregada é a soma das margens amostrais declaradas de cada UF, não um intervalo de ' +
+        'confiança: somar em vez de propagar em quadratura é o pior caso para o erro de amostragem. Mas ' +
+        'ela não cobre o que provavelmente pesa mais aqui — diferença sistemática entre institutos (um só ' +
+        'responde pela maior parte das pesquisas usadas), pesquisas antigas carregadas a peso cheio, UFs ' +
+        'que rodam com uma pesquisa só, e o fato de os percentuais serem aplicados sobre o eleitorado ' +
+        'apto sem nenhum ajuste de comparecimento. Não dá para dizer se a faixa é larga ou estreita ' +
+        'demais. Vantagem e margem saem dos valores exatos (não arredondados) e podem divergir em até ' +
+        '0,1 pt da subtração direta dos dois rótulos acima, já arredondados para exibição.',
     }),
   ]);
 }
@@ -920,11 +923,34 @@ interface ColunasUf {
   readonly outros: boolean;
 }
 
+/**
+ * A UF é empate técnico quando a diferença entre os dois primeiros, medida em
+ * pontos do eleitorado da UF, cabe na margem declarada daquele recorte — o
+ * mesmo `classificarConfianca` que a página usa em todo lugar. `null` quando
+ * falta margem ou segundo colocado, para não afirmar nada sem base.
+ *
+ * Sem isso a tabela resolvia um vencedor exatamente onde a evidência não
+ * sustenta: Minas Gerais no 2º turno, o segundo maior colégio do país,
+ * aparecia com 270 mil votos de diferença (1,7 pt) contra margem de ±2,3 pt,
+ * sem marca nenhuma, na mesma página que declara empate técnico nacional.
+ */
+export function ufEmEmpateTecnico(
+  votos1: number | undefined,
+  votos2: number | undefined,
+  eleitores: number,
+  margemPct: number | null | undefined,
+): boolean | null {
+  if (votos1 == null || votos2 == null || margemPct == null || !(eleitores > 0)) return null;
+  const pontos = Math.abs(votos1 - votos2) / eleitores * 100;
+  return classificarConfianca(pontos, margemPct) === 'empate';
+}
+
 function criarLinhaUf(uf: UfOrigemVotos, dado: DadoAgregadoUf | undefined, colunas: ColunasUf): HTMLElement {
   const candidatos = candidatosOrdenadosDaUf(uf);
   const [c1, c2] = candidatos;
   const outros = candidatos.slice(2);
   const somaOutros = outros.reduce((soma, c) => soma + c.votos, 0);
+  const empate = ufEmEmpateTecnico(c1?.votos, c2?.votos, uf.eleitores, dado?.margemPct);
 
   return criarEl('tr', {}, [
     criarEl('td', { texto: uf.uf, attrs: { 'data-rotulo': 'UF' } }),
@@ -940,7 +966,20 @@ function criarLinhaUf(uf: UfOrigemVotos, dado: DadoAgregadoUf | undefined, colun
             : criarEl('span', { className: 've-meta-inline', texto: '—' }),
         ])
       : null,
-    criarEl('td', { attrs: { 'data-rotulo': '1º colocado' } }, [c1 ? celulaCandidatoUf(c1) : '—']),
+    criarEl('td', { attrs: { 'data-rotulo': '1º colocado' } }, [
+      c1 ? celulaCandidatoUf(c1) : '—',
+      empate
+        ? criarEl('span', {
+            className: 've-uf-empate',
+            texto: 'empate técnico',
+            attrs: {
+              title:
+                'A diferença entre os dois cabe na margem de erro declarada para esta UF — a ordem ' +
+                'entre eles não é distinguível.',
+            },
+          })
+        : null,
+    ]),
     criarEl('td', { attrs: { 'data-rotulo': '2º colocado' } }, [c2 ? celulaCandidatoUf(c2) : '—']),
     colunas.outros
       ? criarEl('td', { attrs: { 'data-rotulo': 'Outros' } }, [

@@ -19,6 +19,7 @@ import {
   temColunaOutros,
   textoSaltoNaoAtribuidos,
   textoQuebraNaoAtribuidos,
+  ufEmEmpateTecnico,
   textoVantagemAgregada,
 } from '../vote-estimate-panel.js';
 
@@ -485,5 +486,31 @@ describe('vote-estimate-panel/não atribuídos', () => {
     )!;
     expect(texto).toContain('No 1º turno eram 0,0 milhões (0,0%)');
     expect(texto).not.toContain('vezes');
+  });
+});
+
+describe('empate técnico na tabela por UF', () => {
+  const ELEITORES_MG = 16_406_000;
+
+  // MG no 2º turno: ~270 mil votos de diferença (1,65 pt) contra margem
+  // declarada de ±2,32 pt. A tabela resolvia um vencedor ali sem marca.
+  it('marca a UF cuja diferença cabe na margem declarada', () => {
+    expect(ufEmEmpateTecnico(7_215_454, 6_945_587, ELEITORES_MG, 2.32)).toBe(true);
+  });
+
+  it('não marca quando a diferença passa da margem', () => {
+    expect(ufEmEmpateTecnico(9_000_000, 6_000_000, ELEITORES_MG, 2.32)).toBe(false);
+  });
+
+  it('sem margem declarada não afirma nada', () => {
+    expect(ufEmEmpateTecnico(7_215_454, 6_945_587, ELEITORES_MG, null)).toBeNull();
+  });
+
+  it('sem segundo colocado não afirma nada', () => {
+    expect(ufEmEmpateTecnico(7_215_454, undefined, ELEITORES_MG, 2.32)).toBeNull();
+  });
+
+  it('eleitorado zero não divide por zero', () => {
+    expect(ufEmEmpateTecnico(1, 2, 0, 2.0)).toBeNull();
   });
 });
