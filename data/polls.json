@@ -16432,7 +16432,7 @@
     "dataInicio": "2026-08-27",
     "dataFim": "2026-08-31",
     "publicadoEm": "2026-09-01",
-    "amostra": 2000,
+    "amostra": null,
     "margem": 2,
     "cenario": "estimulada, 2º turno (Lula x Flávio Bolsonaro) — recorte de Goiás dentro de pesquisa nacional",
     "fonte": {
@@ -16451,7 +16451,7 @@
         "pct": 33
       }
     ],
-    "observacao": "Pesquisa nacional (n=2000) com recorte para Goiás; tamanho da subamostra goiana não informado. É o 2º turno Lula x Flávio mais recente encontrado especificamente para Goiás."
+    "observacao": "Recorte de Goiás dentro da pesquisa nacional da Real Time Big Data (n=2000); o tamanho da subamostra goiana não foi divulgado, então a amostra fica nula em vez de herdar o n nacional — mesmo tratamento das entradas do RJ do Datafolha. A margem registrada é a declarada para a rodada nacional; nenhuma margem específica de Goiás foi publicada."
   },
   {
     "id": "2026-09-01-real-time-big-data-br-presidente-t1",
