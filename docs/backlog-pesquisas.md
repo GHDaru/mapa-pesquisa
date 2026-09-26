@@ -588,3 +588,41 @@ Cury, Zema e Renan Santos) seguem sem fonte consistente. Confirmado que a
 rodada testou cinco cenários, mas nenhuma matéria deu o cartão inteiro, e
 surgiu uma contradição nova no 1º turno (uma fonte dá Cury com 6 e o 2º
 turno em 46 x 45, contra os 5 e 47 x 45 já confirmados).
+
+## Auditoria das somas dos agregados (26/09)
+
+Levantada ao corrigir as categorias de não-candidato (commit `4f8f7b4`).
+Script da auditoria: soma `candidatos` + `outros` de cada um dos 125
+recortes. Só 32 ficam entre 97% e 103%. As causas são duas e uma delas é
+bug de código.
+
+### Bug: recortes de 2º turno misturam confrontos diferentes
+
+O 2º turno presidencial já está protegido por `filtrarPorConfronto`
+(`src/domain/runoff.ts`), mas **o de governador não** — as páginas de
+governador agregam todas as pesquisas de `turno: 2` da UF sem olhar quem
+enfrenta quem. Seis recortes estão afetados:
+
+| recorte | pesquisas | nomes na tela | o que está misturado |
+| --- | --- | --- | --- |
+| governador t2 RJ | 5 | 3 | Eduardo × Douglas (4 pesquisas) com Eduardo × Anthony (1) |
+| governador t2 MG | 4 | 3 | Cleitinho, Patrus e Alexandre |
+| governador t2 PR | 7 | 3 | Sergio, Sandro e Requião |
+| governador t2 AL | 3 | 3 | Renan, JHC e João |
+| governador t2 GO | 3 | 3 | Daniel, Marconi e Wilder |
+| governador t2 TO | 3 | 3 | Professora, Vicentinho e Laurez |
+
+O efeito não é só a soma passar de 100 (RJ dá 103,95%): a tela mostra
+**três pessoas num returno de duas**, e a média de cada um sai só das
+pesquisas em que ele aparece, o que não é comparável. O `Confronto` já é
+genérico; a correção é aplicá-lo (ou agrupar por confronto) no caminho de
+agregação de governador. **Vale uma rodada própria — é falsidade em tela.**
+
+### Não é bug: fonte publicou só os primeiros nomes
+
+Os outros ~87 recortes somam abaixo de 100 porque a matéria só deu os
+nomes da frente. `presidente t1 AC` soma 67% com 1 pesquisa e 2
+candidatos; `senador t1 PI`, 50,56%. Nenhuma correção de código cabe aqui
+— completar seria estimar número que a fonte não publicou, o que a regra
+do projeto proíbe. O que cabe é a tela dizer de quantas pesquisas cada
+número vem e não sugerir que a soma fecha.
