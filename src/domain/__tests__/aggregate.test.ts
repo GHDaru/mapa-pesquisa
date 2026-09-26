@@ -1,6 +1,18 @@
 import { describe, expect, it } from 'vitest';
-import { agregarPesquisas, classificarConfianca, MARGEM_REFERENCIA_PADRAO, serieTemporal } from '../aggregate.js';
-import { criarPesquisa, type DadosPesquisa } from '../poll.js';
+import {
+  agregarPesquisas,
+  classificarConfianca,
+  ehLinhaNaoCandidato,
+  MARGEM_REFERENCIA_PADRAO,
+  serieTemporal,
+} from '../aggregate.js';
+import {
+  CATEGORIA_BRANCOS_NULOS_NAO_SABE,
+  CATEGORIA_OUTROS_CANDIDATOS,
+  criarPesquisa,
+  type DadosPesquisa,
+  normalizarLinhaNaoCandidato,
+} from '../poll.js';
 
 const HOJE = new Date('2026-09-15T00:00:00Z');
 
@@ -41,8 +53,11 @@ describe('domain/aggregate', () => {
     const nomesCandidatos = agregado.candidatos.map((c) => c.candidato);
     expect(nomesCandidatos).toEqual(['Candidato A', 'Candidato B']);
 
-    const nomesOutros = agregado.outros.map((c) => c.candidato);
-    expect(nomesOutros.sort()).toEqual(['Brancos/nulos', 'Não sabe'].sort());
+    // "Brancos/nulos" 20 e "Não sabe" 10 da MESMA pesquisa descrevem o mesmo
+    // espaço: entram somados em uma categoria canônica, não como duas linhas.
+    expect(agregado.outros.map((c) => c.candidato)).toEqual([CATEGORIA_BRANCOS_NULOS_NAO_SABE]);
+    expect(agregado.outros[0]!.pct).toBeCloseTo(30, 6);
+    expect(agregado.outros[0]!.pesquisas).toBe(1);
   });
 
   it('lider e segundo nunca são uma linha excluída, mesmo com pct mais alto', () => {
@@ -198,15 +213,17 @@ describe('domain/aggregate', () => {
   });
 
   it('respeita lista configurável de candidatos excluídos', () => {
+    // Rótulo que NÃO casa com nenhuma categoria canônica de não-candidato: sai
+    // do ranking só por estar na lista, e mantém o rótulo original em outros.
     const p = pesquisa({
       resultados: [
         { candidato: 'Candidato A', partido: 'PT', pct: 50 },
-        { candidato: 'Voto Nulo Customizado', partido: null, pct: 50 },
+        { candidato: 'Voto Customizado', partido: null, pct: 50 },
       ],
     });
-    const agregado = agregarPesquisas([p], { excluirCandidatos: ['voto nulo customizado'] }, HOJE)!;
+    const agregado = agregarPesquisas([p], { excluirCandidatos: ['voto customizado'] }, HOJE)!;
     expect(agregado.candidatos.map((c) => c.candidato)).toEqual(['Candidato A']);
-    expect(agregado.outros.map((c) => c.candidato)).toEqual(['Voto Nulo Customizado']);
+    expect(agregado.outros.map((c) => c.candidato)).toEqual(['Voto Customizado']);
   });
 
   it('ultimaPesquisa é a mais recente entre as usadas', () => {
@@ -374,5 +391,272 @@ describe('serieTemporal — suavização bilateral', () => {
       expect(valoresA[i]! - valoresA[i - 1]!).toBeLessThan(2);
     }
     expect(valoresA.at(-1)!).toBeGreaterThan(47);
+  });
+});
+
+/**
+ * Regressões da soma impressa no painel: as linhas que não são candidato são
+ * reduzidas a categorias canônicas e somadas DENTRO de cada pesquisa antes de
+ * entrar na média entre pesquisas. Sem isso, "Brancos/nulos/não sabe" (junto),
+ * "Brancos/nulos" e "Não sabe" (separados) viravam três linhas independentes.
+ */
+describe('categorias canônicas das linhas que não são candidato', () => {
+  const NAO_SABE = CATEGORIA_BRANCOS_NULOS_NAO_SABE;
+
+  function pesquisaT2(
+    id: string,
+    uf: string,
+    instituto: string,
+    dataFim: string,
+    amostra: number,
+    resultados: DadosPesquisa['resultados'],
+  ) {
+    return criarPesquisa({
+      id,
+      uf,
+      cargo: 'presidente',
+      turno: 2,
+      instituto,
+      dataFim,
+      publicadoEm: dataFim,
+      amostra,
+      margem: 2,
+      fonte: { nome: 'Fonte', url: 'https://exemplo.test' },
+      resultados,
+    });
+  }
+
+  it('soma as linhas separadas DENTRO da pesquisa, não tira média entre elas', () => {
+    const p = pesquisaT2('uma', 'SP', 'Instituto Teste', '2026-09-14', 1000, [
+      { candidato: 'Candidato A', partido: 'PT', pct: 45 },
+      { candidato: 'Candidato B', partido: 'PL', pct: 45 },
+      { candidato: 'Brancos/nulos', partido: null, pct: 6 },
+      { candidato: 'Não sabe', partido: null, pct: 4 },
+    ]);
+    const agregado = agregarPesquisas([p], {}, HOJE)!;
+    expect(agregado.outros).toHaveLength(1);
+    expect(agregado.outros[0]!.candidato).toBe(NAO_SABE);
+    expect(agregado.outros[0]!.pct).toBeCloseTo(10, 6);
+    // Uma pesquisa, não duas: a categoria não conta a mesma pesquisa duas vezes.
+    expect(agregado.outros[0]!.pesquisas).toBe(1);
+  });
+
+  it('quebra separada e linha combinada entram como um único valor comparável', () => {
+    // Mesma data e amostra -> pesos iguais -> média simples.
+    const separada = pesquisaT2('separada', 'SP', 'Real Time Big Data', '2026-09-14', 1000, [
+      { candidato: 'Candidato A', partido: 'PT', pct: 45 },
+      { candidato: 'Candidato B', partido: 'PL', pct: 45 },
+      { candidato: 'Brancos/nulos', partido: null, pct: 5 },
+      { candidato: 'Não sabe', partido: null, pct: 5 },
+    ]);
+    const combinada = pesquisaT2('combinada', 'SP', 'AtlasIntel', '2026-09-14', 1000, [
+      { candidato: 'Candidato A', partido: 'PT', pct: 44 },
+      { candidato: 'Candidato B', partido: 'PL', pct: 44 },
+      { candidato: 'Brancos/nulos/não sabe', partido: null, pct: 12 },
+    ]);
+    const agregado = agregarPesquisas([separada, combinada], {}, HOJE)!;
+    expect(agregado.outros).toHaveLength(1);
+    expect(agregado.outros[0]!.pct).toBeCloseTo(11, 6);
+    expect(agregado.outros[0]!.pesquisas).toBe(2);
+    const soma =
+      agregado.candidatos.reduce((s, c) => s + c.pct, 0) +
+      agregado.outros.reduce((s, o) => s + o.pct, 0);
+    expect(soma).toBeCloseTo(100, 6);
+  });
+
+  it('"Outros" (candidatos não itemizados) não é misturado com brancos/nulos', () => {
+    const p = pesquisaT2('com-outros', 'SE', 'Instituto Teste', '2026-09-14', 1000, [
+      { candidato: 'Candidato A', partido: 'PT', pct: 50 },
+      { candidato: 'Candidato B', partido: 'PL', pct: 42 },
+      { candidato: 'Brancos/nulos', partido: null, pct: 4 },
+      { candidato: 'Não sabe', partido: null, pct: 3 },
+      { candidato: 'Outros', partido: null, pct: 1 },
+    ]);
+    const agregado = agregarPesquisas([p], {}, HOJE)!;
+    const porCategoria = new Map(agregado.outros.map((o) => [o.candidato, o.pct]));
+    expect([...porCategoria.keys()].sort()).toEqual(
+      [CATEGORIA_BRANCOS_NULOS_NAO_SABE, CATEGORIA_OUTROS_CANDIDATOS].sort(),
+    );
+    expect(porCategoria.get(NAO_SABE)).toBeCloseTo(7, 6);
+    expect(porCategoria.get(CATEGORIA_OUTROS_CANDIDATOS)).toBeCloseTo(1, 6);
+  });
+
+  it('Alagoas, 2º turno: a soma do painel volta a 100 (era 109,3)', () => {
+    const hoje = new Date('2026-09-25T00:00:00Z');
+    // data/polls.json, recorte presidente/AL/2º turno (Lula x Flávio).
+    const rtbd = pesquisaT2(
+      '2026-09-25-realtimebigdata-al-presidente-t2-lula-flavio',
+      'AL',
+      'Real Time Big Data',
+      '2026-09-24',
+      1600,
+      [
+        { candidato: 'Luiz Inácio Lula da Silva', partido: 'PT', pct: 53 },
+        { candidato: 'Flávio Bolsonaro', partido: 'PL', pct: 38 },
+        { candidato: 'Brancos/nulos', partido: null, pct: 5 },
+        { candidato: 'Não sabe', partido: null, pct: 4 },
+      ],
+    );
+    const atlas = pesquisaT2(
+      '2026-09-10-atlasintel-al-presidente-t2-lula-flavio',
+      'AL',
+      'AtlasIntel',
+      '2026-09-09',
+      1208,
+      [
+        { candidato: 'Luiz Inácio Lula da Silva', partido: 'PT', pct: 50.6 },
+        { candidato: 'Flávio Bolsonaro', partido: 'PL', pct: 40 },
+        { candidato: 'Brancos/nulos/não sabe', partido: null, pct: 9.4 },
+      ],
+    );
+
+    const agregado = agregarPesquisas([rtbd, atlas], {}, hoje)!;
+
+    // Uma única linha de não-candidato: no máximo 9,4 pontos existem no recorte.
+    expect(agregado.outros).toHaveLength(1);
+    expect(agregado.outros[0]!.candidato).toBe(NAO_SABE);
+    expect(agregado.outros[0]!.pct).toBeGreaterThan(9);
+    expect(agregado.outros[0]!.pct).toBeLessThan(9.4);
+    expect(agregado.outros[0]!.pesquisas).toBe(2);
+
+    const soma =
+      agregado.candidatos.reduce((s, c) => s + c.pct, 0) +
+      agregado.outros.reduce((s, o) => s + o.pct, 0);
+    expect(soma).toBeCloseTo(100, 6);
+
+    // O ranking não muda: Lula lidera, Flávio é o segundo.
+    expect(agregado.candidatos.map((c) => c.candidato)).toEqual([
+      'Luiz Inácio Lula da Silva',
+      'Flávio Bolsonaro',
+    ]);
+  });
+
+  it('Ceará, 2º turno: uma linha só, com a cobertura de quantas pesquisas a publicam', () => {
+    const hoje = new Date('2026-09-25T00:00:00Z');
+    // data/polls.json, recorte presidente/CE/2º turno (Lula x Flávio): das três
+    // pesquisas, só a Real Time Big Data de 17/09 publica a quebra.
+    const atlas = pesquisaT2(
+      '2026-09-21-atlasintel-ce-presidente-t2-lula-flavio',
+      'CE',
+      'AtlasIntel',
+      '2026-09-20',
+      1815,
+      [
+        { candidato: 'Luiz Inácio Lula da Silva', partido: 'PT', pct: 57.7 },
+        { candidato: 'Flávio Bolsonaro', partido: 'PL', pct: 38.3 },
+      ],
+    );
+    const rtbd = pesquisaT2(
+      '2026-09-18-real-time-big-data-ce-presidente-t2-lula-flavio',
+      'CE',
+      'Real Time Big Data',
+      '2026-09-17',
+      1600,
+      [
+        { candidato: 'Luiz Inácio Lula da Silva', partido: 'PT', pct: 64 },
+        { candidato: 'Flávio Bolsonaro', partido: 'PL', pct: 27 },
+        { candidato: 'Brancos/nulos', partido: null, pct: 4 },
+        { candidato: 'Não sabe', partido: null, pct: 5 },
+      ],
+    );
+    const rtbdAntiga = pesquisaT2(
+      '2026-09-08-realtimebigdata-ce-presidente-t2',
+      'CE',
+      'Real Time Big Data',
+      '2026-09-07',
+      1600,
+      [
+        { candidato: 'Luiz Inácio Lula da Silva', partido: 'PT', pct: 65 },
+        { candidato: 'Flávio Bolsonaro', partido: 'PL', pct: 27 },
+      ],
+    );
+
+    const agregado = agregarPesquisas([atlas, rtbd, rtbdAntiga], {}, hoje)!;
+
+    // Duas linhas ("Não sabe 5,0" e "Brancos/nulos 4,0") viram uma, com os
+    // 9 pontos que a pesquisa publicou — nem mais, nem divididos.
+    expect(agregado.outros).toHaveLength(1);
+    expect(agregado.outros[0]!.candidato).toBe(NAO_SABE);
+    expect(agregado.outros[0]!.pct).toBeCloseTo(9, 6);
+    // 1 das 3 pesquisas usadas: as outras duas não publicam a quebra e NADA é
+    // estimado para completar. É essa cobertura que a tela precisa dizer — a
+    // soma candidatos + outros não fecha 100 aqui, e não é dado que falta, é
+    // dado que o instituto não publicou.
+    expect(agregado.outros[0]!.pesquisas).toBe(1);
+    expect(agregado.pesquisasUsadas).toHaveLength(3);
+    expect(agregado.candidatos.map((c) => c.candidato)).toEqual([
+      'Luiz Inácio Lula da Silva',
+      'Flávio Bolsonaro',
+    ]);
+  });
+
+  it('1º turno: combinações diferentes de linhas em cada pesquisa não se multiplicam', () => {
+    const base = {
+      uf: 'MG',
+      cargo: 'governador' as const,
+      turno: 1 as const,
+      dataFim: '2026-09-14',
+      publicadoEm: '2026-09-14',
+      amostra: 1000,
+      fonte: { nome: 'Fonte', url: 'https://exemplo.test' },
+    };
+    const p1 = criarPesquisa({
+      ...base,
+      id: 't1-a',
+      instituto: 'A',
+      resultados: [
+        { candidato: 'Candidato A', partido: 'PT', pct: 40 },
+        { candidato: 'Candidato B', partido: 'PL', pct: 30 },
+        { candidato: 'Brancos/nulos', partido: null, pct: 6 },
+        { candidato: 'Não sabe', partido: null, pct: 4 },
+      ],
+    });
+    const p2 = criarPesquisa({
+      ...base,
+      id: 't1-b',
+      instituto: 'B',
+      resultados: [
+        { candidato: 'Candidato A', partido: 'PT', pct: 41 },
+        { candidato: 'Candidato B', partido: 'PL', pct: 29 },
+        { candidato: 'Nenhum/Brancos/nulos', partido: null, pct: 6 },
+        { candidato: 'Não sabe/não respondeu', partido: null, pct: 4 },
+      ],
+    });
+    const p3 = criarPesquisa({
+      ...base,
+      id: 't1-c',
+      instituto: 'C',
+      resultados: [
+        { candidato: 'Candidato A', partido: 'PT', pct: 39 },
+        { candidato: 'Candidato B', partido: 'PL', pct: 31 },
+        { candidato: 'Brancos/nulos/não sabe', partido: null, pct: 10 },
+      ],
+    });
+
+    const agregado = agregarPesquisas([p1, p2, p3], {}, HOJE)!;
+    expect(agregado.outros).toHaveLength(1);
+    expect(agregado.outros[0]!.candidato).toBe(NAO_SABE);
+    expect(agregado.outros[0]!.pct).toBeCloseTo(10, 6);
+    expect(agregado.outros[0]!.pesquisas).toBe(3);
+    expect(agregado.candidatos.map((c) => c.candidato)).toEqual(['Candidato A', 'Candidato B']);
+  });
+
+  it('ehLinhaNaoCandidato segue excluindo do ranking tudo que tem categoria', () => {
+    const vazio = new Set<string>();
+    for (const rotulo of [
+      'Brancos/nulos',
+      'Brancos/nulos/não sabe',
+      'Nenhum/branco/nulo',
+      'Não sabe/indeciso (cenário espontâneo)',
+      'Outros',
+      'outros candidatos',
+    ]) {
+      expect(ehLinhaNaoCandidato(rotulo, vazio)).toBe(true);
+      expect(normalizarLinhaNaoCandidato(rotulo)).not.toBeNull();
+    }
+    for (const nome of ['Luiz Inácio Lula da Silva', 'Ciro Gomes', 'Elmano de Freitas']) {
+      expect(ehLinhaNaoCandidato(nome, vazio)).toBe(false);
+      expect(normalizarLinhaNaoCandidato(nome)).toBeNull();
+    }
   });
 });

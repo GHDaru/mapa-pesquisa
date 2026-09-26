@@ -1,5 +1,10 @@
 import type { Disputa } from './race.js';
-import { type Pesquisa, type RegistroTSE, dataReferencia } from './poll.js';
+import {
+  type Pesquisa,
+  type RegistroTSE,
+  dataReferencia,
+  normalizarLinhaNaoCandidato,
+} from './poll.js';
 
 /**
  * Serviço de domínio: agregação ponderada de pesquisas de uma mesma Disputa.
@@ -16,25 +21,16 @@ export const CANDIDATOS_EXCLUIDOS_PADRAO: readonly string[] = [
 ];
 
 /**
- * Padrões (sem acento, minúsculas) que identificam linhas que não são candidatos:
- * brancos, nulos, indecisos, "não sabe", "não respondeu", "nenhum", "outros",
- * e qualquer linha marcada como cenário espontâneo.
+ * Verdadeiro quando a linha de resultado não representa um candidato: ou o
+ * nome está na lista de exclusão do recorte, ou o rótulo cai em uma das
+ * categorias canônicas de não-candidato (`normalizarLinhaNaoCandidato`, em
+ * `poll.ts` — brancos, nulos, nenhum, indecisos, "não sabe", "não respondeu",
+ * "outros", cenário espontâneo).
  */
-const PADROES_NAO_CANDIDATO: readonly RegExp[] = [
-  /\bbranco/, /\bnulo/, /\bindecis/, /nao sabe/, /nao respond/, /nao opin/,
-  /\bnenhum/, /^outros?\b/, /\boutros\b/, /espontan/, /nao vot/, /ns\/nr/,
-];
-
-function semAcento(texto: string): string {
-  return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
-}
-
-/** Verdadeiro quando a linha de resultado não representa um candidato. */
 export function ehLinhaNaoCandidato(candidato: string, excluidos: ReadonlySet<string>): boolean {
   const chave = candidato.toLowerCase().trim();
   if (excluidos.has(chave)) return true;
-  const plano = semAcento(candidato);
-  return PADROES_NAO_CANDIDATO.some((re) => re.test(plano));
+  return normalizarLinhaNaoCandidato(candidato) !== null;
 }
 
 /**
@@ -89,7 +85,20 @@ export interface Agregado {
   readonly margemReferencia: number;
   /** Candidatos no ranking (exclui as linhas de brancos/nulos/etc.), ordenados por pct desc. */
   readonly candidatos: readonly CandidatoAgregado[];
-  /** Linhas ignoradas do ranking (brancos/nulos, não sabe, etc.), mesma agregação ponderada. */
+  /**
+   * Linhas ignoradas do ranking, mesma agregação ponderada, já reduzidas às
+   * categorias canônicas de `normalizarLinhaNaoCandidato` (`poll.ts`): as
+   * grafias "Brancos/nulos", "Não sabe", "Nenhum/Brancos/nulos",
+   * "Brancos/nulos/não sabe"... viram UMA linha "Brancos/nulos/não sabe", e
+   * "Outros"/"Outros candidatos (...)" viram "Outros candidatos".
+   *
+   * `pesquisas` de cada categoria conta quantas das `pesquisasUsadas` a
+   * publicaram — pode ser menor que `pesquisasUsadas.length`, e aí a soma
+   * `candidatos` + `outros` não fecha 100: as pesquisas que não publicam a
+   * quebra não são completadas com estimativa (caso do CE no 2º turno, em que
+   * só 1 das 3 pesquisas do confronto publica a linha). Quem exibe deve dizer
+   * de quantas pesquisas o número vem, não somar como se fosse de todas.
+   */
   readonly outros: readonly CandidatoAgregado[];
   readonly pesquisasUsadas: readonly Pesquisa[];
   readonly ultimaPesquisa: Pesquisa;
@@ -118,6 +127,54 @@ interface Acumulador {
   somaPesoPct: number;
   somaPeso: number;
   pesquisas: number;
+  /** true quando a chave veio de linhas que não são candidato (vai para `outros`). */
+  naoCandidato: boolean;
+}
+
+/** Uma linha de resultado já reduzida ao rótulo com que entra na agregação. */
+interface LinhaAgregavel {
+  rotulo: string;
+  partido: string | null;
+  pct: number;
+}
+
+/**
+ * Reduz os resultados de UMA pesquisa às linhas que entram na agregação:
+ * candidatos passam intactos e as linhas de não-candidato são convertidas para
+ * a categoria canônica (`normalizarLinhaNaoCandidato`) e SOMADAS dentro da
+ * pesquisa.
+ *
+ * É essa soma dentro da pesquisa que conserta a aritmética entre pesquisas: a
+ * Real Time Big Data publica "Brancos/nulos" 5,0 e "Não sabe" 4,0 (= 9,0) e a
+ * AtlasIntel publica "Brancos/nulos/não sabe" 9,4; reduzidas à mesma categoria,
+ * as duas contribuem com UM valor comparável (9,0 e 9,4) para a mesma média
+ * ponderada, em vez de virarem três linhas independentes somando 18,4 pontos.
+ * Nada é estimado: pesquisa que não publica a quebra não entra no denominador
+ * da categoria (é o que `CandidatoAgregado.pesquisas` reporta).
+ */
+function linhasAgregaveis(
+  pesquisa: Pesquisa,
+  excluidos: ReadonlySet<string>,
+): { candidatos: LinhaAgregavel[]; naoCandidatos: LinhaAgregavel[] } {
+  const candidatos: LinhaAgregavel[] = [];
+  const porCategoria = new Map<string, LinhaAgregavel>();
+  for (const r of pesquisa.resultados) {
+    if (!ehLinhaNaoCandidato(r.candidato, excluidos)) {
+      candidatos.push({ rotulo: r.candidato, partido: r.partido, pct: r.pct });
+      continue;
+    }
+    // Rótulo desconhecido (ex.: nome excluído via `excluirCandidatos`) fica com
+    // o rótulo original — nunca é forçado dentro de uma categoria canônica.
+    const rotulo = normalizarLinhaNaoCandidato(r.candidato) ?? r.candidato.trim();
+    const atual = porCategoria.get(rotulo.toLowerCase());
+    if (atual) {
+      atual.pct += r.pct;
+      if (atual.partido === null) atual.partido = r.partido;
+    } else {
+      porCategoria.set(rotulo.toLowerCase(), { rotulo, partido: r.partido, pct: r.pct });
+    }
+  }
+  return { candidatos, naoCandidatos: [...porCategoria.values()] };
 }
 
 /**
@@ -161,35 +218,39 @@ export function agregarPesquisas(
   const disputa = usadas[0]!.disputa;
 
   const acumulado = new Map<string, Acumulador>();
+  const acumular = (linha: LinhaAgregavel, peso: number, naoCandidato: boolean): void => {
+    const chave = linha.rotulo.toLowerCase().trim();
+    const atual = acumulado.get(chave) ?? {
+      candidato: linha.rotulo,
+      partido: linha.partido,
+      somaPesoPct: 0,
+      somaPeso: 0,
+      pesquisas: 0,
+      naoCandidato,
+    };
+    atual.somaPesoPct += peso * linha.pct;
+    atual.somaPeso += peso;
+    atual.pesquisas += 1;
+    if (atual.partido === null && linha.partido !== null) atual.partido = linha.partido;
+    acumulado.set(chave, atual);
+  };
   for (const p of usadas) {
     const peso = pesoRecenciaEAmostra(p, hoje, meiaVidaDias);
-    for (const r of p.resultados) {
-      const chave = r.candidato.toLowerCase().trim();
-      const atual = acumulado.get(chave) ?? {
-        candidato: r.candidato,
-        partido: r.partido,
-        somaPesoPct: 0,
-        somaPeso: 0,
-        pesquisas: 0,
-      };
-      atual.somaPesoPct += peso * r.pct;
-      atual.somaPeso += peso;
-      atual.pesquisas += 1;
-      if (atual.partido === null && r.partido !== null) atual.partido = r.partido;
-      acumulado.set(chave, atual);
-    }
+    const linhas = linhasAgregaveis(p, excluidos);
+    for (const linha of linhas.candidatos) acumular(linha, peso, false);
+    for (const linha of linhas.naoCandidatos) acumular(linha, peso, true);
   }
 
   const candidatos: CandidatoAgregado[] = [];
   const outros: CandidatoAgregado[] = [];
-  for (const [chave, acc] of acumulado) {
+  for (const acc of acumulado.values()) {
     const item: CandidatoAgregado = {
       candidato: acc.candidato,
       partido: acc.partido,
       pct: acc.somaPeso > 0 ? acc.somaPesoPct / acc.somaPeso : 0,
       pesquisas: acc.pesquisas,
     };
-    if (ehLinhaNaoCandidato(chave, excluidos)) {
+    if (acc.naoCandidato) {
       outros.push(item);
     } else {
       candidatos.push(item);

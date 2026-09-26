@@ -230,3 +230,65 @@ export function normalizarCandidato(candidato: string): string {
   const limpo = candidato.trim();
   return APELIDOS_CANDIDATO[limpo.toLowerCase()] ?? limpo;
 }
+
+/**
+ * Categorias canônicas das linhas de resultado que NÃO são voto em um
+ * candidato nomeado.
+ *
+ * Os institutos publicam o mesmo espaço com recortes diferentes: "Brancos/nulos"
+ * + "Não sabe" em duas linhas (Real Time Big Data), "Brancos/nulos/não sabe" em
+ * uma só (AtlasIntel), "Nenhum/Brancos/nulos", "Não sabe/não respondeu",
+ * "Indecisos", "Brancos/nulos/não votaria"... Agregar cada grafia por conta
+ * própria soma o mesmo eleitor duas vezes (era o caso de AL no 2º turno:
+ * 9,4 + 5,0 + 4,0 = 18,4 pontos onde existem no máximo 9,4).
+ *
+ * Só há UMA categoria para todo esse espaço — e não uma para rejeição
+ * (brancos/nulos/nenhum) e outra para indecisão (não sabe/não respondeu) —
+ * porque a quebra entre as duas não existe em parte da base: quem publica
+ * "Brancos/nulos/não sabe" junto não permite separar, e separar exigiria
+ * repartir um número publicado, isto é, inventar. A união é a granularidade
+ * mais fina que TODA pesquisa consegue expressar, logo a única comparável
+ * entre pesquisas de um mesmo recorte.
+ *
+ * "Outros"/"Outros candidatos (X, Y e Z, somados)" é categoria separada: são
+ * votos em candidatos (só não itemizados), não voto em ninguém.
+ */
+export const CATEGORIA_BRANCOS_NULOS_NAO_SABE = 'Brancos/nulos/não sabe';
+export const CATEGORIA_OUTROS_CANDIDATOS = 'Outros candidatos';
+
+/**
+ * Padrões (sem acento, minúsculas) do espaço "não votou em ninguém":
+ * brancos, nulos, nenhum, não votaria, indecisos, não sabe, não respondeu,
+ * não opinou, e as linhas marcadas como cenário espontâneo.
+ */
+const PADROES_BRANCOS_NULOS_NAO_SABE: readonly RegExp[] = [
+  /\bbranco/, /\bnulo/, /\bindecis/, /nao sabe/, /nao respond/, /nao opin/,
+  /\bnenhum/, /espontan/, /nao vot/, /ns\/nr/,
+];
+
+/** Padrões (sem acento, minúsculas) das linhas que somam candidatos não itemizados. */
+const PADROES_OUTROS_CANDIDATOS: readonly RegExp[] = [/^outros?\b/, /\boutros\b/];
+
+function semAcento(texto: string): string {
+  return texto.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
+}
+
+/**
+ * Categoria canônica de uma linha que não é candidato, ou `null` quando o
+ * rótulo não é reconhecido como linha de não-candidato (aí quem chama mantém o
+ * rótulo original — nunca chuta uma categoria).
+ *
+ * Um rótulo que cita os dois espaços ("Nenhum/brancos/nulos/outros") cai em
+ * `CATEGORIA_BRANCOS_NULOS_NAO_SABE`: o espaço de não-voto tem precedência,
+ * porque é dele que vem a maior parte da massa nessas linhas combinadas.
+ */
+export function normalizarLinhaNaoCandidato(candidato: string): string | null {
+  const plano = semAcento(candidato);
+  if (PADROES_BRANCOS_NULOS_NAO_SABE.some((re) => re.test(plano))) {
+    return CATEGORIA_BRANCOS_NULOS_NAO_SABE;
+  }
+  if (PADROES_OUTROS_CANDIDATOS.some((re) => re.test(plano))) {
+    return CATEGORIA_OUTROS_CANDIDATOS;
+  }
+  return null;
+}

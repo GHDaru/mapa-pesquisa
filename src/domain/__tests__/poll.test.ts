@@ -134,3 +134,81 @@ describe('normalizarInstituto', () => {
     expect(normalizarInstituto('  Quaest ')).toBe('Quaest');
   });
 });
+
+describe('normalizarLinhaNaoCandidato', () => {
+  it('unifica todas as grafias de brancos/nulos/não sabe da base em uma categoria', async () => {
+    const { normalizarLinhaNaoCandidato, CATEGORIA_BRANCOS_NULOS_NAO_SABE } = await import('../poll.js');
+    // Rótulos que existem em data/polls.json.
+    const rotulos = [
+      'Brancos/nulos',
+      'Não sabe',
+      'Brancos/nulos/não sabe',
+      'Não sabe/não respondeu',
+      'Não sabe/Não respondeu',
+      'Não sabe/indecisos',
+      'Não sabe/indeciso',
+      'Indecisos',
+      'Nenhum',
+      'Nenhum/Brancos/nulos',
+      'Nenhum/branco/nulo',
+      'Brancos/nulos/nenhum',
+      'Brancos/nulos/não votaria',
+      'Não sabe/indeciso (cenário espontâneo)',
+    ];
+    for (const rotulo of rotulos) {
+      expect(normalizarLinhaNaoCandidato(rotulo)).toBe(CATEGORIA_BRANCOS_NULOS_NAO_SABE);
+    }
+  });
+
+  it('mantém "outros candidatos" em categoria própria — são votos em candidato, não em ninguém', async () => {
+    const { normalizarLinhaNaoCandidato, CATEGORIA_OUTROS_CANDIDATOS } = await import('../poll.js');
+    expect(normalizarLinhaNaoCandidato('Outros')).toBe(CATEGORIA_OUTROS_CANDIDATOS);
+    expect(normalizarLinhaNaoCandidato('outros candidatos')).toBe(CATEGORIA_OUTROS_CANDIDATOS);
+    expect(
+      normalizarLinhaNaoCandidato(
+        'Outros candidatos (Danilo Soares, Ieri Braga, Serley Leal e Zé Batista, somados)',
+      ),
+    ).toBe(CATEGORIA_OUTROS_CANDIDATOS);
+  });
+
+  it('rótulo combinado cai no espaço de não-voto, que tem precedência', async () => {
+    const { normalizarLinhaNaoCandidato, CATEGORIA_BRANCOS_NULOS_NAO_SABE } = await import('../poll.js');
+    expect(normalizarLinhaNaoCandidato('Outros/brancos/nulos')).toBe(CATEGORIA_BRANCOS_NULOS_NAO_SABE);
+  });
+
+  it('retorna null para candidato de verdade — nada é forçado dentro de uma categoria', async () => {
+    const { normalizarLinhaNaoCandidato } = await import('../poll.js');
+    expect(normalizarLinhaNaoCandidato('Luiz Inácio Lula da Silva')).toBeNull();
+    expect(normalizarLinhaNaoCandidato('Flávio Bolsonaro')).toBeNull();
+    expect(normalizarLinhaNaoCandidato('Ronaldo Caiado')).toBeNull();
+    expect(normalizarLinhaNaoCandidato('Sergio Moro')).toBeNull();
+    // Nome de candidato que contém "Nenhum"/"branco" não existe na base; o que
+    // existe são sobrenomes comuns — nenhum deles casa com os padrões.
+    expect(normalizarLinhaNaoCandidato('Marina JHC')).toBeNull();
+  });
+
+  it('a pesquisa guarda o rótulo publicado pela fonte — a categoria é só da agregação', async () => {
+    const { criarPesquisa } = await import('../poll.js');
+    const p = criarPesquisa({
+      id: 'teste-rotulo-nao-candidato',
+      uf: 'AL',
+      cargo: 'presidente',
+      turno: 2,
+      instituto: 'Real Time Big Data',
+      dataFim: '2026-09-24',
+      fonte: { nome: 'Fonte', url: 'https://exemplo.org' },
+      resultados: [
+        { candidato: 'Lula', partido: 'PT', pct: 53 },
+        { candidato: 'Brancos/nulos', partido: null, pct: 5 },
+        { candidato: 'Não sabe', partido: null, pct: 4 },
+      ],
+    });
+    // A base de pesquisas (views/polls-database-view.ts) mostra a pesquisa como
+    // ela foi publicada: duas linhas, com os nomes originais.
+    expect(p.resultados.map((r) => r.candidato)).toEqual([
+      'Luiz Inácio Lula da Silva',
+      'Brancos/nulos',
+      'Não sabe',
+    ]);
+  });
+});
