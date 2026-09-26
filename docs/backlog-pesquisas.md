@@ -800,3 +800,41 @@ precisa da ficha completa antes de entrar:
 - **MT Dados** em MT, 4ª rodada (campo 11–17/09, 3.080 entrevistas,
   metodologia híbrida, consolidado 1º+2º voto). Instituto ainda ausente da
   base.
+
+## Suspensões judiciais de pesquisas (26/09)
+
+Confirmado por busca própria, em várias fontes: o **TRE-CE suspendeu em
+25/09 a divulgação de duas pesquisas** que sairiam naquele dia, uma do
+**Instituto Veritá** e uma da **Real Time Big Data**, por os registros não
+apresentarem informação suficiente sobre os critérios e as fontes usados
+para definir a amostragem. A proibição vale para qualquer meio, com multa
+de R$ 10 mil por ato de divulgação para o Veritá e **R$ 20 mil por ato
+para a Real Time Big Data**. As ações foram da coligação "Unir para
+Mudar".
+
+**Nada da rodada suspensa entrou na base** — as pesquisas da Real Time Big
+Data no Ceará que temos são de 08 e 18/09, anteriores. Mas o fato importa
+para leitura do conjunto: a RTBD responde hoje por 148 das 506 pesquisas
+da base, e pela maior parte das usadas no 2º turno presidencial.
+
+A varredura de governador reportou, sem que eu conferisse uma a uma, que
+as contestações ao Veritá já alcançam MT, ES, BA, PA (registro
+PA-04167/2026, multa de R$ 53,2 mil), PE, AL, PR, PI, PB e GO, e que o
+TRE-PA falou em "padrão sistêmico".
+
+**O Veritá divulgou rodada nova em 26/09** — governador em Goiás, Daniel
+Vilela 41,4% x Wilder Morais 29,7% em votos válidos, campo 20–24/09. Não
+ingerida, conforme a regra permanente. Fica reportado para decisão humana.
+
+## Lacunas de governador: a onda estadual da Quaest de 22 a 25/09
+
+A base tem Quaest de governador só em PE, RJ, CE (23/09), BA, RO (24/09) e
+MT (25/09). A varredura apontou, com números e ficha já publicados e
+ausentes da base: **TO, GO, RS, AM, SC, MA, RN, AL, ES, RR, AC e PB**.
+Também fora: **Futura Inteligência BA** (21/09, campo 16–19, n=1.000,
+contratante Política Livre) e **AtlasIntel RS/MS/SC** de 23/09.
+
+Somado ao bloco equivalente de senador já registrado acima, é a maior
+lacuna da base a menos de dez dias da eleição. **Vale uma rodada de
+recuperação dedicada**, não a varredura diária — que por contrato só olha
+a janela do dia.
