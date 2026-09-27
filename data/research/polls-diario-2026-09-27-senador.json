@@ -1,0 +1,39 @@
+[
+  {
+    "id": "2026-09-27-igape-df-senador-t1",
+    "uf": "DF",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Igape",
+    "registroTSE": "DF-00171/2026",
+    "contratante": "TV Atual (afiliada Record News)",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-26",
+    "publicadoEm": "2026-09-27",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, SOMA do 1o e do 2o voto (2 vagas; base de 2 votos por eleitor, total 200%) — NAO e a leitura consolidada reduzida a 100%",
+    "fonte": {
+      "nome": "Metropoles (Grande Angular)",
+      "url": "https://www.metropoles.com/colunas/grande-angular/michelle-lidera-disputa-ao-senado-com-408-bia-tem-309-e-leila-29"
+    },
+    "resultados": [
+      { "candidato": "Michelle Bolsonaro", "partido": "PL", "pct": 40.8 },
+      { "candidato": "Bia Kicis", "partido": "PL", "pct": 30.9 },
+      { "candidato": "Leila do Vôlei", "partido": "PDT", "pct": 29.0 },
+      { "candidato": "Erika Kokay", "partido": "PT", "pct": 23.0 },
+      { "candidato": "Sebastião Coelho", "partido": "Novo", "pct": 8.6 },
+      { "candidato": "Marley", "partido": "Avante", "pct": 3.5 },
+      { "candidato": "Avenir Rosa", "partido": "Democrata", "pct": 2.4 },
+      { "candidato": "David Horn", "partido": "PCO", "pct": 2.2 },
+      { "candidato": "Ronaldo Fonseca", "partido": "PSD", "pct": 2.1 },
+      { "candidato": "Professor Guilherme Amorim", "partido": "UP", "pct": 2.1 },
+      { "candidato": "Guto Felício dos Santos", "partido": "PSDB", "pct": 2.1 },
+      { "candidato": "Tiago", "partido": "Agir", "pct": 1.8 },
+      { "candidato": "Zanata", "partido": "PSTU", "pct": 0.7 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 7.6 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 43.2 }
+    ],
+    "observacao": "QUAL DAS TRES LEITURAS DE SENADO: leitura 2 — SOMA DO 1o E DO 2o VOTO, em base de 2 votos por eleitor (total 200%). NAO e primeira escolha isolada e NAO e o consolidado reduzido a 100% que a Quaest usa. Verificacao aritmetica que fixa a leitura: os 13 candidatos somam 149,2 e, com brancos/nulos (7,6) e nao sabe/nao respondeu (43,2), o total fecha em exatamente 200,0 — ou seja, duas mencoes por entrevistado. ATENCAO A ARMADILHA DE REDACAO: varios veiculos (Metropoles, GPS Brasilia, Jornal de Brasilia) descrevem o recorte como 'consolidacao dos dois votos' / 'contagem consolidada', a MESMA expressao que a Quaest usa para a leitura reduzida a 100%; aqui, porem, a aritmetica prova que e a soma (base 200), nao a media. O Jornal de Brasilia e explicito: 'Michelle Bolsonaro (PL) aparece com 40,8% na SOMA das intencoes de primeiro e segundo votos'. QUEBRA DE 1o E 2o VOTO: a rodada foi apresentada com os dois votos separados (materias de titulo 'Michelle Bolsonaro lidera corrida ao Senado no primeiro e no segundo voto'), mas NAO conseguimos isolar com seguranca os percentuais do 1o e do 2o voto desta rodada: as buscas devolvem numeros que pertencem a rodadas Igape anteriores (Michelle 27,9% na rodada divulgada em 13/09 e Michelle 27,5%, Leila 13,9%, Erika 11,5%, Bia 8,5% no 1o voto da rodada divulgada em 20/09, campo de 15 a 19/09). Um recorte de 2o voto atribuido a esta rodada (Bia 17,1%, Leila 14,4%, Michelle 11,3%, Erika 8,7%) apareceu em resumos de busca, mas nao fecha com o consolidado aqui registrado (40,8 - 11,3 = 29,5 para Michelle, contra os 27,5% noticiados como 1o voto), entao NAO registramos a quebra — declarar 'nao sei' e preferivel a chutar. WebFetch bloqueado nesta sessao: todos os dados vieram de resumos de WebSearch, sem leitura integral das materias. FICHA: instituto Igape (Instituto Gazeta de Pesquisas), campo de 22 a 26/09/2026, 2.000 eleitores do DF, 95% de confianca, margem de 2,2 p.p., registro TSE DF-00171/2026. A margem de 2,2 p.p. e a informada pelas materias que citam o registro do TSE e confere com o calculo para n=2.000 (1,96 x 0,5 / raiz(2000) = 2,19); parte dos veiculos arredonda para 'dois pontos percentuais'. CONTRATANTE: TV Atual, afiliada da Record News, conforme as materias ('pesquisa contratada pela TV Atual, afiliada da Record News'). Nao inferimos contratante a partir de quem divulgou — Metropoles, GPS Brasilia e Jornal de Brasilia sao veiculos divulgadores. LISTA DE CANDIDATOS CONFERIDA: os 13 nomes da tabela coincidem exatamente com os 13 candidatos ao Senado pelo DF registrados em 2026 (fonte: Senado Noticias / Poder360 / JOTA), o que sustenta que a tabela esta completa. SIGLA FORA DE parties.json: 'Democrata' (numero 35, partido de Avenir Rosa, conforme TSE) nao consta de data/parties.json — registramos a sigla como o TSE a grafa e sinalizamos para cadastro; nao editamos parties.json. Observacao adicional: a candidatura de Avenir Rosa aparece como 'indeferida' na pagina de candidatos do Senado, mas ele foi testado na pesquisa e por isso permanece na ficha. NAO E DUPLICATA: nao ha nenhuma pesquisa do Igape em data/polls.json, e as pesquisas de Senado no DF ja presentes sao de outros institutos e outros campos (Quaest, campo 19-22/09, publicada 23/09; Datafolha, campo 22-24/09, publicada 24/09)."
+  }
+]

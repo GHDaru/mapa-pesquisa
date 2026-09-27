@@ -170,14 +170,14 @@
     "observacao": "Sucessor do PRP (Partido Republicano Progressista), historicamente classificado à direita; reposicionamento recente ('Mobiliza', a partir de 2022) não é consensual nas fontes consultadas."
   },
   {
-    "sigla": "PMB",
-    "nome": "Partido da Mulher Brasileira",
+    "sigla": "Democrata",
+    "nome": "Democrata",
     "numero": 35,
     "espectro": "centro-esquerda",
-    "fonteClassificacao": "https://pt.wikipedia.org/wiki/Lista_de_partidos_pol%C3%ADticos_do_Brasil",
+    "fonteClassificacao": "https://www.tse.jus.br/comunicacao/noticias/2025/Dezembro/partido-da-mulher-brasileira-pmb-passara-a-se-chamar-democrata",
     "cor": null,
     "federacao": null,
-    "observacao": "Pauta programática voltada a direitos das mulheres; classificação com baixa cobertura em estudos acadêmicos de posicionamento parlamentar."
+    "observacao": "Antigo Partido da Mulher Brasileira (PMB). A mudança de nome foi aprovada por unanimidade pelo TSE em 02/12/2025, mantendo o número 35 — não é legenda nova, é o mesmo registro. A classificação de espectro é a que valia para o PMB e tem baixa cobertura em estudos acadêmicos de posicionamento parlamentar; a renomeação e o reposicionamento do partido não foram reavaliados aqui, então trate o espectro como incerto."
   },
   {
     "sigla": "Agir",

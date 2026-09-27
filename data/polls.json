@@ -1,5 +1,189 @@
 [
   {
+    "id": "2026-09-27-igape-df-governador-t1",
+    "uf": "DF",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Igape",
+    "registroTSE": "DF-00171/2026",
+    "contratante": "TV Atual (afiliada Record News)",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-26",
+    "publicadoEm": "2026-09-27",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, 1º turno (cenário com José Roberto Arruda, total)",
+    "fonte": {
+      "nome": "Jornal de Brasília",
+      "url": "https://jornaldebrasilia.com.br/brasilia/igape-celina-dispara-e-chega-a-439-na-corrida-pelo-gdf/"
+    },
+    "resultados": [
+      {
+        "candidato": "Celina Leão",
+        "partido": "PP",
+        "pct": 43.9
+      },
+      {
+        "candidato": "Leandro Grass",
+        "partido": "PT",
+        "pct": 17.3
+      },
+      {
+        "candidato": "José Roberto Arruda",
+        "partido": "PSD",
+        "pct": 8.3
+      },
+      {
+        "candidato": "Paula Belmonte",
+        "partido": "PSDB",
+        "pct": 5.9
+      },
+      {
+        "candidato": "Ricardo Cappelli",
+        "partido": "PSB",
+        "pct": 4.3
+      },
+      {
+        "candidato": "Kiko Caputo",
+        "partido": "Novo",
+        "pct": 3.2
+      },
+      {
+        "candidato": "Elisson",
+        "partido": "Agir",
+        "pct": 1.2
+      },
+      {
+        "candidato": "Professora Samara Mineiro",
+        "partido": "UP",
+        "pct": 0.9
+      },
+      {
+        "candidato": "Expedito Mendonça",
+        "partido": "PCO",
+        "pct": 0.7
+      },
+      {
+        "candidato": "Professor Robson",
+        "partido": "PSTU",
+        "pct": 0.5
+      },
+      {
+        "candidato": "Rico Pinheiro",
+        "partido": "PRTB",
+        "pct": 0.4
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 2.9
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 10.5
+      }
+    ],
+    "observacao": "Rodada do Instituto Igape no Distrito Federal divulgada no domingo 27/09/2026 (campo 22–26/09, 2.000 entrevistas, margem de 2,2 p.p., 95% de confiança). Registro TSE DF-00171/2026. NÚMEROS REGISTRADOS SÃO DO TOTAL, critério desta base, no cenário estimulado COM José Roberto Arruda: a ficha soma exatamente 100,0% (43,9 + 17,3 + 8,3 + 5,9 + 4,3 + 3,2 + 1,2 + 0,9 + 0,7 + 0,5 + 0,4 + 2,9 brancos/nulos + 10,5 não sabe/não opinou). O instituto divulgou também um segundo recorte, SEM Arruda e apenas em VOTOS VÁLIDOS — Celina Leão 56,1%, Leandro Grass 22,1%, Paula Belmonte 7,5%, Ricardo Cappelli 5,5% e Kiko Caputo 4,1%, com os 8,3% de Arruda transferidos para indecisos, que sobem a 18,8%. Esse recorte NÃO foi gravado como registro próprio porque só foi publicado em votos válidos, e a base registra o total; gravá-lo como total distorceria a série. Foi a manchete de boa parte das matérias ('Celina chega a 56,1%'), daí o registro da ressalva aqui. Contratante informado explicitamente pelas fontes junto do número de registro e do período de campo: TV Atual, afiliada da Record News — não se trata de inferência a partir do veículo divulgador; a mesma contratante consta da rodada Igape anterior no DF (campo 15–19/09, Celina 41,5%). José Roberto Arruda (PSD) segue sendo testado nos cenários embora as matérias registrem que seu pedido de registro de candidatura foi negado pelo TSE — por isso o cenário alternativo sem ele. Nomes e siglas grafados como já constam na base para o DF (inclusive 'Professora Samara Mineiro'/UP, usada na rodada Datafolha/DF de 24/09). Esta rodada não traz simulação de 2º turno com números publicados, logo não há registro de turno 2. Também noticiada por Metrópoles (coluna Grande Angular), GPS Brasília, Portal F5 Política, Em Defesa da Saúde, Tudo Ok Notícias e Estrutural On Line. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-27-igape-df-senador-t1",
+    "uf": "DF",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Igape",
+    "registroTSE": "DF-00171/2026",
+    "contratante": "TV Atual (afiliada Record News)",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-26",
+    "publicadoEm": "2026-09-27",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, SOMA do 1o e do 2o voto (2 vagas; base de 2 votos por eleitor, total 200%) — NAO e a leitura consolidada reduzida a 100%",
+    "fonte": {
+      "nome": "Metropoles (Grande Angular)",
+      "url": "https://www.metropoles.com/colunas/grande-angular/michelle-lidera-disputa-ao-senado-com-408-bia-tem-309-e-leila-29"
+    },
+    "resultados": [
+      {
+        "candidato": "Michelle Bolsonaro",
+        "partido": "PL",
+        "pct": 40.8
+      },
+      {
+        "candidato": "Bia Kicis",
+        "partido": "PL",
+        "pct": 30.9
+      },
+      {
+        "candidato": "Leila do Vôlei",
+        "partido": "PDT",
+        "pct": 29
+      },
+      {
+        "candidato": "Erika Kokay",
+        "partido": "PT",
+        "pct": 23
+      },
+      {
+        "candidato": "Sebastião Coelho",
+        "partido": "Novo",
+        "pct": 8.6
+      },
+      {
+        "candidato": "Marley",
+        "partido": "Avante",
+        "pct": 3.5
+      },
+      {
+        "candidato": "Avenir Rosa",
+        "partido": "Democrata",
+        "pct": 2.4
+      },
+      {
+        "candidato": "David Horn",
+        "partido": "PCO",
+        "pct": 2.2
+      },
+      {
+        "candidato": "Ronaldo Fonseca",
+        "partido": "PSD",
+        "pct": 2.1
+      },
+      {
+        "candidato": "Professor Guilherme Amorim",
+        "partido": "UP",
+        "pct": 2.1
+      },
+      {
+        "candidato": "Guto Felício dos Santos",
+        "partido": "PSDB",
+        "pct": 2.1
+      },
+      {
+        "candidato": "Tiago",
+        "partido": "Agir",
+        "pct": 1.8
+      },
+      {
+        "candidato": "Zanata",
+        "partido": "PSTU",
+        "pct": 0.7
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 7.6
+      },
+      {
+        "candidato": "Não sabe/não respondeu",
+        "partido": null,
+        "pct": 43.2
+      }
+    ],
+    "observacao": "QUAL DAS TRES LEITURAS DE SENADO: leitura 2 — SOMA DO 1o E DO 2o VOTO, em base de 2 votos por eleitor (total 200%). NAO e primeira escolha isolada e NAO e o consolidado reduzido a 100% que a Quaest usa. Verificacao aritmetica que fixa a leitura: os 13 candidatos somam 149,2 e, com brancos/nulos (7,6) e nao sabe/nao respondeu (43,2), o total fecha em exatamente 200,0 — ou seja, duas mencoes por entrevistado. ATENCAO A ARMADILHA DE REDACAO: varios veiculos (Metropoles, GPS Brasilia, Jornal de Brasilia) descrevem o recorte como 'consolidacao dos dois votos' / 'contagem consolidada', a MESMA expressao que a Quaest usa para a leitura reduzida a 100%; aqui, porem, a aritmetica prova que e a soma (base 200), nao a media. O Jornal de Brasilia e explicito: 'Michelle Bolsonaro (PL) aparece com 40,8% na SOMA das intencoes de primeiro e segundo votos'. QUEBRA DE 1o E 2o VOTO: a rodada foi apresentada com os dois votos separados (materias de titulo 'Michelle Bolsonaro lidera corrida ao Senado no primeiro e no segundo voto'), mas NAO conseguimos isolar com seguranca os percentuais do 1o e do 2o voto desta rodada: as buscas devolvem numeros que pertencem a rodadas Igape anteriores (Michelle 27,9% na rodada divulgada em 13/09 e Michelle 27,5%, Leila 13,9%, Erika 11,5%, Bia 8,5% no 1o voto da rodada divulgada em 20/09, campo de 15 a 19/09). Um recorte de 2o voto atribuido a esta rodada (Bia 17,1%, Leila 14,4%, Michelle 11,3%, Erika 8,7%) apareceu em resumos de busca, mas nao fecha com o consolidado aqui registrado (40,8 - 11,3 = 29,5 para Michelle, contra os 27,5% noticiados como 1o voto), entao NAO registramos a quebra — declarar 'nao sei' e preferivel a chutar. WebFetch bloqueado nesta sessao: todos os dados vieram de resumos de WebSearch, sem leitura integral das materias. FICHA: instituto Igape (Instituto Gazeta de Pesquisas), campo de 22 a 26/09/2026, 2.000 eleitores do DF, 95% de confianca, margem de 2,2 p.p., registro TSE DF-00171/2026. A margem de 2,2 p.p. e a informada pelas materias que citam o registro do TSE e confere com o calculo para n=2.000 (1,96 x 0,5 / raiz(2000) = 2,19); parte dos veiculos arredonda para 'dois pontos percentuais'. CONTRATANTE: TV Atual, afiliada da Record News, conforme as materias ('pesquisa contratada pela TV Atual, afiliada da Record News'). Nao inferimos contratante a partir de quem divulgou — Metropoles, GPS Brasilia e Jornal de Brasilia sao veiculos divulgadores. LISTA DE CANDIDATOS CONFERIDA: os 13 nomes da tabela coincidem exatamente com os 13 candidatos ao Senado pelo DF registrados em 2026 (fonte: Senado Noticias / Poder360 / JOTA), o que sustenta que a tabela esta completa. SIGLA FORA DE parties.json: 'Democrata' (numero 35, partido de Avenir Rosa, conforme TSE) nao consta de data/parties.json — registramos a sigla como o TSE a grafa e sinalizamos para cadastro; nao editamos parties.json. Observacao adicional: a candidatura de Avenir Rosa aparece como 'indeferida' na pagina de candidatos do Senado, mas ele foi testado na pesquisa e por isso permanece na ficha. NAO E DUPLICATA: nao ha nenhuma pesquisa do Igape em data/polls.json, e as pesquisas de Senado no DF ja presentes sao de outros institutos e outros campos (Quaest, campo 19-22/09, publicada 23/09; Datafolha, campo 22-24/09, publicada 24/09)."
+  },
+  {
     "id": "2026-09-26-parana-pesquisas-ce-governador-t1",
     "uf": "CE",
     "cargo": "governador",
@@ -221,6 +405,68 @@
       }
     ],
     "observacao": "METRICA: os percentuais registrados sao a SOMA DO 1o E DO 2o VOTO (cenario estimulado consolidado), porque o CE elege duas cadeiras em 2026 e cada eleitor declara dois nomes; a soma dos candidatos chega a 155,7 (base de 2 votos por eleitor, ou seja ate 200), e com brancos/nulos (7,3) e indecisos (5,0) o total citado pelas fontes fica em 168,0 — abaixo de 200 porque parte dos entrevistados indicou apenas um nome. A mesma rodada tambem publicou a primeira escolha isolada (Capitao Wagner 30,8%, Cid Gomes 28,0%, Luizianne 17,2%, Alcides Fernandes 8,0%) e a segunda escolha (Luizianne 19,2%, Cid 17,2%, Wagner 14,2%); nao registramos esses cortes aqui para nao misturar metricas. Divulgada no sabado 26/09/2026, campo de 23 a 25/09/2026, 1.352 entrevistas em 59 municipios do Ceara, 95% de confianca, margem de 2,7 p.p., registro TSE CE-03967/2026. Contratante nulo: as materias descrevem divulgacao 'em parceria' com o portal CN7, a Rede Plus FM e o Jornal do Cariri, mas nenhuma informa quem encomendou — nao inferimos. RESSALVA DE NUMERO: o portal OIntrigante traz '46,0%' para Capitao Wagner no slug da URL, mas o proprio titulo e o texto, alem de Metropoles, Band, CNN Brasil, CartaCapital, CN7, Capital Politica e Sobral em Revista, trazem 45,0% — adotamos 45,0%. Os percentuais dos candidatos menores e de brancos/indecisos vem da cobertura detalhada da mesma rodada (CN7, Sobral em Revista, Band, CNN). WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch). CORRIGIDO NA REVISÃO: o contratante é a Don7 Media, conforme o registro da pesquisa no TSE (CE-03967/2026, custo de R$ 160 mil), confirmado em duas buscas independentes. A varredura automática havia gravado \"Paraná Pesquisas (recursos próprios)\" num recorte e null no outro — o primeiro era inferência a partir da parceria de divulgação com CN7, Rede Plus FM e Jornal do Cariri, que são veículos divulgadores, não contratantes."
+  },
+  {
+    "id": "2026-09-27-goias-pesquisas-go-governador-t1",
+    "uf": "GO",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Goiás Pesquisas",
+    "registroTSE": "GO-09899/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-25",
+    "publicadoEm": "2026-09-27",
+    "amostra": 1250,
+    "margem": 2.77,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "Mais Goiás",
+      "url": "https://www.maisgoias.com.br/blogs/poder-em-jogo/goias-pesquisas-mais-goias-daniel-registra-446-no-1o-turno-wilder-tem-182-e-marconi-138/"
+    },
+    "resultados": [
+      {
+        "candidato": "Daniel Vilela",
+        "partido": "MDB",
+        "pct": 44.6
+      },
+      {
+        "candidato": "Wilder Morais",
+        "partido": "PL",
+        "pct": 18.2
+      },
+      {
+        "candidato": "Marconi Perillo",
+        "partido": "PSDB",
+        "pct": 13.8
+      },
+      {
+        "candidato": "Luis Cesar Bueno",
+        "partido": "PT",
+        "pct": 5.7
+      },
+      {
+        "candidato": "Luciana Amorim",
+        "partido": "UP",
+        "pct": 1.5
+      },
+      {
+        "candidato": "Danilo Pinheiro",
+        "partido": "PCO",
+        "pct": 1.5
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 5.9
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 8.9
+      }
+    ],
+    "observacao": "Rodada do Instituto Goiás Pesquisas divulgada no domingo 27/09/2026 (campo 24–25/09, 1.250 entrevistas, margem de 2,77 p.p., 95% de confiança). Registro TSE GO-09899/2026. NÚMEROS REGISTRADOS SÃO DO TOTAL, critério desta base: a ficha soma 100,1% (44,6 + 18,2 + 13,8 + 5,7 + 1,5 + 1,5 + 5,9 brancos/nulos + 8,9 não sabe/não respondeu), diferença de 0,1 explicada por arredondamento. A outra leitura noticiada é em VOTOS VÁLIDOS: Daniel Vilela 52,3%, Wilder Morais 21,3%, Marconi Perillo 16,2%, Luis Cesar Bueno 6,7%, Luciana Amorim 1,8% e Danilo Pinheiro 1,8% — não é o critério da base. A leitura de válidos confere com os totais aqui gravados (44,6 / 85,2 = 52,3%), o que valida internamente a ficha. A ficha cobre os seis candidatos registrados em Goiás, conforme as matérias. CONTRATANTE NÃO GRAVADO (null) DE PROPÓSITO: as matérias trazem a série sob a marca 'Goiás Pesquisas/Mais Goiás' e o portal Mais Goiás publicou o levantamento, mas nenhuma fonte consultada afirma explicitamente quem contratou a pesquisa; veículo que divulga não é contratante, e não se inferiu contratante a partir da parceria de divulgação. Confirmar no registro do TSE (GO-09899/2026). Esta rodada NÃO traz cenário de 2º turno próprio: os números de 2º turno citados em algumas matérias (Daniel 53% x Marconi 27%; Daniel 61% x Wilder 14%) são da rodada Quaest/GO de 24/09, já presente na base — por isso não foi criado registro de 2º turno. Também noticiada por Jornal Opção, Diário de Goiás, Tribuna do Planalto, Transmissão Política, Portal Democrata, Notícia Toda Hora, Serra Dourada News e Portal Pop News. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
   },
   {
     "id": "2026-09-26-quaest-pa-governador-t1",
