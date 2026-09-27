@@ -58,16 +58,25 @@ describe('glifos da grade: ponto não é pesquisa', () => {
     });
   }
 
-  it('os números de hoje: 59 pesquisas/118 pontos/22 anéis no 1º turno, 41/82/6 no 2º', () => {
-    const t1 = glifosDaGrade(casos.getPresidentialByState(1));
-    expect([t1.pesquisas, t1.discos + t1.aneis, t1.aneis, t1.rotulosDeMedia]).toEqual([
-      59, 118, 22, 44,
-    ]);
-    const t2 = glifosDaGrade(casos.getPresidentialByState(2));
-    expect([t2.pesquisas, t2.discos + t2.aneis, t2.aneis, t2.rotulosDeMedia]).toEqual([
-      41, 82, 6, 22,
-    ]);
-  });
+  /*
+   * Este teste já fixou os números do dia ("59 pesquisas/118 pontos..."). Não
+   * fixa mais: a base cresce todo dia e uma fotografia do dado quebra o teste
+   * sem que nada tenha se quebrado no código — foi o que aconteceu quando a
+   * recuperação da onda Quaest entrou. O que precisa valer é a RAZÃO, que é a
+   * afirmação que a nota da tela faz: cada pesquisa vira um ponto por
+   * candidato traçado, e o cartão traça sempre os dois primeiros.
+   */
+  for (const turno of [1, 2] as const) {
+    it(`no ${turno}º turno cada pesquisa desenha exatamente 2 pontos`, () => {
+      const g = glifosDaGrade(casos.getPresidentialByState(turno));
+      expect(g.pesquisas).toBeGreaterThan(0);
+      expect(g.discos + g.aneis).toBe(g.pesquisas * 2);
+      expect(g.aneis).toBe(g.pesquisasSemAmostra * 2);
+      // Um rótulo de média por candidato traçado, nos cartões que têm linha.
+      expect(g.rotulosDeMedia % 2).toBe(0);
+      expect(g.rotulosDeMedia).toBeLessThanOrEqual(g.pesquisas * 2);
+    });
+  }
 
   it('a contagem antiga de pesquisas sem amostra continua saindo do mesmo conjunto', () => {
     for (const turno of [1, 2] as const) {

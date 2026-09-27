@@ -751,6 +751,42 @@ consciente: a comparação entre estados passou a ser válida, a leitura sem
 cor deixou de existir. Uma redundância não-cromática por espectro
 resolveria as duas.
 
+## ATUALIZADO EM 27/09 — são TRÊS leituras, não duas, e a mistura é quase geral
+
+A recuperação da onda Quaest (72 pesquisas) mostrou que a descrição abaixo
+estava incompleta. Os institutos publicam o Senado de **três** formas:
+
+1. **Primeira escolha** — só o 1º voto; soma perto de 100.
+2. **Soma do 1º e do 2º voto** — soma até 200 (caso da Paraná Pesquisas no
+   CE, 168,0).
+3. **Consolidado dos dois votos reduzido a 100%** — a leitura de toda a onda
+   Quaest. É a **média** do 1º e do 2º voto, não a soma. Dois agentes
+   chegaram nisso de forma independente e a aritmética fecha onde a quebra
+   foi publicada: AM Braga (40+14)/2=27; TO Gomes (20+16)/2=18; GO Gracinha
+   (25+16)/2=21; MS Contar (31+15)/2=23; RN Zenaide (15+9)/2=12. A frase
+   metodológica da Quaest, citada na cobertura de SE, confirma: *"o
+   entrevistado indicou o primeiro e o segundo voto. O resultado é
+   consolidado dos dois votos e reduzido a 100%."*
+
+A leitura 3 é a mais traiçoeira: **soma perto de 100, igual à leitura 1, e
+não é a mesma coisa.** Roseana Sarney no MA tem 27% no 1º voto e 19% no
+consolidado. Uma média ponderada entre as duas é média de grandezas
+diferentes que parecem compatíveis.
+
+Medido em 27/09, sobre as 101 pesquisas de senador da base: 49 consolidado,
+19 soma 1º+2º, 33 sem rótulo que permita classificar. **22 das 27 UFs
+misturam pelo menos duas leituras no mesmo recorte** — CE, TO, AL, RS, BA,
+RO e PR misturam as três.
+
+Parte da imprensa chama o consolidado de "soma dos votos", o que é
+enganoso, e a entrada `2026-08-27-quaest-ac-senador-t1`, já na base, usa
+esse rótulo errado para a leitura consolidada. Não foi editada (regra de não
+mexer em pesquisa antiga), mas precisa de correção própria.
+
+**A menos de dez dias da eleição, a página do Senado está fazendo média
+entre perguntas diferentes em 22 estados.** É a pendência mais urgente da
+lista.
+
 ## O agregado do Senado mistura métricas de um e de dois votos (26/09)
 
 Em 2026 cada estado elege **duas** cadeiras, então o eleitor declara dois

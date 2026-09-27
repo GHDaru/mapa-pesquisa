@@ -410,14 +410,21 @@ describe('dados reais: soma dos recortes no painel do estado', () => {
     return casos.getPresidentialByState(turno).ufs.find((u) => u.uf === uf)!.agregado!;
   }
 
-  it('Ceará (2º turno) soma acima de 100 porque só 1 das 3 pesquisas publica brancos/nulos', async () => {
+  /*
+   * Não fixa mais "3 pesquisas": a base cresce todo dia e a contagem do Ceará
+   * mudou quando a rodada do Datafolha de 26/09 entrou. O que precisa valer é
+   * a propriedade — quando só parte das pesquisas publica a linha de
+   * não-candidato, a soma passa de 100 e a tela declara de quantas pesquisas
+   * aquela linha veio, em vez de deixar o leitor supor que veio de todas.
+   */
+  it('Ceará (2º turno): a linha de brancos vem de menos pesquisas que o recorte, e isso é declarado', async () => {
     const ce = await agregadoDe(2, 'CE');
-    expect(ce.pesquisasUsadas).toHaveLength(3);
     const brancos = ce.outros.find((o) => o.candidato.includes('rancos'))!;
-    expect(brancos.pesquisas).toBe(1);
-    expect(rotuloBaseParcial(brancos.pesquisas, ce.pesquisasUsadas.length)).toBe('de 1 de 3 pesquisas');
+    const n = ce.pesquisasUsadas.length;
+    expect(brancos.pesquisas).toBeLessThan(n);
+    expect(rotuloBaseParcial(brancos.pesquisas, n)).toBe(`de ${brancos.pesquisas} de ${n} pesquisas`);
     const soma = [...ce.candidatos, ...ce.outros].reduce((t, c) => t + c.pct, 0);
-    expect(soma).toBeGreaterThan(102);
+    expect(soma).toBeGreaterThan(100.5);
     expect(notaSomaDoPainel(soma)).toContain('só as pesquisas que publicaram aquela linha');
   });
 

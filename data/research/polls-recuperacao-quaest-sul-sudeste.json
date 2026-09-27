@@ -1,0 +1,710 @@
+[
+  {
+    "id": "2026-09-24-quaest-rs-governador-t1",
+    "uf": "RS",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "RS-01390/2026",
+    "contratante": "RBS Participações S.A./Televisão Gaúcha S.A.",
+    "dataInicio": "2026-09-20",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 900,
+    "margem": 3,
+    "cenario": "estimulada, 1º turno (percentuais sobre o total)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-rio-grande-do-sul-setembro-2026/"
+    },
+    "resultados": [
+      { "candidato": "Zucco", "partido": "PL", "pct": 29 },
+      { "candidato": "Juliana Brizola", "partido": "PDT", "pct": 23 },
+      { "candidato": "Gabriel Souza", "partido": "MDB", "pct": 10 },
+      { "candidato": "Marcelo Maranata", "partido": "PSDB", "pct": 3 },
+      { "candidato": "Priscila Voigt", "partido": "UP", "pct": 1 },
+      { "candidato": "Rejane de Oliveira", "partido": "PSTU", "pct": 1 },
+      { "candidato": "Não sabe/indeciso", "partido": null, "pct": 24 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 8 }
+    ],
+    "observacao": "Onda de 22-25/09 do Quaest; é pesquisa distinta de qualquer rodada anterior (campo 20-23/09, registro RS-01390/2026). Percentuais sobre o total, como publicados; a itemização divulgada soma 99 (arredondamento da fonte). Não foi divulgado recorte de votos válidos nos resumos consultados. Números corroborados por Metrópoles (https://www.metropoles.com/brasil/quaest-aponta-empate-tecnico-entre-cinco-candidatos-ao-senado-no-rs) e Rádio Alto Uruguai (https://radioaltouruguai.com.br/pesquisa-quaest-para-governo-do-rs-mostra-zucco-com-29-e-juliana-brizola-com-23-no-primeiro-turno)."
+  },
+  {
+    "id": "2026-09-24-quaest-rs-governador-t2-zucco-brizola",
+    "uf": "RS",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "RS-01390/2026",
+    "contratante": "RBS Participações S.A./Televisão Gaúcha S.A.",
+    "dataInicio": "2026-09-20",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 900,
+    "margem": 3,
+    "cenario": "estimulada, 2º turno (Zucco x Juliana Brizola)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-rio-grande-do-sul-setembro-2026/"
+    },
+    "resultados": [
+      { "candidato": "Zucco", "partido": "PL", "pct": 40 },
+      { "candidato": "Juliana Brizola", "partido": "PDT", "pct": 34 }
+    ],
+    "observacao": "Percentuais sobre o total. Brancos/nulos e indecisos deste cenário de 2º turno não divulgados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-24-quaest-rs-governador-t2-zucco-gabriel",
+    "uf": "RS",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "RS-01390/2026",
+    "contratante": "RBS Participações S.A./Televisão Gaúcha S.A.",
+    "dataInicio": "2026-09-20",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 900,
+    "margem": 3,
+    "cenario": "estimulada, 2º turno (Zucco x Gabriel Souza)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-rio-grande-do-sul-setembro-2026/"
+    },
+    "resultados": [
+      { "candidato": "Zucco", "partido": "PL", "pct": 42 },
+      { "candidato": "Gabriel Souza", "partido": "MDB", "pct": 26 }
+    ],
+    "observacao": "Percentuais sobre o total. Brancos/nulos e indecisos deste cenário de 2º turno não divulgados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-24-quaest-rs-governador-t2-brizola-gabriel",
+    "uf": "RS",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "RS-01390/2026",
+    "contratante": "RBS Participações S.A./Televisão Gaúcha S.A.",
+    "dataInicio": "2026-09-20",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 900,
+    "margem": 3,
+    "cenario": "estimulada, 2º turno (Juliana Brizola x Gabriel Souza)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-rio-grande-do-sul-setembro-2026/"
+    },
+    "resultados": [
+      { "candidato": "Juliana Brizola", "partido": "PDT", "pct": 34 },
+      { "candidato": "Gabriel Souza", "partido": "MDB", "pct": 27 }
+    ],
+    "observacao": "Percentuais sobre o total. Brancos/nulos e indecisos deste cenário de 2º turno não divulgados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-24-quaest-rs-senador-t1",
+    "uf": "RS",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "RS-01390/2026",
+    "contratante": "RBS Participações S.A./Televisão Gaúcha S.A.",
+    "dataInicio": "2026-09-20",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 900,
+    "margem": 3,
+    "cenario": "estimulada, consolidado do 1º e do 2º voto reduzido a 100% (2 vagas em disputa)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-rio-grande-do-sul-setembro-2026/"
+    },
+    "resultados": [
+      { "candidato": "Manuela d'Ávila", "partido": "PSOL", "pct": 14 },
+      { "candidato": "Marcel Van Hattem", "partido": "Novo", "pct": 11 },
+      { "candidato": "Paulo Pimenta", "partido": "PT", "pct": 10 },
+      { "candidato": "Sanderson", "partido": "PL", "pct": 10 },
+      { "candidato": "Germano Rigotto", "partido": "MDB", "pct": 9 },
+      { "candidato": "Não sabe/indeciso", "partido": null, "pct": 30 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 13 }
+    ],
+    "observacao": "LEITURA DO SENADO: NÃO é primeira escolha. É o cenário consolidado do 1º e do 2º voto reduzido a 100% (cada eleitor indica dois nomes, porque são duas cadeiras em disputa em 2026; o resultado é normalizado para somar 100). A fonte também publicou o recorte por vaga, não registrado aqui como pesquisa separada: 1ª vaga — Manuela d'Ávila 18, Marcel Van Hattem 16, Paulo Pimenta 11, Sanderson 9, Germano Rigotto 9; 2ª vaga — Sanderson 12, Paulo Pimenta 10, Manuela d'Ávila 9, Germano Rigotto 8, Marcel Van Hattem 6. Candidatos com percentuais menores podem existir e não foram itemizados nos resumos consultados. Corroborado por Metrópoles (https://www.metropoles.com/brasil/quaest-aponta-empate-tecnico-entre-cinco-candidatos-ao-senado-no-rs)."
+  },
+  {
+    "id": "2026-09-24-quaest-sc-governador-t1",
+    "uf": "SC",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "SC-04783/2026",
+    "contratante": "NC Comunicações S.A.",
+    "dataInicio": "2026-09-20",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 804,
+    "margem": 3,
+    "cenario": "estimulada, 1º turno (percentuais sobre o total)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-goverador-santa-catarina-setembro-2026/"
+    },
+    "resultados": [
+      { "candidato": "Jorginho Mello", "partido": "PL", "pct": 54 },
+      { "candidato": "João Rodrigues", "partido": "PSD", "pct": 13 },
+      { "candidato": "Gelson Merísio", "partido": "PSB", "pct": 10 },
+      { "candidato": "Professor Marcus Sodré", "partido": "PSTU", "pct": 1 },
+      { "candidato": "Marcelo Brigadeiro", "partido": "Missão", "pct": 1 },
+      { "candidato": "Laís Chaud", "partido": "UP", "pct": 1 },
+      { "candidato": "Ralf Zimmer", "partido": "PRD", "pct": 0 },
+      { "candidato": "Bruno Pedreiro", "partido": "PCO", "pct": 0 },
+      { "candidato": "Não sabe/indeciso", "partido": null, "pct": 15 },
+      { "candidato": "Brancos/nulos/não votaria", "partido": null, "pct": 5 }
+    ],
+    "observacao": "Pesquisa distinta da rodada Quaest de 25/08 (aquela era SC-00517/2026, campo 20-23/08, Jorginho 50). Percentuais sobre o total, critério da base. Em votos válidos, a fonte noticiou Jorginho Mello com 67,5% (Blog do Prisco, https://www.blogdoprisco.com.br/jorginho-sobe-para-675-dos-votos-validos-e-amplia-vantagem-na-quaest-nsc). Ralf Zimmer e Bruno Pedreiro foram publicados como sem pontuação (0%). Corroborado por NSC Total (https://www.nsctotal.com.br/politica/pesquisa-quaest-nsc-governo-de-sc)."
+  },
+  {
+    "id": "2026-09-24-quaest-sc-governador-t2-jorginho-rodrigues",
+    "uf": "SC",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "SC-04783/2026",
+    "contratante": "NC Comunicações S.A.",
+    "dataInicio": "2026-09-20",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 804,
+    "margem": 3,
+    "cenario": "estimulada, 2º turno (Jorginho Mello x João Rodrigues)",
+    "fonte": {
+      "nome": "NSC Total",
+      "url": "https://www.nsctotal.com.br/politica/pesquisa-quaest-nsc-governo-em-2o-turno-veja-cenarios"
+    },
+    "resultados": [
+      { "candidato": "Jorginho Mello", "partido": "PL", "pct": 58 },
+      { "candidato": "João Rodrigues", "partido": "PSD", "pct": 23 }
+    ],
+    "observacao": "Percentuais sobre o total. Brancos/nulos e indecisos deste cenário não divulgados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-24-quaest-sc-governador-t2-jorginho-merisio",
+    "uf": "SC",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "SC-04783/2026",
+    "contratante": "NC Comunicações S.A.",
+    "dataInicio": "2026-09-20",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 804,
+    "margem": 3,
+    "cenario": "estimulada, 2º turno (Jorginho Mello x Gelson Merísio)",
+    "fonte": {
+      "nome": "NSC Total",
+      "url": "https://www.nsctotal.com.br/politica/pesquisa-quaest-nsc-governo-em-2o-turno-veja-cenarios"
+    },
+    "resultados": [
+      { "candidato": "Jorginho Mello", "partido": "PL", "pct": 66 },
+      { "candidato": "Gelson Merísio", "partido": "PSB", "pct": 15 }
+    ],
+    "observacao": "Percentuais sobre o total. Brancos/nulos e indecisos deste cenário não divulgados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-24-quaest-sc-senador-t1",
+    "uf": "SC",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "SC-04783/2026",
+    "contratante": "NC Comunicações S.A.",
+    "dataInicio": "2026-09-20",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 804,
+    "margem": 3,
+    "cenario": "estimulada, consolidado do 1º e do 2º voto reduzido a 100% (2 vagas em disputa)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-senador-santa-catarina-setembro-2026/"
+    },
+    "resultados": [
+      { "candidato": "Carol De Toni", "partido": "PL", "pct": 17 },
+      { "candidato": "Carlos Bolsonaro", "partido": "PL", "pct": 16 },
+      { "candidato": "Esperidião Amin", "partido": "PP", "pct": 15 },
+      { "candidato": "Décio Lima", "partido": "PT", "pct": 10 },
+      { "candidato": "Afrânio Boppré", "partido": "PSOL", "pct": 4 },
+      { "candidato": "Lunelli", "partido": "MDB", "pct": 3 },
+      { "candidato": "Carol", "partido": "PCO", "pct": 1 },
+      { "candidato": "Túlio de Amorim Pfuetzenreiter", "partido": "Missão", "pct": 1 },
+      { "candidato": "Marcos Dorval", "partido": "PSTU", "pct": 1 },
+      { "candidato": "Ana Lucia da Silveira Machado", "partido": "UP", "pct": 1 },
+      { "candidato": "Não sabe/indeciso", "partido": null, "pct": 22 },
+      { "candidato": "Brancos/nulos/não votaria", "partido": null, "pct": 9 }
+    ],
+    "observacao": "LEITURA DO SENADO: NÃO é primeira escolha. É o cenário consolidado do 1º e do 2º voto reduzido a 100% (duas cadeiras em disputa em 2026; cada eleitor indica dois nomes e o total é normalizado para 100). Primeira pesquisa Quaest de senador em SC na base. Corroborado por InfoMoney (https://www.infomoney.com.br/politica/quaest-carol-de-toni-tem-17-para-o-senado-em-sc-carlos-bolsonaro-16-amin-15/) e NSC Total (https://www.nsctotal.com.br/politica/pesquisa-quaest-nsc-corrida-para-o-senado-em-sc)."
+  },
+  {
+    "id": "2026-09-24-quaest-pr-governador-t1",
+    "uf": "PR",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "PR-02802/2026",
+    "contratante": "RPC",
+    "dataInicio": "2026-09-20",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 804,
+    "margem": 3,
+    "cenario": "estimulada, 1º turno (percentuais sobre o total)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-parana-setembro-2026/"
+    },
+    "resultados": [
+      { "candidato": "Sergio Moro", "partido": "PL", "pct": 36 },
+      { "candidato": "Requião Filho", "partido": "PDT", "pct": 20 },
+      { "candidato": "Sandro Alex", "partido": "PSD", "pct": 20 },
+      { "candidato": "Luiz França", "partido": "Missão", "pct": 1 },
+      { "candidato": "Tayná Miessa", "partido": "UP", "pct": 1 },
+      { "candidato": "Alexandre Salomão", "partido": "Mobiliza", "pct": 1 },
+      { "candidato": "Não sabe/indeciso", "partido": null, "pct": 12 },
+      { "candidato": "Brancos/nulos/não votaria", "partido": null, "pct": 9 }
+    ],
+    "observacao": "Pesquisa distinta da rodada Quaest de 24/08 (aquela era PR-05388/2026, campo 20-23/08, Moro 37). Percentuais sobre o total; recorte de votos válidos não divulgado nos resumos consultados. Contratante informado pelas fontes como RPC (afiliada da Globo no Paraná). Corroborado por Tribuna do Paraná (https://www.tribunapr.com.br/noticias/parana/quaest-mostra-moro-com-36-empate-entre-requiao-filho-sandro-alex/)."
+  },
+  {
+    "id": "2026-09-24-quaest-pr-governador-t2-moro-sandro",
+    "uf": "PR",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "PR-02802/2026",
+    "contratante": "RPC",
+    "dataInicio": "2026-09-20",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 804,
+    "margem": 3,
+    "cenario": "estimulada, 2º turno (Sergio Moro x Sandro Alex)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-parana-setembro-2026/"
+    },
+    "resultados": [
+      { "candidato": "Sergio Moro", "partido": "PL", "pct": 43 },
+      { "candidato": "Sandro Alex", "partido": "PSD", "pct": 29 }
+    ],
+    "observacao": "Percentuais sobre o total. Brancos/nulos e indecisos deste cenário não divulgados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-24-quaest-pr-governador-t2-moro-requiao",
+    "uf": "PR",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "PR-02802/2026",
+    "contratante": "RPC",
+    "dataInicio": "2026-09-20",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 804,
+    "margem": 3,
+    "cenario": "estimulada, 2º turno (Sergio Moro x Requião Filho)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-parana-setembro-2026/"
+    },
+    "resultados": [
+      { "candidato": "Sergio Moro", "partido": "PL", "pct": 48 },
+      { "candidato": "Requião Filho", "partido": "PDT", "pct": 32 }
+    ],
+    "observacao": "Percentuais sobre o total. Brancos/nulos e indecisos deste cenário não divulgados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-24-quaest-pr-senador-t1",
+    "uf": "PR",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "PR-02802/2026",
+    "contratante": "RPC",
+    "dataInicio": "2026-09-20",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 804,
+    "margem": 3,
+    "cenario": "estimulada, consolidado do 1º e do 2º voto reduzido a 100% (2 vagas em disputa)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-senador-parana-setembro-2026/"
+    },
+    "resultados": [
+      { "candidato": "Alexandre Curi", "partido": "Republicanos", "pct": 14 },
+      { "candidato": "Deltan Dallagnol", "partido": "Novo", "pct": 11 },
+      { "candidato": "Filipe Barros", "partido": "PL", "pct": 11 },
+      { "candidato": "Gleisi Hoffmann", "partido": "PT", "pct": 10 },
+      { "candidato": "Dr. Rosinha", "partido": "PT", "pct": 8 },
+      { "candidato": "Cristina Graeml", "partido": "PSD", "pct": 5 }
+    ],
+    "observacao": "LEITURA DO SENADO: NÃO é primeira escolha. É o cenário consolidado dos dois votos reduzido a 100% (duas cadeiras em disputa em 2026), conforme a fonte. Primeira pesquisa Quaest de senador no PR na base. Linhas de brancos/nulos e indecisos deste cenário não divulgadas nos resumos consultados, por isso a itemização não soma 100. Corroborado por Diário do Sudoeste (https://diariodosudoeste.com.br/quaest-curi-tem-14-deltan-e-filipe-barros-11-ao-senado/) e CartaCapital (https://www.cartacapital.com.br/politica/quaest-mostra-empate-entre-curi-deltan-barros-e-gleisi-para-o-senado-no-parana/)."
+  },
+  {
+    "id": "2026-09-23-quaest-mg-governador-t1",
+    "uf": "MG",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "MG-03276/2026",
+    "contratante": "Globo",
+    "dataInicio": "2026-09-19",
+    "dataFim": "2026-09-22",
+    "publicadoEm": "2026-09-23",
+    "amostra": 1506,
+    "margem": 3,
+    "cenario": "estimulada, 1º turno (percentuais sobre o total)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-minas-gerais-setembro-2026-2/"
+    },
+    "resultados": [
+      { "candidato": "Cleitinho Azevedo", "partido": "Republicanos", "pct": 37 },
+      { "candidato": "Patrus Ananias", "partido": "PT", "pct": 16 },
+      { "candidato": "Alexandre Kalil", "partido": "PDT", "pct": 8 },
+      { "candidato": "Mateus Simões", "partido": "PSD", "pct": 7 },
+      { "candidato": "Flávio Roscoe", "partido": "PL", "pct": 5 },
+      { "candidato": "Gabriel Azevedo", "partido": "MDB", "pct": 2 },
+      { "candidato": "Ben Mendes", "partido": "Missão", "pct": 1 },
+      { "candidato": "Túlio Lopes", "partido": "PCB", "pct": 1 },
+      { "candidato": "Indira Xavier", "partido": "UP", "pct": 0 },
+      { "candidato": "Rafael Duda", "partido": "PSTU", "pct": 0 },
+      { "candidato": "Henrique Áreas", "partido": "PCO", "pct": 0 },
+      { "candidato": "Não sabe/indeciso", "partido": null, "pct": 16 },
+      { "candidato": "Brancos/nulos/não votaria", "partido": null, "pct": 7 }
+    ],
+    "observacao": "Pesquisa distinta da rodada Quaest de 08/09 (aquela era MG-04716/2026, campo 04-07/09, Cleitinho 32). Percentuais sobre o total; recorte de votos válidos não divulgado nos resumos consultados. Contratante informado pelas fontes apenas como \"Globo\" (razão social não detalhada). Indira Xavier, Rafael Duda e Henrique Áreas foram publicados como sem pontuação (0%). Corroborado por Tribuna de Minas (https://tribunademinas.com.br/noticias/politica/eleicoes-2026/23-09-2026/quaest-cleitinho-marca-37-de-intencao-de-votos-patrus-sobe-pra-16-e-kalil-cai-para-8-em-minas.html)."
+  },
+  {
+    "id": "2026-09-23-quaest-mg-governador-t2-cleitinho-patrus",
+    "uf": "MG",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "MG-03276/2026",
+    "contratante": "Globo",
+    "dataInicio": "2026-09-19",
+    "dataFim": "2026-09-22",
+    "publicadoEm": "2026-09-23",
+    "amostra": 1506,
+    "margem": 3,
+    "cenario": "estimulada, 2º turno (Cleitinho Azevedo x Patrus Ananias)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-minas-gerais-setembro-2026-2/"
+    },
+    "resultados": [
+      { "candidato": "Cleitinho Azevedo", "partido": "Republicanos", "pct": 50 },
+      { "candidato": "Patrus Ananias", "partido": "PT", "pct": 26 }
+    ],
+    "observacao": "Percentuais sobre o total. Brancos/nulos e indecisos deste cenário não divulgados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-23-quaest-mg-governador-t2-cleitinho-kalil",
+    "uf": "MG",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "MG-03276/2026",
+    "contratante": "Globo",
+    "dataInicio": "2026-09-19",
+    "dataFim": "2026-09-22",
+    "publicadoEm": "2026-09-23",
+    "amostra": 1506,
+    "margem": 3,
+    "cenario": "estimulada, 2º turno (Cleitinho Azevedo x Alexandre Kalil)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-minas-gerais-setembro-2026-2/"
+    },
+    "resultados": [
+      { "candidato": "Cleitinho Azevedo", "partido": "Republicanos", "pct": 49 },
+      { "candidato": "Alexandre Kalil", "partido": "PDT", "pct": 26 }
+    ],
+    "observacao": "Percentuais sobre o total. Brancos/nulos e indecisos deste cenário não divulgados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-23-quaest-mg-governador-t2-cleitinho-simoes",
+    "uf": "MG",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "MG-03276/2026",
+    "contratante": "Globo",
+    "dataInicio": "2026-09-19",
+    "dataFim": "2026-09-22",
+    "publicadoEm": "2026-09-23",
+    "amostra": 1506,
+    "margem": 3,
+    "cenario": "estimulada, 2º turno (Cleitinho Azevedo x Mateus Simões)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-minas-gerais-setembro-2026-2/"
+    },
+    "resultados": [
+      { "candidato": "Cleitinho Azevedo", "partido": "Republicanos", "pct": 50 },
+      { "candidato": "Mateus Simões", "partido": "PSD", "pct": 18 }
+    ],
+    "observacao": "Percentuais sobre o total. Brancos/nulos e indecisos deste cenário não divulgados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-23-quaest-mg-senador-t1",
+    "uf": "MG",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "MG-03276/2026",
+    "contratante": "Globo",
+    "dataInicio": "2026-09-19",
+    "dataFim": "2026-09-22",
+    "publicadoEm": "2026-09-23",
+    "amostra": 1506,
+    "margem": 3,
+    "cenario": "estimulada, consolidado do 1º e do 2º voto reduzido a 100% (2 vagas em disputa)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-minas-gerais-setembro-2026-2/"
+    },
+    "resultados": [
+      { "candidato": "Marília Campos", "partido": "PT", "pct": 13 },
+      { "candidato": "Aécio Neves", "partido": "PSDB", "pct": 10 },
+      { "candidato": "Carlos Viana", "partido": "PSD", "pct": 10 },
+      { "candidato": "Domingos Sávio", "partido": "PL", "pct": 10 },
+      { "candidato": "Marcelo Aro", "partido": "PP", "pct": 6 },
+      { "candidato": "Áurea Carolina", "partido": "PSOL", "pct": 3 },
+      { "candidato": "Marco Antônio Superman", "partido": "Novo", "pct": 1 },
+      { "candidato": "Ana Luiza do MLB", "partido": "UP", "pct": 1 },
+      { "candidato": "Carlin Moura", "partido": "Avante", "pct": 1 },
+      { "candidato": "Fidélis Alcântara", "partido": "UP", "pct": 1 },
+      { "candidato": "Não sabe/indeciso", "partido": null, "pct": 29 },
+      { "candidato": "Brancos/nulos/não votaria", "partido": null, "pct": 15 }
+    ],
+    "observacao": "LEITURA DO SENADO: NÃO é primeira escolha. É o cenário consolidado do 1º e do 2º voto reduzido a 100% (duas cadeiras em disputa em 2026). Primeira pesquisa Quaest de senador em MG na base. Corroborado por O Povo (https://www.opovo.com.br/noticias/politica/2026/09/23/marilia-campos-tem-13-para-o-senado-de-minas-aecio-viana-e-savio-tem-10-aponta-quaest.html) e Poder360 (https://www.poder360.com.br/poder-eleicoes-2026/marilia-tem-13-aecio-savio-e-viana-tem-10-na-disputa-pelo-senado-em-mg/)."
+  },
+  {
+    "id": "2026-09-25-quaest-es-governador-t1",
+    "uf": "ES",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "ES-01978/2026",
+    "contratante": "A Gazeta do Espírito Santo Rádio e TV LTDA / TV Gazeta",
+    "dataInicio": "2026-09-21",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-25",
+    "amostra": 804,
+    "margem": 3,
+    "cenario": "estimulada, 1º turno (percentuais sobre o total)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-espirito-santo-setembro-2026/"
+    },
+    "resultados": [
+      { "candidato": "Ricardo Ferraço", "partido": "MDB", "pct": 33 },
+      { "candidato": "Lorenzo Pazolini", "partido": "Republicanos", "pct": 31 },
+      { "candidato": "Helder Salomão", "partido": "PT", "pct": 12 },
+      { "candidato": "Breno Barcelos", "partido": "Missão", "pct": 1 },
+      { "candidato": "Rafael Demuner", "partido": "UP", "pct": 1 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 11 },
+      { "candidato": "Não sabe/indeciso", "partido": null, "pct": 11 }
+    ],
+    "observacao": "Primeira pesquisa Quaest de governador no ES na base. Percentuais sobre o total; recorte de votos válidos não divulgado nos resumos consultados. Corroborado por A Gazeta (https://www.agazeta.com.br/es/politica/quaest-ricardo-tem-33-pazolini-31-e-helder-12-na-corrida-pelo-governo-do-es-0926) e Poder360 (https://www.poder360.com.br/poder-eleicoes-2026/pazolini-e-ferraco-tem-empate-tecnico-pelo-governo-do-espirito-santo/)."
+  },
+  {
+    "id": "2026-09-25-quaest-es-governador-t2-ferraco-pazolini",
+    "uf": "ES",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "ES-01978/2026",
+    "contratante": "A Gazeta do Espírito Santo Rádio e TV LTDA / TV Gazeta",
+    "dataInicio": "2026-09-21",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-25",
+    "amostra": 804,
+    "margem": 3,
+    "cenario": "estimulada, 2º turno (Ricardo Ferraço x Lorenzo Pazolini)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-espirito-santo-setembro-2026/"
+    },
+    "resultados": [
+      { "candidato": "Ricardo Ferraço", "partido": "MDB", "pct": 43 },
+      { "candidato": "Lorenzo Pazolini", "partido": "Republicanos", "pct": 38 }
+    ],
+    "observacao": "Percentuais sobre o total. Brancos/nulos e indecisos deste cenário não divulgados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-25-quaest-es-governador-t2-ferraco-helder",
+    "uf": "ES",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "ES-01978/2026",
+    "contratante": "A Gazeta do Espírito Santo Rádio e TV LTDA / TV Gazeta",
+    "dataInicio": "2026-09-21",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-25",
+    "amostra": 804,
+    "margem": 3,
+    "cenario": "estimulada, 2º turno (Ricardo Ferraço x Helder Salomão)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-espirito-santo-setembro-2026/"
+    },
+    "resultados": [
+      { "candidato": "Ricardo Ferraço", "partido": "MDB", "pct": 54 },
+      { "candidato": "Helder Salomão", "partido": "PT", "pct": 18 }
+    ],
+    "observacao": "Percentuais sobre o total. Brancos/nulos e indecisos deste cenário não divulgados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-25-quaest-es-governador-t2-pazolini-helder",
+    "uf": "ES",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "ES-01978/2026",
+    "contratante": "A Gazeta do Espírito Santo Rádio e TV LTDA / TV Gazeta",
+    "dataInicio": "2026-09-21",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-25",
+    "amostra": 804,
+    "margem": 3,
+    "cenario": "estimulada, 2º turno (Lorenzo Pazolini x Helder Salomão)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-espirito-santo-setembro-2026/"
+    },
+    "resultados": [
+      { "candidato": "Lorenzo Pazolini", "partido": "Republicanos", "pct": 53 },
+      { "candidato": "Helder Salomão", "partido": "PT", "pct": 21 }
+    ],
+    "observacao": "Percentuais sobre o total. Brancos/nulos e indecisos deste cenário não divulgados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-25-quaest-es-senador-t1",
+    "uf": "ES",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "ES-01978/2026",
+    "contratante": "A Gazeta do Espírito Santo Rádio e TV LTDA / TV Gazeta",
+    "dataInicio": "2026-09-21",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-25",
+    "amostra": 804,
+    "margem": 3,
+    "cenario": "estimulada, consolidado do 1º e do 2º voto reduzido a 100% (2 vagas em disputa)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-espirito-santo-setembro-2026/"
+    },
+    "resultados": [
+      { "candidato": "Renato Casagrande", "partido": "PSB", "pct": 25 },
+      { "candidato": "Sergio Meneguelli", "partido": "PSD", "pct": 11 },
+      { "candidato": "Fabiano Contarato", "partido": "PT", "pct": 9 },
+      { "candidato": "Maguinha Malta", "partido": "PL", "pct": 9 }
+    ],
+    "observacao": "LEITURA DO SENADO: NÃO é primeira escolha. É o cenário consolidado do 1º e do 2º voto reduzido a 100% (duas cadeiras em disputa em 2026), metodologia declarada pelo Quaest nesta onda. Primeira pesquisa Quaest de senador no ES na base. Demais candidatos, brancos/nulos e indecisos não itemizados nos resumos consultados, por isso a itemização não soma 100. Corroborado por A Gazeta (https://www.agazeta.com.br/es/politica/casagrande-tem-25-meneguelli-11-e-contarato-e-maguinha-9-para-o-senado-no-es-diz-quaest-0926)."
+  },
+  {
+    "id": "2026-09-23-quaest-sp-governador-t1",
+    "uf": "SP",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "SP-02456/2026",
+    "contratante": "Globo Comunicação e Participações S/A",
+    "dataInicio": "2026-09-19",
+    "dataFim": "2026-09-22",
+    "publicadoEm": "2026-09-23",
+    "amostra": 1800,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno (percentuais sobre o total)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-sao-paulo-setembro-2026-2/"
+    },
+    "resultados": [
+      { "candidato": "Tarcísio de Freitas", "partido": "Republicanos", "pct": 44 },
+      { "candidato": "Fernando Haddad", "partido": "PT", "pct": 27 },
+      { "candidato": "Policial Edjane", "partido": "Agir", "pct": 1 },
+      { "candidato": "Vera Lúcia", "partido": "PSTU", "pct": 1 },
+      { "candidato": "Carlos Machado", "partido": "PCB", "pct": 1 },
+      { "candidato": "Izadora Dias", "partido": "PCO", "pct": 1 },
+      { "candidato": "Brancos/nulos/não votaria", "partido": null, "pct": 14 },
+      { "candidato": "Não sabe/indeciso", "partido": null, "pct": 11 }
+    ],
+    "observacao": "Pesquisa distinta da rodada Quaest de 08/09 (campo 04-07/09, Tarcísio 42). Percentuais sobre o total; recorte de votos válidos não divulgado nos resumos consultados. Registro SP-02456/2026 informado pelas fontes para esta rodada (governo e Senado no mesmo levantamento). Corroborado por Poder360 (https://www.poder360.com.br/poder-eleicoes-2026/tarcisio-tem-44-e-haddad-27-no-1o-turno-em-sp-diz-quaest/) e O Povo (https://www.opovo.com.br/noticias/politica/2026/09/23/em-sp-quaest-mostra-tarcisio-oscilando-de-42-para-44-e-haddad-com-27-no-1-turno.html)."
+  },
+  {
+    "id": "2026-09-23-quaest-sp-governador-t2",
+    "uf": "SP",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "SP-02456/2026",
+    "contratante": "Globo Comunicação e Participações S/A",
+    "dataInicio": "2026-09-19",
+    "dataFim": "2026-09-22",
+    "publicadoEm": "2026-09-23",
+    "amostra": 1800,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno (Tarcísio de Freitas x Fernando Haddad)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-sao-paulo-setembro-2026-2/"
+    },
+    "resultados": [
+      { "candidato": "Tarcísio de Freitas", "partido": "Republicanos", "pct": 49 },
+      { "candidato": "Fernando Haddad", "partido": "PT", "pct": 30 }
+    ],
+    "observacao": "Percentuais sobre o total. Brancos/nulos e indecisos deste cenário não divulgados nos resumos consultados."
+  },
+  {
+    "id": "2026-09-23-quaest-sp-senador-t1",
+    "uf": "SP",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "SP-02456/2026",
+    "contratante": "Globo Comunicação e Participações S/A",
+    "dataInicio": "2026-09-19",
+    "dataFim": "2026-09-22",
+    "publicadoEm": "2026-09-23",
+    "amostra": 1800,
+    "margem": 2,
+    "cenario": "estimulada, consolidado do 1º e do 2º voto reduzido a 100% (2 vagas em disputa)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-senador-sao-paulo-setembro-2026-2/"
+    },
+    "resultados": [
+      { "candidato": "Guilherme Derrite", "partido": "PP", "pct": 16 },
+      { "candidato": "Marina Silva", "partido": "Rede", "pct": 13 },
+      { "candidato": "Simone Tebet", "partido": "PSB", "pct": 12 },
+      { "candidato": "André do Prado", "partido": "PL", "pct": 8 },
+      { "candidato": "Ricardo Salles", "partido": "Novo", "pct": 3 },
+      { "candidato": "Soninha Francine", "partido": "Cidadania", "pct": 1 },
+      { "candidato": "Geraldo Rufino", "partido": "Podemos", "pct": 1 },
+      { "candidato": "Dra. Eliana Ferreira", "partido": "PSTU", "pct": 1 },
+      { "candidato": "Guto Schiavetto", "partido": "Missão", "pct": 1 },
+      { "candidato": "Maíra de Souza", "partido": "UP", "pct": 1 },
+      { "candidato": "Marcio Alves", "partido": "UP", "pct": 1 },
+      { "candidato": "Não sabe/indeciso", "partido": null, "pct": 24 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 18 }
+    ],
+    "observacao": "LEITURA DO SENADO: NÃO é primeira escolha. É o cenário consolidado do 1º e do 2º voto reduzido a 100% (duas cadeiras em disputa em 2026); a itemização soma 100. Pesquisa distinta da rodada Quaest de 08/09 (campo 04-07/09, Derrite e Marina com 14). A pista de varredura anterior dava publicação em 25/09: está errada — as fontes convergem para 23/09 (quarta-feira), com campo 19-22/09. No cenário espontâneo, 79% dos entrevistados se declararam indecisos para o Senado. Corroborado por CNN Brasil (https://www.cnnbrasil.com.br/eleicoes/quaest-senado-sp-derrite-tem-16-marina-13-e-simone-tebet-12/) e Metrópoles (https://www.metropoles.com/sao-paulo/quaest-empate-tecnico-senado-sp)."
+  }
+]
