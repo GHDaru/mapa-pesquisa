@@ -570,6 +570,30 @@ quatro nomes com 1 cada). Em totais as fontes dão Lula 41 x Flávio 39, sem
 a quebra de brancos e indecisos. O 2º turno segue com três pares
 diferentes e dois registros no TSE, então continua fora.
 
+### ATUALIZADO EM 27/09 — são QUATRO nacionais de 24/09 ausentes, não duas
+
+A varredura presidencial de 27/09 confirmou as duas abaixo e achou mais
+duas. **São as rodadas nacionais mais recentes depois do Datafolha**, todas
+com campo encerrado em 23/09, e a eleição é em 04/10.
+
+| Instituto | Campo | Ficha | 1º turno | 2º turno |
+| --- | --- | --- | --- | --- |
+| **PoderData/Aya** | 20–23/09 | 3.000 entrevistas, margem 2 | Lula 43 x Flávio 42 | Flávio 46 x Lula 45 |
+| **Palver** | 20–23/09 | 5.000, margem 2,5, BR-09587/2026 | não publicado | Flávio 48 x Lula 45 |
+| **Futura/100% Cidades** | 19–23/09 | 2.000, margem 2,2, 95% | Flávio 40,4 x Lula 38,4 | Flávio 49,4 x Lula 43,7 |
+| **Real Time Big Data** | 19–23/09 | 2.000, margem 2, 95% | Lula 41 x Flávio 37 | Flávio 45 x Lula 44 |
+
+**Nenhuma pode entrar como está.** Os resumos de busca trouxeram só o topo
+Lula/Flávio: falta a lista completa de candidatos e as linhas de brancos,
+nulos e não sabe. E **nenhuma teve contratante afirmado** — a única pista é
+a marca "PoderData/Aya" nas manchetes, que é o instituto, não quem
+encomendou. Cada uma precisa de uma passada dedicada para fechar a ficha.
+
+Vale notar o que essas quatro dizem juntas: **três das quatro dão Flávio à
+frente no 2º turno** (46x45, 48x45, 45x44), e a quarta não publicou 1º
+turno. A base hoje não tem nenhuma delas, o que enviesa o agregado nacional
+para o período mais recente. É a lacuna de maior impacto da lista.
+
 ### Duas nacionais de 24/09 ausentes da base
 
 - **Real Time Big Data nacional**: 2.000 entrevistas, campo 19–23/09,
