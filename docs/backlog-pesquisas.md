@@ -898,3 +898,74 @@ Somado ao bloco equivalente de senador já registrado acima, é a maior
 lacuna da base a menos de dez dias da eleição. **Vale uma rodada de
 recuperação dedicada**, não a varredura diária — que por contrato só olha
 a janela do dia.
+
+## DECISÃO PENDENTE: a Real Time Big Data sob suspensões em série (27/09)
+
+Confirmado por busca própria, em várias fontes. **É o maior problema
+aberto da base**, maior que o do Veritá, porque a RTBD é a maior fonte
+individual do projeto.
+
+### O que os tribunais decidiram
+
+Suspensões de divulgação de rodadas da Real Time Big Data em **TRE-PR**
+(multa de R$ 50 mil por descumprimento, a pedido da campanha de Sandro
+Alex), **TRE-CE** (25/09, multa de R$ 20 mil por ato), **TRE-MA**,
+**TRE-RN**, **TRE-AL** e **TRE-SE** (26/09).
+
+O fundamento recorrente não é metodológico, é **econômico**. Conforme a
+cobertura: o instituto registrou **162 pesquisas eleitorais em 2026**, a
+maioria declarada como **autofinanciada**, somando cerca de **R$ 7,1
+milhões**; e declarou, para 2025, **receita bruta anual de R$ 433 mil** e
+lucro líquido de R$ 135 mil. O juiz do caso paranaense descreveu a
+desproporção como atingindo "**manifesta inverossimilhança econômica**",
+por o volume de recursos supostamente gasto do próprio patrimônio exceder
+exponencialmente a receita e o lucro do ano anterior. A decisão do PR diz
+que a origem do dinheiro "permanece obscura".
+
+### O que isso NÃO é
+
+**Os tribunais não declararam as pesquisas falsas.** O que está em
+questão é quem pagou e se é plausível que o instituto tenha custeado 162
+levantamentos com aquela receita. É diferente do caso do Veritá, em que
+há indício direto de fabricação (≈62% de linhas duplicadas numa amostra
+de 1.220 no AM). Registrar a diferença importa: uma coisa é suspeitar da
+origem do financiamento, outra é ter evidência de dado inventado.
+
+### Exposição da base, medida em 27/09
+
+| | |
+| --- | --- |
+| pesquisas da RTBD na base | **148 de 578 (26%)** |
+| dentro da janela de 45 dias | 136 de 528 |
+| recortes que usam RTBD | **100 de 133** |
+| recortes em que a RTBD é a **única** fonte | **14** |
+
+Os 14 recortes que dependem só dela são quase todos da página que mais
+trabalho recebeu:
+
+- presidente 1º turno: ES, RS
+- **presidente 2º turno: AC, AP, BA, ES, MA, PA, RN, RO, RS, SC, SE, TO**
+
+Ou seja: **12 dos 27 estados do mapa presidencial de 2º turno perdem a
+única fonte** se a RTBD sair. O mapa deixaria de ter cobertura nacional.
+
+### As saídas, e o que cada uma custa
+
+1. **Manter e alertar** — mesmo tratamento dado ao Veritá por decisão do
+   humano do projeto em 25/09. Nada sai da base; a tela passa a marcar as
+   pesquisas do instituto e a explicar as suspensões. Custo: o site segue
+   mostrando número cuja origem de financiamento a Justiça considera
+   obscura.
+2. **Excluir as rodadas efetivamente suspensas** e manter as demais. É o
+   recorte mais defensável juridicamente, mas exige levantar UF a UF
+   quais rodadas caíram sob decisão — trabalho de apuração, não de código.
+3. **Excluir o instituto inteiro.** Honesto quanto à dúvida, e destrói a
+   cobertura: 12 estados do mapa de 2º turno ficam sem dado, e 26% da base
+   sai.
+
+**Recomendação:** opção 2 como alvo e opção 1 como estado imediato — ou
+seja, marcar já o instituto na tela com a ressalva, e fazer a apuração das
+rodadas suspensas em rodada dedicada. A opção 3 troca um problema de
+procedência por um buraco de cobertura maior do que o problema.
+
+**A decisão é do humano do projeto**, como foi a do Veritá.
