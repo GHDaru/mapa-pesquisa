@@ -1,0 +1,360 @@
+[
+  {
+    "id": "2026-09-28-quaest-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "BR-06520/2026",
+    "contratante": "Globo Comunicação e Participações S.A. e Editora Globo",
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-27",
+    "publicadoEm": "2026-09-28",
+    "amostra": 2004,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-presidente-setembro-2026-5/"
+    },
+    "observacao": "Última rodada Quaest antes do 1º turno (04/10). Campo de 24 a 27/09/2026, 2.004 entrevistados de 16 anos ou mais em todo o país, margem de erro de 2 pontos, 95% de confiança, registro BR-06520/2026. Contratante informado pelas matérias como Globo Comunicação e Participações S.A. e Editora Globo (outras versões grafam 'TV Globo e jornal O Globo'); adotada a grafia já usada na base para a rodada de 21/09. A soma das linhas publicadas fecha em 100%. Rodada anterior do mesmo instituto (21/09, campo 17–20/09): Lula 37% x Flávio 33% — as matérias de hoje usam essa comparação, o que confirma que 39/34 é campo novo e não republicação. O instituto também divulgou cenário espontâneo (Lula 31%, Flávio 27%, indecisos 31%), não ingerido aqui porque a lista de demais candidatos não foi publicada nos resumos acessíveis. Dados obtidos via WebSearch (WebFetch bloqueado), conferidos em Gazeta do Povo, Revista Factual, Imirante e Farol de Notícias.",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 39 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 34 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 4 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 4 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 3 },
+      { "candidato": "Romeu Zema", "partido": "Novo", "pct": 1 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 10 },
+      { "candidato": "Não sabe", "partido": null, "pct": 5 }
+    ]
+  },
+  {
+    "id": "2026-09-28-quaest-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "BR-06520/2026",
+    "contratante": "Globo Comunicação e Participações S.A. e Editora Globo",
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-27",
+    "publicadoEm": "2026-09-28",
+    "amostra": 2004,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "Revista Factual",
+      "url": "https://revistafactual.com.br/politica/2026/09/28/pesquisa-quaest-lula-tem-39-e-flavio-bolsonaro-soma-34-no-1o-turno-ambos-empatam-no-2o-turno-com-42/"
+    },
+    "observacao": "Mesmo campo da rodada de 1º turno (24–27/09, 2.004 entrevistas, registro BR-06520/2026). Empate numérico em 42% cada. A linha de 13% corresponde a brancos, nulos e quem não pretende votar (era 14% na rodada de 21/09) e 3% não sabem — soma 100%. Único confronto de 2º turno divulgado nos resumos acessíveis desta rodada: as simulações Lula x Caiado, Lula x Cury e Lula x Renan Santos, presentes na rodada de 21/09, não apareceram nas matérias de 28/09 e por isso não foram criadas. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 42 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 42 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 13 },
+      { "candidato": "Não sabe", "partido": null, "pct": 3 }
+    ]
+  },
+  {
+    "id": "2026-09-28-nexus-btg-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Nexus/FSB",
+    "registroTSE": "BR-07557/2026",
+    "contratante": "Banco BTG Pactual",
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-27",
+    "publicadoEm": "2026-09-28",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, cenário principal (1º turno)",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/nexus-btg-lula-tem-42-no-1o-turno-flavio-37-caiado-5-e-cury-5/"
+    },
+    "observacao": "16ª rodada BTG/Nexus e a primeira com campo de fim de semana: 2.000 eleitores entrevistados por telefone (CATI) entre 25 e 27/09/2026, margem de 2 pontos, 95% de confiança, registro BR-07557/2026. Percentuais aqui são sobre o total de entrevistados e somam 100%. Parte da imprensa (Gazeta do Povo) noticiou 'Lula 44% x Flávio 39%': são os mesmos números em votos válidos (42/0,95 = 44,2 e 37/0,95 = 38,9), não um cenário distinto; adotado o total de votos, convenção da base. Rodada anterior do instituto (21/09, campo 18–20/09): Lula 40% x Flávio 37% — as matérias registram que a diferença passou de 3 para 5 pontos, confirmando campo novo. Dados via WebSearch (WebFetch bloqueado), conferidos em CNN Brasil, Exame, Revista Factual e Diário Carioca.",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 42 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 37 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 5 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 5 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 4 },
+      { "candidato": "Romeu Zema", "partido": "Novo", "pct": 1 },
+      { "candidato": "Samara Martins", "partido": "UP", "pct": 1 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 3 },
+      { "candidato": "Não sabe", "partido": null, "pct": 2 }
+    ]
+  },
+  {
+    "id": "2026-09-28-nexus-btg-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Nexus/FSB",
+    "registroTSE": "BR-07557/2026",
+    "contratante": "Banco BTG Pactual",
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-27",
+    "publicadoEm": "2026-09-28",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/nexus-btg-lula-empata-com-flavio-e-caiado-no-2o-turno-4/"
+    },
+    "observacao": "Mesmo campo da rodada de 1º turno (25–27/09, 2.000 entrevistas, registro BR-07557/2026). Empate técnico dentro da margem de 2 pontos. As linhas de não-candidato divulgadas (8% brancos, nulos ou nenhum; 1% não sabe/não respondeu) fecham a soma em 99% — diferença de arredondamento na tabela publicada, não inconsistência de ficha. Dados via WebSearch (WebFetch bloqueado), conferidos em CNN Brasil, Correio Braziliense, Poder360 e Diário do Grande ABC.",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 46 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 44 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 8 },
+      { "candidato": "Não sabe", "partido": null, "pct": 1 }
+    ]
+  },
+  {
+    "id": "2026-09-28-nexus-btg-br-presidente-t2-lula-caiado",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Nexus/FSB",
+    "registroTSE": "BR-07557/2026",
+    "contratante": "Banco BTG Pactual",
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-27",
+    "publicadoEm": "2026-09-28",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Ronaldo Caiado",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/btg-nexus-lula-mantem-empate-tecnico-com-flavio-e-caiado-no-2o-turno"
+    },
+    "observacao": "Segundo confronto de 2º turno da mesma rodada BTG/Nexus (campo 25–27/09, 2.000 entrevistas, registro BR-07557/2026). As linhas de brancos/nulos e não sabe deste cenário não foram publicadas nos resumos acessíveis e por isso não constam (não estimadas). Dados via WebSearch (WebFetch bloqueado), conferidos em Metrópoles e CNN Brasil.",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 46 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 42 }
+    ]
+  },
+  {
+    "id": "2026-09-28-realtimebigdata-ba-presidente-t1",
+    "uf": "BA",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-02319/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-26",
+    "publicadoEm": "2026-09-28",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno — eleitores da Bahia",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-big-data-na-ba-lula-tem-61-contra-24-de-flavio-no-1o-turno/"
+    },
+    "observacao": "Recorte presidencial da rodada estadual da Real Time Big Data na Bahia divulgada em 28/09/2026: 1.600 eleitores baianos entrevistados entre 23 e 26/09, margem de 2 pontos, 95% de confiança, registro BR-02319/2026. As matérias informam que a pesquisa foi feita com recursos próprios do instituto (custo de R$ 20 mil), sem contratante externo — por isso contratante null, não inferido. Soma das linhas publicadas: 99% (arredondamento). Rodada anterior do instituto na BA está na base com publicação em 09/09 e campo 04–08/09 (Lula 55 x Flávio 24), portanto esta é campo novo. Não foi localizada nenhuma decisão judicial suspendendo esta rodada específica. Dados via WebSearch (WebFetch bloqueado), conferidos em CNN Brasil, Poder360, Exame e bahia.ba.",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 61 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 24 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 3 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 3 },
+      { "candidato": "Romeu Zema", "partido": "Novo", "pct": 1 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 1 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 4 },
+      { "candidato": "Não sabe", "partido": null, "pct": 2 }
+    ]
+  },
+  {
+    "id": "2026-09-28-realtimebigdata-ba-presidente-t2-lula-flavio",
+    "uf": "BA",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-02319/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-26",
+    "publicadoEm": "2026-09-28",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — eleitores da Bahia",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-big-data-na-ba-lula-tem-64-contra-28-de-flavio-no-2o-turno/"
+    },
+    "observacao": "Mesmo campo da rodada de 1º turno (23–26/09, 1.600 eleitores da Bahia, registro BR-02319/2026, recursos próprios do instituto). Soma 100%. Uma fonte secundária grafou este cenário como 'Lula 61 x 30'; esses são os números da rodada anterior do instituto na BA (publicada em 09/09), e o par 64 x 28 foi confirmado por CNN Brasil e Poder360. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 64 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 28 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 5 },
+      { "candidato": "Não sabe", "partido": null, "pct": 3 }
+    ]
+  },
+  {
+    "id": "2026-09-28-realtimebigdata-pe-presidente-t1",
+    "uf": "PE",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-02938/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-26",
+    "publicadoEm": "2026-09-28",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno — eleitores de Pernambuco",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-big-data-em-pe-lula-tem-60-contra-26-de-flavio-no-1o-turno/"
+    },
+    "observacao": "Recorte presidencial da rodada estadual da Real Time Big Data em Pernambuco divulgada em 28/09/2026: 1.600 eleitores pernambucanos, entrevistas por telefone e recrutamento digital entre 23 e 26/09, margem de 2 pontos, 95% de confiança, registro BR-02938/2026, realizada com recursos próprios do instituto (contratante null, não inferido). A soma das linhas publicadas é 98%: Romeu Zema e eventuais 'outros' não foram divulgados nos resumos acessíveis e não foram estimados. Não foi localizada decisão judicial suspendendo esta rodada. Dados via WebSearch (WebFetch bloqueado), conferidos em CNN Brasil, Exame, Metrópoles e CartaCapital.",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 60 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 26 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 4 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 3 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 1 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 2 },
+      { "candidato": "Não sabe", "partido": null, "pct": 2 }
+    ]
+  },
+  {
+    "id": "2026-09-28-realtimebigdata-pe-presidente-t2-lula-flavio",
+    "uf": "PE",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-02938/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-26",
+    "publicadoEm": "2026-09-28",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — eleitores de Pernambuco",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-big-data-em-pe-lula-tem-61-contra-35-de-flavio-no-2o-turno/"
+    },
+    "observacao": "Mesmo campo da rodada de 1º turno (23–26/09, 1.600 eleitores de Pernambuco, registro BR-02938/2026, recursos próprios). Soma 100%. Dados via WebSearch (WebFetch bloqueado), conferidos em CNN Brasil, Poder360 e Vermelho.",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 61 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 35 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 2 },
+      { "candidato": "Não sabe", "partido": null, "pct": 2 }
+    ]
+  },
+  {
+    "id": "2026-09-28-realtimebigdata-pa-presidente-t1",
+    "uf": "PA",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-00891/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-26",
+    "publicadoEm": "2026-09-28",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno — eleitores do Pará",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-big-data-no-pa-lula-tem-45-contra-36-de-flavio-no-1o-turno/"
+    },
+    "observacao": "Recorte presidencial da rodada estadual da Real Time Big Data no Pará divulgada em 28/09/2026: 1.600 eleitores paraenses entrevistados por telefone entre 23 e 26/09, margem de 2 pontos, 95% de confiança, registro BR-00891/2026. Contratante não informado pelas matérias — null, não inferido. Soma das linhas publicadas: 99% (arredondamento). Rodada anterior do instituto no PA está na base com publicação em 08/09 e campo 03–07/09, portanto campo novo. Não foi localizada decisão judicial suspendendo esta rodada. Dados via WebSearch (WebFetch bloqueado), conferidos em CNN Brasil, CartaCapital e Diário do Pará.",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 45 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 36 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 4 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 4 },
+      { "candidato": "Romeu Zema", "partido": "Novo", "pct": 1 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 1 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 6 },
+      { "candidato": "Não sabe", "partido": null, "pct": 2 }
+    ]
+  },
+  {
+    "id": "2026-09-28-realtimebigdata-pa-presidente-t2-lula-flavio",
+    "uf": "PA",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-00891/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-26",
+    "publicadoEm": "2026-09-28",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — eleitores do Pará",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-big-data-no-pa-lula-tem-44-contra-38-de-flavio-no-2o-turno/"
+    },
+    "observacao": "Mesmo campo da rodada de 1º turno (23–26/09, 1.600 eleitores do Pará, registro BR-00891/2026). Soma 100%. Dados via WebSearch (WebFetch bloqueado), conferidos em CNN Brasil e CartaCapital.",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 44 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 38 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 9 },
+      { "candidato": "Não sabe", "partido": null, "pct": 9 }
+    ]
+  },
+  {
+    "id": "2026-09-28-realtimebigdata-mg-presidente-t1",
+    "uf": "MG",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "MG-03351/2026",
+    "contratante": "Rede Record Minas",
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-26",
+    "publicadoEm": "2026-09-28",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno — eleitores de Minas Gerais",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-big-data-em-mg-lula-tem-41-contra-37-de-flavio-no-1o-turno/"
+    },
+    "observacao": "Recorte presidencial da rodada estadual da Real Time Big Data em Minas Gerais divulgada em 28/09/2026: 2.000 eleitores mineiros entrevistados entre 23 e 26/09, margem de 2 pontos, 95% de confiança, registro MG-03351/2026. A ficha técnica reproduzida pela imprensa (Gazeta do Povo, Estado de Minas, InfoMoney) afirma contratação pela Rede Record Minas — contratante afirmado pelas matérias, não inferido de calendário de divulgação; as demais rodadas estaduais desta mesma série (BA, PE) declaram recursos próprios. Soma das linhas publicadas: 99% (arredondamento). Rodada anterior do instituto em MG está na base com publicação em 21/09 e campo 16–19/09 (Lula 39 x Flávio 35), portanto campo novo. Não foi localizada decisão judicial suspendendo esta rodada. Dados via WebSearch (WebFetch bloqueado), conferidos em CNN Brasil, Estado de Minas, Exame e CartaCapital.",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 41 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 37 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 6 },
+      { "candidato": "Romeu Zema", "partido": "Novo", "pct": 6 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 4 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 1 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 2 },
+      { "candidato": "Não sabe", "partido": null, "pct": 2 }
+    ]
+  },
+  {
+    "id": "2026-09-28-realtimebigdata-mg-presidente-t2-lula-flavio",
+    "uf": "MG",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "MG-03351/2026",
+    "contratante": "Rede Record Minas",
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-26",
+    "publicadoEm": "2026-09-28",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — eleitores de Minas Gerais",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-big-data-em-mg-lula-e-flavio-empatam-com-46-no-2o-turno/"
+    },
+    "observacao": "Mesmo campo da rodada de 1º turno (23–26/09, 2.000 eleitores de Minas Gerais, registro MG-03351/2026). Empate em 46% cada. As linhas de brancos/nulos e não sabe deste cenário não foram publicadas nos resumos acessíveis e por isso não constam (não estimadas). Dados via WebSearch (WebFetch bloqueado), conferidos em CNN Brasil e CartaCapital.",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 46 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 46 }
+    ]
+  }
+]

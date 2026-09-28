@@ -578,8 +578,8 @@ com campo encerrado em 23/09, e a eleição é em 04/10.
 
 | Instituto | Campo | Ficha | 1º turno | 2º turno |
 | --- | --- | --- | --- | --- |
-| **PoderData/Aya** | 20–23/09 | 3.000 entrevistas, margem 2 | Lula 43 x Flávio 42 | Flávio 46 x Lula 45 |
-| **Palver** | 20–23/09 | 5.000, margem 2,5, BR-09587/2026 | não publicado | Flávio 48 x Lula 45 |
+| **PoderData/Aya** | 20–23/09 | 3.000 entrevistas, margem **±1,8** (não ±2) | totais **Lula 41 x Flávio 39** (os 43 x 42 que eu havia registrado são **votos válidos**) | Flávio 46 x Lula 45 |
+| **Palver** | 20–23/09 | 5.000, margem 2,5, BR-09587/2026 | **Lula 43 x Flávio 43** (eu havia escrito "não publicado" — estava errado) | Flávio 48 x Lula 45 |
 | **Futura/100% Cidades** | 19–23/09 | 2.000, margem 2,2, 95% | Flávio 40,4 x Lula 38,4 | Flávio 49,4 x Lula 43,7 |
 | **Real Time Big Data** | 19–23/09 | 2.000, margem 2, 95% | Lula 41 x Flávio 37 | Flávio 45 x Lula 44 |
 
@@ -898,6 +898,51 @@ Somado ao bloco equivalente de senador já registrado acima, é a maior
 lacuna da base a menos de dez dias da eleição. **Vale uma rodada de
 recuperação dedicada**, não a varredura diária — que por contrato só olha
 a janela do dia.
+
+## URGENTE — 28/09: a base contém três pesquisas sob suspensão judicial ativa
+
+Não é mais risco abstrato. **Três pesquisas publicadas hoje no site estão
+sob ordem judicial de não divulgação.**
+
+Em 27/09 a juíza auxiliar Silvana Maria Parfieniuk, do TRE-TO, determinou a
+suspensão imediata da divulgação, **reprodução e republicação** da pesquisa
+de registro **TO-04340/2026** (Real Time Big Data, campo 21–24/09,
+divulgada em 25/09), com multa de **R$ 50 mil por dia** de descumprimento.
+A base tem três fichas com esse registro:
+
+- `2026-09-25-real-time-big-data-to-governador-t1`
+- `2026-09-25-real-time-big-data-to-governador-t2`
+- `2026-09-25-real-time-big-data-to-senador-t1`
+
+O recorte **presidencial** da mesma rodada tem registro próprio
+(BR-07147/2026) e **não** está coberto pela decisão.
+
+O fundamento é mais concreto que o das decisões anteriores: "cumulação de
+vícios formais" capaz de afastar a presunção de regularidade — a única
+nota fiscal apresentada no registro foi emitida **quase dez meses antes
+dele** e descreve **serviços de informática e construção civil**, sem
+vínculo com a pesquisa, com as eleições de 2026 ou com o Tocantins. Há
+ainda falhas na identificação de bairros e nos critérios amostrais. A
+representação é do candidato Vicentinho Júnior e da coligação "Pra Cima,
+Tocantins".
+
+**O que fiz em 28/09:** anotei as três fichas com a decisão, sem alterar
+nenhum número. É aditivo e reversível, e segue o precedente do Veritá
+("manter com alerta", decisão do humano em 25/09).
+
+**O que NÃO fiz, e é decisão sua:** retirar as três do ar. A ordem fala em
+divulgação, reprodução e republicação — um site que as exibe está, na
+leitura mais direta, reproduzindo. Manter anotado é defensável como
+transparência; retirar é o que a decisão literalmente pede. **Não tomei
+essa decisão sozinho porque é externa e de difícil reversão.**
+
+### Correção ao que registrei em 27/09
+
+A varredura de hoje apurou que a liminar do **Maranhão** (MA-02569/2026)
+**foi depois revogada** e o pedido julgado improcedente. A lista de estados
+com decisão vigente contra o instituto não inclui o MA. Não conferi isso em
+fonte primária — está aqui como ressalva ao que escrevi ontem, não como
+fato estabelecido.
 
 ## DECISÃO PENDENTE: a Real Time Big Data sob suspensões em série (27/09)
 

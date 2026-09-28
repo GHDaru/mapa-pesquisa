@@ -1,0 +1,313 @@
+[
+  {
+    "id": "2026-09-24-poderdata-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "PoderData",
+    "registroTSE": "BR-01739/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-20",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 3000,
+    "margem": 1.8,
+    "cenario": "estimulada, 1º turno — nacional (votos totais)",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poderdata/em-votos-validos-lula-tem-43-contra-42-de-flavio-no-1o-turno/"
+    },
+    "observacao": "Rodada PoderData/Aya divulgada em 24/09/2026. Ficha técnica conferida em várias coberturas: 3.000 entrevistas por telefone (celular e fixo) em 723 municípios das 27 UFs, 20 a 23/09/2026, margem de erro de 1,8 ponto e intervalo de confiança de 95%. MARGEM: a pista de ±2 NÃO se sustenta; todas as coberturas que informam a margem desta rodada dizem 1,8 ponto (coerente com n=3.000 e com a rodada anterior do mesmo instituto já na base, de 17/09). LISTA INCOMPLETA: a cobertura acessível publica o detalhamento por candidato APENAS em votos válidos (Lula 43%, Flávio Bolsonaro 42%, Augusto Cury 6%, Renan Santos 3%, Ronaldo Caiado 2%, Romeu Zema, Rui Costa Pimenta, Samara Martins e Clariana Barão com 1% cada; Wilson Grassi, Leonardo Avalanche, Hertz Dias e Edmilson Costa não pontuaram — soma 100%). No cenário de votos totais, que é o usado nesta base, só foram divulgados Lula 41%, Flávio 39%, brancos/nulos 4% e não souberam responder 2%; os cerca de 14 pontos dos demais candidatos NÃO foram divulgados nessa base e por isso não constam aqui — nada foi estimado nem redistribuído. CONTRATANTE: nenhuma fonte afirma contratante desta rodada; o PoderData é do grupo Poder360 e a cobertura descreve a pesquisa como feita com recursos próprios, com a Aya Bancah como parceira de divulgação — como não há afirmação explícita de contratante para esta rodada, fica null. REGISTRO TSE: BR-01739/2026 aparece na ficha reproduzida pela cobertura, mas não foi possível conferir no site do TSE (só WebSearch disponível). Dados obtidos via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 41 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 39 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 4 },
+      { "candidato": "Não sabe", "partido": null, "pct": 2 }
+    ]
+  },
+  {
+    "id": "2026-09-24-poderdata-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "PoderData",
+    "registroTSE": "BR-01739/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-20",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 3000,
+    "margem": 1.8,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — nacional",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poderdata/flavio-tem-46-e-lula-45-no-2o-turno-diz-poderdata-aya/"
+    },
+    "observacao": "Empate técnico: 1 ponto de diferença contra margem de 1,8. A tabela fecha em 100%. Confere com a pista (Flávio 46 x Lula 45). Mesma ficha técnica do registro de 1º turno — ver observação lá sobre margem, contratante e registro TSE. OUTROS CENÁRIOS DE 2º TURNO: coberturas secundárias citam confrontos sem Lula (ex.: Flávio x Augusto Cury) com números CONTRADITÓRIOS entre si nas buscas (41x39, 43x36) e sem ficha completa; por isso NÃO foram registrados. Dados obtidos via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 46 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 45 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 7 },
+      { "candidato": "Não sabe", "partido": null, "pct": 2 }
+    ]
+  },
+  {
+    "id": "2026-09-24-palver-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Palver",
+    "registroTSE": "BR-09587/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-20",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 5000,
+    "margem": 2.5,
+    "cenario": "estimulada, 1º turno — nacional",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/palver-flavio-e-lula-empatam-no-1o-turno-em-43/"
+    },
+    "observacao": "Rodada Palver divulgada em 24/09/2026. A PISTA DE QUE O 1º TURNO NÃO FOI PUBLICADO NÃO SE SUSTENTA: o cenário estimulado de 1º turno foi divulgado e dá empate numérico, Lula 43% e Flávio Bolsonaro 43% (manchete da CNN Brasil e confirmação em Gazeta do Povo, Poder360, JOTA e CartaCapital). LISTA INCOMPLETA: a cobertura acessível não traz o detalhamento dos demais candidatos nem as linhas de brancos/nulos e não sabe deste cenário. As buscas devolveram números avulsos e mutuamente incompatíveis para o restante da tabela (uma versão com Renan Santos 8% e Augusto Cury 2%, outra com 'brancos e nulos 8%' — juntos passariam de 100%), então NADA além de Lula e Flávio foi registrado; não foi estimado nem distribuído resto. FICHA: 5.000 entrevistas de 20 a 23/09/2026, 95% de confiança, margem de 2,5 pontos, registro TSE BR-09587/2026 — os três itens da pista se confirmaram. A margem de 2,5 é maior do que uma amostra aleatória simples de 5.000 daria (~1,4), mas é a margem publicada pelo próprio instituto e é coerente com as rodadas Palver já na base (2,5 em 09/09 e 2,8 em 21/09), que usam recrutamento via WhatsApp. CONTRATANTE: nenhuma fonte afirma contratante; uma busca sugeriu 'o próprio instituto', sem afirmação explícita — fica null. Dados obtidos via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 43 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 43 }
+    ]
+  },
+  {
+    "id": "2026-09-24-palver-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Palver",
+    "registroTSE": "BR-09587/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-20",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 5000,
+    "margem": 2.5,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — nacional",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-48-contra-45-de-lula-no-2o-turno-diz-pesquisa/"
+    },
+    "observacao": "Confere com a pista: Flávio Bolsonaro 48% x Lula 45%, empate técnico dentro da margem de 2,5 pontos. LISTA INCOMPLETA: as linhas de brancos/nulos e não sabe deste cenário não foram divulgadas na cobertura acessível e por isso não constam. A cobertura menciona que a Palver também testou 2º turnos de Lula contra Ronaldo Caiado, Romeu Zema, Renan Santos e Augusto Cury, mas os números devolvidos pelas buscas para esses confrontos são contraditórios entre si e não puderam ser confirmados — nenhum foi registrado. Mesma ficha técnica do registro de 1º turno. Dados obtidos via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 48 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 45 }
+    ]
+  },
+  {
+    "id": "2026-09-24-futura-100-cidades-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Futura/100% Cidades",
+    "registroTSE": "BR-05268/2026",
+    "contratante": "100% Cidades",
+    "dataInicio": "2026-09-19",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, 1º turno — nacional",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-404-e-lula-384-no-1o-turno-diz-futura/"
+    },
+    "observacao": "Rodada Futura Inteligência/100% Cidades divulgada em 24/09/2026. A pista se confirmou integralmente: 2.000 entrevistas por telefone (CATI) de 19 a 23/09/2026, margem de 2,2 pontos, 95% de confiança, Flávio 40,4% x Lula 38,4%. Registro TSE BR-05268/2026. CONTRATANTE: as fontes afirmam explicitamente que a pesquisa foi contratada pela 100% Cidades; a mesma cobertura informa custo de R$ 160 mil pago pela Futura Consultoria e Assessoria Ltda. Registrado 100% Cidades por ser a contratante afirmada, com a ressalva do pagador. A tabela publicada soma 99,7% (arredondamentos; pode haver candidato com 0,3% não nominado na cobertura). Brancos/nulos (2,1%) e indecisos (3,2%) foram divulgados. Dados obtidos via WebSearch (WebFetch bloqueado); números conferidos em Poder360, CNN Brasil, Exame e Gazeta Brasil.",
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 40.4 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 38.4 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 5.7 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 5.6 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 2.4 },
+      { "candidato": "Romeu Zema", "partido": "Novo", "pct": 0.9 },
+      { "candidato": "Samara Martins", "partido": "UP", "pct": 0.5 },
+      { "candidato": "Rui Costa Pimenta", "partido": "PCO", "pct": 0.3 },
+      { "candidato": "Leonardo Avalanche", "partido": "PRTB", "pct": 0.2 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 2.1 },
+      { "candidato": "Não sabe", "partido": null, "pct": 3.2 }
+    ]
+  },
+  {
+    "id": "2026-09-24-futura-100-cidades-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Futura/100% Cidades",
+    "registroTSE": "BR-05268/2026",
+    "contratante": "100% Cidades",
+    "dataInicio": "2026-09-19",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — nacional",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/futura-flavio-tem-494-no-2o-turno-lula-437/"
+    },
+    "observacao": "Confere com a pista: Flávio Bolsonaro 49,4% x Lula 43,7%. A tabela fecha exatamente em 100,0% (brancos/nulos/nenhum 5,6% e indecisos 1,3%). ATENÇÃO: circula também uma manchete Futura com 'Flávio 48,1% x Lula 43,7%' — é outra rodada, não esta; o que fixa esta é o fechamento em 100,0% com 5,6% e 1,3% junto do campo 19–23/09. OUTROS CENÁRIOS: uma cobertura cita um 2º turno Lula x Romeu Zema (Zema 43,8% x Lula 43,3%) nesta rodada, mas outra busca atribuiu números diferentes e conflitantes a confrontos Futura de outra rodada (Lula x Caiado 43,7% x 42,8%, campo de 4 a 10/09); sem confirmação em segunda fonte para o campo 19–23/09, NENHUM confronto além de Lula x Flávio foi registrado. Mesma ficha técnica do registro de 1º turno. Dados obtidos via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 49.4 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 43.7 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 5.6 },
+      { "candidato": "Não sabe", "partido": null, "pct": 1.3 }
+    ]
+  },
+  {
+    "id": "2026-09-24-real-time-big-data-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-04202/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-19",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno — nacional",
+    "fonte": {
+      "nome": "Brasil de Fato",
+      "url": "https://www.brasildefato.com.br/2026/09/24/real-time-big-data-lula-tem-41-e-flavio-bolsonaro-soma-37-no-primeiro-turno/"
+    },
+    "observacao": "Rodada nacional Real Time Big Data divulgada em 24/09/2026. A pista se confirmou: 2.000 entrevistas de 19 a 23/09/2026, margem de 2 pontos, 95% de confiança, Lula 41% x Flávio 37%. Registro TSE BR-04202/2026 conforme a ficha reproduzida pela cobertura (não conferido no site do TSE — só WebSearch disponível). CONTRATANTE: nenhuma fonte desta rodada afirma contratante; fica null. A tabela divulgada soma 99% (arredondamento ou linha de 'outros' não divulgada). SUSPENSÕES JUDICIAIS: o instituto está sob suspensões em série em pesquisas ESTADUAIS (MA, CE, TO e outras). Nas buscas feitas não há notícia de suspensão desta rodada NACIONAL (BR-04202/2026), que foi divulgada normalmente — por isso entra na base. A decisão geral sobre o instituto segue com o responsável do projeto. Dados obtidos via WebSearch (WebFetch bloqueado); números conferidos em Brasil de Fato, Metrópoles, CNN Brasil, Gazeta do Povo e CartaCapital.",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 41 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 37 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 6 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 6 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 2 },
+      { "candidato": "Romeu Zema", "partido": "Novo", "pct": 1 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 3 },
+      { "candidato": "Não sabe", "partido": null, "pct": 3 }
+    ]
+  },
+  {
+    "id": "2026-09-24-real-time-big-data-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-04202/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-19",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — nacional",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-big-data-flavio-tem-45-no-2o-turno-lula-44/"
+    },
+    "observacao": "Confere com a pista: Flávio Bolsonaro 45% x Lula 44%, empate técnico. A tabela fecha em 100% (brancos/nulos 8%, não sabe/não respondeu 3%). Único dos cinco confrontos testados em que Lula aparece atrás numericamente. Mesma ficha técnica do registro de 1º turno — ver observação lá sobre contratante, registro TSE e suspensões judiciais. Dados obtidos via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 45 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 44 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 8 },
+      { "candidato": "Não sabe", "partido": null, "pct": 3 }
+    ]
+  },
+  {
+    "id": "2026-09-24-real-time-big-data-br-presidente-t2-lula-caiado",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-04202/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-19",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Ronaldo Caiado — nacional",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/real-time-big-data-lula-tem-41-e-flavio-bolsonaro-marca-37-no-1o-turno"
+    },
+    "observacao": "Um dos cinco cenários de 2º turno testados nesta rodada: empate numérico em 44% a 44%. LISTA INCOMPLETA: as linhas de brancos/nulos e não sabe deste confronto não foram divulgadas na cobertura acessível e por isso não constam — nada foi estimado. Mesma ficha técnica do registro de 1º turno. Dados obtidos via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 44 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 44 }
+    ]
+  },
+  {
+    "id": "2026-09-24-real-time-big-data-br-presidente-t2-lula-cury",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-04202/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-19",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Augusto Cury — nacional",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/real-time-big-data-lula-tem-41-e-flavio-bolsonaro-marca-37-no-1o-turno"
+    },
+    "observacao": "Um dos cinco cenários de 2º turno testados nesta rodada: Lula 44% x Augusto Cury 43%, empate técnico. LISTA INCOMPLETA: as linhas de brancos/nulos e não sabe deste confronto não foram divulgadas na cobertura acessível e por isso não constam — nada foi estimado. Mesma ficha técnica do registro de 1º turno. Dados obtidos via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 44 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 43 }
+    ]
+  },
+  {
+    "id": "2026-09-24-real-time-big-data-br-presidente-t2-lula-renan",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-04202/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-19",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Renan Santos — nacional",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/real-time-big-data-lula-tem-41-e-flavio-bolsonaro-marca-37-no-1o-turno"
+    },
+    "observacao": "Um dos cinco cenários de 2º turno testados nesta rodada: Lula 44% x Renan Santos 38%. LISTA INCOMPLETA: as linhas de brancos/nulos e não sabe deste confronto não foram divulgadas na cobertura acessível e por isso não constam — nada foi estimado. Mesma ficha técnica do registro de 1º turno. Dados obtidos via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 44 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 38 }
+    ]
+  },
+  {
+    "id": "2026-09-24-real-time-big-data-br-presidente-t2-lula-zema",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-04202/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-19",
+    "dataFim": "2026-09-23",
+    "publicadoEm": "2026-09-24",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Romeu Zema — nacional",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/real-time-big-data-lula-tem-41-e-flavio-bolsonaro-marca-37-no-1o-turno"
+    },
+    "observacao": "Um dos cinco cenários de 2º turno testados nesta rodada: Lula 45% x Romeu Zema 39%. LISTA INCOMPLETA: as linhas de brancos/nulos e não sabe deste confronto não foram divulgadas na cobertura acessível e por isso não constam — nada foi estimado. Mesma ficha técnica do registro de 1º turno. Dados obtidos via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 45 },
+      { "candidato": "Romeu Zema", "partido": "Novo", "pct": 39 }
+    ]
+  }
+]

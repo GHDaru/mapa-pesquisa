@@ -1,0 +1,350 @@
+[
+  {
+    "id": "2026-09-28-parana-pesquisas-pr-governador-t1",
+    "uf": "PR",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "PR-02701/2026",
+    "contratante": "Sedek Serviços, Tecnologia & Informação LTDA",
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-27",
+    "publicadoEm": "2026-09-28",
+    "amostra": 1280,
+    "margem": 2.8,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/parana-pesquisas-no-pr-moro-tem-462-requiao-filho-236-e-sandro-215/"
+    },
+    "resultados": [
+      { "candidato": "Sergio Moro", "partido": "PL", "pct": 46.2 },
+      { "candidato": "Requião Filho", "partido": "PDT", "pct": 23.6 },
+      { "candidato": "Sandro Alex", "partido": "PSD", "pct": 21.5 },
+      { "candidato": "Luiz França", "partido": "Missão", "pct": 0.5 },
+      { "candidato": "Tayná Miessa", "partido": "UP", "pct": 0.2 },
+      { "candidato": "Adriano Funileiro", "partido": "PCO", "pct": 0.1 },
+      { "candidato": "Alexandre Salomão", "partido": "Mobiliza", "pct": 0.1 },
+      { "candidato": "Samuel de Mattos", "partido": "PSTU", "pct": 0.1 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 3.7 },
+      { "candidato": "Nenhum/branco/nulo", "partido": null, "pct": 4.1 }
+    ],
+    "observacao": "Terceira rodada da Paraná Pesquisas no Paraná, divulgada na segunda-feira 28/09/2026 (campo 25–27/09, 1.280 entrevistas em 60 municípios, margem de 2,8 p.p., 95% de confiança). Registro TSE PR-02701/2026 e contratante Sedek Serviços, Tecnologia & Informação LTDA conforme a página do próprio instituto (paranapesquisas.com.br) — contratante afirmado explicitamente, não inferido de veículo divulgador. NÚMEROS REGISTRADOS SÃO DO TOTAL, critério desta base: a ficha soma 100,1% (46,2 + 23,6 + 21,5 + 0,5 + 0,2 + 0,1 + 0,1 + 0,1 + 3,7 não sabe + 4,1 nenhum/branco/nulo), diferença de 0,1 por arredondamento. ATENÇÃO: várias manchetes e o agregador da Gazeta do Povo noticiaram '50,1% no cenário estimulado' — esse 50,1% é a leitura em VOTOS VÁLIDOS (Moro 50,1%, Requião Filho 25,6%, Sandro Alex 23,3%), não o total, e não foi gravado. A leitura de válidos confere com os totais aqui registrados (base de válidos 92,3: 46,2/92,3 = 50,05% ≈ 50,1%; 23,6/92,3 = 25,6%; 21,5/92,3 = 23,3%), o que valida internamente a ficha. Siglas dos oito candidatos registrados no PR conferidas com a lista da Agência Brasil/CNN (Adriano Funileiro PCO, Alexandre Salomão Mobiliza, Luiz França Missão, Requião Filho PDT, Samuel de Mattos PSTU, Sandro Alex PSD, Sergio Moro PL, Tayná Miessa UP); as matérias grafam 'Doutor Alexandre Salomão', mantido 'Alexandre Salomão' como já consta na base. Esta rodada não trouxe cenário de 2º turno. Também noticiada por Band, DCM, BandAB, Bem Paraná, Litorânea e NC News. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-28-parana-pesquisas-go-governador-t1",
+    "uf": "GO",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "GO-07040/2026",
+    "contratante": "Portal 6 Comunicação LTDA",
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-27",
+    "publicadoEm": "2026-09-28",
+    "amostra": 1352,
+    "margem": 2.7,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/parana-pesquisas-em-go-vilela-tem-456-morais-185-e-perillo-184/"
+    },
+    "resultados": [
+      { "candidato": "Daniel Vilela", "partido": "MDB", "pct": 45.6 },
+      { "candidato": "Wilder Morais", "partido": "PL", "pct": 18.5 },
+      { "candidato": "Marconi Perillo", "partido": "PSDB", "pct": 18.4 },
+      { "candidato": "Luis Cesar Bueno", "partido": "PT", "pct": 6.1 },
+      { "candidato": "Luciana Amorim", "partido": "UP", "pct": 0.9 },
+      { "candidato": "Danilo Pinheiro", "partido": "PCO", "pct": 0.8 },
+      { "candidato": "Nenhum/branco/nulo", "partido": null, "pct": 5.5 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 4.1 }
+    ],
+    "observacao": "Terceira rodada da Paraná Pesquisas/Portal 6 em Goiás, divulgada na segunda-feira 28/09/2026 (campo 25–27/09, 1.352 entrevistas em 62 municípios, margem de 2,7 p.p., 95% de confiança). Registro TSE GO-07040/2026 e contratante Portal 6 Comunicação LTDA conforme a página do próprio instituto (paranapesquisas.com.br) — contratante afirmado explicitamente, não inferido. NÚMEROS REGISTRADOS SÃO DO TOTAL, critério desta base: a ficha soma 99,9% (45,6 + 18,5 + 18,4 + 6,1 + 0,9 + 0,8 + 5,5 nenhum/branco/nulo + 4,1 não sabe), diferença de 0,1 por arredondamento. ATENÇÃO: o agregador da Gazeta do Povo noticiou '50,4% no cenário estimulado' — o número correto do total é 45,6%; 50,5% é a leitura em VOTOS VÁLIDOS (Daniel Vilela 50,5%, Luis Cesar Bueno 6,8%, Luciana Amorim 1%, Danilo Pinheiro 0,9%), não gravada aqui. A leitura de válidos confere com os totais registrados (base de válidos 90,3: 45,6/90,3 = 50,5%; 6,1/90,3 = 6,8%; 0,9/90,3 = 1,0%; 0,8/90,3 = 0,9%), o que valida internamente a ficha. Não confundir com a rodada do Instituto Goiás Pesquisas de 27/09 (campo 24–25/09), que já está na base: instituto e período de campo diferentes. Esta rodada não trouxe cenário de 2º turno próprio. Também noticiada por Jornal Opção, Portal 6, Diário de Goiás, Tribuna do Planalto, CartaCapital, Revista Factual, Badiinho e Portal GO 020. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-28-real-time-big-data-mg-governador-t1",
+    "uf": "MG",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "MG-03351/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-26",
+    "publicadoEm": "2026-09-28",
+    "amostra": 2000,
+    "margem": 2.0,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/2026/09/28/real-time-big-data-aponta-cleitinho-liderando-com-38-em-minas-patrus-tem-20.html"
+    },
+    "resultados": [
+      { "candidato": "Cleitinho Azevedo", "partido": "Republicanos", "pct": 38 },
+      { "candidato": "Patrus Ananias", "partido": "PT", "pct": 20 },
+      { "candidato": "Alexandre Kalil", "partido": "PDT", "pct": 9 },
+      { "candidato": "Mateus Simões", "partido": "PSD", "pct": 8 },
+      { "candidato": "Flávio Roscoe", "partido": "PL", "pct": 8 },
+      { "candidato": "Gabriel Azevedo", "partido": "MDB", "pct": 5 },
+      { "candidato": "Ben Mendes", "partido": "Missão", "pct": 2 },
+      { "candidato": "Indira Xavier", "partido": "UP", "pct": 1 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 4 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 4 }
+    ],
+    "observacao": "Rodada do Real Time Big Data em Minas Gerais divulgada na segunda-feira 28/09/2026 (campo 23–26/09, 2.000 entrevistas, margem de 2 p.p., 95% de confiança). Registro TSE MG-03351/2026. CONTRATANTE NÃO GRAVADO (null) DE PROPÓSITO: nenhuma das matérias consultadas afirma explicitamente quem contratou esta rodada mineira; veículo que divulga não é contratante e nada foi inferido. NÚMEROS REGISTRADOS SÃO DO TOTAL, critério desta base: a ficha soma 99% (38 + 20 + 9 + 8 + 8 + 5 + 2 + 1 + 4 brancos/nulos + 4 não sabe). O 1 ponto que falta não foi atribuído por nenhuma fonte consultada — possivelmente um candidato menor não citado (a base registra também Túlio Lopes/PCB em MG, ausente da lista divulgada) ou arredondamento; NÃO foi inventada linha para fechar em 100. ATENÇÃO: o agregador da Gazeta do Povo noticiou '41% para Cleitinho e 22% para Patrus' — essa é a leitura em VOTOS VÁLIDOS, não o total, e não foi gravada; ela é coerente com os totais aqui registrados (38 e 20 sobre uma base de válidos de ~91–92). Rodada distinta da do mesmo instituto em MG com campo 16–19/09 (publicada em 21/09), já presente na base. Nenhuma suspensão judicial localizada contra esta rodada em MG (as liminares em série contra o instituto até aqui são em PR, CE, MA, RN, AL, SE e, desde 27/09, TO). Também noticiada por Exame, Money Times, CNN Brasil, Estado de Minas, CartaCapital, Brasil 247, Jornal de Brasília e Tribuna do Sertão. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-28-real-time-big-data-mg-governador-t2-cleitinho-patrus",
+    "uf": "MG",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "MG-03351/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-26",
+    "publicadoEm": "2026-09-28",
+    "amostra": 2000,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno (Cleitinho Azevedo x Patrus Ananias)",
+    "fonte": {
+      "nome": "Estado de Minas",
+      "url": "https://www.em.com.br/politica/2026/09/7509615-real-time-big-data-cleitinho-tem-46-e-patrus-41-no-2-turno.html"
+    },
+    "resultados": [
+      { "candidato": "Cleitinho Azevedo", "partido": "Republicanos", "pct": 46 },
+      { "candidato": "Patrus Ananias", "partido": "PT", "pct": 41 }
+    ],
+    "observacao": "Cenário de 2º turno da rodada Real Time Big Data/MG de campo 23–26/09, divulgada em 28/09/2026. Registro TSE MG-03351/2026; contratante não afirmado por nenhuma fonte, por isso null. NÚMEROS DO TOTAL (46 e 41): as matérias não publicaram a decomposição de brancos/nulos e indecisos deste confronto (restam 13 pontos não atribuídos), e nenhuma linha foi criada para eles. A leitura em VOTOS VÁLIDOS noticiada por alguns veículos (Cleitinho 53% x Patrus 47%) NÃO foi gravada — confere com os totais aqui registrados (46/87 = 52,9%; 41/87 = 47,1%), o que valida internamente a ficha. Um registro por confronto, conforme o contrato da rotina. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-28-real-time-big-data-mg-governador-t2-cleitinho-kalil",
+    "uf": "MG",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "MG-03351/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-26",
+    "publicadoEm": "2026-09-28",
+    "amostra": 2000,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno (Cleitinho Azevedo x Alexandre Kalil)",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/2026/09/28/real-time-big-data-aponta-cleitinho-liderando-com-38-em-minas-patrus-tem-20.html"
+    },
+    "resultados": [
+      { "candidato": "Cleitinho Azevedo", "partido": "Republicanos", "pct": 48 },
+      { "candidato": "Alexandre Kalil", "partido": "PDT", "pct": 35 }
+    ],
+    "observacao": "Cenário de 2º turno da rodada Real Time Big Data/MG de campo 23–26/09, divulgada em 28/09/2026. Registro TSE MG-03351/2026; contratante não afirmado, por isso null. NÚMEROS DO TOTAL; a decomposição de brancos/nulos e indecisos deste confronto não foi publicada e não foi criada linha para ela. Um registro por confronto, conforme o contrato da rotina. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-28-real-time-big-data-mg-governador-t2-cleitinho-simoes",
+    "uf": "MG",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "MG-03351/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-26",
+    "publicadoEm": "2026-09-28",
+    "amostra": 2000,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno (Cleitinho Azevedo x Mateus Simões)",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/2026/09/28/real-time-big-data-aponta-cleitinho-liderando-com-38-em-minas-patrus-tem-20.html"
+    },
+    "resultados": [
+      { "candidato": "Cleitinho Azevedo", "partido": "Republicanos", "pct": 45 },
+      { "candidato": "Mateus Simões", "partido": "PSD", "pct": 38 }
+    ],
+    "observacao": "Cenário de 2º turno da rodada Real Time Big Data/MG de campo 23–26/09, divulgada em 28/09/2026. Registro TSE MG-03351/2026; contratante não afirmado, por isso null. NÚMEROS DO TOTAL; a decomposição de brancos/nulos e indecisos deste confronto não foi publicada e não foi criada linha para ela. Um registro por confronto, conforme o contrato da rotina. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-28-real-time-big-data-mg-governador-t2-kalil-patrus",
+    "uf": "MG",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "MG-03351/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-26",
+    "publicadoEm": "2026-09-28",
+    "amostra": 2000,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno (Alexandre Kalil x Patrus Ananias)",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/2026/09/28/real-time-big-data-aponta-cleitinho-liderando-com-38-em-minas-patrus-tem-20.html"
+    },
+    "resultados": [
+      { "candidato": "Alexandre Kalil", "partido": "PDT", "pct": 40 },
+      { "candidato": "Patrus Ananias", "partido": "PT", "pct": 39 }
+    ],
+    "observacao": "Cenário de 2º turno da rodada Real Time Big Data/MG de campo 23–26/09, divulgada em 28/09/2026. Registro TSE MG-03351/2026; contratante não afirmado, por isso null. NÚMEROS DO TOTAL; empate técnico dentro da margem de 2 p.p. A decomposição de brancos/nulos e indecisos deste confronto não foi publicada e não foi criada linha para ela. A rodada testou ainda um quinto confronto (Mateus Simões 40% x Alexandre Kalil 35%) que apareceu em apenas um dos resumos de busca consultados e, por falta de segunda confirmação, NÃO foi gravado — fica registrado aqui para eventual recuperação. Um registro por confronto, conforme o contrato da rotina. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-28-real-time-big-data-pa-governador-t1",
+    "uf": "PA",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": "Rádio e Televisão Marajoara Ltda",
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-26",
+    "publicadoEm": "2026-09-28",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/2026/09/28/no-para-hana-ghassan-tem-44-e-dr-daniel-tem-37-mostra-real-time-big-data.html"
+    },
+    "resultados": [
+      { "candidato": "Hana Ghassan", "partido": "MDB", "pct": 44 },
+      { "candidato": "Dr. Daniel Santos", "partido": "Podemos", "pct": 37 },
+      { "candidato": "Araceli Lemos", "partido": "PSOL", "pct": 2 },
+      { "candidato": "Outros candidatos (Ruth Reis, Well Macedo e Gal Leite, somados)", "partido": null, "pct": 1 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 7 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 9 }
+    ],
+    "observacao": "Rodada do Real Time Big Data no Pará divulgada na segunda-feira 28/09/2026 (campo 23–26/09, 1.600 entrevistas, margem de 2 p.p., 95% de confiança). Contratante Rádio e Televisão Marajoara Ltda, afirmado explicitamente para a rodada de campo 23–26/09 (as rodadas anteriores do instituto no PA tiveram outros contratantes: PA-00206/2026, campo 3–7/09, autocontratada; PA-00415/2026, campo 10–14/09, Rede Record de Televisão). REGISTRO TSE null: o número desta terceira rodada não apareceu em nenhuma fonte consultada — confirmar no TSE. NÚMEROS REGISTRADOS SÃO DO TOTAL, critério desta base: a ficha soma 100% (44 + 37 + 2 + 1 outros + 7 brancos/nulos + 9 não sabe). As matérias publicaram Ruth Reis (Democrata), Well Macedo (PSTU) e Gal Leite (UP) SOMADOS em 1%, sem abrir por candidato; por isso a linha agregada, sem partido — os percentuais individuais não foram inventados. A leitura em VOTOS VÁLIDOS noticiada (Hana 52%, Dr. Daniel 44%, Araceli 3%, demais somados 1%) NÃO foi gravada e confere com os totais aqui registrados (base de válidos 84: 44/84 = 52,4%; 37/84 = 44,0%), o que valida internamente a ficha. Grafias padronizadas com a base ('Dr. Daniel Santos' e 'Araceli Lemos'; as matérias escrevem 'Dr. Daniel' e 'Araceli'). Rodada distinta da Quaest/PA de campo 22–25/09 (publicada em 26/09), já na base. O PA NÃO está entre as UFs com suspensão judicial do instituto: em 27/09 a campanha de Daniel Santos teve negado o pedido de barrar esta pesquisa. Também noticiada por CNN Brasil, Diário do Pará, DOL, Diário do Grande ABC e Portal Debate. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-28-real-time-big-data-pa-governador-t2-hana-daniel",
+    "uf": "PA",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": "Rádio e Televisão Marajoara Ltda",
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-26",
+    "publicadoEm": "2026-09-28",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno (Hana Ghassan x Dr. Daniel Santos)",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/2026/09/28/no-para-hana-ghassan-tem-44-e-dr-daniel-tem-37-mostra-real-time-big-data.html"
+    },
+    "resultados": [
+      { "candidato": "Hana Ghassan", "partido": "MDB", "pct": 45 },
+      { "candidato": "Dr. Daniel Santos", "partido": "Podemos", "pct": 37 }
+    ],
+    "observacao": "Cenário de 2º turno da rodada Real Time Big Data/PA de campo 23–26/09, divulgada em 28/09/2026. Contratante Rádio e Televisão Marajoara Ltda; registro TSE desta rodada não localizado (null), confirmar no TSE. NÚMEROS DO TOTAL; a decomposição de brancos/nulos e indecisos deste confronto não foi publicada (restam 18 pontos não atribuídos) e nenhuma linha foi criada para eles. Único confronto de 2º turno testado na rodada. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-28-real-time-big-data-ba-governador-t1",
+    "uf": "BA",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BA-01777/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-26",
+    "publicadoEm": "2026-09-28",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/2026/09/28/jeronimo-amplia-vantagem-sobre-acm-neto-na-bahia-diz-pesquisa-real-time-big-data.html"
+    },
+    "resultados": [
+      { "candidato": "Jerônimo Rodrigues", "partido": "PT", "pct": 47 },
+      { "candidato": "ACM Neto", "partido": "União Brasil", "pct": 43 },
+      { "candidato": "Ronaldo Mansur", "partido": "PSOL", "pct": 1 },
+      { "candidato": "Outros candidatos", "partido": null, "pct": 1 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 5 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 3 }
+    ],
+    "observacao": "Rodada do Real Time Big Data na Bahia divulgada na segunda-feira 28/09/2026 (campo 23–26/09, 1.600 entrevistas com eleitores de 16 anos ou mais, margem de 2 p.p., 95% de confiança). Registro TSE BA-01777/2026. CONTRATANTE NÃO GRAVADO (null) DE PROPÓSITO: um dos resumos de busca descreveu a rodada como contratada pelo próprio instituto — exatamente o ponto de autofinanciamento que motivou as liminares em série contra a Real Time Big Data —, mas nenhuma matéria consultada afirma um contratante nomeado; nada foi inferido. NÚMEROS REGISTRADOS SÃO DO TOTAL, critério desta base: a ficha soma 100% (47 + 43 + 1 + 1 outros + 5 brancos/nulos + 3 não sabe). A linha 'Outros candidatos' (1%) é agregada porque as matérias não abriram por nome — a base registra ainda Maria Bona (PCO), Aroldo Félix (UP) e Ariel Capistrano (DC) na BA, mas os percentuais individuais não foram publicados e não foram inventados. Jerônimo e ACM Neto seguem em empate técnico no limite da margem. Rodada distinta da Quaest/BA (campo 20–23/09) e da Paraná Pesquisas/BA (campo 21–23/09), ambas já na base. Nenhuma suspensão judicial localizada contra o instituto na BA. Também noticiada por Poder360, Metrópoles, InfoMoney, BNews, Brasil 247 e Diário do Grande ABC. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-28-real-time-big-data-ba-governador-t2-jeronimo-acmneto",
+    "uf": "BA",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BA-01777/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-26",
+    "publicadoEm": "2026-09-28",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno (Jerônimo Rodrigues x ACM Neto)",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/2026/09/28/jeronimo-amplia-vantagem-sobre-acm-neto-na-bahia-diz-pesquisa-real-time-big-data.html"
+    },
+    "resultados": [
+      { "candidato": "Jerônimo Rodrigues", "partido": "PT", "pct": 48 },
+      { "candidato": "ACM Neto", "partido": "União Brasil", "pct": 44 }
+    ],
+    "observacao": "Cenário de 2º turno da rodada Real Time Big Data/BA de campo 23–26/09, divulgada em 28/09/2026. Registro TSE BA-01777/2026; contratante não nomeado por nenhuma fonte, por isso null. NÚMEROS DO TOTAL; a decomposição de brancos/nulos e indecisos deste confronto não foi publicada e nenhuma linha foi criada para ela. Único confronto de 2º turno testado na rodada. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-28-real-time-big-data-pe-governador-t1",
+    "uf": "PE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "PE-06087/2026",
+    "contratante": "Record TV",
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-26",
+    "publicadoEm": "2026-09-28",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/joao-campos-tem-45-em-pernambuco-raquel-lyra-marca-43-diz-real-time"
+    },
+    "resultados": [
+      { "candidato": "João Campos", "partido": "PSB", "pct": 45 },
+      { "candidato": "Raquel Lyra", "partido": "PSD", "pct": 43 },
+      { "candidato": "Ivan Moraes", "partido": "PSOL", "pct": 2 },
+      { "candidato": "Renan Hallais", "partido": "Missão", "pct": 2 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 4 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 3 }
+    ],
+    "observacao": "Rodada do Real Time Big Data em Pernambuco divulgada na segunda-feira 28/09/2026 (campo 23–26/09, 1.600 entrevistas, margem de 2 p.p., 95% de confiança). Registro TSE PE-06087/2026. Contratante Record TV, afirmado explicitamente em mais de uma matéria — não inferido de veículo divulgador. NÚMEROS REGISTRADOS SÃO DO TOTAL, critério desta base: a ficha soma 99% (45 + 43 + 2 + 2 + 4 brancos/nulos + 3 não sabe). O 1 ponto que falta não foi atribuído por nenhuma fonte — a base registra ainda Guilherme Fonseca (PSTU), Professora Camila (UP), Professor Jeremias do Banco (DC) e Victor Assis (PCO) em PE, todos com percentuais não publicados nesta rodada; NÃO foi inventada linha para fechar em 100. João Campos e Raquel Lyra em empate técnico dentro da margem. Grafia padronizada com a base ('Renan Hallais'; as matérias escrevem apenas 'Renan'). Rodada distinta da Quaest/PE (campo 19–22/09), da Datafolha/PE e da DataTrends/PE (ambas campo 22–24/09), já na base — atenção a manchetes de rodadas anteriores em que os dois apareciam empatados em 43%. Nenhuma suspensão judicial localizada contra o instituto em PE. Também noticiada por Gazeta do Povo, Brasil 247, Tribuna Online, Jamildo/NE10, NC News e Blog do Pereira. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-28-real-time-big-data-pe-governador-t2-joao-raquel",
+    "uf": "PE",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "PE-06087/2026",
+    "contratante": "Record TV",
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-26",
+    "publicadoEm": "2026-09-28",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno (João Campos x Raquel Lyra)",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/joao-campos-tem-45-em-pernambuco-raquel-lyra-marca-43-diz-real-time"
+    },
+    "resultados": [
+      { "candidato": "João Campos", "partido": "PSB", "pct": 46 },
+      { "candidato": "Raquel Lyra", "partido": "PSD", "pct": 45 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 4 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 5 }
+    ],
+    "observacao": "Cenário de 2º turno da rodada Real Time Big Data/PE de campo 23–26/09, divulgada em 28/09/2026. Registro TSE PE-06087/2026, contratante Record TV (afirmado explicitamente). NÚMEROS DO TOTAL: a ficha soma 100% (46 + 45 + 4 brancos/nulos + 5 não sabe). Empate técnico dentro da margem de 2 p.p., repetindo o quadro do 1º turno. Único confronto de 2º turno testado na rodada. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  }
+]

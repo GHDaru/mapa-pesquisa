@@ -1,0 +1,160 @@
+[
+  {
+    "id": "2026-09-28-parana-pesquisas-ap-senador-t1",
+    "uf": "AP",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "AP-03035/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-27",
+    "publicadoEm": "2026-09-28",
+    "amostra": 1000,
+    "margem": 3.2,
+    "cenario": "estimulada, LEITURA 2 — SOMA do 1o e do 2o voto (2 vagas; cada entrevistado podia indicar dois nomes, base de ate 200%). NAO e primeira escolha isolada e NAO e o consolidado reduzido a 100%",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/parana-pesquisas-senado-no-ap-rayssa-54-randolfe-367-barreto-361/"
+    },
+    "resultados": [
+      { "candidato": "Rayssa Furlan", "partido": "Podemos", "pct": 54.0 },
+      { "candidato": "Randolfe Rodrigues", "partido": "PT", "pct": 36.7 },
+      { "candidato": "Lucas Barreto", "partido": "PSD", "pct": 36.1 },
+      { "candidato": "Acácio Favacho", "partido": "MDB", "pct": 21.4 },
+      { "candidato": "Alliny Serrão", "partido": "União Brasil", "pct": 20.0 },
+      { "candidato": "Capi", "partido": "PSB", "pct": 6.1 },
+      { "candidato": "Juíza Jô", "partido": "DC", "pct": 1.2 },
+      { "candidato": "Professor Uzian Pinto", "partido": "DC", "pct": 0.8 },
+      { "candidato": "Helio Silva", "partido": "PCO", "pct": 0.4 },
+      { "candidato": "Brancos/nulos/nenhum", "partido": null, "pct": 3.5 },
+      { "candidato": "Não sabe/não opinou", "partido": null, "pct": 2.7 }
+    ],
+    "observacao": "QUAL DAS TRES LEITURAS: leitura 2 — SOMA DO 1o E DO 2o VOTO. COMO FOI DETERMINADO (aritmetica, nao redacao): os 9 candidatos somam 176,7 e o total com brancos/nulos (3,5) e nao sabe (2,7) chega a 182,9. Um total muito acima de 100 exclui tanto a leitura 1 (primeira escolha) quanto a leitura 3 (consolidado reduzido a 100%); so a soma de duas mencoes por eleitor produz esse valor. O total fica abaixo de 200,0 exatos porque parte dos entrevistados indicou apenas um nome (a Paraná Pesquisas nao forca a segunda indicacao). A redacao das materias confirma o mecanismo — CNN Brasil e Poder360 registram que a pesquisa 'permitia a indicacao de dois candidatos' —, mas a decisao aqui vem da soma. QUEBRA DE 1o E 2o VOTO: as materias localizadas NAO publicam a separacao entre primeiro e segundo voto desta rodada; por isso nao registramos quebra (declarar que nao se sabe e preferivel a estimar). FICHA: Paraná Pesquisas, campo presencial de 25 a 27/09/2026, 1.000 eleitores do Amapa, 95% de confianca, margem de 3,2 p.p., registro na Justica Eleitoral sob AP-03035/2026, divulgada na segunda-feira 28/09/2026. CONTRATANTE: nenhuma materia afirma quem contratou — registrado como null. CNN Brasil, Metropoles, Poder360, CartaCapital e Gazeta do Povo sao veiculos divulgadores, nao contratantes. NAO E DUPLICATA: nao ha pesquisa da Paraná Pesquisas para o Senado no AP em data/polls.json; as pesquisas de Senado no AP ja na base sao Quaest (campo 20-23/09) e Real Time Big Data (campo 03-07/09). SIGLAS: 'Podemos', 'DC' e 'União Brasil' seguem a grafia das fontes; dois candidatos aparecem pelo DC (Juiza Jo e Professor Uzian Pinto) — foi o que as fontes publicaram e nao alteramos. LIMITACAO DE METODO: WebFetch aos sites de noticia esta bloqueado nesta sessao; todos os numeros vieram de resumos de WebSearch, sem leitura integral das materias."
+  },
+  {
+    "id": "2026-09-28-real-time-big-data-ba-senador-t1",
+    "uf": "BA",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BA-01777/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-26",
+    "publicadoEm": "2026-09-28",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (media das duas escolhas; 2 vagas). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-senado-na-ba-rui-28-jacques-20-roma-17-angelo-15/"
+    },
+    "resultados": [
+      { "candidato": "Rui Costa", "partido": "PT", "pct": 28 },
+      { "candidato": "Jaques Wagner", "partido": "PT", "pct": 20 },
+      { "candidato": "João Roma", "partido": "PL", "pct": 17 },
+      { "candidato": "Angelo Coronel", "partido": "Republicanos", "pct": 15 },
+      { "candidato": "Professora Delliana", "partido": "PSOL", "pct": 7 },
+      { "candidato": "Outros candidatos (somados)", "partido": null, "pct": 1 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 5 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 6 }
+    ],
+    "observacao": "QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO: (a) a soma da tabela fecha em 99 (28+20+17+15+7+1 de outros +5 de brancos/nulos +6 de nao sabe), ou seja base 100 com arredondamento, o que ja exclui a leitura 2 (base 200); (b) para separar a leitura 3 da leitura 1, usamos a quebra publicada pelo proprio instituto: no 1o voto Rui Costa 39, Jaques Wagner 19 e Joao Roma 19; no 2o voto Jaques Wagner 21, Angelo Coronel 17, Rui Costa 16 e Joao Roma 15. A MEDIA das duas escolhas reproduz a tabela consolidada — Rui (39+16)/2 = 27,5 ~ 28; Wagner (19+21)/2 = 20; Roma (19+15)/2 = 17. Se fosse a leitura 1, Rui Costa apareceria com 39 e nao com 28. As materias tambem descrevem o recorte como 'resultado consolidado dos dois votos reduzido a 100%'. QUEBRA DE 1o E 2o VOTO (registrada conforme pedido): 1o voto — Rui Costa 39%, Jaques Wagner 19%, Joao Roma 19%; 2o voto — Jaques Wagner 21%, Angelo Coronel 17%, Rui Costa 16%, Joao Roma 15%. As fontes nao publicam a quebra dos demais nomes. FICHA: Real Time Big Data, campo de 23 a 26/09/2026, 1.600 eleitores baianos, 95% de confianca, margem de 2 p.p., registro BA-01777/2026, divulgada em 28/09/2026. CONTRATANTE: um resumo de busca atribuiu a contratacao ao proprio Real Time Big Data (autofinanciamento), mas nao conseguimos confirmar a frase no texto original e nao inferimos contratante a partir de quem divulgou — registrado como null e sinalizado para conferencia humana, ate porque o autofinanciamento e justamente o motivo alegado em liminares recentes contra o instituto em outros estados. SUSPENSAO JUDICIAL: as suspensoes conhecidas do Real Time Big Data (PR, CE, MA, RN, AL, SE e, nova em 27/09, TO) nao alcancam a Bahia; nenhuma decisao contra esta rodada baiana foi localizada. NAO E DUPLICATA: nao ha nenhuma pesquisa do Real Time Big Data para o Senado na BA em data/polls.json (a unica de Senado na BA de campo proximo e a Paraná Pesquisas de 21-23/09 e a Quaest de 20-23/09). LIMITACAO DE METODO: WebFetch bloqueado nesta sessao; numeros vindos de resumos de WebSearch."
+  },
+  {
+    "id": "2026-09-28-real-time-big-data-mg-senador-t1",
+    "uf": "MG",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-26",
+    "publicadoEm": "2026-09-28",
+    "amostra": 2000,
+    "margem": 2.0,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (2 vagas). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-senado-em-mg-marilia-19-savio-16-viana-16-e-aecio-12/"
+    },
+    "resultados": [
+      { "candidato": "Marília Campos", "partido": "PT", "pct": 19 },
+      { "candidato": "Domingos Sávio", "partido": "PL", "pct": 16 },
+      { "candidato": "Carlos Viana", "partido": "PSD", "pct": 16 },
+      { "candidato": "Aécio Neves", "partido": "PSDB", "pct": 12 },
+      { "candidato": "Marcelo Aro", "partido": "PP", "pct": 11 },
+      { "candidato": "Áurea Carolina", "partido": "PSOL", "pct": 8 },
+      { "candidato": "Marco Antônio Superman", "partido": "Novo", "pct": 4 },
+      { "candidato": "Arcanjo Pimenta", "partido": "MDB", "pct": 1 },
+      { "candidato": "Carlin Moura", "partido": "Avante", "pct": 1 },
+      { "candidato": "Outros candidatos (somados)", "partido": null, "pct": 1 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 5 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 7 }
+    ],
+    "observacao": "QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO: (a) aritmetica — a tabela soma 101 (19+16+16+12+11+8+4+1+1 = 88, mais 1 de outros, 5 de brancos/nulos e 7 de nao sabe), isto e, base 100 dentro do arredondamento, o que exclui a leitura 2 (base 200); (b) a materia e explicita sobre a normalizacao: 'os resultados apresentados no grafico consolidam o primeiro e o segundo voto e sao reduzidos para 100%' — a formula da leitura 3, e nao a primeira escolha isolada. A quebra de 1o e 2o voto desta rodada nao foi publicada nas materias localizadas, entao nao ha quebra a registrar. OUTROS NOMES: as fontes agregam em 'outros' (1% somado) Ana Luiza do MLB (UP), Fidelis Alcantara (UP), Manoel Carvalho (MDB), Jordano Metalurgico (PSTU), Juiz Ramon Moreira (DC), Tiao Pessoa (PCO) e Victoria Mello Vic (PSTU); mantivemos a linha agregada como a fonte a publicou, sem distribuir o valor entre eles. FICHA: Real Time Big Data, campo de 23 a 26/09/2026, 2.000 eleitores mineiros, 95% de confianca, margem de 2 p.p., divulgada em 28/09/2026. REGISTRO TSE: nao publicado nas materias localizadas — null. CONTRATANTE: nenhuma materia afirma quem contratou esta rodada — null. (A rodada anterior do mesmo instituto em MG, ja na base, foi contratada pela Rede Record Minas, mas isso nao autoriza inferir o mesmo contratante aqui.) SUSPENSAO JUDICIAL: nenhuma decisao contra o Real Time Big Data em Minas foi localizada; as suspensoes conhecidas sao PR, CE, MA, RN, AL, SE e, nova em 27/09, TO. NAO E DUPLICATA: a rodada do Real Time Big Data em MG ja na base e de campo 16-19/09 (publicada em 21/09, com Marilia Campos em 18); esta e campo 23-26/09. LIMITACAO DE METODO: WebFetch bloqueado nesta sessao; numeros vindos de resumos de WebSearch."
+  },
+  {
+    "id": "2026-09-28-real-time-big-data-pa-senador-t1",
+    "uf": "PA",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "PA-09993/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-26",
+    "publicadoEm": "2026-09-28",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (2 vagas). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-senado-no-pa-helder-tem-36-eder-16-e-chicao-16/"
+    },
+    "resultados": [
+      { "candidato": "Helder Barbalho", "partido": "MDB", "pct": 36 },
+      { "candidato": "Delegado Éder Mauro", "partido": "PL", "pct": 16 },
+      { "candidato": "Chicão", "partido": "União Brasil", "pct": 16 },
+      { "candidato": "Zequinha Marinho", "partido": "Podemos", "pct": 13 },
+      { "candidato": "Celso Sabino", "partido": "PDT", "pct": 10 },
+      { "candidato": "Lívia Noronha", "partido": "Solidariedade", "pct": 3 },
+      { "candidato": "Conti", "partido": "PSOL", "pct": 1 },
+      { "candidato": "Gizelle Freitas", "partido": "PSOL", "pct": 1 }
+    ],
+    "observacao": "QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO: (a) aritmetica — os candidatos somam 96 e, com as linhas de brancos/nulos e nao sabe, o total fica na vizinhanca de 100, muito longe da base 200 que caracterizaria a leitura 2; (b) a materia e explicita quanto a normalizacao: 'o resultado e o consolidado do primeiro e do segundo votos e reduzido a 100%', que e a formula da leitura 3 e nao a primeira escolha isolada. Reforca a leitura 3 a comparacao com a Quaest de campo 22-25/09 no mesmo estado, em que Helder aparece com 25% no recorte de primeira escolha, contra os 36% do consolidado aqui. A quebra de 1o e 2o voto desta rodada nao foi publicada nas materias localizadas — nao ha quebra a registrar. LINHAS OMITIDAS POR DIVERGENCIA ENTRE FONTES (nao inventamos numero): as fontes divergem sobre brancos/nulos e nao sabe/nao respondeu — um conjunto de materias traz 2% e 3%, outro traz 3% e 4% —, e uma unica materia acrescenta 'Breno Guimaraes (Mobiliza) 2%', ausente das demais listas completas. Como nao foi possivel decidir entre as versoes sem ler os textos integrais (WebFetch bloqueado), essas tres linhas ficaram de fora da ficha em vez de serem escolhidas arbitrariamente; os percentuais dos oito candidatos registrados sao identicos em todas as fontes consultadas (CNN Brasil, Portal O Fato, Gazeta Carajas, O Povo). FICHA: Real Time Big Data, 1.600 entrevistas com eleitores do Para entre 23 e 26/09/2026, 95% de confianca, margem de 2 p.p., registro PA-09993/2026, data de divulgacao 28/09/2026. CONTRATANTE: nenhuma materia afirma quem contratou esta rodada — null (a rodada anterior do instituto no PA, ja na base, e da Rede Record de Televisao, mas isso nao autoriza inferencia). SUSPENSAO JUDICIAL: nenhuma decisao contra o Real Time Big Data no Para foi localizada; ao contrario, materia de 27/09 registra que a campanha de Daniel Santos tentou barrar a pesquisa na Justica e perdeu. NAO E DUPLICATA: as rodadas do instituto no PA ja na base sao de campo 10-14/09 e 03-07/09. LIMITACAO DE METODO: WebFetch bloqueado nesta sessao; numeros vindos de resumos de WebSearch."
+  },
+  {
+    "id": "2026-09-28-real-time-big-data-pe-senador-t1",
+    "uf": "PE",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-26",
+    "publicadoEm": "2026-09-28",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (2 vagas). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "Blog de Jamildo (JC)",
+      "url": "https://jamildo.com/politica/real-time-pe-marilia-arraes-lidera-com-25-e-humberto-costa-e-mendonca-filho-empatam-com-20.html"
+    },
+    "resultados": [
+      { "candidato": "Marília Arraes", "partido": "PDT", "pct": 25 },
+      { "candidato": "Mendonça Filho", "partido": "PL", "pct": 20 },
+      { "candidato": "Humberto Costa", "partido": "PT", "pct": 20 },
+      { "candidato": "Eduardo da Fonte", "partido": "PP", "pct": 15 },
+      { "candidato": "Túlio Gadêlha", "partido": "PSD", "pct": 7 },
+      { "candidato": "Carlos Sant'Anna", "partido": "Novo", "pct": 7 },
+      { "candidato": "Paulo Rubem Santiago", "partido": "Rede", "pct": 1 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 3 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 2 }
+    ],
+    "observacao": "QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO: (a) aritmetica — a tabela fecha em exatamente 100,0 (25+20+20+15+7+7+1+3+2), o que exclui de imediato a leitura 2 (base proxima de 200); (b) para separar a leitura 3 da leitura 1, o criterio foi a forma como a fonte rotula a tabela ('cenario consolidado', 'consolidado — ambos os votos') somada ao fato de esta rodada pernambucana integrar a MESMA onda do Real Time Big Data de campo 23-26/09 cujas rodadas irmas na Bahia, em Minas e no Para trazem a frase explicita 'consolidado do primeiro e do segundo voto reduzido a 100%' — e cuja aritmetica, na Bahia, foi conferida contra a quebra publicada de 1o e 2o voto e bateu com a media. Nao e, portanto, a primeira escolha isolada. RESSALVA HONESTA: esta e a unica das cinco fichas do dia em que a distincao entre leitura 1 e leitura 3 nao pode ser fechada pela aritmetica da propria tabela (ambas somam 100); ela se apoia na redacao da fonte e no padrao da onda. Se for preciso escolher entre registrar com essa ressalva e nao registrar, a ressalva fica anotada aqui. QUEBRA DE 1o E 2o VOTO: as materias localizadas nao publicam a separacao desta rodada — nao ha quebra a registrar. NAO PONTUARAM: Mariano Macedo (PSTU), Samuel Timoteo (UP), Pastor Gilvan Costa (Democrata), Gorett Bitu (UP) e Mailson da Silva Neto (PCO) aparecem zerados na tabela; foram omitidos das linhas por terem 0%. FICHA: Real Time Big Data, 1.600 eleitores de Pernambuco entre 23 e 26/09/2026, 95% de confianca, margem de 2 p.p., divulgada em 28/09/2026. REGISTRO TSE: um resumo de busca devolveu 'BR-02938/2026' para esta pesquisa, numero de formato nacional que nao corresponde a uma pesquisa estadual de PE; por nao ser possivel confirmar, o campo ficou null em vez de receber um numero duvidoso. CONTRATANTE: nenhuma materia afirma quem contratou — null. SUSPENSAO JUDICIAL: nenhuma decisao contra o Real Time Big Data em Pernambuco foi localizada; as suspensoes conhecidas sao PR, CE, MA, RN, AL, SE e, nova em 27/09, TO. NAO E DUPLICATA: a rodada do instituto em PE ja na base e de campo 10-14/09, publicada em 15/09, com Marilia Arraes 27, Mendonca Filho 21, Humberto Costa 20, Eduardo da Fonte 13 e Tulio Gadelha 11 — numeros diferentes dos desta rodada de 23-26/09. LIMITACAO DE METODO: WebFetch bloqueado nesta sessao; numeros vindos de resumos de WebSearch."
+  }
+]
