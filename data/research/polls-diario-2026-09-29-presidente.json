@@ -1,0 +1,898 @@
+[
+  {
+    "id": "2026-09-29-atlasintel-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-04391/2026",
+    "contratante": "AtlasIntel (recursos próprios)",
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 5005,
+    "margem": 1,
+    "cenario": "estimulada, 1º turno — nacional (votos totais)",
+    "fonte": {
+      "nome": "Jovem Pan",
+      "url": "https://jovempan.com.br/politica/atlas-bloomberg-lula-tem-453-e-flavio-bolsonaro-422-no-1o-turno/"
+    },
+    "observacao": "Última rodada nacional da AtlasIntel antes do 1º turno (04/10). Campo 23–28/09/2026, 5.005 entrevistados de 16 anos ou mais, questionário on-line, margem de 1 ponto, 95% de confiança, registro BR-04391/2026. ATENÇÃO — total x válidos: as linhas aqui são os VOTOS TOTAIS (Lula 45,3% x Flávio 42,2%). Diversas matérias manchetaram os VOTOS VÁLIDOS da mesma rodada (Lula 46,2% x Flávio 43,1%, ex.: Transmissão Política), que NÃO foram ingeridos. A soma das seis linhas publicadas é 97,4%; a base de válidos implícita (~98,1%) indica que o instituto também publicou uma linha 'Outros' de ~0,7% e as linhas de brancos/nulos e não sabe, que não apareceram nos resumos acessíveis — por isso não foram criadas (nada foi estimado). Contratante: as matérias informam que a pesquisa foi feita com recursos próprios da AtlasIntel, com custo declarado de R$ 75 mil; parte da imprensa a assina como 'Atlas/Bloomberg' (Bloomberg como parceira de divulgação), o que não foi tratado como contratação. Rodada anterior do mesmo instituto (23/09, campo 17–22/09): Lula 45,8 x Flávio 43,4 — campo novo, não republicação. Dados obtidos via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 45.3
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 42.2
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 5.2
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 2.0
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 1.8
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 0.9
+      }
+    ]
+  },
+  {
+    "id": "2026-09-29-atlasintel-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-04391/2026",
+    "contratante": "AtlasIntel (recursos próprios)",
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 5005,
+    "margem": 1,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — nacional (votos totais)",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-477-e-lula-476-no-2o-turno-diz-atlasintel/"
+    },
+    "observacao": "Mesmo campo da rodada de 1º turno (23–28/09, 5.005 entrevistas, registro BR-04391/2026). Votos totais: Flávio 47,7% x Lula 47,6% — diferença de 0,1 ponto, dentro da margem. Nos votos válidos as matérias registram empate em 50% a 50% (47,7/95,3 = 50,05%), figura NÃO ingerida. A linha de brancos/nulos/não sabe (residual de 4,7 pontos) não apareceu explicitada nos resumos acessíveis e por isso não foi criada. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 47.7
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 47.6
+      }
+    ]
+  },
+  {
+    "id": "2026-09-29-atlasintel-br-presidente-t2-lula-caiado",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-04391/2026",
+    "contratante": "AtlasIntel (recursos próprios)",
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 5005,
+    "margem": 1,
+    "cenario": "estimulada, 2º turno: Lula x Ronaldo Caiado — nacional (votos totais)",
+    "fonte": {
+      "nome": "Gazeta Brasil",
+      "url": "https://gazetabrasil.com.br/brasil/2026/09/29/atlasintel-bloomberg-divulga-nova-pesquisa-para-presidente-veja-os-numeros/"
+    },
+    "observacao": "Mesmo campo (23–28/09, 5.005 entrevistas, registro BR-04391/2026). Cenário alternativo de 2º turno divulgado na mesma rodada. Brancos/nulos/não sabe não publicados nos resumos acessíveis. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 45.9
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 43.4
+      }
+    ]
+  },
+  {
+    "id": "2026-09-29-atlasintel-br-presidente-t2-lula-zema",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-04391/2026",
+    "contratante": "AtlasIntel (recursos próprios)",
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 5005,
+    "margem": 1,
+    "cenario": "estimulada, 2º turno: Lula x Romeu Zema — nacional (votos totais)",
+    "fonte": {
+      "nome": "Gazeta Brasil",
+      "url": "https://gazetabrasil.com.br/brasil/2026/09/29/atlasintel-bloomberg-divulga-nova-pesquisa-para-presidente-veja-os-numeros/"
+    },
+    "observacao": "Mesmo campo (23–28/09, 5.005 entrevistas, registro BR-04391/2026). Cenário alternativo de 2º turno divulgado na mesma rodada. Brancos/nulos/não sabe não publicados nos resumos acessíveis. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 47.4
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 41.2
+      }
+    ]
+  },
+  {
+    "id": "2026-09-29-atlasintel-br-presidente-t2-lula-cury",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-04391/2026",
+    "contratante": "AtlasIntel (recursos próprios)",
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 5005,
+    "margem": 1,
+    "cenario": "estimulada, 2º turno: Lula x Augusto Cury — nacional (votos totais)",
+    "fonte": {
+      "nome": "Gazeta Brasil",
+      "url": "https://gazetabrasil.com.br/brasil/2026/09/29/atlasintel-bloomberg-divulga-nova-pesquisa-para-presidente-veja-os-numeros/"
+    },
+    "observacao": "Mesmo campo (23–28/09, 5.005 entrevistas, registro BR-04391/2026). Cenário alternativo de 2º turno divulgado na mesma rodada. Brancos/nulos/não sabe não publicados nos resumos acessíveis. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 46.2
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 36.1
+      }
+    ]
+  },
+  {
+    "id": "2026-09-29-atlasintel-br-presidente-t2-lula-renan",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-04391/2026",
+    "contratante": "AtlasIntel (recursos próprios)",
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 5005,
+    "margem": 1,
+    "cenario": "estimulada, 2º turno: Lula x Renan Santos — nacional (votos totais)",
+    "fonte": {
+      "nome": "Gazeta Brasil",
+      "url": "https://gazetabrasil.com.br/brasil/2026/09/29/atlasintel-bloomberg-divulga-nova-pesquisa-para-presidente-veja-os-numeros/"
+    },
+    "observacao": "Mesmo campo (23–28/09, 5.005 entrevistas, registro BR-04391/2026). Cenário alternativo de 2º turno divulgado na mesma rodada. Brancos/nulos/não sabe não publicados nos resumos acessíveis. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 46.4
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 28.9
+      }
+    ]
+  },
+  {
+    "id": "2026-09-29-palver-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Palver",
+    "registroTSE": "BR-02990/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 5000,
+    "margem": 2.4,
+    "cenario": "estimulada, cenário principal (1º turno) — nacional",
+    "fonte": {
+      "nome": "Correio Braziliense",
+      "url": "https://www.correiobraziliense.com.br/politica/2026/09/7510381-pesquisa-palver-mostra-empate-entre-lula-e-flavio-em-1-e-2-turno.html"
+    },
+    "observacao": "Rodada Palver divulgada em 29/09. 5.000 entrevistados em todo o território nacional, questionário on-line, margem de 2,4 pontos, 95% de confiança, registro BR-02990/2026. Empate numérico em 44% no 1º turno. ATENÇÃO — divergência de fonte quanto ao período de campo: a maioria dos resumos consultados indica 24 a 28/09; um deles grafa 24 a 27/09. Adotado 24–28/09; o período merece conferência humana. Em qualquer das leituras é rodada nova: a rodada anterior da Palver na base é de campo 20–23/09 (Lula 43 x Flávio 43, margem 2,5, BR-09587/2026). Os percentuais dos demais candidatos, brancos/nulos e indecisos não apareceram nos resumos acessíveis e não foram criados. Contratante não afirmado explicitamente em nenhuma fonte — null (veículo que divulga não é contratante). Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 44
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 44
+      }
+    ]
+  },
+  {
+    "id": "2026-09-29-palver-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Palver",
+    "registroTSE": "BR-02990/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 5000,
+    "margem": 2.4,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula — nacional",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/palver-flavio-tem-47-das-intencoes-de-voto-no-2o-turno-lula-45/"
+    },
+    "observacao": "Mesmo campo da rodada de 1º turno (24–28/09, 5.000 entrevistas, margem 2,4, registro BR-02990/2026). Flávio 47% x Lula 45% — empate técnico pela margem. Rodada anterior (24/09, campo 20–23/09) trazia Flávio 48 x Lula 45, o que confirma campo novo e não republicação. Brancos/nulos e indecisos não publicados nos resumos acessíveis. Vale a mesma ressalva sobre o período de campo (uma fonte grafa 24–27/09). Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 47
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 45
+      }
+    ]
+  },
+  {
+    "id": "2026-09-29-vox-brasil-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Vox Brasil",
+    "registroTSE": "BR-00895/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-26",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 2100,
+    "margem": 2.15,
+    "cenario": "estimulada, 1º turno — nacional (votos totais)",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/pesquisa-vox-brasil-lula-tem-411-e-flavio-bolsonaro-378-no-1o-turno/"
+    },
+    "observacao": "Primeira entrada do Instituto Vox Brasil na base. Campo 26–28/09/2026, 2.100 eleitores, entrevistas presenciais em domicílio, margem de 2,15 pontos, 95% de confiança; registro BR-00895/2026 informado por um dos resumos consultados (outro não o confirmou) — conferir. A soma das linhas fecha 99,7% (arredondamento), o que sustenta a leitura de VOTOS TOTAIS. RESSALVA PARA REVISÃO HUMANA: parte da imprensa (JOTA, CNN Brasil) manchetou 'Lula 37,1% x Flávio 34,8%' para o Vox Brasil; esse par não é compatível com votos válidos desta tabela (válidos seriam maiores, não menores) e não vem acompanhado de tabela completa, pelo que foi tratado como rodada anterior do instituto e não ingerido. A datação de 29/09 desta tabela se apoia em matéria com data explícita (portaln10, 'vox-brasil-lula-flavio-bolsonaro-29-setembro-2026'). Contratante não afirmado explicitamente — null. Dados via WebSearch (WebFetch bloqueado). CONFERIDO NA REVISÃO (29/09): a varredura sinalizou que JOTA e CNN traziam \"Lula 37,1 x Flávio 34,8\" para o Vox Brasil, número bem diferente do registrado. Busca independente confirmou os valores aqui gravados em quatro veículos — Exame, Poder360, Metrópoles e Revista Oeste —, todos com a mesma ficha (campo 26–28/09, 2.100 entrevistas, margem 2,15, BR-00895/2026). O par 37,1/34,8 é outro recorte da cobertura, não esta tabela.",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 41.1
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 37.8
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 3.8
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 2.7
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 2.2
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 1.8
+      },
+      {
+        "candidato": "Brancos/nulos/nenhum",
+        "partido": null,
+        "pct": 3.5
+      },
+      {
+        "candidato": "Não sabe/não respondeu",
+        "partido": null,
+        "pct": 6.8
+      }
+    ]
+  },
+  {
+    "id": "2026-09-29-vox-brasil-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Vox Brasil",
+    "registroTSE": "BR-00895/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-26",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 2100,
+    "margem": 2.15,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula — nacional (votos totais)",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-452-contra-447-de-lula-no-2o-turno-diz-pesquisa/"
+    },
+    "observacao": "Mesmo campo (26–28/09, 2.100 entrevistas presenciais, margem 2,15). Ficha internamente consistente: 45,2 + 44,7 + 6,8 + 3,3 = 100,0. Empate técnico. Dados via WebSearch (WebFetch bloqueado). CONFERIDO NA REVISÃO (29/09): a varredura sinalizou que JOTA e CNN traziam \"Lula 37,1 x Flávio 34,8\" para o Vox Brasil, número bem diferente do registrado. Busca independente confirmou os valores aqui gravados em quatro veículos — Exame, Poder360, Metrópoles e Revista Oeste —, todos com a mesma ficha (campo 26–28/09, 2.100 entrevistas, margem 2,15, BR-00895/2026). O par 37,1/34,8 é outro recorte da cobertura, não esta tabela.",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 45.2
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 44.7
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 6.8
+      },
+      {
+        "candidato": "Não sabe/não respondeu",
+        "partido": null,
+        "pct": 3.3
+      }
+    ]
+  },
+  {
+    "id": "2026-09-29-vox-brasil-br-presidente-t2-lula-zema",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Vox Brasil",
+    "registroTSE": "BR-00895/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-26",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 2100,
+    "margem": 2.15,
+    "cenario": "estimulada, 2º turno: Lula x Romeu Zema — nacional (votos totais)",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/pesquisa-vox-brasil-lula-tem-411-e-flavio-bolsonaro-378-no-1o-turno/"
+    },
+    "observacao": "Cenário alternativo de 2º turno da mesma rodada (campo 26–28/09). Brancos/nulos e indecisos deste cenário não publicados nos resumos acessíveis. Dados via WebSearch (WebFetch bloqueado). CONFERIDO NA REVISÃO (29/09): a varredura sinalizou que JOTA e CNN traziam \"Lula 37,1 x Flávio 34,8\" para o Vox Brasil, número bem diferente do registrado. Busca independente confirmou os valores aqui gravados em quatro veículos — Exame, Poder360, Metrópoles e Revista Oeste —, todos com a mesma ficha (campo 26–28/09, 2.100 entrevistas, margem 2,15, BR-00895/2026). O par 37,1/34,8 é outro recorte da cobertura, não esta tabela.",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 46.1
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 30.3
+      }
+    ]
+  },
+  {
+    "id": "2026-09-29-vox-brasil-br-presidente-t2-lula-caiado",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Vox Brasil",
+    "registroTSE": "BR-00895/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-26",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 2100,
+    "margem": 2.15,
+    "cenario": "estimulada, 2º turno: Lula x Ronaldo Caiado — nacional (votos totais)",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/pesquisa-vox-brasil-lula-tem-411-e-flavio-bolsonaro-378-no-1o-turno/"
+    },
+    "observacao": "Cenário alternativo de 2º turno da mesma rodada (campo 26–28/09). Brancos/nulos e indecisos deste cenário não publicados nos resumos acessíveis. Dados via WebSearch (WebFetch bloqueado). CONFERIDO NA REVISÃO (29/09): a varredura sinalizou que JOTA e CNN traziam \"Lula 37,1 x Flávio 34,8\" para o Vox Brasil, número bem diferente do registrado. Busca independente confirmou os valores aqui gravados em quatro veículos — Exame, Poder360, Metrópoles e Revista Oeste —, todos com a mesma ficha (campo 26–28/09, 2.100 entrevistas, margem 2,15, BR-00895/2026). O par 37,1/34,8 é outro recorte da cobertura, não esta tabela.",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 45.3
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 41.1
+      }
+    ]
+  },
+  {
+    "id": "2026-09-29-vox-brasil-br-presidente-t2-lula-cury",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Vox Brasil",
+    "registroTSE": "BR-00895/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-26",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 2100,
+    "margem": 2.15,
+    "cenario": "estimulada, 2º turno: Lula x Augusto Cury — nacional (votos totais)",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/pesquisa-vox-brasil-lula-tem-411-e-flavio-bolsonaro-378-no-1o-turno/"
+    },
+    "observacao": "Cenário alternativo de 2º turno da mesma rodada (campo 26–28/09). A linha de brancos/nulos deste cenário (15,3%) foi publicada; a de indecisos não apareceu nos resumos acessíveis (residual de ~4,8 pontos não foi criado). Dados via WebSearch (WebFetch bloqueado). CONFERIDO NA REVISÃO (29/09): a varredura sinalizou que JOTA e CNN traziam \"Lula 37,1 x Flávio 34,8\" para o Vox Brasil, número bem diferente do registrado. Busca independente confirmou os valores aqui gravados em quatro veículos — Exame, Poder360, Metrópoles e Revista Oeste —, todos com a mesma ficha (campo 26–28/09, 2.100 entrevistas, margem 2,15, BR-00895/2026). O par 37,1/34,8 é outro recorte da cobertura, não esta tabela.",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 44.8
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 35.1
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 15.3
+      }
+    ]
+  },
+  {
+    "id": "2026-09-29-realtime-sp-presidente-t1",
+    "uf": "SP",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "SP-06293/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno — eleitores de São Paulo",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/sao-paulo/real-time-big-data-flavio-lidera-com-43-contra-36-de-lula-em-sp"
+    },
+    "observacao": "Recorte presidencial estadual de SP divulgado em 29/09. Campo 24–28/09/2026, 2.000 eleitores paulistas, margem de 2 pontos, 95% de confiança; registro SP-06293/2026 conforme resumo de metodologia consultado. Soma das linhas = 99% (arredondamento). Rodada anterior da RTBD em SP na base é de campo 16–19/09 (Flávio 41 x Lula 35) — campo novo, não republicação. Contratante não afirmado explicitamente nos resumos acessíveis — null. Sobre o instituto: em setembro houve suspensões judiciais de pesquisas da Real Time Big Data em PR (registro PR-08220/2026), RN, TO, MA e CE, motivadas sobretudo por questionamento do autofinanciamento; nenhuma decisão foi localizada contra esta rodada de SP. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 43
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 36
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 6
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 4
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 2
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 2
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 3
+      },
+      {
+        "candidato": "Não sabe/não respondeu",
+        "partido": null,
+        "pct": 3
+      }
+    ]
+  },
+  {
+    "id": "2026-09-29-realtime-sp-presidente-t2-lula-flavio",
+    "uf": "SP",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "SP-06293/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula — eleitores de São Paulo",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-em-sp-flavio-tem-51-no-2o-turno-lula-43/"
+    },
+    "observacao": "Mesmo campo (24–28/09, 2.000 eleitores paulistas). Flávio 51% x Lula 43%. Cuidado com duas manchetes parecidas de rodadas distintas: 51 x 45 é a rodada de campo 16–19/09 (já na base) e 50 x 44 é a de 09–12/09; esta é 51 x 43. Brancos/nulos e indecisos deste cenário (residual de 6 pontos) não publicados nos resumos acessíveis. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 51
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 43
+      }
+    ]
+  },
+  {
+    "id": "2026-09-29-realtime-rs-presidente-t1",
+    "uf": "RS",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno — eleitores do Rio Grande do Sul",
+    "fonte": {
+      "nome": "CartaCapital",
+      "url": "https://www.cartacapital.com.br/politica/flavio-bolsonaro-empata-com-lula-no-1o-turno-e-vence-no-2o-no-rio-grande-do-sul-indica-pesquisa/"
+    },
+    "observacao": "Primeiro recorte presidencial do RS na base. Campo 24–28/09/2026, 1.600 eleitores gaúchos, margem de 2 pontos, 95% de confiança. registroTSE em null: um resumo mencionou BR-08546/2026, mas veio em resposta que misturava perguntas sobre RJ e RS, pelo que o número não foi considerado confirmado — conferir. Soma das linhas = 96%; brancos/nulos e indecisos do 1º turno não apareceram nos resumos acessíveis e não foram criados. Atenção a manchete concorrente 'Flávio 42 x Lula 39 no RS' (Exame), que corresponde a rodada anterior do instituto no estado (campo 05–09/09) e não a esta. Sobre o instituto: suspensões judiciais em PR (PR-08220/2026), RN, TO, MA e CE em setembro; nenhuma decisão localizada contra esta rodada do RS. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 44
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 41
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 4
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 4
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 2
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 1
+      }
+    ]
+  },
+  {
+    "id": "2026-09-29-realtime-rs-presidente-t2-lula-flavio",
+    "uf": "RS",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula — eleitores do Rio Grande do Sul",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-big-data-no-rs-flavio-tem-53-no-2o-turno-lula-43/"
+    },
+    "observacao": "Mesmo campo (24–28/09, 1.600 eleitores gaúchos). Ficha consistente: 53 + 43 + 2 + 2 = 100. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 53
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 43
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 2
+      },
+      {
+        "candidato": "Não sabe/não respondeu",
+        "partido": null,
+        "pct": 2
+      }
+    ]
+  },
+  {
+    "id": "2026-09-29-realtime-df-presidente-t1",
+    "uf": "DF",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": "LIGA FM",
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno — eleitores do Distrito Federal",
+    "fonte": {
+      "nome": "NC News",
+      "url": "https://ncnews.com.br/2026/09/29/real-time-big-data-liga-fm-flavio-bolsonaro-tem-40-e-lula-36-no-df/"
+    },
+    "observacao": "Primeiro recorte presidencial do DF na base. Campo 24–28/09/2026, 1.600 eleitores do DF, margem de 2 pontos, 95% de confiança. Contratante LIGA FM — afirmação explícita nas matérias, que assinam a pesquisa como 'Real Time Big Data/LIGA FM'. Ficha consistente: soma das linhas = 100. registroTSE não localizado nos resumos acessíveis — null. Atenção a manchete concorrente 'No DF, Flávio tem 46% no 2º turno; Lula 40%', de rodada anterior do instituto no DF; esta rodada traz 48 x 40. Sobre o instituto: suspensões judiciais em PR (PR-08220/2026), RN, TO, MA e CE em setembro; nenhuma decisão localizada contra esta rodada do DF. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 40
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 36
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 6
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 6
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 4
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 1
+      },
+      {
+        "candidato": "Outros",
+        "partido": null,
+        "pct": 1
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 3
+      },
+      {
+        "candidato": "Não sabe/não respondeu",
+        "partido": null,
+        "pct": 3
+      }
+    ]
+  },
+  {
+    "id": "2026-09-29-realtime-df-presidente-t2-lula-flavio",
+    "uf": "DF",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": "LIGA FM",
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula — eleitores do Distrito Federal",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-48-contra-40-de-lula-no-2o-turno-no-df-diz-pesquisa/"
+    },
+    "observacao": "Mesmo campo (24–28/09, 1.600 eleitores do DF, contratante LIGA FM). Flávio 48% x Lula 40%. Brancos/nulos e indecisos deste cenário (residual de 12 pontos) não publicados nos resumos acessíveis. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 48
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 40
+      }
+    ]
+  },
+  {
+    "id": "2026-09-29-realtime-pr-presidente-t1",
+    "uf": "PR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "PR-04181/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno — eleitores do Paraná",
+    "fonte": {
+      "nome": "CartaCapital",
+      "url": "https://www.cartacapital.com.br/politica/nova-pesquisa-real-time-mostra-lideranca-folgada-de-flavio-bolsonaro-no-parana/"
+    },
+    "observacao": "Recorte presidencial do PR divulgado em 29/09. Campo 24–28/09/2026, 1.600 eleitores paranaenses, margem de 2 pontos, 95% de confiança, registro PR-04181/2026 (confirmado em duas buscas independentes, inclusive por busca do próprio número de registro). SITUAÇÃO JUDICIAL: esta rodada FOI questionada — o TRE-PR NEGOU o pedido de suspensão apresentado pela coligação Fortaleza Paraná e MANTEVE a pesquisa no ar, determinando apenas que o instituto complemente informações sobre a distribuição territorial da amostra; a decisão não encerra a discussão. Não confundir com a pesquisa PR-08220/2026 (campo 04–08/09), essa sim suspensa em 07/09 pela juíza Sandra Bauermann por 'inverossimilhança econômica' do autofinanciamento, com multa de R$ 50 mil. Percentuais dos demais candidatos, brancos/nulos e indecisos não publicados nos resumos acessíveis (soma das duas linhas = 79%). Contratante não afirmado explicitamente — null. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 49
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 30
+      }
+    ]
+  },
+  {
+    "id": "2026-09-29-realtime-pr-presidente-t2-lula-flavio",
+    "uf": "PR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "PR-04181/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula — eleitores do Paraná",
+    "fonte": {
+      "nome": "CartaCapital",
+      "url": "https://www.cartacapital.com.br/politica/nova-pesquisa-real-time-mostra-lideranca-folgada-de-flavio-bolsonaro-no-parana/"
+    },
+    "observacao": "Mesmo campo (24–28/09, 1.600 eleitores paranaenses, registro PR-04181/2026). Votos totais: Flávio 61% x Lula 30%. Consistência confirmada por terceiro: 61/(61+30) = 67%, exatamente o número que outra matéria apresenta como 'votos válidos' — logo 61 x 30 é o total, como exige o critério da base. Brancos/nulos e indecisos (residual de 9 pontos) não publicados. Ver na entrada de 1º turno a situação judicial (TRE-PR manteve esta pesquisa no ar). Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 61
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 30
+      }
+    ]
+  },
+  {
+    "id": "2026-09-29-quaest-mg-presidente-t2-lula-flavio",
+    "uf": "MG",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1506,
+    "margem": 3,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — eleitores de Minas Gerais",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/minas-gerais/quaest-em-minas-no-2o-turno-lula-tem-41-e-flavio-bolsonaro-tem-40"
+    },
+    "observacao": "Recorte presidencial de MG da Quaest divulgado em 29/09. Campo 25–28/09/2026, 1.506 eleitores mineiros, margem de 3 pontos, 95% de confiança. registroTSE em null: o resumo consultado grafou 'BRBR-05155/2026', número malformado que não foi adotado — conferir. Lula 41% x Flávio 40%, empate técnico; a rodada anterior da Quaest em MG (campo 04–07/09, já na base) trazia Flávio 40 x Lula 37, o que confirma campo novo. O cenário de 1º turno desta mesma rodada NÃO foi ingerido: um agregador atribuiu a ele 'Lula 39 x Flávio 34', mas a checagem seguinte não encontrou esses percentuais em nenhuma matéria e as manchetes de '31 x 30' em MG pertencem a rodada de agosto — ficou pendente de varredura. Brancos/nulos e indecisos não publicados nos resumos acessíveis. Contratante não afirmado explicitamente para o recorte estadual — null. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 41
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 40
+      }
+    ]
+  },
+  {
+    "id": "2026-09-29-quaest-pe-presidente-t1",
+    "uf": "PE",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": null,
+    "dataFim": null,
+    "publicadoEm": "2026-09-29",
+    "amostra": null,
+    "margem": null,
+    "cenario": "estimulada, 1º turno — eleitores de Pernambuco",
+    "fonte": {
+      "nome": "Diario de Pernambuco",
+      "url": "https://www.diariodepernambuco.com.br/politica/2026/09/11725294-quaest-em-pernambuco-lula-tem-58-contra-20-de-flavio-bolsonaro-no-1-turno.html"
+    },
+    "observacao": "Recorte presidencial de PE da Quaest divulgado em 29/09 — primeira entrada da Quaest para PE na base. Lula 58% x Flávio 20%; a matéria compara com a rodada anterior do próprio estudo (Lula 54%, Flávio 20%), o que confirma rodada nova e não republicação. PERÍODO DE CAMPO, AMOSTRA E MARGEM EM null DE PROPÓSITO: os resumos acessíveis só traziam a metodologia da rodada PE anterior (1.302 entrevistados, campo 04–07/09, margem 3), que não pode ser atribuída a esta; o orçamento de busca da sessão esgotou antes da confirmação. Por analogia com o recorte de MG divulgado no mesmo dia, o campo provavelmente é 25–28/09, mas isso NÃO foi registrado por não estar confirmado. Conferir campo, amostra, margem e registro TSE antes de consolidar. Contratante não afirmado explicitamente — null. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 58
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 20
+      }
+    ]
+  }
+]

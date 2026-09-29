@@ -1,0 +1,701 @@
+[
+  {
+    "id": "2026-09-29-real-time-big-data-sp-governador-t1",
+    "uf": "SP",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 2000,
+    "margem": 2.0,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "CartaCapital",
+      "url": "https://www.cartacapital.com.br/politica/tarcisio-lidera-e-caminha-para-vitoria-em-1o-turno-em-sp-mostra-pesquisa-real-time/"
+    },
+    "resultados": [
+      { "candidato": "Tarcísio de Freitas", "partido": "Republicanos", "pct": 53 },
+      { "candidato": "Fernando Haddad", "partido": "PT", "pct": 39 },
+      { "candidato": "Demais candidatos (somados)", "partido": null, "pct": 1 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 4 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 3 }
+    ],
+    "observacao": "Nova rodada do Real Time Big Data em São Paulo divulgada na terça-feira 29/09/2026 (campo 24–28/09, 2.000 entrevistas, margem de 2 p.p., 95% de confiança). NÚMEROS DO TOTAL, critério desta base: a ficha fecha em 100% (53 + 39 + 1 demais + 4 brancos/nulos + 3 não sabe). O número de registro TSE desta rodada não foi publicado pelas fontes consultadas, por isso null — NÃO reaproveitado o SP-07495/2026, que é da rodada anterior (campo 16–19/09, já na base). CONTRATANTE null: nenhuma das fontes consultadas afirma explicitamente quem contratou esta rodada paulista; veículo que divulga não é contratante e nada foi inferido (a Record aparece como contratante em outras praças do instituto, mas não foi afirmada para SP). A linha 'Demais candidatos (somados)' é como a fonte publicou o 1% dos candidatos menores (a rodada anterior listava Carlos Machado, Izadora Dias, Policial Edjane, Vera Lúcia e Vivian Mendes) — nenhum percentual individual foi inventado. Rodada distinta da do mesmo instituto em SP com campo 16–19/09 (publicada em 21/09), já presente na base. Também noticiada por Metrópoles, Exame, Revista Oeste, Brasil de Fato e Poder360. ATENÇÃO à confusão nas matérias: a rodada de 16–19/09 marcava Tarcísio 53 x Haddad 38 com 5% de brancos/nulos; os 4% de brancos/nulos aqui são os desta rodada (CartaCapital). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-29-real-time-big-data-sp-governador-t2-tarcisio-haddad",
+    "uf": "SP",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 2000,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno (Tarcísio de Freitas x Fernando Haddad)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-sao-paulo-setembro-2026-3/"
+    },
+    "resultados": [
+      { "candidato": "Tarcísio de Freitas", "partido": "Republicanos", "pct": 57 },
+      { "candidato": "Fernando Haddad", "partido": "PT", "pct": 40 }
+    ],
+    "observacao": "Cenário de 2º turno da rodada Real Time Big Data/SP de campo 24–28/09, divulgada em 29/09/2026. NÚMEROS DO TOTAL (57 e 40): as fontes consultadas não publicaram a decomposição de brancos/nulos e indecisos deste confronto (restam 3 pontos não atribuídos) e nenhuma linha foi criada para eles. Não confundir com o 2º turno da rodada anterior (campo 16–19/09, já na base), que marcava Tarcísio 57 x Haddad 39 com 3% de nulos/brancos e 1% que não soube — são fichas diferentes. Registro TSE e contratante não publicados para esta rodada, por isso null. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-29-real-time-big-data-rs-governador-t1",
+    "uf": "RS",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "RS-05412/2026",
+    "contratante": "Rede Record",
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/2026/09/29/no-rs-2turno-zucco-tem-49-e-juliana-44-contra-gabriel-placar-e-45-a-41-diz-pesquisa.html"
+    },
+    "resultados": [
+      { "candidato": "Zucco", "partido": "PL", "pct": 40 },
+      { "candidato": "Juliana Brizola", "partido": "PDT", "pct": 35 },
+      { "candidato": "Gabriel Souza", "partido": "MDB", "pct": 19 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 2 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 1 }
+    ],
+    "observacao": "Rodada do Real Time Big Data no Rio Grande do Sul divulgada na terça-feira 29/09/2026 (campo 24–28/09, 1.600 entrevistas, margem de 2 p.p., 95% de confiança). Registro TSE RS-05412/2026. CONTRATANTE Rede Record afirmado explicitamente pelas matérias ('pesquisa encomendada pela Rede Record'), não inferido do veículo divulgador. NÚMEROS REGISTRADOS SÃO DO TOTAL, critério desta base: a ficha soma 97% (40 + 35 + 19 + 2 brancos/nulos + 1 não sabe); os cerca de 3 pontos restantes pertencem aos candidatos menores do RS (a base registra Marcelo Maranata/PSDB, Cesar Pontes, Priscila Voigt/UP e Rejane de Oliveira/PSTU), cujos percentuais nesta rodada não foram publicados pelas fontes consultadas — NÃO foi criada linha para fechar em 100. ATENÇÃO: várias manchetes e o agregador da Gazeta do Povo noticiaram 'Zucco 41%, Juliana Brizola 36% e Gabriel Souza 20%' — essa é a leitura em VOTOS VÁLIDOS, não o total, e não foi gravada. Teste aritmético que valida a ficha: com base de válidos ≈ 97, 40/97 = 41,2% ≈ 41; 35/97 = 36,1% ≈ 36; 19/97 = 19,6% ≈ 20. Também noticiada por O Antagonista, Brasil 247, CartaCapital, Metrópoles, Sul21, Jornal do Comércio, abc+ e Rádio Alto Uruguai. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-29-real-time-big-data-rs-governador-t2-zucco-brizola",
+    "uf": "RS",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "RS-05412/2026",
+    "contratante": "Rede Record",
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno (Zucco x Juliana Brizola)",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/2026/09/29/no-rs-2turno-zucco-tem-49-e-juliana-44-contra-gabriel-placar-e-45-a-41-diz-pesquisa.html"
+    },
+    "resultados": [
+      { "candidato": "Zucco", "partido": "PL", "pct": 49 },
+      { "candidato": "Juliana Brizola", "partido": "PDT", "pct": 44 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 4 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 3 }
+    ],
+    "observacao": "Primeiro dos três cenários de 2º turno da rodada Real Time Big Data/RS de campo 24–28/09, divulgada em 29/09/2026. NÚMEROS DO TOTAL: a ficha fecha em 100% (49 + 44 + 4 brancos/nulos + 3 não sabe). Registro TSE RS-05412/2026; contratante Rede Record afirmado explicitamente. Um registro por confronto, conforme o contrato da rotina. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-29-real-time-big-data-rs-governador-t2-zucco-souza",
+    "uf": "RS",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "RS-05412/2026",
+    "contratante": "Rede Record",
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno (Zucco x Gabriel Souza)",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/2026/09/29/no-rs-2turno-zucco-tem-49-e-juliana-44-contra-gabriel-placar-e-45-a-41-diz-pesquisa.html"
+    },
+    "resultados": [
+      { "candidato": "Zucco", "partido": "PL", "pct": 45 },
+      { "candidato": "Gabriel Souza", "partido": "MDB", "pct": 41 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 7 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 7 }
+    ],
+    "observacao": "Segundo cenário de 2º turno da rodada Real Time Big Data/RS de campo 24–28/09, divulgada em 29/09/2026. NÚMEROS DO TOTAL: a ficha fecha em 100% (45 + 41 + 7 brancos/nulos + 7 não sabe). Empate técnico dentro da margem de 2 p.p. Registro TSE RS-05412/2026; contratante Rede Record afirmado explicitamente. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-29-real-time-big-data-rs-governador-t2-brizola-souza",
+    "uf": "RS",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "RS-05412/2026",
+    "contratante": "Rede Record",
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno (Juliana Brizola x Gabriel Souza)",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-zucco-tem-49-no-2o-turno-ao-governo-do-rs-juliana-brizola-44/"
+    },
+    "resultados": [
+      { "candidato": "Juliana Brizola", "partido": "PDT", "pct": 44 },
+      { "candidato": "Gabriel Souza", "partido": "MDB", "pct": 42 }
+    ],
+    "observacao": "Terceiro cenário de 2º turno da rodada Real Time Big Data/RS de campo 24–28/09, divulgada em 29/09/2026: empate técnico dentro da margem de 2 p.p. NÚMEROS DO TOTAL (44 e 42): as fontes consultadas não publicaram a decomposição de brancos/nulos e indecisos deste confronto (restam 14 pontos não atribuídos) e nenhuma linha foi criada para eles. Registro TSE RS-05412/2026; contratante Rede Record afirmado explicitamente. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-29-real-time-big-data-pr-governador-t1",
+    "uf": "PR",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "PR-04181/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/real-time-no-pr-moro-tem-36-sandro-alex-28-e-requiao-filho-23"
+    },
+    "resultados": [
+      { "candidato": "Sergio Moro", "partido": "PL", "pct": 36 },
+      { "candidato": "Sandro Alex", "partido": "PSD", "pct": 28 },
+      { "candidato": "Requião Filho", "partido": "PDT", "pct": 23 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 4 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 7 }
+    ],
+    "observacao": "Rodada do Real Time Big Data no Paraná divulgada na terça-feira 29/09/2026 (campo 24–28/09, 1.600 entrevistas com eleitores de 16 anos ou mais, margem de 2 p.p., 95% de confiança). Registro TSE PR-04181/2026. SITUAÇÃO JUDICIAL: esta rodada NÃO está sob decisão de suspensão — o TRE-PR rejeitou o pedido de suspensão imediata apresentado pela coligação Fortaleza Paraná e manteve a divulgação da PR-04181/2026, determinando apenas a complementação de informações sobre a distribuição territorial da amostra. Ela é distinta da pesquisa PR-08220/2026, suspensa em 07/09 pela juíza eleitoral Sandra Bauermann (multa de R$ 50 mil) após pedido da campanha de Sandro Alex questionando o autofinanciamento do instituto. CONTRATANTE null: nenhuma fonte consultada afirma explicitamente quem contratou a rodada paranaense; nada foi inferido. NÚMEROS DO TOTAL, critério desta base: a ficha soma 98% (36 + 28 + 23 + 4 brancos/nulos + 7 não sabe); os 2 pontos restantes pertencem aos candidatos menores do PR (Luiz França/Missão, Tayná Miessa/UP, Adriano Funileiro/PCO, Alexandre Salomão/Mobiliza, Samuel de Mattos/PSTU), sem percentual publicado nesta rodada — nenhuma linha foi criada para fechar em 100. Mudança relevante na disputa: Sandro Alex aparece em 2º, à frente de Requião Filho. Rejeição publicada: Requião Filho 42–45%, Moro 39%, Sandro Alex 30–32%. Rodada distinta da do mesmo instituto no PR com campo 11–15/09 (publicada em 21/09), já na base. Também noticiada por RIC, BandAB, Bem Paraná, CartaCapital, Brasil 247, Poder360, Contraponto e Folha do Litoral. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-29-real-time-big-data-pr-governador-t2-moro-sandro-alex",
+    "uf": "PR",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "PR-04181/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno (Sergio Moro x Sandro Alex)",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/real-time-no-pr-moro-tem-36-sandro-alex-28-e-requiao-filho-23"
+    },
+    "resultados": [
+      { "candidato": "Sergio Moro", "partido": "PL", "pct": 41 },
+      { "candidato": "Sandro Alex", "partido": "PSD", "pct": 39 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 10 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 10 }
+    ],
+    "observacao": "Cenário de 2º turno da rodada Real Time Big Data/PR de campo 24–28/09, divulgada em 29/09/2026: empate dentro da margem de 2 p.p. NÚMEROS DO TOTAL: a ficha fecha em 100% (41 + 39 + 10 brancos/nulos + 10 não sabe). Registro TSE PR-04181/2026, mantida no ar pelo TRE-PR. Contratante não afirmado por nenhuma fonte, por isso null. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-29-real-time-big-data-pr-governador-t2-sandro-alex-requiao",
+    "uf": "PR",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "PR-04181/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno (Sandro Alex x Requião Filho)",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/real-time-no-pr-moro-tem-36-sandro-alex-28-e-requiao-filho-23"
+    },
+    "resultados": [
+      { "candidato": "Sandro Alex", "partido": "PSD", "pct": 44 },
+      { "candidato": "Requião Filho", "partido": "PDT", "pct": 31 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 13 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 12 }
+    ],
+    "observacao": "Cenário de 2º turno da rodada Real Time Big Data/PR de campo 24–28/09, divulgada em 29/09/2026. NÚMEROS DO TOTAL: a ficha fecha em 100% (44 + 31 + 13 brancos/nulos + 12 não sabe). Registro TSE PR-04181/2026, mantida no ar pelo TRE-PR. Contratante não afirmado por nenhuma fonte, por isso null. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-29-real-time-big-data-pr-governador-t2-moro-requiao",
+    "uf": "PR",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "PR-04181/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno (Sergio Moro x Requião Filho)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-parana-setembro-2026-3/"
+    },
+    "resultados": [
+      { "candidato": "Sergio Moro", "partido": "PL", "pct": 54 },
+      { "candidato": "Requião Filho", "partido": "PDT", "pct": 30 }
+    ],
+    "observacao": "Terceiro cenário de 2º turno da rodada Real Time Big Data/PR de campo 24–28/09, divulgada em 29/09/2026. NÚMEROS DO TOTAL (54 e 30): as fontes consultadas não publicaram a decomposição de brancos/nulos e indecisos deste confronto (restam 16 pontos não atribuídos) e nenhuma linha foi criada para eles. Registro TSE PR-04181/2026, mantida no ar pelo TRE-PR. Contratante não afirmado por nenhuma fonte, por isso null. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-29-real-time-big-data-df-governador-t1",
+    "uf": "DF",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/2026/09/29/real-time-big-data-df-celina-leao-tem-47-leandro-grass-26.html"
+    },
+    "resultados": [
+      { "candidato": "Celina Leão", "partido": "PP", "pct": 47 },
+      { "candidato": "Leandro Grass", "partido": "PT", "pct": 26 },
+      { "candidato": "Paula Belmonte", "partido": "PSDB", "pct": 10 },
+      { "candidato": "Cappelli", "partido": "PSB", "pct": 4 },
+      { "candidato": "Kiko Caputo", "partido": "Novo", "pct": 1 },
+      { "candidato": "Elisson, Professor Robson, Professora Samara Mineiro, Rico Pinheiro e Expedito Mendonça (somados)", "partido": null, "pct": 2 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 5 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 5 }
+    ],
+    "observacao": "Rodada do Real Time Big Data no Distrito Federal divulgada na terça-feira 29/09/2026 (campo 24–28/09, 1.600 entrevistas, margem de 2 p.p., 95% de confiança). NÚMEROS DO TOTAL, critério desta base: a ficha fecha em 100% (47 + 26 + 10 + 4 + 1 + 2 somados + 5 brancos/nulos + 5 não sabe). ATENÇÃO: o agregador da Gazeta do Povo noticiou 'Celina Leão com 52% e Leandro Grass 29%' — essa é a leitura em VOTOS VÁLIDOS e não foi gravada; ela confere com os totais aqui registrados (base de válidos 90: 47/90 = 52,2%; 26/90 = 28,9% ≈ 29%), o que valida internamente a ficha. A linha agregada com cinco nomes é exatamente como a fonte publicou os 2% — nenhum percentual individual foi inventado. Número de registro TSE desta rodada não publicado pelas fontes consultadas, por isso null. CONTRATANTE null: nenhuma fonte consultada afirma quem contratou esta rodada; nada inferido do veículo divulgador. Rodada distinta da do mesmo instituto no DF com campo 04–08/09 (publicada em 09/09), já na base. Também noticiada por Poder360, Brasil de Fato, Brasil 247, O Hoje, NC News e Diário do Grande ABC. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-29-real-time-big-data-df-governador-t2-celina-grass",
+    "uf": "DF",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno (Celina Leão x Leandro Grass)",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/2026/09/29/real-time-big-data-df-celina-leao-tem-47-leandro-grass-26.html"
+    },
+    "resultados": [
+      { "candidato": "Celina Leão", "partido": "PP", "pct": 53 },
+      { "candidato": "Leandro Grass", "partido": "PT", "pct": 33 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 8 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 6 }
+    ],
+    "observacao": "Cenário de 2º turno da rodada Real Time Big Data/DF de campo 24–28/09, divulgada em 29/09/2026. NÚMEROS DO TOTAL: a ficha fecha em 100% (53 + 33 + 8 brancos/nulos + 6 não sabe). Registro TSE e contratante não publicados para esta rodada, por isso null. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-29-atlasintel-ce-governador-t1",
+    "uf": "CE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": null,
+    "contratante": "Focus Poder",
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1800,
+    "margem": 3.0,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/eleicoes/2026/09/29/pesquisa-atlas-traz-elmano-com-49-e-ciro-com-476-tecnicamente-empatados.html"
+    },
+    "resultados": [
+      { "candidato": "Elmano de Freitas", "partido": "PT", "pct": 49 },
+      { "candidato": "Ciro Gomes", "partido": "PSDB", "pct": 47.6 }
+    ],
+    "observacao": "Sexta rodada consecutiva da AtlasIntel no Ceará, divulgada na terça-feira 29/09/2026 — era a pesquisa do governo do Ceará que O Povo havia anunciado para hoje (campo 23–28/09, 1.800 eleitores por recrutamento digital aleatório, margem de 3 p.p., 95% de confiança). CONTRATANTE Focus Poder afirmado explicitamente pelas matérias ('pesquisa contratada por Focus Poder', veiculada também como 'Atlas/Focus'), não inferido do veículo divulgador; O Povo apenas divulga. Registro TSE citado como existente pelas matérias, mas o NÚMERO não foi publicado — por isso null. NÚMEROS REGISTRADOS SÃO DO TOTAL (49 e 47,6): as fontes consultadas não publicaram, para o 1º turno, os percentuais dos candidatos menores nem a decomposição de brancos/nulos e indecisos (restam cerca de 3,4 pontos não atribuídos) e nenhuma linha foi criada para eles. A leitura em VOTOS VÁLIDOS noticiada (Elmano 50,3% x Ciro 48,9%) NÃO foi gravada — ela confere com os totais aqui registrados (base de válidos ≈ 97,4: 49/97,4 = 50,3%; 47,6/97,4 = 48,9%), o que valida internamente a ficha. Variação informada em relação à rodada anterior (campo 15–20/09, já na base): Elmano +0,5, Ciro −0,4. Empate técnico. Também noticiada por Jornal de Brasília, Terra, Revista Fórum, CartaCapital, Brasil 247, Poder News e Portal IN. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-29-atlasintel-ce-governador-t2-elmano-ciro",
+    "uf": "CE",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": null,
+    "contratante": "Focus Poder",
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1800,
+    "margem": 3.0,
+    "cenario": "estimulada, 2º turno (Elmano de Freitas x Ciro Gomes)",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/eleicoes/2026/09/29/pesquisa-atlas-traz-elmano-com-49-e-ciro-com-476-tecnicamente-empatados.html"
+    },
+    "resultados": [
+      { "candidato": "Elmano de Freitas", "partido": "PT", "pct": 49.6 },
+      { "candidato": "Ciro Gomes", "partido": "PSDB", "pct": 48.6 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 1.7 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 0.2 }
+    ],
+    "observacao": "Cenário de 2º turno da rodada AtlasIntel/CE de campo 23–28/09, divulgada em 29/09/2026. NÚMEROS DO TOTAL: a ficha soma 100,1% (49,6 + 48,6 + 1,7 brancos/nulos + 0,2 não sabe), diferença de 0,1 por arredondamento. Empate técnico dentro da margem de 3 p.p. Contratante Focus Poder afirmado explicitamente; número de registro TSE não publicado, por isso null. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-29-atlasintel-pi-governador-t1",
+    "uf": "PI",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1218,
+    "margem": 2.0,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/atlasintel-fonteles-pt-tem-645-de-intencoes-de-voto-para-governo-do-pi"
+    },
+    "resultados": [
+      { "candidato": "Rafael Fonteles", "partido": "PT", "pct": 64.5 },
+      { "candidato": "Joel Rodrigues", "partido": "PP", "pct": 24.4 },
+      { "candidato": "Dra. Lúcia Santos", "partido": "PSDB", "pct": 1.8 },
+      { "candidato": "Outros candidatos (somados)", "partido": null, "pct": 1.3 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 3 },
+      { "candidato": "Indecisos", "partido": null, "pct": 5 }
+    ],
+    "observacao": "Rodada da AtlasIntel no Piauí divulgada na terça-feira 29/09/2026 (campo 23–28/09, entrevistas pela internet com recrutamento digital aleatório, margem de 2 p.p., 95% de confiança). NÚMEROS DO TOTAL, critério desta base: a ficha fecha em 100% (64,5 + 24,4 + 1,8 + 1,3 outros + 3 brancos/nulos + 5 indecisos). ATENÇÃO: as manchetes '70,1% para Fonteles e 26,5% para Joel Rodrigues' são a leitura em VOTOS VÁLIDOS e não foram gravadas; elas conferem com os totais registrados (base de válidos 92,0: 64,5/92 = 70,1%; 24,4/92 = 26,5%), o que valida internamente a ficha. AMOSTRA: registrada como 1.218, número publicado pelas matérias detalhadas (Metrópoles, Conecta Piauí); o agregador da Gazeta do Povo arredondou para '1.200 respondentes' — divergência de arredondamento entre fontes, nada inventado. Registro TSE não publicado e contratante não afirmado por nenhuma fonte, por isso null (veículo que divulga não é contratante). Rodada distinta da AtlasIntel/MeioNorte com campo 28/08–02/09 já na base. Também noticiada por CartaCapital, Revista Fórum, Brasil 247 e Brasil em Folhas. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-29-atlasintel-rn-governador-t1",
+    "uf": "RN",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1207,
+    "margem": 3.0,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "Portal N10",
+      "url": "https://portaln10.com.br/politica/eleicoes/atlasintel-cadu-alvaro-allyson-governo-rn-29-setembro-2026-353458/"
+    },
+    "resultados": [
+      { "candidato": "Cadu de Lula", "partido": "PT", "pct": 37.1 },
+      { "candidato": "Álvaro Dias", "partido": "PL", "pct": 27.3 },
+      { "candidato": "Allyson Bezerra", "partido": "União Brasil", "pct": 27.1 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 4.1 },
+      { "candidato": "Indecisos", "partido": null, "pct": 1.9 }
+    ],
+    "observacao": "Rodada da AtlasIntel no Rio Grande do Norte divulgada na terça-feira 29/09/2026 (campo 23–28/09, 1.207 eleitores, margem de 3 p.p., 95% de confiança). É a primeira AtlasIntel de governador no RN registrada nesta base. NÚMEROS REGISTRADOS SÃO DO TOTAL, critério desta base: a ficha soma 97,5% (37,1 + 27,3 + 27,1 + 4,1 brancos/nulos + 1,9 indecisos); os cerca de 2,5 pontos restantes pertencem a candidatos menores cujos percentuais não foram publicados pelas fontes consultadas — nenhuma linha foi criada para fechar em 100. ATENÇÃO: várias manchetes e o agregador da Gazeta do Povo noticiaram 'Cadu de Lula 39,5%, Álvaro Dias 29% e Allyson Bezerra 28,8%' — essa é a leitura em VOTOS VÁLIDOS, não o total, e não foi gravada. Teste aritmético que valida a ficha: com base de válidos ≈ 94, 37,1/94 = 39,5%; 27,3/94 = 29,0%; 27,1/94 = 28,8%. Álvaro Dias e Allyson Bezerra empatados. AMOSTRA registrada como 1.207 (número publicado pelo Portal N10); o agregador da Gazeta do Povo arredondou para '1.200'. Registro TSE não publicado e contratante não afirmado por nenhuma fonte, por isso null. Também noticiada por Band, O Povo, Revista Fórum, Tribuna do Sertão e Na Boca da Noite. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-29-quaest-sp-governador-t1",
+    "uf": "SP",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "SP-01590/2026",
+    "contratante": "TV Globo",
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1800,
+    "margem": 2.0,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/eleicoes/2026/09/29/quaest-em-sao-paulo-tem-tarcisio-com-44-e-haddad-com-24.html"
+    },
+    "resultados": [
+      { "candidato": "Tarcísio de Freitas", "partido": "Republicanos", "pct": 44 },
+      { "candidato": "Fernando Haddad", "partido": "PT", "pct": 24 },
+      { "candidato": "Não sabe/indeciso", "partido": null, "pct": 16 },
+      { "candidato": "Brancos/nulos/não votaria", "partido": null, "pct": 12 }
+    ],
+    "observacao": "Nova rodada da Quaest em São Paulo divulgada na terça-feira 29/09/2026 (campo 25–28/09, 1.800 entrevistas com eleitores de 16 anos ou mais, margem de 2 p.p., 95% de confiança). Registro TSE SP-01590/2026. CONTRATANTE TV Globo afirmado explicitamente pelas matérias ('pesquisa contratada pela TV Globo'), não inferido. NÚMEROS DO TOTAL, critério desta base: a ficha soma 96% (44 + 24 + 16 não sabe + 12 brancos/nulos/não votaria); os 4 pontos restantes pertencem aos candidatos menores de SP, cujos percentuais nesta rodada não foram publicados pelas fontes consultadas (na rodada anterior a Quaest registrava Policial Edjane, Vera Lúcia, Carlos Machado e Izadora Dias com 1% cada) — nenhuma linha foi criada para fechar em 100. Haddad recuou de 27% (rodada 19–22/09, já na base) para 24%. Rodada distinta da Quaest/SP com campo 19–22/09 e da de 04–07/09, ambas já na base. Também noticiada por Correio Braziliense, Diário do Estado de São Paulo, Diário do Grande ABC e Gazeta do Povo. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-29-quaest-sp-governador-t2-tarcisio-haddad",
+    "uf": "SP",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "SP-01590/2026",
+    "contratante": "TV Globo",
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1800,
+    "margem": 2.0,
+    "cenario": "estimulada, 2º turno (Tarcísio de Freitas x Fernando Haddad)",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/2026/09/29/quaest-no-2-turno-em-sp-tarcisio-tem-49-e-haddad-29-no-1-governador-marca-44.html"
+    },
+    "resultados": [
+      { "candidato": "Tarcísio de Freitas", "partido": "Republicanos", "pct": 49 },
+      { "candidato": "Fernando Haddad", "partido": "PT", "pct": 29 },
+      { "candidato": "Brancos/nulos/não votaria", "partido": null, "pct": 12 },
+      { "candidato": "Não sabe/indeciso", "partido": null, "pct": 10 }
+    ],
+    "observacao": "Cenário de 2º turno da rodada Quaest/SP de campo 25–28/09, divulgada em 29/09/2026. NÚMEROS DO TOTAL: a ficha fecha em 100% (49 + 29 + 12 brancos/nulos/não votaria + 10 não sabe). Registro TSE SP-01590/2026; contratante TV Globo afirmado explicitamente. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-29-quaest-mg-governador-t1",
+    "uf": "MG",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1506,
+    "margem": 3.0,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "Tribuna de Minas",
+      "url": "https://tribunademinas.com.br/noticias/politica/eleicoes-2026/29-09-2026/quaest-cleitinho-mantem-37-e-patrus-chega-a-18-em-minas-gerais.html"
+    },
+    "resultados": [
+      { "candidato": "Cleitinho Azevedo", "partido": "Republicanos", "pct": 37 },
+      { "candidato": "Patrus Ananias", "partido": "PT", "pct": 18 },
+      { "candidato": "Alexandre Kalil", "partido": "PDT", "pct": 9 },
+      { "candidato": "Mateus Simões", "partido": "PSD", "pct": 6 },
+      { "candidato": "Flávio Roscoe", "partido": "PL", "pct": 5 },
+      { "candidato": "Não sabe/indeciso", "partido": null, "pct": 11 },
+      { "candidato": "Brancos/nulos/não votaria", "partido": null, "pct": 9 }
+    ],
+    "observacao": "Nova rodada da Quaest em Minas Gerais divulgada na terça-feira 29/09/2026 (campo 25–28/09, entrevistas domiciliares, margem de 3 p.p., 95% de confiança). NÚMEROS DO TOTAL, critério desta base: a ficha soma 95% (37 + 18 + 9 + 6 + 5 + 11 não sabe + 9 brancos/nulos/não votaria); os 5 pontos restantes pertencem aos candidatos menores de MG (Gabriel Azevedo/MDB, Ben Mendes/Missão, Túlio Lopes/PCB, Indira Xavier/UP, Rafael Duda/PSTU, Henrique Áreas/PCO), sem percentual publicado nesta rodada — nenhuma linha foi criada para fechar em 100. AMOSTRA registrada como 1.506, número publicado pela Tribuna de Minas e igual ao das rodadas anteriores da Quaest em MG; parte das matérias arredondou para '1.500' — divergência de arredondamento entre fontes, nada inventado. Número de registro TSE desta rodada não publicado pelas fontes consultadas (null) — NÃO reaproveitado o MG-03276/2026, que é da rodada 19–22/09. CONTRATANTE null: nenhuma das fontes consultadas afirma explicitamente o contratante desta rodada; nada inferido (as rodadas anteriores da Quaest em MG foram contratadas pela Globo, mas isso não foi reafirmado para esta). Variação informada: Cleitinho estável em 37%, Patrus de 16% para 18%, Kalil de 8% para 9%. Também noticiada por O Povo, Jovem Pan, Estado de Minas, Rádio Itatiaia, NSC Total, Rede 98, Portal MPA e Diário do Grande ABC. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-29-quaest-mg-governador-t2-cleitinho-patrus",
+    "uf": "MG",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1506,
+    "margem": 3.0,
+    "cenario": "estimulada, 2º turno (Cleitinho Azevedo x Patrus Ananias)",
+    "fonte": {
+      "nome": "Tribuna de Minas",
+      "url": "https://tribunademinas.com.br/noticias/politica/eleicoes-2026/29-09-2026/quaest-cleitinho-mantem-37-e-patrus-chega-a-18-em-minas-gerais.html"
+    },
+    "resultados": [
+      { "candidato": "Cleitinho Azevedo", "partido": "Republicanos", "pct": 52 },
+      { "candidato": "Patrus Ananias", "partido": "PT", "pct": 26 }
+    ],
+    "observacao": "Cenário de 2º turno da rodada Quaest/MG de campo 25–28/09, divulgada em 29/09/2026. NÚMEROS DO TOTAL (52 e 26): as fontes consultadas não publicaram a decomposição de brancos/nulos/não votaria e indecisos deste confronto (restam 22 pontos não atribuídos) e nenhuma linha foi criada para eles. Registro TSE e contratante desta rodada não publicados, por isso null. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-29-quaest-rj-governador-t1",
+    "uf": "RJ",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1302,
+    "margem": 3.0,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/eleicoes/2026/09/29/na-pesquisa-quaest-rio-de-janeiro-paes-tem-34-e-ruas-25.html"
+    },
+    "resultados": [
+      { "candidato": "Eduardo Paes", "partido": "PSD", "pct": 34 },
+      { "candidato": "Douglas Ruas", "partido": "PL", "pct": 25 },
+      { "candidato": "Anthony Garotinho", "partido": "Republicanos", "pct": 9 }
+    ],
+    "observacao": "Nova rodada da Quaest no Rio de Janeiro divulgada na terça-feira 29/09/2026 (campo 25–28/09, 1.302 entrevistas domiciliares com eleitores de 16 anos ou mais, margem de 3 p.p., 95% de confiança). NÚMEROS DO TOTAL (34, 25 e 9): as fontes consultadas não publicaram, para este cenário com Garotinho, os percentuais dos demais candidatos nem a decomposição de brancos/nulos/não votaria e indecisos — restam 32 pontos não atribuídos e NENHUMA linha foi criada para eles. Os valores 'indecisos 16% e branco/nulo/não vai votar 15%' que aparecem em parte da cobertura referem-se ao cenário SEM Garotinho (no qual Paes tem 35% e Ruas 26%), que não foi gravado aqui para não misturar cenários. Número de registro TSE desta rodada não publicado (null) — NÃO reaproveitado o RJ-04982/2026, que é da rodada 19–22/09. CONTRATANTE null: nenhuma fonte consultada afirma explicitamente o contratante desta rodada; nada inferido. Variação informada em relação à rodada de 19–22/09 (já na base): Paes de 36% para 34%, Ruas de 23% para 25%, Garotinho de 8% para 9%. Também noticiada por Diário do Rio, Brasil de Fato, Revista Fórum, Agenda do Poder e Diário do Grande ABC. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-29-quaest-rj-governador-t2-paes-ruas",
+    "uf": "RJ",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1302,
+    "margem": 3.0,
+    "cenario": "estimulada, 2º turno (Eduardo Paes x Douglas Ruas)",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/eleicoes/2026/09/29/na-pesquisa-quaest-rio-de-janeiro-paes-tem-34-e-ruas-25.html"
+    },
+    "resultados": [
+      { "candidato": "Eduardo Paes", "partido": "PSD", "pct": 43 },
+      { "candidato": "Douglas Ruas", "partido": "PL", "pct": 33 }
+    ],
+    "observacao": "Cenário de 2º turno da rodada Quaest/RJ de campo 25–28/09, divulgada em 29/09/2026. NÚMEROS DO TOTAL (43 e 33): as fontes consultadas não publicaram a decomposição de brancos/nulos/não votaria e indecisos deste confronto (restam 24 pontos não atribuídos) e nenhuma linha foi criada para eles. As matérias informam que Paes lidera em todos os cenários de 2º turno testados, mas só os números do confronto com Douglas Ruas foram publicados nas fontes consultadas. Registro TSE e contratante desta rodada não publicados, por isso null. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-29-quaest-df-governador-t1",
+    "uf": "DF",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1104,
+    "margem": 3.0,
+    "cenario": "estimulada, 1º turno (total, sem Arruda, Elisson e Rico Pinheiro)",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/celina-leao-tem-39-ante-23-de-grass-no-df-diz-quaest/"
+    },
+    "resultados": [
+      { "candidato": "Celina Leão", "partido": "PP", "pct": 39 },
+      { "candidato": "Leandro Grass", "partido": "PT", "pct": 23 }
+    ],
+    "observacao": "Nova rodada da Quaest no Distrito Federal divulgada na terça-feira 29/09/2026 (campo 25–28/09, 1.104 entrevistas com pessoas de 16 anos ou mais, margem de 3 p.p., 95% de confiança). O cenário testado NÃO inclui as candidaturas de José Roberto Arruda (PSD), Elisson (Agir) e Rico Pinheiro (PRTB), indeferidas pelo TRE-DF — diferença importante em relação às rodadas anteriores da Quaest no DF, que traziam Arruda com 17%. NÚMEROS DO TOTAL (39 e 23): as fontes consultadas não publicaram os percentuais dos demais candidatos nem a decomposição de brancos/nulos/não votaria e indecisos — restam 38 pontos não atribuídos e nenhuma linha foi criada para eles. Número de registro TSE desta rodada não publicado (null) — NÃO reaproveitado o DF-02596/2026, que é da rodada 19–22/09. CONTRATANTE null: nenhuma fonte consultada afirma explicitamente o contratante desta rodada; nada inferido (as rodadas anteriores foram contratadas pela TV Globo, mas isso não foi reafirmado aqui). Também noticiada por O Povo, Brasil de Fato, Brasil 247, Revista Fórum e Gazeta do Povo. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-29-quaest-df-governador-t2-celina-grass",
+    "uf": "DF",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1104,
+    "margem": 3.0,
+    "cenario": "estimulada, 2º turno (Celina Leão x Leandro Grass)",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/celina-leao-tem-39-ante-23-de-grass-no-df-diz-quaest/"
+    },
+    "resultados": [
+      { "candidato": "Celina Leão", "partido": "PP", "pct": 54 },
+      { "candidato": "Leandro Grass", "partido": "PT", "pct": 31 }
+    ],
+    "observacao": "Cenário de 2º turno da rodada Quaest/DF de campo 25–28/09, divulgada em 29/09/2026. NÚMEROS DO TOTAL (54 e 31): as fontes consultadas não publicaram a decomposição de brancos/nulos/não votaria e indecisos deste confronto (restam 15 pontos não atribuídos) e nenhuma linha foi criada para eles. Registro TSE e contratante desta rodada não publicados, por isso null. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-29-quaest-pe-governador-t1",
+    "uf": "PE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "PE-00324/2026",
+    "contratante": "Rede Globo",
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1302,
+    "margem": 3.0,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/quaest-raquel-lyra-e-joao-campos-empatam-com-42-em-pernambuco"
+    },
+    "resultados": [
+      { "candidato": "Raquel Lyra", "partido": "PSD", "pct": 42 },
+      { "candidato": "João Campos", "partido": "PSB", "pct": 42 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 5 },
+      { "candidato": "Não sabe/indeciso", "partido": null, "pct": 10 }
+    ],
+    "observacao": "Nova rodada da Quaest em Pernambuco divulgada na terça-feira 29/09/2026 (campo 25–28/09, 1.302 entrevistas domiciliares, margem de 3 p.p., 95% de confiança). Registro TSE PE-00324/2026. CONTRATANTE Rede Globo afirmado explicitamente pelas matérias ('pesquisa encomendada pela Rede Globo'), não inferido. NÚMEROS DO TOTAL, critério desta base: a ficha soma 99% (42 + 42 + 5 brancos/nulos + 10 não sabe); 1 ponto restante pertence aos candidatos menores de PE (a base registra Ivan Moraes/PSOL, Professora Camila/UP, Guilherme Fonseca/PSTU, Professor Jeremias do Banco/DC, Renan Hallais/Missão, Victor Assis/PCO), sem percentual publicado nesta rodada — nenhuma linha foi criada para fechar em 100. Empate em 42% a 42% entre a governadora Raquel Lyra e o ex-prefeito do Recife João Campos. Rodada distinta da Quaest/PE com campo 19–22/09, já na base. Também noticiada por Correio Braziliense, O Povo, Revista Fórum, Alô Alô Bahia, Diario de Pernambuco e Gazeta do Povo. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-29-quaest-pe-governador-t2-lyra-campos",
+    "uf": "PE",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "PE-00324/2026",
+    "contratante": "Rede Globo",
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1302,
+    "margem": 3.0,
+    "cenario": "estimulada, 2º turno (Raquel Lyra x João Campos)",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/quaest-raquel-lyra-e-joao-campos-empatam-com-42-em-pernambuco"
+    },
+    "resultados": [
+      { "candidato": "Raquel Lyra", "partido": "PSD", "pct": 44 },
+      { "candidato": "João Campos", "partido": "PSB", "pct": 44 },
+      { "candidato": "Brancos/nulos/nenhum dos dois", "partido": null, "pct": 5 }
+    ],
+    "observacao": "Cenário de 2º turno da rodada Quaest/PE de campo 25–28/09, divulgada em 29/09/2026: o empate se repete, 44% a 44%. NÚMEROS DO TOTAL: a ficha soma 93% (44 + 44 + 5 brancos/nulos/nenhum dos dois); os 7 pontos de indecisos deste confronto não foram publicados pelas fontes consultadas e nenhuma linha foi criada para eles. Registro TSE PE-00324/2026; contratante Rede Globo afirmado explicitamente. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-29-instituto-falpe-al-governador-t1",
+    "uf": "AL",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Instituto Falpe",
+    "registroTSE": "AL-02617/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-13",
+    "dataFim": "2026-09-22",
+    "publicadoEm": "2026-09-29",
+    "amostra": 5000,
+    "margem": 1.39,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "BR104",
+      "url": "https://www.br104.com.br/eleicoes-2026/alagoas/falpe-renan-filho-jhc-governo-alagoas-setembro-2026"
+    },
+    "resultados": [
+      { "candidato": "Renan Filho", "partido": "MDB", "pct": 41 },
+      { "candidato": "JHC", "partido": "PSDB", "pct": 40 },
+      { "candidato": "Lenilda Luna", "partido": "UP", "pct": 0.25 },
+      { "candidato": "Márcio Jambo", "partido": null, "pct": 0.1 },
+      { "candidato": "Nenhum dos apresentados", "partido": null, "pct": 3 },
+      { "candidato": "Não opinaram", "partido": null, "pct": 15.65 }
+    ],
+    "observacao": "Pesquisa do Instituto Falpe para o governo de Alagoas divulgada na terça-feira 29/09/2026, mas com campo de 13 a 22/09/2026 — a data de campo é bem anterior à publicação, por isso o registro entra pelo campo (13–22/09) e não pela data da matéria. 5.000 entrevistas presenciais em domicílio distribuídas pelos 102 municípios de Alagoas, margem de 1,39 p.p., 95% de confiança, registro TSE AL-02617/2026. NÚMEROS DO TOTAL, critério desta base: a ficha fecha exatamente em 100,00% (41 + 40 + 0,25 + 0,1 + 3 nenhum dos apresentados + 15,65 não opinaram) — internamente consistente. Renan Filho e JHC em empate técnico (1 ponto de diferença, margem de 1,39). CONTRATANTE null: nenhuma fonte consultada afirma explicitamente quem contratou a pesquisa; veículo que divulga não é contratante e nada foi inferido. Primeiro registro do Instituto Falpe nesta base para governador de Alagoas — não confundir com a rodada anterior do mesmo instituto noticiada em 01/09 (Renan Filho 41,25% x JHC 37,5%), que não está na base e tem campo diferente. Não há cenário de 2º turno publicado nas fontes consultadas. Também noticiada por Gazeta de Alagoas (gazetaweb), Vero Notícias e Blog Viiish. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  }
+]
