@@ -1014,3 +1014,59 @@ rodadas suspensas em rodada dedicada. A opção 3 troca um problema de
 procedência por um buraco de cobertura maior do que o problema.
 
 **A decisão é do humano do projeto**, como foi a do Veritá.
+
+## Lacunas levantadas na varredura de 29/09
+
+A varredura de hoje trouxe 66 pesquisas, mas os três agentes esgotaram o
+orçamento de busca (200 chamadas cada) e deixaram lacunas nomeadas. A cinco
+dias da eleição, esta é a lista para uma passada de recuperação.
+
+### Rodadas que existem e não foram fechadas
+
+- **Gerp nacional**, campo 24–28/09, n=2.400, margem 2, BR-03929/2026.
+  Os únicos percentuais recuperáveis são **votos válidos** (Flávio 44 x Lula
+  42) e as linhas em válidos somavam mais de 100. Sem os totais não dá para
+  registrar sem inventar. **É rodada nova e nacional — a de maior impacto
+  desta lista.**
+- **AtlasIntel CE, Senado** — a rodada existe (campo 23–28/09, n=1.800,
+  publicada hoje) e os números de governador entraram; os de Senado não
+  foram recuperados.
+- **AtlasIntel BA** — campo 23–28/09, divulgação anunciada para 30/09.
+- **Onda Quaest de campo 25–28/09** — entrou em SP, MG, RJ, PE e DF. Não foi
+  possível confirmar se vai além desses cinco estados.
+
+### UFs sem varredura dedicada hoje
+
+Governador: **TO, AC, RO, RR, AP, PB, SC, MS** e recheque de GO. O TSE
+autorizou 33 pesquisas estaduais para hoje cobrindo, entre outras, AC, GO,
+MT, RO, SE e TO.
+
+### Rodadas anteriores ausentes da base
+
+- **Neokemp/PR** (pub. 28/09): Moro 47,2 / Requião Filho 25,8 / Sandro Alex
+  22,6. Período de campo não confirmado.
+- **Instituto França/SE** (pub. 28/09, campo 24–26/09, n=1.300, margem 2,7):
+  Mitidieri 42,18 / Valmir de Francisquinho 29,69.
+- **Real Time Big Data/CE** (pub. 26/09, campo 21–24/09, CE-00688/2026):
+  Elmano 48 / Ciro 41. **Conferir antes de ingerir** — pode estar alcançada
+  pela liminar do TRE-CE contra o instituto.
+- **Instituto Ranking Brasil Inteligência/MS**, 12ª rodada, campo 21–25/09.
+
+### Fichas descartadas por inconsistência (não são lacuna, são recusa)
+
+- **AC Delta** (14–19/09): duas tabelas incompatíveis entre fontes.
+- **RO Instituto Phoenix**: campo conflitante e amostra pertencente a outra
+  pesquisa co-registrada; nove nomes somando exatamente 100 sem linha de
+  não-voto, apesar de descrita como soma das duas vagas.
+- **TO O Girassol** (15–17/09) e **PI DataMax / DataAZ**: só fragmentos ou
+  só votos válidos sobre pergunta base-200.
+
+### Duas conferências fechadas hoje, sem alteração
+
+- **Vox Brasil nacional**: JOTA e CNN traziam um par de números diferente do
+  registrado. Exame, Poder360, Metrópoles e Revista Oeste confirmam o que
+  está na base, com a mesma ficha e registro.
+- **Paraná Pesquisas AP, Senado** (ingerida em 28/09): um resumo trazia a
+  ordem do 2º e 3º colocados invertida. CNN, Metrópoles, Poder360 e Gazeta
+  do Povo confirmam Rayssa 54,0 / Randolfe 36,7 / Lucas Barreto 36,1, que é
+  o que está na base. Nada corrigido porque nada estava errado.

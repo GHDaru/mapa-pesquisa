@@ -1,0 +1,457 @@
+[
+  {
+    "id": "2026-09-29-quaest-sp-senador-t1",
+    "uf": "SP",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "SP-01590/2026",
+    "contratante": "Globo",
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1800,
+    "margem": 2.0,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (2 vagas). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/quaest-senado-sp-derrite-tem-18-tebet-e-marina-15/"
+    },
+    "resultados": [
+      { "candidato": "Guilherme Derrite", "partido": "PP", "pct": 18 },
+      { "candidato": "Marina Silva", "partido": "Rede", "pct": 15 },
+      { "candidato": "Simone Tebet", "partido": "PSB", "pct": 15 },
+      { "candidato": "André do Prado", "partido": "PL", "pct": 12 },
+      { "candidato": "Ricardo Salles", "partido": "Novo", "pct": 3 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 16 },
+      { "candidato": "Não sabe/indeciso", "partido": null, "pct": 15 }
+    ],
+    "observacao": "QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO (aritmetica primeiro): a tabela publicada soma 94 (18+15+15+12+3 de candidatos, mais 16 de brancos/nulos e 15 de indecisos), isto e, base 100 — os ~6 pontos restantes estao nos candidatos nanicos que as materias nao itemizaram. Base 100 exclui de imediato a leitura 2 (soma em base 200). Para separar leitura 3 de leitura 1 nao usamos a redacao desta materia, e sim a ARITMETICA DA RODADA IRMA DO MESMO INSTITUTO E DA MESMA ONDA no DF (mesmo campo 25-28/09), onde a Quaest publicou a quebra: 1o voto Michelle 42, Erika 20, Leila 18, Bia 8; 2o voto Bia 28, Leila 22, Erika 13, Michelle 10; e a tabela consolidada traz Michelle 26, Leila 20, Bia 18, Erika 16 — exatamente a MEDIA dos dois votos ((42+10)/2=26; (18+22)/2=20; (8+28)/2=18; (20+13)/2=16,5~16). A rodada irma no RJ (mesmo campo) traz a frase explicita 'cada eleitor vota em dois candidatos, com o resultado consolidado dos dois votos e reduzido a 100%'. Logo a onda inteira e leitura 3, e nao primeira escolha. NAO E DUPLICATA: a Quaest em SP ja na base e de campo 19-22/09 (registro SP-02456/2026, Derrite 16, Marina 13, Tebet 12, Prado 8) e de campo 04-07/09; esta e campo 25-28/09, registro SP-01590/2026, numeros diferentes. FICHA: 1.800 entrevistados de 16 anos ou mais em SP entre 25 e 28/09/2026, 95% de confianca, margem de 2 p.p., registro SP-01590/2026, divulgada em 29/09/2026. CONTRATANTE: as materias afirmam explicitamente contratacao pela Globo — registrado. RESSALVA: Ricardo Salles anunciou desistencia da disputa em 28/09, ja durante o campo; a fonte manteve seu percentual na tabela e nao o redistribuimos. LIMITACAO DE METODO: WebFetch bloqueado nesta sessao; todos os numeros vieram de resumos de WebSearch, sem leitura integral das materias."
+  },
+  {
+    "id": "2026-09-29-real-time-big-data-sp-senador-t1",
+    "uf": "SP",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "SP-06293/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 2000,
+    "margem": 2.0,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (2 vagas). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-senado-sp-derrite-tem-22-prado-20-tebet-18-e-marina-15/"
+    },
+    "resultados": [
+      { "candidato": "Guilherme Derrite", "partido": "PP", "pct": 22 },
+      { "candidato": "André do Prado", "partido": "PL", "pct": 20 },
+      { "candidato": "Simone Tebet", "partido": "PSB", "pct": 18 },
+      { "candidato": "Marina Silva", "partido": "Rede", "pct": 15 },
+      { "candidato": "Ricardo Salles", "partido": "Novo", "pct": 6 },
+      { "candidato": "Geraldo Rufino", "partido": "Podemos", "pct": 3 },
+      { "candidato": "Soninha Francine", "partido": "Cidadania", "pct": 2 },
+      { "candidato": "Guto Schiavetto", "partido": "Missão", "pct": 2 }
+    ],
+    "observacao": "QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO: (a) aritmetica — os oito candidatos itemizados somam 88; com as linhas de brancos/nulos e nao sabe (nao recuperadas, ver abaixo) o total fica na vizinhanca de 100, muito distante da base 200 que caracterizaria a leitura 2; (b) a fonte e explicita quanto a normalizacao: o instituto 'apresentou cenario estimulado para o Senado em que os entrevistados citaram o primeiro e o segundo voto, sendo o resultado os votos consolidados reduzidos a 100%' — a formula da leitura 3; (c) reforco por comparacao dentro do mesmo estado e quase o mesmo campo: a Quaest de 25-28/09 em SP traz Derrite 18, Marina 15, Tebet 15 e Prado 12 em leitura 3, ordem de grandeza compativel, enquanto a Paraná Pesquisas de 19-21/09 (leitura 2, base 200) traz Tebet 29,6, Derrite 29,3 e Marina 28,3 — patamar completamente diferente. QUEBRA DE 1o E 2o VOTO: as materias localizadas NAO publicam a separacao desta rodada — nao ha quebra a registrar (declarar que nao se sabe e preferivel a estimar). LINHAS OMITIDAS: brancos/nulos e nao sabe/nao respondeu nao foram recuperados nos resumos de busca desta rodada; ficaram de fora em vez de serem estimados. FICHA: 2.000 eleitores paulistas entre 24 e 28/09/2026, 95% de confianca, margem de 2 p.p., registro SP-06293/2026, divulgada em 29/09/2026. REGISTRO: SP-06293/2026 confirmado por Gazeta do Povo e CNN Brasil. CONTRATANTE: nenhuma materia afirma quem contratou esta rodada — null (CNN Brasil, Metropoles, Gazeta do Povo, CartaCapital e Revista Oeste sao veiculos divulgadores, nao contratantes). SUSPENSAO JUDICIAL: nenhuma decisao contra o Real Time Big Data em Sao Paulo foi localizada; as suspensoes conhecidas do instituto sao PR, CE, MA, RN, AL, SE e TO. NAO E DUPLICATA: as rodadas do instituto em SP ja na base sao de campo 16-19/09 e 09-12/09; esta e campo 24-28/09. RESSALVA: Ricardo Salles desistiu da disputa em 28/09, ultimo dia de campo; a fonte manteve seus 6% e nao redistribuimos. LIMITACAO DE METODO: WebFetch bloqueado nesta sessao; numeros vindos de resumos de WebSearch."
+  },
+  {
+    "id": "2026-09-29-quaest-mg-senador-t1",
+    "uf": "MG",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "MG-02019/2026",
+    "contratante": "Globo",
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1506,
+    "margem": 3.0,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (2 vagas). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "Tribuna de Minas",
+      "url": "https://tribunademinas.com.br/noticias/politica/eleicoes-2026/29-09-2026/quaest-cleitinho-mantem-37-e-patrus-chega-a-18-em-minas-gerais.html"
+    },
+    "resultados": [
+      { "candidato": "Marília Campos", "partido": "PT", "pct": 13 },
+      { "candidato": "Aécio Neves", "partido": "PSDB", "pct": 10 },
+      { "candidato": "Carlos Viana", "partido": "PSD", "pct": 10 },
+      { "candidato": "Domingos Sávio", "partido": "PL", "pct": 10 }
+    ],
+    "observacao": "QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO: (a) aritmetica — 13+10+10+10 = 43 nos quatro primeiros; a rodada anterior da Quaest em MG, ja na base, tem tabela completa que fecha em 100 (mesmos quatro nomes mais Aro 6, Aurea Carolina 3, quatro nanicos com 1 cada, indecisos 29 e brancos/nulos/nao votaria 15), confirmando base 100 para o recorte que a Quaest publica em MG — o que exclui a leitura 2; (b) para separar leitura 3 de leitura 1, a prova vem da rodada irma da MESMA ONDA no DF (mesmo campo 25-28/09), em que a Quaest publicou 1o voto (Michelle 42, Erika 20, Leila 18, Bia 8) e 2o voto (Bia 28, Leila 22, Erika 13, Michelle 10) e a tabela consolidada e exatamente a MEDIA dos dois; e da rodada irma no RJ, cuja materia diz literalmente 'o resultado consolidado dos dois votos e reduzido a 100%'. ATENCAO — COINCIDENCIA DE NUMEROS SINALIZADA PARA CONFERENCIA HUMANA: os quatro percentuais desta rodada (13/10/10/10) sao IDENTICOS aos da rodada anterior da Quaest em MG (campo 19-22/09, registro MG-03276/2026, ja na base). Tratamos como rodada nova porque a ficha e outra — campo 25-28/09, registro MG-02019/2026 — e porque duas fontes independentes datadas de 29/09 (Tribuna de Minas e Gazeta do Povo) atribuem esses numeros ao levantamento novo; mas nao se pode descartar que algum veiculo tenha reaproveitado a tabela antiga. NAO E DUPLICATA (pelo periodo de campo): campo 25-28/09 contra 19-22/09 da rodada ja na base. LINHAS OMITIDAS: abaixo dos quatro primeiros, as materias desta rodada nao reconfirmaram os percentuais dos demais candidatos nem as linhas de brancos/nulos e indecisos; ficaram de fora em vez de serem copiados da rodada anterior. FICHA: 1.506 eleitores mineiros de 16 anos ou mais entre 25 e 28/09/2026, 95% de confianca, margem de 3 p.p., registro MG-02019/2026, divulgada em 29/09/2026. CONTRATANTE: as materias afirmam contratacao pela Globo — registrado. LIMITACAO DE METODO: WebFetch bloqueado nesta sessao; numeros vindos de resumos de WebSearch."
+  },
+  {
+    "id": "2026-09-29-quaest-rj-senador-t1",
+    "uf": "RJ",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "RJ-04419/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1302,
+    "margem": 3.0,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (2 vagas; frase explicita na fonte). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "CartaCapital",
+      "url": "https://www.cartacapital.com.br/politica/a-disputa-pelas-duas-vagas-ao-senado-no-rj-segundo-nova-pesquisa-quaest/"
+    },
+    "resultados": [
+      { "candidato": "Carlos Portinho", "partido": "PL", "pct": 15 },
+      { "candidato": "Benedita da Silva", "partido": "PT", "pct": 15 },
+      { "candidato": "Carlos Jordy", "partido": "PL", "pct": 15 },
+      { "candidato": "Pedro Paulo", "partido": "PSD", "pct": 9 },
+      { "candidato": "Monica Benicio", "partido": "PSOL", "pct": 8 }
+    ],
+    "observacao": "QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO: esta e a ficha do dia em que a fonte e mais explicita: a materia registra que 'cada eleitor votara em dois candidatos ao Senado, com os resultados consolidados dos dois votos e reduzidos a 100%'. A aritmetica acompanha: os cinco nomes somam 62 e a rodada anterior da Quaest no RJ (ja na base) tem tabela completa fechando em 100 com brancos/nulos 21 e nao sabe 21 — base 100, o que exclui a leitura 2. E a prova de que a base 100 aqui e MEDIA e nao primeira escolha vem da rodada irma da mesma onda no DF, onde a quebra de 1o e 2o voto foi publicada e a tabela consolidada reproduz exatamente a media dos dois. NAO E DUPLICATA: a Quaest no RJ ja na base e de campo 19-22/09, registro RJ-04982/2026, com Benedita 15, Jordy 10, Portinho 10, Crivella 7, Pedro Paulo 6 e Monica 4 — numeros e registro diferentes dos desta rodada de campo 25-28/09 (RJ-04419/2026), em que Portinho e Jordy subiram a 15 e empataram com Benedita. LINHAS OMITIDAS: Marcelo Crivella, Waguinho e os demais nomes, alem de brancos/nulos e nao sabe, nao foram recuperados para esta rodada nos resumos de busca; ficaram de fora em vez de serem estimados ou copiados da rodada anterior. FICHA: 1.302 entrevistados pela Quaest entre 25 e 28/09/2026, 95% de confianca, margem de 3 p.p., registro RJ-04419/2026, divulgada em 29/09/2026. CONTRATANTE: as materias sobre as rodadas irmas em PE, MG e SP afirmam contratacao pela Globo, mas NENHUMA materia localizada sobre o RJ afirma o contratante desta rodada — por isso o campo ficou null, sem inferir a partir da onda nem de quem divulgou. LIMITACAO DE METODO: WebFetch bloqueado nesta sessao; numeros vindos de resumos de WebSearch."
+  },
+  {
+    "id": "2026-09-29-quaest-pe-senador-t1",
+    "uf": "PE",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "PE-00324/2026",
+    "contratante": "Globo",
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1302,
+    "margem": 3.0,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (2 vagas). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/2026/09/29/para-o-senado-do-pe-marilia-tem-19-humberto-17-mendonca-10-aponta-quaest.html"
+    },
+    "resultados": [
+      { "candidato": "Marília Arraes", "partido": "PDT", "pct": 19 },
+      { "candidato": "Humberto Costa", "partido": "PT", "pct": 17 },
+      { "candidato": "Mendonça Filho", "partido": "PL", "pct": 10 },
+      { "candidato": "Túlio Gadêlha", "partido": "PSD", "pct": 3 }
+    ],
+    "observacao": "QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO: (a) aritmetica — os nomes publicados somam pouco mais de 50 pontos e a rodada anterior da Quaest em PE (ja na base) tem o mesmo patamar, logo base 100 e nao base 200; isso exclui a leitura 2; (b) para separar leitura 3 de leitura 1, a prova e a quebra publicada pela propria Quaest na rodada irma do DF, mesmo campo 25-28/09 (1o voto Michelle 42 / 2o voto Michelle 10 / consolidado 26 = media exata), mais a frase explicita na rodada irma do RJ ('consolidado dos dois votos reduzido a 100%'). Reforca a leitura 3 a comparacao com o Real Time Big Data em PE de campo 23-26/09, tambem leitura 3, que traz Marilia 25, Mendonca 20 e Humberto 20 — mesma ordem de grandeza —, e o contraste com a Paraná Pesquisas (leitura 2) em outros estados, cujos lideres passam de 40. LINHA OMITIDA POR DIVERGENCIA ENTRE FONTES (nao inventamos numero): as fontes divergem sobre Eduardo 'Dudu' da Fonte (PP) — o Blog do Elielson/CBN Recife publica 8% e o blog do Marcio Didier publica 7% para o mesmo nome na mesma tabela. Como nao foi possivel decidir sem ler os textos integrais (WebFetch bloqueado), essa linha ficou de fora em vez de ser escolhida arbitrariamente. Brancos/nulos e indecisos tambem nao foram recuperados. NAO E DUPLICATA: a Quaest em PE ja na base e de campo 19-22/09, registro PE-05671/2026, com Marilia 18, Humberto 14, Mendonca 10 e Eduardo da Fonte 8; esta e campo 25-28/09, registro PE-00324/2026. FICHA: 1.302 entrevistados pela Quaest entre 25 e 28/09/2026, 95% de confianca, margem de 3 p.p., registro PE-00324/2026, divulgada em 29/09/2026. A amostra de 1.302 coincide com a da rodada irma do RJ; o numero foi confirmado em duas fontes independentes (Gazeta do Povo e O Povo) e por isso mantido, mas fica sinalizado para conferencia. CONTRATANTE: as materias afirmam contratacao pela Globo — registrado. LIMITACAO DE METODO: WebFetch bloqueado nesta sessao; numeros vindos de resumos de WebSearch."
+  },
+  {
+    "id": "2026-09-29-quaest-df-senador-t1",
+    "uf": "DF",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "DF-02515/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1104,
+    "margem": 3.0,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (media das duas escolhas, comprovada pela quebra publicada). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/quaest-senado-df-michelle-tem-26-leila-20-bia-kicis-18-erika-16/"
+    },
+    "resultados": [
+      { "candidato": "Michelle Bolsonaro", "partido": "PL", "pct": 26 },
+      { "candidato": "Leila do Vôlei", "partido": "PDT", "pct": 20 },
+      { "candidato": "Bia Kicis", "partido": "PL", "pct": 18 },
+      { "candidato": "Erika Kokay", "partido": "PT", "pct": 16 }
+    ],
+    "observacao": "QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO — ESTA E A FICHA QUE FECHA PELA ARITMETICA E SERVE DE ANCORA PARA TODA A ONDA QUAEST DE CAMPO 25-28/09: a Quaest publicou as tres tabelas. 1o VOTO: Michelle 42, Erika 20, Leila 18, Bia 8. 2o VOTO: Bia 28, Leila 22, Erika 13, Michelle 10. CONSOLIDADO: Michelle 26, Leila 20, Bia 18, Erika 16. A MEDIA dos dois votos reproduz o consolidado linha por linha — Michelle (42+10)/2 = 26 exato; Leila (18+22)/2 = 20 exato; Bia (8+28)/2 = 18 exato; Erika (20+13)/2 = 16,5 ~ 16 (arredondamento). Se fosse a leitura 1, Michelle apareceria com 42 e nao com 26; se fosse a leitura 2, a tabela somaria perto de 200 e Michelle apareceria com 52. Portanto leitura 3, decidida pela aritmetica e nao pela redacao. QUEBRA DE 1o E 2o VOTO (registrada conforme pedido): 1o voto — Michelle 42%, Erika 20%, Leila 18%, Bia 8%; 2o voto — Bia 28%, Leila 22%, Erika 13%, Michelle 10%. As fontes nao publicam a quebra dos demais nomes. NAO E DUPLICATA: a Quaest no DF ja na base e de campo 19-22/09, registro DF-02596/2026, com Michelle 26, Leila 19, Erika 15 e Bia 15; esta e campo 25-28/09, registro DF-02515/2026, com Bia subindo a 18 e Erika a 16. FICHA: 1.104 entrevistados de 16 anos ou mais no DF entre 25 e 28/09/2026, 95% de confianca, margem de 3 p.p., registro DF-02515/2026, divulgada em 29/09/2026. CONTRATANTE: as materias das rodadas irmas em PE, MG e SP afirmam contratacao pela Globo, mas nenhuma materia localizada sobre o DF afirma o contratante desta rodada — null, sem inferir pela onda. LINHAS OMITIDAS: demais candidatos, brancos/nulos e indecisos nao recuperados nos resumos. LIMITACAO DE METODO: WebFetch bloqueado nesta sessao; numeros vindos de resumos de WebSearch."
+  },
+  {
+    "id": "2026-09-29-real-time-big-data-df-senador-t1",
+    "uf": "DF",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "DF-04637/2026",
+    "contratante": "Sociedade de Rádio Brasília Ltda.",
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (2 vagas). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-senado-df-michelle-tem-27-leila-do-volei-18-bia-kicis-18/"
+    },
+    "resultados": [
+      { "candidato": "Michelle Bolsonaro", "partido": "PL", "pct": 27 },
+      { "candidato": "Leila do Vôlei", "partido": "PDT", "pct": 18 },
+      { "candidato": "Bia Kicis", "partido": "PL", "pct": 18 },
+      { "candidato": "Erika Kokay", "partido": "PT", "pct": 16 }
+    ],
+    "observacao": "QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO: (a) aritmetica — os quatro nomes somam 79; com os nanicos e as linhas de brancos/nulos e nao sabe o total fica na vizinhanca de 100, longe da base 200 que caracterizaria a leitura 2; (b) o recorte padrao do Real Time Big Data nesta onda de campo 24-28/09 e explicito nas rodadas irmas de SP e RS ('cenario estimulado em que os entrevistados citaram o primeiro e o segundo voto, com o resultado consolidado reduzido a 100%'), e a rodada irma do RS tem tabela COMPLETA que fecha em exatamente 100 (23+19+18+16+12+4+1+1+1 de outros +3 de brancos/nulos +2 de nao sabe), confirmando a normalizacao; (c) reforco decisivo por convergencia: a Quaest no DF com campo praticamente identico (25-28/09), cuja leitura 3 foi comprovada pela media da quebra publicada de 1o e 2o voto, traz Michelle 26, Leila 20, Bia 18 e Erika 16 — praticamente os mesmos valores desta tabela. Uma tabela de primeira escolha isolada no DF poria Michelle perto de 42 (foi o 1o voto medido pela Quaest), nao em 27. QUEBRA DE 1o E 2o VOTO: as materias localizadas nao publicam a separacao desta rodada — nao ha quebra a registrar. FICHA: 1.600 eleitores do DF entre 24 e 28/09/2026, 95% de confianca, margem de 2 p.p., registro DF-04637/2026, divulgada em 29/09/2026. CONTRATANTE: a fonte afirma explicitamente que a pesquisa foi contratada pela Sociedade de Radio Brasilia Ltda. — registrado (nao e inferencia a partir de quem divulgou). SUSPENSAO JUDICIAL: nenhuma decisao contra o Real Time Big Data no Distrito Federal foi localizada; as suspensoes conhecidas do instituto sao PR, CE, MA, RN, AL, SE e TO. NAO E DUPLICATA: nao ha nenhuma pesquisa do Real Time Big Data para o Senado no DF em data/polls.json — esta e a primeira. LINHAS OMITIDAS: demais candidatos, brancos/nulos e nao sabe nao recuperados. LIMITACAO DE METODO: WebFetch bloqueado nesta sessao; numeros vindos de resumos de WebSearch."
+  },
+  {
+    "id": "2026-09-29-real-time-big-data-pr-senador-t1",
+    "uf": "PR",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "PR-04181/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (2 vagas; cenario principal, COM Deltan Dallagnol). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-big-data-senado-no-parana-tem-empate-entre-5-candidatos/"
+    },
+    "resultados": [
+      { "candidato": "Deltan Dallagnol", "partido": "Novo", "pct": 19 },
+      { "candidato": "Alexandre Curi", "partido": "Republicanos", "pct": 18 },
+      { "candidato": "Filipe Barros", "partido": "PL", "pct": 18 },
+      { "candidato": "Gleisi Hoffmann", "partido": "PT", "pct": 16 },
+      { "candidato": "Cristina Graeml", "partido": "PSD", "pct": 15 },
+      { "candidato": "Dr. Rosinha", "partido": "PT", "pct": 6 },
+      { "candidato": "Karen Guerreiro", "partido": "Missão", "pct": 1 },
+      { "candidato": "Joaquim do MLB", "partido": "UP", "pct": 0 },
+      { "candidato": "Marcelo Marcelino", "partido": "PCO", "pct": 0 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 3 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 4 }
+    ],
+    "observacao": "QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO (aritmetica fechada): a tabela completa soma EXATAMENTE 100 (19+18+18+16+15+6+1+0+0 = 93, mais 3 de brancos/nulos e 4 de nao sabe). Base 100 exclui a leitura 2 (que no PR produz patamares muito diferentes — a Paraná Pesquisas de 15-17/09, leitura 2, traz Deltan 31,6 e Curi 30,4, e a Neokemp de 15-16/09, tambem leitura 2, traz Deltan 48,8). Para separar leitura 3 de leitura 1, o criterio e o recorte declarado do proprio instituto nesta onda de campo 24-28/09, explicito nas rodadas irmas de SP e RS ('primeiro e segundo voto, resultado consolidado reduzido a 100%'), e o contraste com a IRG Pesquisas de 17-20/09 no MESMO estado, que mede primeira escolha isolada e traz Deltan 24 e Gleisi 21,1 — patamar diferente do desta tabela. QUEBRA DE 1o E 2o VOTO: as materias nao publicam a separacao desta rodada — nao ha quebra a registrar. CENARIO ALTERNATIVO NAO INGERIDO: o instituto tambem divulgou um cenario SEM Deltan Dallagnol (Filipe Barros 23, Alexandre Curi 22, Gleisi 17, Cristina Graeml 16, Dr. Rosinha 7, Karen Guerreiro 2, brancos/nulos 6, nao sabe 7). Registramos apenas o cenario principal, seguindo a convencao de uma linha por pesquisa na base. DECISAO JUDICIAL — REGISTRO OBRIGATORIO: esta rodada FOI CONTESTADA E NAO ESTA SUSPENSA. O TRE-PR rejeitou o pedido de suspensao imediata apresentado pela coligacao Fortaleza Paraná e MANTEVE a divulgacao da pesquisa no ar, mas determinou que o instituto complemente informacoes sobre a distribuicao territorial da amostra — ou seja, a discussao nao esta encerrada. Isso e distinto da suspensao anterior do Real Time Big Data no Paraná (decisao que alcancou uma rodada anterior do instituto no estado); nenhuma decisao suspende esta rodada de campo 24-28/09. Fica sinalizado para conferencia humana em caso de decisao posterior. NAO E DUPLICATA: as rodadas do instituto no PR ja na base sao de campo 11-15/09 (registro PR-00532/2026) e 04-08/09 (PR-08220/2026). ATENCAO: os percentuais dos cinco primeiros nomes desta rodada (19/18/18/16/15) sao IDENTICOS aos da rodada de campo 11-15/09 ja na base — tratamos como rodada nova porque o campo e o registro TSE sao outros (PR-04181/2026) e a materia de 29/09 descreve o campo 24-28/09, mas a coincidencia fica sinalizada. CONTRATANTE: nenhuma materia afirma quem contratou — null. LIMITACAO DE METODO: WebFetch bloqueado nesta sessao; numeros vindos de resumos de WebSearch."
+  },
+  {
+    "id": "2026-09-29-real-time-big-data-rs-senador-t1",
+    "uf": "RS",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "RS-05412/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (2 vagas). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-senado-rs-van-hattem-tem-23-sanderson-19-e-manuela-18/"
+    },
+    "resultados": [
+      { "candidato": "Marcel Van Hattem", "partido": "Novo", "pct": 23 },
+      { "candidato": "Sanderson", "partido": "PL", "pct": 19 },
+      { "candidato": "Manuela d'Ávila", "partido": "PSOL", "pct": 18 },
+      { "candidato": "Paulo Pimenta", "partido": "PT", "pct": 16 },
+      { "candidato": "Germano Rigotto", "partido": "MDB", "pct": 12 },
+      { "candidato": "Frederico Antunes", "partido": "PSD", "pct": 4 },
+      { "candidato": "Luciano do MLB", "partido": "UP", "pct": 1 },
+      { "candidato": "Milton Cardoso", "partido": "PSDB", "pct": 1 },
+      { "candidato": "Outros candidatos (somados)", "partido": null, "pct": 1 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 3 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 2 }
+    ],
+    "observacao": "QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO (aritmetica fechada): a tabela completa soma EXATAMENTE 100 (23+19+18+16+12+4+1+1 = 94, mais 1 na linha de outros candidatos somados, 3 de brancos/nulos e 2 de nao sabe). Base 100 exclui a leitura 2 — e o contraste com a Paraná Pesquisas de 16-18/09 no MESMO estado, que e leitura 2 e traz Manuela 32,2, Van Hattem 29,5 e Pimenta 25,4, confirma que os dois recortes vivem em patamares diferentes. Para separar leitura 3 de leitura 1, o criterio e o recorte declarado do instituto nesta onda ('consolidado do 1o e do 2o voto'), somado ao contraste com a Quaest de 20-23/09 (leitura 3 com amostra menor) e, sobretudo, ao fato de que uma tabela de primeira escolha isolada no RS deixaria uma fatia de indecisos muito maior do que os 5 pontos (3+2) desta tabela — a Quaest, medindo o mesmo espaco, registrou 30 de indecisos e 13 de brancos/nulos. RESSALVA HONESTA: essa ultima comparacao e indiciaria; a decisao principal vem da soma exata 100 mais o recorte declarado. QUEBRA DE 1o E 2o VOTO: as materias nao publicam a separacao desta rodada — nao ha quebra a registrar. OUTROS NOMES: a linha 'outros candidatos (somados) 1' agrega Daniela Mulheres Socialistas, Regis Ethur, Renato Jaguarao, Ric Jones e Tania Peres; mantivemos como a fonte publicou, sem distribuir o valor. FICHA: 1.600 eleitores gauchos entre 24 e 28/09/2026, 95% de confianca, margem de 2 p.p., registro RS-05412/2026, divulgada em 29/09/2026. CONTRATANTE: nenhuma materia afirma quem contratou — null. SUSPENSAO JUDICIAL: nenhuma decisao contra o Real Time Big Data no Rio Grande do Sul foi localizada; as suspensoes conhecidas do instituto sao PR, CE, MA, RN, AL, SE e TO. NAO E DUPLICATA: a rodada do instituto no RS ja na base e de campo 05-09/09 (registro RS-05497/2026, Van Hattem 22, Manuela 18, Sanderson 18, Pimenta 16); esta e campo 24-28/09. LIMITACAO DE METODO: WebFetch bloqueado nesta sessao; numeros vindos de resumos de WebSearch."
+  },
+  {
+    "id": "2026-09-29-ipen-am-senador-t1",
+    "uf": "AM",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Ipen",
+    "registroTSE": "AM-00196/2026",
+    "contratante": "G6 (consórcio de sites: ATUAL, BNC Amazonas, Portal Único, Portal do Marcos Santos, Portal Mário Adolfo e Blog do Hiel Levy)",
+    "dataInicio": "2026-09-18",
+    "dataFim": "2026-09-25",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1200,
+    "margem": 2.8,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (media geral das duas escolhas, comprovada pela quebra publicada). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "Fato Amazônico",
+      "url": "https://fatoamazonico.com.br/pesquisa-ipen-g6-aponta-braga-na-lideranca-para-o-senado-seguido-por-alberto-neto-e-wilson-lima/"
+    },
+    "resultados": [
+      { "candidato": "Eduardo Braga", "partido": "MDB", "pct": 28.5 },
+      { "candidato": "Capitão Alberto Neto", "partido": "PL", "pct": 18.0 },
+      { "candidato": "Wilson Lima", "partido": "União Brasil", "pct": 16.3 },
+      { "candidato": "Plínio Valério", "partido": "PSDB", "pct": 13.8 }
+    ],
+    "observacao": "QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100% (o instituto chama de 'media geral dos votos'). COMO FOI DETERMINADO — FECHA PELA ARITMETICA, com a quebra completa publicada pelo proprio instituto: 1o VOTO — Braga 40,4; Alberto Neto 21,5; Wilson Lima 16,0; Plinio Valerio 9,5. 2o VOTO — Plinio Valerio 18,0; Braga 16,6; Wilson Lima 16,6; Alberto Neto 14,6 (mais Professora Evany 4,1; Dailson Correa 2,8; Ismael Munduruku 1,7; Evandro de Oliveira 1,3; Xuxa do Amazonas 1,2; nao sabe/nao respondeu 16,5; branco 6,6). MEDIA DAS DUAS ESCOLHAS: Braga (40,4+16,6)/2 = 28,5 exato; Alberto Neto (21,5+14,6)/2 = 18,05 ~ 18,0; Wilson Lima (16,0+16,6)/2 = 16,3 exato; Plinio Valerio (9,5+18,0)/2 = 13,75 ~ 13,8. Os quatro batem. Se fosse a leitura 1, Braga apareceria com 40,4 e nao 28,5; se fosse a leitura 2 (soma), Braga apareceria com 57,0. Portanto leitura 3, decidida pela aritmetica e nao pela redacao. QUEBRA DE 1o E 2o VOTO: registrada acima na integra, conforme pedido. NOME DO INSTITUTO: as fontes grafam 'Ipen', 'IPEN' e, em um caso, 'Ipê'; adotamos 'Ipen', a forma majoritaria (Amazonas Atual, Fato Amazonico, Barcelos na Net), sempre em parceria com o consorcio G6. FICHA: 1.200 eleitores, entrevistas PRESENCIAIS em Manaus e dez municipios do interior, de 18 a 25/09/2026, 95% de confianca, margem de 2,8 p.p., registro AM-00196/2026, divulgada em 29/09/2026. CONTRATANTE: as fontes afirmam explicitamente que a pesquisa foi contratada pelo G6, grupo de sites formado por ATUAL, BNC Amazonas, Portal Unico, Portal do Marcos Santos, Portal Mario Adolfo e Blog do Hiel Levy — registrado porque e afirmacao expressa de contratacao, nao inferencia a partir de quem divulgou. LINHAS OMITIDAS: os candidatos abaixo de Plinio Valerio e as linhas de branco/nao sabe foram publicados apenas na tabela de 2o voto, nao na tabela consolidada; por isso nao entraram nos resultados (nao se calcula a media sem o valor de 1o voto correspondente). NAO E DUPLICATA: as pesquisas de Senado no AM ja na base sao Quaest de campo 20-23/09 e Paraná Pesquisas de 02-04/09; nao ha nenhuma do Ipen. LIMITACAO DE METODO: WebFetch bloqueado nesta sessao; numeros vindos de resumos de WebSearch."
+  },
+  {
+    "id": "2026-09-29-atlasintel-pi-senador-t1",
+    "uf": "PI",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "PI-07497/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1218,
+    "margem": null,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (frase explicita na fonte). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/atlasintel-marcelo-castro-tem-267-e-julio-cesar-266-pelo-senado-no-pi/"
+    },
+    "resultados": [
+      { "candidato": "Marcelo Castro", "partido": "MDB", "pct": 26.7 },
+      { "candidato": "Júlio César", "partido": "PSD", "pct": 26.6 },
+      { "candidato": "Ciro Nogueira", "partido": "PP", "pct": 15.6 },
+      { "candidato": "Tiago Junqueira", "partido": "PL", "pct": 11.3 },
+      { "candidato": "Antônio José Lira", "partido": "Avante", "pct": 2.1 },
+      { "candidato": "Maria Madalena Nunes", "partido": "PSOL", "pct": 1.2 },
+      { "candidato": "Francinaldo Leão", "partido": "PSOL", "pct": 0.7 },
+      { "candidato": "Jardenya Bezerra", "partido": "Democrata", "pct": 0.7 },
+      { "candidato": "Toinho Dufrango", "partido": "Mobiliza", "pct": 0.6 },
+      { "candidato": "Antônio Barros Novo", "partido": null, "pct": 0.5 },
+      { "candidato": "Danniel Rocha", "partido": "PSTU", "pct": 0.2 }
+    ],
+    "observacao": "QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO: (a) a fonte e explicita — 'para o Senado, a AtlasIntel apresentou cenario estimulado com primeiro e segundo voto, sendo o resultado os votos consolidados das duas cedulas e reduzidos a 100%'; (b) a aritmetica confirma — os onze nomes itemizados somam 86,2, de modo que com as linhas de brancos/nulos e indecisos o total fecha na vizinhanca de 100, longe da base 200 da leitura 2; (c) prova adicional de que o recorte e o consolidado e nao a primeira escolha: o proprio instituto publicou, ao lado, o mesmo consolidado em VOTOS VALIDOS (Marcelo Castro 30,7; Julio Cesar 30,6; Ciro Nogueira 17,9) — ou seja, 26,7 e 30,7 sao a mesma medida, uma com e outra sem as linhas de nao-voto; nao ha em nenhuma fonte uma tabela de primeira escolha isolada que corresponda a estes 26,7. QUEBRA DE 1o E 2o VOTO: as materias localizadas nao publicam a separacao entre as duas cedulas — nao ha quebra a registrar. AMOSTRA E MARGEM — DIVERGENCIA ENTRE FONTES: CNN Brasil e Conecta Piaui informam 1.218 entrevistados e margem de 2 p.p.; a Gazeta do Povo informa 1.200 entrevistados e margem de 3 p.p. Mantivemos amostra = 1218 (valor exato, nao arredondado, confirmado em duas fontes) e deixamos margem = null em vez de escolher arbitrariamente entre 2 e 3 p.p. Fica sinalizado para conferencia humana. FICHA: AtlasIntel/MeioNorte, recrutamento digital aleatorio (Atlas RDR), 23 a 28/09/2026, 95% de confianca, registro PI-07497/2026, divulgada em 29/09/2026. CONTRATANTE: nenhuma materia afirma quem contratou; a co-assinatura 'AtlasIntel/MeioNorte' indica parceria editorial de divulgacao e NAO autoriza registrar o MeioNorte como contratante — null. NAO E DUPLICATA: a AtlasIntel no PI ja na base e de campo 28/08-02/09 (registro PI-03771/2026, Marcelo Castro 22,4, Julio Cesar 17,2, Ciro Nogueira 13,3); esta e campo 23-28/09. LINHAS OMITIDAS: brancos/nulos e indecisos nao foram recuperados, e as fontes mencionam 'varios candidatos com 0,1% cada' sem nomea-los — nao inventamos as linhas. LIMITACAO DE METODO: WebFetch bloqueado nesta sessao; numeros vindos de resumos de WebSearch."
+  },
+  {
+    "id": "2026-09-28-ippi-pi-senador-t1",
+    "uf": "PI",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "IPPI Pesquisas",
+    "registroTSE": "PI-01333/2026",
+    "contratante": "Estação I",
+    "dataInicio": "2026-09-21",
+    "dataFim": "2026-09-25",
+    "publicadoEm": "2026-09-28",
+    "amostra": 2000,
+    "margem": 2.19,
+    "cenario": "estimulada, LEITURA 2 — SOMA do 1o e do 2o voto (2 vagas; cada entrevistado indicou dois nomes, base de ate 200%). NAO e primeira escolha isolada e NAO e o consolidado reduzido a 100%",
+    "fonte": {
+      "nome": "Portal R10",
+      "url": "https://www.portalr10.com/blogs-e-colunas/180400/a-seis-dias-da-eleicao-marcelo-castro-consolida-lideranca-ao-senado-com-385-em-pesquisa/"
+    },
+    "resultados": [
+      { "candidato": "Marcelo Castro", "partido": "MDB", "pct": 38.5 },
+      { "candidato": "Ciro Nogueira", "partido": "PP", "pct": 35.1 },
+      { "candidato": "Júlio César", "partido": "PSD", "pct": 30.6 }
+    ],
+    "observacao": "QUAL DAS TRES LEITURAS: leitura 2 — SOMA DO 1o E DO 2o VOTO. COMO FOI DETERMINADO (aritmetica, nao redacao): apenas os TRES primeiros nomes ja somam 104,2 (38,5+35,1+30,6), o que por si so torna impossivel tanto a leitura 1 quanto a leitura 3 — ambas fecham em base 100. So a soma de duas indicacoes por eleitor produz esse total. A fonte tambem e explicita ao dizer que Marcelo Castro tem 38,5% 'na soma dos dois votos dos eleitores piauienses para o Senado'. CONTRASTE QUE CONFIRMA: no mesmo estado e no MESMO periodo de campo (21-25/09), o Instituto Amostragem publica uma tabela em base 100 com Marcelo Castro em 25,26 — cerca de metade dos 38,5 daqui, exatamente a relacao esperada entre uma soma em base 200 e uma media em base 100. QUEBRA DE 1o E 2o VOTO: as materias localizadas nao publicam a separacao — nao ha quebra a registrar. FICHA: IPPI Pesquisas, 2.000 eleitores em 90 municipios do Piaui entre 21 e 25/09/2026, 95% de confianca, margem de 2,19 p.p., registro na Justica Eleitoral PI-01333/2026, divulgada na segunda-feira 28/09/2026 ('a seis dias da eleicao'). CONTRATANTE: as fontes afirmam que a pesquisa foi contratada pela Estacao I — registrado por ser afirmacao expressa de contratacao. LINHAS OMITIDAS: as materias publicam apenas os tres primeiros colocados desta tabela; os demais candidatos e as linhas de nao-voto nao foram divulgados nos resumos localizados e por isso nao entraram. POR QUE ENTRA NO ARQUIVO DE 29/09 embora tenha sido publicada em 28/09: o Piaui e uma das seis UFs que ficaram sem varredura dedicada na rodada anterior, e esta pesquisa nao estava em data/polls.json. NAO E DUPLICATA: as pesquisas de Senado no PI ja na base sao Datafolha de campo 14-17/09 e AtlasIntel de 28/08-02/09; nao ha nenhuma do IPPI. LIMITACAO DE METODO: WebFetch bloqueado nesta sessao; numeros vindos de resumos de WebSearch."
+  },
+  {
+    "id": "2026-09-27-amostragem-pi-senador-t1",
+    "uf": "PI",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Amostragem",
+    "registroTSE": "PI-02617/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-21",
+    "dataFim": "2026-09-25",
+    "publicadoEm": "2026-09-27",
+    "amostra": 1137,
+    "margem": 2.85,
+    "cenario": "estimulada, base 100 — LEITURA NAO DETERMINADA: e certo que NAO e a leitura 2 (a tabela fecha em 100,00, nao em 200), mas as fontes nao permitem decidir entre a leitura 1 (primeira escolha isolada) e a leitura 3 (consolidado dos dois votos reduzido a 100%). Ver observacao",
+    "fonte": {
+      "nome": "MeioNews",
+      "url": "https://www.meionews.com/politica/eleicoes-2026/senado-no-piaui-marcelo-lidera-e-julio-supera-ciro-na-pesquisa-espontanea-do-amostragem-576491"
+    },
+    "resultados": [
+      { "candidato": "Marcelo Castro", "partido": "MDB", "pct": 25.26 },
+      { "candidato": "Ciro Nogueira", "partido": "PP", "pct": 22.68 },
+      { "candidato": "Júlio César", "partido": "PSD", "pct": 19.34 },
+      { "candidato": "Tiago Junqueira", "partido": "PL", "pct": 4.57 },
+      { "candidato": "Nenhum dos nomes apresentados", "partido": null, "pct": 6.57 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 2.11 },
+      { "candidato": "Não sabe/não opinou", "partido": null, "pct": 10.9 }
+    ],
+    "observacao": "QUAL DAS TRES LEITURAS: NAO FOI POSSIVEL DETERMINAR — e isso esta declarado no campo cenario em vez de um rotulo escolhido a esmo, conforme a regra de que, nao dando para determinar, se diz que nao deu. O QUE A ARITMETICA RESOLVE: a tabela fecha em base 100 com precisao de centesimo. Prova: o proprio instituto publicou a versao em VOTOS VALIDOS (Marcelo Castro 31,41; Ciro Nogueira 28,21; Julio Cesar 24,05); a razao 25,26/31,41 = 0,8042 implica um total de nomeados de 80,42, e as linhas de nao-voto publicadas somam exatamente 19,58 (10,90 de nao sabe + 2,11 de brancos/nulos + 6,57 de 'nenhum'), fechando 80,42 + 19,58 = 100,00. Isso ELIMINA DE FORMA DEFINITIVA a leitura 2 (base 200). O QUE A ARITMETICA NAO RESOLVE: leitura 1 e leitura 3 fecham as duas em 100, e a soma sozinha nao separa uma da outra. Tentamos a quebra de 1o e 2o voto e a frase-chave, sem sucesso: as fontes localizadas sao CONTRADITORIAS — um resumo afirma que 'cada entrevistado escolheu dois nomes e os votos consolidados foram reduzidos a 100%' (o que apontaria leitura 3), outro rotula a mesma tabela como 'cenario estimulado (primeira opcao)' (o que apontaria leitura 1), e nenhuma materia publica a tabela de segundo voto que permitiria testar a media. Com WebFetch bloqueado nao foi possivel ler os textos integrais para desempatar. INDICIO INCONCLUSIVO A FAVOR DA LEITURA 3: se cada eleitor indicou dois nomes, a tabela bruta somaria ~200 e o fechamento em 100,00 exigiria normalizacao. INDICIO INCONCLUSIVO A FAVOR DA LEITURA 1: a fatia de nao-voto (19,58) e baixa para um consolidado de duas cedulas — o segundo voto costuma ser muito mais indefinido (a Datafolha no PI mediu 18 de brancos/nulos e 17 de indecisos so na primeira escolha, e no Tocantins e no Amazonas os segundos votos trazem nao-resposta acima de 16). Os dois indicios apontam em sentidos opostos; por isso a leitura fica em aberto. CONSEQUENCIA PRATICA: esta ficha NAO deve ser comparada com nenhuma outra sem antes resolver a leitura, porque 25,26 pode ser o dobro ou o proprio valor do numero comparavel. FICHA (esta sim completa e consistente): Instituto Amostragem, 1.137 eleitores em 49 municipios do Piaui, sendo 260 entrevistas em Teresina, de 21 a 25/09/2026, 95% de confianca, margem de 2,85 p.p., registro PI-02617/2026, estatistico responsavel Joao Batista Teles (Conre 5a Regiao no 6695), divulgacao em 27/09/2026. CONTRATANTE: nenhuma materia afirma quem contratou — null. LINHAS OMITIDAS: as fontes dizem que 'os demais candidatos apresentam percentuais abaixo de 2%' sem itemiza-los; nao inventamos essas linhas, o que explica a diferenca entre os 71,85 dos quatro nomes registrados e os 80,42 de nomeados. POR QUE ENTRA NO ARQUIVO DE 29/09: o Piaui e uma das seis UFs sem varredura dedicada na rodada anterior e esta pesquisa nao estava em data/polls.json. NAO E DUPLICATA: nao ha pesquisa do Amostragem para o Senado no PI na base. LIMITACAO DE METODO: WebFetch bloqueado; numeros vindos de resumos de WebSearch."
+  },
+  {
+    "id": "2026-09-26-ip-sensus-ac-senador-t1",
+    "uf": "AC",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "IP Sensus",
+    "registroTSE": "AC-02001/2026",
+    "contratante": null,
+    "dataInicio": null,
+    "dataFim": null,
+    "publicadoEm": "2026-09-26",
+    "amostra": 1000,
+    "margem": 3.1,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (media entre a primeira e a segunda opcao, frase explicita na fonte). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "ac24horas",
+      "url": "https://ac24horas.com/2026/09/26/ip-sensus-senado-gladson-lidera-com-23-bittar-tem-18-e-jorge-14/"
+    },
+    "resultados": [
+      { "candidato": "Gladson Camelí", "partido": "PP", "pct": 23.6 },
+      { "candidato": "Márcio Bittar", "partido": "PL", "pct": 18.85 },
+      { "candidato": "Jorge Viana", "partido": "PT", "pct": 14.8 },
+      { "candidato": "Mara Rocha", "partido": "Republicanos", "pct": 13.65 },
+      { "candidato": "Eduardo Velloso", "partido": "Solidariedade", "pct": 8.8 },
+      { "candidato": "Sérgio Petecão", "partido": "PSD", "pct": 5.3 },
+      { "candidato": "Professor Inácio Moreira", "partido": "PSOL", "pct": 4.6 },
+      { "candidato": "Dr. Júnior Feitosa", "partido": "DC", "pct": 3.2 },
+      { "candidato": "Brancos/nulos/indecisos", "partido": null, "pct": 7.2 }
+    ],
+    "observacao": "QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO (aritmetica fechada, e a fonte concorda): a tabela soma EXATAMENTE 100,00 — 23,60+18,85+14,80+13,65+8,80+5,30+4,60+3,20 = 92,80 nos oito candidatos, mais 7,20 de brancos/nulos/indecisos. Fechamento exato em 100 elimina a leitura 2 (base 200). E a fonte descreve o recorte com a formula da leitura 3: 'resultado consolidado, que mede a forca geral dos candidatos combinando a MEDIA entre a primeira e a segunda opcao de voto'. CONTRASTE QUE CONFIRMA: no mesmo estado, a Paraná Pesquisas e a agencia Delta publicam leituras em que os lideres passam de 20 com somas muito acima de 100, enquanto a Quaest de 21-24/09 (leitura 3, ja na base) traz Gladson em 19 — mesma ordem de grandeza destes 23,60, e nao o dobro. QUEBRA DE 1o E 2o VOTO: a fonte afirma que existe (o consolidado e a media das duas opcoes) mas NAO publica os valores separados — por isso nao registramos quebra. PERIODO DE CAMPO NAO PUBLICADO: nenhuma das fontes localizadas informa as datas de coleta desta rodada; dataInicio e dataFim ficaram null em vez de estimados, e a unica data certa e a de divulgacao, 26/09/2026. ISSO E UMA LACUNA RELEVANTE, porque a regra de deduplicacao da base e o periodo de campo. O risco de duplicata e nulo neste caso especifico: nao existe nenhuma pesquisa do IP Sensus para o Senado no Acre em data/polls.json (as de AC na base sao Quaest 21-24/09, Real Time Big Data 16-19/09 e Quaest 23-26/08). Fica sinalizado para conferencia humana. FICHA: IP Sensus, 1.000 entrevistados no Acre, 95% de confianca, margem de 3,1 p.p., registro no TRE-AC sob AC-02001/2026, divulgada em 26/09/2026. CONTRATANTE: nenhuma materia afirma quem contratou — null (o ac24horas e veiculo divulgador). POR QUE ENTRA NO ARQUIVO DE 29/09: o Acre e uma das seis UFs sem varredura dedicada na rodada anterior e esta pesquisa nao estava na base. LIMITACAO DE METODO: WebFetch bloqueado nesta sessao; numeros vindos de resumos de WebSearch."
+  },
+  {
+    "id": "2026-09-census-rr-senador-t1",
+    "uf": "RR",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Census",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-08-31",
+    "dataFim": "2026-09-06",
+    "publicadoEm": null,
+    "amostra": 1500,
+    "margem": 2.5,
+    "cenario": "estimulada, LEITURA 2 — SOMA do 1o e do 2o voto (2 vagas; cada eleitor indica dois nomes, base de ate 200%). NAO e primeira escolha isolada e NAO e o consolidado reduzido a 100%",
+    "fonte": {
+      "nome": "Roraima 1",
+      "url": "https://roraima1.com.br/quatro-em-cada-dez-escolhas-para-o-senado-seguem-indefinidas-em-roraima-mostra-pesquisa-census/"
+    },
+    "resultados": [
+      { "candidato": "Teresa Surita", "partido": "MDB", "pct": 29.59 },
+      { "candidato": "Antonio Carlos Nicoletti", "partido": "PL", "pct": 25.16 },
+      { "candidato": "Chico Rodrigues", "partido": "PSB", "pct": 23.15 },
+      { "candidato": "Helena da Asatur", "partido": "PSD", "pct": 21.14 },
+      { "candidato": "Não sabe/não respondeu (acumulado 1º + 2º voto)", "partido": null, "pct": 79.95 }
+    ],
+    "observacao": "QUAL DAS TRES LEITURAS: leitura 2 — SOMA DO 1o E DO 2o VOTO. COMO FOI DETERMINADO (aritmetica): os quatro nomes publicados somam 99,04 e a linha de nao-resposta acumulada nas duas cedulas soma 79,95, totalizando 178,99 antes mesmo dos demais candidatos — um total que so existe em base 200. Se fosse leitura 1 ou leitura 3, a soma teria de fechar perto de 100 e nao poderia conter uma linha unica de 79,95. A fonte tambem e explicita: os percentuais estao 'na soma do primeiro e do segundo voto' e 'como cada eleitor pode escolher dois candidatos ao Senado, os percentuais somados podem chegar a 200%'. QUEBRA DE 1o E 2o VOTO: a fonte publica a SOMA e o indice acumulado de indefinicao, mas nao os valores separados de cada cedula — nao ha quebra a registrar. DATA DE DIVULGACAO NAO CONFIRMADA: nenhuma das fontes localizadas informa com seguranca o dia da divulgacao (ha materias de meados de setembro que parecem se referir a esta rodada); publicadoEm ficou null em vez de estimado. O periodo de CAMPO, que e a chave de deduplicacao da base, esta confirmado: 31/08 a 06/09/2026. REGISTRO TSE NAO PUBLICADO nas fontes localizadas — null, e nao o numero RR-03658/2026, que pertence a pesquisa da Quaest no estado. NAO E DUPLICATA: as pesquisas de Senado em RR na base sao Quaest 21-24/09 e Real Time Big Data 05-09/09; nao ha nenhuma do Census, e o campo 31/08-06/09 nao coincide com nenhuma delas. FICHA: Census, 1.500 entrevistados, campo de 31/08 a 06/09/2026, margem de 2,5 p.p. informada pelo proprio instituto. CONTRATANTE: nenhuma materia afirma quem contratou — null. LINHAS OMITIDAS: os candidatos abaixo de Helena da Asatur nao foram divulgados nos resumos localizados; nao inventamos os valores, o que explica por que o total registrado (178,99) fica abaixo de 200. POR QUE ENTRA NO ARQUIVO DE 29/09: Roraima e uma das seis UFs sem varredura dedicada na rodada anterior e esta pesquisa nao estava na base. LIMITACAO DE METODO: WebFetch bloqueado nesta sessao; numeros vindos de resumos de WebSearch."
+  },
+  {
+    "id": "2026-09-03-parana-pesquisas-pr-senador-t1",
+    "uf": "PR",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "PR-03399/2026",
+    "contratante": "Paraná Pesquisas (autofinanciada — o próprio instituto, conforme a fonte)",
+    "dataInicio": "2026-08-31",
+    "dataFim": "2026-09-02",
+    "publicadoEm": "2026-09-03",
+    "amostra": 1280,
+    "margem": 2.8,
+    "cenario": "estimulada, LEITURA 2 — SOMA do 1o e do 2o voto (2 vagas; o eleitor escolhe dois nomes, base de ate 200%). NAO e primeira escolha isolada e NAO e o consolidado reduzido a 100%",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/parana-pesquisas-dallagnol-tem-308-e-curi-284-na-corrida-ao-senado-no-parana/"
+    },
+    "resultados": [
+      { "candidato": "Deltan Dallagnol", "partido": "Novo", "pct": 30.8 },
+      { "candidato": "Alexandre Curi", "partido": "Republicanos", "pct": 28.4 },
+      { "candidato": "Gleisi Hoffmann", "partido": "PT", "pct": 25.7 },
+      { "candidato": "Filipe Barros", "partido": "PL", "pct": 22.9 },
+      { "candidato": "Cristina Graeml", "partido": "PSD", "pct": 14.4 },
+      { "candidato": "Dr. Rosinha", "partido": "PT", "pct": 13.0 }
+    ],
+    "observacao": "PENDENCIA DA VARREDURA DE 28/09 — AGORA RESOLVIDA, MAS COM A HIPOTESE ANTERIOR REFUTADA. A tabela que ficou de fora ontem por falta de periodo de campo confirmado e esta. O PERIODO DE CAMPO E 31/08 A 02/09/2026, com divulgacao na quinta-feira 03/09/2026, amostra de 1.280 eleitores em 56 municipios do Parana, entrevistas pessoais e domiciliares, margem de 2,8 p.p., 95% de confianca, registro no TSE sob PR-03399/2026. A HIPOTESE DE QUE FOSSE A RODADA DE CAMPO 25-27/09 (por analogia com a pesquisa de governador PR-02701/2026 do mesmo instituto) ESTA REFUTADA: buscas dedicadas por uma rodada da Paraná Pesquisas ao Senado no PR com campo 25-27/09 nao encontraram nenhuma, e duas fontes independentes (Exame e Poder360) datam esta tabela de 31/08-02/09 com divulgacao em 03/09. A confusao se explica porque existe uma OUTRA rodada da Paraná Pesquisas no PR, de campo 15-17/09 (registro PR-01022/2026), tambem com 1.280 entrevistados, que JA ESTA NA BASE com numeros parecidos mas diferentes (Deltan 31,6; Curi 30,4; Filipe Barros 26,3; Gleisi 25,9; Cristina Graeml 14,8; Dr. Rosinha 12,5) — note que nela Barros esta em 3o e aqui esta em 4o. QUAL DAS TRES LEITURAS: leitura 2 — SOMA DO 1o E DO 2o VOTO. COMO FOI DETERMINADO (aritmetica): os seis nomes somam 135,2 (30,8+28,4+25,7+22,9+14,4+13,0), muito acima de 100, o que exclui tanto a leitura 1 quanto a leitura 3. O total nao chega a 200 exatos porque parte dos entrevistados indica apenas um nome — padrao da Paraná Pesquisas, que nao forca a segunda indicacao (o mesmo ocorre na rodada de 15-17/09 ja na base, que soma 144,6). QUEBRA DE 1o E 2o VOTO: nao publicada — nao ha quebra a registrar. PROCEDENCIA DOS NUMEROS: os quatro primeiros percentuais (30,8 / 28,4 / 25,7 / 22,9) foram confirmados nesta sessao contra o periodo de campo 31/08-02/09; os dois ultimos (Cristina Graeml 14,4 e Dr. Rosinha 13,0) vieram da tabela pendente herdada da varredura de 28/09 e NAO foram reconfirmados hoje contra o campo — ficam sinalizados para conferencia humana, embora sejam claramente distintos dos 14,8 e 12,5 da rodada de 15-17/09. CONTRATANTE: a fonte afirma expressamente que a pesquisa foi contratada pelo proprio instituto (autofinanciada) — registrado como afirmacao da fonte, nao como inferencia. NAO E DUPLICATA: nenhuma pesquisa de Senado no PR na base tem campo 31/08-02/09. LIMITACAO DE METODO: WebFetch bloqueado nesta sessao; numeros vindos de resumos de WebSearch."
+  }
+]
