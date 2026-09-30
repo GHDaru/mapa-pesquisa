@@ -1070,3 +1070,68 @@ MT, RO, SE e TO.
   ordem do 2º e 3º colocados invertida. CNN, Metrópoles, Poder360 e Gazeta
   do Povo confirmam Rayssa 54,0 / Randolfe 36,7 / Lucas Barreto 36,1, que é
   o que está na base. Nada corrigido porque nada estava errado.
+
+## Suspensões e lacunas levantadas em 30/09
+
+### Suspensões novas que tocam a base
+
+- **TRE-AM, 28/09:** suspendeu uma pesquisa da **Quaest** no Amazonas "após
+  falhas", e uma do Veritá para governo e Senado, com multa de até R$ 50
+  mil. **A Quaest AM de campo 20–23/09 está na base.** Não foi editada — é
+  a primeira vez que uma decisão alcança o instituto que mais usamos como
+  referência de qualidade, e a identificação exata da rodada suspensa
+  precisa ser conferida antes de qualquer ação.
+- **TRE-ES, 30/09:** suspendeu **quatro** pesquisas do **Instituto Perfil**
+  para governo e Senado, por indícios de fraude. Nada do Perfil está na
+  base; não alcança a rodada da Real Time no ES.
+- **TRE-CE:** a suspensão da rodada da Real Time no Ceará (CE-00688/2026)
+  **segue vigente** — "até nova manifestação". Duas varreduras
+  independentes chegaram aos números dessa pesquisa em 30/09 e as duas
+  recusaram ingerir. É lacuna real do CE, e só entra se a liminar cair.
+
+### Rótulo corrigido em ficha antiga (30/09)
+
+`2026-09-04-atlasintel-ce-senador-t1` tinha o cenário rotulado como
+"percentuais somam mais de 100 (eleitor escolhe 2 nomes)" — e a ficha soma
+**83,4**. O rótulo contradizia os próprios dados.
+
+A leitura correta é a consolidada, e a prova é aritmética: a quebra
+publicada da rodada traz 1º voto Luizianne 29,3 / Wagner 23,9 / Cid 22,4 /
+Alcides 14,3, e 2º voto Cid 26,4 / Luizianne 19,0 / Alcides 17,2 / Wagner
+14,3. A média das duas cédulas reproduz os quatro valores gravados: Cid
+24,4 exato, Wagner 19,1 exato, Luizianne 24,15 ≈ 24,2, Alcides 15,75 ≈
+15,7.
+
+**Nenhum percentual foi alterado** — só o rótulo que os descrevia errado.
+A regra de não editar pesquisa antiga existe para impedir maquiar número
+até a validação passar; deixar um rótulo que a própria ficha desmente é o
+oposto disso, e mantinha essa rodada em conflito de métrica com as outras
+da mesma série no Ceará.
+
+### Lacunas novas
+
+- **American Analytics / Times Brasil / CNBC, nacional** — campo 15–20/09,
+  n=2.000, margem 2,5, publicada ~23/09: 1º turno Lula 38 x Flávio 34; 2º
+  turno **empate em 43 x 43**. **Não há nenhuma entrada desse instituto na
+  base** — é um instituto inteiro ausente, e ele consta da lista de onze do
+  roundup do Poder360.
+- **Quaest RJ, presidente** — publicada 29/09, campo 25–28/09: Flávio 38,
+  Lula 31, Cury 4, Caiado 2, Renan 2. A base tem a Quaest MG e PE do mesmo
+  dia, não o RJ.
+- **Quaest SP, presidente** — rodada registrada para divulgação em 29/09,
+  n=1.800. Números não confirmados.
+- **Espírito Santo, Real Time Big Data, campo 25–29/09** — governador
+  publicado **só em votos válidos** (47/39/14 = 100). Não convertido, então
+  o ES ficou sem a rodada.
+- **Neokemp PR, campo 24–27/09** — ficha inconsistente: as fontes atribuem
+  o mesmo conjunto de percentuais a duas rodadas diferentes, e uma manchete
+  contradiz o 2º voto implicado pela soma.
+- **Tocantins e Goiás** foram liberados pelo TSE para divulgação em 30/09 e
+  nenhuma divulgação de governador foi localizada. Merecem recheque.
+
+### Calendário da última janela
+
+A **AtlasIntel nacional** está em campo de 27/09 a 02/10 (2.200
+entrevistas) — divulgação provável em 02 ou 03/10. O **Datafolha** divulga
+em 01/10 e a última rodada da série vai a campo em **03/10**, véspera. São
+as últimas grandes rodadas antes da eleição.

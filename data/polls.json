@@ -1,5 +1,109 @@
 [
   {
+    "id": "2026-09-30-ipec-pi-governador-t1",
+    "uf": "PI",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Ipec",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-28",
+    "dataFim": "2026-09-30",
+    "publicadoEm": "2026-09-30",
+    "amostra": 800,
+    "margem": 3,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/politica/pesquisa-ipec-no-piaui-mendes-tem-48-dos-votos-validos-fonteles-47/"
+    },
+    "resultados": [
+      {
+        "candidato": "Sílvio Mendes",
+        "partido": "União Brasil",
+        "pct": 44
+      },
+      {
+        "candidato": "Rafael Fonteles",
+        "partido": "PT",
+        "pct": 42
+      },
+      {
+        "candidato": "Coronel Diego Melo",
+        "partido": "PL",
+        "pct": null
+      },
+      {
+        "candidato": "Gustavo Henrique",
+        "partido": "Patriota",
+        "pct": null
+      },
+      {
+        "candidato": "Gessy Lima",
+        "partido": "PSC",
+        "pct": null
+      },
+      {
+        "candidato": "Ravenna Castro",
+        "partido": "PMN",
+        "pct": null
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 4
+      },
+      {
+        "candidato": "Não sabe/não respondeu",
+        "partido": null,
+        "pct": 5
+      }
+    ],
+    "observacao": "Primeira rodada do Ipec na base. Divulgada em 30/09/2026 (campo 28–30/09, 800 entrevistas em 38 municípios, margem de 3 p.p., 95% de confiança). NÚMEROS DO TOTAL, critério desta base: Sílvio Mendes 44 e Rafael Fonteles 42 — o 'cenário com os votos totais, incluindo indecisos, brancos e nulos' descrito pelas fontes. Teste total x válidos: a manchete de 48% x 47% é VOTOS VÁLIDOS (base de válidos 100 − 4 − 5 = 91). Coronel Diego Melo, Gustavo Henrique, Gessy Lima e Ravenna Castro aparecem SOMENTE no corte de válidos (2%, 1%, 1% e 1%); o percentual no total não foi publicado, por isso pct null — não convertido nem estimado (é o resíduo de ~5 pontos da ficha do total). ATENÇÃO à ficha: se as manchetes 48/47 fossem total, a soma daria 104 com brancos/nulos 4 e não sabe 5, o que é impossível — foi esse teste que identificou o corte de válidos. Data de divulgação: as fontes rotulam o dia como 'sexta-feira (30)', embora 30/09/2026 seja quarta-feira; o número do dia é consistente entre elas e foi mantido. Registro TSE não publicado pelas fontes consultadas. CONTRATANTE null: as manchetes usam a marca 'TV Clube/Ipec' (parceria de divulgação) e nenhuma fonte afirma explicitamente quem contratou; nada foi inferido. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-ipec-pi-governador-t2-mendes-fonteles",
+    "uf": "PI",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Ipec",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-28",
+    "dataFim": "2026-09-30",
+    "publicadoEm": "2026-09-30",
+    "amostra": 800,
+    "margem": 3,
+    "cenario": "estimulada, 2º turno (Sílvio Mendes x Rafael Fonteles) — total",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/politica/pesquisa-ipec-no-piaui-mendes-tem-48-dos-votos-validos-fonteles-47/"
+    },
+    "resultados": [
+      {
+        "candidato": "Sílvio Mendes",
+        "partido": "União Brasil",
+        "pct": 47
+      },
+      {
+        "candidato": "Rafael Fonteles",
+        "partido": "PT",
+        "pct": 44
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 4
+      },
+      {
+        "candidato": "Não sabe/não respondeu",
+        "partido": null,
+        "pct": 5
+      }
+    ],
+    "observacao": "Simulação de 2º turno da mesma rodada Ipec no Piauí (campo 28–30/09, publicada 30/09). NÚMEROS DO TOTAL: 47 + 44 + 4 brancos/nulos + 5 não sabe = 100. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
     "id": "2026-09-29-quaest-pe-presidente-t1",
     "uf": "PE",
     "cargo": "presidente",
@@ -30,6 +134,1355 @@
         "pct": 20
       }
     ]
+  },
+  {
+    "id": "2026-09-30-delta-ac-governador-t1",
+    "uf": "AC",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Delta",
+    "registroTSE": "AC-05322/2026",
+    "contratante": "W. D Empreendimentos",
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 800,
+    "margem": 3.5,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "ac24horas",
+      "url": "https://ac24horas.com/2026/09/30/mailza-tem-4062-alan-rick-3050-bocalom-1238-e-thor-dantas-325-aponta-delta/"
+    },
+    "resultados": [
+      {
+        "candidato": "Mailza Assis",
+        "partido": "PP",
+        "pct": 40.62
+      },
+      {
+        "candidato": "Alan Rick",
+        "partido": "Republicanos",
+        "pct": 30.5
+      },
+      {
+        "candidato": "Tião Bocalom",
+        "partido": "PSDB",
+        "pct": 12.38
+      },
+      {
+        "candidato": "Thor Dantas",
+        "partido": "PSB",
+        "pct": 3.25
+      },
+      {
+        "candidato": "Eudo Raffael",
+        "partido": null,
+        "pct": 0.38
+      },
+      {
+        "candidato": "Dr. Luisinho",
+        "partido": null,
+        "pct": 0.12
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 1.62
+      },
+      {
+        "candidato": "Indecisos/não respondeu",
+        "partido": null,
+        "pct": 11.13
+      }
+    ],
+    "observacao": "Primeira rodada do instituto Delta na base. Divulgada na quarta-feira 30/09/2026; campo presencial de 23 a 29/09/2026, 800 entrevistas, margem de 3,5 p.p., 95% de confiança. NÚMEROS DO TOTAL, critério desta base: a ficha fecha exatamente em 100,00% (40,62 + 30,50 + 12,38 + 3,25 + 0,38 + 0,12 + 1,62 brancos/nulos + 11,13 indecisos). Registro TSE AC-05322/2026 (o material da Delta também cita BR-04942/2026, registro nacional do mesmo levantamento). CONTRATANTE afirmado explicitamente pelas fontes ('contratado pela W. D Empreendimentos') — não inferido; a marca 'Delta/AcreEmDia' que aparece nas manchetes é parceria de divulgação, não foi tratada como contratante. Partidos de Thor Dantas (PSB) e ausência de sigla para Eudo Raffael e Dr. Luisinho seguem o que já consta na base para AC. Rodada distinta da Quaest (campo 21–24/09) e da Real Time Big Data (16–19/09), ambas já na base. Também noticiada por O Alto Acre, Acre Agora, Portal Acre, O Rio Branco, Notícias da Hora e Jurauá Informativo. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-delta-ac-governador-t2-mailza-alan-rick",
+    "uf": "AC",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Delta",
+    "registroTSE": "AC-05322/2026",
+    "contratante": "W. D Empreendimentos",
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 800,
+    "margem": 3.5,
+    "cenario": "estimulada, 2º turno (Mailza Assis x Alan Rick) — total",
+    "fonte": {
+      "nome": "ac24horas",
+      "url": "https://ac24horas.com/2026/09/30/mailza-tem-4062-alan-rick-3050-bocalom-1238-e-thor-dantas-325-aponta-delta/"
+    },
+    "resultados": [
+      {
+        "candidato": "Mailza Assis",
+        "partido": "PP",
+        "pct": 48.88
+      },
+      {
+        "candidato": "Alan Rick",
+        "partido": "Republicanos",
+        "pct": 36.88
+      }
+    ],
+    "observacao": "Simulação de 2º turno da mesma rodada Delta (campo 23–29/09, publicada 30/09). NÚMEROS DO TOTAL: 48,88 + 36,88 = 85,76, ou seja, sobram 14,24 pontos de brancos/nulos e indecisos — se fossem votos válidos a soma fecharia em 100. As fontes consultadas não publicaram a quebra de brancos/nulos e indecisos deste cenário, por isso essas linhas NÃO foram incluídas (nada foi repartido nem estimado). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-real-time-big-data-ro-governador-t1",
+    "uf": "RO",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "Rondônia Dinâmica",
+      "url": "https://www.rondoniadinamica.com/noticias/2026/09/real-time-big-data-marcos-rogerio-tem-42-adailton-furia-30-e-hildon-chaves-10-na-disputa-pelo-governo-de-rondonia,255378.shtml"
+    },
+    "resultados": [
+      {
+        "candidato": "Marcos Rogério",
+        "partido": "PL",
+        "pct": 42
+      },
+      {
+        "candidato": "Adailton Fúria",
+        "partido": "PSD",
+        "pct": 30
+      },
+      {
+        "candidato": "Hildon Chaves",
+        "partido": "União Brasil",
+        "pct": 10
+      },
+      {
+        "candidato": "Expedito Netto",
+        "partido": null,
+        "pct": 9
+      },
+      {
+        "candidato": "Samuel Costa",
+        "partido": "Rede",
+        "pct": null
+      },
+      {
+        "candidato": "Pedro Abib",
+        "partido": "MDB",
+        "pct": null
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 3
+      },
+      {
+        "candidato": "Não sabe/não respondeu",
+        "partido": null,
+        "pct": 3
+      }
+    ],
+    "observacao": "Nova rodada da Real Time Big Data em Rondônia divulgada na quarta-feira 30/09/2026 (campo 25–29/09, 1.600 entrevistas, margem de 2 p.p., 95% de confiança). NÚMEROS DO TOTAL, critério desta base: 42 + 30 + 10 + 9 + 3 brancos/nulos + 3 não sabe. Teste total x válidos: as manchetes de 45% (Rogério) e 32% (Fúria) são VOTOS VÁLIDOS — 42 ÷ 0,94 = 44,7 ≈ 45 e 30 ÷ 0,94 = 31,9 ≈ 32; a lista de válidos publicada (45, 32, 11, 9, 2, 1) fecha em 100, a de total não. Samuel Costa e Pedro Abib aparecem SOMENTE no corte de votos válidos (2% e 1%); o percentual deles no total não foi publicado por nenhuma fonte consultada, por isso pct null — não foi convertido nem estimado (isso explica o resíduo de ~3 pontos na ficha do total). Partido de Expedito Netto null: os resumos consultados o rotulam como PT, o que não confere com o registro já presente na base para RO (Expedito Netto sem sigla) — nada foi inferido. Registro TSE desta rodada não publicado pelas fontes consultadas, por isso null. CONTRATANTE null: nenhuma fonte afirma quem contratou. ATENÇÃO — Real Time Big Data está sob decisões da Justiça Eleitoral em outras praças (TRE-PR, TRE-RN sobre RN-08492/2026, TRE-MA sobre MA-02569/2026 e TRE-CE sobre CE-00688/2026); não há notícia de suspensão desta rodada de Rondônia. Também noticiada por CNN Brasil, CartaCapital, Rondoniaovivo e Expressão Rondônia. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-real-time-big-data-ro-governador-t2-rogerio-furia",
+    "uf": "RO",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno (Marcos Rogério x Adailton Fúria) — total",
+    "fonte": {
+      "nome": "Rondônia Dinâmica",
+      "url": "https://www.rondoniadinamica.com/noticias/2026/09/real-time-big-data-marcos-rogerio-tem-42-adailton-furia-30-e-hildon-chaves-10-na-disputa-pelo-governo-de-rondonia,255378.shtml"
+    },
+    "resultados": [
+      {
+        "candidato": "Marcos Rogério",
+        "partido": "PL",
+        "pct": 49
+      },
+      {
+        "candidato": "Adailton Fúria",
+        "partido": "PSD",
+        "pct": 40
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 5
+      },
+      {
+        "candidato": "Não sabe/não respondeu",
+        "partido": null,
+        "pct": 6
+      }
+    ],
+    "observacao": "Primeiro cenário de 2º turno da rodada Real Time Big Data em RO (campo 25–29/09, publicada 30/09). NÚMEROS DO TOTAL: 49 + 40 + 5 brancos/nulos + 6 não sabe = 100. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-real-time-big-data-ro-governador-t2-rogerio-hildon",
+    "uf": "RO",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno (Marcos Rogério x Hildon Chaves) — total",
+    "fonte": {
+      "nome": "Rondônia Dinâmica",
+      "url": "https://www.rondoniadinamica.com/noticias/2026/09/real-time-big-data-marcos-rogerio-tem-42-adailton-furia-30-e-hildon-chaves-10-na-disputa-pelo-governo-de-rondonia,255378.shtml"
+    },
+    "resultados": [
+      {
+        "candidato": "Marcos Rogério",
+        "partido": "PL",
+        "pct": 51
+      },
+      {
+        "candidato": "Hildon Chaves",
+        "partido": "União Brasil",
+        "pct": 34
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 6
+      },
+      {
+        "candidato": "Não sabe/não respondeu",
+        "partido": null,
+        "pct": 9
+      }
+    ],
+    "observacao": "Segundo cenário de 2º turno da rodada Real Time Big Data em RO (campo 25–29/09, publicada 30/09). NÚMEROS DO TOTAL: 51 + 34 + 6 brancos/nulos + 9 não sabe = 100. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-real-time-big-data-ro-governador-t2-rogerio-expedito",
+    "uf": "RO",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno (Marcos Rogério x Expedito Netto) — total",
+    "fonte": {
+      "nome": "Rondônia Dinâmica",
+      "url": "https://www.rondoniadinamica.com/noticias/2026/09/real-time-big-data-marcos-rogerio-tem-42-adailton-furia-30-e-hildon-chaves-10-na-disputa-pelo-governo-de-rondonia,255378.shtml"
+    },
+    "resultados": [
+      {
+        "candidato": "Marcos Rogério",
+        "partido": "PL",
+        "pct": 60
+      },
+      {
+        "candidato": "Expedito Netto",
+        "partido": null,
+        "pct": 22
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 7
+      },
+      {
+        "candidato": "Não sabe/não respondeu",
+        "partido": null,
+        "pct": 11
+      }
+    ],
+    "observacao": "Terceiro cenário de 2º turno da rodada Real Time Big Data em RO (campo 25–29/09, publicada 30/09). NÚMEROS DO TOTAL: 60 + 22 + 7 brancos/nulos + 11 não sabe = 100. Partido de Expedito Netto null (ver observação do 1º turno). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-real-time-big-data-ap-governador-t1",
+    "uf": "AP",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senado-amapa-setembro-2026-2/"
+    },
+    "resultados": [
+      {
+        "candidato": "Dr. Furlan",
+        "partido": "PSD",
+        "pct": 59
+      },
+      {
+        "candidato": "Clécio Luís",
+        "partido": "União Brasil",
+        "pct": 38
+      },
+      {
+        "candidato": "Delegado Marcos",
+        "partido": "DC",
+        "pct": 0
+      },
+      {
+        "candidato": "Jairo Palheta",
+        "partido": "PCO",
+        "pct": 0
+      },
+      {
+        "candidato": "Carlos Cley",
+        "partido": "PSTU",
+        "pct": 0
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 2
+      },
+      {
+        "candidato": "Não sabe/não respondeu",
+        "partido": null,
+        "pct": 1
+      }
+    ],
+    "observacao": "Nova rodada da Real Time Big Data no Amapá divulgada na quarta-feira 30/09/2026 (campo 25–29/09, 1.600 entrevistas, margem de 2 p.p., 95% de confiança). NÚMEROS DO TOTAL, critério desta base: a ficha fecha em 100% (59 + 38 + 0 + 0 + 0 + 2 brancos/nulos + 1 não sabe). O cenário de 2º turno desta rodada NÃO foi ingerido: os resumos consultados reproduzem para o 2º turno exatamente os mesmos valores do 1º turno (59, 38, 2 e 1), o que não foi possível confirmar como número próprio do cenário em vez de repetição da matéria — ficha duvidosa não entra. CUIDADO ao comparar com o Senado do AP na mesma rodada (Rayssa Furlan 30, Randolfe Rodrigues 20, Lucas Barreto 20, Alliny Serrão 13, Acácio Favacho 11): são números de senador, não de governador. Rodada distinta da Quaest (campo 20–23/09) e da Real Time Big Data de 03–07/09, ambas já na base. Registro TSE e contratante não publicados pelas fontes consultadas, por isso null. Também noticiada por CNN Brasil, Revista Oeste, Metrópoles e A Gazeta do Amapá. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-parana-pesquisas-mt-governador-t1",
+    "uf": "MT",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "MT-02094/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-27",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 1352,
+    "margem": 2.7,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "Olhar Direto",
+      "url": "https://www.olhardireto.com.br/noticias/pivetta-chega-a-464-wellington-cai-a-271-e-natasha-alcanca-155-aponta-parana-pesquisas"
+    },
+    "resultados": [
+      {
+        "candidato": "Otaviano Pivetta",
+        "partido": "Republicanos",
+        "pct": 46.4
+      },
+      {
+        "candidato": "Wellington Fagundes",
+        "partido": "PL",
+        "pct": 27.1
+      },
+      {
+        "candidato": "Doutora Natasha",
+        "partido": "PSD",
+        "pct": 15.5
+      }
+    ],
+    "observacao": "Nova rodada do Paraná Pesquisas em Mato Grosso divulgada na quarta-feira 30/09/2026 (campo domiciliar de 27 a 29/09, 1.352 entrevistas em 54 municípios, margem de aproximadamente 2,7 p.p., 95% de confiança). Registro TSE MT-02094/2026 (governador e senador). NÚMEROS DO TOTAL, critério desta base: 46,4 + 27,1 + 15,5. Teste total x válidos: a manchete de 51,6% x 30,1% é VOTOS VÁLIDOS — 46,4 ÷ 0,516 = 89,9 e 27,1 ÷ 0,301 = 90,0, ou seja, a base de válidos é ~90 e não 100. As fontes consultadas não publicaram as linhas de brancos/nulos, não sabe e demais candidatos no corte do total (restam ~10 pontos), por isso essas linhas NÃO foram incluídas — nada foi estimado. CONTRATANTE null: nenhuma fonte afirma quem contratou. Rodada distinta da Quaest de MT (campo 21–24/09), já na base. Também noticiada por Metrópoles, Leia Agora, Notícia Exata, Muvuca Popular, Diário do Poder e RDM Online. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-parana-pesquisas-pe-governador-t1",
+    "uf": "PE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-27",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 1352,
+    "margem": 2.7,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "Resenha Politika",
+      "url": "https://www.resenhapolitika.com.br/2026/09/30/diario-parana-pesquisas-joao-tem-491-e-raquel-486-dos-votos-validos-para-governo-de-pe/"
+    },
+    "resultados": [
+      {
+        "candidato": "João Campos",
+        "partido": "PSB",
+        "pct": 45.3
+      },
+      {
+        "candidato": "Raquel Lyra",
+        "partido": "PSD",
+        "pct": 44.8
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 4.4
+      },
+      {
+        "candidato": "Indecisos",
+        "partido": null,
+        "pct": 3.5
+      }
+    ],
+    "observacao": "Nova rodada do Paraná Pesquisas em Pernambuco divulgada na quarta-feira 30/09/2026 (campo 27–29/09, 1.352 entrevistas em 57 municípios, margem de 2,7 p.p., 95% de confiança). NÚMEROS DO TOTAL, critério desta base: 45,3 + 44,8 + 4,4 brancos/nulos + 3,5 indecisos = 98,0 (restam ~2 pontos de candidatos menores, não itemizados pelas fontes consultadas — nada foi inventado). Teste total x válidos: a manchete de 49,1% x 48,6% é VOTOS VÁLIDOS — base de válidos 100 − 4,4 − 3,5 = 92,1; 45,3 ÷ 0,921 = 49,2 e 44,8 ÷ 0,921 = 48,6. Empate técnico dentro da margem. Registro TSE não publicado pelas fontes consultadas. CONTRATANTE null: as manchetes usam a marca 'Diario/Paraná Pesquisas' (parceria de divulgação) e nenhuma fonte afirma explicitamente quem contratou; nada foi inferido. Rodada distinta da Quaest PE (campo 25–28/09), da Real Time Big Data PE (23–26/09), da Datafolha e da DataTrends (22–24/09), todas já na base. Também noticiada por O Antagonista/Crusoé, Bahia Notícias, Diário do Poder e Waldiney Passos. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-parana-pesquisas-pe-governador-t2-campos-lyra",
+    "uf": "PE",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-27",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 1352,
+    "margem": 2.7,
+    "cenario": "estimulada, 2º turno (João Campos x Raquel Lyra) — total",
+    "fonte": {
+      "nome": "Resenha Politika",
+      "url": "https://www.resenhapolitika.com.br/2026/09/30/diario-parana-pesquisas-joao-tem-491-e-raquel-486-dos-votos-validos-para-governo-de-pe/"
+    },
+    "resultados": [
+      {
+        "candidato": "João Campos",
+        "partido": "PSB",
+        "pct": 46.9
+      },
+      {
+        "candidato": "Raquel Lyra",
+        "partido": "PSD",
+        "pct": 46
+      }
+    ],
+    "observacao": "Simulação de 2º turno da mesma rodada Paraná Pesquisas em PE (campo 27–29/09, publicada 30/09). NÚMEROS DO TOTAL: 46,9 + 46,0 = 92,9; a manchete de 50,5% x 49,5% é VOTOS VÁLIDOS (46,9 ÷ 0,929 = 50,5). As fontes consultadas não publicaram a quebra dos 7,1 pontos restantes (brancos/nulos e indecisos) deste cenário, por isso essas linhas não foram incluídas. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-parana-pesquisas-al-governador-t1",
+    "uf": "AL",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "AL-01237/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-26",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 1400,
+    "margem": 2.7,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/jhc-tem-524-ante-463-de-renan-em-al-diz-pesquisa/"
+    },
+    "resultados": [
+      {
+        "candidato": "JHC",
+        "partido": "PSDB",
+        "pct": 48.6
+      },
+      {
+        "candidato": "Renan Filho",
+        "partido": "MDB",
+        "pct": 43
+      }
+    ],
+    "observacao": "Nova rodada do Paraná Pesquisas em Alagoas divulgada na quarta-feira 30/09/2026 (campo 26–29/09, 1.400 entrevistas em 59 municípios, margem de aproximadamente 2,7 p.p., 95% de confiança). Registro TSE AL-01237/2026 (governador e senador). NÚMEROS DO TOTAL, critério desta base: JHC 48,6 e Renan Filho 43,0 — é o 'cenário que considera todos os entrevistados' descrito pelas fontes. Teste total x válidos: a manchete de 52,4% x 46,3% é VOTOS VÁLIDOS — 48,6 ÷ 0,524 = 92,7 e 43,0 ÷ 0,463 = 92,9, base de válidos ~92,8. As fontes consultadas não publicaram as linhas de brancos/nulos, indecisos e candidatos menores no corte do total (~7 pontos), por isso não foram incluídas. CONTRATANTE null: nenhuma fonte afirma quem contratou. Rodada distinta do Paraná Pesquisas AL de 18–20/09, da Real Time Big Data e da Quaest (21–24/09) e do Instituto Falpe (13–22/09), todas já na base. Também noticiada por Gazeta do Povo, Didi Galvão, O Cafezinho, Diário do Poder, Alagoas 24 Horas e BNews Alagoas. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-real-time-big-data-rj-governador-t1",
+    "uf": "RJ",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno com Garotinho (total)",
+    "fonte": {
+      "nome": "Diário do Rio",
+      "url": "https://diariodorio.com/politica/2026/09/30/real-time-big-data-paes-tem-37-e-ruas-chega-a-31-na-disputa-pelo-governo-do-rio.html"
+    },
+    "resultados": [
+      {
+        "candidato": "Eduardo Paes",
+        "partido": "PSD",
+        "pct": 37
+      },
+      {
+        "candidato": "Douglas Ruas",
+        "partido": "PL",
+        "pct": 31
+      },
+      {
+        "candidato": "Anthony Garotinho",
+        "partido": "Republicanos",
+        "pct": 7
+      },
+      {
+        "candidato": "William Siri",
+        "partido": "PSOL",
+        "pct": 3
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 8
+      }
+    ],
+    "observacao": "Nova rodada da Real Time Big Data no Rio de Janeiro divulgada na quarta-feira 30/09/2026 (campo 25–29/09, 2.000 entrevistas, margem de 2 p.p., 95% de confiança). NÚMEROS DO TOTAL, critério desta base: 37 + 31 + 7 + 3 + 8 brancos/nulos. Teste total x válidos: a manchete de 44% x 37% é VOTOS VÁLIDOS — com brancos/nulos 8 e não sabe 8 a base de válidos é 84, e 37 ÷ 0,84 = 44,0 e 31 ÷ 0,84 = 36,9 ≈ 37. O percentual de 'não sabe/não respondeu' deste cenário estimulado NÃO foi publicado pelas fontes consultadas (os 35% que circulam são do cenário ESPONTÂNEO, outra pergunta) e por isso essa linha não foi incluída — o valor derivado de 8 não foi gravado, para não registrar número que a fonte não publicou. Restam também ~6 pontos de candidatos não itemizados. Rodada distinta da Quaest RJ (campo 25–28/09) e da Datafolha (22–24/09), já na base. Registro TSE e contratante não publicados pelas fontes consultadas. Também noticiada por Agenda do Poder, Manchete Rio, Brasil de Fato, CartaCapital, CNN Brasil e Poder360. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-real-time-big-data-rj-governador-t1-sem-garotinho",
+    "uf": "RJ",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno sem Garotinho (total)",
+    "fonte": {
+      "nome": "Diário do Rio",
+      "url": "https://diariodorio.com/politica/2026/09/30/real-time-big-data-paes-tem-37-e-ruas-chega-a-31-na-disputa-pelo-governo-do-rio.html"
+    },
+    "resultados": [
+      {
+        "candidato": "Eduardo Paes",
+        "partido": "PSD",
+        "pct": 38
+      },
+      {
+        "candidato": "Douglas Ruas",
+        "partido": "PL",
+        "pct": 33
+      }
+    ],
+    "observacao": "Segundo cenário de 1º turno da mesma rodada Real Time Big Data no RJ (campo 25–29/09, publicada 30/09): sem Anthony Garotinho na lista. NÚMEROS DO TOTAL: Paes 38 e Ruas 33; as fontes consultadas não publicaram as demais linhas (outros candidatos, brancos/nulos, não sabe) deste cenário, por isso não foram incluídas — nada foi estimado. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-real-time-big-data-rj-governador-t2-paes-ruas",
+    "uf": "RJ",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno (Eduardo Paes x Douglas Ruas) — total",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/paes-venceria-ruas-ou-garotinho-no-2o-turno-no-rj-diz-pesquisa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Eduardo Paes",
+        "partido": "PSD",
+        "pct": 41
+      },
+      {
+        "candidato": "Douglas Ruas",
+        "partido": "PL",
+        "pct": 36
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 10
+      }
+    ],
+    "observacao": "Primeiro cenário de 2º turno da rodada Real Time Big Data no RJ (campo 25–29/09, publicada 30/09). NÚMEROS DO TOTAL: 41 + 36 + 10 brancos/nulos = 87; a linha de 'não sabe/não respondeu' (os 13 pontos restantes) não foi publicada pelas fontes consultadas e não foi gravada. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-real-time-big-data-rj-governador-t2-paes-garotinho",
+    "uf": "RJ",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno (Eduardo Paes x Anthony Garotinho) — total",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/paes-venceria-ruas-ou-garotinho-no-2o-turno-no-rj-diz-pesquisa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Eduardo Paes",
+        "partido": "PSD",
+        "pct": 47
+      },
+      {
+        "candidato": "Anthony Garotinho",
+        "partido": "Republicanos",
+        "pct": 24
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 13
+      }
+    ],
+    "observacao": "Segundo cenário de 2º turno da rodada Real Time Big Data no RJ (campo 25–29/09, publicada 30/09). NÚMEROS DO TOTAL: 47 + 24 + 13 brancos/nulos = 84; a linha de 'não sabe/não respondeu' (os 16 pontos restantes) não foi publicada pelas fontes consultadas e não foi gravada. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-american-analytics-do-brasil-df-governador-t1",
+    "uf": "DF",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "American Analytics do Brasil",
+    "registroTSE": "DF-03259/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-26",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "Jornal de Brasília",
+      "url": "https://jornaldebrasilia.com.br/entretenimento/katia-flavia/pesquisa-mostra-celina-leao-na-frente-com-51-e-disputa-proporcional-pulverizada-no-df/"
+    },
+    "resultados": [
+      {
+        "candidato": "Celina Leão",
+        "partido": "PP",
+        "pct": 51
+      },
+      {
+        "candidato": "Leandro Grass",
+        "partido": "PT",
+        "pct": 24
+      },
+      {
+        "candidato": "Paula Belmonte",
+        "partido": "PSDB",
+        "pct": 6
+      },
+      {
+        "candidato": "Cappelli",
+        "partido": "PSB",
+        "pct": 4
+      }
+    ],
+    "observacao": "Primeira rodada da American Analytics do Brasil na base. Publicada em 30/09/2026 (coluna de Kátia Flávia no Jornal de Brasília); campo 26–29/09, 2.000 entrevistas, margem de 2,2 p.p., 95% de confiança. Registro TSE DF-03259/2026. NÚMEROS DO TOTAL, critério desta base: 51 + 24 + 6 + 4 = 85; as linhas de demais candidatos, brancos/nulos e não sabe (os ~15 pontos restantes) não foram publicadas pelas fontes consultadas e não foram gravadas — nada foi estimado. CONTRATANTE null: nenhuma fonte afirma quem contratou. Rodada distinta da Real Time Big Data DF (campo 24–28/09, Celina 47 x Grass 26), da Quaest (25–28/09), do Igape (22–26/09) e da Datafolha (22–24/09), todas já na base. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-indexa-broadcast-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Indexa Pesquisas",
+    "registroTSE": "BR-00698/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-27",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, 1º turno — nacional (votos totais)",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/2026/09/30/lula-tem-39-e-flavio-bolsonaro-soma-34-no-1-turno-aponta-indexa-broadcast.html"
+    },
+    "observacao": "Rodada divulgada hoje (quarta, 30/09). Campo 27–29/09/2026, 2.000 eleitores por telefone, margem de 2,2 pontos, 95% de confiança, registro BR-00698/2026. Votos totais: Lula 39; Flávio 34; Caiado 4; Cury 4; Renan Santos 3; Zema 1 — soma 85,0. AS LINHAS DE NÃO-CANDIDATO NÃO FORAM INGERIDAS por ficha inconsistente: uma leitura de busca dá 'indeciso/não sabe 7% e não iria votar 4%' (que com os candidatos fecharia 96, exigindo uma linha de branco/nulo não publicada), e outra dá 'branco/nulo 6%, indeciso/não sabe 9%, não iria votar 5%' (que somaria 105 com os candidatos, impossível) — a segunda provavelmente pertence a um cenário de 2º turno. Sem uma versão conciliável, nada foi ingerido nesse espaço e nada foi estimado. Contratante deixado como null: o Broadcast (Grupo Estado) aparece como parceiro de divulgação ('Indexa em parceria com o Broadcast'), e nenhuma fonte acessível o nomeia como contratante — veículo que divulga não é contratante. A rodada anterior da série marcava Lula 38 x Flávio 34 (vantagem de 4 pontos, que passa a 5 nesta). Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 39
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 34
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 4
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 4
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 3
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 1
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-indexa-broadcast-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Indexa Pesquisas",
+    "registroTSE": "BR-00698/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-27",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — nacional (votos totais)",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/indexa-broadcast-no-2o-turno-lula-tem-43-flavio-42/"
+    },
+    "observacao": "Mesmo campo (27–29/09, 2.000 entrevistas, BR-00698/2026). Votos totais: Lula 43 x Flávio 42 (empate técnico dentro da margem de 2,2). As linhas de não-candidato deste cenário não foram ingeridas — ver a ressalva de inconsistência registrada na entrada de 1º turno desta mesma rodada. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 43
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 42
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-indexa-broadcast-br-presidente-t2-lula-zema",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Indexa Pesquisas",
+    "registroTSE": "BR-00698/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-27",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, 2º turno: Lula x Romeu Zema — nacional (votos totais)",
+    "fonte": {
+      "nome": "Carta Capital",
+      "url": "https://www.cartacapital.com.br/politica/lula-e-flavio-bolsonaro-empatam-no-2o-turno-mostra-pesquisa-indexa/"
+    },
+    "observacao": "Mesmo campo (27–29/09, BR-00698/2026). Votos totais: Lula 43 x Zema 36. Linhas de não-candidato não ingeridas (ver ressalva na entrada de 1º turno). Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 43
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 36
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-indexa-broadcast-br-presidente-t2-lula-caiado",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Indexa Pesquisas",
+    "registroTSE": "BR-00698/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-27",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, 2º turno: Lula x Ronaldo Caiado — nacional (votos totais)",
+    "fonte": {
+      "nome": "Carta Capital",
+      "url": "https://www.cartacapital.com.br/politica/lula-e-flavio-bolsonaro-empatam-no-2o-turno-mostra-pesquisa-indexa/"
+    },
+    "observacao": "Mesmo campo (27–29/09, BR-00698/2026). Votos totais: Lula 43 x Caiado 40. Linhas de não-candidato não ingeridas (ver ressalva na entrada de 1º turno). Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 43
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 40
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-indexa-broadcast-br-presidente-t2-lula-renan",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Indexa Pesquisas",
+    "registroTSE": "BR-00698/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-27",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, 2º turno: Lula x Renan Santos — nacional (votos totais)",
+    "fonte": {
+      "nome": "Carta Capital",
+      "url": "https://www.cartacapital.com.br/politica/lula-e-flavio-bolsonaro-empatam-no-2o-turno-mostra-pesquisa-indexa/"
+    },
+    "observacao": "Mesmo campo (27–29/09, BR-00698/2026). Votos totais: Lula 44 x Renan Santos 38. Linhas de não-candidato não ingeridas (ver ressalva na entrada de 1º turno). Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 44
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 38
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-indexa-broadcast-br-presidente-t2-lula-cury",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Indexa Pesquisas",
+    "registroTSE": "BR-00698/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-27",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, 2º turno: Lula x Augusto Cury — nacional (votos totais)",
+    "fonte": {
+      "nome": "Carta Capital",
+      "url": "https://www.cartacapital.com.br/politica/lula-e-flavio-bolsonaro-empatam-no-2o-turno-mostra-pesquisa-indexa/"
+    },
+    "observacao": "Mesmo campo (27–29/09, BR-00698/2026). Votos totais: Lula 41 x Cury 39 (empate técnico). Linhas de não-candidato não ingeridas (ver ressalva na entrada de 1º turno). Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 41
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 39
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-futura-100-cidades-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Futura/100% Cidades",
+    "registroTSE": "BR-01122/2026",
+    "contratante": "Futura Inteligência (recursos próprios)",
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, 1º turno — nacional (votos totais)",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/futura-flavio-tem-422-das-intencoes-de-voto-no-1o-turno-lula-394/"
+    },
+    "observacao": "Rodada divulgada hoje (quarta, 30/09). Campo 25–29/09/2026, 2.000 eleitores por telefone, margem de 2,2 pontos, 95% de confiança, registro BR-01122/2026. Votos totais: Flávio 42,2; Lula 39,4; Caiado 4,0; Cury 3,8; Renan Santos 3,2; Zema 1,6 — soma 94,2, residual de 5,8 pontos. A linha de brancos/nulos/não sabe do 1º turno não apareceu publicada nas fontes acessíveis e por isso não foi criada. Contratante: as matérias dizem que 'o levantamento foi contratado pela Futura' (recursos próprios do instituto) — diferente das rodadas anteriores da série, registradas na base com contratante '100% Cidades'; mantida aqui a informação desta rodada, sem inferência. ATENÇÃO — não confundir com o PDF 'Futura Setembro RODADA 2' (registro BR-00749/2026, 2º turno Flávio 48,1 x Lula 43,7), que é rodada distinta e não foi ingerido aqui. Rodada anterior da série (24/09, campo 19–23/09): Flávio 40,4 x Lula 38,4 — campo novo, não republicação. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 42.2
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 39.4
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 4
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 3.8
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 3.2
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 1.6
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-futura-100-cidades-br-presidente-t2-flavio-lula",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Futura/100% Cidades",
+    "registroTSE": "BR-01122/2026",
+    "contratante": "Futura Inteligência (recursos próprios)",
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula — nacional (votos totais)",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/futura-flavio-tem-49-das-intencoes-de-voto-no-2o-turno-lula-435/"
+    },
+    "observacao": "Mesmo campo (25–29/09, 2.000 entrevistas, BR-01122/2026). Votos totais: Flávio 49,0 + Lula 43,5 + 6,2 de quem votaria em branco, anularia ou não escolheria nenhum dos dois = 98,7 (o residual de 1,3 ponto, provavelmente 'não sabe', não foi publicado e não foi criado). Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 49
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 43.5
+      },
+      {
+        "candidato": "Brancos/nulos/nenhum",
+        "partido": null,
+        "pct": 6.2
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-realtimebigdata-rj-presidente-t1",
+    "uf": "RJ",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-05193/2026",
+    "contratante": "TV 3 Poderes",
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno — recorte presidencial no Rio de Janeiro (votos totais)",
+    "fonte": {
+      "nome": "Carta Capital",
+      "url": "https://www.cartacapital.com.br/politica/pesquisa-real-time-mostra-flavio-bolsonaro-a-frente-de-lula-no-rj/"
+    },
+    "observacao": "Rodada divulgada hoje (quarta, 30/09). Campo 25–29/09/2026, 2.000 eleitores do estado do Rio de Janeiro, margem de 2 pontos, 95% de confiança, registro BR-05193/2026, custo declarado de R$ 20 mil pago pela TV 3 Poderes. Votos totais: Flávio 44; Lula 35; Cury 5; Renan Santos 5; Caiado 2; Zema 2 — soma 93,0; a vantagem de 9 pontos citada pelas matérias confere (44−35). A linha de brancos/nulos/não sabe (residual de 7,0) não foi publicada e não foi criada. SUSPENSÕES: a varredura verificou as liminares em curso contra o Real Time Big Data e NÃO encontrou decisão alcançando esta rodada do RJ; as suspensões localizadas são em outros estados e sobre outras rodadas — RN (registro RN-08492/2026, governador e senador), MA (MA-02569/2026, 24h, decisão de 10/09), TO (TO-04340/2026), CE (pesquisa que sairia na sexta 25/09, junto com uma do Instituto Veritá) e PR (liminar de 07/09 da juíza Sandra Bauermann sobre a rodada de governador/senado que sairia em 09/09, a pedido da campanha de Sandro Alex, questionando a origem dos recursos do instituto). Nenhuma delas é de presidente nem do RJ. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 44
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 35
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 5
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 5
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 2
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 2
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-realtimebigdata-rj-presidente-t2-flavio-lula",
+    "uf": "RJ",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-05193/2026",
+    "contratante": "TV 3 Poderes",
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula — recorte presidencial no Rio de Janeiro (votos totais)",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-52-e-lula-41-no-2o-turno-no-rj-diz-real-time-big-data/"
+    },
+    "observacao": "Mesmo campo (25–29/09, 2.000 entrevistas no RJ, BR-05193/2026). Votos totais: Flávio 52 x Lula 41, soma 93,0; a vantagem de 11 pontos citada pelas matérias confere. Residual de 7,0 pontos (brancos/nulos/não sabe) não publicado e não criado. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 52
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 41
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-real-time-big-data-rj-senador-t1",
+    "uf": "RJ",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "RJ-08712/2026",
+    "contratante": "3 Poderes Mídia e Comunicação",
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (2 vagas). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/jordy-e-benedita-lideram-disputa-pelo-senado-no-rj-diz-pesquisa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Carlos Jordy",
+        "partido": "PL",
+        "pct": 18
+      },
+      {
+        "candidato": "Benedita da Silva",
+        "partido": "PT",
+        "pct": 15
+      },
+      {
+        "candidato": "Carlos Portinho",
+        "partido": "PL",
+        "pct": 14
+      },
+      {
+        "candidato": "Pedro Paulo",
+        "partido": "PSD",
+        "pct": 12
+      },
+      {
+        "candidato": "Marcelo Crivella",
+        "partido": "Republicanos",
+        "pct": 10
+      }
+    ],
+    "observacao": "Rodada nova da onda Real Time Big Data de campo 25-29/09, divulgada hoje, quarta-feira 30/09/2026 — nao colide com as rodadas RTBD/RJ de 28/08-01/09 e 09-12/09 que ja estao na base. QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO: (a) SOMA — os cinco nomes publicados somam 69; com os demais candidatos e as linhas de brancos/nulos e nao sabe o total fica na vizinhanca de 100, muito longe da base 200 que caracterizaria a leitura 2 (a rodada RTBD/RJ de 09-12/09, ja na base e com tabela completa de dez nomes, fecha em base 100 com os mesmos patamares de 15 e 13); (b) a escolha entre a leitura 1 e a leitura 3 nao se resolve pela soma, e sim pela metodologia declarada desta mesma onda: no recorte de Rondonia do mesmo campo 25-29/09 o instituto publica a frase expressa de que 'para o Senado apresentou cenario estimulado para 1o e 2o votos, em que cada entrevistado escolheu dois nomes e os votos consolidados foram reduzidos a 100%'. Sendo a mesma onda, o mesmo questionario e o mesmo contratante, o recorte do RJ e a mesma leitura 3; (c) o padrao confere com as rodadas RTBD de SP, PR, RS e DF do campo 24-28/09, todas determinadas como leitura 3 na varredura de ontem. A quebra numerica de 1o e 2o voto nao foi publicada para o RJ, por isso a determinacao se apoia na metodologia declarada da onda e nao num teste de media proprio — se a onda nao tivesse declarado a metodologia, esta ficha teria ficado como leitura nao determinada. Linhas de outros candidatos, brancos/nulos e nao sabe nao foram publicadas nas fontes consultadas e nao foram criadas. Carlos Jordy ultrapassou Benedita em relacao a rodada anterior (era 15 x 15). Registro TSE RJ-08712/2026 e contratante 3 Poderes Midia e Comunicacao Ltda informados explicitamente. SUSPENSOES: nenhuma decisao judicial foi encontrada contra esta rodada; as suspensoes conhecidas do instituto sao em outras UFs e outros campos (ver o resumo da varredura). WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-real-time-big-data-es-senador-t1",
+    "uf": "ES",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "ES-01627/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (2 vagas). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/renato-casagrande-lidera-disputa-pelo-senado-no-es-diz-pesquisa-3/"
+    },
+    "resultados": [
+      {
+        "candidato": "Renato Casagrande",
+        "partido": "PSB",
+        "pct": 28
+      },
+      {
+        "candidato": "Sergio Meneguelli",
+        "partido": "PSD",
+        "pct": 13
+      },
+      {
+        "candidato": "Evair de Melo",
+        "partido": "Republicanos",
+        "pct": 12
+      },
+      {
+        "candidato": "Fabiano Contarato",
+        "partido": "PT",
+        "pct": 12
+      },
+      {
+        "candidato": "Maguinha Malta",
+        "partido": "PL",
+        "pct": 12
+      },
+      {
+        "candidato": "Rose de Freitas",
+        "partido": "MDB",
+        "pct": 9
+      }
+    ],
+    "observacao": "Rodada nova da onda Real Time Big Data de campo 25-29/09, divulgada hoje, 30/09/2026. NAO CONFUNDIR com as duas rodadas RTBD/ES ja na base: a de campo 04-08/09 (Casagrande 28, Meneguelli 12, Evair 9, Contarato 9, Maguinha 9, Rose 9) e a de campo 21-24/09 (Casagrande 29, Meneguelli 13, Contarato 11, Evair 10, Maguinha 10, Rose 9). Esta traz Casagrande 28, Meneguelli 13 e um empate triplo em 12 entre Evair, Contarato e Maguinha — configuracao distinta das duas anteriores, e o registro TSE tambem e outro (ES-01627/2026, contra ES-01967/2026 e ES-00877/2026). QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO: (a) SOMA — os seis nomes somam 86; com nanicos, brancos/nulos e nao sabe o total fica perto de 100, o que exclui a leitura 2 (base 200); (b) entre a leitura 1 e a leitura 3, decide a metodologia declarada desta mesma onda de campo 25-29/09, que o instituto enuncia no recorte de Rondonia: cenario estimulado de 1o e 2o votos, cada entrevistado escolhe dois nomes e os votos consolidados sao reduzidos a 100%. Mesma onda, mesma leitura; (c) coerente com todas as rodadas RTBD de senador ja determinadas na base (SP, PR, RS, DF em 24-28/09; BA, MG, PA, PE em 23-26/09). A quebra de 1o e 2o voto nao foi publicada para o ES, por isso nao houve teste de media proprio. Contratante nao declarado nas fontes consultadas para este recorte, por isso null — nao foi inferido do veiculo divulgador. Brancos/nulos e nao sabe nao publicados, nenhuma linha criada. ALERTA DE CONTEXTO, sem efeito sobre esta ficha: em 30/09 o TRE-ES suspendeu quatro pesquisas do Instituto Perfil para governo e Senado no estado (acao da coligacao 'Agora E o Futuro', indicios de fraude, pesquisa questionada publicada em 26/09) — nada do Instituto Perfil entrou nesta varredura, e a decisao nao alcanca a Real Time Big Data. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-real-time-big-data-ap-senador-t1",
+    "uf": "AP",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "AP-08579/2026",
+    "contratante": "3 Poderes Mídia e Comunicação",
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (2 vagas). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-rayssa-furlan-lidera-senado-no-ap-2o-vaga-esta-em-aberto/"
+    },
+    "resultados": [
+      {
+        "candidato": "Rayssa Furlan",
+        "partido": "Podemos",
+        "pct": 30
+      },
+      {
+        "candidato": "Randolfe Rodrigues",
+        "partido": "PT",
+        "pct": 20
+      },
+      {
+        "candidato": "Lucas Barreto",
+        "partido": "PSD",
+        "pct": 20
+      }
+    ],
+    "observacao": "Rodada nova da onda Real Time Big Data de campo 25-29/09, divulgada hoje, 30/09/2026. NAO CONFUNDIR com a rodada RTBD/AP de campo 03-07/09 ja na base, que tem Rayssa Furlan 33, Randolfe 20 e Lucas Barreto 14 — a manchete do Metropoles com 'Rayssa Furlan tem 33%' e daquela rodada, nao desta. Aqui Barreto sobe de 14 para 20 e empata com Randolfe pela segunda vaga, e o registro TSE e outro (AP-08579/2026 contra AP-04000/2026). QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO: (a) SOMA — os tres nomes publicados somam 70; com os demais candidatos e as linhas de nao-candidato o total fica perto de 100, nao de 200, o que exclui a leitura 2 (para comparacao, o Parana Pesquisas no AP, campo 25-27/09 e ja na base, publica a MESMA disputa em base 200: Rayssa 54,0; Randolfe 36,7; Barreto 36,1; Favacho 21,4; Alliny 20,0 — soma 168,2 — o contraste entre as duas fichas mostra o quanto as bases sao distinguiveis pela soma); (b) entre a leitura 1 e a leitura 3, decide a metodologia declarada pela propria onda de campo 25-29/09, enunciada pelo instituto no recorte de Rondonia: 1o e 2o votos, dois nomes por entrevistado, consolidado reduzido a 100%. A quebra numerica das duas cedulas nao foi publicada para o AP, por isso nao houve teste de media proprio. Linhas de outros candidatos, brancos/nulos e nao sabe nao publicadas nas fontes consultadas e nao criadas. Contratante 3 Poderes Midia e Comunicacao Ltda e registro AP-08579/2026 informados explicitamente. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-real-time-big-data-ro-senador-t1",
+    "uf": "RO",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (2 vagas; frase metodologica explicita na fonte). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-ro-maximo-lidera-para-o-senado-silvia-scheid-e-mariana-empatam/"
+    },
+    "resultados": [
+      {
+        "candidato": "Dr. Fernando Máximo",
+        "partido": "PL",
+        "pct": 22
+      },
+      {
+        "candidato": "Sílvia Cristina",
+        "partido": "PP",
+        "pct": 17
+      },
+      {
+        "candidato": "Bruno Bolsonaro Scheid",
+        "partido": "PL",
+        "pct": 14
+      },
+      {
+        "candidato": "Mariana Carvalho",
+        "partido": "Republicanos",
+        "pct": 14
+      }
+    ],
+    "observacao": "RODADA QUE FECHA A ULTIMA LACUNA DE COBERTURA DE RONDONIA COM INSTITUTO NAO SUSPENSO: ate hoje o estado so tinha, para senador, a Quaest de 20-23/09, a Brasil Dados de 31/08-03/09 e a rodada do Instituto Verita (sob alerta de integridade). Campo 25-29/09, divulgada hoje, 30/09/2026, 1.600 eleitores, margem de 2 p.p., 95% de confianca. QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%, e ESTA E A FICHA EM QUE A FONTE ENUNCIA A METODOLOGIA PALAVRA POR PALAVRA, servindo de ancora para todo o resto da onda: 'para o Senado, a Real Time Big Data apresentou cenario estimulado para 1o e 2o votos, em que cada entrevistado escolheu dois nomes e os votos consolidados foram reduzidos a 100%'. A aritmetica confere: os quatro nomes somam 67, base 100 e nao 200, o que ja excluia a leitura 2. E o contraste com a mesma disputa medida em outras bases confirma que nao e primeira escolha isolada: no mesmo estado a Quaest (ja na base) tem Maximo 18 e Silvia 16 em base 100, enquanto as tabelas de primeira escolha divulgadas por outro instituto no estado poem Bruno Scheid perto de 37 — patamar incompativel com os 14 desta ficha, que e media das duas cedulas. Registro TSE nao publicado nas materias consultadas, por isso null; contratante tambem nao declarado para este recorte, por isso null e nao inferido (os recortes de AP e RJ da mesma onda declaram 3 Poderes Midia e Comunicacao Ltda, mas estender isso ao RO seria inferencia). Linhas de outros candidatos, brancos/nulos e nao sabe nao publicadas e nao criadas. NENHUMA suspensao judicial encontrada contra esta rodada. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-parana-pesquisas-al-senador-t1",
+    "uf": "AL",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "AL-01237/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-26",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 1400,
+    "margem": 2.7,
+    "cenario": "estimulada, LEITURA 2 — SOMA do 1o e do 2o voto (2 vagas; cada entrevistado indica dois nomes, base de ate 200%). NAO e primeira escolha isolada e NAO e o consolidado reduzido a 100%",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-senado-alagoas-setembro-2026-2/"
+    },
+    "resultados": [
+      {
+        "candidato": "Marina JHC",
+        "partido": "PSDB",
+        "pct": 45.6
+      },
+      {
+        "candidato": "Arthur Lira",
+        "partido": "PP",
+        "pct": 41.6
+      },
+      {
+        "candidato": "Renan Calheiros",
+        "partido": "MDB",
+        "pct": 36.9
+      },
+      {
+        "candidato": "Davi Davino Filho",
+        "partido": "Republicanos",
+        "pct": 22.9
+      },
+      {
+        "candidato": "Dr. Wanderley",
+        "partido": "MDB",
+        "pct": 15.2
+      },
+      {
+        "candidato": "Alexandre Fleming",
+        "partido": "UP",
+        "pct": 1.1
+      }
+    ],
+    "observacao": "Rodada nova do Parana Pesquisas em Alagoas, campo 26-29/09 em 59 municipios, divulgada hoje, quarta-feira 30/09/2026. NAO CONFUNDIR com a rodada de campo 18-20/09 ja na base, que tem Arthur Lira 41,2; Marina JHC 37,8; Renan 34,6 e Davi Davino Filho 25,7 — a manchete 'Lira tem 41,2%, Marina JHC 37,8% e Renan 34,6%' e daquela. Aqui Marina JHC passa a frente, e o registro TSE e outro (AL-01237/2026 contra AL-05775/2026). QUAL DAS TRES LEITURAS: leitura 2 — SOMA DO 1o E DO 2o VOTO. COMO FOI DETERMINADO (aritmetica, e a determinacao e imediata): os TRES primeiros nomes sozinhos somam 124,1 (45,6+41,6+36,9), o que por si so torna impossiveis a leitura 1 e a leitura 3, ambas em base 100; a tabela completa soma 163,3, patamar que so existe em base 200 (duas indicacoes por entrevistado, sobrando ~36,7 para brancos/nulos, indecisos e quem indica um unico nome). Confere com toda a serie do instituto ja na base, que publica a disputa de Senado como soma das duas indicacoes (a rodada anterior em AL, a da BA em 21-23/09, a do AP em 25-27/09), e as proprias materias locais do estado tratam o 1o e o 2o voto separadamente ao discutir quem 'segue vivo no segundo voto'. Nao foram gravadas fichas proprias de 1o e de 2o voto porque as colunas separadas nao foram publicadas nesta rodada. Brancos/nulos e indecisos nao publicados e nao criados. Contratante nao declarado nas fontes consultadas, por isso null — nao inferido do veiculo. Margem de 2,7 p.p. e 95% de confianca. Divulgada tambem por Band, CartaCapital, TNH1, Gazeta Web, Reporter Nordeste e Em Tempo. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-parana-pesquisas-mt-senador-t1",
+    "uf": "MT",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "MT-02094/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-27",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 1352,
+    "margem": 2.7,
+    "cenario": "estimulada, LEITURA 2 — SOMA do 1o e do 2o voto (2 vagas; base de ate 200%, comprovada pela quebra publicada). NAO e primeira escolha isolada e NAO e o consolidado reduzido a 100%",
+    "fonte": {
+      "nome": "CartaCapital",
+      "url": "https://www.cartacapital.com.br/politica/parana-pesquisas-mauro-mendes-lidera-com-folga-a-disputa-pelo-senado-no-mato-grosso/"
+    },
+    "resultados": [
+      {
+        "candidato": "Mauro Mendes",
+        "partido": "União Brasil",
+        "pct": 54.9
+      },
+      {
+        "candidato": "Janaína Riva",
+        "partido": "MDB",
+        "pct": 33.3
+      },
+      {
+        "candidato": "José Medeiros",
+        "partido": "PL",
+        "pct": 29.3
+      },
+      {
+        "candidato": "Carlos Fávaro",
+        "partido": "PSD",
+        "pct": 18
+      },
+      {
+        "candidato": "Pedro Taques",
+        "partido": "PSB",
+        "pct": 14.1
+      },
+      {
+        "candidato": "Galvan",
+        "partido": "Avante",
+        "pct": 4.3
+      },
+      {
+        "candidato": "Coronel Darwin",
+        "partido": "Democrata",
+        "pct": 3.3
+      }
+    ],
+    "observacao": "Rodada nova do Parana Pesquisas em Mato Grosso, campo 27-29/09, divulgada hoje, 30/09/2026 — primeira pesquisa de senador do instituto nesta UF na base (MT so tinha a Quaest de 21-24/09 e a RTBD de 29/08-02/09). QUAL DAS TRES LEITURAS: leitura 2 — SOMA DO 1o E DO 2o VOTO. COMO FOI DETERMINADO — ESTA E A FICHA QUE FECHA EXATAMENTE, CASA DECIMAL POR CASA DECIMAL: a fonte publica a quebra das duas cedulas — 1o VOTO: Mauro 37,5; Janaina 18,0; Medeiros 16,0. 2o VOTO: Mauro 17,4; Janaina 15,3; Medeiros 13,3. A SOMA reproduz o numero de manchete sem sobra: Mauro 37,5+17,4 = 54,9 exato; Janaina 18,0+15,3 = 33,3 exato; Medeiros 16,0+13,3 = 29,3 exato. Tres identidades exatas provam que o percentual publicado e a SOMA das duas indicacoes, nao a media (que daria 27,5; 16,7; 14,7) nem a primeira escolha (37,5; 18,0; 16,0). A tabela completa soma 157,2, coerente com base 200 e incompativel com base 100 — e incompativel tambem com votos validos, que teriam de fechar em 200. NUMEROS DIVERGENTES DESCARTADOS, com motivo: circulam manchetes com 'Mauro 55%; Janaina 31,5%; Medeiros 21,4%' e 'Mauro 52%; Janaina 32%' para a mesma disputa. Esses conjuntos nao fecham com a quebra de 1o e 2o voto publicada e nao foi possivel estabelecer a que recorte pertencem (rodada anterior do instituto no estado ou outra base); prevaleceu o conjunto 54,9/33,3/29,3/18,0/14,1/4,3/3,3, que e o unico aritmeticamente fechado pela quebra. Tambem circula a manchete 'Mauro Mendes com 54,9% dos votos validos' — o rotulo de validos esta errado na manchete: 54,9 e a soma das duas cedulas na base total, como a propria quebra demonstra. Brancos/nulos e indecisos nao publicados e nao criados. Registro TSE MT-02094/2026 informado; contratante nao declarado nas fontes consultadas, por isso null e nao inferido. Divulgada tambem por Exame, Olhar Direto, Midiajur, Muvuca Popular e Estadao Mato Grosso. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
   },
   {
     "id": "2026-09-29-real-time-big-data-sp-governador-t1",
@@ -2528,6 +3981,676 @@
     "observacao": "QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO: (a) a fonte e explicita — 'para o Senado, a AtlasIntel apresentou cenario estimulado com primeiro e segundo voto, sendo o resultado os votos consolidados das duas cedulas e reduzidos a 100%'; (b) a aritmetica confirma — os onze nomes itemizados somam 86,2, de modo que com as linhas de brancos/nulos e indecisos o total fecha na vizinhanca de 100, longe da base 200 da leitura 2; (c) prova adicional de que o recorte e o consolidado e nao a primeira escolha: o proprio instituto publicou, ao lado, o mesmo consolidado em VOTOS VALIDOS (Marcelo Castro 30,7; Julio Cesar 30,6; Ciro Nogueira 17,9) — ou seja, 26,7 e 30,7 sao a mesma medida, uma com e outra sem as linhas de nao-voto; nao ha em nenhuma fonte uma tabela de primeira escolha isolada que corresponda a estes 26,7. QUEBRA DE 1o E 2o VOTO: as materias localizadas nao publicam a separacao entre as duas cedulas — nao ha quebra a registrar. AMOSTRA E MARGEM — DIVERGENCIA ENTRE FONTES: CNN Brasil e Conecta Piaui informam 1.218 entrevistados e margem de 2 p.p.; a Gazeta do Povo informa 1.200 entrevistados e margem de 3 p.p. Mantivemos amostra = 1218 (valor exato, nao arredondado, confirmado em duas fontes) e deixamos margem = null em vez de escolher arbitrariamente entre 2 e 3 p.p. Fica sinalizado para conferencia humana. FICHA: AtlasIntel/MeioNorte, recrutamento digital aleatorio (Atlas RDR), 23 a 28/09/2026, 95% de confianca, registro PI-07497/2026, divulgada em 29/09/2026. CONTRATANTE: nenhuma materia afirma quem contratou; a co-assinatura 'AtlasIntel/MeioNorte' indica parceria editorial de divulgacao e NAO autoriza registrar o MeioNorte como contratante — null. NAO E DUPLICATA: a AtlasIntel no PI ja na base e de campo 28/08-02/09 (registro PI-03771/2026, Marcelo Castro 22,4, Julio Cesar 17,2, Ciro Nogueira 13,3); esta e campo 23-28/09. LINHAS OMITIDAS: brancos/nulos e indecisos nao foram recuperados, e as fontes mencionam 'varios candidatos com 0,1% cada' sem nomea-los — nao inventamos as linhas. LIMITACAO DE METODO: WebFetch bloqueado nesta sessao; numeros vindos de resumos de WebSearch."
   },
   {
+    "id": "2026-09-30-atlasintel-ba-governador-t1",
+    "uf": "BA",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-30",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "A Tarde",
+      "url": "https://atarde.com.br/atlasatarde/atlasintela-tarde-jeronimo-ultrapassa-acm-neto-e-assume-lideranca-1403943"
+    },
+    "resultados": [
+      {
+        "candidato": "Jerônimo Rodrigues",
+        "partido": "PT",
+        "pct": 49
+      },
+      {
+        "candidato": "ACM Neto",
+        "partido": "União Brasil",
+        "pct": 45.9
+      },
+      {
+        "candidato": "Ronaldo Mansur",
+        "partido": "PSOL",
+        "pct": 1
+      },
+      {
+        "candidato": "Ariel Capistrano",
+        "partido": "DC",
+        "pct": 0
+      },
+      {
+        "candidato": "Aroldo Félix",
+        "partido": "UP",
+        "pct": 0
+      },
+      {
+        "candidato": "Maria Bona",
+        "partido": "PCO",
+        "pct": 0
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 2.8
+      },
+      {
+        "candidato": "Indecisos",
+        "partido": null,
+        "pct": 0.6
+      }
+    ],
+    "observacao": "Rodada da AtlasIntel na Bahia anunciada para hoje e efetivamente divulgada na quarta-feira 30/09/2026 (campo 24–28/09, 2.000 eleitores por recrutamento digital aleatório Atlas RDR, margem de 2 p.p., 95% de confiança). NÚMEROS DO TOTAL, critério desta base: 49 + 45,9 + 1 + 0 + 0 + 0 + 2,8 brancos/nulos + 0,6 indecisos = 99,3 (resíduo de 0,7 ponto não detalhado pelas fontes; nada foi preenchido para fechar em 100). Teste total x válidos: a manchete de 50,7% x 47,5% é VOTOS VÁLIDOS — 49 ÷ 0,966 = 50,7 e 45,9 ÷ 0,966 = 47,5. O cenário de 2º turno desta rodada (Jerônimo 51,4 x ACM Neto 48,6) foi publicado SOMENTE em votos válidos (soma exata de 100) e por isso NÃO foi ingerido — esta base registra o total e não converte percentuais. CONTRATANTE null: a marca 'AtlasIntel/A TARDE' das manchetes é parceria de divulgação e nenhuma fonte afirma explicitamente quem contratou; nada foi inferido. Registro TSE não publicado pelas fontes consultadas. Siglas de Ronaldo Mansur, Ariel Capistrano, Aroldo Félix e Maria Bona conforme já registrado na base para a BA. Rodada distinta da AtlasIntel de início de setembro (Jerônimo 47,9 x ACM Neto 49,1). Também noticiada por Bahia Notícias, Acorda Cidade, BNews, Farol da Bahia e Jornal da Chapada. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-29-gerp-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Gerp",
+    "registroTSE": "BR-03929/2026",
+    "contratante": "Gerp (recursos próprios)",
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 2400,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno — nacional (votos totais)",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/pesquisa-gerp-flavio-bolsonaro-tem-42-e-lula-40-no-1o-turno/"
+    },
+    "observacao": "LACUNA NOMEADA DE 29/09 — RECUPERADA EM VOTOS TOTAIS. Esta é a rodada Gerp que ficou de fora da varredura de 29/09 porque só os votos VÁLIDOS eram recuperáveis (Flávio 44 x Lula 42) e as linhas em válidos somavam mais de 100. Os votos TOTAIS foram encontrados hoje e são estes: Flávio 42, Lula 40, Cury 5, Caiado 3, Renan Santos 3, Samara Martins 1, Zema 1 — soma 95,0. O teste total÷soma bate com a manchete em válidos: 42/0,95 = 44,2 → 44; 40/0,95 = 42,1 → 42; 5/0,95 = 5,26 → 5. Os percentuais em válidos (Flávio 44 x Lula 42) NÃO foram ingeridos. A linha de brancos/nulos/não sabe (residual aritmético de 5,0 pontos) não apareceu publicada de forma explícita em nenhuma fonte acessível e por isso NÃO foi criada — nada foi estimado. Campo 24–28/09/2026, 2.400 entrevistas em todo o território nacional, margem de 2 pontos, nível de confiança informado por parte da imprensa como 95,55%, registro BR-03929/2026. Contratante: as matérias informam levantamento feito com recursos do próprio instituto (Gerp Mercadologia). Data de divulgação: o Poder360 descreve a pesquisa como divulgada em 29/09, enquanto Gazeta do Povo, focotv e quenty a publicaram em 30/09; adotado 29/09 (a data mais antiga confirmada e aquela em que a rodada já era visível à varredura anterior). Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 42
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 40
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 5
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 3
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 3
+      },
+      {
+        "candidato": "Samara Martins",
+        "partido": "UP",
+        "pct": 1
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 1
+      }
+    ]
+  },
+  {
+    "id": "2026-09-29-gerp-br-presidente-t2-flavio-lula",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Gerp",
+    "registroTSE": "BR-03929/2026",
+    "contratante": "Gerp (recursos próprios)",
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 2400,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula — nacional (votos totais)",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-50-contra-43-de-lula-no-2o-turno-diz-gerp-2/"
+    },
+    "observacao": "Mesmo campo da rodada de 1º turno (24–28/09, 2.400 entrevistas, registro BR-03929/2026). Estes são VOTOS TOTAIS: Flávio 50 x Lula 43, soma 93,0 — a vantagem de 7 pontos citada pelas matérias confere. Em votos válidos a mesma rodada daria 53,8 x 46,2 (50/0,93 e 43/0,93), figura que NÃO aparece manchetada e NÃO foi ingerida. A linha de brancos/nulos/não sabe (residual de 7,0 pontos) não foi publicada de forma explícita nas fontes acessíveis e por isso não foi criada. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 50
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 43
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-meio-ideia-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Ideia (Meio/Ideia)",
+    "registroTSE": "BR-08706/2026",
+    "contratante": "Canal Meio",
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-30",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, 1º turno — nacional (votos totais)",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/meio-ideia-lula-tem-394-no-1o-turno-flavio-384/"
+    },
+    "observacao": "Rodada divulgada hoje (quarta, 30/09). Campo 25–28/09/2026, 2.000 eleitores por telefone, margem de 2,2 pontos, 95% de confiança, contratada pelo Canal Meio, registro BR-08706/2026. Votos totais: Lula 39,4; Flávio 38,4; Cury 6,7; Renan Santos 4,5; Caiado 4,4; Zema 3,5 — soma 96,9, residual de 3,1 pontos. As linhas de não-candidato do 1º TURNO não foram ingeridas: um resumo de busca atribuiu 'brancos e nulos 2,1% / não sabe 1,5%' ao 1º turno, mas esses são exatamente os valores publicados para o cenário de 2º turno Lula x Flávio, e somados ao 1º turno levariam o total a 100,5 — inconsistência que indica contaminação entre parágrafos. Descartadas por isso (ficha inconsistente), sem estimar nada. Rodada anterior do mesmo instituto (10/09): Lula 38,4 x Flávio 37,3 — campo novo, não republicação. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 39.4
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 38.4
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 6.7
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 4.5
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 4.4
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 3.5
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-meio-ideia-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Ideia (Meio/Ideia)",
+    "registroTSE": "BR-08706/2026",
+    "contratante": "Canal Meio",
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-30",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — nacional (votos totais)",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/meio-ideia-lula-tem-485-no-2o-turno-flavio-48/"
+    },
+    "observacao": "Mesmo campo (25–28/09, 2.000 entrevistas, BR-08706/2026). Votos totais com as duas linhas de não-candidato publicadas explicitamente pela fonte: Lula 48,5 + Flávio 48,0 + brancos/nulos 2,1 + não sabe 1,5 = 100,1 (arredondamento). Os cinco cenários de 2º turno desta rodada fecham todos em 100,1, o que confirma que são totais e não válidos. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 48.5
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 48
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 2.1
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 1.5
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-meio-ideia-br-presidente-t2-lula-caiado",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Ideia (Meio/Ideia)",
+    "registroTSE": "BR-08706/2026",
+    "contratante": "Canal Meio",
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-30",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, 2º turno: Lula x Ronaldo Caiado — nacional (votos totais)",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/meio-ideia-lula-tem-485-no-2o-turno-flavio-48/"
+    },
+    "observacao": "Mesmo campo (25–28/09, BR-08706/2026). Votos totais: 48,5 + 44,6 + 3,1 + 3,9 = 100,1. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 48.5
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 44.6
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 3.1
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 3.9
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-meio-ideia-br-presidente-t2-lula-zema",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Ideia (Meio/Ideia)",
+    "registroTSE": "BR-08706/2026",
+    "contratante": "Canal Meio",
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-30",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, 2º turno: Lula x Romeu Zema — nacional (votos totais)",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/meio-ideia-lula-tem-485-no-2o-turno-flavio-48/"
+    },
+    "observacao": "Mesmo campo (25–28/09, BR-08706/2026). Votos totais: 48,5 + 44,0 + 5,0 + 2,6 = 100,1. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 48.5
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 44
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 5
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 2.6
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-meio-ideia-br-presidente-t2-lula-cury",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Ideia (Meio/Ideia)",
+    "registroTSE": "BR-08706/2026",
+    "contratante": "Canal Meio",
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-30",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, 2º turno: Lula x Augusto Cury — nacional (votos totais)",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/meio-ideia-lula-tem-485-no-2o-turno-flavio-48/"
+    },
+    "observacao": "Mesmo campo (25–28/09, BR-08706/2026). Votos totais: 48,0 + 44,0 + 5,0 + 3,1 = 100,1. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 48
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 44
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 5
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 3.1
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-meio-ideia-br-presidente-t2-lula-renan",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Ideia (Meio/Ideia)",
+    "registroTSE": "BR-08706/2026",
+    "contratante": "Canal Meio",
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-30",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, 2º turno: Lula x Renan Santos — nacional (votos totais)",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/meio-ideia-lula-tem-485-no-2o-turno-flavio-48/"
+    },
+    "observacao": "Mesmo campo (25–28/09, BR-08706/2026). Votos totais: 48,0 + 41,3 + 8,0 + 2,8 = 100,1. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 48
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 41.3
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 8
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 2.8
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-atlasintel-ba-presidente-t1",
+    "uf": "BA",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BA-02425/2026",
+    "contratante": "A TARDE",
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-30",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno — recorte presidencial na Bahia (votos totais)",
+    "fonte": {
+      "nome": "A Tarde",
+      "url": "https://atarde.com.br/atlasatarde/atlasintela-tarde-lula-abre-30-pontos-de-flavio-bolsonaro-na-bahia-1403951"
+    },
+    "observacao": "Rodada divulgada hoje (quarta, 30/09). Campo 24–28/09/2026, 2.000 eleitores baianos por recrutamento digital aleatório, margem de 2 pontos, 95% de confiança, contratada pelo jornal A TARDE, registros BA-02425/2026 (TRE-BA) e BR-00633/2026 (TSE) — gravado o estadual, por ser recorte da BA. ATENÇÃO — total x válidos: as linhas aqui são os VOTOS TOTAIS (Lula 57,6 x Flávio 27,8) e a ficha fecha: 57,6 + 27,8 + 3,9 + 3,6 + 3,2 + 1,6 (outros) + 2,1 (brancos e nulos) = 99,8. As manchetes em votos VÁLIDOS da mesma rodada (Lula 58,9 x Flávio 28,4; Cury 4; Renan 3,7; Caiado 3,3; Zema 1) NÃO foram ingeridas. Teste: 57,6/0,978 = 58,9 e 27,8/0,978 = 28,4, com base de válidos implícita de 97,8% — confere. Romeu Zema não tem linha própria em totais: aparece dentro de 'Outros' (1,6), e só é itemizado na tabela de válidos (1,0) — por isso não foi criada linha de Zema aqui, para não repartir número publicado. Comparação da própria série: Lula foi de 52,8 para 57,6 e Flávio de 24,4 para 27,8 em votos totais desde o início de setembro. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 57.6
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 27.8
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 3.9
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 3.6
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 3.2
+      },
+      {
+        "candidato": "Outros candidatos",
+        "partido": null,
+        "pct": 1.6
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 2.1
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-atlasintel-ba-presidente-t2-lula-flavio",
+    "uf": "BA",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BA-02425/2026",
+    "contratante": "A TARDE",
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-30",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — recorte presidencial na Bahia (votos totais)",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/lula-tem-581-contra-29-de-flavio-no-2o-turno-na-ba-diz-pesquisa/"
+    },
+    "observacao": "Mesmo campo (24–28/09, 2.000 entrevistas na BA, BA-02425/2026 e BR-00633/2026). VOTOS TOTAIS: Lula 61,3 x Flávio 31,4, soma 92,7. Os votos VÁLIDOS da mesma rodada (66,1 x 33,9) NÃO foram ingeridos; teste: 61,3/0,927 = 66,1 e 31,4/0,927 = 33,9 — confere. A linha de brancos/nulos/não sabe (residual de 7,3) não foi publicada explicitamente e não foi criada. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 61.3
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 31.4
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-atlasintel-ce-presidente-t1",
+    "uf": "CE",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "CE-02357/2026",
+    "contratante": "Focus Comunicação e Mídia Ltda",
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-30",
+    "amostra": 1808,
+    "margem": null,
+    "cenario": "estimulada, 1º turno — recorte presidencial no Ceará (votos totais)",
+    "fonte": {
+      "nome": "Focus Poder",
+      "url": "https://focuspoder.com.br/atlas-focus-no-ceara-lula-cresce-e-chega-a-577-flavio-marca-322/"
+    },
+    "observacao": "Rodada divulgada hoje (quarta, 30/09). Campo 23–28/09/2026, 1.808 entrevistados no Ceará (recrutamento digital aleatório), 95% de confiança, contratada pela Focus Comunicação e Mídia Ltda, registros CE-02357/2026 (TRE-CE) e BR-07411/2026 (TSE) — gravado o estadual; o número nacional aparece nas fontes também associado a uma rodada anterior da série no CE (campo 28/08–02/09), então fica apenas anotado aqui. MARGEM = null por ficha inconsistente: a divulgação da mesma rodada informa 3 pontos (matéria de governador/Senado) e 2 pontos (matéria do recorte presidencial); sem conciliação, não foi gravado nenhum dos dois. ATENÇÃO — total x válidos: as linhas aqui são os VOTOS TOTAIS (Lula 57,7 x Flávio 32,2); os VÁLIDOS da mesma rodada (58,6 x 32,7) NÃO foram ingeridos. Teste: 57,7/0,9846 = 58,6 e 32,2/0,9846 = 32,7 — base de válidos implícita de 98,5%, confere. Soma das linhas ingeridas: 57,7 + 32,2 + 3,8 + 1,9 + 1,9 = 97,5; o restante (~1,0 de Zema e ~1,5 de brancos/nulos, pela aritmética) não apareceu publicado e NÃO foi criado. Não confundir com a rodada anterior da mesma série no CE (campo 28/08–02/09: Lula 51,6; Flávio 25,7; Cury 12,3) — campo diferente. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 57.7
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 32.2
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 3.8
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 1.9
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 1.9
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-atlasintel-ce-presidente-t2-lula-flavio",
+    "uf": "CE",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "CE-02357/2026",
+    "contratante": "Focus Comunicação e Mídia Ltda",
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-30",
+    "amostra": 1808,
+    "margem": null,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — recorte presidencial no Ceará (votos totais)",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/atlas-focus-lula-supera-flavio-no-1o-e-2o-turnos-no-ceara/"
+    },
+    "observacao": "Mesmo campo (23–28/09, 1.808 entrevistas no CE, CE-02357/2026). VOTOS TOTAIS com a linha de não-candidato publicada: Lula 59 + Flávio 37 + brancos/nulos/não sabe 4 = 100,0 — ficha completa. Os VÁLIDOS da mesma rodada (61,5 x 38,5) NÃO foram ingeridos; teste: 59/0,96 = 61,5 e 37/0,96 = 38,5 — confere. Margem null pelo mesmo motivo registrado na entrada de 1º turno. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 59
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 37
+      },
+      {
+        "candidato": "Brancos/nulos/não sabe",
+        "partido": null,
+        "pct": 4
+      }
+    ]
+  },
+  {
+    "id": "2026-09-29-atlasintel-ce-senador-t1",
+    "uf": "CE",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "CE-01709/2026",
+    "contratante": "Focus Poder",
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1808,
+    "margem": 2,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (2 vagas; a media das duas cedulas). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/eleicoes/2026/09/29/pesquisa-atlasintel-mostra-cenario-para-senado-no-ceara.html"
+    },
+    "resultados": [
+      {
+        "candidato": "Cid Gomes",
+        "partido": "PSB",
+        "pct": 26.3
+      },
+      {
+        "candidato": "Luizianne Lins",
+        "partido": "Rede",
+        "pct": 25.7
+      },
+      {
+        "candidato": "Capitão Wagner",
+        "partido": "União Brasil",
+        "pct": 21.7
+      },
+      {
+        "candidato": "Alcides Fernandes",
+        "partido": "PL",
+        "pct": 18.5
+      }
+    ],
+    "observacao": "LACUNA PRIORITARIA DE 29/09 AGORA FECHADA: esta e a parte de Senado da rodada AtlasIntel/Focus no Ceara cujos numeros de governador ja entraram na base ontem (mesmo campo 23-28/09, mesma divulgacao em 29/09/2026). QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO (aritmetica primeiro, e a prova decisiva vem da propria serie): (a) SOMA — os quatro nomes publicados somam 92,2; com os nanicos e as linhas de brancos/nulos e indecisos o total fica na vizinhanca de 100, o que EXCLUI a leitura 2 (base 200); (b) a soma perto de 100 nao separa a leitura 1 da leitura 3, entao foi aplicado o teste da media na propria serie AtlasIntel/CE: para a rodada anterior de campo 28/08-02/09 (ja na base, publicada em 04/09 com Cid 24,4; Luizianne 24,2; Wagner 19,1; Alcides 15,7) as fontes publicam a quebra 1o VOTO — Luizianne 29,3; Wagner 23,9; Cid 22,4; Alcides 14,3 — e 2o VOTO — Cid 26,4; Luizianne 19,0; Alcides 17,2; Wagner 14,3. A MEDIA dessa quebra reproduz o numero publicado: Cid (22,4+26,4)/2 = 24,4 exato; Wagner (23,9+14,3)/2 = 19,1 exato; Luizianne (29,3+19,0)/2 = 24,15 ~ 24,2; Alcides (14,3+17,2)/2 = 15,75 ~ 15,7. Tres casas fechando na casa decimal provam que o numero de manchete da AtlasIntel no CE E a media das duas cedulas, isto e, a leitura 3 — e nao a primeira escolha; (c) o mesmo teste fecha nesta rodada: se 26,3/25,7/21,7/18,5 e a media e o 1o voto e Cid 30,1; Luizianne 23,4; Alcides 21,5; Wagner 20,0 (numeros reportados para esta rodada), o 2o voto implicado e Cid 22,5; Luizianne 28,0; Wagner 23,4; Alcides 15,5 — todos positivos e plausiveis, com a coluna do 1o voto somando 95,0 e a do 2o somando 89,4, exatamente o padrao esperado (mais gente recusa a segunda indicacao). Sob a leitura 1 Cid teria 26,3 E 30,1 de primeira escolha ao mesmo tempo, uma contradicao; (d) a rodada gemea AtlasIntel/PI do mesmo campo (23-28/09, ja na base) traz a frase metodologica explicita 'votos consolidados das duas cedulas e reduzidos a 100%'. O 1o e o 2o voto NAO foram gravados como fichas proprias porque as tabelas completas dessas duas colunas nao foram publicadas nas fontes consultadas. AMOSTRA E MARGEM — DIVERGENCIA REGISTRADA: as materias que publicam os numeros de Senado dizem 1.808 eleitores de 16 anos ou mais e margem de 2 p.p. (tres resumos independentes), par internamente coerente (1/raiz(1808) = 2,35%); a ficha de governador da MESMA rodada, ja na base, ficou com 1.800 e 3 p.p., que foi o que as materias de governo informaram. Gravei 1.808/2,0 por ser o par publicado junto dos numeros aqui registrados; a divergencia fica declarada e nenhuma pesquisa antiga foi editada. Registro TSE CE-01709/2026 informado explicitamente (a ficha de governador ficou com null porque as materias de governo nao trouxeram o numero). Contratante Focus Poder afirmado explicitamente ('contratada pela Focus Comunicacao e Midia Ltda', serie veiculada como 'Atlas/Focus'), nao inferido do veiculo. NAO foram gravadas as leituras em VOTOS VALIDOS noticiadas (cerca de Cid 28,1; Luizianne 27,4; Wagner 23,2; Alcides 19,7), mas elas validam a ficha internamente: com base de validos ~93,6 tem-se 26,3/93,6 = 28,1 e 18,5/93,6 = 19,8. Catarina Matos (UP) aparece com cerca de 1,0 apenas na tabela de validos e nao foi gravada, para nao misturar bases. Divulgada tambem por CNN Brasil, Metropoles, Band, CartaCapital, Brasil 247, Exame, Reporter Ceara e Sobral em Revista. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-atlasintel-ba-senador-t1",
+    "uf": "BA",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BA-02425/2026",
+    "contratante": "A Tarde",
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-30",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (2 vagas; media das duas cedulas, comprovada pela quebra publicada). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/rui-costa-e-jaques-wagner-lideram-disputa-ao-senado-pela-ba/"
+    },
+    "resultados": [
+      {
+        "candidato": "Rui Costa",
+        "partido": "PT",
+        "pct": 28.2
+      },
+      {
+        "candidato": "Jaques Wagner",
+        "partido": "PT",
+        "pct": 24.4
+      },
+      {
+        "candidato": "João Roma",
+        "partido": "PL",
+        "pct": 21
+      },
+      {
+        "candidato": "Ângelo Coronel",
+        "partido": "Republicanos",
+        "pct": 20.9
+      }
+    ],
+    "observacao": "SEGUNDA LACUNA PRIORITARIA FECHADA: e a rodada AtlasIntel/A TARDE na Bahia cuja divulgacao estava anunciada para hoje, quarta-feira 30/09/2026. PERIODO DE CAMPO 24-28/09 (nao 23-28/09 como estava previsto no briefing) — as materias sao unanimes: 'ouviu 2 mil eleitores baianos entre 24 e 28 de setembro, por recrutamento digital aleatorio, margem de 2 p.p., 95% de confianca'. Nao colide com a rodada AtlasIntel/BA de campo 28/08-02/09 (publicada em 03/09) que ja esta na base. QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO — ESTA E A FICHA QUE FECHA PELA ARITMETICA E NAO PELA REDACAO: (a) SOMA — 28,2+24,4+21,0+20,9 = 94,5, base 100, o que exclui de saida a leitura 2; (b) a fonte publica a quebra parcial das duas cedulas: 1o VOTO — Rui 41,2 e Coronel 27,8; 2o VOTO — Wagner 35,5 e Roma 26,3. Testando a hipotese da media contra o consolidado publicado, o valor implicado que falta em cada caso e: Rui no 2o voto = 2x28,2-41,2 = 15,2; Coronel no 2o voto = 2x20,9-27,8 = 14,0; Wagner no 1o voto = 2x24,4-35,5 = 13,3; Roma no 1o voto = 2x21,0-26,3 = 15,7. Todos positivos e plausiveis, e as colunas reconstruidas somam 98,0 no 1o voto (base 100, sobrando ~2 para nanicos e nao-resposta) e 91,0 no 2o voto (base 100 com mais nao-resposta, exatamente o padrao esperado). Sob a leitura 1 Rui teria simultaneamente 28,2 e 41,2 de primeira escolha, contradicao direta; sob a leitura 2 os quatro nomes teriam de somar perto de 200, e somam 94,5. Logo, leitura 3; (c) o padrao confere com o resto da serie: a rodada AtlasIntel/BA de 03/09 (ja na base) tem consolidado 28,2/23,7/18,3/16,0 (soma 86,2) e votos validos noticiados 31,6/26,5/20,4/17,9 mais Delliana 2,6 e Marcelo Carvalho 0,6 — 28,2 sobre base ~89 da 31,7, o que amarra as duas leituras entre si; e a rodada RTBD/BA de campo 23-26/09, ja na base, tambem foi determinada como leitura 3. ATENCAO A COINCIDENCIA: Rui Costa marca 28,2 nesta rodada E na de 03/09; o que distingue as duas fichas e Jaques Wagner (24,4 agora contra 23,7 antes), Joao Roma (21,0 contra 18,3), Coronel (20,9 contra 16,0), o campo (24-28/09 contra 28/08-02/09), a amostra (2.000 contra 1.804) e o registro TSE. Nao foram gravadas as linhas de Professora Delliana (PSOL), Marcelo Carvalho (Rede), brancos/nulos e indecisos porque as fontes consultadas nao publicaram seus percentuais nesta rodada — os ~5,5 pontos que faltam para 100 estao ai e nenhuma linha foi inventada. A leitura em VOTOS VALIDOS nao foi gravada; um dos resumos a confundiu com o consolidado, motivo pelo qual so o consolidado total entrou. Registro TSE BA-02425/2026 (o recorte nacional da mesma coleta corre sob BR-00633/2026, nao usado aqui). CONTRATANTE: 'A Tarde' — a serie e divulgada pelo proprio instituto como 'AtlasIntel/A TARDE' e as duas rodadas anteriores da mesma serie ja constam na base com contratante 'A Tarde' e 'Empresa Editora A Tarde S/A'; nao e inferencia a partir do veiculo que noticiou. Divulgada tambem por CNN Brasil, Metropoles, Band, bahia.ba, BNews, Acorda Cidade, Panorama da Bahia, Jovem Pan e A TARDE. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
     "id": "2026-09-28-parana-pesquisas-pr-governador-t1",
     "uf": "PR",
     "cargo": "governador",
@@ -2982,6 +5105,327 @@
       }
     ],
     "observacao": "QUAL DAS TRES LEITURAS: leitura 2 — SOMA DO 1o E DO 2o VOTO. COMO FOI DETERMINADO (aritmetica, nao redacao): os 9 candidatos somam 176,7 e o total com brancos/nulos (3,5) e nao sabe (2,7) chega a 182,9. Um total muito acima de 100 exclui tanto a leitura 1 (primeira escolha) quanto a leitura 3 (consolidado reduzido a 100%); so a soma de duas mencoes por eleitor produz esse valor. O total fica abaixo de 200,0 exatos porque parte dos entrevistados indicou apenas um nome (a Paraná Pesquisas nao forca a segunda indicacao). A redacao das materias confirma o mecanismo — CNN Brasil e Poder360 registram que a pesquisa 'permitia a indicacao de dois candidatos' —, mas a decisao aqui vem da soma. QUEBRA DE 1o E 2o VOTO: as materias localizadas NAO publicam a separacao entre primeiro e segundo voto desta rodada; por isso nao registramos quebra (declarar que nao se sabe e preferivel a estimar). FICHA: Paraná Pesquisas, campo presencial de 25 a 27/09/2026, 1.000 eleitores do Amapa, 95% de confianca, margem de 3,2 p.p., registro na Justica Eleitoral sob AP-03035/2026, divulgada na segunda-feira 28/09/2026. CONTRATANTE: nenhuma materia afirma quem contratou — registrado como null. CNN Brasil, Metropoles, Poder360, CartaCapital e Gazeta do Povo sao veiculos divulgadores, nao contratantes. NAO E DUPLICATA: nao ha pesquisa da Paraná Pesquisas para o Senado no AP em data/polls.json; as pesquisas de Senado no AP ja na base sao Quaest (campo 20-23/09) e Real Time Big Data (campo 03-07/09). SIGLAS: 'Podemos', 'DC' e 'União Brasil' seguem a grafia das fontes; dois candidatos aparecem pelo DC (Juiza Jo e Professor Uzian Pinto) — foi o que as fontes publicaram e nao alteramos. LIMITACAO DE METODO: WebFetch aos sites de noticia esta bloqueado nesta sessao; todos os numeros vieram de resumos de WebSearch, sem leitura integral das materias."
+  },
+  {
+    "id": "2026-09-29-atlasintel-mg-governador-t1",
+    "uf": "MG",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "MG-04294/2026",
+    "contratante": "Estadão",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-27",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1838,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "Itatiaia",
+      "url": "https://www.itatiaia.com.br/politica/eleicoes/pesquisas/atlas-estadao-cleitinho-tem-418-patrus-336-simoes-62-e-kalil-cai-para-5/"
+    },
+    "resultados": [
+      {
+        "candidato": "Cleitinho Azevedo",
+        "partido": "Republicanos",
+        "pct": 41.8
+      },
+      {
+        "candidato": "Patrus Ananias",
+        "partido": "PT",
+        "pct": 33.6
+      },
+      {
+        "candidato": "Mateus Simões",
+        "partido": "PSD",
+        "pct": 6.2
+      },
+      {
+        "candidato": "Alexandre Kalil",
+        "partido": "PDT",
+        "pct": 5
+      },
+      {
+        "candidato": "Flávio Roscoe",
+        "partido": "PL",
+        "pct": 4.9
+      },
+      {
+        "candidato": "Gabriel Azevedo",
+        "partido": "MDB",
+        "pct": 2.1
+      },
+      {
+        "candidato": "Ben Mendes",
+        "partido": "Missão",
+        "pct": 2
+      },
+      {
+        "candidato": "Indira Xavier",
+        "partido": "UP",
+        "pct": null
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 1.6
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 1.8
+      }
+    ],
+    "observacao": "LACUNA DO DIA ANTERIOR, registrada nesta varredura: rodada AtlasIntel/Estadão em Minas Gerais divulgada na terça-feira 29/09/2026, ausente da base (que só tinha a AtlasIntel MG de campo 15–20/09). Campo 22–27/09 por recrutamento digital aleatório, 1.838 eleitores, margem de 2 p.p., 95% de confiança. Registro TSE MG-04294/2026 (o material também cita BR-08984/2026). CONTRATANTE Estadão afirmado explicitamente pelas fontes ('contratada pelo Estadão') — não inferido da marca. NÚMEROS DO TOTAL, critério desta base: soma 99,0; o corte de válidos publicado (Cleitinho 43,3 e Patrus 34,8) confirma a leitura — base de válidos 100 − 1,6 − 1,8 = 96,6 e 41,8 ÷ 0,966 = 43,3; 33,6 ÷ 0,966 = 34,8. Indira Xavier (UP) consta da lista de candidatas de MG já registrada na base mas não teve percentual publicado nesta rodada pelas fontes consultadas, por isso pct null — é o resíduo de ~1 ponto da ficha. RESSALVA: uma manchete da Itatiaia atribui 3,4% a Alexandre Kalil enquanto outra da mesma casa, mais detalhada e corroborada por Poder360, Band, SBT News e Exame, traz 5,0%; adotado 5,0 porque é o valor que fecha a aritmética de válidos, e a divergência fica registrada aqui. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-29-atlasintel-mg-governador-t2-cleitinho-patrus",
+    "uf": "MG",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "MG-04294/2026",
+    "contratante": "Estadão",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-27",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1838,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno (Cleitinho Azevedo x Patrus Ananias) — total",
+    "fonte": {
+      "nome": "Band",
+      "url": "https://www.band.com.br/politica/eleicoes/atlasintel-cleitinho-tem-535-contra-403-de-patrus-no-2o-turno-em-mg"
+    },
+    "resultados": [
+      {
+        "candidato": "Cleitinho Azevedo",
+        "partido": "Republicanos",
+        "pct": 53.5
+      },
+      {
+        "candidato": "Patrus Ananias",
+        "partido": "PT",
+        "pct": 40.3
+      }
+    ],
+    "observacao": "Cenário de 2º turno mais competitivo da mesma rodada AtlasIntel/Estadão em MG (campo 22–27/09, publicada 29/09). NÚMEROS DO TOTAL: 53,5 + 40,3 = 93,8; o corte de válidos divulgado (57,0 x 43,0) confirma (53,5 ÷ 0,938 = 57,0). A quebra dos 6,2 pontos restantes (brancos/nulos e não sabe) não foi publicada pelas fontes consultadas e não foi gravada. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-29-atlasintel-sp-governador-t1",
+    "uf": "SP",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": null,
+    "contratante": "Estadão",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-27",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1833,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "Brasil de Fato",
+      "url": "https://www.brasildefato.com.br/2026/09/29/tarcisio-tem-533-e-haddad-401-no-1o-turno-para-governo-de-sp-aponta-atlasestadao-veja-intencao-de-votos-por-regiao/"
+    },
+    "resultados": [
+      {
+        "candidato": "Tarcísio de Freitas",
+        "partido": "Republicanos",
+        "pct": 53.3
+      },
+      {
+        "candidato": "Fernando Haddad",
+        "partido": "PT",
+        "pct": 40.1
+      }
+    ],
+    "observacao": "LACUNA DO DIA ANTERIOR, registrada nesta varredura: rodada AtlasIntel/Estadão em São Paulo divulgada na terça-feira 29/09/2026, ausente da base (que só tinha a AtlasIntel SP de campo 15–20/09). Campo 22–27/09, 1.833 entrevistas, margem de 2 p.p., 95% de confiança. CONTRATANTE Estadão afirmado explicitamente pelas fontes ('contratada pelo jornal Estadão') — não inferido. NÚMEROS DO TOTAL, critério desta base: Tarcísio 53,3 e Haddad 40,1. Teste total x válidos: o corte de válidos publicado é 55,9 x 42,2 — base de válidos ≈ 95,2 (53,3 ÷ 0,559 = 95,3; 40,1 ÷ 0,422 = 95,0), logo brancos/nulos e não sabe somam ~4,8 e restam ~1,8 ponto de candidatos menores. Essas linhas não foram publicadas pelas fontes consultadas no corte do total e não foram gravadas. Registro TSE não publicado pelas fontes consultadas. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-29-atlasintel-sp-governador-t2-tarcisio-haddad",
+    "uf": "SP",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": null,
+    "contratante": "Estadão",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-27",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1833,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno (Tarcísio de Freitas x Fernando Haddad) — total",
+    "fonte": {
+      "nome": "Brasil de Fato",
+      "url": "https://www.brasildefato.com.br/2026/09/29/tarcisio-tem-533-e-haddad-401-no-1o-turno-para-governo-de-sp-aponta-atlasestadao-veja-intencao-de-votos-por-regiao/"
+    },
+    "resultados": [
+      {
+        "candidato": "Tarcísio de Freitas",
+        "partido": "Republicanos",
+        "pct": 54.9
+      },
+      {
+        "candidato": "Fernando Haddad",
+        "partido": "PT",
+        "pct": 42.1
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 2.9
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 0.1
+      }
+    ],
+    "observacao": "Cenário de 2º turno da mesma rodada AtlasIntel/Estadão em SP (campo 22–27/09, publicada 29/09). NÚMEROS DO TOTAL: 54,9 + 42,1 + 2,9 brancos/nulos + 0,1 não sabe = 100. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-datatempo-mg-presidente-t1",
+    "uf": "MG",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "DataTempo",
+    "registroTSE": "MG-01851/2026",
+    "contratante": "Sempre Editora",
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-27",
+    "publicadoEm": "2026-09-30",
+    "amostra": 1000,
+    "margem": 3.1,
+    "cenario": "estimulada, 1º turno — recorte presidencial em Minas Gerais (votos totais)",
+    "fonte": {
+      "nome": "O Tempo",
+      "url": "https://www.otempo.com.br/politica/datatempo/2026/9/30/datatempo-lula-descola-de-flavio-e-lidera-cenario-de-1-turno-entre-eleitores-mineiros"
+    },
+    "observacao": "Rodada divulgada hoje (quarta, 30/09) — primeira entrada do instituto DataTempo (pesquisa do jornal O Tempo / Sempre Editora) na base. Campo 24–27/09/2026, 1.000 entrevistas em Minas Gerais, margem de 3,1 pontos, 95% de confiança; registrada sob DOIS números, MG-01851/2026 (TRE-MG) e BR-04527/2026 (TSE) — gravado aqui o registro estadual, por ser recorte de MG, com o nacional anotado nesta observação. Votos totais: Lula 40,2; Flávio 30,9; Cury 5,8; Zema 4,3; Caiado 4,0 — soma 85,2; a diferença de 9,3 pontos citada pelas matérias confere (40,2−30,9) e supera a margem. Renan Santos e as linhas de brancos/nulos/não sabe (residual de 14,8 pontos no conjunto) não apareceram itemizados nas fontes acessíveis e por isso não foram criados — nada foi estimado. Rodada anterior do mesmo instituto (18/09) trazia Flávio numericamente à frente de Lula no 2º turno em MG (43,0 x 41,9) — campo novo, não republicação. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 40.2
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 30.9
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 5.8
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 4.3
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 4
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-datatempo-mg-presidente-t2-lula-flavio",
+    "uf": "MG",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "DataTempo",
+    "registroTSE": "MG-01851/2026",
+    "contratante": "Sempre Editora",
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-27",
+    "publicadoEm": "2026-09-30",
+    "amostra": 1000,
+    "margem": 3.1,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — recorte presidencial em Minas Gerais (votos totais)",
+    "fonte": {
+      "nome": "O Tempo",
+      "url": "https://www.otempo.com.br/politica/datatempo/2026/9/30/datatempo-em-minas-lula-lidera-cenarios-de-2-turno-contra-flavio-e-zema"
+    },
+    "observacao": "Mesmo campo (24–27/09, 1.000 entrevistas em MG, MG-01851/2026 e BR-04527/2026). Votos totais: Lula 46,4 x Flávio 39,4 — vantagem de 7,0 pontos, acima da margem de 3,1. Residual de 14,2 pontos (brancos/nulos/não sabe) não publicado e não criado. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 46.4
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 39.4
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-datatempo-mg-presidente-t2-lula-zema",
+    "uf": "MG",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "DataTempo",
+    "registroTSE": "MG-01851/2026",
+    "contratante": "Sempre Editora",
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-27",
+    "publicadoEm": "2026-09-30",
+    "amostra": 1000,
+    "margem": 3.1,
+    "cenario": "estimulada, 2º turno: Lula x Romeu Zema — recorte presidencial em Minas Gerais (votos totais)",
+    "fonte": {
+      "nome": "O Tempo",
+      "url": "https://www.otempo.com.br/politica/datatempo/2026/9/30/datatempo-em-minas-lula-lidera-cenarios-de-2-turno-contra-flavio-e-zema"
+    },
+    "observacao": "Mesmo campo (24–27/09, MG-01851/2026 e BR-04527/2026). Votos totais: Lula 46,7 x Zema 36,1 — Zema é ex-governador de Minas, e este é o cenário estadual em que ele é mais testado. Residual não publicado e não criado. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 46.7
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 36.1
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-datatempo-mg-presidente-t2-flavio-zema",
+    "uf": "MG",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "DataTempo",
+    "registroTSE": "MG-01851/2026",
+    "contratante": "Sempre Editora",
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-27",
+    "publicadoEm": "2026-09-30",
+    "amostra": 1000,
+    "margem": 3.1,
+    "cenario": "estimulada, 2º turno sem Lula: Flávio Bolsonaro x Romeu Zema — recorte presidencial em Minas Gerais (votos totais)",
+    "fonte": {
+      "nome": "O Tempo",
+      "url": "https://www.otempo.com.br/politica/datatempo/2026/9/30/datatempo-em-minas-lula-lidera-cenarios-de-2-turno-contra-flavio-e-zema"
+    },
+    "observacao": "Mesmo campo (24–27/09, MG-01851/2026 e BR-04527/2026). Cenário de 2º turno SEM Lula, raro na base: Flávio 38,5 x Zema 31,4 em votos totais, sem empate técnico considerando a margem de 3,1. Residual não publicado e não criado. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 38.5
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 31.4
+      }
+    ]
   },
   {
     "id": "2026-09-27-igape-df-governador-t1",
@@ -24666,7 +27110,7 @@
     "publicadoEm": "2026-09-04",
     "amostra": 1834,
     "margem": 2,
-    "cenario": "estimulada, recrutamento digital aleatório; percentuais somam mais de 100 (eleitor escolhe 2 nomes)",
+    "cenario": "estimulada, recrutamento digital aleatório; LEITURA 3 — consolidado do 1º e do 2º voto reduzido a 100% (2 vagas; a média das duas cédulas)",
     "fonte": {
       "nome": "Exame",
       "url": "https://exame.com/brasil/atlasintel-cid-tem-205-e-capitao-wagner-e-luizianne-187-cada-em-corrida-ao-senado-no-ceara/"
@@ -24693,7 +27137,7 @@
         "pct": 15.7
       }
     ],
-    "observacao": "Cid Gomes é o titular da cadeira em disputa; Eduardo Girão (Novo, outra cadeira desta UF) não aparece entre os líderes desta pesquisa. Dados obtidos via resumo de busca (WebFetch bloqueado). registroTSE corrigido na auditoria rodada 2 (BR-07411/2026, confirmado para esta pesquisa específica com mesmos 1834 entrevistados e campo 28/08-02/09; o valor anterior CE-02357/2026 estava incorreto)."
+    "observacao": "Cid Gomes é o titular da cadeira em disputa; Eduardo Girão (Novo, outra cadeira desta UF) não aparece entre os líderes desta pesquisa. Dados obtidos via resumo de busca (WebFetch bloqueado). registroTSE corrigido na auditoria rodada 2 (BR-07411/2026, confirmado para esta pesquisa específica com mesmos 1834 entrevistados e campo 28/08-02/09; o valor anterior CE-02357/2026 estava incorreto). RÓTULO CORRIGIDO EM 30/09/2026, SEM ALTERAR NENHUM PERCENTUAL. O cenário anterior dizia \"percentuais somam mais de 100 (eleitor escolhe 2 nomes)\", o que contradiz a própria ficha: ela soma 83,4. A leitura correta é a consolidada, provada pela quebra publicada desta mesma rodada (1º voto Luizianne 29,3 / Wagner 23,9 / Cid 22,4 / Alcides 14,3; 2º voto Cid 26,4 / Luizianne 19,0 / Alcides 17,2 / Wagner 14,3): a média das duas cédulas reproduz os quatro valores gravados — Cid 24,4 exato, Wagner 19,1 exato, Luizianne 24,15 ≈ 24,2, Alcides 15,75 ≈ 15,7. Rotular como base 200 punha esta ficha em conflito de métrica com as demais rodadas da mesma série no CE, que são consolidadas."
   },
   {
     "id": "2026-09-03-real-time-big-data-mt-senador-t1",

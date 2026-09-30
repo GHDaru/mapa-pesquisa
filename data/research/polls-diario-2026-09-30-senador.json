@@ -1,0 +1,217 @@
+[
+  {
+    "id": "2026-09-29-atlasintel-ce-senador-t1",
+    "uf": "CE",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "CE-01709/2026",
+    "contratante": "Focus Poder",
+    "dataInicio": "2026-09-23",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1808,
+    "margem": 2.0,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (2 vagas; a media das duas cedulas). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/eleicoes/2026/09/29/pesquisa-atlasintel-mostra-cenario-para-senado-no-ceara.html"
+    },
+    "resultados": [
+      { "candidato": "Cid Gomes", "partido": "PSB", "pct": 26.3 },
+      { "candidato": "Luizianne Lins", "partido": "Rede", "pct": 25.7 },
+      { "candidato": "Capitão Wagner", "partido": "União Brasil", "pct": 21.7 },
+      { "candidato": "Alcides Fernandes", "partido": "PL", "pct": 18.5 }
+    ],
+    "observacao": "LACUNA PRIORITARIA DE 29/09 AGORA FECHADA: esta e a parte de Senado da rodada AtlasIntel/Focus no Ceara cujos numeros de governador ja entraram na base ontem (mesmo campo 23-28/09, mesma divulgacao em 29/09/2026). QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO (aritmetica primeiro, e a prova decisiva vem da propria serie): (a) SOMA — os quatro nomes publicados somam 92,2; com os nanicos e as linhas de brancos/nulos e indecisos o total fica na vizinhanca de 100, o que EXCLUI a leitura 2 (base 200); (b) a soma perto de 100 nao separa a leitura 1 da leitura 3, entao foi aplicado o teste da media na propria serie AtlasIntel/CE: para a rodada anterior de campo 28/08-02/09 (ja na base, publicada em 04/09 com Cid 24,4; Luizianne 24,2; Wagner 19,1; Alcides 15,7) as fontes publicam a quebra 1o VOTO — Luizianne 29,3; Wagner 23,9; Cid 22,4; Alcides 14,3 — e 2o VOTO — Cid 26,4; Luizianne 19,0; Alcides 17,2; Wagner 14,3. A MEDIA dessa quebra reproduz o numero publicado: Cid (22,4+26,4)/2 = 24,4 exato; Wagner (23,9+14,3)/2 = 19,1 exato; Luizianne (29,3+19,0)/2 = 24,15 ~ 24,2; Alcides (14,3+17,2)/2 = 15,75 ~ 15,7. Tres casas fechando na casa decimal provam que o numero de manchete da AtlasIntel no CE E a media das duas cedulas, isto e, a leitura 3 — e nao a primeira escolha; (c) o mesmo teste fecha nesta rodada: se 26,3/25,7/21,7/18,5 e a media e o 1o voto e Cid 30,1; Luizianne 23,4; Alcides 21,5; Wagner 20,0 (numeros reportados para esta rodada), o 2o voto implicado e Cid 22,5; Luizianne 28,0; Wagner 23,4; Alcides 15,5 — todos positivos e plausiveis, com a coluna do 1o voto somando 95,0 e a do 2o somando 89,4, exatamente o padrao esperado (mais gente recusa a segunda indicacao). Sob a leitura 1 Cid teria 26,3 E 30,1 de primeira escolha ao mesmo tempo, uma contradicao; (d) a rodada gemea AtlasIntel/PI do mesmo campo (23-28/09, ja na base) traz a frase metodologica explicita 'votos consolidados das duas cedulas e reduzidos a 100%'. O 1o e o 2o voto NAO foram gravados como fichas proprias porque as tabelas completas dessas duas colunas nao foram publicadas nas fontes consultadas. AMOSTRA E MARGEM — DIVERGENCIA REGISTRADA: as materias que publicam os numeros de Senado dizem 1.808 eleitores de 16 anos ou mais e margem de 2 p.p. (tres resumos independentes), par internamente coerente (1/raiz(1808) = 2,35%); a ficha de governador da MESMA rodada, ja na base, ficou com 1.800 e 3 p.p., que foi o que as materias de governo informaram. Gravei 1.808/2,0 por ser o par publicado junto dos numeros aqui registrados; a divergencia fica declarada e nenhuma pesquisa antiga foi editada. Registro TSE CE-01709/2026 informado explicitamente (a ficha de governador ficou com null porque as materias de governo nao trouxeram o numero). Contratante Focus Poder afirmado explicitamente ('contratada pela Focus Comunicacao e Midia Ltda', serie veiculada como 'Atlas/Focus'), nao inferido do veiculo. NAO foram gravadas as leituras em VOTOS VALIDOS noticiadas (cerca de Cid 28,1; Luizianne 27,4; Wagner 23,2; Alcides 19,7), mas elas validam a ficha internamente: com base de validos ~93,6 tem-se 26,3/93,6 = 28,1 e 18,5/93,6 = 19,8. Catarina Matos (UP) aparece com cerca de 1,0 apenas na tabela de validos e nao foi gravada, para nao misturar bases. Divulgada tambem por CNN Brasil, Metropoles, Band, CartaCapital, Brasil 247, Exame, Reporter Ceara e Sobral em Revista. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-atlasintel-ba-senador-t1",
+    "uf": "BA",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BA-02425/2026",
+    "contratante": "A Tarde",
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-30",
+    "amostra": 2000,
+    "margem": 2.0,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (2 vagas; media das duas cedulas, comprovada pela quebra publicada). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/rui-costa-e-jaques-wagner-lideram-disputa-ao-senado-pela-ba/"
+    },
+    "resultados": [
+      { "candidato": "Rui Costa", "partido": "PT", "pct": 28.2 },
+      { "candidato": "Jaques Wagner", "partido": "PT", "pct": 24.4 },
+      { "candidato": "João Roma", "partido": "PL", "pct": 21.0 },
+      { "candidato": "Ângelo Coronel", "partido": "Republicanos", "pct": 20.9 }
+    ],
+    "observacao": "SEGUNDA LACUNA PRIORITARIA FECHADA: e a rodada AtlasIntel/A TARDE na Bahia cuja divulgacao estava anunciada para hoje, quarta-feira 30/09/2026. PERIODO DE CAMPO 24-28/09 (nao 23-28/09 como estava previsto no briefing) — as materias sao unanimes: 'ouviu 2 mil eleitores baianos entre 24 e 28 de setembro, por recrutamento digital aleatorio, margem de 2 p.p., 95% de confianca'. Nao colide com a rodada AtlasIntel/BA de campo 28/08-02/09 (publicada em 03/09) que ja esta na base. QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO — ESTA E A FICHA QUE FECHA PELA ARITMETICA E NAO PELA REDACAO: (a) SOMA — 28,2+24,4+21,0+20,9 = 94,5, base 100, o que exclui de saida a leitura 2; (b) a fonte publica a quebra parcial das duas cedulas: 1o VOTO — Rui 41,2 e Coronel 27,8; 2o VOTO — Wagner 35,5 e Roma 26,3. Testando a hipotese da media contra o consolidado publicado, o valor implicado que falta em cada caso e: Rui no 2o voto = 2x28,2-41,2 = 15,2; Coronel no 2o voto = 2x20,9-27,8 = 14,0; Wagner no 1o voto = 2x24,4-35,5 = 13,3; Roma no 1o voto = 2x21,0-26,3 = 15,7. Todos positivos e plausiveis, e as colunas reconstruidas somam 98,0 no 1o voto (base 100, sobrando ~2 para nanicos e nao-resposta) e 91,0 no 2o voto (base 100 com mais nao-resposta, exatamente o padrao esperado). Sob a leitura 1 Rui teria simultaneamente 28,2 e 41,2 de primeira escolha, contradicao direta; sob a leitura 2 os quatro nomes teriam de somar perto de 200, e somam 94,5. Logo, leitura 3; (c) o padrao confere com o resto da serie: a rodada AtlasIntel/BA de 03/09 (ja na base) tem consolidado 28,2/23,7/18,3/16,0 (soma 86,2) e votos validos noticiados 31,6/26,5/20,4/17,9 mais Delliana 2,6 e Marcelo Carvalho 0,6 — 28,2 sobre base ~89 da 31,7, o que amarra as duas leituras entre si; e a rodada RTBD/BA de campo 23-26/09, ja na base, tambem foi determinada como leitura 3. ATENCAO A COINCIDENCIA: Rui Costa marca 28,2 nesta rodada E na de 03/09; o que distingue as duas fichas e Jaques Wagner (24,4 agora contra 23,7 antes), Joao Roma (21,0 contra 18,3), Coronel (20,9 contra 16,0), o campo (24-28/09 contra 28/08-02/09), a amostra (2.000 contra 1.804) e o registro TSE. Nao foram gravadas as linhas de Professora Delliana (PSOL), Marcelo Carvalho (Rede), brancos/nulos e indecisos porque as fontes consultadas nao publicaram seus percentuais nesta rodada — os ~5,5 pontos que faltam para 100 estao ai e nenhuma linha foi inventada. A leitura em VOTOS VALIDOS nao foi gravada; um dos resumos a confundiu com o consolidado, motivo pelo qual so o consolidado total entrou. Registro TSE BA-02425/2026 (o recorte nacional da mesma coleta corre sob BR-00633/2026, nao usado aqui). CONTRATANTE: 'A Tarde' — a serie e divulgada pelo proprio instituto como 'AtlasIntel/A TARDE' e as duas rodadas anteriores da mesma serie ja constam na base com contratante 'A Tarde' e 'Empresa Editora A Tarde S/A'; nao e inferencia a partir do veiculo que noticiou. Divulgada tambem por CNN Brasil, Metropoles, Band, bahia.ba, BNews, Acorda Cidade, Panorama da Bahia, Jovem Pan e A TARDE. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-real-time-big-data-rj-senador-t1",
+    "uf": "RJ",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "RJ-08712/2026",
+    "contratante": "3 Poderes Mídia e Comunicação",
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 2000,
+    "margem": 2.0,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (2 vagas). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/jordy-e-benedita-lideram-disputa-pelo-senado-no-rj-diz-pesquisa/"
+    },
+    "resultados": [
+      { "candidato": "Carlos Jordy", "partido": "PL", "pct": 18 },
+      { "candidato": "Benedita da Silva", "partido": "PT", "pct": 15 },
+      { "candidato": "Carlos Portinho", "partido": "PL", "pct": 14 },
+      { "candidato": "Pedro Paulo", "partido": "PSD", "pct": 12 },
+      { "candidato": "Marcelo Crivella", "partido": "Republicanos", "pct": 10 }
+    ],
+    "observacao": "Rodada nova da onda Real Time Big Data de campo 25-29/09, divulgada hoje, quarta-feira 30/09/2026 — nao colide com as rodadas RTBD/RJ de 28/08-01/09 e 09-12/09 que ja estao na base. QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO: (a) SOMA — os cinco nomes publicados somam 69; com os demais candidatos e as linhas de brancos/nulos e nao sabe o total fica na vizinhanca de 100, muito longe da base 200 que caracterizaria a leitura 2 (a rodada RTBD/RJ de 09-12/09, ja na base e com tabela completa de dez nomes, fecha em base 100 com os mesmos patamares de 15 e 13); (b) a escolha entre a leitura 1 e a leitura 3 nao se resolve pela soma, e sim pela metodologia declarada desta mesma onda: no recorte de Rondonia do mesmo campo 25-29/09 o instituto publica a frase expressa de que 'para o Senado apresentou cenario estimulado para 1o e 2o votos, em que cada entrevistado escolheu dois nomes e os votos consolidados foram reduzidos a 100%'. Sendo a mesma onda, o mesmo questionario e o mesmo contratante, o recorte do RJ e a mesma leitura 3; (c) o padrao confere com as rodadas RTBD de SP, PR, RS e DF do campo 24-28/09, todas determinadas como leitura 3 na varredura de ontem. A quebra numerica de 1o e 2o voto nao foi publicada para o RJ, por isso a determinacao se apoia na metodologia declarada da onda e nao num teste de media proprio — se a onda nao tivesse declarado a metodologia, esta ficha teria ficado como leitura nao determinada. Linhas de outros candidatos, brancos/nulos e nao sabe nao foram publicadas nas fontes consultadas e nao foram criadas. Carlos Jordy ultrapassou Benedita em relacao a rodada anterior (era 15 x 15). Registro TSE RJ-08712/2026 e contratante 3 Poderes Midia e Comunicacao Ltda informados explicitamente. SUSPENSOES: nenhuma decisao judicial foi encontrada contra esta rodada; as suspensoes conhecidas do instituto sao em outras UFs e outros campos (ver o resumo da varredura). WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-real-time-big-data-es-senador-t1",
+    "uf": "ES",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "ES-01627/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (2 vagas). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/renato-casagrande-lidera-disputa-pelo-senado-no-es-diz-pesquisa-3/"
+    },
+    "resultados": [
+      { "candidato": "Renato Casagrande", "partido": "PSB", "pct": 28 },
+      { "candidato": "Sergio Meneguelli", "partido": "PSD", "pct": 13 },
+      { "candidato": "Evair de Melo", "partido": "Republicanos", "pct": 12 },
+      { "candidato": "Fabiano Contarato", "partido": "PT", "pct": 12 },
+      { "candidato": "Maguinha Malta", "partido": "PL", "pct": 12 },
+      { "candidato": "Rose de Freitas", "partido": "MDB", "pct": 9 }
+    ],
+    "observacao": "Rodada nova da onda Real Time Big Data de campo 25-29/09, divulgada hoje, 30/09/2026. NAO CONFUNDIR com as duas rodadas RTBD/ES ja na base: a de campo 04-08/09 (Casagrande 28, Meneguelli 12, Evair 9, Contarato 9, Maguinha 9, Rose 9) e a de campo 21-24/09 (Casagrande 29, Meneguelli 13, Contarato 11, Evair 10, Maguinha 10, Rose 9). Esta traz Casagrande 28, Meneguelli 13 e um empate triplo em 12 entre Evair, Contarato e Maguinha — configuracao distinta das duas anteriores, e o registro TSE tambem e outro (ES-01627/2026, contra ES-01967/2026 e ES-00877/2026). QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO: (a) SOMA — os seis nomes somam 86; com nanicos, brancos/nulos e nao sabe o total fica perto de 100, o que exclui a leitura 2 (base 200); (b) entre a leitura 1 e a leitura 3, decide a metodologia declarada desta mesma onda de campo 25-29/09, que o instituto enuncia no recorte de Rondonia: cenario estimulado de 1o e 2o votos, cada entrevistado escolhe dois nomes e os votos consolidados sao reduzidos a 100%. Mesma onda, mesma leitura; (c) coerente com todas as rodadas RTBD de senador ja determinadas na base (SP, PR, RS, DF em 24-28/09; BA, MG, PA, PE em 23-26/09). A quebra de 1o e 2o voto nao foi publicada para o ES, por isso nao houve teste de media proprio. Contratante nao declarado nas fontes consultadas para este recorte, por isso null — nao foi inferido do veiculo divulgador. Brancos/nulos e nao sabe nao publicados, nenhuma linha criada. ALERTA DE CONTEXTO, sem efeito sobre esta ficha: em 30/09 o TRE-ES suspendeu quatro pesquisas do Instituto Perfil para governo e Senado no estado (acao da coligacao 'Agora E o Futuro', indicios de fraude, pesquisa questionada publicada em 26/09) — nada do Instituto Perfil entrou nesta varredura, e a decisao nao alcanca a Real Time Big Data. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-real-time-big-data-ap-senador-t1",
+    "uf": "AP",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "AP-08579/2026",
+    "contratante": "3 Poderes Mídia e Comunicação",
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (2 vagas). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-rayssa-furlan-lidera-senado-no-ap-2o-vaga-esta-em-aberto/"
+    },
+    "resultados": [
+      { "candidato": "Rayssa Furlan", "partido": "Podemos", "pct": 30 },
+      { "candidato": "Randolfe Rodrigues", "partido": "PT", "pct": 20 },
+      { "candidato": "Lucas Barreto", "partido": "PSD", "pct": 20 }
+    ],
+    "observacao": "Rodada nova da onda Real Time Big Data de campo 25-29/09, divulgada hoje, 30/09/2026. NAO CONFUNDIR com a rodada RTBD/AP de campo 03-07/09 ja na base, que tem Rayssa Furlan 33, Randolfe 20 e Lucas Barreto 14 — a manchete do Metropoles com 'Rayssa Furlan tem 33%' e daquela rodada, nao desta. Aqui Barreto sobe de 14 para 20 e empata com Randolfe pela segunda vaga, e o registro TSE e outro (AP-08579/2026 contra AP-04000/2026). QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO: (a) SOMA — os tres nomes publicados somam 70; com os demais candidatos e as linhas de nao-candidato o total fica perto de 100, nao de 200, o que exclui a leitura 2 (para comparacao, o Parana Pesquisas no AP, campo 25-27/09 e ja na base, publica a MESMA disputa em base 200: Rayssa 54,0; Randolfe 36,7; Barreto 36,1; Favacho 21,4; Alliny 20,0 — soma 168,2 — o contraste entre as duas fichas mostra o quanto as bases sao distinguiveis pela soma); (b) entre a leitura 1 e a leitura 3, decide a metodologia declarada pela propria onda de campo 25-29/09, enunciada pelo instituto no recorte de Rondonia: 1o e 2o votos, dois nomes por entrevistado, consolidado reduzido a 100%. A quebra numerica das duas cedulas nao foi publicada para o AP, por isso nao houve teste de media proprio. Linhas de outros candidatos, brancos/nulos e nao sabe nao publicadas nas fontes consultadas e nao criadas. Contratante 3 Poderes Midia e Comunicacao Ltda e registro AP-08579/2026 informados explicitamente. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-real-time-big-data-ro-senador-t1",
+    "uf": "RO",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (2 vagas; frase metodologica explicita na fonte). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-ro-maximo-lidera-para-o-senado-silvia-scheid-e-mariana-empatam/"
+    },
+    "resultados": [
+      { "candidato": "Dr. Fernando Máximo", "partido": "PL", "pct": 22 },
+      { "candidato": "Sílvia Cristina", "partido": "PP", "pct": 17 },
+      { "candidato": "Bruno Bolsonaro Scheid", "partido": "PL", "pct": 14 },
+      { "candidato": "Mariana Carvalho", "partido": "Republicanos", "pct": 14 }
+    ],
+    "observacao": "RODADA QUE FECHA A ULTIMA LACUNA DE COBERTURA DE RONDONIA COM INSTITUTO NAO SUSPENSO: ate hoje o estado so tinha, para senador, a Quaest de 20-23/09, a Brasil Dados de 31/08-03/09 e a rodada do Instituto Verita (sob alerta de integridade). Campo 25-29/09, divulgada hoje, 30/09/2026, 1.600 eleitores, margem de 2 p.p., 95% de confianca. QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%, e ESTA E A FICHA EM QUE A FONTE ENUNCIA A METODOLOGIA PALAVRA POR PALAVRA, servindo de ancora para todo o resto da onda: 'para o Senado, a Real Time Big Data apresentou cenario estimulado para 1o e 2o votos, em que cada entrevistado escolheu dois nomes e os votos consolidados foram reduzidos a 100%'. A aritmetica confere: os quatro nomes somam 67, base 100 e nao 200, o que ja excluia a leitura 2. E o contraste com a mesma disputa medida em outras bases confirma que nao e primeira escolha isolada: no mesmo estado a Quaest (ja na base) tem Maximo 18 e Silvia 16 em base 100, enquanto as tabelas de primeira escolha divulgadas por outro instituto no estado poem Bruno Scheid perto de 37 — patamar incompativel com os 14 desta ficha, que e media das duas cedulas. Registro TSE nao publicado nas materias consultadas, por isso null; contratante tambem nao declarado para este recorte, por isso null e nao inferido (os recortes de AP e RJ da mesma onda declaram 3 Poderes Midia e Comunicacao Ltda, mas estender isso ao RO seria inferencia). Linhas de outros candidatos, brancos/nulos e nao sabe nao publicadas e nao criadas. NENHUMA suspensao judicial encontrada contra esta rodada. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-parana-pesquisas-al-senador-t1",
+    "uf": "AL",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "AL-01237/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-26",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 1400,
+    "margem": 2.7,
+    "cenario": "estimulada, LEITURA 2 — SOMA do 1o e do 2o voto (2 vagas; cada entrevistado indica dois nomes, base de ate 200%). NAO e primeira escolha isolada e NAO e o consolidado reduzido a 100%",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-senado-alagoas-setembro-2026-2/"
+    },
+    "resultados": [
+      { "candidato": "Marina JHC", "partido": "PSDB", "pct": 45.6 },
+      { "candidato": "Arthur Lira", "partido": "PP", "pct": 41.6 },
+      { "candidato": "Renan Calheiros", "partido": "MDB", "pct": 36.9 },
+      { "candidato": "Davi Davino Filho", "partido": "Republicanos", "pct": 22.9 },
+      { "candidato": "Dr. Wanderley", "partido": "MDB", "pct": 15.2 },
+      { "candidato": "Alexandre Fleming", "partido": "UP", "pct": 1.1 }
+    ],
+    "observacao": "Rodada nova do Parana Pesquisas em Alagoas, campo 26-29/09 em 59 municipios, divulgada hoje, quarta-feira 30/09/2026. NAO CONFUNDIR com a rodada de campo 18-20/09 ja na base, que tem Arthur Lira 41,2; Marina JHC 37,8; Renan 34,6 e Davi Davino Filho 25,7 — a manchete 'Lira tem 41,2%, Marina JHC 37,8% e Renan 34,6%' e daquela. Aqui Marina JHC passa a frente, e o registro TSE e outro (AL-01237/2026 contra AL-05775/2026). QUAL DAS TRES LEITURAS: leitura 2 — SOMA DO 1o E DO 2o VOTO. COMO FOI DETERMINADO (aritmetica, e a determinacao e imediata): os TRES primeiros nomes sozinhos somam 124,1 (45,6+41,6+36,9), o que por si so torna impossiveis a leitura 1 e a leitura 3, ambas em base 100; a tabela completa soma 163,3, patamar que so existe em base 200 (duas indicacoes por entrevistado, sobrando ~36,7 para brancos/nulos, indecisos e quem indica um unico nome). Confere com toda a serie do instituto ja na base, que publica a disputa de Senado como soma das duas indicacoes (a rodada anterior em AL, a da BA em 21-23/09, a do AP em 25-27/09), e as proprias materias locais do estado tratam o 1o e o 2o voto separadamente ao discutir quem 'segue vivo no segundo voto'. Nao foram gravadas fichas proprias de 1o e de 2o voto porque as colunas separadas nao foram publicadas nesta rodada. Brancos/nulos e indecisos nao publicados e nao criados. Contratante nao declarado nas fontes consultadas, por isso null — nao inferido do veiculo. Margem de 2,7 p.p. e 95% de confianca. Divulgada tambem por Band, CartaCapital, TNH1, Gazeta Web, Reporter Nordeste e Em Tempo. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-09-30-parana-pesquisas-mt-senador-t1",
+    "uf": "MT",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "MT-02094/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-27",
+    "dataFim": "2026-09-29",
+    "publicadoEm": "2026-09-30",
+    "amostra": 1352,
+    "margem": 2.7,
+    "cenario": "estimulada, LEITURA 2 — SOMA do 1o e do 2o voto (2 vagas; base de ate 200%, comprovada pela quebra publicada). NAO e primeira escolha isolada e NAO e o consolidado reduzido a 100%",
+    "fonte": {
+      "nome": "CartaCapital",
+      "url": "https://www.cartacapital.com.br/politica/parana-pesquisas-mauro-mendes-lidera-com-folga-a-disputa-pelo-senado-no-mato-grosso/"
+    },
+    "resultados": [
+      { "candidato": "Mauro Mendes", "partido": "União Brasil", "pct": 54.9 },
+      { "candidato": "Janaína Riva", "partido": "MDB", "pct": 33.3 },
+      { "candidato": "José Medeiros", "partido": "PL", "pct": 29.3 },
+      { "candidato": "Carlos Fávaro", "partido": "PSD", "pct": 18.0 },
+      { "candidato": "Pedro Taques", "partido": "PSB", "pct": 14.1 },
+      { "candidato": "Galvan", "partido": "Avante", "pct": 4.3 },
+      { "candidato": "Coronel Darwin", "partido": "Democrata", "pct": 3.3 }
+    ],
+    "observacao": "Rodada nova do Parana Pesquisas em Mato Grosso, campo 27-29/09, divulgada hoje, 30/09/2026 — primeira pesquisa de senador do instituto nesta UF na base (MT so tinha a Quaest de 21-24/09 e a RTBD de 29/08-02/09). QUAL DAS TRES LEITURAS: leitura 2 — SOMA DO 1o E DO 2o VOTO. COMO FOI DETERMINADO — ESTA E A FICHA QUE FECHA EXATAMENTE, CASA DECIMAL POR CASA DECIMAL: a fonte publica a quebra das duas cedulas — 1o VOTO: Mauro 37,5; Janaina 18,0; Medeiros 16,0. 2o VOTO: Mauro 17,4; Janaina 15,3; Medeiros 13,3. A SOMA reproduz o numero de manchete sem sobra: Mauro 37,5+17,4 = 54,9 exato; Janaina 18,0+15,3 = 33,3 exato; Medeiros 16,0+13,3 = 29,3 exato. Tres identidades exatas provam que o percentual publicado e a SOMA das duas indicacoes, nao a media (que daria 27,5; 16,7; 14,7) nem a primeira escolha (37,5; 18,0; 16,0). A tabela completa soma 157,2, coerente com base 200 e incompativel com base 100 — e incompativel tambem com votos validos, que teriam de fechar em 200. NUMEROS DIVERGENTES DESCARTADOS, com motivo: circulam manchetes com 'Mauro 55%; Janaina 31,5%; Medeiros 21,4%' e 'Mauro 52%; Janaina 32%' para a mesma disputa. Esses conjuntos nao fecham com a quebra de 1o e 2o voto publicada e nao foi possivel estabelecer a que recorte pertencem (rodada anterior do instituto no estado ou outra base); prevaleceu o conjunto 54,9/33,3/29,3/18,0/14,1/4,3/3,3, que e o unico aritmeticamente fechado pela quebra. Tambem circula a manchete 'Mauro Mendes com 54,9% dos votos validos' — o rotulo de validos esta errado na manchete: 54,9 e a soma das duas cedulas na base total, como a propria quebra demonstra. Brancos/nulos e indecisos nao publicados e nao criados. Registro TSE MT-02094/2026 informado; contratante nao declarado nas fontes consultadas, por isso null e nao inferido. Divulgada tambem por Exame, Olhar Direto, Midiajur, Muvuca Popular e Estadao Mato Grosso. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  }
+]

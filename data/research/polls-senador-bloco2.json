@@ -13,15 +13,46 @@
     "amostra": 5000,
     "margem": null,
     "cenario": "estimulada, soma do 1º e 2º votos declarados (consolidado; percentuais somam mais de 100 pois o eleitor escolhe 2 nomes)",
-    "fonte": { "nome": "br104.com.br", "url": "https://www.br104.com.br/eleicoes-2026/cidades/renan-calheiros-lidera-senado-alagoas-pesquisa-falpe-2026/" },
+    "fonte": {
+      "nome": "br104.com.br",
+      "url": "https://www.br104.com.br/eleicoes-2026/cidades/renan-calheiros-lidera-senado-alagoas-pesquisa-falpe-2026/"
+    },
     "resultados": [
-      { "candidato": "Renan Calheiros", "partido": "MDB", "pct": 38.25 },
-      { "candidato": "Arthur Lira", "partido": "PP", "pct": 31.0 },
-      { "candidato": "Marina JHC", "partido": null, "pct": 22.5 },
-      { "candidato": "Davi Davino Filho", "partido": null, "pct": 19.25 },
-      { "candidato": "Dr. Wanderley", "partido": null, "pct": 10.0 },
-      { "candidato": "Alexandre Fleming", "partido": null, "pct": 0.75 },
-      { "candidato": "Mariedson", "partido": null, "pct": 0.5 }
+      {
+        "candidato": "Renan Calheiros",
+        "partido": "MDB",
+        "pct": 38.25
+      },
+      {
+        "candidato": "Arthur Lira",
+        "partido": "PP",
+        "pct": 31.0
+      },
+      {
+        "candidato": "Marina JHC",
+        "partido": null,
+        "pct": 22.5
+      },
+      {
+        "candidato": "Davi Davino Filho",
+        "partido": null,
+        "pct": 19.25
+      },
+      {
+        "candidato": "Dr. Wanderley",
+        "partido": null,
+        "pct": 10.0
+      },
+      {
+        "candidato": "Alexandre Fleming",
+        "partido": null,
+        "pct": 0.75
+      },
+      {
+        "candidato": "Mariedson",
+        "partido": null,
+        "pct": 0.5
+      }
     ],
     "observacao": "Pesquisa presencial (5.000 entrevistas nos 102 municípios de AL) entre 16 e 25/08/2026, divulgada em 01/09/2026. Partidos de Marina JHC, Davi Davino Filho, Dr. Wanderley, Alexandre Fleming e Mariedson não confirmados nesta sessão (WebFetch bloqueado; dados obtidos via resumo de busca)."
   },
@@ -39,12 +70,31 @@
     "amostra": 1804,
     "margem": 2.0,
     "cenario": "estimulada, recrutamento digital aleatório; percentuais somam mais de 100 (eleitor escolhe 2 nomes)",
-    "fonte": { "nome": "CNN Brasil", "url": "https://www.cnnbrasil.com.br/eleicoes/atlas-senado-ba-rui-costa-tem-282-jaques-wagner-237/" },
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/atlas-senado-ba-rui-costa-tem-282-jaques-wagner-237/"
+    },
     "resultados": [
-      { "candidato": "Rui Costa", "partido": "PT", "pct": 28.2 },
-      { "candidato": "Jaques Wagner", "partido": "PT", "pct": 23.7 },
-      { "candidato": "João Roma", "partido": "PL", "pct": 18.3 },
-      { "candidato": "Ângelo Coronel", "partido": "Republicanos", "pct": 16.0 }
+      {
+        "candidato": "Rui Costa",
+        "partido": "PT",
+        "pct": 28.2
+      },
+      {
+        "candidato": "Jaques Wagner",
+        "partido": "PT",
+        "pct": 23.7
+      },
+      {
+        "candidato": "João Roma",
+        "partido": "PL",
+        "pct": 18.3
+      },
+      {
+        "candidato": "Ângelo Coronel",
+        "partido": "Republicanos",
+        "pct": 16.0
+      }
     ],
     "observacao": "Fontes secundárias divergem levemente para João Roma (18,3%–20,4%) e Ângelo Coronel (16%–17,9%) conforme o corte (votos válidos vs. total); valores acima são os mais citados (CNN Brasil/Metrópoles). Também registrada sob BR-07739/2026 (registro agregado nacional do instituto). Dados obtidos via resumo de busca, sem acesso ao release original (WebFetch bloqueado)."
   },
@@ -61,15 +111,34 @@
     "publicadoEm": "2026-09-04",
     "amostra": 1834,
     "margem": 2.0,
-    "cenario": "estimulada, recrutamento digital aleatório; percentuais somam mais de 100 (eleitor escolhe 2 nomes)",
-    "fonte": { "nome": "Exame", "url": "https://exame.com/brasil/atlasintel-cid-tem-205-e-capitao-wagner-e-luizianne-187-cada-em-corrida-ao-senado-no-ceara/" },
+    "cenario": "estimulada, recrutamento digital aleatório; LEITURA 3 — consolidado do 1º e do 2º voto reduzido a 100% (2 vagas; a média das duas cédulas)",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/atlasintel-cid-tem-205-e-capitao-wagner-e-luizianne-187-cada-em-corrida-ao-senado-no-ceara/"
+    },
     "resultados": [
-      { "candidato": "Cid Gomes", "partido": "PSB", "pct": 24.4 },
-      { "candidato": "Luizianne Lins", "partido": "Rede", "pct": 24.2 },
-      { "candidato": "Capitão Wagner", "partido": "União", "pct": 19.1 },
-      { "candidato": "Alcides Fernandes", "partido": "PL", "pct": 15.7 }
+      {
+        "candidato": "Cid Gomes",
+        "partido": "PSB",
+        "pct": 24.4
+      },
+      {
+        "candidato": "Luizianne Lins",
+        "partido": "Rede",
+        "pct": 24.2
+      },
+      {
+        "candidato": "Capitão Wagner",
+        "partido": "União",
+        "pct": 19.1
+      },
+      {
+        "candidato": "Alcides Fernandes",
+        "partido": "PL",
+        "pct": 15.7
+      }
     ],
-    "observacao": "Cid Gomes é o titular da cadeira em disputa; Eduardo Girão (Novo, outra cadeira desta UF) não aparece entre os líderes desta pesquisa. Dados obtidos via resumo de busca (WebFetch bloqueado). registroTSE corrigido na auditoria rodada 2 (BR-07411/2026, confirmado para esta pesquisa específica com mesmos 1834 entrevistados e campo 28/08-02/09; o valor anterior CE-02357/2026 estava incorreto)."
+    "observacao": "Cid Gomes é o titular da cadeira em disputa; Eduardo Girão (Novo, outra cadeira desta UF) não aparece entre os líderes desta pesquisa. Dados obtidos via resumo de busca (WebFetch bloqueado). registroTSE corrigido na auditoria rodada 2 (BR-07411/2026, confirmado para esta pesquisa específica com mesmos 1834 entrevistados e campo 28/08-02/09; o valor anterior CE-02357/2026 estava incorreto). RÓTULO CORRIGIDO EM 30/09/2026, SEM ALTERAR NENHUM PERCENTUAL. O cenário anterior dizia \"percentuais somam mais de 100 (eleitor escolhe 2 nomes)\", o que contradiz a própria ficha: ela soma 83,4. A leitura correta é a consolidada, provada pela quebra publicada desta mesma rodada (1º voto Luizianne 29,3 / Wagner 23,9 / Cid 22,4 / Alcides 14,3; 2º voto Cid 26,4 / Luizianne 19,0 / Alcides 17,2 / Wagner 14,3): a média das duas cédulas reproduz os quatro valores gravados — Cid 24,4 exato, Wagner 19,1 exato, Luizianne 24,15 ≈ 24,2, Alcides 15,75 ≈ 15,7. Rotular como base 200 punha esta ficha em conflito de métrica com as demais rodadas da mesma série no CE, que são consolidadas."
   },
   {
     "id": "2026-09-08-anova-pb-senador-t1",
@@ -85,20 +154,71 @@
     "amostra": 2000,
     "margem": 2.2,
     "cenario": "estimulada consolidada (base 100%, já descontados indecisos/brancos/nulos)",
-    "fonte": { "nome": "PB Agora / Fatos PB", "url": "https://fatospb.com.br/2026/09/08/pesquisa-anova-mostra-joao-com-535-e-veneziano-com-371-liderando-para-o-senado-na-paraiba" },
+    "fonte": {
+      "nome": "PB Agora / Fatos PB",
+      "url": "https://fatospb.com.br/2026/09/08/pesquisa-anova-mostra-joao-com-535-e-veneziano-com-371-liderando-para-o-senado-na-paraiba"
+    },
     "resultados": [
-      { "candidato": "João Azevêdo", "partido": "PSB", "pct": 26.8 },
-      { "candidato": "Veneziano Vital do Rêgo", "partido": "MDB", "pct": 18.6 },
-      { "candidato": "Nabor", "partido": null, "pct": 7.5 },
-      { "candidato": "Dr. Marcelo Queiroga", "partido": null, "pct": 4.3 },
-      { "candidato": "Major Fábio", "partido": null, "pct": 1.8 },
-      { "candidato": "André Gadelha", "partido": null, "pct": 1.5 },
-      { "candidato": "João Batista", "partido": null, "pct": 0.7 },
-      { "candidato": "Adriano Trajano", "partido": null, "pct": 0.5 },
-      { "candidato": "Rinaldo Júnior", "partido": null, "pct": 0.1 },
-      { "candidato": "Rosilene Santana", "partido": null, "pct": 0.1 },
-      { "candidato": "Brancos/nulos", "partido": null, "pct": 11.5 },
-      { "candidato": "Não sabe/indeciso", "partido": null, "pct": 26.6 }
+      {
+        "candidato": "João Azevêdo",
+        "partido": "PSB",
+        "pct": 26.8
+      },
+      {
+        "candidato": "Veneziano Vital do Rêgo",
+        "partido": "MDB",
+        "pct": 18.6
+      },
+      {
+        "candidato": "Nabor",
+        "partido": null,
+        "pct": 7.5
+      },
+      {
+        "candidato": "Dr. Marcelo Queiroga",
+        "partido": null,
+        "pct": 4.3
+      },
+      {
+        "candidato": "Major Fábio",
+        "partido": null,
+        "pct": 1.8
+      },
+      {
+        "candidato": "André Gadelha",
+        "partido": null,
+        "pct": 1.5
+      },
+      {
+        "candidato": "João Batista",
+        "partido": null,
+        "pct": 0.7
+      },
+      {
+        "candidato": "Adriano Trajano",
+        "partido": null,
+        "pct": 0.5
+      },
+      {
+        "candidato": "Rinaldo Júnior",
+        "partido": null,
+        "pct": 0.1
+      },
+      {
+        "candidato": "Rosilene Santana",
+        "partido": null,
+        "pct": 0.1
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 11.5
+      },
+      {
+        "candidato": "Não sabe/indeciso",
+        "partido": null,
+        "pct": 26.6
+      }
     ],
     "observacao": "Mesmo instituto/pesquisa também divulgou métrica alternativa 'soma do 1º e 2º voto declarados' com João Azevêdo em 53,5% e Veneziano em 37,1% (não normalizada a 100%); optou-se pela série completa acima por ser internamente consistente (soma ~100%). Partidos dos demais candidatos não confirmados nesta sessão. Registro também localizado como BR-02714/2026 (agregado nacional)."
   },
@@ -116,12 +236,31 @@
     "amostra": 1204,
     "margem": 3.0,
     "cenario": "estimulada",
-    "fonte": { "nome": "Poder360", "url": "https://www.poder360.com.br/poder-eleicoes-2026/senado-em-pe-tem-empate-de-marilia-humberto-e-mendonca-diz-datafolha/" },
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/senado-em-pe-tem-empate-de-marilia-humberto-e-mendonca-diz-datafolha/"
+    },
     "resultados": [
-      { "candidato": "Marília Arraes", "partido": "PDT", "pct": 18.0 },
-      { "candidato": "Humberto Costa", "partido": "PT", "pct": 16.0 },
-      { "candidato": "Mendonça Filho", "partido": "PL", "pct": 12.0 },
-      { "candidato": "Eduardo da Fonte", "partido": "PP", "pct": 10.0 }
+      {
+        "candidato": "Marília Arraes",
+        "partido": "PDT",
+        "pct": 18.0
+      },
+      {
+        "candidato": "Humberto Costa",
+        "partido": "PT",
+        "pct": 16.0
+      },
+      {
+        "candidato": "Mendonça Filho",
+        "partido": "PL",
+        "pct": 12.0
+      },
+      {
+        "candidato": "Eduardo da Fonte",
+        "partido": "PP",
+        "pct": 10.0
+      }
     ],
     "observacao": "Lista provavelmente incompleta: fontes secundárias citam apenas os 4 primeiros colocados; demais candidatos e brancos/nulos/indecisos não detalhados. Partido de Eduardo da Fonte (PP) confirmado via auditoria de 13/09/2026 (candidatos.nexojornal.com.br)."
   },
@@ -139,12 +278,31 @@
     "amostra": 1600,
     "margem": 2.0,
     "cenario": "estimulada, consolidado 1º e 2º votos, reduzido a base 100%",
-    "fonte": { "nome": "CNN Brasil / BNews RN", "url": "https://www.bnewsrn.com.br/noticias/politica/real-time-big-data-styvenson-lidera-mas-disputa-pelas-duas-vagas-ao-senado-segue-acirrada-no-rn.html" },
+    "fonte": {
+      "nome": "CNN Brasil / BNews RN",
+      "url": "https://www.bnewsrn.com.br/noticias/politica/real-time-big-data-styvenson-lidera-mas-disputa-pelas-duas-vagas-ao-senado-segue-acirrada-no-rn.html"
+    },
     "resultados": [
-      { "candidato": "Styvenson Valentim", "partido": "Podemos", "pct": 18.0 },
-      { "candidato": "Samanda de Lula", "partido": "PT", "pct": 16.0 },
-      { "candidato": "Zenaide Maia", "partido": "PSD", "pct": 15.0 },
-      { "candidato": "Rafael Motta", "partido": "PDT", "pct": 14.0 }
+      {
+        "candidato": "Styvenson Valentim",
+        "partido": "Podemos",
+        "pct": 18.0
+      },
+      {
+        "candidato": "Samanda de Lula",
+        "partido": "PT",
+        "pct": 16.0
+      },
+      {
+        "candidato": "Zenaide Maia",
+        "partido": "PSD",
+        "pct": 15.0
+      },
+      {
+        "candidato": "Rafael Motta",
+        "partido": "PDT",
+        "pct": 14.0
+      }
     ],
     "observacao": "Lista provavelmente incompleta (apenas os 4 primeiros nomes citados pelas fontes secundárias); metodologia 'reduzido a base 100%' pode não somar mais de 100 mesmo havendo 2 votos por eleitor."
   },
@@ -162,15 +320,46 @@
     "amostra": 1600,
     "margem": 2.0,
     "cenario": "estimulada, 1º voto declarado (pergunta permite indicar 2 nomes; valores abaixo referem-se apenas à primeira escolha)",
-    "fonte": { "nome": "Fan F1", "url": "https://fanf1.com.br/2026/09/07/pesquisa-real-time-big-data-aponta-delegado-andre-david-na-lideranca-da-disputa-pelo-senado/" },
+    "fonte": {
+      "nome": "Fan F1",
+      "url": "https://fanf1.com.br/2026/09/07/pesquisa-real-time-big-data-aponta-delegado-andre-david-na-lideranca-da-disputa-pelo-senado/"
+    },
     "resultados": [
-      { "candidato": "Delegado André David", "partido": "Republicanos", "pct": 19.0 },
-      { "candidato": "André Moura", "partido": "União", "pct": 11.0 },
-      { "candidato": "Edvaldo Nogueira", "partido": "PDT", "pct": 11.0 },
-      { "candidato": "Rogério Carvalho", "partido": "PT", "pct": 11.0 },
-      { "candidato": "Eduardo Amorim", "partido": "Republicanos", "pct": 10.0 },
-      { "candidato": "Delegado Alessandro", "partido": "MDB", "pct": 10.0 },
-      { "candidato": "Rodrigo Valadares", "partido": "PL", "pct": 10.0 }
+      {
+        "candidato": "Delegado André David",
+        "partido": "Republicanos",
+        "pct": 19.0
+      },
+      {
+        "candidato": "André Moura",
+        "partido": "União",
+        "pct": 11.0
+      },
+      {
+        "candidato": "Edvaldo Nogueira",
+        "partido": "PDT",
+        "pct": 11.0
+      },
+      {
+        "candidato": "Rogério Carvalho",
+        "partido": "PT",
+        "pct": 11.0
+      },
+      {
+        "candidato": "Eduardo Amorim",
+        "partido": "Republicanos",
+        "pct": 10.0
+      },
+      {
+        "candidato": "Delegado Alessandro",
+        "partido": "MDB",
+        "pct": 10.0
+      },
+      {
+        "candidato": "Rodrigo Valadares",
+        "partido": "PL",
+        "pct": 10.0
+      }
     ],
     "observacao": "Fontes secundárias divergem quanto ao 2º voto e ao 'consolidado' (André David aparece entre 12% e 18% conforme o corte); optou-se pelos valores do 1º voto por serem os mais consistentes entre as fontes consultadas. Restante (brancos/nulos/indecisos e outros candidatos) não detalhado."
   },
@@ -188,14 +377,41 @@
     "amostra": 1600,
     "margem": 2.0,
     "cenario": "estimulada; percentual de citação por candidato (não normalizado a 100%)",
-    "fonte": { "nome": "CNN Brasil", "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-big-data-casagrande-lidera-corrida-ao-senado-pelo-es/" },
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-big-data-casagrande-lidera-corrida-ao-senado-pelo-es/"
+    },
     "resultados": [
-      { "candidato": "Renato Casagrande", "partido": "PSB", "pct": 28.0 },
-      { "candidato": "Sergio Meneguelli", "partido": "PSD", "pct": 12.0 },
-      { "candidato": "Evair de Melo", "partido": "Republicanos", "pct": 9.0 },
-      { "candidato": "Fabiano Contarato", "partido": "PT", "pct": 9.0 },
-      { "candidato": "Marcus Vinícius 'Maguinha' Malta", "partido": "PL", "pct": 9.0 },
-      { "candidato": "Rose de Freitas", "partido": "MDB", "pct": 9.0 }
+      {
+        "candidato": "Renato Casagrande",
+        "partido": "PSB",
+        "pct": 28.0
+      },
+      {
+        "candidato": "Sergio Meneguelli",
+        "partido": "PSD",
+        "pct": 12.0
+      },
+      {
+        "candidato": "Evair de Melo",
+        "partido": "Republicanos",
+        "pct": 9.0
+      },
+      {
+        "candidato": "Fabiano Contarato",
+        "partido": "PT",
+        "pct": 9.0
+      },
+      {
+        "candidato": "Marcus Vinícius 'Maguinha' Malta",
+        "partido": "PL",
+        "pct": 9.0
+      },
+      {
+        "candidato": "Rose de Freitas",
+        "partido": "MDB",
+        "pct": 9.0
+      }
     ],
     "observacao": "Também registrada sob BR-08236/2026 (agregado nacional). Lista provavelmente incompleta; demais candidatos e brancos/nulos/indecisos não detalhados pelas fontes secundárias."
   },
@@ -213,12 +429,31 @@
     "amostra": 2000,
     "margem": 2.0,
     "cenario": "estimulada, consolidado 1º e 2º votos",
-    "fonte": { "nome": "Correio Braziliense", "url": "https://www.correiobraziliense.com.br/politica/2026/09/7495978-real-time-marilia-tem-21-para-o-senado-em-mg-aecio-e-domingos-14.html" },
+    "fonte": {
+      "nome": "Correio Braziliense",
+      "url": "https://www.correiobraziliense.com.br/politica/2026/09/7495978-real-time-marilia-tem-21-para-o-senado-em-mg-aecio-e-domingos-14.html"
+    },
     "resultados": [
-      { "candidato": "Marília Campos", "partido": "PT", "pct": 21.0 },
-      { "candidato": "Aécio Neves", "partido": "PSDB", "pct": 14.0 },
-      { "candidato": "Domingos Sávio", "partido": "PL", "pct": 14.0 },
-      { "candidato": "Carlos Viana", "partido": "PSD", "pct": 13.0 }
+      {
+        "candidato": "Marília Campos",
+        "partido": "PT",
+        "pct": 21.0
+      },
+      {
+        "candidato": "Aécio Neves",
+        "partido": "PSDB",
+        "pct": 14.0
+      },
+      {
+        "candidato": "Domingos Sávio",
+        "partido": "PL",
+        "pct": 14.0
+      },
+      {
+        "candidato": "Carlos Viana",
+        "partido": "PSD",
+        "pct": 13.0
+      }
     ],
     "observacao": "Uma manchete (Exame) do mesmo período citou valores distintos (Marília 24%, Viana e Sávio 13%), possivelmente de outra rodada/corte; optou-se pelos valores confirmados por duas fontes (Correio Braziliense e Jornal de Brasília/EM) para 08/09/2026. Lista provavelmente incompleta (Áurea Carolina, Marcelo Aro e outros candidatos citados em pesquisas anteriores não aparecem aqui)."
   },
@@ -236,13 +471,36 @@
     "amostra": 1600,
     "margem": 2.0,
     "cenario": "estimulada (2 vagas em disputa)",
-    "fonte": { "nome": "Exame", "url": "https://exame.com/brasil/real-time-big-data-cid-wagner-e-luizianne-lideram-corrida-ao-senado-no-ceara/" },
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/real-time-big-data-cid-wagner-e-luizianne-lideram-corrida-ao-senado-no-ceara/"
+    },
     "resultados": [
-      { "candidato": "Cid Gomes", "partido": "PSB", "pct": 27.0 },
-      { "candidato": "Capitão Wagner", "partido": "União Brasil", "pct": 20.0 },
-      { "candidato": "Luizianne Lins", "partido": "Rede", "pct": 20.0 },
-      { "candidato": "Alcides Fernandes", "partido": "PL", "pct": 17.0 },
-      { "candidato": "Guilherme Theophilo", "partido": "Novo", "pct": 5.0 }
+      {
+        "candidato": "Cid Gomes",
+        "partido": "PSB",
+        "pct": 27.0
+      },
+      {
+        "candidato": "Capitão Wagner",
+        "partido": "União Brasil",
+        "pct": 20.0
+      },
+      {
+        "candidato": "Luizianne Lins",
+        "partido": "Rede",
+        "pct": 20.0
+      },
+      {
+        "candidato": "Alcides Fernandes",
+        "partido": "PL",
+        "pct": 17.0
+      },
+      {
+        "candidato": "Guilherme Theophilo",
+        "partido": "Novo",
+        "pct": 5.0
+      }
     ],
     "observacao": "publicadoEm não confirmado com precisão na auditoria rodada 2 (fontes datadas entre 08 e 09/09/2026; campo termina 07/09). Mesmo registroTSE (CE-03293/2026) já usado pela pesquisa de governador CE presente na base — mesma rodada de campo, questionário com múltiplos cargos. Mais recente que a AtlasIntel de 03/09 já na base, e muda o cenário de empate Cid/Luizianne para liderança isolada de Cid."
   }
