@@ -1,0 +1,354 @@
+[
+  {
+    "id": "2026-10-01-datafolha-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "BR-08039/2026",
+    "contratante": "Folha de S.Paulo e Grupo Globo",
+    "dataInicio": "2026-09-28",
+    "dataFim": "2026-10-01",
+    "publicadoEm": "2026-10-01",
+    "amostra": 2506,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno — nacional (votos totais)",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/datafolha-lula-tem-42-no-1o-turno-flavio-38/"
+    },
+    "observacao": "PRIORIDADE 1 — rodada Datafolha divulgada hoje (quinta, 01/10), a três dias do 1º turno. Campo 28/09–01/10/2026, 2.506 eleitores entrevistados em ponto de fluxo, margem de 2 pontos, 95% de confiança, contratada pela Folha de S.Paulo e pelo Grupo Globo, registro BR-08039/2026. VOTOS TOTAIS: Lula 42 + Flávio 38 + Cury 4 + Caiado 3 + Renan Santos 3 + Zema 1 + Samara Martins 1 + Wilson Grassi 1 + brancos/nulos/nenhum 5 + não sabe 2 = 100,0 exatos — fecha, confirmando que são totais e não válidos. Teste total÷soma dos candidatos (93): 42/0,93 = 45,2 e 38/0,93 = 40,9, o que reproduz a manchete paralela em VÁLIDOS que circulou hoje ('Lula com 45% e Flávio com 40% dos votos válidos', Brasil 247); os percentuais em válidos NÃO foram ingeridos. Variação sobre a rodada anterior (campo 22–23/09, já na base): Lula 40→42 e Flávio 36→38, ambos +2, dentro da margem — a própria imprensa descreve assim, o que confirma que esta é rodada nova e não republicação. DIVERGÊNCIA DE FICHA REGISTRADA: um resumo (Brasil 247) descreveu o campo como 'segunda (28) a quarta (30)'; três fontes independentes (O Povo, Gazeta do Povo e TVT News) dizem 28/09 a 01/10, e o anúncio de pauta do O Povo é explícito ('entrevistas que começaram na segunda-feira, 28, e seguiram até esta quinta-feira, 1º'). Adotado 28/09–01/10. Wilson Grassi (Democrata) aparece pela primeira vez na base — percentual publicado, não estimado. A metodologia divulgada menciona cinco cenários de 2º turno; só o de Lula x Flávio foi recuperável hoje (ver entrada seguinte) — os outros quatro NÃO foram ingeridos porque as buscas só devolveram os números das rodadas de 17/09 e 01/09, já na base. A intenção ESPONTÂNEA desta rodada (Lula 39, Flávio 31) também não foi ingerida: vieram só duas linhas, sem distribuição completa que permitisse o teste de soma. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 42 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 38 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 4 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 3 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 3 },
+      { "candidato": "Romeu Zema", "partido": "Novo", "pct": 1 },
+      { "candidato": "Samara Martins", "partido": "UP", "pct": 1 },
+      { "candidato": "Wilson Grassi", "partido": "Democrata", "pct": 1 },
+      { "candidato": "Brancos/nulos/nenhum", "partido": null, "pct": 5 },
+      { "candidato": "Não sabe", "partido": null, "pct": 2 }
+    ]
+  },
+  {
+    "id": "2026-10-01-datafolha-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Datafolha",
+    "registroTSE": "BR-08039/2026",
+    "contratante": "Folha de S.Paulo e Grupo Globo",
+    "dataInicio": "2026-09-28",
+    "dataFim": "2026-10-01",
+    "publicadoEm": "2026-10-01",
+    "amostra": 2506,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — nacional (votos totais)",
+    "fonte": {
+      "nome": "Brasil 247",
+      "url": "https://www.brasil247.com/brasil/datafolha-lula-tem-42-e-flavio-bolsonaro-38-no-1o-turno/"
+    },
+    "observacao": "Mesmo campo da rodada de 1º turno (28/09–01/10, 2.506 entrevistas, margem 2, BR-08039/2026). VOTOS TOTAIS com as duas linhas de não-candidato publicadas: Lula 48,0 + Flávio 45,0 + brancos/nulos 6,0 + não sabe 1,0 = 100,0 exatos — fecha, logo são totais. Em válidos a mesma rodada daria 51,6 x 48,4 (48/0,93 e 45/0,93), figura que não foi manchetada e NÃO foi ingerida. Rodada anterior (22–23/09, já na base): Lula 47 x Flávio 45. Os outros quatro cenários de 2º turno desta rodada (contra Caiado, Zema, Renan Santos e Cury) não foram recuperados — ver observação da entrada de 1º turno. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 48 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 45 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 6 },
+      { "candidato": "Não sabe", "partido": null, "pct": 1 }
+    ]
+  },
+  {
+    "id": "2026-10-01-realtimebigdata-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-09503/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-26",
+    "dataFim": "2026-09-30",
+    "publicadoEm": "2026-10-01",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno — nacional (votos totais)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-presidente-outubro-2026/"
+    },
+    "observacao": "Rodada nacional divulgada hoje (quinta, 01/10) — a última do Real Time Big Data antes do 1º turno. Campo 26–30/09/2026 por telefone, 2.000 eleitores, margem de 2 pontos, 95% de confiança, registro BR-09503/2026. Confere com o anúncio de pauta do O Povo de 28/09 ('a pesquisa sairá na quinta-feira, 1º, e vai ouvir 2 mil eleitores entre os dias 26 e 30 de setembro'). VOTOS TOTAIS: Lula 43 + Flávio 39 + Renan Santos 4 + Cury 3 + Caiado 3 + Zema 1 + Outros 1 = 94,0 (residual de 6,0 pontos). Teste total÷soma confirma que são totais: 43/0,94 = 45,7 → 46 e 39/0,94 = 41,5 → 41, exatamente a manchete em VÁLIDOS do dia ('Lula 46% x Flávio 41% dos votos válidos'); com soma 92 (sem Zema e 'Outros') o teste daria 42 para Flávio e não bateria. Os percentuais em válidos NÃO foram ingeridos. A linha agregada 'Outros 1' é como a fonte publica — não foi atribuída a nenhum candidato nomeado. As linhas de brancos/nulos (5) e não sabe/não respondeu (4) que circularam NÃO foram ingeridas no 1º turno: somadas aos 94 levariam o total a 103, e 46+45+5+4 = 100 mostra que pertencem ao cenário de 2º TURNO. Residual de 6 pontos não publicado de forma explícita para o 1º turno e por isso não criado — nada estimado. CONTRATANTE: deixado null. Um resumo de busca atribuiu o levantamento a recursos do próprio instituto, mas isso não foi confirmado em fonte direta e a regra é não inferir contratante. SUSPENSÕES DO INSTITUTO: esta rodada NACIONAL não está sob nenhuma decisão judicial localizada. Registre-se, porém, suspensão NOVA de hoje: em 01/10/2026 o TRE-CE deferiu liminar, a pedido da coligação 'Unir para Mudar' (Ciro Gomes), suspendendo a divulgação da pesquisa Real Time Big Data registrada sob CE-08985/2026 e prevista para 02/10 — essa rodada cearense NÃO foi ingerida. Há ainda suspensões anteriores em AL, PR, RN, TO, MA e CE (24/09). Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 43 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 39 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 4 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 3 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 3 },
+      { "candidato": "Romeu Zema", "partido": "Novo", "pct": 1 },
+      { "candidato": "Outros", "partido": null, "pct": 1 }
+    ]
+  },
+  {
+    "id": "2026-10-01-realtimebigdata-br-presidente-t2-flavio-lula",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-09503/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-26",
+    "dataFim": "2026-09-30",
+    "publicadoEm": "2026-10-01",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula — nacional (votos totais)",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/real-time-big-data-flavio-tem-46-no-2o-turno-lula-45/"
+    },
+    "observacao": "Mesmo campo da rodada de 1º turno (26–30/09, 2.000 entrevistas por telefone, margem 2, BR-09503/2026). VOTOS TOTAIS com as duas linhas de não-candidato publicadas: Flávio 46 + Lula 45 + brancos/nulos 5 + não sabe/não respondeu 4 = 100,0 exatos — fecha, logo são totais. Teste de válidos: 46/91 = 50,5 → 51 e 45/91 = 49,5 → 49, exatamente a manchete paralela em válidos ('51% a 49% para Flávio'), que NÃO foi ingerida. Rodada anterior do instituto (19–23/09, já na base) é campo distinto — não é republicação. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 46 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 45 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 5 },
+      { "candidato": "Não sabe", "partido": null, "pct": 4 }
+    ]
+  },
+  {
+    "id": "2026-09-23-american-analytics-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "American Analytics",
+    "registroTSE": null,
+    "contratante": "Times Brasil (CNBC)",
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-20",
+    "publicadoEm": "2026-09-23",
+    "amostra": 2000,
+    "margem": 2.5,
+    "cenario": "estimulada, 1º turno — nacional (votos totais)",
+    "fonte": {
+      "nome": "Carta Capital",
+      "url": "https://www.cartacapital.com.br/politica/american-analytics-indica-empate-entre-lula-e-flavio-bolsonaro-no-2o-turno/"
+    },
+    "observacao": "LACUNA NOMEADA 1 — INSTITUTO INTEIRO AUSENTE, RECUPERADO. Primeira entrada da American Analytics na base. Campo 15–20/09/2026, 2.000 entrevistas, margem de 2,5 pontos, 95% de confiança, divulgada em 23/09/2026 em parceria com o Times Brasil/CNBC. VOTOS TOTAIS: Lula 38 + Flávio 34 + Cury 5 + Caiado 4 + Renan Santos 4 + Zema 1 + brancos/nulos 6 + não sabe/não respondeu 8 = 100,0 exatos — fecha, logo são totais e não válidos. A diferença de 4 pontos entre Lula e Flávio está dentro da margem de 2,5 (empate técnico), como a imprensa descreve. REGISTRO TSE: null. O único registro localizado para o instituto, BR-09521/2026, pertence à rodada de JUNHO (campo 11–15/06, 2.000 entrevistas, margem 2,2) e não pode ser atribuído a esta — não foi inventado nem reaproveitado. CONTRATANTE: as fontes descrevem acordo/parceria inédita do Times Brasil (CNBC) com a American Analytics para a série eleitoral; registrado assim, sem inferir além disso. Samara Martins não aparece nesta rodada e nada foi criado para ela — a soma já fecha em 100 sem a linha. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 38 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 34 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 5 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 4 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 4 },
+      { "candidato": "Romeu Zema", "partido": "Novo", "pct": 1 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 6 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 8 }
+    ]
+  },
+  {
+    "id": "2026-09-23-american-analytics-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "American Analytics",
+    "registroTSE": null,
+    "contratante": "Times Brasil (CNBC)",
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-20",
+    "publicadoEm": "2026-09-23",
+    "amostra": 2000,
+    "margem": 2.5,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — nacional (votos totais)",
+    "fonte": {
+      "nome": "Times Brasil (CNBC)",
+      "url": "https://timesbrasil.com.br/brasil/decisao-2026-lula-e-flavio-bolsonaro-estao-empatados-numericamente-em-43-no-2o-turno-indica-pesquisa-american-analytics-times-brasil-cnbc/"
+    },
+    "observacao": "Mesmo campo da rodada de 1º turno (15–20/09, 2.000 entrevistas, margem 2,5). Empate numérico em 43 x 43, manchete confirmada por Times Brasil/CNBC, Carta Capital, Poder360, Diário do Comércio e Folha de Valinhos. Soma dos dois 86,0 — o residual de 14 pontos NÃO foi publicado discriminado em brancos/nulos e não sabe em nenhuma fonte acessível, e por isso essas linhas não foram criadas; nada foi estimado. São votos TOTAIS: em válidos o empate em 43 x 43 seria 50 x 50, cifra que não aparece manchetada. Registro TSE desta rodada não localizado (null). Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 43 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 43 }
+    ]
+  },
+  {
+    "id": "2026-09-23-american-analytics-br-presidente-t2-lula-zema",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "American Analytics",
+    "registroTSE": null,
+    "contratante": "Times Brasil (CNBC)",
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-20",
+    "publicadoEm": "2026-09-23",
+    "amostra": 2000,
+    "margem": 2.5,
+    "cenario": "estimulada, 2º turno: Lula x Romeu Zema — nacional (votos totais)",
+    "fonte": {
+      "nome": "Carta Capital",
+      "url": "https://www.cartacapital.com.br/politica/american-analytics-indica-empate-entre-lula-e-flavio-bolsonaro-no-2o-turno/"
+    },
+    "observacao": "Cenário alternativo de 2º turno da mesma rodada (campo 15–20/09, 2.000 entrevistas, margem 2,5). Lula 43 x Zema 38; soma 81,0, residual de 19 pontos não publicado discriminado — linhas de brancos/nulos e não sabe não criadas. FONTE ÚNICA: este cenário foi recuperado em um só veículo na varredura de hoje, ao contrário do cenário Lula x Flávio (43 x 43), corroborado por cinco. Registrado com essa ressalva; nenhum número alterado ou estimado. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 43 },
+      { "candidato": "Romeu Zema", "partido": "Novo", "pct": 38 }
+    ]
+  },
+  {
+    "id": "2026-09-23-american-analytics-br-presidente-t2-lula-caiado",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "American Analytics",
+    "registroTSE": null,
+    "contratante": "Times Brasil (CNBC)",
+    "dataInicio": "2026-09-15",
+    "dataFim": "2026-09-20",
+    "publicadoEm": "2026-09-23",
+    "amostra": 2000,
+    "margem": 2.5,
+    "cenario": "estimulada, 2º turno: Lula x Ronaldo Caiado — nacional (votos totais)",
+    "fonte": {
+      "nome": "Carta Capital",
+      "url": "https://www.cartacapital.com.br/politica/american-analytics-indica-empate-entre-lula-e-flavio-bolsonaro-no-2o-turno/"
+    },
+    "observacao": "Cenário alternativo de 2º turno da mesma rodada (campo 15–20/09, 2.000 entrevistas, margem 2,5). Lula 42 x Caiado 40; soma 82,0, residual de 18 pontos não publicado discriminado — linhas de brancos/nulos e não sabe não criadas. FONTE ÚNICA, mesma ressalva do cenário contra Zema. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 42 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 40 }
+    ]
+  },
+  {
+    "id": "2026-09-29-quaest-rj-presidente-t1",
+    "uf": "RJ",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": "RJ-04419/2026",
+    "contratante": "Globo",
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1302,
+    "margem": 3,
+    "cenario": "estimulada, 1º turno — eleitorado do Rio de Janeiro (votos totais)",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/quaest-flavio-tem-38-no-1o-turno-no-rj-lula-31/"
+    },
+    "observacao": "LACUNA NOMEADA 2 — RECUPERADA. Primeiro recorte presidencial da Quaest no RJ na base. Campo 25–28/09/2026, 1.302 eleitores de 16 anos ou mais no estado, margem de 3 pontos, 95% de confiança, contratada pela Globo, registro RJ-04419/2026. VOTOS TOTAIS: Flávio 38 + Lula 31 + Cury 4 + Caiado 2 + Renan Santos 2 + Samara Martins 1 + Zema 0 + brancos/nulos/não vai votar 11 + não sabe 11 = 100,0 exatos — fecha, logo são totais e não válidos. Zema com 0 é percentual publicado (caiu de 1 na rodada anterior), não ausência de dado. Confere com os números nomeados na pauta de hoje. Não confundir com a rodada Quaest RJ anterior, divulgada em 23/09 (1º turno Flávio 37 x Lula 30), que é campo distinto e permanece FORA da base. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 38 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 31 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 4 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 2 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 2 },
+      { "candidato": "Samara Martins", "partido": "UP", "pct": 1 },
+      { "candidato": "Romeu Zema", "partido": "Novo", "pct": 0 },
+      { "candidato": "Brancos/nulos/não vai votar", "partido": null, "pct": 11 },
+      { "candidato": "Não sabe", "partido": null, "pct": 11 }
+    ]
+  },
+  {
+    "id": "2026-09-29-quaest-rj-presidente-t2-flavio-lula",
+    "uf": "RJ",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "RJ-04419/2026",
+    "contratante": "Globo",
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1302,
+    "margem": 3,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula — eleitorado do Rio de Janeiro (votos totais)",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-44-e-lula-34-no-2o-turno-no-rj-diz-pesquisa/"
+    },
+    "observacao": "O título 'Flávio 44 x Lula 34 no 2º turno no RJ', que a pauta de hoje marcava como NÃO CONFIRMADO, foi CONFIRMADO e fecha aritmeticamente: Flávio 44 + Lula 34 + brancos/nulos/não votaria 15 + não sabe 7 = 100,0 exatos. Mesmo campo da rodada de 1º turno (25–28/09, 1.302 entrevistas, margem 3, RJ-04419/2026, contratante Globo). ATENÇÃO À CONFUSÃO DE SÉRIE: circulam no mesmo acervo manchetes 'Flávio 44 x Lula 36' e 'Flávio 43 x Lula 37' no RJ — são rodadas ANTERIORES da Quaest no estado (a de 44 x 36 foi divulgada em 23/09), não esta. O par 44 x 34 é o único que fecha em 100 com as linhas de não-candidato desta rodada. Em válidos daria 56,4 x 43,6, cifra não manchetada e não ingerida. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 44 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 34 },
+      { "candidato": "Brancos/nulos/não votaria", "partido": null, "pct": 15 },
+      { "candidato": "Não sabe", "partido": null, "pct": 7 }
+    ]
+  },
+  {
+    "id": "2026-09-29-quaest-sp-presidente-t1",
+    "uf": "SP",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Quaest",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-09-29",
+    "amostra": 1800,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno — eleitorado de São Paulo (votos totais)",
+    "fonte": {
+      "nome": "Carta Capital",
+      "url": "https://www.cartacapital.com.br/politica/pesquisa-quaest-mostra-flavio-bolsonaro-numericamente-a-frente-de-lula-em-sao-paulo/"
+    },
+    "observacao": "LACUNA NOMEADA 3 — RECUPERADA PARCIALMENTE. Rodada Quaest em SP divulgada em 29/09/2026, campo 25–28/09, 1.800 eleitores paulistas de 16 anos ou mais, margem de 2 pontos. VOTOS TOTAIS publicados: Flávio 36 + Lula 30 + Cury 5 + Caiado 4 + Renan Santos 3 = 78,0. O residual de 22 pontos (brancos/nulos, não vai votar, não sabe) NÃO apareceu discriminado em nenhuma fonte acessível e por isso NENHUMA linha de não-candidato foi criada — nada estimado. Samara Martins e Zema também não apareceram neste recorte e não foram criados. OS NÚMEROS QUE A PAUTA TRAZIA COMO 'CIRCULANTES' (Flávio 31 x Lula 30) NÃO SÃO ESTES: são da rodada de campo 04–07/09, já na base, e foram descartados como desatualizados, exatamente como a pauta advertia. REGISTRO TSE: null. Duas fontes citam registros diferentes para a mesma rodada — SP-02456/2026 e BR-05155/2026 — e não foi possível determinar qual corresponde ao recorte paulista; pela regra, registro não confirmado fica null em vez de arriscar atribuição errada. CONTRATANTE: null, não publicado de forma inequívoca para este recorte estadual — não inferido. Existe ainda uma rodada Quaest SP ANTERIOR (divulgada em 23/09, campo 19–22/09, Flávio 34 x Lula 31) que também está ausente da base e NÃO foi ingerida hoje por estar fora do escopo da varredura. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 36 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 30 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 5 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 4 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 3 }
+    ]
+  },
+  {
+    "id": "2026-09-25-datafolha-rj-presidente-t1",
+    "uf": "RJ",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "RJ-02205/2026",
+    "contratante": "Folha de S.Paulo e Globo",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-25",
+    "amostra": 1204,
+    "margem": 3,
+    "cenario": "estimulada, 1º turno — eleitorado do Rio de Janeiro (votos totais)",
+    "fonte": {
+      "nome": "Tribuna NF",
+      "url": "https://www.tribunanf.com.br/datafolha-no-rj-flavio-bolsonaro-44-lula-38-cury-renan-e-caiado-3/"
+    },
+    "observacao": "LACUNA NÃO NOMEADA, ENCONTRADA NAS BUSCAS AMPLAS DE HOJE. Recorte presidencial do Datafolha no RJ divulgado em 25/09/2026 (sexta), ausente da base — a única rodada Datafolha RJ registrada era a de campo 08–10/09. Campo 22–24/09/2026, 1.204 eleitores em 35 municípios fluminenses, margem de 3 pontos, 95% de confiança, contratada pela Globo e pela Folha de S.Paulo. Registros informados pela imprensa: RJ-02205/2026 (estadual, gravado aqui) e BR-05762/2026 (nacional, da rodada-mãe). VOTOS TOTAIS: Flávio 44 + Lula 38 + Cury 3 + Renan Santos 3 + Caiado 3 = 91,0; o residual de 9 pontos não foi publicado discriminado para o 1º turno e por isso nenhuma linha de não-candidato foi criada (as linhas de brancos/nulos 6 e indecisos 1 que circulam pertencem ao cenário de 2º turno, onde 51+42+6+1 = 100 fecha). Evolução sobre a rodada de 11/09: Flávio 39→44 e Lula 35→38 — campo novo, não republicação. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 44 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 38 },
+      { "candidato": "Augusto Cury", "partido": "Avante", "pct": 3 },
+      { "candidato": "Renan Santos", "partido": "Missão", "pct": 3 },
+      { "candidato": "Ronaldo Caiado", "partido": "PSD", "pct": 3 }
+    ]
+  },
+  {
+    "id": "2026-09-25-datafolha-rj-presidente-t2-flavio-lula",
+    "uf": "RJ",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Datafolha",
+    "registroTSE": "RJ-02205/2026",
+    "contratante": "Folha de S.Paulo e Globo",
+    "dataInicio": "2026-09-22",
+    "dataFim": "2026-09-24",
+    "publicadoEm": "2026-09-25",
+    "amostra": 1204,
+    "margem": 3,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula — eleitorado do Rio de Janeiro (votos totais)",
+    "fonte": {
+      "nome": "Space Money",
+      "url": "https://www.spacemoney.com.br/politica/datafolha-rio-flavio-44-lula-38"
+    },
+    "observacao": "Mesmo campo da rodada de 1º turno (22–24/09, 1.204 entrevistas em 35 municípios, margem 3, RJ-02205/2026). VOTOS TOTAIS com as duas linhas de não-candidato publicadas: Flávio 51 + Lula 42 + brancos/nulos 6 + indecisos 1 = 100,0 exatos — fecha, logo são totais. Medição anterior (11/09): 49 x 41 — a manchete 'Flávio lidera 2º turno no RJ com 49%, Lula tem 41%' é dessa rodada anterior, não desta. Dados via WebSearch (WebFetch bloqueado).",
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 51 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 42 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 6 },
+      { "candidato": "Indecisos", "partido": null, "pct": 1 }
+    ]
+  }
+]
