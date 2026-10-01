@@ -1075,12 +1075,18 @@ MT, RO, SE e TO.
 
 ### Suspensões novas que tocam a base
 
-- **TRE-AM, 28/09:** suspendeu uma pesquisa da **Quaest** no Amazonas "após
-  falhas", e uma do Veritá para governo e Senado, com multa de até R$ 50
-  mil. **A Quaest AM de campo 20–23/09 está na base.** Não foi editada — é
-  a primeira vez que uma decisão alcança o instituto que mais usamos como
-  referência de qualidade, e a identificação exata da rodada suspensa
-  precisa ser conferida antes de qualquer ação.
+- **TRE-AM, Quaest no Amazonas — RESOLVIDO em 01/10, nada a fazer.** A
+  rodada suspensa era mesmo a que está na base: registro **AM-01856/2026**,
+  contratante Rede Amazônica, governo e Senado, campo 20–23/09
+  (`2026-09-24-quaest-am-senador-t1`). O juiz auxiliar Diogo Oliveira
+  Nogueira Franco suspendeu em 27/09 por falhas no questionário — campos em
+  branco, perguntas sobre a disputa presidencial num registro exclusivo de
+  governador e senador, e base territorial de 2022, desatualizada.
+  **A decisão foi revogada em 29/09 pelo próprio juiz**, que considerou que
+  os esclarecimentos da Quaest afastaram, por ora, os fundamentos da
+  suspensão. Confirmado por busca própria. A ficha segue na base, liberada.
+  (A varredura que trouxe a revogação datou-a em 30/09; as fontes dizem
+  29/09.)
 - **TRE-ES, 30/09:** suspendeu **quatro** pesquisas do **Instituto Perfil**
   para governo e Senado, por indícios de fraude. Nada do Perfil está na
   base; não alcança a rodada da Real Time no ES.
