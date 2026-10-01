@@ -1,0 +1,274 @@
+[
+  {
+    "id": "2026-10-01-datafolha-sp-senador-t1",
+    "uf": "SP",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "SP-01367/2026",
+    "contratante": "TV Globo e Folha de S.Paulo",
+    "dataInicio": "2026-09-28",
+    "dataFim": "2026-10-01",
+    "publicadoEm": "2026-10-01",
+    "amostra": 1610,
+    "margem": 2.0,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (2 vagas; media das duas cedulas). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/2026/10/01/senado-em-sp-marina-tem-16-prado-e-tebet-15-e-derrite-14-diz-pesquisa-datafolha.html"
+    },
+    "resultados": [
+      { "candidato": "Marina Silva", "partido": "Rede", "pct": 16 },
+      { "candidato": "André do Prado", "partido": "PL", "pct": 15 },
+      { "candidato": "Simone Tebet", "partido": "PSB", "pct": 15 },
+      { "candidato": "Guilherme Derrite", "partido": "PP", "pct": 14 },
+      { "candidato": "Brancos/nulos/nenhum", "partido": null, "pct": 12 }
+    ],
+    "observacao": "Rodada final do Datafolha em Sao Paulo, campo 28/09 a 01/10, divulgada hoje, quinta-feira 01/10/2026, a tres dias da eleicao. NAO COLIDE com a rodada Datafolha/SP de campo 22-24/09 ja na base (Marina 15; Tebet 14; Andre do Prado 12; Derrite 12) nem com a de 08-10/09: as proprias materias fazem a comparacao rodada a rodada (Marina 15->16; Andre do Prado 12->15; Tebet 14->15; Derrite 12->14) e o registro TSE e outro (SP-01367/2026 contra SP-03730/2026 e SP-04189/2026). QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO: (a) SOMA — os quatro nomes somam 60; com Ricardo Salles, nanicos, brancos/nulos (12) e indecisos o total fica na vizinhanca de 100, o que EXCLUI a leitura 2 (base 200); (b) entre a leitura 1 e a leitura 3 decide a metodologia que o proprio Datafolha enuncia nesta serie, recolhida textualmente nas fontes: cada entrevistado podia mencionar ATE DOIS candidatos e 'o resultado e o consolidado dos dois votos, reduzido a 100%' — ou seja, a media das duas cedulas, nao a primeira escolha; (c) a prova aritmetica dessa leitura, na mesma onda, esta na ficha gemea do Rio de Janeiro (ver observacao daquela ficha): la o Datafolha publica ALEM do consolidado uma coluna de PRIMEIRA VAGA em que Benedita tem 33 contra 19 no consolidado — se o numero de manchete fosse primeira escolha, Benedita teria 19 e 33 ao mesmo tempo, contradicao que elimina a leitura 1 para toda a onda; (d) coerente com as cinco fichas Datafolha de senador de campo 22-24/09 ja na base, todas gravadas como consolidado das duas vagas. BRANCOS/NULOS: a linha de 12% e a do CENARIO ESTIMULADO (no espontaneo o Datafolha publica branco/nulo/nenhum 8% e indecisos 53%, que NAO foram gravados aqui para nao misturar bases). A linha de 'nao sabe' do estimulado nao foi encontrada nos resumos consultados e NAO foi criada — faltam cerca de 26 pontos para 100 e eles estao ai. RICARDO SALLES: desistiu da candidatura em 28/09 e aparece com 2% em uma tabela estimulada citada nos resumos; nao foi possivel estabelecer com seguranca se esse 2% e desta rodada ou da anterior, por isso a linha NAO foi criada. Contratante Globo/Folha de S.Paulo afirmado explicitamente nas materias, nao inferido do veiculo. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-10-01-datafolha-rj-senador-t1",
+    "uf": "RJ",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "RJ-02070/2026",
+    "contratante": "Folha de S.Paulo e TV Globo",
+    "dataInicio": "2026-09-28",
+    "dataFim": "2026-10-01",
+    "publicadoEm": "2026-10-01",
+    "amostra": 1204,
+    "margem": 3.0,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (2 vagas; media das duas cedulas, comprovada pela coluna da 1a vaga publicada). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "Band",
+      "url": "https://www.band.com.br/politica/eleicoes/datafolha-benedita-lidera-disputa-ao-senado-no-rj-com-19"
+    },
+    "resultados": [
+      { "candidato": "Benedita da Silva", "partido": "PT", "pct": 19 },
+      { "candidato": "Carlos Portinho", "partido": "PL", "pct": 13 },
+      { "candidato": "Carlos Jordy", "partido": "PL", "pct": 13 },
+      { "candidato": "Pedro Paulo", "partido": "PSD", "pct": 8 },
+      { "candidato": "Mônica Benício", "partido": "PSOL", "pct": 7 },
+      { "candidato": "Marcelo Crivella", "partido": "Republicanos", "pct": 5 },
+      { "candidato": "Brancos/nulos/nenhum", "partido": null, "pct": 15 },
+      { "candidato": "Não sabe", "partido": null, "pct": 12 }
+    ],
+    "observacao": "Rodada final do Datafolha no Rio, 1.204 entrevistados em 35 municipios, campo 28/09 a 01/10, divulgada hoje, 01/10/2026. NAO COLIDE com as rodadas Datafolha/RJ de 22-24/09 (Benedita 19; Portinho 12; Jordy 12; Pedro Paulo 9) e de 08-10/09 ja na base; o registro e outro (RJ-02070/2026 contra RJ-02205/2026). ESTA E A FICHA QUE FECHA A LEITURA DA ONDA DATAFOLHA PELA ARITMETICA: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO: (a) SOMA — a tabela inteira (seis nomes + brancos/nulos 15 + nao sabe 12) soma 92, base 100 e nao 200, o que EXCLUI de saida a leitura 2; (b) a fonte publica, ALEM do consolidado, a coluna da PRIMEIRA VAGA: Benedita 33; Jordy 14; Portinho 12; Pedro Paulo 6; Crivella 5; Monica 2; brancos/nulos 12; indecisos 9. Como Benedita tem 19 no consolidado e 33 na primeira vaga, o numero de manchete NAO pode ser primeira escolha — isso elimina a leitura 1; (c) TESTE DA MEDIA, que fecha: se o consolidado e a media das duas cedulas, o 2o voto implicado e Benedita 2x19-33 = 5; Jordy 2x13-14 = 12; Portinho 2x13-12 = 14; Pedro Paulo 2x8-6 = 10; Monica 2x7-2 = 12; Crivella 2x5-5 = 5; brancos/nulos 2x15-12 = 18; nao sabe 2x12-9 = 15. TODOS positivos, a coluna reconstruida do 2o voto soma 91 (base 100, sobrando ~9 para nanicos) e o padrao e o esperado: Benedita, nome mais polarizado, cai de 33 para 5 na segunda indicacao, enquanto Monica Benicio sobe de 2 para 12 — exatamente o comportamento de segunda escolha do eleitor de esquerda que ja gastou a primeira com Benedita; (d) a metodologia declarada pelo instituto nesta serie confirma: cada entrevistado menciona ate dois nomes e o resultado e 'o consolidado dos dois votos, reduzido a 100%'. As colunas de 1a vaga e de 2o voto NAO foram gravadas como fichas proprias porque so a da 1a vaga foi publicada e a do 2o voto e reconstrucao, nao dado divulgado. Espontanea (Benedita 13; Jordy 5; Portinho 5; Pedro Paulo 4; Monica 4; Crivella 1; outros 10; branco/nulo 8) nao gravada, para nao misturar bases. Contratante Folha de S.Paulo e TV Globo afirmado explicitamente. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-10-01-datafolha-mg-senador-t1",
+    "uf": "MG",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "MG-09729/2026",
+    "contratante": "Empresa Folha da Manhã S/A e Rede Globo",
+    "dataInicio": "2026-09-28",
+    "dataFim": "2026-10-01",
+    "publicadoEm": "2026-10-01",
+    "amostra": 1204,
+    "margem": 3.0,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (2 vagas; media das duas cedulas). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/datafolha-marilia-tem-13-aecio-e-viana-11-e-savio-9-ao-senado-em-mg/"
+    },
+    "resultados": [
+      { "candidato": "Marília Campos", "partido": "PT", "pct": 13 },
+      { "candidato": "Aécio Neves", "partido": "PSDB", "pct": 11 },
+      { "candidato": "Carlos Viana", "partido": "PSD", "pct": 11 },
+      { "candidato": "Domingos Sávio", "partido": "PL", "pct": 9 },
+      { "candidato": "Marcelo Aro", "partido": "PP", "pct": 6 },
+      { "candidato": "Áurea Carolina", "partido": "PSOL", "pct": 5 }
+    ],
+    "observacao": "Rodada final do Datafolha em Minas, campo 28/09 a 01/10, 1.204 entrevistados de 16 anos ou mais, divulgada hoje, 01/10/2026. ATENCAO A COINCIDENCIA, QUE E REAL E FOI CONFERIDA: os percentuais sao IDENTICOS aos da rodada Datafolha/MG de campo 22-24/09 que ja esta na base (Marilia 13; Aecio 11; Viana 11; Savio 9; Aro 6; Aurea 5). Nao e reingestao da mesma ficha: as materias desta divulgacao declaram expressamente o campo 28/09-01/10 e fazem a comparacao com 'a pesquisa anterior, de 24 de setembro', apontando estabilidade; o registro TSE tambem e outro (MG-09729/2026 contra MG-07400/2026). A duplicata, pela regra do periodo de campo, nao se configura. NUMEROS DIVERGENTES DESCARTADOS: circula um conjunto 'Marilia 12; Viana 10; Aecio 10' atribuido a esta divulgacao por alguns veiculos; prevaleceu 13/11/11/9/6/5, que e o conjunto reportado por CNN, Metropoles, Terra, Estado de Minas e Portal MPA com o campo 28/09-01/10 declarado junto. QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO: (a) SOMA — os seis nomes somam 55; com nanicos, brancos/nulos e indecisos o total fica em base 100, longe de 200, o que exclui a leitura 2; (b) entre a leitura 1 e a leitura 3 decide a metodologia declarada pelo Datafolha nesta onda (cada entrevistado menciona ate dois nomes; o resultado e o consolidado dos dois votos reduzido a 100%) e, sobretudo, a prova aritmetica obtida na ficha gemea do Rio de Janeiro do MESMO campo e MESMO questionario, onde a coluna publicada da 1a vaga (Benedita 33) difere do consolidado (Benedita 19) e o teste da media reconstroi um 2o voto todo positivo. Mesma onda, mesma leitura. BRANCOS/NULOS E INDECISOS DO ESTIMULADO NAO FORAM CRIADOS: os valores 'em branco/nulo/nenhum 8%' e 'indecisos 61%' que circulam para Minas sao do CENARIO ESPONTANEO (onde os nomes nao sao lidos) e nao podem ser lancados na tabela estimulada; faltam cerca de 45 pontos para 100 nesta ficha e eles estao nas linhas de nao-candidato do estimulado, que nao foram publicadas nos resumos consultados. Contratante Empresa Folha da Manha S/A (Folha de S.Paulo) e Rede Globo afirmado explicitamente. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-10-01-datafolha-pe-senador-t1",
+    "uf": "PE",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "PE-06822/2026",
+    "contratante": "TV Globo e Folha de S.Paulo",
+    "dataInicio": "2026-09-28",
+    "dataFim": "2026-10-01",
+    "publicadoEm": "2026-10-01",
+    "amostra": 1204,
+    "margem": 3.0,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (2 vagas; media das duas cedulas). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/datafolha-marilia-e-humberto-lideram-disputa-pelo-senado-em-pe-com-19"
+    },
+    "resultados": [
+      { "candidato": "Marília Arraes", "partido": "PDT", "pct": 19 },
+      { "candidato": "Humberto Costa", "partido": "PT", "pct": 19 },
+      { "candidato": "Mendonça Filho", "partido": "PL", "pct": 12 },
+      { "candidato": "Eduardo da Fonte", "partido": "PP", "pct": 10 },
+      { "candidato": "Túlio Gadêlha", "partido": "PSD", "pct": 5 },
+      { "candidato": "Carlos Sant'anna", "partido": "Novo", "pct": 2 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 16 },
+      { "candidato": "Não sabe", "partido": null, "pct": 13 }
+    ],
+    "observacao": "Rodada final do Datafolha em Pernambuco, campo 28/09 a 01/10, 1.204 entrevistados, divulgada hoje, 01/10/2026. NAO COLIDE com as rodadas Datafolha/PE de 22-24/09 (Marilia 19; Humberto 17; Mendonca 13; Eduardo da Fonte 10) e de 08-10/09 ja na base; o registro e outro (PE-06822/2026 contra PE-08125/2026 e PE-04411/2026). Humberto Costa sobe de 17 para 19 e empata com Marilia Arraes; Mendonca cai de 13 para 12. NUMEROS DIVERGENTES DESCARTADOS: circula um conjunto 'Marilia 15; Humberto 14; Mendonca 12; Eduardo da Fonte 11; Tulio 5'; nao foi possivel estabelecer a que recorte pertence (nao fecha com a tabela completa desta rodada) e prevaleceu 19/19/12/10/5/2, que e o conjunto publicado junto do campo 28/09-01/10, do registro PE-06822/2026 e das linhas de brancos/nulos e indecisos. QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO: (a) SOMA — a tabela INTEIRA fecha: 19+19+12+10+5+2+16+13 = 96, base 100 com ~4 pontos de nanicos, e nao 200; isso exclui a leitura 2 sem margem de duvida; (b) entre a leitura 1 e a leitura 3 decide a metodologia declarada pelo Datafolha nesta onda (ate duas mencoes por entrevistado, consolidado dos dois votos reduzido a 100%) somada a prova aritmetica da ficha gemea do Rio de Janeiro do MESMO campo, onde a coluna publicada da 1a vaga e distinta do consolidado e o teste da media reconstroi um 2o voto todo positivo. Mesma onda, mesmo questionario, mesma leitura. Nenhuma linha foi inventada: as oito linhas acima foram todas publicadas. Contratante Globo/Folha de S.Paulo afirmado explicitamente. Divulgada tambem por Gazeta do Povo, Exame, CBN Recife e Carta Capital. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-10-01-datafolha-df-senador-t1",
+    "uf": "DF",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "DF-00905/2026",
+    "contratante": "Grupo Globo e Folha de S.Paulo",
+    "dataInicio": "2026-09-28",
+    "dataFim": "2026-10-01",
+    "publicadoEm": "2026-10-01",
+    "amostra": 910,
+    "margem": 3.0,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (2 vagas; media das duas cedulas). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/2026/10/01/datafolha-df-michele-tem-23-leila-18-bia-kicis-18-e-erika-kokay-13.html"
+    },
+    "resultados": [
+      { "candidato": "Michelle Bolsonaro", "partido": "PL", "pct": 23 },
+      { "candidato": "Bia Kicis", "partido": "PL", "pct": 18 },
+      { "candidato": "Leila do Vôlei", "partido": "PDT", "pct": 18 },
+      { "candidato": "Erika Kokay", "partido": "PT", "pct": 13 }
+    ],
+    "observacao": "Rodada final do Datafolha no Distrito Federal, campo 28/09 a 01/10, 910 entrevistados, divulgada hoje, 01/10/2026. NAO COLIDE com as rodadas Datafolha/DF de 22-24/09 (Michelle 22; Leila 19; Bia Kicis 15; Erika 15) e de 08-11/09 ja na base; os registros sao outros (DF-00905/2026 e BR-09530/2026, contra DF-01888/2026 e DF-06055/2026). As materias fazem a comparacao rodada a rodada: Michelle 22->23; Bia Kicis 15->18; Leila 19->18; Erika 15->13 — Bia Kicis empata com Leila na briga pela segunda vaga. QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%. COMO FOI DETERMINADO: (a) SOMA — os quatro nomes somam 72; com nanicos, brancos/nulos e indecisos o total fica em base 100, nao 200, o que exclui a leitura 2; (b) entre a leitura 1 e a leitura 3 decide a metodologia declarada pelo Datafolha nesta onda (ate duas mencoes, consolidado reduzido a 100%) e a prova aritmetica da ficha gemea do Rio de Janeiro do MESMO campo, onde a coluna publicada da 1a vaga difere do consolidado (Benedita 33 contra 19) e o teste da media reconstroi um 2o voto todo positivo — sob a leitura 1 haveria contradicao direta. Mesma onda, mesma leitura; (c) coerente com as duas rodadas Datafolha/DF ja na base, ambas gravadas como consolidado das duas vagas. Brancos/nulos e nao sabe nao foram publicados nos resumos consultados e NAO foram criados — faltam cerca de 28 pontos para 100 e estao nessas linhas. Registro duplo DF-00905/2026 (estadual, gravado) e BR-09530/2026 (nacional da mesma coleta, nao usado aqui). Contratante Grupo Globo e Folha de S.Paulo afirmado explicitamente. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-10-01-gerp-sp-senador-t1",
+    "uf": "SP",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Gerp",
+    "registroTSE": "SP-04091/2026",
+    "contratante": "Gerp (pesquisa financiada pelo próprio instituto)",
+    "dataInicio": "2026-09-28",
+    "dataFim": "2026-09-30",
+    "publicadoEm": "2026-10-01",
+    "amostra": 1500,
+    "margem": 2.6,
+    "cenario": "estimulada, LEITURA 2 — SOMA do 1o e do 2o voto (2 vagas; cada eleitor indica dois nomes, base de ate 200%). NAO e primeira escolha isolada e NAO e o consolidado reduzido a 100%",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/gerp-derrite-tem-38-ao-senado-em-sp-tebet-e-marina-29-e-do-prado-28/"
+    },
+    "resultados": [
+      { "candidato": "Guilherme Derrite", "partido": "PP", "pct": 38 },
+      { "candidato": "Simone Tebet", "partido": "PSB", "pct": 29 },
+      { "candidato": "Marina Silva", "partido": "Rede", "pct": 29 },
+      { "candidato": "André do Prado", "partido": "PL", "pct": 28 }
+    ],
+    "observacao": "Primeira pesquisa do Gerp para senador em Sao Paulo nesta base. Campo 28-30/09, 1.500 entrevistados, divulgada hoje, 01/10/2026; nivel de confianca declarado como 95,55% e margem de 2,6 p.p.; registro SP-04091/2026. QUAL DAS TRES LEITURAS: leitura 2 — SOMA DO 1o E DO 2o VOTO. COMO FOI DETERMINADO — A ARITMETICA RESOLVE SOZINHA E A QUEBRA CONFIRMA: (a) SOMA — os QUATRO nomes somam 124 (38+29+29+28), acima de 100. Isso torna IMPOSSIVEIS a leitura 1 e a leitura 3, ambas em base 100, e tambem a leitura em votos validos (que fecharia em 100). Só resta base 200; (b) a fonte publica a quebra parcial: DERRITE TEM 29 NO 1o VOTO. Testando as hipoteses: soma 29+9 = 38 exato (2o voto implicado 9); media daria (29+x)/2 = 38 -> x = 47, incompativel com a propria tabela, ja que ninguem no 2o voto chega perto disso e a soma dos quatro em base 100 estouraria. Logo o 38 e SOMA, nao media nem primeira escolha; (c) o teste cruzado com a leitura em VOTOS VALIDOS tambem noticiada (Derrite 29; Tebet 22; Marina 22; Andre do Prado 21) fecha a identidade: com base de validos ~131 na propria base 200, 38/131 = 29,0; 29/131 = 22,1; 28/131 = 21,4 — reproduz os tres valores. CUIDADO COM A COINCIDENCIA: o numero 29 aparece em tres lugares diferentes desta mesma pesquisa (1o voto de Derrite, soma de Tebet, soma de Marina e share de validos de Derrite); e o que torna esta ficha facil de errar. AS LINHAS DE VALIDOS NAO FORAM GRAVADAS, para nao misturar bases, e tampouco as de nao-candidato: as fontes citam 44% que nao sabem em quem votar e 23% que nao votariam em nenhum dos apresentados, mas nao ficou estabelecido se esses percentuais estao na base 100 de entrevistados ou na base 200 de indicacoes, e converter seria inventar. CONTRATANTE: as materias declaram expressamente que o levantamento foi FINANCIADO PELO PROPRIO INSTITUTO — gravado como tal, sem inferir contratante a partir de veiculo divulgador. Divulgada tambem por Poder360, Gazeta do Povo, Exame e Diario do Poder. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-10-01-neokemp-sc-senador-t1",
+    "uf": "SC",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Neokemp",
+    "registroTSE": "SC-05312/2026",
+    "contratante": "OCP News",
+    "dataInicio": "2026-09-29",
+    "dataFim": "2026-10-01",
+    "publicadoEm": "2026-10-01",
+    "amostra": 1008,
+    "margem": 3.0,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (2 vagas; media das duas cedulas, comprovada casa decimal por casa decimal). NAO e primeira escolha isolada e NAO e a soma em base 200",
+    "fonte": {
+      "nome": "ND Mais",
+      "url": "https://ndmais.com.br/politica/pesquisa-senado-sc-neokemp-2026/"
+    },
+    "resultados": [
+      { "candidato": "Carol De Toni", "partido": "PL", "pct": 29 },
+      { "candidato": "Carlos Bolsonaro", "partido": "PL", "pct": 21.9 },
+      { "candidato": "Esperidião Amin", "partido": "PP", "pct": 18.7 },
+      { "candidato": "Décio Lima", "partido": "PT", "pct": 12.4 }
+    ],
+    "observacao": "Rodada nova do Neokemp em Santa Catarina, 1.008 entrevistados, divulgada hoje, quinta-feira 01/10/2026. NAO COLIDE com a rodada Neokemp/SC de campo 10-12/09 ja na base, que esta gravada em BASE 200 (Carol 49,9; Carlos Bolsonaro 43,6; Amin 37,1; Decio Lima 25,5) e sob outro registro (SC-05206/2026 contra SC-05312/2026). Carol De Toni ULTRAPASSA Carlos Bolsonaro e assume a lideranca. QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%, E ESTA E A FICHA QUE FECHA EXATAMENTE. COMO FOI DETERMINADO: (a) SOMA — os quatro nomes somam 82,0, base 100, o que exclui a leitura 2; (b) a fonte publica tambem o TOTAL DE MENCOES (soma das duas cedulas) e a coluna do 2o VOTO desta rodada: total Carol 58,0 e Carlos Bolsonaro 43,8; 2o voto Carol 26,3; Amin 20,3; Carlos Bolsonaro 19,5. A IDENTIDADE FECHA SEM SOBRA: 58,0/2 = 29,0 exato e 43,8/2 = 21,9 exato — o numero de manchete e METADE do total de mencoes, isto e, a MEDIA das duas cedulas; (c) o teste do 1o voto implicado confirma e e todo positivo: Carol 2x29,0-26,3 = 31,7; Carlos Bolsonaro 2x21,9-19,5 = 24,3; Amin 2x18,7-20,3 = 17,1 — e as somas se reproduzem de volta: 31,7+26,3 = 58,0 exato e 24,3+19,5 = 43,8 exato. A coluna do 1o voto soma 73,1 e a do 2o 66,1, ambas base 100, com mais recusa na segunda indicacao, exatamente o padrao esperado; (d) a MESMA conta vale para a rodada anterior ja na base e e a prova cruzada decisiva: a serie publicada diz que Carol foi de 25% (10/09) para 29% e Carlos Bolsonaro de 21,8% para 21,9%, e a rodada de 10-12/09 tem total de mencoes 49,9 e 43,6 — ora, 49,9/2 = 24,95 ~ 25 e 43,6/2 = 21,8 EXATO; Amin 37,1/2 = 18,55 ~ 18,6, tambem o valor da serie. Tres candidatos fechando pela metade do total em duas rodadas diferentes nao e coincidencia: o indicador de manchete do Neokemp e a media, leitura 3. Sob a leitura 1 Carol teria 29 e 31,7 de primeira escolha ao mesmo tempo. O 1o e o 2o voto NAO foram gravados como fichas proprias: a coluna do 2o voto saiu incompleta e a do 1o e reconstrucao, nao dado divulgado. Brancos/nulos e indecisos nao publicados e nao criados (faltam ~18 pontos para 100). PERIODO DE CAMPO: as materias declaram 29/09 a 01/10; um resumo da serie fala em '29% em 30 de setembro', e outro resumo mistura o campo da rodada de setembro (10-11/09, 163 municipios) com o registro novo. Fica gravado 29/09-01/10, que e o par declarado junto desta divulgacao, e a divergencia fica DECLARADA aqui. Contratante OCP News: a serie e veiculada pelo proprio instituto como Neokemp/OCP News e a ficha anterior do estado ja consta na base com esse contratante; nao e inferencia a partir do veiculo que noticiou. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-10-01-neokemp-pr-senador-t1",
+    "uf": "PR",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Neokemp",
+    "registroTSE": null,
+    "contratante": "OCP News (Jornal O Correio do Povo)",
+    "dataInicio": "2026-09-29",
+    "dataFim": "2026-10-01",
+    "publicadoEm": "2026-10-01",
+    "amostra": 1008,
+    "margem": 3.1,
+    "cenario": "estimulada, LEITURA 3 — CONSOLIDADO do 1o e do 2o voto reduzido a 100% (2 vagas; media das duas cedulas). NAO e primeira escolha isolada e NAO e a soma em base 200, apesar de parte da imprensa rotular como 'soma'",
+    "fonte": {
+      "nome": "Gazeta do Paraná",
+      "url": "https://gazetadoparana.com.br/publico/pesquisa-neokemp-mostra-deltan-e-filipe-na-frente-para-o-senado"
+    },
+    "resultados": [
+      { "candidato": "Deltan Dallagnol", "partido": "Novo", "pct": 24.9 },
+      { "candidato": "Filipe Barros", "partido": "PL", "pct": 23.0 },
+      { "candidato": "Gleisi Hoffmann", "partido": "PT", "pct": 15.7 },
+      { "candidato": "Alexandre Curi", "partido": "Republicanos", "pct": 12.1 },
+      { "candidato": "Dr. Rosinha", "partido": "PT", "pct": 9.7 },
+      { "candidato": "Cristina Graeml", "partido": "PSD", "pct": 8.9 }
+    ],
+    "observacao": "Rodada nova do Neokemp no Parana, 1.008 entrevistados, campo declarado 29/09 a 01/10, divulgada hoje, 01/10/2026. NAO E a rodada Neokemp/PR de campo 24-27/09 BLOQUEADA no briefing por ficha inconsistente (periodo de campo distinto), nem a de 15-16/09 ja na base em base 200 (Deltan 48,8; Filipe 31,4; Gleisi 28,5; Curi 28,2), nem a de 22-23/09 sob PR-07451/2026 (1o voto Deltan 36,5; soma Deltan 50,8; Filipe 35,4), que nao esta na base. QUAL DAS TRES LEITURAS: leitura 3 — CONSOLIDADO DOS DOIS VOTOS REDUZIDO A 100%, E AQUI A ARITMETICA CONTRARIA A REDACAO. COMO FOI DETERMINADO: (a) SOMA — a tabela de seis nomes soma 94,3, base 100. Varios veiculos rotulam esses numeros como 'soma do primeiro e segundo voto', mas uma soma de duas cedulas nao fecha em 94,3 com os seis principais nomes de uma disputa embolada; o rotulo da imprensa esta errado e a soma exclui a leitura 2; (b) entre a leitura 1 e a leitura 3 decide o confronto com a coluna do 1o VOTO publicada para esta rodada (Deltan 32,6; Gleisi 20,9; Filipe 16,4; Curi 13,2): Deltan nao pode ter 24,9 E 32,6 de primeira escolha, o que ELIMINA a leitura 1. Aplicando a media, o 2o voto implicado e Deltan 2x24,9-32,6 = 17,2; Filipe 2x23,0-16,4 = 29,6; Gleisi 2x15,7-20,9 = 10,5; Curi 2x12,1-13,2 = 11,0 — todos positivos, coluna do 1o voto somando 83,1 e a do 2o 68,3, ambas base 100, e o resultado reproduz a propria manchete do contratante de que 'FILIPE BARROS ESTA A FRENTE NO SEGUNDO VOTO' (29,6, o maior da coluna). Nenhuma outra leitura produz isso; (c) a prova definitiva vem da ficha gemea de SANTA CATARINA, da MESMA onda e do MESMO instituto divulgada hoje, onde o total de mencoes publicado e exatamente o DOBRO do numero de manchete (58,0/2 = 29,0 e 43,8/2 = 21,9, exatos) — o indicador de manchete do Neokemp e a media das duas cedulas. RESSALVAS DECLARADAS: circulam para o Parana TRES conjuntos distintos de 1o voto (32,6/20,9/16,4/13,2; 28,7 para Deltan e 15,4 para Filipe; 36,5/18,8/15,1), de rodadas diferentes da mesma serie. Qualquer um deles poe o 1o voto de Deltan ACIMA de 24,9 e o de Filipe ABAIXO de 23,0, de modo que a determinacao da leitura 3 nao depende de saber qual e o certo — mas o 1o e o 2o voto NAO foram gravados como fichas proprias justamente por isso. REGISTRO TSE: nao publicado nas materias consultadas para esta rodada, por isso null (o PR-07451/2026 e PR-04426/2026 que aparecem nos resumos pertencem a outras rodadas e NAO foram reaproveitados). Brancos/nulos e indecisos nao publicados e nao criados. PERIODO DE CAMPO: as fontes dizem '29 de setembro e 1o de outubro'; o par ficou gravado como 29/09-01/10 e a imprecisao fica declarada. Contratante OCP News / Jornal O Correio do Povo afirmado explicitamente, e e o mesmo da ficha anterior do estado na base. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-10-01-alfa-inteligencia-pr-senador-t1",
+    "uf": "PR",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Alfa Inteligência",
+    "registroTSE": null,
+    "contratante": "Rádio Transamérica de São Paulo",
+    "dataInicio": "2026-09-25",
+    "dataFim": "2026-09-30",
+    "publicadoEm": "2026-10-01",
+    "amostra": 1200,
+    "margem": 2.8,
+    "cenario": "estimulada, LEITURA 2 — SOMA do 1o e do 2o voto (2 vagas; base = 2 votos por eleitor, ate 200%). NAO e primeira escolha isolada e NAO e o consolidado reduzido a 100%",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/alfa-inteligencia-senado-parana-outubro-2026/"
+    },
+    "resultados": [
+      { "candidato": "Alexandre Curi", "partido": "Republicanos", "pct": 30 },
+      { "candidato": "Deltan Dallagnol", "partido": "Novo", "pct": 26 },
+      { "candidato": "Gleisi Hoffmann", "partido": "PT", "pct": 25 },
+      { "candidato": "Filipe Barros", "partido": "PL", "pct": 24 }
+    ],
+    "observacao": "Rodada nova do Instituto Alfa Inteligencia no Parana, campo 25-30/09, 1.200 entrevistados, margem de 2,8 p.p. e 95% de confianca, divulgada hoje, 01/10/2026. NAO COLIDE com a rodada Alfa/PR de campo 11-16/09 ja na base (Curi 32; Deltan 30; Gleisi 28; Filipe 27; Dr. Rosinha 14; Cristina Graeml 13, sob PR-03640/2026). Quatro nomes em empate tecnico dentro da margem, com Curi na frente. QUAL DAS TRES LEITURAS: leitura 2 — SOMA DO 1o E DO 2o VOTO. COMO FOI DETERMINADO, E AQUI A SOMA DECIDE SOZINHA: os QUATRO nomes somam 105 (30+26+25+24), acima de 100. Base 100 e impossivel por definicao, o que derruba de uma vez a leitura 1 e a leitura 3 — e tambem a leitura em votos validos, que fecharia em 100. Só existe base 200 (duas indicacoes por eleitor), sobrando ~95 para nanicos, brancos/nulos, indecisos e quem indica um unico nome. Confere com a convencao do proprio instituto, cuja rodada anterior ja esta na base rotulada como soma do 1o e do 2o voto e soma 144 na tabela completa. A ESPONTANEA NAO FOI GRAVADA (Deltan 9; Gleisi 9; Filipe 7; Curi 5; 41% nao sabem ou nao responderam), para nao misturar bases — e note que, por estar em base diferente, ela nao serve de teste de leitura aqui. Dr. Rosinha e Cristina Graeml, presentes na rodada anterior, nao tiveram percentuais publicados nesta e NAO foram criados; brancos/nulos e indecisos do estimulado tampouco. REGISTRO TSE nao publicado nas materias consultadas para esta rodada, por isso null — o PR-03640/2026 pertence a rodada anterior e nao foi reaproveitado. Contratante Radio Transamerica de Sao Paulo afirmado explicitamente (a ficha anterior da serie na base traz 'TMC (Radio Transamerica de Sao Paulo Ltda.)'), nao inferido do veiculo divulgador. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-10-01-futura-100-cidades-pa-senador-t1",
+    "uf": "PA",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Futura/100% Cidades",
+    "registroTSE": "PA-09843/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-24",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-10-01",
+    "amostra": 1000,
+    "margem": 3.1,
+    "cenario": "estimulada, LEITURA 2 — SOMA do 1o e do 2o voto (2 vagas; base de ate 200%). NAO e primeira escolha isolada e NAO e o consolidado reduzido a 100%",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/helder-barbalho-lidera-disputa-pelo-senado-no-pa-diz-pesquisa-2/"
+    },
+    "resultados": [
+      { "candidato": "Helder Barbalho", "partido": "MDB", "pct": 48.9 },
+      { "candidato": "Delegado Éder Mauro", "partido": "PL", "pct": 39.1 },
+      { "candidato": "Chicão Melo", "partido": "União Brasil", "pct": 35.2 }
+    ],
+    "observacao": "PRIMEIRA PESQUISA DE SENADOR DA SERIE FUTURA/100% CIDADES NESTA BASE (a serie so tinha recortes nacionais de presidente). Campo 24-28/09, 1.000 eleitores do Para, margem de 3,1 p.p. e 95% de confianca, divulgada hoje, quinta-feira 01/10/2026. NAO COLIDE com as rodadas de senador do Para ja na base (RTBD 23-26/09, Quaest 22-25/09, RTBD 10-14/09 e 03-07/09). QUAL DAS TRES LEITURAS: leitura 2 — SOMA DO 1o E DO 2o VOTO. COMO FOI DETERMINADO: a soma resolve de imediato — os TRES primeiros nomes somam 123,2 (48,9+39,1+35,2), muito acima de 100, o que torna impossiveis a leitura 1 e a leitura 3, ambas em base 100, e tambem a leitura em votos validos; so existe base 200, com duas indicacoes por entrevistado. Patamar de 48,9 para Helder Barbalho e proprio de soma de duas cedulas e nao de primeira escolha num estado onde a Quaest, ja na base, mede a mesma disputa em base 100. Linhas de outros candidatos, brancos/nulos e indecisos nao publicadas nas fontes consultadas e NAO criadas (restam ~77 pontos da base 200, que estao nessas linhas e em quem indica um unico nome). REGISTRO: PA-09843/2026 gravado (o recorte nacional da mesma coleta corre sob BR-09952/2026 e nao foi usado aqui). CONTRATANTE null E DECLARADO COMO TAL: um resumo diz 'contratado pela Futura', o que confunde instituto e contratante, e as rodadas anteriores da serie na base aparecem ora com '100% Cidades' ora com 'Futura Inteligencia (recursos proprios)'; sem declaracao inequivoca para este recorte estadual, nao foi inferido nada. Divulgada tambem por CNN Brasil, Exame, CartaCapital e Diario do Poder. WebFetch bloqueado nesta sessao: dados obtidos por resumos de busca (WebSearch)."
+  }
+]
