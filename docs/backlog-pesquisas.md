@@ -1141,3 +1141,63 @@ A **AtlasIntel nacional** está em campo de 27/09 a 02/10 (2.200
 entrevistas) — divulgação provável em 02 ou 03/10. O **Datafolha** divulga
 em 01/10 e a última rodada da série vai a campo em **03/10**, véspera. São
 as últimas grandes rodadas antes da eleição.
+
+## Lacunas e calendário levantados em 01/10
+
+A três dias da eleição, mais de 70 pesquisas estão anunciadas até domingo.
+O que segue é o que as varreduras de hoje nomearam e não entrou.
+
+### Recusadas por só existirem em votos válidos
+
+Nenhuma destas é lacuna de busca — são recusas conscientes, porque a base
+registra totais e converter seria inventar:
+
+- **Instituto Ranking/Educadora MA** (pub. 01/10, MA-09047/2026, campo
+  26–30/09): Braide 42,4 x Orleans 40,9, base 949 de 1.000.
+- **Neokemp SC** (pub. 01/10, SC-05312/2026, campo 29/09–01/10): Jorginho
+  60,6 / Merísio 19,0 / João Rodrigues 17,4, declarado em válidos.
+- **Real Time Big Data ES, 2º turno Pazolini x Salomão** (55 x 31): soma 86,
+  sem linhas de não-voto e sem segunda confirmação. Os outros dois
+  confrontos do ES entraram.
+- **Datafolha MG**: os candidatos menores saíram só em válidos e com listas
+  divergentes entre fontes; a ficha ficou com os três primeiros mais
+  brancos/nulos e indecisos, somando 84. Os dois cenários de 2º turno
+  saíram sem percentuais e ficaram fora.
+
+### Recusadas por ficha inconsistente
+
+- **Real Time Big Data MA** (divulgada 01/10): três conjuntos
+  irreconciliáveis para a mesma divulgação, colidindo ainda com a rodada de
+  10/09. O Maranhão segue só com a Quaest.
+- **Neokemp PR, campo 24–27/09**: as fontes seguem embaralhando dois
+  conjuntos de percentuais. A rodada de 29/09–01/10 entrou; esta não.
+
+### Institutos e rodadas ausentes da base
+
+- **Paraná Pesquisas, presidencial** — o instituto não tem nenhuma entrada
+  presidencial. As rodadas são antigas (a que apareceu hoje é de 30 de
+  março, descartada por isso).
+- **AtlasIntel estaduais** — MS (27/08–01/09), RS (27/08–01/09), SC
+  (04–09/09), PR (pub. 17/09), AM e GO.
+- **Real Time Big Data MS, senador** — campo 05–09/09, 1.600 entrevistados,
+  consolidado Azambuja 32 / Contar 23 / Loubet 12. MS só tem Ranking Brasil
+  e Quaest.
+- **Neokemp PR, campo 22–23/09** — PR-07451/2026, com quebra completa de 1º
+  e 2º voto publicada. Não é a rodada bloqueada.
+- **IPSensus MA** (pub. 29/09): Orleans 41,1 x Braide 39,5.
+- **Quaest RJ e SP de 23/09** (campo 19–22/09) e os recortes presidenciais
+  **Quaest DF e CE** da série de 29/09.
+
+### Calendário das últimas 48 horas
+
+- **02/10:** Paraná Pesquisas TO (TO-02116/2026, FIETO, n=1.504); Datafolha
+  CE e PI; **nove pesquisas registradas só para a Bahia** em 02 e 03/10
+  (100% Cidades, Veritá, Publivende, Quaest, AtlasIntel, Instituto Franca,
+  Paraná Pesquisas, DataTrends, Datasensus).
+- **02 ou 03/10:** AtlasIntel nacional (campo 27/09–02/10, 2.200
+  entrevistas), PoderData/Aya (30/09–02/10 — a base não tem PoderData
+  depois de 24/09), Quaest nacional (02–03/10, n=3.702), Gerp, Futura,
+  Palver.
+- **03/10:** última rodada do Datafolha vai a campo.
+
+A varredura de sábado será a mais pesada do projeto.
