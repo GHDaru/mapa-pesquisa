@@ -10,6 +10,7 @@ import {
   degrauDaFaixa,
   notaSomaDoPainel,
   pontosDaBase,
+  PROXIMIDADE_BASE_50,
   razaoVantagem,
   rotuloBaseParcial,
   rotuloContagemPesquisas,
@@ -227,6 +228,7 @@ async function carregarUfs(turno: 1 | 2) {
     return {
       uf: u.uf,
       n,
+      semDados: u.semDados,
       vantagem: u.vantagem,
       margem,
       razao: razaoVantagem(u.vantagem, margem),
@@ -264,27 +266,43 @@ describe('dados reais: o rótulo da faixa é verdadeiro sobre toda UF pintada ne
     expect(ro.unica).toBe(true);
   });
 
-  it('o canal de opacidade continua espalhado pelos 5 degraus nos dois turnos', async () => {
-    const t1 = await carregarUfs(1);
-    const t2 = await carregarUfs(2);
-    expect(new Set(t1.map((u) => u.faixa)).size).toBe(5);
-    expect(new Set(t2.map((u) => u.faixa)).size).toBe(5);
-    // Com os 3 níveis de `nivelConfianca`, 25 das 27 UFs do 2º turno caíam na
-    // opacidade cheia; com a escala de razão, 14.
-    expect(t2.filter((u) => u.nivel === 'solid')).toHaveLength(25);
-    expect(t2.filter((u) => u.faixa === 'lidera4')).toHaveLength(14);
-    expect(t1.filter((u) => u.faixa === 'lidera4')).toHaveLength(10);
-    // São Paulo (+5,6) e Roraima (+40,8) continuam com tintas diferentes.
-    expect(t2.find((u) => u.uf === 'SP')!.faixa).not.toBe(t2.find((u) => u.uf === 'RR')!.faixa);
+  it('a tinta espalha mais que o canal de confiança que ela substituiu', async () => {
+    // Medido em 26/09 com 788 pesquisas: o canal de `nivelConfianca` punha 19
+    // das 27 UFs do 1º turno e 26 das 27 do 2º na opacidade cheia; a escala de
+    // razão põe 12 e 14 na faixa mais forte. Esses números andam com a base
+    // todo dia — o defeito que não pode voltar é a tinta colapsar num degrau.
+    for (const turno of [1, 2] as const) {
+      const us = await carregarUfs(turno);
+      const onde = `${turno}º turno`;
+      expect(new Set(us.map((u) => u.faixa)).size, onde).toBeGreaterThanOrEqual(3);
+      const naMaisForte = us.filter((u) => u.faixa === 'lidera4').length;
+      const naOpacidadeCheia = us.filter((u) => u.nivel === 'solid').length;
+      expect(naMaisForte, onde).toBeLessThan(naOpacidadeCheia);
+      // A UF de maior razão e a de menor razão acima da margem nunca
+      // compartilham tinta: é o que a legenda promete ao numerar as faixas.
+      const acima = us.filter((u) => !u.semDados && u.razao > 1);
+      const maior = acima.reduce((a, b) => (b.razao > a.razao ? b : a));
+      const menor = acima.reduce((a, b) => (b.razao < a.razao ? b : a));
+      expect(maior.faixa, `${onde}: ${maior.uf} vs ${menor.uf}`).not.toBe(menor.faixa);
+    }
   });
 
-  it('a marca de pesquisa única cobre as UFs que a tinta não distingue mais', async () => {
-    const t1 = await carregarUfs(1);
-    const t2 = await carregarUfs(2);
-    expect(t1.filter((u) => u.unica).map((u) => u.uf)).toEqual(['AC', 'MT', 'PI', 'RS', 'RO']);
-    expect(t2.filter((u) => u.unica)).toHaveLength(16);
-    // Toda UF marcada tem mesmo uma pesquisa só — a marca não é decorativa.
-    for (const u of [...t1, ...t2].filter((x) => x.unica)) expect(u.n).toBe(1);
+  it('a marca de pesquisa única marca exatamente as UFs de uma pesquisa só', async () => {
+    // Medido em 26/09: 4 UFs no 1º turno (AC, MT, PI e RO) e 11 no 2º. A lista
+    // muda sempre que um estado ganha a segunda pesquisa — fixá-la era fixar o
+    // dado de um dia. O que precisa valer é a equivalência nos dois sentidos:
+    // marca ⟺ tem dado e tem uma pesquisa só. Sem o segundo sentido, uma UF de
+    // pesquisa única podia deixar de ser marcada sem o teste notar.
+    for (const turno of [1, 2] as const) {
+      const us = await carregarUfs(turno);
+      for (const u of us) {
+        expect(u.unica, `${turno}º turno, ${u.uf} (n=${u.n})`).toBe(!u.semDados && u.n === 1);
+      }
+      expect(
+        us.some((u) => u.unica),
+        `${turno}º turno: sem nenhuma UF marcada o teste não exerceria nada`,
+      ).toBe(true);
+    }
   });
 });
 
@@ -337,11 +355,16 @@ describe('dados reais: o cartão desenha a base que declara', () => {
     expect(ufs.find((u) => u.uf === 'RO')!.pontoUnico).toBe(true);
   });
 
-  it('cartões de ponto único: 5 estados no 1º turno, 16 no 2º', async () => {
-    const t1 = await carregarUfs(1);
-    const t2 = await carregarUfs(2);
-    expect(t1.filter((u) => u.pontoUnico).map((u) => u.uf)).toEqual(['AC', 'MT', 'PI', 'RS', 'RO']);
-    expect(t2.filter((u) => u.pontoUnico)).toHaveLength(16);
+  it('o cartão vira ponto único exatamente quando desenha uma data só', async () => {
+    // Medido em 26/09: 4 cartões no 1º turno e 11 no 2º. A contagem anda com a
+    // base; a equivalência com o número de datas desenhadas, não.
+    for (const turno of [1, 2] as const) {
+      for (const u of await carregarUfs(turno)) {
+        if (u.n === 0) continue;
+        const datas = new Set(u.datasDesenhadas).size;
+        expect(u.pontoUnico, `${turno}º turno, ${u.uf} (${datas} datas)`).toBe(datas === 1);
+      }
+    }
   });
 });
 
@@ -403,6 +426,17 @@ describe('presidential-states-layout: notaSomaDoPainel', () => {
 });
 
 describe('dados reais: soma dos recortes no painel do estado', () => {
+  /** Todas as UFs com agregado, para as propriedades que valem em todas. */
+  async function agregadosDe(turno: 1 | 2) {
+    const { carregarDados } = await import('../../../../outbound/json/carregar-dados.js');
+    const { criarCasosDeUso } = await import('../../../../../application/use-cases/index.js');
+    const casos = criarCasosDeUso(carregarDados(), { hoje: () => new Date('2026-09-25T12:00:00Z') });
+    return casos
+      .getPresidentialByState(turno)
+      .ufs.filter((u) => u.agregado && !u.semDados)
+      .map((u) => ({ uf: u.uf, agregado: u.agregado! }));
+  }
+
   async function agregadoDe(turno: 1 | 2, uf: string) {
     const { carregarDados } = await import('../../../../outbound/json/carregar-dados.js');
     const { criarCasosDeUso } = await import('../../../../../application/use-cases/index.js');
@@ -417,22 +451,56 @@ describe('dados reais: soma dos recortes no painel do estado', () => {
    * não-candidato, a soma passa de 100 e a tela declara de quantas pesquisas
    * aquela linha veio, em vez de deixar o leitor supor que veio de todas.
    */
-  it('Ceará (2º turno): a linha de brancos vem de menos pesquisas que o recorte, e isso é declarado', async () => {
-    const ce = await agregadoDe(2, 'CE');
-    const brancos = ce.outros.find((o) => o.candidato.includes('rancos'))!;
-    const n = ce.pesquisasUsadas.length;
-    expect(brancos.pesquisas).toBeLessThan(n);
-    expect(rotuloBaseParcial(brancos.pesquisas, n)).toBe(`de ${brancos.pesquisas} de ${n} pesquisas`);
-    const soma = [...ce.candidatos, ...ce.outros].reduce((t, c) => t + c.pct, 0);
-    expect(soma).toBeGreaterThan(100.5);
-    expect(notaSomaDoPainel(soma)).toContain('só as pesquisas que publicaram aquela linha');
+  it('linha publicada por parte das pesquisas: a ressalva aparece em toda UF que esteja nessa condição', async () => {
+    // Era o caso do Ceará no 2º turno, cuja soma passava de 100 porque a linha
+    // de brancos vinha de 3 das pesquisas do recorte. A base cresceu, o Ceará
+    // saiu da condição (hoje soma 99,75) e o teste ancorado nele quebrou sem
+    // que nada na tela tivesse piorado. A propriedade vale em qualquer UF.
+    let ressalvadas = 0;
+    for (const turno of [1, 2] as const) {
+      for (const { uf, agregado } of await agregadosDe(turno)) {
+        const n = agregado.pesquisasUsadas.length;
+        for (const o of agregado.outros) {
+          const onde = `${turno}º turno, ${uf}, ${o.candidato} (${o.pesquisas} de ${n})`;
+          if (o.pesquisas >= n) {
+            expect(rotuloBaseParcial(o.pesquisas, n), onde).toBeNull();
+            continue;
+          }
+          ressalvadas++;
+          expect(rotuloBaseParcial(o.pesquisas, n), onde).toBe(
+            `de ${o.pesquisas} de ${n} ${n === 1 ? 'pesquisa' : 'pesquisas'}`,
+          );
+        }
+      }
+    }
+    // Se isto zerar, a condição desapareceu da base e o teste passaria sem
+    // exercer o ramo que interessa — é falha, não sucesso.
+    expect(ressalvadas, 'nenhuma linha de base parcial na base inteira').toBeGreaterThan(0);
   });
 
-  it('Rio de Janeiro (2º turno) soma 90% — a nota não deixa o leitor supor que o resto é zero', async () => {
-    const rj = await agregadoDe(2, 'RJ');
-    const soma = [...rj.candidatos, ...rj.outros].reduce((t, c) => t + c.pct, 0);
-    expect(soma).toBeCloseTo(90, 1);
-    expect(notaSomaDoPainel(soma)).toContain('não é zero');
+  it('a nota da soma corresponde à soma real de cada UF, nos dois turnos', async () => {
+    // O Rio no 2º turno somava 90% e a nota tinha de dizer que o que falta não
+    // é zero; hoje soma 103,28 e cai no outro ramo. Os três ramos da nota são
+    // testados por fixture acima; aqui vale que o ramo emitido é o da soma
+    // daquela UF — nenhuma tela recebe a ressalva errada.
+    const vistos = { abaixo: 0, acima: 0, fecha: 0 };
+    for (const turno of [1, 2] as const) {
+      for (const { uf, agregado } of await agregadosDe(turno)) {
+        const soma = [...agregado.candidatos, ...agregado.outros].reduce((t, c) => t + c.pct, 0);
+        const onde = `${turno}º turno, ${uf} (soma ${soma.toFixed(2)})`;
+        if (soma < 99.5) {
+          vistos.abaixo++;
+          expect(notaSomaDoPainel(soma), onde).toContain('não é zero');
+        } else if (soma > 100.5) {
+          vistos.acima++;
+          expect(notaSomaDoPainel(soma), onde).toContain('só as pesquisas que publicaram aquela linha');
+        } else {
+          vistos.fecha++;
+          expect(notaSomaDoPainel(soma), onde).toBeNull();
+        }
+      }
+    }
+    expect(vistos.abaixo + vistos.acima + vistos.fecha).toBeGreaterThan(0);
   });
 
   it('Alagoas (2º turno) fecha 100% e não ganha ressalva nenhuma', async () => {
@@ -522,21 +590,44 @@ describe('dados reais: glifos de amostra na grade', () => {
     return casos.getPresidentialByState(turno);
   }
 
-  it('o marcador de ponto único do Rio de Janeiro (2º turno) é anel: a fonte não publicou a amostra', async () => {
-    const rj = (await dadosDe(2)).ufs.find((u) => u.uf === 'RJ')!;
-    expect(rj.agregado!.pesquisasUsadas).toHaveLength(1);
-    // `Pesquisa.amostra` é `number | null | undefined` — o que importa é que a
-    // fonte não publicou, e é isso que `formaDoPonto` lê.
-    expect(rj.agregado!.pesquisasUsadas[0]!.amostra ?? null).toBeNull();
-    expect(formaDoPonto(rj.agregado!.pesquisasUsadas.map((p) => p.amostra ?? null))).toBe('anel');
+  it('o marcador de uma pesquisa só é anel exatamente quando a amostra não foi publicada', async () => {
+    // Era ancorado no Rio no 2º turno, que tinha uma pesquisa só e sem amostra.
+    // Hoje o Rio tem 4 pesquisas e saiu do caso. A propriedade vale em todas as
+    // UFs de pesquisa única: anel ⟺ a fonte não publicou o tamanho da amostra.
+    let unicas = 0;
+    for (const turno of [1, 2] as const) {
+      const ufs = (await dadosDe(turno)).ufs.filter(
+        (u) => (u.agregado?.pesquisasUsadas.length ?? 0) === 1,
+      );
+      for (const u of ufs) {
+        unicas++;
+        // `Pesquisa.amostra` é `number | null | undefined` — o que importa é se
+        // a fonte publicou, e é isso que `formaDoPonto` lê.
+        const amostra = u.agregado!.pesquisasUsadas[0]!.amostra ?? null;
+        expect(formaDoPonto([amostra]), `${turno}º turno, ${u.uf} (amostra ${amostra})`).toBe(
+          amostra === null ? 'anel' : 'disco',
+        );
+      }
+    }
+    expect(unicas, 'nenhuma UF de pesquisa única na base').toBeGreaterThan(0);
   });
 
   it('a contagem da nota inclui os cartões de ponto único, que são os de UMA pesquisa', async () => {
     const { pesquisasSemAmostraDesenhadas } = await import('../presidential-states-view.js');
-    // 2º turno: Goiás, Mato Grosso do Sul e Rio de Janeiro. A conta anterior
-    // excluía os cartões de ponto único e dizia 2, deixando o Rio de fora.
-    expect(pesquisasSemAmostraDesenhadas(await dadosDe(2))).toBe(3);
-    expect(pesquisasSemAmostraDesenhadas(await dadosDe(1))).toBe(11);
+    // A conta anterior excluía os cartões de ponto único e dizia 2 no 2º turno,
+    // deixando o Rio de fora. Fixar "3 e 11" trocou um erro por outro: os
+    // números andam com a base. A contagem é conferida contra a soma lida do
+    // dado, UF por UF, que é a definição que a nota promete ao leitor.
+    for (const turno of [1, 2] as const) {
+      const dados = await dadosDe(turno);
+      const esperado = dados.ufs
+        .filter((u) => !u.semDados && u.agregado?.lider)
+        .reduce(
+          (t, u) => t + u.agregado!.pesquisasUsadas.filter((p) => p.amostra == null).length,
+          0,
+        );
+      expect(pesquisasSemAmostraDesenhadas(dados), `${turno}º turno`).toBe(esperado);
+    }
   });
 });
 
@@ -608,6 +699,8 @@ describe('dados reais: a linha de 50% é condicional ao dado do cartão', () => 
           return {
             uf: u.uf,
             serie: datas.size > 1,
+            min: Math.min(...valores),
+            max: Math.max(...valores),
             comLinha,
             fracaoAntes: fracao(calcularDominioY(valores, undefined, true)),
             fracaoDepois: fracao(calcularDominioY(valores, undefined, comLinha)),
@@ -617,35 +710,46 @@ describe('dados reais: a linha de 50% é condicional ao dado do cartão', () => 
     };
   }
 
-  it('2º turno: nenhum cartão perde a linha — ali ela é o limiar de vitória', async () => {
-    const { cartoes: cs } = await cartoes(2);
-    expect(cs).toHaveLength(11);
-    expect(cs.filter((c) => c.comLinha)).toHaveLength(11);
-    // E nada mudou de resolução no 2º turno.
-    for (const c of cs) expect(c.fracaoDepois).toBeCloseTo(c.fracaoAntes, 10);
-  });
-
-  it('1º turno: 12 dos 22 cartões mantêm a linha; os 10 que a perdem não chegam perto de 50', async () => {
-    const { cartoes: cs } = await cartoes(1);
-    expect(cs).toHaveLength(22);
-    expect(cs.filter((c) => c.comLinha)).toHaveLength(12);
-    expect(cs.filter((c) => !c.comLinha).map((c) => c.uf)).toEqual([
-      'AP', 'AM', 'DF', 'ES', 'GO', 'MG', 'PA', 'RJ', 'SP', 'TO',
-    ]);
-  });
-
-  it('nenhum cartão perde resolução, e o pior do 1º turno sai de 18,2% para 50,0% da altura', async () => {
+  it('cartão só perde a linha de 50% quando nenhum valor plotado chega perto dela', async () => {
+    // Este teste dizia "no 2º turno nenhum cartão perde a linha — ali ela é o
+    // limiar de vitória". Nunca foi uma necessidade: era um fato do dado de
+    // então. Hoje o Pará no 2º turno a perde com razão, porque os dois nomes
+    // ficam entre 36 e 44 e o mais alto está a 6 pontos de 50, fora da
+    // vizinhança de PROXIMIDADE_BASE_50. O que protege o leitor é que a linha
+    // nunca sai de um cartão cujo desenho a alcance.
+    let semLinha = 0;
     for (const turno of [1, 2] as const) {
       const { cartoes: cs } = await cartoes(turno);
-      for (const c of cs) expect(c.fracaoDepois).toBeGreaterThanOrEqual(c.fracaoAntes - 1e-9);
+      for (const c of cs) {
+        if (c.comLinha) continue;
+        semLinha++;
+        const onde = `${turno}º turno, ${c.uf} (${c.min.toFixed(1)}–${c.max.toFixed(1)})`;
+        expect(
+          c.max < 50 - PROXIMIDADE_BASE_50 || c.min > 50 + PROXIMIDADE_BASE_50,
+          onde,
+        ).toBe(true);
+      }
     }
-    const t1 = (await cartoes(1)).cartoes;
-    const ap = t1.find((c) => c.uf === 'AP')!;
-    expect(ap.fracaoAntes * 100).toBeCloseTo(18.2, 1);
-    expect(ap.fracaoDepois * 100).toBeCloseTo(50.0, 1);
-    const media = (xs: number[]) => xs.reduce((a, b) => a + b, 0) / xs.length;
-    expect(media(t1.map((c) => c.fracaoAntes)) * 100).toBeCloseTo(66.1, 1);
-    expect(media(t1.map((c) => c.fracaoDepois)) * 100).toBeCloseTo(79.6, 1);
+    expect(semLinha, 'nenhum cartão sem linha: o ramo não foi exercido').toBeGreaterThan(0);
+  });
+
+  it('nenhum cartão perde resolução por causa da linha condicional', async () => {
+    // Medido em 26/09: o pior cartão do 1º turno (Amapá) usava 18,2% da altura
+    // com o domínio fixo de 0 a 50 e passou a usar 50,0%; a média dos cartões
+    // foi de 66,1% para 79,6%. Os números andam com a base — a desigualdade,
+    // cartão por cartão, é o que não pode regredir.
+    for (const turno of [1, 2] as const) {
+      const { cartoes: cs } = await cartoes(turno);
+      for (const c of cs) {
+        expect(c.fracaoDepois, `${turno}º turno, ${c.uf}`).toBeGreaterThanOrEqual(
+          c.fracaoAntes - 1e-9,
+        );
+      }
+      const media = (xs: number[]) => xs.reduce((a, b) => a + b, 0) / xs.length;
+      expect(media(cs.map((c) => c.fracaoDepois)), `${turno}º turno`).toBeGreaterThanOrEqual(
+        media(cs.map((c) => c.fracaoAntes)) - 1e-9,
+      );
+    }
   });
 
   it('a nota da seção afirma a contagem que o desenho usa', async () => {

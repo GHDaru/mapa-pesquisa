@@ -86,31 +86,37 @@ describe('glifos da grade: ponto não é pesquisa', () => {
   });
 });
 
-describe('marca de pesquisa única: a contagem da legenda vale em qualquer largura', () => {
+describe('marca de pesquisa única: a legenda declara o que o dado tem', () => {
+  /*
+   * ATENÇÃO ao que este bloco NÃO cobre. `marcasDePesquisaUnica` devolve
+   * `desenhadasLargo` e `desenhadasEstreito` a partir de `naSigla`, por
+   * construção — então comparar esses três campos entre si é uma asserção que
+   * não pode falhar, e era o que estava escrito aqui. A independência da
+   * largura, que foi o defeito original (o asterisco era um `<tspan>` da sigla,
+   * e a sigla de estado estreito some abaixo de 640px: a 400px do 2º turno a
+   * legenda dizia 16 e o mapa desenhava 12), só pode ser verificada contando
+   * asteriscos no SVG desenhado. O mapa é construído com
+   * `document.createElementNS` e a suíte roda em ambiente `node`, sem DOM, de
+   * modo que esse teste não existe — a garantia hoje é a leitura do código, não
+   * uma execução. Está anotado em docs/backlog-pesquisas.md.
+   */
   for (const turno of [1, 2] as const) {
-    it(`${turno}º turno: declaradas = desenhadas a 1280px = desenhadas a 400px`, () => {
-      const m = marcasDePesquisaUnica(casos.getPresidentialByState(turno));
-      expect(m.declaradas).toBe(m.desenhadasLargo);
-      expect(m.declaradas).toBe(m.desenhadasEstreito);
+    it(`${turno}º turno: a legenda declara exatamente as UFs de uma pesquisa só`, () => {
+      const dados = casos.getPresidentialByState(turno);
+      const m = marcasDePesquisaUnica(dados);
+      const deUmaPesquisa = dados.ufs.filter(
+        (u) => !u.semDados && (u.agregado?.pesquisasUsadas.length ?? 0) === 1,
+      );
+      // Medido em 26/09: 4 UFs no 1º turno e 11 no 2º, das quais 3 estreitas.
+      // Fixar a contagem era fixar o dado de um dia; o que vale é que a
+      // legenda conta o que o recorte tem, nos dois sentidos.
+      expect(m.declaradas).toBe(deUmaPesquisa.length);
+      expect(m.declaradas).toBeGreaterThan(0);
+      // As siglas preservadas são um subconjunto das marcadas: nenhuma UF ganha
+      // tratamento de estado estreito sem estar marcada.
+      expect(m.siglasPreservadas).toBeLessThanOrEqual(m.declaradas);
     });
   }
-
-  it('no 2º turno são 16 estados, 4 deles estreitos que mantêm a sigla por causa da marca', () => {
-    const m = marcasDePesquisaUnica(casos.getPresidentialByState(2));
-    expect(m.declaradas).toBe(16);
-    // RJ, RN, SC e SE: são estes os 4 que perdiam a sigla a 400px. Perder a sigla
-    // era perder o nome do estado ao lado da marca — o asterisco solto que ficava
-    // no lugar dela contava certo e não identificava polígono nenhum.
-    expect(m.siglasPreservadas).toBe(4);
-    expect(m.desenhadasEstreito).toBe(16);
-    expect(m.naSigla).toBe(16);
-  });
-
-  it('no 1º turno nenhum dos estados marcados é estreito, então nada mudou lá', () => {
-    const m = marcasDePesquisaUnica(casos.getPresidentialByState(1));
-    expect(m.declaradas).toBe(5);
-    expect(m.siglasPreservadas).toBe(0);
-  });
 });
 
 describe('cartão da grade: quem são as duas linhas', () => {
