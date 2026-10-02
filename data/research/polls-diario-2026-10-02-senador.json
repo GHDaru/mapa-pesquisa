@@ -1,0 +1,250 @@
+[
+  {
+    "id": "2026-10-02-real-time-big-data-pb-senador-t1",
+    "uf": "PB",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "PB-01003/2026",
+    "contratante": "Record TV",
+    "dataInicio": "2026-09-28",
+    "dataFim": "2026-10-01",
+    "publicadoEm": "2026-10-02",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, LEITURA 3 — consolidado do 1º e do 2º voto reduzido a 100% (2 vagas; média das duas cédulas). NÃO é primeira escolha isolada e NÃO é a soma em base 200",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/joao-azevedo-lidera-disputa-pelo-senado-na-pb-diz-real-time-big-data/"
+    },
+    "resultados": [
+      {
+        "candidato": "João Azevêdo",
+        "partido": "PSB",
+        "pct": 31
+      },
+      {
+        "candidato": "Veneziano Vital do Rêgo",
+        "partido": "MDB",
+        "pct": 24
+      },
+      {
+        "candidato": "Marcelo Queiroga",
+        "partido": "PL",
+        "pct": 16
+      },
+      {
+        "candidato": "Nabor Wanderley",
+        "partido": "Republicanos",
+        "pct": 16
+      },
+      {
+        "candidato": "Major Fábio",
+        "partido": "Novo",
+        "pct": 5
+      },
+      {
+        "candidato": "André Gadelha",
+        "partido": "MDB",
+        "pct": 1
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 3
+      },
+      {
+        "candidato": "Não sabe/não respondeu",
+        "partido": null,
+        "pct": 4
+      }
+    ],
+    "observacao": "Rodada nova do Real Time Big Data na Paraíba, campo 28/09 a 01/10, 1.600 eleitores, margem de 2 p.p. e 95% de confiança, divulgada hoje, sexta-feira 02/10/2026, a dois dias da eleição. NÃO COLIDE com nenhuma pesquisa de senador da PB na base (a base não tem recorte de senador da Paraíba no período); a rodada RTBD/PB anterior é de campo 19-22/08 e traz outros números (consolidado Azevêdo 29, Veneziano 23). QUAL DAS TRÊS LEITURAS: LEITURA 3 — CONSOLIDADO DO 1º E DO 2º VOTO REDUZIDO A 100%. A ARITMÉTICA QUE PROVOU ISSO: (a) SOMA DA TABELA — 31+24+16+16+5+1 = 93,0 nos candidatos, mais brancos/nulos 3 e não sabe/não respondeu 4, totalizando EXATAMENTE 100,0; portanto NÃO é a leitura 2, que somaria ~200. (b) A PROVA DECISIVA CONTRA A LEITURA 1 (primeira escolha) É A COLUNA DA PRIMEIRA VAGA: a fonte publica também o 1º voto, e lá João Azevêdo aparece MUITO ACIMA do seu valor na tabela de 100 (1º voto na casa dos 38-40 contra 31 no consolidado) — é exatamente o padrão Benedita/RJ (33 na 1ª vaga contra 19 no consolidado). Se a tabela de 100 fosse a primeira escolha, o valor de Azevêdo nela teria que ser o próprio valor do 1º voto, e não é. (c) RECONSTRUÇÃO DO 2º VOTO (2×consolidado − 1ºvoto): com 1º voto 40 dá 2×31−40 = 22 para Azevêdo e 2×24−23 = 25 para Veneziano; com 1º voto 38 dá 24 para Azevêdo. Em qualquer das versões os valores reconstruídos são TODOS POSITIVOS e plausíveis, e são coerentes com a matéria, que diz que Veneziano lidera o 2º voto — confirmando o consolidado. (d) Além da aritmética, a própria fonte declara a leitura: 'cada entrevistado escolheu dois nomes e o resultado consolidado foi reduzido a 100%'. Aqui a redação e a aritmética concordam. DIVERGÊNCIA ENTRE BUSCAS E COMO FOI RESOLVIDA (regra 8): uma primeira busca deu brancos/nulos 3 e não sabe 7 (o que levaria a tabela a 103, fora da tolerância de arredondamento); uma terceira busca, feita especificamente para isso, deu brancos/nulos 3 e não sabe/não respondeu 4. Adotei 3 e 4 porque é a única combinação publicada que fecha a tabela em exatamente 100,0 — a aritmética decidiu, e nenhum valor foi ajustado para fechar. O '7' provavelmente é o não sabe de OUTRA coluna (2º voto) ou da disputa de governador. SEGUNDA DIVERGÊNCIA: a coluna do 1º voto apareceu em duas versões nos resumos (Azevêdo 40 / Veneziano 23 numa busca; 38 / 24 / Queiroga 20 / Nabor 13 noutra — e esta segunda é IDÊNTICA à coluna de 1º voto da rodada RTBD/PB de 19-22/08, o que sugere contaminação do resumo pela rodada de agosto). Por isso NÃO ingeri nenhum número de 1º voto: a ficha traz apenas a coluna consolidada, que é consistente em todas as buscas. A divergência não afeta a leitura, porque em ambas as versões o 1º voto de Azevêdo (38 ou 40) é muito maior que seu consolidado (31). registroTSE null: o número de registro desta rodada não apareceu em nenhum resumo de busca (o PB-07790/2026 citado pelas fontes é de rodada anterior do instituto, e atribuí-lo a esta seria inventar). CONTRATANTE: as matérias dizem explicitamente que a pesquisa foi CONTRATADA pela Rede Record de Televisão/Record TV — é contratação declarada, não parceria de divulgação. Partidos conforme as fontes; WebFetch bloqueado nesta sessão, dados obtidos de resumos de busca. ATENÇÃO: o Real Time Big Data está sob suspensão judicial em PR, CE, MA, RN, AL, SE e TO — a Paraíba NÃO está nessa lista, por isso esta rodada pode entrar. CONFERIDO PELA SESSÃO PRINCIPAL (busca independente): o registro PB-01003/2026 cobre esta MESMA rodada nos dois cargos — a divulgação da Gazeta do Povo é titulada \"pesquisa para governo e Senado na Paraíba\", com o mesmo campo (28/09 a 01/10), a mesma amostra (1.600) e a mesma margem (2 p.p.), e a ficha de governador da mesma rodada traz esse número. Por isso o registroTSE deixou de ser null: não é inferência de calendário, é o registro que a própria matéria da rodada informa. A fonte também afirma a contratação: \"contratada pela Record com recursos próprios, ao custo de R$ 20 mil\" — contratante afirmado, não inferido. Grafia do contratante alinhada com a ficha de governador desta mesma rodada (\"Record TV\"); a base carrega nove grafias diferentes para a emissora, divergência anotada no backlog em vez de corrigida aqui, porque uniformizá-la exigiria editar pesquisas antigas."
+  },
+  {
+    "id": "2026-10-02-real-time-big-data-am-senador-t1",
+    "uf": "AM",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "AM-07297/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-28",
+    "dataFim": "2026-10-01",
+    "publicadoEm": "2026-10-02",
+    "amostra": 1600,
+    "margem": 2.0,
+    "cenario": "estimulada, LEITURA 3 — consolidado do 1º e do 2º voto reduzido a 100% (2 vagas; média das duas cédulas, comprovada linha por linha contra as duas cédulas publicadas). NÃO é primeira escolha isolada e NÃO é a soma em base 200",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/alberto-neto-lidera-corrida-ao-senado-no-am-com-25-diz-pesquisa/"
+    },
+    "resultados": [
+      {
+        "candidato": "Capitão Alberto Neto",
+        "partido": "PL",
+        "pct": 25
+      },
+      {
+        "candidato": "Wilson Lima",
+        "partido": "União Brasil",
+        "pct": 19
+      },
+      {
+        "candidato": "Plínio Valério",
+        "partido": "PSDB",
+        "pct": 19
+      },
+      {
+        "candidato": "Eduardo Braga",
+        "partido": "MDB",
+        "pct": 19
+      },
+      {
+        "candidato": "Xuxa do Amazonas",
+        "partido": "Mobiliza",
+        "pct": 4
+      },
+      {
+        "candidato": "Ismael Munduruku",
+        "partido": "Rede",
+        "pct": 3
+      },
+      {
+        "candidato": "Professora Evany",
+        "partido": "PSOL",
+        "pct": 2
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 4
+      },
+      {
+        "candidato": "Não sabe/não respondeu",
+        "partido": null,
+        "pct": 5
+      }
+    ],
+    "observacao": "Rodada nova do Real Time Big Data no Amazonas, campo 28/09 a 01/10, 1.600 eleitores, margem de 2 p.p. e 95% de confiança, registro AM-07297/2026, divulgada hoje, sexta-feira 02/10/2026. NÃO COLIDE com nada na base (a base não tem recorte de senador do Amazonas neste período). ESTA É A FICHA COM A PROVA ARITMÉTICA MAIS LIMPA DA RODADA: a fonte publica as TRÊS colunas, e elas fecham entre si. QUAL DAS TRÊS LEITURAS: LEITURA 3 — CONSOLIDADO DO 1º E DO 2º VOTO REDUZIDO A 100%. A ARITMÉTICA QUE PROVOU ISSO: (a) SOMA DA TABELA INGERIDA — 25+19+19+19+4+3+2 = 91,0 nos candidatos, mais brancos/nulos 4 e não sabe/não respondeu 5, totalizando EXATAMENTE 100,0. Logo NÃO é leitura 2 (somaria ~200). (b) PROVA DECISIVA CONTRA A LEITURA 1, no padrão Benedita/RJ: a coluna do 1º voto publicada traz Eduardo Braga com 27 contra 19 na tabela de 100, e Capitão Alberto Neto com 29 contra 25 — valores da primeira cédula MUITO acima dos da tabela que soma 100, o que só acontece se a tabela de 100 for o consolidado. (c) RECONSTRUÇÃO DO 2º VOTO (2×consolidado − 1ºvoto) BATE CASA A CASA COM A COLUNA DO 2º VOTO PUBLICADA: Braga 2×19−27 = 11 e a fonte publica 11; Alberto Neto 2×25−29 = 21 contra 20 publicado (arredondamento, pois 29+20 = 49 e 49/2 = 24,5 → 25); Wilson Lima (19+20)/2 = 19,5 → 19 publicado; Plínio (15+24)/2 = 19,5 → 19 publicado. Todos positivos e plausíveis. (d) AS LINHAS DE NÃO-CANDIDATO TAMBÉM CONFIRMAM A MÉDIA: 1º voto brancos/nulos 2 e não sabe 2; 2º voto brancos/nulos 6 e não sabe 8; consolidado (2+6)/2 = 4 e (2+8)/2 = 5 — exatamente os 4 e 5 publicados. Isso fecha a prova de que o consolidado é a MÉDIA das duas cédulas. DIVERGÊNCIA ENTRE BUSCAS E COMO FOI RESOLVIDA (regra 8): uma busca trouxe a manchete 'Braga tem 42% e Alberto Neto, 29% no 1º voto ao Senado no AM', contradizendo o 1º voto Braga 27 desta rodada. A terceira busca resolveu: os 42% de Braga são de uma pesquisa PoderData de campo 20-23/09 (1.200 entrevistas, 56 municípios, margem 2,8), instituto e período diferentes — não é esta rodada, e nada dela foi usado nesta ficha. CANDIDATOS SEM NÚMERO: o AM tem 9 candidatos ao Senado; Dailson Corrêa (DC) e Evandro de Oliveira (PSTU) não tiveram percentual publicado ('não registraram apoio significativo'). NÃO foram incluídos com 0 inventado — ficaram fora da ficha. A tabela fecha em 100,0 sem eles, o que é consistente com arredondamento para zero. CONTRATANTE null: nenhuma fonte desta rodada do AM declara contratante. A Record contratou as rodadas de PB e TO da MESMA onda do instituto, mas inferir daí a contratação do recorte do Amazonas seria inferência proibida (regra 2). Partidos conforme as fontes; WebFetch bloqueado nesta sessão, dados obtidos de resumos de busca. O Amazonas NÃO está na lista de suspensão judicial do Real Time Big Data (PR, CE, MA, RN, AL, SE e TO), por isso esta rodada pode entrar."
+  },
+  {
+    "id": "2026-10-02-gerp-rj-senador-t1",
+    "uf": "RJ",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "Gerp",
+    "registroTSE": "RJ-02100/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-29",
+    "dataFim": "2026-09-30",
+    "publicadoEm": "2026-10-02",
+    "amostra": 1200,
+    "margem": 2.9,
+    "cenario": "estimulada, LEITURA 3 — consolidado do 1º e do 2º voto reduzido a 100% (2 vagas; base de 100% declarada pela fonte, incluindo 'não sabe' e 'nenhum deles'). NÃO é primeira escolha isolada e NÃO é a soma em base 200, que a mesma pesquisa publica à parte",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/gerp-senado-rj-benedita-tem-45-portinho-27-jordy-24-e-pedro-20/"
+    },
+    "resultados": [
+      {
+        "candidato": "Benedita da Silva",
+        "partido": "PT",
+        "pct": 23
+      },
+      {
+        "candidato": "Carlos Portinho",
+        "partido": "PL",
+        "pct": 13
+      },
+      {
+        "candidato": "Carlos Jordy",
+        "partido": "PL",
+        "pct": 12
+      },
+      {
+        "candidato": "Pedro Paulo",
+        "partido": "PSD",
+        "pct": 10
+      },
+      {
+        "candidato": "Marcelo Crivella",
+        "partido": "Republicanos",
+        "pct": 10
+      },
+      {
+        "candidato": "Monica Benicio",
+        "partido": "PSOL",
+        "pct": 6
+      },
+      {
+        "candidato": "Waguinho",
+        "partido": "Republicanos",
+        "pct": 2
+      },
+      {
+        "candidato": "Helio Secco",
+        "partido": "Missão",
+        "pct": 1
+      }
+    ],
+    "observacao": "PRIMEIRA PESQUISA DE SENADOR DO GERP NO RIO DE JANEIRO NESTA BASE (a série do Gerp na base só tinha São Paulo). Campo 29 e 30/09, 1.200 eleitores do estado do Rio por telefone (sistema GerpCati), margem de 2,9 p.p. e nível de confiança declarado de 95,55%, registro RJ-02100/2026, divulgada hoje, sexta-feira 02/10/2026. NÃO COLIDE com a ficha 2026-10-01-gerp-sp-senador-t1 já na base (outra UF e outro período de campo: SP 28-30/09), nem com as rodadas de senador do RJ já na base (Datafolha 28/09-01/10, Real Time 25-29/09, Quaest 25-28/09). QUAL DAS TRÊS LEITURAS: LEITURA 3 — CONSOLIDADO DO 1º E DO 2º VOTO REDUZIDO A 100%. Esta pesquisa publica as TRÊS colunas, e eu ingeri deliberadamente a consolidada. A ARITMÉTICA QUE PROVOU ISSO: (a) SOMA DA TABELA INGERIDA — 23+13+12+10+10+6+2+1 = 77,0 nos candidatos. A fonte declara EXPLICITAMENTE que 'nos totais consolidados calculados em escala de 100% e incluindo não sabe e nenhum deles' esses são os valores; ou seja, a base é 100 e os 23,0 p.p. restantes são o bloco de não-candidato (não sabe + nenhum deles), que a fonte NÃO publica quebrado. Por isso NENHUMA linha de não-candidato foi criada — o residual não foi inventado nem repartido, apenas registrado aqui. A tabela ingerida soma 77,0 por essa razão, e não por inconsistência. (b) A OUTRA COLUNA DA MESMA PESQUISA É A LEITURA 2 E SOMA MUITO ACIMA DE 100: na soma do 1º e do 2º voto (base de até 200%, porque cada eleitor indica dois nomes) Benedita tem 45, Portinho 27, Jordy 24, Pedro Paulo 20 e Crivella 19 — só esses cinco somam 135, impossível numa base de 100. É a prova aritmética de que as duas colunas são leituras DIFERENTES da mesma pesquisa. (c) A RELAÇÃO ENTRE AS COLUNAS FECHA EXATAMENTE, E ISSO IDENTIFICA CADA UMA: o 1º voto publicado traz Benedita 35, Jordy 18, Portinho 12; o 2º voto traz Portinho 15, Pedro Paulo 12, Benedita 10, Monica Benicio 10, Crivella 9, Jordy 6, não sabe 20 e 'nenhum deles' 9. Somando cédula a cédula: Benedita 35+10 = 45 (publicado 45), Portinho 12+15 = 27 (publicado 27), Jordy 18+6 = 24 (publicado 24) — casam EXATAMENTE. Logo a coluna de 135 é a SOMA (leitura 2) e a coluna de 77 em base 100 é a MÉDIA dessa soma: Benedita 45/2 = 22,5 → 23 publicado; Portinho 27/2 = 13,5 → 13; Jordy 24/2 = 12; Pedro Paulo 20/2 = 10; Crivella 19/2 = 9,5 → 10; Monica Benicio 12/2 = 6. Confirmado o consolidado (leitura 3). (d) PROVA CONTRA A LEITURA 1 no padrão Benedita/RJ — e aqui é literalmente a Benedita: ela tem 35 na coluna da primeira vaga e 23 na tabela de base 100. Primeira escolha e consolidado são números distintos nesta mesma pesquisa, e o que entrou é o consolidado. CONTRATANTE null: a fonte diz que a pesquisa foi feita pela própria Gerp Mercadologia COM RECURSOS PRÓPRIOS — não há contratante, e nenhum veículo que a divulgou é contratante. Partidos conforme as fontes; WebFetch bloqueado nesta sessão, dados obtidos de resumos de busca."
+  },
+  {
+    "id": "2026-10-01-datatrends-al-senador-t1",
+    "uf": "AL",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "DataTrends",
+    "registroTSE": "AL-01216/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-26",
+    "dataFim": "2026-09-28",
+    "publicadoEm": "2026-10-01",
+    "amostra": 1200,
+    "margem": 2.83,
+    "cenario": "estimulada, LEITURA 2 — SOMA do 1º e do 2º voto (2 vagas; cada entrevistado indica dois nomes, base de até 200%). NÃO é primeira escolha isolada e NÃO é o consolidado reduzido a 100%",
+    "fonte": {
+      "nome": "Gazeta Web",
+      "url": "https://www.gazetaweb.com/noticias/eleicoes/datatrends-aponta-empate-entre-marina-jhc-arthur-lira-e-renan-calheiros-para-o-senado-939329"
+    },
+    "resultados": [
+      {
+        "candidato": "Marina JHC",
+        "partido": null,
+        "pct": 42
+      },
+      {
+        "candidato": "Arthur Lira",
+        "partido": "PP",
+        "pct": 41
+      },
+      {
+        "candidato": "Renan Calheiros",
+        "partido": "MDB",
+        "pct": 41
+      },
+      {
+        "candidato": "Davi Davino Filho",
+        "partido": null,
+        "pct": 21
+      },
+      {
+        "candidato": "Dr. Wanderley",
+        "partido": null,
+        "pct": 14
+      },
+      {
+        "candidato": "Alexandre Fleming",
+        "partido": null,
+        "pct": 1
+      },
+      {
+        "candidato": "Mariedson",
+        "partido": null,
+        "pct": 0
+      }
+    ],
+    "observacao": "PRIMEIRA PESQUISA DE SENADOR DO DATATRENDS NESTA BASE. Rodada nova em Alagoas, campo presencial 26 a 28/09 com 1.200 eleitores de 16 anos ou mais, margem de 2,83 p.p. e 95% de confiança, registro AL-01216/2026 (mesmo registro das divulgações de governador e presidente da mesma rodada), divulgada em 01/10/2026 — dentro da janela 01-02/10 desta varredura. NÃO COLIDE com nada na base: as fichas de senador de AL já existentes são Falpe (campo 16-25/08) e Paraná Pesquisas (campo 26-29/09) — instituto diferente, e no caso do Paraná Pesquisas o período de campo também é outro. QUAL DAS TRÊS LEITURAS: LEITURA 2 — SOMA DO 1º E DO 2º VOTO, base de até 200%. A ARITMÉTICA QUE PROVOU ISSO, E ELA SE RESOLVE SOZINHA: (a) SOMA DA TABELA — 42+41+41+21+14+1+0 = 160,0 nos candidatos. Já passa de 100, portanto NÃO pode ser leitura 1 nem leitura 3. (b) PROVA AINDA MAIS CURTA: só os TRÊS primeiros somam 42+41+41 = 124,0 — impossível em qualquer tabela de base 100 com sete candidatos. (c) A base 200 fica confirmada pelo residual: 200 − 160 = 40,0 p.p. para brancos/nulos e não sabe SOMADOS NAS DUAS CÉDULAS (tipicamente poucos pontos na primeira e muitos na segunda, onde a indecisão é alta), o que é plausível. (d) A fonte declara a mesma coisa por escrito: 'cada eleitor pode votar em dois candidatos ao Senado, então a pergunta foi feita duas vezes para registrar primeiro e segundo votos, e a soma das alternativas é apresentada em base de 200%, não de 100%'. Aqui a redação e a aritmética concordam. LINHAS DE NÃO-CANDIDATO: a fonte não publica brancos/nulos nem não sabe desta coluna quebrados. Os 40,0 p.p. residuais NÃO foram transformados em linha (seria inventar um número e repartir o que não foi publicado); por isso a tabela ingerida soma 160,0 de uma base declarada de 200 — não é inconsistência. Nenhum valor foi ajustado. DIVERGÊNCIA ENTRE BUSCAS E COMO FOI RESOLVIDA (regra 8): uma busca devolveu 'Renan 42%, Lira 39%, Marina 38%, Davi 24%'. A terceira busca mostrou que esses são os números de uma rodada ANTERIOR do DataTrends em AL, divulgada em 23/09, e não desta. Confirmei a ficha pela rodada de 01/10, cujos números (Marina JHC 42, Lira 41, Renan 41) aparecem consistentemente junto com o registro AL-01216/2026 e com as divulgações irmãs de governador (Renan Filho 46, JHC 45) e de presidente da mesma data. Também existe uma rodada DataTrends/AL de campo 31/08-02/09 (Renan e Lira 40 cada, Marina 32) que não é esta. CONTRATANTE null: nenhuma fonte declara contratante desta pesquisa; a Gazeta Web e os demais veículos são divulgadores, e parceria de divulgação não é contratante. PARTIDOS: 'Marina JHC', Davi Davino Filho, Dr. Wanderley, Alexandre Fleming e Mariedson entram com partido null porque os resumos de busca não trazem a legenda de cada um — é o mesmo tratamento já adotado na ficha Falpe/AL que está na base. Mariedson entra com 0 porque 0 é o valor PUBLICADO, não um valor presumido. WebFetch bloqueado nesta sessão; dados obtidos de resumos de busca."
+  }
+]

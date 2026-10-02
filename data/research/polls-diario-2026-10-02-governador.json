@@ -1,0 +1,144 @@
+[
+  {
+    "id": "2026-10-02-parana-pesquisas-rj-governador-t1",
+    "uf": "RJ",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "RJ-07095/2026",
+    "contratante": "Paraná Pesquisas",
+    "dataInicio": "2026-09-29",
+    "dataFim": "2026-10-01",
+    "publicadoEm": "2026-10-02",
+    "amostra": 1600,
+    "margem": 2.5,
+    "cenario": "estimulada, 1º turno (total, cenário com Anthony Garotinho)",
+    "fonte": {
+      "nome": "Band",
+      "url": "https://www.band.com.br/politica/eleicoes/parana-pesquisas-eduardo-paes-lidera-no-rj-com-419-douglas-ruas-tem-301"
+    },
+    "resultados": [
+      { "candidato": "Eduardo Paes", "partido": "PSD", "pct": 41.9 },
+      { "candidato": "Douglas Ruas", "partido": "PL", "pct": 30.1 },
+      { "candidato": "Anthony Garotinho", "partido": "Republicanos", "pct": 8.2 },
+      { "candidato": "William Siri", "partido": "PSOL", "pct": 1.9 },
+      { "candidato": "André Marinho", "partido": "Novo", "pct": 1.7 },
+      { "candidato": "Juliete Pantoja", "partido": "UP", "pct": 1.3 },
+      { "candidato": "Cyro Garcia", "partido": "PSTU", "pct": 1.2 },
+      { "candidato": "Coronel Busnello", "partido": "Missão", "pct": 0.8 },
+      { "candidato": "Luan Monteiro", "partido": "PCO", "pct": 0.5 },
+      { "candidato": "Brancos/nulos/nenhum", "partido": null, "pct": 8.8 }
+    ],
+    "observacao": "Divulgada na sexta-feira 02/10/2026; campo de 29/09 a 01/10, 1.600 eleitores em 54 municípios, margem de 2,5 p.p., 95% de confiança. CONTRATANTE: a página de registro do próprio instituto informa pesquisa contratada pelo Paraná Pesquisas (autofinanciada) — não há contratante externo afirmado; os veículos que divulgaram (Band, Metrópoles, CartaCapital, Diário do Rio, Agenda do Poder) são parceiros de divulgação e NÃO foram tratados como contratantes. NÚMEROS DO TOTAL: a manchete de 47,9% x 34,4% é voto válido e não foi usada. TESTE TOTAL-VS-VÁLIDOS: a soma dos candidatos deste recorte é 41,9+30,1+8,2+1,9+1,7+1,3+1,2+0,8+0,5 = 87,6; 41,9/87,6 = 47,83 ≈ 47,9 (válido publicado), 30,1/87,6 = 34,36 ≈ 34,4 (válido publicado), 8,2/87,6 = 9,36 ≈ 9,4 (válido publicado) e 1,7/87,6 = 1,94 ≈ 1,9 (válido publicado) — quatro conferências exatas confirmam que este é o corte do total. A quinta (William Siri: 1,9/87,6 = 2,17 ≈ 2,2 contra 2,1 publicado) difere 0,1 p.p. apenas pelo arredondamento do próprio 1,9 na tabela do total. SOMA DA TABELA: as linhas aqui registradas somam 96,4 (87,6 de candidatos + 8,8 de brancos/nulos/nenhum). A linha de indecisos/não sabe do cenário ESTIMULADO não foi publicada em nenhum dos resumos localizados, e os 3,6 p.p. restantes NÃO foram preenchidos — nenhum valor foi estimado ou ajustado para fechar em 100. ATENÇÃO: o índice de 37,1% de \"não sabe/não opinou\" que aparece em parte da cobertura é da pergunta ESPONTÂNEA (na qual Paes tem 27,1% e Ruas 18,6%) e foi deliberadamente descartado — somá-lo a este recorte levaria a tabela a 133,5. O cenário alternativo SEM Garotinho (total: Paes 44,5 e Ruas 32,6; válidos 52,0 e 38,1 — teste: 44,5/85,58 = 52,0 e 32,6/85,58 = 38,1, consistente) NÃO foi ingerido porque os demais candidatos desse cenário não foram itemizados em nenhuma fonte, faltando cerca de 8,5 p.p. de candidatos para montar a tabela. REGISTRO TSE RJ-07095/2026 conforme a página de registro do instituto. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-10-02-real-time-big-data-pb-governador-t1",
+    "uf": "PB",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "PB-01003/2026",
+    "contratante": "Record TV",
+    "dataInicio": "2026-09-28",
+    "dataFim": "2026-10-01",
+    "publicadoEm": "2026-10-02",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "CartaCapital",
+      "url": "https://www.cartacapital.com.br/politica/lucas-ribeiro-lidera-e-pode-ser-reeleito-em-1o-turno-na-paraiba-indica-pesquisa-real-time/"
+    },
+    "resultados": [
+      { "candidato": "Lucas Ribeiro", "partido": "PP", "pct": 45 },
+      { "candidato": "Efraim Filho", "partido": "PL", "pct": 24 },
+      { "candidato": "Cícero Lucena", "partido": "MDB", "pct": 18 },
+      { "candidato": "Outros candidatos", "partido": null, "pct": 1 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 7 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 5 }
+    ],
+    "observacao": "Divulgada na sexta-feira 02/10/2026; campo de 28/09 a 01/10, 1.600 entrevistas presenciais, margem de 2 p.p., 95% de confiança. CONTRATANTE: a cobertura afirma pesquisa contratada pela Record TV — afirmação da fonte, não inferência; os demais veículos que reproduziram os números (CartaCapital, Poder360, Exame, Revista Oeste, Polêmica Paraíba) são divulgadores e NÃO foram tratados como contratantes. NÚMEROS DO TOTAL: a manchete de 51% x 27% x 21% é voto válido e não foi usada. TESTE TOTAL-VS-VÁLIDOS: a soma dos candidatos é 45+24+18+1 = 88; 45/88 = 51,1 ≈ 51 (válido publicado) e 24/88 = 27,3 ≈ 27 (válido publicado), confirmando o corte do total. Para Cícero Lucena, 18/88 = 20,45, que arredondaria para 20 contra os 21 publicados: a diferença de 1 p.p. decorre de a tabela do total ser divulgada em inteiros (o denominador real implícito nos três válidos é ~87,5, com 18/87,5 = 20,6 ≈ 21); nenhum valor foi ajustado. SOMA DA TABELA: 88 de candidatos + 7 de brancos/nulos + 5 de não sabe/não respondeu = 100 exatos. A linha \"Outros candidatos\" (1%) é agregada pelo instituto, por isso entra sem partido. Os cenários de 2º TURNO desta mesma rodada NÃO foram ingeridos: a cobertura publica apenas o lado de Lucas Ribeiro no total (52% contra Efraim Filho e 50% contra Cícero Lucena), sem o percentual do adversário nem as linhas de brancos/nulos; o par 63% x 37% divulgado por parte da imprensa é voto válido (soma 100) e não foi convertido. REGISTRO TSE PB-01003/2026 conforme informado na própria cobertura. Real Time Big Data está sob suspensão judicial em PR, CE, MA, RN, AL, SE e TO — a Paraíba NÃO está nessa lista, por isso esta rodada foi ingerida normalmente. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-10-02-real-time-big-data-am-governador-t1",
+    "uf": "AM",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "AM-07297/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-28",
+    "dataFim": "2026-10-01",
+    "publicadoEm": "2026-10-02",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "CartaCapital",
+      "url": "https://www.cartacapital.com.br/politica/aziz-lidera-disputa-pelo-governo-do-amazonas-em-1o-turno-aponta-real-time-big-data/"
+    },
+    "resultados": [
+      { "candidato": "Omar Aziz", "partido": "PSD", "pct": 36 },
+      { "candidato": "Roberto Cidade", "partido": "União Brasil", "pct": 24 },
+      { "candidato": "Professora Maria do Carmo", "partido": "PL", "pct": 24 },
+      { "candidato": "David Almeida", "partido": "Avante", "pct": 9 },
+      { "candidato": "Cabo Daciolo", "partido": "Mobiliza", "pct": 2 },
+      { "candidato": "Outros candidatos", "partido": null, "pct": 1 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 2 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 2 }
+    ],
+    "observacao": "Divulgada na sexta-feira 02/10/2026; campo de 28/09 a 01/10, 1.600 eleitores do Amazonas, margem de 2 p.p., 95% de confiança. CONTRATANTE null: nenhuma das matérias localizadas informou quem contratou esta rodada do Amazonas — os veículos que a divulgaram (CartaCapital, Poder360, Gazeta do Povo, Gazeta da Amazônia, Redação Amazônia, Portal Manaus Alerta) são parceiros de divulgação e NÃO foram tratados como contratantes; a rodada paralela do mesmo instituto no Paraná é descrita como autofinanciada e a da Paraíba como contratada pela Record TV, mas nenhuma dessas afirmações se estende ao Amazonas e nada foi inferido. NÚMEROS DO TOTAL: a manchete de 38% x 25% x 25% é voto válido e não foi usada. TESTE TOTAL-VS-VÁLIDOS: a soma dos candidatos é 36+24+24+9+2+1 = 96; 36/96 = 37,5 ≈ 38 (válido publicado), 24/96 = 25,0 = 25 (válido publicado, idêntico para Roberto Cidade e Maria do Carmo) — confere exatamente e confirma o corte do total. SOMA DA TABELA: 96 de candidatos + 2 de brancos/nulos + 2 de não sabe/não respondeu = 100 exatos, sem ajuste de nenhum valor. A linha \"Outros candidatos\" (1%) é agregada pelo instituto, por isso entra sem partido. REGISTRO TSE AM-07297/2026 conforme informado na própria cobertura. Real Time Big Data está sob suspensão judicial em PR, CE, MA, RN, AL, SE e TO — o Amazonas NÃO está nessa lista, por isso esta rodada foi ingerida normalmente. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-10-02-real-time-big-data-am-governador-t2-cidade-aziz",
+    "uf": "AM",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "AM-07297/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-28",
+    "dataFim": "2026-10-01",
+    "publicadoEm": "2026-10-02",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno (Roberto Cidade x Omar Aziz)",
+    "fonte": {
+      "nome": "CartaCapital",
+      "url": "https://www.cartacapital.com.br/politica/aziz-lidera-disputa-pelo-governo-do-amazonas-em-1o-turno-aponta-real-time-big-data/"
+    },
+    "resultados": [
+      { "candidato": "Roberto Cidade", "partido": "União Brasil", "pct": 45 },
+      { "candidato": "Omar Aziz", "partido": "PSD", "pct": 45 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 6 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 4 }
+    ],
+    "observacao": "Recorte de 2º turno da mesma rodada AM-07297/2026 (campo 28/09 a 01/10, 1.600 entrevistas, margem 2 p.p.), divulgada em 02/10/2026. Confronto Roberto Cidade x Omar Aziz: empate em 45% a 45%. SOMA DA TABELA: 45+45+6+4 = 100 exatos — este recorte já é divulgado no total (inclui brancos/nulos e não sabe), portanto não há conversão de válidos envolvida e nenhum valor foi ajustado. Este registro contém APENAS os dois nomes deste confronto; o confronto Roberto Cidade x Professora Maria do Carmo da mesma rodada está em registro separado, e os nomes dos dois cenários não foram misturados. CONTRATANTE null: nenhuma matéria localizada informou o contratante desta rodada do Amazonas; os veículos divulgadores não foram tratados como contratantes. REGISTRO TSE AM-07297/2026 conforme a cobertura. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-10-02-real-time-big-data-am-governador-t2-cidade-carmo",
+    "uf": "AM",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "AM-07297/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-28",
+    "dataFim": "2026-10-01",
+    "publicadoEm": "2026-10-02",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno (Roberto Cidade x Professora Maria do Carmo)",
+    "fonte": {
+      "nome": "CartaCapital",
+      "url": "https://www.cartacapital.com.br/politica/aziz-lidera-disputa-pelo-governo-do-amazonas-em-1o-turno-aponta-real-time-big-data/"
+    },
+    "resultados": [
+      { "candidato": "Roberto Cidade", "partido": "União Brasil", "pct": 45 },
+      { "candidato": "Professora Maria do Carmo", "partido": "PL", "pct": 39 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 8 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 8 }
+    ],
+    "observacao": "Recorte de 2º turno da mesma rodada AM-07297/2026 (campo 28/09 a 01/10, 1.600 entrevistas, margem 2 p.p.), divulgada em 02/10/2026. Confronto Roberto Cidade x Professora Maria do Carmo: 45% a 39%. SOMA DA TABELA: 45+39+8+8 = 100 exatos — este recorte já é divulgado no total (inclui brancos/nulos e não sabe), portanto não há conversão de válidos envolvida e nenhum valor foi ajustado. Este registro contém APENAS os dois nomes deste confronto; o confronto Roberto Cidade x Omar Aziz da mesma rodada está em registro separado, e os nomes dos dois cenários não foram misturados. CONTRATANTE null: nenhuma matéria localizada informou o contratante desta rodada do Amazonas; os veículos divulgadores não foram tratados como contratantes. REGISTRO TSE AM-07297/2026 conforme a cobertura. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  }
+]

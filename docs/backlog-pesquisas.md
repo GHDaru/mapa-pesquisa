@@ -1201,3 +1201,247 @@ registra totais e converter seria inventar:
 - **03/10:** última rodada do Datafolha vai a campo.
 
 A varredura de sábado será a mais pesada do projeto.
+
+## A suíte de testes esteve vermelha por quatro dias (02/10)
+
+Ao estabelecer a linha de base de hoje, a suíte voltou **12 falhas** numa
+árvore limpa. Não era corrida com os subagentes: o `md5sum` de
+`data/polls.json` antes e depois da rodada é o mesmo.
+
+Bisecção, em árvore de trabalho isolada (`git worktree`), commit por commit:
+
+| commit | pesquisas na base | suíte |
+|---|---|---|
+| `e844b75` (último que ajustou os testes) | 578 | verde |
+| `c96fc17` | 581 | verde |
+| `4719cd1` | 624 | **5 falhas** |
+| `c79d141` | 690 | 9 falhas |
+| `9202e24` (ontem) | 788 | 12 falhas |
+
+Quebrou em **`4719cd1`**, a mesclagem de 28/09. De lá para cá houve quatro
+rodadas diárias — 28/09, 29/09, 30/09 e 01/10 — e em todas eu commitei
+relatando a suíte verde. **Quatro relatos falsos**, pelo mesmo mecanismo do
+incidente dos "577 testes": a linha de falha não foi lida.
+
+### A causa: contagens do dia cravadas como se fossem invariantes
+
+Os testes afetados liam dados reais e cravavam o resultado:
+`expect(t2.filter((u) => u.unica)).toHaveLength(16)`,
+`toEqual(['AC','MT','PI','RS','RO'])`, `toBe(25)`, `"12 dos 22 cartões"`,
+`"Rio de Janeiro soma 90%"`. Nenhum desses números é invariante: um estado
+sai da lista de "pesquisa única" ao ganhar a segunda pesquisa, e a soma de
+um recorte muda quando entra uma pesquisa que publica outra linha. Com a
+base crescendo todo dia, eram bombas de tempo.
+
+O relógio **não** é a causa — os testes fixam `hoje` em 26/09. É o dado.
+
+Reescritos como propriedades, mantendo o número medido no comentário:
+
+- marca de pesquisa única ⟺ tem dado e tem uma pesquisa só (**nos dois
+  sentidos**: antes nada impedia uma UF de pesquisa única deixar de ser
+  marcada);
+- cartão é ponto único ⟺ desenha uma data só;
+- a nota da soma emite o ramo correspondente à soma real de cada UF;
+- a ressalva de base parcial aparece em toda UF na condição, com guarda de
+  não-vacuidade (se nenhuma UF estiver na condição, o teste falha em vez de
+  passar sem exercer nada);
+- `pesquisasSemAmostraDesenhadas` é conferida contra a soma lida do dado,
+  não contra uma constante;
+- a tinta espalha mais que o canal de confiança que substituiu
+  (`lidera4` < `solid`), em vez de fixar 14 e 25.
+
+### Uma afirmação que deixou de ser verdadeira
+
+O teste dizia *"2º turno: nenhum cartão perde a linha — ali ela é o limiar
+de vitória"*. Nunca foi necessidade, só fato do dado. Hoje o **Pará** no 2º
+turno a perde com razão: os dois nomes ficam entre 36 e 44, e o mais alto
+está a 6 pontos de 50, fora da vizinhança de `PROXIMIDADE_BASE_50 = 4`.
+Agora o teste exige que nenhum cartão perca a linha **tendo** valor perto
+dela, que é o que protege o leitor.
+
+### Um teste que passava sem testar nada
+
+`marcasDePesquisaUnica` devolve `desenhadasLargo` e `desenhadasEstreito`
+**a partir de** `naSigla`, por construção. Logo
+`expect(m.declaradas).toBe(m.desenhadasLargo)` não podia falhar — mesmo
+defeito do teste do `data-degrau`. O defeito original (o asterisco era
+`<tspan>` da sigla, e a sigla de estado estreito some abaixo de 640px: a
+400px do 2º turno a legenda dizia 16 e o mapa desenhava 12) só se verifica
+contando asteriscos no SVG.
+
+**Lacuna em aberto:** o mapa é construído com `document.createElementNS` e a
+suíte roda em ambiente `node`, sem DOM — esse teste **não existe**. A
+garantia da independência da largura hoje é leitura de código, não execução.
+Fechá-la exige um ambiente de teste com DOM.
+
+## Anotadas em 2026-10-02 (sexta)
+
+Dia magro, como esperado de uma sexta: **9 pesquisas novas** (0 presidente,
+5 governador, 4 senador). O volume é amanhã.
+
+Correção de calendário: 02/10 é **sexta**, não sábado. O briefing dos
+agentes dizia sábado; o agente de presidente localizou o erro pelas fontes
+e ajustou a expectativa sozinho.
+
+### Recusadas por existirem só em votos válidos (não convertidas, não estimadas)
+
+- **Gerp / RJ governador** (pub. 02/10, n=1.200): Paes 47, Ruas 38,
+  Garotinho 9, Siri 2, Busnello 2, Marinho 1 — só válidos, sem tabela do
+  total.
+- **Neokemp / SC governador** (campo 29/09–01/10, n=1.008): Jorginho Mello
+  60,6 / Merísio 19 / João Rodrigues 17,4, com a fonte dizendo
+  explicitamente "votos válidos, que excluem brancos, nulos e indecisos".
+- **Real Time Big Data / PB governador, 2º turno**: a cobertura publica só o
+  lado de Lucas Ribeiro no total (52% contra Efraim, 50% contra Cícero), sem
+  o percentual do adversário nem brancos/nulos. O par 63 x 37 é válido
+  (soma 100). Os dois confrontos ficaram fora.
+- **Paraná Pesquisas / RJ, cenário SEM Garotinho**: o teste fecha
+  (44,5/85,58 = 52,0 e 32,6/85,58 = 38,1), mas os candidatos menores do
+  cenário não foram itemizados em nenhuma fonte — faltam ~8,5 p.p.
+
+### Recusada por inconsistência interna
+
+- **IRG / Grupo RIC — PR governador** (pub. 02/10, campo 29/09–01/10,
+  n=1.200, PR-04957/2026): dois conjuntos irreconciliáveis para a mesma
+  divulgação (40,6 / 28,4 / 23 numa chamada; 40,2 / 24,8 / 21 em outra) e,
+  com brancos/nulos 14,1 + não sabe 4,2, a tabela vai a **110,3** no
+  primeiro conjunto. O instituto também testa chapas (candidato + vice),
+  formato de pergunta diferente. Descartada inteira.
+
+### Real Time Big Data: rodadas de 02/10 barradas pela suspensão
+
+Existem, foram localizadas com números, e **não entraram** por estarem em
+estado sob suspensão judicial do instituto:
+
+- **PR governador** (campo 28/09–01/10, n=1.600, PR-04002/2026): Moro 40 /
+  Sandro Alex 32 / Requião Filho 26 em válidos.
+- **PR senador**: Deltan 21, Curi 19, Filipe Barros 19, Gleisi 16.
+- **TO governador**: Dorinha 44 / Vicentinho Júnior 39.
+- **TO senador**: Eduardo Gomes 24, Guimarães 17, Gaguim 17, Mourão 11.
+- **AL governador** (n=1.600): Renan Filho 52 / JHC 48.
+- **AL senador**: Marina JHC 27, Renan 23, Lira 22.
+
+Movimentação judicial do dia: o **TRE-CE** suspendeu em 01/10, por liminar,
+o registro **CE-08985/2026**, previsto para divulgação em 02/10, a pedido da
+coligação "Unir para Mudar", de Ciro Gomes — essa rodada não saiu. No
+**MA** a liminar foi **revogada** (MA-02569/2026 liberado). O **RN** também
+tirou a sua do ar. Fundamento confirmado no PR: a juíza apontou "manifesta
+inverossimilhança" entre o gasto declarado em pesquisas autofinanciadas e a
+capacidade econômica da empresa, que "excedia exponencialmente a receita
+bruta anual e o lucro líquido do exercício anterior".
+
+Nas UFs ingeridas hoje (**PB** e **AM**) o instituto **não** está sob
+suspensão — conferido por busca independente da sessão principal. As duas
+rodadas existem com o campo descrito e não há decisão contra elas.
+
+### Instituto Veritá — reportado, não ingerido (regra em vigor)
+
+- Rodadas de 01/10 em **GO, MG e DF** com recorte de senador (em GO,
+  "Gayer e Gracinha lideram").
+- Rodada presidencial divulgada em 30/09: Flávio 45,14% x Lula 44,65% **em
+  votos válidos**, campo citado 10–19/09, 40.500 entrevistas. Teria ainda
+  dois outros impedimentos além da regra: só válidos, e fora da janela.
+- Divulgação na **Bahia** em 02/10: o registro **BA-03016/2026** foi
+  suspenso pela Justiça a pedido da coligação de Jerônimo Rodrigues. O
+  Veritá está entre os nove registros baianos da reta final.
+- Contexto: o instituto teve pesquisas barradas em **13 estados e no DF**
+  neste ciclo.
+
+### Conferências independentes da sessão principal
+
+- **Paraná Pesquisas / RJ** — contratante `Paraná Pesquisas`
+  (autofinanciada) **confirmado** como afirmado, não inferido: a fonte diz
+  "contratada pelo próprio instituto", com recursos próprios. Registro
+  RJ-07095/2026, n=1.600 em 54 municípios, margem 2,5 — tudo conferido. Os
+  válidos publicados (Paes 47,9 x Ruas 34,4) reproduzem a tabela do total
+  gravada: 41,9/87,6 = 47,83 e 30,1/87,6 = 34,36.
+- **Real Time Big Data / PB** — contratante **Record** confirmado como
+  afirmado: "contratada pela Record com recursos próprios, ao custo de R$ 20
+  mil", registro PB-01003/2026.
+- **Registro preenchido**: a ficha de **senador da PB** estava com
+  `registroTSE: null`. O PB-01003/2026 cobre a MESMA rodada nos dois cargos
+  — a divulgação é titulada "pesquisa para governo e Senado na Paraíba", com
+  o mesmo campo, amostra e margem. Preenchido com essa justificativa.
+
+### Divergência de dados anotada, não corrigida
+
+A base carrega **nove grafias diferentes** para a mesma emissora como
+contratante: `Record TV` (3), `Rede Record` (4), `Rede Record de Televisão`
+(8), `Rádio e Televisão Record S/A` (6), `Rádio e Televisão Record S.A. /
+Rede Record de Televisão` (4), `Rede Record Minas` (5), `Record` (2),
+`Rede Record de Televisão/Record TV` (1), `TV Atual (afiliada Record News)`
+(2). Qualquer contagem por contratante está fragmentada. Uniformizar exigiria
+editar pesquisas antigas, o que a rotina proíbe — fica registrado para
+decisão. As duas fichas de hoje foram alinhadas entre si em `Record TV`.
+
+### Lacunas: existem, sem números fechados
+
+- **Bahia, as três registradas para divulgação em 02/10**: entre elas
+  **100% Cidades** (n=1.000, campo 28/09–02/10, margem 3,1) e **Publivende**
+  (n=2.200, campo 27/09–01/10). Nenhum percentual apareceu. A Bahia era a
+  prioridade do dia e fechou sem ingestão.
+- **Inope / RR senador** — divulgada 02/10 às 20h (n=1.079, margem 2,98,
+  parceria FolhaBV), metodologia conhecida, percentuais não localizados.
+- **Exata / DF senador** e **IPPI senador** — registradas para 02/10, sem
+  números nos resumos.
+- **AtlasIntel nacional** (campo 27/09–02/10, n≈5.000, margem 1,0),
+  **PoderData/Aya nacional** (30/09–02/10), **Quaest nacional** (02–03/10,
+  n=3.702), **Gerp nacional** (01–03/10, n=2.400), **Futura nacional**
+  (29/09–03/10, n=2.000): registradas, em campo, não divulgadas. A pista do
+  PoderData para hoje **não se confirmou** — a casa está no lote de 03/10.
+- **Palver nacional** (campo 30/09–01/10, n=5.000, margem citada **4,0**):
+  atenção para amanhã — n=5.000 com ±4 é exatamente o padrão de
+  inconsistência que fez descartar a ficha de 21/09. Conferir metodologia
+  antes de ingerir.
+- **AtlasIntel estaduais**: a lacuna se reduziu a **RS e MT**. MS, SC, PR,
+  AM, GO e CE já têm entrada.
+
+### Institutos e rodadas anteriores ausentes da base (não buscadas hoje)
+
+- **Instituto França / BA presidente** — Lula 48,96% x Flávio 24,97% no 1º
+  turno, campo 23–26/09, n=2.000, margem 2,2, divulgada 28/09. Faltam a
+  tabela completa e o registro.
+- **AtlasIntel / BA governador, 2º turno** da rodada de campo 24–28/09
+  (divulgada 30/09, n=2.000) — a base tem só o 1º turno, e as manchetes
+  falam em empate "nos 2 turnos".
+- **AtlasIntel / BA governador**, rodada anterior de campo 28/08–02/09,
+  n=1.804, contratada por A Tarde.
+- **AtlasIntel / RS governador** — nenhuma rodada na base; duas
+  identificadas (campo 27/08–01/09, n=1.783, Zucco 44,3 / Brizola 37,5, 2º
+  turno 48,5 x 43,9; e uma posterior em válidos).
+- **AtlasIntel / MT governador** — nenhuma rodada na base.
+- **Senador**: Paraná Pesquisas / BA (campo 21–23/09, n=1.400, soma 132,7 →
+  leitura 2); Real Time / BA (pub. 28/09, consolidado Rui 28 / Wagner 20,
+  com 1º voto Rui 39 — leitura 3); Real Time / MS (campo 05–09/09, lacuna
+  antiga, **confirmado que não houve rodada nova em outubro**); Real Time /
+  RR (pub. ~10/09); Quaest / RR (campo 21–24/09); PoderData / AM (campo
+  20–23/09, n=1.200, 1ª escolha Braga 42 — leitura 1).
+
+### Calendário: 03/10, o último dia de divulgação
+
+**Onze institutos** divulgam no sábado, segundo a Gazeta do Povo: Quaest,
+Datafolha, CNT/MDA, Palver, PoderData, Meio/Ideia, Real Time Big Data,
+AtlasIntel, Alfa Inteligência, Neokemp e Paraná Pesquisas, mais Gerp entre
+os de presidente.
+
+- **Quaest**: governador e Senado nos 26 estados **e no DF**, mais recorte
+  presidencial.
+- **AtlasIntel**: governador e senadores em todos os estados e no DF, mais
+  presidencial.
+- **Datafolha**: SP, RJ, MG, DF, PE, CE e PI — a última rodada vai a campo
+  **em 03/10** e sai no mesmo dia.
+- **Ceará**, três rodadas: Datafolha (contratada pelo O POVO, n=1.560, campo
+  02–03/10), Quaest (TV Verdes Mares, CE-04790/2026, n=2.004, campo
+  02–03/10) e AtlasIntel (Focus Poder, n=2.200, campo 27/09–02/10,
+  CE-01031/2026) — esta última com recorte presidencial novo, já que a base
+  tem a rodada CE de campo 23–28/09.
+- **Paraná Pesquisas**: SP, BA, CE, MT e AL. **Alfa Inteligência** e
+  **Neokemp**: PR (Neokemp também RS). **Real Time Big Data**: MG.
+- **Bahia**: das nove registradas, seis saem em 03/10 — Quaest, AtlasIntel,
+  Instituto Franca, Paraná Pesquisas, DataTrends e Datasensus, além do
+  Veritá, que está barrado pela regra. **São de governador, não de senador**
+  — a pista anterior estava errada nesse ponto.
+- Em 02/10 houve **50 pesquisas registradas** no TSE para divulgação, a
+  maioria sem recorte de senador.
+
+Amanhã é a varredura mais pesada do projeto, e a última antes da eleição.
