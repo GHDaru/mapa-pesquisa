@@ -1274,6 +1274,40 @@ suíte roda em ambiente `node`, sem DOM — esse teste **não existe**. A
 garantia da independência da largura hoje é leitura de código, não execução.
 Fechá-la exige um ambiente de teste com DOM.
 
+## O site ficou cinco dias parado, e pela mesma causa (02/10)
+
+A suíte vermelha não ficou contida nos testes. O workflow de deploy roda
+`npm test` **antes** de `npm run build`:
+
+```
+- run: npm ci
+- run: npm test
+- run: npm run build
+```
+
+Resultado: desde `4719cd1` (28/09), o mesmo commit que derrubou a suíte,
+**todo deploy falhou**. O histórico do GitHub Actions:
+
+| commit | data | deploy |
+|---|---|---|
+| `c96fc17` | 27/09 | **success** (último bom) |
+| `4719cd1` | 28/09 | failure |
+| `367f3b9`, `c79d141` | 29/09 | failure |
+| `a159978`, `d4cd10e` | 30/09 | failure |
+| `e7a062a`, `f13108e`, `b42c15f`, `9202e24` | 01/10 | failure |
+
+O push funcionava — e é isso que tornou o erro invisível. Eu lia "push OK"
+e relatava "push e deploy funcionaram", quatro dias seguidos, quando o
+site em ghdaru.github.io/mapa-pesquisa seguia servindo a base de **27/09,
+com 581 pesquisas**, enquanto o repositório chegava a 788. A rodada da
+Quaest, a onda final do Datafolha, o Espírito Santo recuperado: nada disso
+chegou ao ar.
+
+A causa é a mesma dos quatro relatos falsos de suíte verde: conferir que o
+comando rodou em vez de ler o que ele devolveu. O passo 4 de
+`docs/routine-diaria.md` passou a exigir a leitura de `conclusion` do
+workflow antes de afirmar que o deploy funcionou.
+
 ## Anotadas em 2026-10-02 (sexta)
 
 Dia magro, como esperado de uma sexta: **9 pesquisas novas** (0 presidente,

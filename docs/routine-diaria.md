@@ -48,7 +48,20 @@ Data de hoje (UTC) = `HOJE`. Última atualização = `atualizadoEm` em `data/met
    `dados: verificação HOJE, sem pesquisas novas` — `meta.json` muda mesmo
    assim, para o site mostrar quando foi a última checagem) e
    `git push -u origin claude/mapa-eleitoral-brasil-uhl8ol` com retry
-   (2/4/8/16 s). O deploy no GitHub Pages é automático.
+   (2/4/8/16 s).
+
+   **Conferir o deploy, não supor.** O workflow roda `npm test` ANTES de
+   `npm run build`: suíte vermelha = deploy falho = site parado, com o push
+   tendo funcionado normalmente. Esperar a conclusão e ler o resultado:
+
+   ```
+   gh api "repos/GHDaru/mapa-pesquisa/actions/runs?head_sha=<sha>"
+   ```
+
+   Só dizer que o deploy funcionou depois de ver `conclusion: success`.
+   Entre 28/09 e 01/10 o deploy falhou quatro vezes seguidas e foi relatado
+   como automático e bem-sucedido nas quatro; o site ficou cinco dias
+   mostrando a base de 27/09.
 5. **Backlog**: pesquisas anteriores à janela que os agentes notarem faltando
    vão para `docs/backlog-pesquisas.md` (não são buscadas no mesmo dia).
 6. **Resumo** de 5 linhas: novas por cargo, institutos, lacunas, push/deploy.
@@ -77,4 +90,12 @@ reescreve `data/polls.json`. Não é preciso mexer nos blocos antigos.
 - 2026-09-22: dois agentes se contradisseram sobre o Datafolha do CE. O que disse "não saiu" só tinha varrido o recorte presidencial; a rodada existia (Ciro 47 x Elmano 40). Lição registrada: **"não saiu" só vale para o cargo que aquele agente varreu** — o resumo precisa dizer qual. Na mesma execução, corrigido um palpite meu: eu havia passado ao agente que a rodada da AtlasIntel no CE de 21/09 era Lula 51,6 x 25,7; o agente provou que esses eram os números de 04/09 e trouxe os corretos (56,6 x 33,8), confirmados depois por busca independente. Removida também uma pesquisa com contratante "Rede Record de Televisão" inferido de um calendário, não afirmado pela matéria.
 - 2026-09-23: fechada a cobertura de 2º turno Lula x Flávio em AL, RR e SC. Registradas no backlog as armadilhas bloqueadas.
 - 2026-09-24 e 25: rodadas normais. Em 25/09 o usuário decidiu que as quatro pesquisas do Veritá **permanecem na base com o alerta**, em vez de serem removidas. TO fechou o 2º turno; RO é a última lacuna (só o Veritá tem rodada lá, e está suspensa).
+- 2026-10-02: a execução descobriu que a suíte estava vermelha desde a
+  mesclagem de 28/09 (contagens do dia cravadas como invariantes nos testes
+  que leem dados reais) e que, por causa disso, **o deploy falhou nas quatro
+  rodadas seguintes** — o site ficou congelado na base de 27/09, com 581
+  pesquisas, enquanto a base local chegava a 788. Nos quatro dias o relato
+  foi de suíte verde e deploy automático. Causa comum nos dois casos: não
+  ler o resultado, só o fato de o comando ter rodado. Passo 4 passou a
+  exigir a leitura da conclusão do workflow.
 - 2026-09-26: fora da rotina, auditoria das somas dos 125 recortes ao corrigir as categorias de não-candidato. Alagoas no 2º turno presidencial somava 109,28% porque cada grafia de "brancos/nulos" virava uma linha própria no agregado. Corrigido. A auditoria revelou um bug pendente: os recortes de governador no 2º turno misturam confrontos diferentes e mostram três pessoas num returno de duas (ver `docs/backlog-pesquisas.md`).
