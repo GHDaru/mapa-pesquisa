@@ -1,0 +1,110 @@
+[
+  {
+    "id": "2026-10-03-atlasintel-ba-governador-t1",
+    "uf": "BA",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": null,
+    "contratante": "A Tarde",
+    "dataInicio": "2026-09-27",
+    "dataFim": "2026-10-02",
+    "publicadoEm": "2026-10-03",
+    "amostra": 2199,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno (total, cenário geral)",
+    "fonte": {
+      "nome": "Band",
+      "url": "https://www.band.com.br/politica/eleicoes/jeronimo-tem-51-contra-47-de-acm-neto-pelo-governo-da-bahia-diz-atlas"
+    },
+    "resultados": [
+      { "candidato": "Jerônimo Rodrigues", "partido": "PT", "pct": 51 },
+      { "candidato": "ACM Neto", "partido": "União Brasil", "pct": 47 },
+      { "candidato": "Ronaldo Mansur", "partido": null, "pct": 0.4 },
+      { "candidato": "Ariel Capistrano", "partido": null, "pct": 0.4 },
+      { "candidato": "Maria Bona", "partido": null, "pct": 0.3 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 0.9 },
+      { "candidato": "Não sabe", "partido": null, "pct": 0.2 }
+    ],
+    "observacao": "Última rodada AtlasIntel na Bahia antes do 1º turno, divulgada no sábado 03/10/2026; campo de 27/09 a 02/10, margem de 2 p.p. e 95% de confiança. CONTRATANTE: o jornal A Tarde, afirmado explicitamente pelas fontes ('AtlasIntel, contratada pelo jornal A Tarde') — não é inferência de parceria de divulgação. NÚMEROS DO TOTAL: a manchete de 51,5% x 47,4% é VOTO VÁLIDO e não foi usada. Os valores desta ficha são os percentuais do cenário geral publicados por Band e Metrópoles (51% e 47%). TESTE TOTAL-VS-VÁLIDOS: soma dos candidatos = 51 + 47 + 0,4 + 0,4 + 0,3 = 99,1; 51 ÷ 99,1 = 51,46 ≈ 51,5 e 47 ÷ 99,1 = 47,43 ≈ 47,4, reproduzindo exatamente os válidos publicados — o que confirma que 51 e 47 são o corte do total (os valores com uma decimal por trás do arredondamento são ≈50,9 e ≈46,9; nada foi convertido nem estimado, os dois números usados são publicados). Confirmação adicional: 51,5 arredondaria para 52, não para 51, logo o '51%' das manchetes só pode ser total. SOMA DA TABELA: 100,2, por arredondamento das linhas de uma decimal — nenhum valor foi ajustado para fechar 100. PARTIDO null em Ronaldo Mansur, Ariel Capistrano e Maria Bona: são candidatos de verdade, mas nenhuma das fontes localizadas informou a legenda deles, e a sigla não foi adivinhada. REGISTRO TSE null: nenhum dos resumos localizados trouxe o número de registro desta rodada baiana (a AtlasIntel informou registro em outros estados da mesma onda, ex.: PA-06872/2026 e ES-01573/2026, mas não na BA). Divergência de amostra: parte das fontes fala em 2.200 entrevistas e parte em 2.199 — adotado 2.199, que é o número da fonte mais detalhada. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-10-03-atlasintel-ba-governador-t2-jeronimo-neto",
+    "uf": "BA",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": null,
+    "contratante": "A Tarde",
+    "dataInicio": "2026-09-27",
+    "dataFim": "2026-10-02",
+    "publicadoEm": "2026-10-03",
+    "amostra": 2199,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno Jerônimo Rodrigues x ACM Neto (total)",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/jeronimo-lidera-na-bahia-com-512-das-intencoes-no-2o-turno/"
+    },
+    "resultados": [
+      { "candidato": "Jerônimo Rodrigues", "partido": "PT", "pct": 51.2 },
+      { "candidato": "ACM Neto", "partido": "União Brasil", "pct": 47 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 1.2 },
+      { "candidato": "Não sabe", "partido": null, "pct": 0.7 }
+    ],
+    "observacao": "Cenário de 2º turno da mesma rodada AtlasIntel na Bahia (campo 27/09 a 02/10, divulgação 03/10/2026). Ficha com APENAS os dois nomes deste confronto, conforme a regra de um registro por confronto. CONTRATANTE: jornal A Tarde, afirmado explicitamente pela fonte. NÚMEROS DO TOTAL: os 51,2% e 47% são o corte do total (manchete do Poder360, '51,2% das intenções no 2º turno'), e a fonte publica as linhas de brancos/nulos (1,2%) e não sabe (0,7%) separadamente. TESTE TOTAL-VS-VÁLIDOS: soma dos candidatos = 51,2 + 47 = 98,2; 51,2 ÷ 98,2 = 52,14 ≈ 52,1 e 47 ÷ 98,2 = 47,86 ≈ 47,9, exatamente os votos válidos publicados (52,1% x 47,9%) — corte do total confirmado. SOMA DA TABELA: 100,1 (98,2 + 1,2 + 0,7), por arredondamento; nenhum valor ajustado para fechar 100. REGISTRO TSE null: não informado em nenhum dos resumos localizados para a rodada baiana. ID do confronto grafado com os nomes de uso corrente (jeronimo-neto), como já faz o restante da base (ex.: -t2-cleitinho-patrus, -t2-lyra-campos). WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-10-03-atlasintel-pa-governador-t1",
+    "uf": "PA",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "PA-06872/2026",
+    "contratante": "Federação da Agricultura e Pecuária do Pará",
+    "dataInicio": "2026-09-27",
+    "dataFim": "2026-10-02",
+    "publicadoEm": "2026-10-03",
+    "amostra": 1206,
+    "margem": 3,
+    "cenario": "estimulada, 1º turno (total, cenário geral)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-senador-para-outubro-2026/"
+    },
+    "resultados": [
+      { "candidato": "Hana Ghassan", "partido": "MDB", "pct": 50.4 },
+      { "candidato": "Dr. Daniel", "partido": "Podemos", "pct": 44.4 },
+      { "candidato": "Araceli", "partido": "PSOL", "pct": 0.8 },
+      { "candidato": "Gal Leite", "partido": "UP", "pct": 0.3 },
+      { "candidato": "Não sabe", "partido": null, "pct": 2.4 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 1.4 }
+    ],
+    "observacao": "Última rodada AtlasIntel no Pará antes do 1º turno, divulgada no sábado 03/10/2026; campo de 27/09 a 02/10 por recrutamento digital aleatório (Atlas RDR), margem de 3 p.p. e 95% de confiança. CONTRATANTE: Federação da Agricultura e Pecuária do Pará, afirmada explicitamente pela fonte junto do número de registro — não é inferência. NÚMEROS DO TOTAL: a manchete de 52,5% x 46,3% é VOTO VÁLIDO e não foi usada; esta ficha usa o 'cenário geral' publicado (Hana 50,4%, Dr. Daniel 44,4%, Araceli 0,8%, Gal Leite 0,3%, não sabe 2,4%, brancos/nulos 1,4%). TESTE TOTAL-VS-VÁLIDOS: soma dos candidatos = 50,4 + 44,4 + 0,8 + 0,3 = 95,9; 50,4 ÷ 95,9 = 52,55 ≈ 52,5 e 44,4 ÷ 95,9 = 46,30 ≈ 46,3, batendo exatamente com os válidos publicados; Araceli 0,8 ÷ 95,9 = 0,83 ≈ 0,9, também igual ao válido publicado. Único resíduo: Gal Leite dá 0,3 ÷ 95,9 = 0,31 ≈ 0,3 contra 0,4 publicado em válidos — diferença de 0,1 explicada pelo arredondamento de uma decimal do próprio valor de linha, e sem efeito sobre a identificação do corte. SOMA DA TABELA: 99,7, dentro da tolerância de arredondamento; nenhum valor foi ajustado para fechar 100. REGISTRO TSE: PA-06872/2026, informado pela fonte. Divergência de amostra: alguns resumos dizem 1.200 e outros 1.206 entrevistas — adotado 1.206, da fonte mais detalhada. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  },
+  {
+    "id": "2026-10-03-atlasintel-pa-governador-t2-hana-daniel",
+    "uf": "PA",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "PA-06872/2026",
+    "contratante": "Federação da Agricultura e Pecuária do Pará",
+    "dataInicio": "2026-09-27",
+    "dataFim": "2026-10-02",
+    "publicadoEm": "2026-10-03",
+    "amostra": 1206,
+    "margem": 3,
+    "cenario": "estimulada, 2º turno Hana Ghassan x Dr. Daniel (total)",
+    "fonte": {
+      "nome": "Band",
+      "url": "https://www.band.com.br/politica/eleicoes/atlas-governo-do-para-hana-ghassan-tem-504-contra-444-de-dr-daniel"
+    },
+    "resultados": [
+      { "candidato": "Hana Ghassan", "partido": "MDB", "pct": 51.3 },
+      { "candidato": "Dr. Daniel", "partido": "Podemos", "pct": 44.9 },
+      { "candidato": "Brancos/nulos/não sabe", "partido": null, "pct": 3.8 }
+    ],
+    "observacao": "Cenário de 2º turno da mesma rodada AtlasIntel no Pará (campo 27/09 a 02/10, divulgação 03/10/2026). Ficha com APENAS os dois nomes deste confronto, conforme a regra de um registro por confronto. CONTRATANTE: Federação da Agricultura e Pecuária do Pará, afirmada explicitamente pela fonte. NÚMEROS DO TOTAL: a fonte publica os dois cortes do cenário de 2º turno e esta ficha usa o do total — Hana 51,3% e Dr. Daniel 44,9% ('Hana aparece com 51,3% das intenções de voto, contra 44,9% de Dr. Daniel'); os 53,3% x 46,7% da manchete são voto válido e NÃO foram usados. TESTE TOTAL-VS-VÁLIDOS: soma dos candidatos = 51,3 + 44,9 = 96,2; 51,3 ÷ 96,2 = 53,32 ≈ 53,3 e 44,9 ÷ 96,2 = 46,67 ≈ 46,7, reproduzindo exatamente os válidos publicados — corte do total confirmado. LINHA RESIDUAL: a fonte não detalhou, neste cenário de 2º turno, a repartição entre brancos/nulos e indecisos; os 3,8 pontos restantes (100 − 51,3 − 44,9 = 3,8) foram lançados em uma única linha 'Brancos/nulos/não sabe'. É aritmética sobre percentuais publicados da mesma base, não estimativa, e usa o rótulo agregado que a própria AtlasIntel emprega em outros estados desta onda ('brancos, nulos e indecisos'); os percentuais dos candidatos não foram tocados. SOMA DA TABELA: 100,0. REGISTRO TSE: PA-06872/2026, informado pela fonte para a rodada. ID do confronto grafado com os nomes de uso corrente (hana-daniel), como já faz o restante da base. WebFetch bloqueado nesta sessão: dados obtidos por resumos de busca (WebSearch)."
+  }
+]

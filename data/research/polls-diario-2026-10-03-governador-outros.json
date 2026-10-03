@@ -1,0 +1,489 @@
+[
+  {
+    "id": "2026-10-03-datafolha-sp-governador-t1",
+    "uf": "SP",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": null,
+    "contratante": "Folha de S.Paulo e TV Globo",
+    "dataInicio": "2026-10-02",
+    "dataFim": "2026-10-03",
+    "publicadoEm": "2026-10-03",
+    "amostra": 2520,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-governador-sao-paulo-outubro-2026-vespera-1-turno/"
+    },
+    "resultados": [
+      {
+        "candidato": "Tarcísio de Freitas",
+        "partido": "Republicanos",
+        "pct": 55
+      },
+      {
+        "candidato": "Fernando Haddad",
+        "partido": "PT",
+        "pct": 32
+      },
+      {
+        "candidato": "Vera Lúcia",
+        "partido": "PSTU",
+        "pct": 2
+      },
+      {
+        "candidato": "Carlos Machado",
+        "partido": "PCB",
+        "pct": 1
+      },
+      {
+        "candidato": "Vivian Mendes",
+        "partido": "UP",
+        "pct": 1
+      },
+      {
+        "candidato": "Izadora Dias",
+        "partido": "PCO",
+        "pct": 1
+      }
+    ],
+    "observacao": "Ultima rodada Datafolha antes do 1º turno, divulgada no sabado 03/10/2026 (vespera); campo 02 e 03/10, 2.520 entrevistas, margem de 2 p.p., 95% de confianca. CONTRATANTE afirmado pelas fontes (Globo e Folha de S.Paulo). NUMEROS DO TOTAL: a manchete de 60% x 35% e voto valido e nao foi usada. Teste total-vs-validos: soma dos candidatos = 55+32+2+1+1+1 = 92; 55/92 = 59,8 ~ 60 e 32/92 = 34,8 ~ 35, exatamente os validos publicados, o que confirma o corte total (no total o instituto saiu de 50% para 55% em Tarcisio e de 33% para 32% em Haddad em relacao a rodada de 01/10, ja na base). A tabela de candidatos soma 92; os ~8 pontos restantes sao brancos/nulos e indecisos, que nao foram itemizados nos resumos localizados — nenhum valor foi estimado ou ajustado para fechar 100. REGISTRO TSE null: nenhuma materia localizada informou o numero de registro desta rodada. Dados obtidos de resumos de WebSearch (WebFetch bloqueado nesta sessao)."
+  },
+  {
+    "id": "2026-10-03-datafolha-rj-governador-t1",
+    "uf": "RJ",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": null,
+    "contratante": "Folha de S.Paulo e TV Globo",
+    "dataInicio": "2026-10-02",
+    "dataFim": "2026-10-03",
+    "publicadoEm": "2026-10-03",
+    "amostra": 2010,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno (total, cenário com Anthony Garotinho)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-governador-senador-rio-de-janeiro-outubro-2026-2/"
+    },
+    "resultados": [
+      {
+        "candidato": "Eduardo Paes",
+        "partido": "PSD",
+        "pct": 41
+      },
+      {
+        "candidato": "Douglas Ruas",
+        "partido": "PL",
+        "pct": 34
+      },
+      {
+        "candidato": "Anthony Garotinho",
+        "partido": "Republicanos",
+        "pct": 7
+      }
+    ],
+    "observacao": "Ultima rodada Datafolha antes do 1º turno, divulgada no sabado 03/10/2026 (vespera); campo 02 e 03/10, 2.010 entrevistas, margem de 2 p.p. CONTRATANTE afirmado pelas fontes (Globo e Folha de S.Paulo). NUMEROS DO TOTAL: as fontes publicam explicitamente o corte de 'votos totais' (Paes 41, Ruas 34, Garotinho 7) ao lado da manchete de validos (46% x 38%), que nao foi usada. Teste total-vs-validos: 41/0,46 = 89,1 e 34/0,38 = 89,5, ou seja, a soma dos candidatos no total e ~89; os tres itemizados somam 82, logo ~7 pontos pertencem aos seis candidatos menores (William Siri, Cyro Garcia, Juliete Pantoja, Andre Marinho, Coronel Busnello e Luan Monteiro), que os resumos localizados nao itemizaram, assim como brancos/nulos e indecisos. Nada foi estimado: so entraram os percentuais publicados. O cenario simulado SEM Garotinho (Paes 49% x Ruas 40%) foi RECUSADO porque so saiu em votos validos. REGISTRO TSE null: nenhuma materia localizada informou o numero de registro desta rodada. Dados obtidos de resumos de WebSearch (WebFetch bloqueado nesta sessao)."
+  },
+  {
+    "id": "2026-10-03-datafolha-pe-governador-t1",
+    "uf": "PE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "PE-02404/2026",
+    "contratante": "Folha de S.Paulo e TV Globo",
+    "dataInicio": "2026-10-02",
+    "dataFim": "2026-10-03",
+    "publicadoEm": "2026-10-03",
+    "amostra": 1650,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-governador-senador-pernambuco-outubro-2026-2/"
+    },
+    "resultados": [
+      {
+        "candidato": "Raquel Lyra",
+        "partido": "PSD",
+        "pct": 46
+      },
+      {
+        "candidato": "João Campos",
+        "partido": "PSB",
+        "pct": 45
+      },
+      {
+        "candidato": "Ivan Moraes",
+        "partido": "PSOL",
+        "pct": 1
+      },
+      {
+        "candidato": "Renan Hallais",
+        "partido": "Missão",
+        "pct": 1
+      },
+      {
+        "candidato": "Brancos/nulos/nenhum",
+        "partido": null,
+        "pct": 4
+      },
+      {
+        "candidato": "Indecisos",
+        "partido": null,
+        "pct": 3
+      }
+    ],
+    "observacao": "Ultima rodada Datafolha antes do 1º turno, divulgada no sabado 03/10/2026 (vespera); campo 02 e 03/10, 1.650 entrevistas, margem de 2 p.p., 95% de confianca; registro PE-02404/2026. CONTRATANTE afirmado pelas fontes (Globo e Folha de S.Paulo). NUMEROS DO TOTAL: a manchete de 49% x 48% e voto valido e nao foi usada. Teste total-vs-validos: soma dos candidatos = 46+45+1+1 = 93; 46/93 = 49,5 ~ 49 e 45/93 = 48,4 ~ 48, exatamente os validos publicados, o que confirma o corte total. A tabela fecha em 100 (93 de candidatos + 4 de brancos/nulos/nenhum + 3 de indecisos). Dados obtidos de resumos de WebSearch (WebFetch bloqueado nesta sessao)."
+  },
+  {
+    "id": "2026-10-03-datafolha-ce-governador-t1",
+    "uf": "CE",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": null,
+    "contratante": "O POVO",
+    "dataInicio": "2026-10-02",
+    "dataFim": "2026-10-03",
+    "publicadoEm": "2026-10-03",
+    "amostra": 1560,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://mais.opovo.com.br/reportagens-especiais/eleicoes-datafolha-pesquisa-2026/2026/10/03/confira-a-integra-da-5-pesquisa-datafolha-para-o-governo-do-ceara.html"
+    },
+    "resultados": [
+      {
+        "candidato": "Elmano de Freitas",
+        "partido": "PT",
+        "pct": 46
+      },
+      {
+        "candidato": "Ciro Gomes",
+        "partido": "PSDB",
+        "pct": 44
+      },
+      {
+        "candidato": "Delegado Huggo",
+        "partido": "Missão",
+        "pct": 1
+      },
+      {
+        "candidato": "Vera Lúcia",
+        "partido": "Novo",
+        "pct": 1
+      },
+      {
+        "candidato": "Zé Batista",
+        "partido": "PSTU",
+        "pct": 1
+      },
+      {
+        "candidato": "Brancos/nulos/nenhum",
+        "partido": null,
+        "pct": 4
+      },
+      {
+        "candidato": "Indecisos",
+        "partido": null,
+        "pct": 3
+      }
+    ],
+    "observacao": "5ª pesquisa Datafolha no Ceara, ultima antes do 1º turno, divulgada no sabado 03/10/2026 (vespera); campo 02 e 03/10, 1.560 entrevistas em 59 municipios, margem de 2 p.p., 95% de confianca. CONTRATANTE: O POVO, afirmado explicitamente pelas fontes ('contratada pelo jornal O Povo') — nao foi inferido de parceria de divulgacao. NUMEROS DO TOTAL: a manchete de 50% x 47% e voto valido e nao foi usada. Teste total-vs-validos: soma dos candidatos = 46+44+1+1+1 = 93; 46/93 = 49,5 ~ 50 e 44/93 = 47,3 ~ 47, exatamente os validos publicados, o que confirma o corte total. Os tres candidatos menores com 1% no total sao os mesmos que a fonte lista com 1% dos validos (Delegado Huggo, Vera Lucia e Ze Batista); os demais registrados (Danilo Soares, Ieri Braga e Serley Leal) nao foram itemizados e nao entraram. A tabela fecha em 100 (93 + 4 + 3). REGISTRO TSE null: as materias localizadas nao informaram o numero de registro desta rodada. Dados obtidos de resumos de WebSearch (WebFetch bloqueado nesta sessao)."
+  },
+  {
+    "id": "2026-10-03-datafolha-ce-governador-t2-elmano-ciro",
+    "uf": "CE",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Datafolha",
+    "registroTSE": null,
+    "contratante": "O POVO",
+    "dataInicio": "2026-10-02",
+    "dataFim": "2026-10-03",
+    "publicadoEm": "2026-10-03",
+    "amostra": 1560,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno (Elmano de Freitas x Ciro Gomes) — total",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://mais.opovo.com.br/reportagens-especiais/eleicoes-datafolha-pesquisa-2026/2026/10/03/confira-a-integra-da-5-pesquisa-datafolha-para-o-governo-do-ceara.html"
+    },
+    "resultados": [
+      {
+        "candidato": "Elmano de Freitas",
+        "partido": "PT",
+        "pct": 49
+      },
+      {
+        "candidato": "Ciro Gomes",
+        "partido": "PSDB",
+        "pct": 45
+      },
+      {
+        "candidato": "Brancos/nulos/nenhum",
+        "partido": null,
+        "pct": 3
+      },
+      {
+        "candidato": "Indecisos",
+        "partido": null,
+        "pct": 3
+      }
+    ],
+    "observacao": "Simulacao de 2º turno da mesma rodada Datafolha/O POVO divulgada em 03/10/2026 (campo 02 e 03/10, 1.560 entrevistas, margem 2 p.p.). CONTRATANTE: O POVO, afirmado pela fonte. NUMEROS DO TOTAL: a propria fonte publica brancos/nulos/nenhum (3%) e indecisos (3%) ao lado de Elmano 49% e Ciro 45%, e a tabela fecha exatamente em 100 — portanto e o corte do total, nao de validos (em validos os dois nomes somariam ~100 entre si). Registro unico para este confronto, com apenas os dois nomes do confronto. REGISTRO TSE null: as materias localizadas nao informaram o numero de registro desta rodada. Dados obtidos de resumos de WebSearch (WebFetch bloqueado nesta sessao)."
+  },
+  {
+    "id": "2026-10-03-datafolha-mg-governador-t1",
+    "uf": "MG",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": "MG-06705/2026",
+    "contratante": "Folha de S.Paulo e TV Globo",
+    "dataInicio": "2026-10-02",
+    "dataFim": "2026-10-03",
+    "publicadoEm": "2026-10-03",
+    "amostra": 2010,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "Terra",
+      "url": "https://www.terra.com.br/noticias/brasil/politica/datafolha-em-minas-cleitinho-lidera-com-53-dos-votos-validos-patrus-tem-21-e-kalil-9,0c1f7883fd67ad5745826b82f650b3a0sk1c7xep.html"
+    },
+    "resultados": [
+      {
+        "candidato": "Cleitinho Azevedo",
+        "partido": "Republicanos",
+        "pct": 44
+      },
+      {
+        "candidato": "Patrus Ananias",
+        "partido": "PT",
+        "pct": 18
+      },
+      {
+        "candidato": "Alexandre Kalil",
+        "partido": "PDT",
+        "pct": 8
+      },
+      {
+        "candidato": "Flávio Roscoe",
+        "partido": "PL",
+        "pct": 4
+      },
+      {
+        "candidato": "Mateus Simões",
+        "partido": "PSD",
+        "pct": 3
+      },
+      {
+        "candidato": "Gabriel Azevedo",
+        "partido": "MDB",
+        "pct": 3
+      },
+      {
+        "candidato": "Brancos/nulos/nenhum",
+        "partido": null,
+        "pct": 6
+      }
+    ],
+    "observacao": "Ultima rodada Datafolha antes do 1º turno, divulgada no sabado 03/10/2026 (vespera); campo 02 e 03/10, 2.010 entrevistas, margem de 2 p.p., 95% de confianca; registro MG-06705/2026. CONTRATANTE afirmado pelas fontes (Folha de S.Paulo e TV Globo). NUMEROS DO TOTAL: a manchete de 53% (Cleitinho), 21% (Patrus) e 9% (Kalil) e voto valido e nao foi usada; entrou o cenario de votos totais publicado pela mesma fonte. Teste total-vs-validos: a soma dos candidatos no total compativel com TODOS os validos publicados e ~84 (44/84 = 52,4 e 44/83 = 53,0 -> 53; 18/84 = 21,4 -> 21; 8/84 = 9,5 -> 9; Roscoe e Simoes ~4 cada), o que confirma o corte total. Os seis candidatos itemizados somam 80, de modo que ~4 pontos pertencem aos menores nao itemizados (Ben Mendes e Indira Xavier) e os indecisos (~10) nao foram informados nos resumos localizados: por isso a tabela gravada soma 86 e nao 100. Nenhum valor foi estimado, convertido ou ajustado para fechar 100. Dados obtidos de resumos de WebSearch (WebFetch bloqueado nesta sessao)."
+  },
+  {
+    "id": "2026-10-03-datafolha-df-governador-t1",
+    "uf": "DF",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Datafolha",
+    "registroTSE": null,
+    "contratante": "Folha de S.Paulo e TV Globo",
+    "dataInicio": "2026-10-02",
+    "dataFim": "2026-10-03",
+    "publicadoEm": "2026-10-03",
+    "amostra": 1620,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno (total)",
+    "fonte": {
+      "nome": "Diário do Poder",
+      "url": "https://diariodopoder.com.br/brasil-e-regioes/distrito-federal/e01-distrito-federal/datafolha-aponta-celina-eleita-no-1o-turno-no-df-55-contra-27-de-grass"
+    },
+    "resultados": [
+      {
+        "candidato": "Celina Leão",
+        "partido": "PP",
+        "pct": 49
+      },
+      {
+        "candidato": "Leandro Grass",
+        "partido": "PT",
+        "pct": 24
+      },
+      {
+        "candidato": "Paula Belmonte",
+        "partido": "PSDB",
+        "pct": 9
+      },
+      {
+        "candidato": "Kiko Caputo",
+        "partido": "Novo",
+        "pct": 3
+      },
+      {
+        "candidato": "Ricardo Cappelli",
+        "partido": "PSB",
+        "pct": 1
+      },
+      {
+        "candidato": "Brancos/nulos/nenhum",
+        "partido": null,
+        "pct": 6
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 5
+      }
+    ],
+    "observacao": "Ultima rodada Datafolha antes do 1º turno, divulgada no sabado 03/10/2026 (vespera); campo 02 e 03/10, 1.620 entrevistas, margem de 2 p.p., 95% de confianca. CONTRATANTE afirmado pelas fontes (Globo e Folha de S.Paulo). NUMEROS DO TOTAL: a manchete de 55% x 27% e voto valido e nao foi usada; entrou o cenario de votos totais publicado pela mesma fonte. Teste total-vs-validos: a soma dos candidatos no total e ~89 (49/0,55 = 89,1; 24/0,27 = 88,9; 9/0,10 = 90), o que confirma o corte total; os cinco itemizados somam 86, logo ~3 pontos pertencem aos menores nao itemizados (Professora Samara Mineiro, Professor Robson, Elisson, Expedito Mendonca e Rico Pinheiro) e 89 + 6 de brancos/nulos + 5 de nao sabe fecha 100. A tabela gravada soma 97 por conta desses nao itemizados — nenhum valor foi estimado ou ajustado. DIVERGENCIA RESOLVIDA: um veiculo (Brasil em Folhas) noticiou '53% dos votos validos' para Celina, contra 55% em Jovem Pan, CNN Brasil, Terra, Mais Goias, Brasil 247, O Hoje e Diario do Poder; a terceira verificacao foi aritmetica — 49/89 = 55,1, compativel com 55% e nao com 53% —, por isso valeu 55% e o registro usa so o total. REGISTRO TSE null: nenhuma materia localizada informou o numero de registro desta rodada. Dados obtidos de resumos de WebSearch (WebFetch bloqueado nesta sessao)."
+  },
+  {
+    "id": "2026-10-03-parana-pesquisas-ba-governador-t1",
+    "uf": "BA",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "BA-03273/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-29",
+    "dataFim": "2026-10-02",
+    "publicadoEm": "2026-10-03",
+    "amostra": 1400,
+    "margem": 2.7,
+    "cenario": "estimulada, 1º turno (total, dois primeiros colocados itemizados)",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/parana-pesquisas-acm-neto-tem-464-e-jeronimo-446-ao-governo-da-bahia"
+    },
+    "resultados": [
+      {
+        "candidato": "ACM Neto",
+        "partido": "União Brasil",
+        "pct": 46.4
+      },
+      {
+        "candidato": "Jerônimo Rodrigues",
+        "partido": "PT",
+        "pct": 44.6
+      }
+    ],
+    "observacao": "Rodada divulgada no sabado 03/10/2026 (vespera); campo de 29/09 a 02/10, 1.400 entrevistas em 63 municipios da Bahia, margem de 2,7 p.p., 95% de confianca; registro BA-03273/2026. CONTRATANTE null: nenhuma fonte localizada afirmou quem contratou a pesquisa — nao foi inferido de parceria de divulgacao. NUMEROS DO TOTAL: os percentuais publicados somam 91,0 entre os dois primeiros (46,4 + 44,6), ou seja, nao sao votos validos (em validos os dois somariam ~100); e o corte do total, padrao do instituto nas rodadas anteriores da base. Os candidatos menores (Ronaldo Mansur, Ariel Capistrano, Aroldo Felix e Maria Bona), brancos/nulos e indecisos nao foram itemizados nos resumos localizados e nao entraram — nada foi estimado para fechar 100. Dados obtidos de resumos de WebSearch (WebFetch bloqueado nesta sessao)."
+  },
+  {
+    "id": "2026-10-03-parana-pesquisas-ba-governador-t2-acmneto-jeronimo",
+    "uf": "BA",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Paraná Pesquisas",
+    "registroTSE": "BA-03273/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-29",
+    "dataFim": "2026-10-02",
+    "publicadoEm": "2026-10-03",
+    "amostra": 1400,
+    "margem": 2.7,
+    "cenario": "estimulada, 2º turno (ACM Neto x Jerônimo Rodrigues) — total",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/parana-pesquisas-acm-neto-tem-464-e-jeronimo-446-ao-governo-da-bahia"
+    },
+    "resultados": [
+      {
+        "candidato": "ACM Neto",
+        "partido": "União Brasil",
+        "pct": 47.9
+      },
+      {
+        "candidato": "Jerônimo Rodrigues",
+        "partido": "PT",
+        "pct": 46.3
+      }
+    ],
+    "observacao": "Simulacao de 2º turno da mesma rodada Parana Pesquisas divulgada em 03/10/2026 (campo 29/09 a 02/10, 1.400 entrevistas, margem 2,7 p.p., registro BA-03273/2026). CONTRATANTE null: nenhuma fonte afirmou o contratante. NUMEROS DO TOTAL: 47,9 + 46,3 = 94,2, ou seja, sobram 5,8 pontos de brancos/nulos e indecisos — e o corte do total, nao de validos. Brancos/nulos e indecisos nao foram itemizados nos resumos localizados e nao entraram. Registro unico para este confronto, com apenas os dois nomes do confronto. Dados obtidos de resumos de WebSearch (WebFetch bloqueado nesta sessao)."
+  },
+  {
+    "id": "2026-10-03-real-time-big-data-mg-governador-t1",
+    "uf": "MG",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "MG-02255/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-28",
+    "dataFim": "2026-10-02",
+    "publicadoEm": "2026-10-03",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, 1º turno (total, dois primeiros colocados itemizados)",
+    "fonte": {
+      "nome": "Estado de Minas",
+      "url": "https://www.em.com.br/politica/2026/10/7513765-real-time-big-data-cleitinho-chega-a-50-dos-votos-validos-em-minas.html"
+    },
+    "resultados": [
+      {
+        "candidato": "Cleitinho Azevedo",
+        "partido": "Republicanos",
+        "pct": 45
+      },
+      {
+        "candidato": "Patrus Ananias",
+        "partido": "PT",
+        "pct": 22
+      }
+    ],
+    "observacao": "Rodada divulgada no sabado 03/10/2026 (vespera); campo de 28/09 a 02/10, 2.000 entrevistas em Minas Gerais, margem de 2 p.p., 95% de confianca; registro MG-02255/2026. MINAS GERAIS NAO ESTA ENTRE OS ESTADOS EM QUE O INSTITUTO ESTA SOB SUSPENSAO JUDICIAL (PR, CE, MA, RN, AL, SE e TO), por isso a rodada foi ingerida. CONTRATANTE null: nenhuma fonte localizada afirmou o contratante desta rodada. NUMEROS DO TOTAL: a manchete de 50% (Cleitinho) e 24% (Patrus) e voto valido e nao foi usada; entrou o cenario estimulado total (45% e 22%) publicado pela mesma fonte. Teste total-vs-validos: 45/0,50 = 90 e 22/90 = 24,4 ~ 24, ou seja, a soma dos candidatos no total e ~90 e os dois numeros reproduzem exatamente os validos publicados, confirmando o corte total. Os demais candidatos (Kalil, Simoes e Roscoe, cada um com 7% dos validos), brancos/nulos e indecisos nao foram itemizados no corte do total nos resumos localizados e nao entraram — nada foi convertido a partir dos validos. A simulacao de 2º turno divulgada na mesma rodada (Cleitinho 54% x Patrus 46%) foi RECUSADA por sair somente em votos validos (os dois numeros somam 100). Dados obtidos de resumos de WebSearch (WebFetch bloqueado nesta sessao)."
+  },
+  {
+    "id": "2026-10-03-neokemp-pr-governador-t1",
+    "uf": "PR",
+    "cargo": "governador",
+    "turno": 1,
+    "instituto": "Neokemp",
+    "registroTSE": "PR-05345/2026",
+    "contratante": null,
+    "dataInicio": "2026-10-01",
+    "dataFim": "2026-10-02",
+    "publicadoEm": "2026-10-03",
+    "amostra": 1008,
+    "margem": 3.1,
+    "cenario": "estimulada, 1º turno (total, três primeiros colocados itemizados)",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/neokemp-governador-parana-outubro-2026-vespera-1-turno/"
+    },
+    "resultados": [
+      {
+        "candidato": "Sergio Moro",
+        "partido": "PL",
+        "pct": 48.1
+      },
+      {
+        "candidato": "Requião Filho",
+        "partido": "PDT",
+        "pct": 24.7
+      },
+      {
+        "candidato": "Sandro Alex",
+        "partido": "PSD",
+        "pct": 23.2
+      }
+    ],
+    "observacao": "Rodada divulgada no sabado 03/10/2026 (vespera); campo em 01 e 02/10, 1.008 entrevistas, margem de 3,1 p.p., 95% de confianca; registro PR-05345/2026. Campo distinto da rodada anterior do mesmo instituto (29/09 a 01/10, publicada em 01/10 e ja na base), portanto nao e duplicata. CONTRATANTE null: nenhuma fonte localizada afirmou o contratante. NUMEROS DO TOTAL: os tres primeiros somam 96,0 (48,1 + 24,7 + 23,2), logo nao sao votos validos; e o corte do total, no mesmo formato da rodada de 01/10 do instituto (47,7 / 26,0 / 23,0 com brancos/nulos 1,0 e nao sabe 1,3). Os ~4 pontos restantes (candidatos menores, brancos/nulos e indecisos) nao foram itemizados nos resumos localizados e nao entraram — nada foi estimado para fechar 100. Dados obtidos de resumos de WebSearch (WebFetch bloqueado nesta sessao)."
+  }
+]

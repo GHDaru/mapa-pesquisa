@@ -1,0 +1,86 @@
+[
+  {
+    "id": "2026-10-03-cnt-mda-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "CNT/MDA",
+    "registroTSE": "BR-04756/2026",
+    "contratante": "Confederação Nacional do Transporte (CNT)",
+    "dataInicio": "2026-09-30",
+    "dataFim": "2026-10-02",
+    "publicadoEm": "2026-10-03",
+    "amostra": 2007,
+    "margem": 2.2,
+    "cenario": "estimulada, 2º turno (total): Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "Vermelho",
+      "url": "https://vermelho.org.br/2026/10/03/cnt-mda-lula-esta-a-frente-no-1o-e-no-2o-turnos/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 47.3
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 43.1
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 7.6
+      },
+      {
+        "candidato": "Indecisos",
+        "partido": null,
+        "pct": 1.9
+      }
+    ],
+    "observacao": "171ª rodada CNT/MDA, divulgada no sábado 03/10/2026 (véspera do 1º turno); campo de 30/09 a 02/10, 2.007 entrevistas presenciais, margem de 2,2 p.p., 95% de confiança. CONTRATANTE: a Confederação Nacional do Transporte (CNT) é a contratante afirmada da série CNT/MDA (mesma contratante das rodadas anteriores já na base); o MDA é o instituto executor, não contratante. REGISTRO TSE BR-04756/2026, informado nas matérias desta rodada. NÚMEROS DO TOTAL: estes são os votos totais — a tabela traz linhas próprias de brancos/nulos (7,6) e indecisos (1,9), que votos válidos por definição excluem. Teste total-vs-válidos no 1º turno da MESMA rodada, que confirma que este release publica o corte do total: o total do 1º turno traz Lula 43,1 e Flávio 38,0 e a manchete de válidos traz Lula 47,8 e Flávio 42,1 — 43,1 ÷ 0,478 = 90,17 e 38,0 ÷ 0,421 = 90,26, ou seja a soma dos candidatos do 1º turno é ≈ 90,2 em ambas as contas, aritmética consistente que prova que 43,1/38,0 são do total e não de válidos. Para este 2º turno não havia manchete de válidos publicada nos resumos para repetir a divisão; os válidos implícitos seriam 47,3 ÷ 90,4 = 52,3 e 43,1 ÷ 90,4 = 47,7. SOMA DA TABELA: 47,3 + 43,1 + 7,6 + 1,9 = 99,9 — soma 99,9 e não 100 por arredondamento das casas decimais; nenhum valor foi ajustado para fechar em 100. DIVERGÊNCIA DE CAMPO resolvida em terceira busca: um índice de pesquisas do dia (Gazeta do Povo) dava campo 29/09–02/10, enquanto as matérias da própria rodada (Vermelho e Revista Factual, ambas de 03/10) dão 30/09–02/10 junto com n=2.007, margem 2,2, registro e número da rodada; adotado 30/09–02/10, a datação das fontes que detalham a ficha técnica. WebFetch bloqueado nesta sessão: dados obtidos de resumos de WebSearch."
+  },
+  {
+    "id": "2026-10-03-datafolha-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Datafolha",
+    "registroTSE": null,
+    "contratante": "Globo e Folha de S.Paulo",
+    "dataInicio": "2026-10-02",
+    "dataFim": "2026-10-03",
+    "publicadoEm": "2026-10-03",
+    "amostra": 4006,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno (total): Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://cnnbrasil.com.br/eleicoes/datafolha-2-turno"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 47
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 46
+      },
+      {
+        "candidato": "Brancos/nulos/nenhum",
+        "partido": null,
+        "pct": 6
+      },
+      {
+        "candidato": "Indecisos",
+        "partido": null,
+        "pct": 2
+      }
+    ],
+    "observacao": "Rodada final do Datafolha antes do 1º turno, divulgada no sábado 03/10/2026; campo de 02 a 03/10, 4.006 entrevistas com eleitores de 16 anos ou mais, margem de 2 p.p. e 95% de confiança. CAMPO: a ficha metodológica completa da rodada dá 'de 2 a 3 de outubro'; um resumo anterior dizia apenas 'no sábado (3)', que foi descartado como referência à divulgação — adotado 02–03/10, e 4.006 entrevistas em dois dias é também o único arranjo plausível. MARGEM 2 p.p. AFIRMADA PELA FONTE DESTA RODADA, não herdada: o texto da rodada de 03/10 usa a margem de 'dois pontos percentuais, para mais ou para menos', com 95% de confiança, justamente para classificar o 47 x 46 como empate técnico. É rodada distinta da que já está na base (2026-10-01-datafolha-br-presidente-t2-lula-flavio, campo 28/09–01/10, n=2.506, 2º turno Lula 48 x Flávio 45): aqui o par é 47 x 46, e as fontes narram a oscilação entre as duas rodadas (48→47 e 45→46). CONTRATANTE afirmado pelas fontes: Globo e Folha de S.Paulo. NÚMEROS DO TOTAL: a fonte rotula explicitamente estes valores como votos totais ('Lula tem 47% em votos totais no 2º turno; Flávio, 46%') e a tabela traz linhas próprias de brancos/nulos/nenhum (6) e indecisos (2), que o corte de válidos exclui por definição — o corte do total está identificado pela própria fonte, não inferido. LINHAS DE NÃO-CANDIDATO conferidas especificamente para 03/10, em duas buscas independentes que trazem o detalhamento junto da divulgação de sábado (3) e da ficha técnica desta rodada; NÃO são herdadas da tabela de 01/10, que tem brancos/nulos 6 e indecisos 1 — o indeciso aqui é 2, valor que não existe na rodada anterior, o que descarta contaminação. Não havia manchete de válidos do 2º turno desta rodada nos resumos para rodar a divisão de conferência; os válidos implícitos seriam 47 ÷ 93 = 50,5 e 46 ÷ 93 = 49,5. A manchete de válidos localizada desta rodada é a do 1º TURNO (Lula 45 x Flávio 42, O Tempo, 03/10), cujo corte do total não foi publicado nos resumos e por isso o 1º turno NÃO foi ingerido. SOMA DA TABELA: 47 + 46 + 6 + 2 = 101 — soma 101 e não 100 por arredondamento das linhas inteiras; nenhum valor foi ajustado para fechar em 100. OUTROS PARES DE 2º TURNO DO DATAFOLHA NO CICLO, checados para não serem confundidos com esta rodada: 45 x 45 é a rodada de campo 12–13/05 (n=2.004) e Flávio 46 x Lula 45 é a rodada de abril, anterior a ela — nenhuma das duas é de 03/10. REGISTRO TSE null: nenhuma das matérias localizadas informou o número de registro desta rodada. WebFetch bloqueado nesta sessão: dados obtidos de resumos de WebSearch."
+  }
+]

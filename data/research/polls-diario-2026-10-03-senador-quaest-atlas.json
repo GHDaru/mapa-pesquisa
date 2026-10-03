@@ -1,0 +1,96 @@
+[
+  {
+    "id": "2026-10-03-atlasintel-ba-senador-t1",
+    "uf": "BA",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BA-05671/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-27",
+    "dataFim": "2026-10-02",
+    "publicadoEm": "2026-10-03",
+    "amostra": 2199,
+    "margem": 2.0,
+    "cenario": "estimulada, consolidado do 1º e do 2º voto reduzido a 100% (corte do total de entrevistados)",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/rui-costa-tem-261-e-jaques-wagner-234-pelo-senado-na-bahia/"
+    },
+    "resultados": [
+      {
+        "candidato": "Rui Costa",
+        "partido": "PT",
+        "pct": 26.1
+      },
+      {
+        "candidato": "Jaques Wagner",
+        "partido": "PT",
+        "pct": 23.4
+      },
+      {
+        "candidato": "Angelo Coronel",
+        "partido": "Republicanos",
+        "pct": 20.9
+      },
+      {
+        "candidato": "João Roma",
+        "partido": "PL",
+        "pct": 20.2
+      },
+      {
+        "candidato": "Professora Delliana",
+        "partido": "PSOL",
+        "pct": 3.9
+      },
+      {
+        "candidato": "Outros",
+        "partido": null,
+        "pct": 0.8
+      }
+    ],
+    "observacao": "LEITURA DA MÉTRICA: leitura 3 — CONSOLIDADO DO 1º E 2º VOTO REDUZIDO A 100%, no corte do TOTAL de entrevistados (não é primeira escolha e não é a soma ~200). SOMA DA TABELA INGERIDA = 95.3 (26.1+23.4+20.9+20.2+3.9+0.8); os 4.7 pontos restantes são brancos/nulos e não sabe, que a cobertura não abriu em linhas separadas e que por isso NÃO foram inventados aqui. PROVA 1 (total vs. válidos, regra 3): valor ÷ 95.3 reproduz exatamente a manchete de votos válidos publicada por Gazeta do Povo/CNN Brasil para a mesma rodada — 26.1/95.3 = 27.39 ≈ 27.3 (Rui); 23.4/95.3 = 24.55 ≈ 24.6 (Jaques); 20.9/95.3 = 21.93 ≈ 21.9 (Angelo); 20.2/95.3 = 21.19 ≈ 21.2 (João). Logo a tabela aqui é o TOTAL e a manchete de 27.3/24.6/21.9/21.2 é o corte de válidos — ingeri o total, sem converter nem estimar. PROVA 2 (é consolidado, não primeira escolha): a fonte publica também a cédula do 1º voto, onde Rui tem 36.3 contra 26.1 no consolidado (mesmo padrão do caso RJ/Benedita). PROVA 3 (reconstrução do 2º voto, 2×consolidado − 1ºvoto, conferida candidato a candidato contra o 2º voto publicado): Rui 2×26.1−36.3 = 15.9 vs 15.9 publicado; Jaques 2×23.4−15.7 = 31.1 vs 31.2; Angelo 2×20.9−14.1 = 27.7 vs 27.8; João 2×20.2−27.8 = 12.6 vs 12.6; Delliana 2×3.9−3.0 = 4.8 vs 4.8. Fecha casa a casa (diferenças de 0.1 por arredondamento), confirmando a leitura 3. Nenhum valor foi ajustado para fechar soma. registroTSE null: o número de registro desta rodada não apareceu em nenhum dos resumos de busca consultados (WebFetch bloqueado nesta sessão). contratante null: nenhuma fonte afirmou contratante; Poder360/Gazeta/CNN são veículos de divulgação, não contratantes. Rodada distinta da AtlasIntel BA já na base (campo até 03/09 e rodada anterior com Rui 28.2 / Jaques 23.7): aqui o campo é 27/09–02/10. CONFERIDO PELA SESSÃO PRINCIPAL (busca independente): o registro é BA-05671/2026 — por isso o campo deixou de ser null; o número é informado pela cobertura da própria rodada, não inferido. A mesma busca confirma, de forma independente, a cadeia aritmética desta ficha: Rui Costa tem 36,3 no 1º voto contra 26,1 no consolidado (o que prova a leitura 3 e exclui a primeira escolha), João Roma tem 27,8 no 1º voto, e (27,8 + 12,6) / 2 = 20,2 devolve exatamente o consolidado gravado para ele. Amostra de 2.199, campo de 27/09 a 02/10 e margem de 2 p.p. também conferidos."
+  },
+  {
+    "id": "2026-10-03-atlasintel-pi-senador-t1",
+    "uf": "PI",
+    "cargo": "senador",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-09-27",
+    "dataFim": "2026-10-02",
+    "publicadoEm": "2026-10-03",
+    "amostra": 1230,
+    "margem": 3.0,
+    "cenario": "estimulada, consolidado do 1º e do 2º voto reduzido a 100% (corte do total de entrevistados)",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/atlas-marcelo-castro-e-julio-cesar-lideram-corrida-ao-senado-no-piaui"
+    },
+    "resultados": [
+      {
+        "candidato": "Marcelo Castro",
+        "partido": "MDB",
+        "pct": 28.1
+      },
+      {
+        "candidato": "Júlio César",
+        "partido": "PSD",
+        "pct": 24.2
+      },
+      {
+        "candidato": "Ciro Nogueira",
+        "partido": "PP",
+        "pct": 16.4
+      },
+      {
+        "candidato": "Tiago Junqueira",
+        "partido": "PL",
+        "pct": 11.9
+      }
+    ],
+    "observacao": "LEITURA DA MÉTRICA: leitura 3 — CONSOLIDADO DO 1º E 2º VOTO REDUZIDO A 100%, no corte do TOTAL de entrevistados. SOMA DA TABELA INGERIDA = 80.6 (28.1+24.2+16.4+11.9), que é a soma apenas dos quatro nomes que a cobertura publicou no consolidado. A soma completa dos candidatos no consolidado é 85.85, porque entra a linha 'Outros' = 5.25, RECONSTRUÍDA a partir de números publicados (média das cédulas: 1º voto Outros = 2.6 e 2º voto Outros = 7.9 → (2.6+7.9)/2 = 5.25). Não lancei essa linha derivada em 'resultados' para não registrar valor não publicado. PROVA 1 (total vs. válidos, regra 3): valor ÷ 85.85 reproduz exatamente a manchete de votos válidos da Gazeta do Povo/Brasil no Centro para a mesma rodada — 28.1/85.85 = 32.73 ≈ 32.7 (Marcelo Castro); 24.2/85.85 = 28.19 ≈ 28.2 (Júlio César); 16.4/85.85 = 19.10 ≈ 19.1 (Ciro Nogueira). Logo a tabela aqui é o TOTAL e 32.7/28.2/19.1 é o corte de válidos — ingeri o total, reconstruído a partir de números publicados, sem converter nem estimar. PROVA 2 (é consolidado, não primeira escolha): no 1º voto Marcelo Castro tem 32.2 contra 28.1 no consolidado, e Tiago Junqueira cai de 16.6 no 1º voto para 11.9 no consolidado — padrão do caso RJ/Benedita. PROVA 3 (reconstrução do 2º voto, 2×consolidado − 1ºvoto, conferida contra o 2º voto publicado): Marcelo Castro 2×28.1−32.2 = 24.0 vs 24.0 publicado; Júlio César 2×24.2−24.4 = 24.0 vs 24.1; Ciro Nogueira 2×16.4−13.8 = 19.0 vs 19.0; Tiago Junqueira 2×11.9−16.6 = 7.2 vs 7.3. Todos positivos e plausíveis, fechando casa a casa (0.1 de arredondamento) — leitura 3 confirmada. PROVA 4 (o total fecha em 100): candidatos 85.85 + brancos/nulos 6.9 (média de 6.5 no 1º voto e 7.3 no 2º) + não sabe 7.1 (média de 3.9 e 10.3) = 99.85 ≈ 100 — por serem valores derivados, essas duas linhas também não foram lançadas em 'resultados'. Nota: a cédula do 1º voto, isolada, é uma tabela de total COMPLETA e publicada que soma exatamente 100.0 (Castro 32.2 + Júlio 24.4 + Junqueira 16.6 + Ciro 13.8 + Outros 2.6 + Branco/nulo 6.5 + Não sabe 3.9) e está disponível como leitura 1 alternativa; optei pelo consolidado por ser a métrica de manchete da rodada e a comparável com a ficha da Bahia. Nenhum valor foi ajustado para fechar soma. registroTSE null: o número de registro desta rodada não apareceu nos resumos de busca consultados (WebFetch bloqueado nesta sessão). contratante null: nenhuma fonte afirmou contratante. Rodada distinta da AtlasIntel PI já na base (campo até 03/09): aqui o campo é 27/09–02/10."
+  }
+]
