@@ -1510,3 +1510,215 @@ os de presidente.
   maioria sem recorte de senador.
 
 Amanhã é a varredura mais pesada do projeto, e a última antes da eleição.
+
+## Anotadas em 2026-10-03 (sábado, véspera do 1º turno)
+
+O dia mais pesado do ciclo, varrido por **cinco** agentes em vez de três:
+presidente, governador e senador, com governador e senador divididos entre
+"ondas Quaest e AtlasIntel" e "demais institutos". Orçamento de busca
+compartilhado, com instrução de buscar **por onda de instituto** e não
+estado por estado.
+
+### O achado do dia é metodológico, não de cobertura
+
+**A onda da Quaest para Senado é integralmente iningerível pelas regras do
+projeto: 0 de 27 estados.** Não por falta de busca. O próprio instituto
+define o cenário estimulado desta rodada como *"o consolidado dos dois
+votos, reduzido a 100%, e computado como votos válidos, que excluem
+brancos, nulos e indecisos"*. É o corte de válidos por desenho
+metodológico, e a regra proíbe ingerir válidos e proíbe converter ou
+estimar o total.
+
+O mesmo vale, em grau menor, para a AtlasIntel: números localizados em 7 de
+27 estados para governador e fechados com o total em **2** (BA e PA); no
+Senado, 2 de 27 (BA e PI). A causa é única — na véspera a divulgação é
+esmagadoramente em válidos, e sem o cenário geral publicado não há como
+reconstruir.
+
+**Receita destilada para a próxima vez:** procurar o veículo que publica as
+**três cédulas** (1º voto, 2º voto e consolidado), não o que publica a
+manchete. Foi só onde isso aconteceu — Poder360 na Bahia, Metrópoles e
+CartaCapital no Piauí — que a ficha de Senado fechou.
+
+### Correção de um erro meu no briefing dos agentes
+
+Passei a três agentes a afirmação, vinda do calendário de 02/10, de que a
+Quaest divulgaria governador e Senado **nos 26 estados e no DF**. O agente
+de governador foi conferir e **não achou indício disso em 21 estados**: a
+onda real de governador é de cinco unidades (SP, RJ, MG, PE e DF, campo
+02–03/10, contratante Globo) mais o **Ceará em contrato separado** com a TV
+Verdes Mares (CE-04790/2026, n=2.004). Repassei uma afirmação de calendário
+sem verificar, e ela entrou em três briefings.
+
+### Divergência entre institutos na Bahia (não é erro)
+
+Na véspera, dois institutos dão **líderes opostos** no governo da Bahia:
+
+- **AtlasIntel** (campo 27/09–02/10, n=2.199, BA-05671/2026, contratante
+  *A Tarde*): Jerônimo 51 x ACM Neto 47 no 1º turno; 51,2 x 47,0 no 2º.
+- **Paraná Pesquisas** (campo 29/09–02/10, n=1.400, BA-03273/2026): ACM
+  Neto 46,4 x Jerônimo 44,6 no 1º turno; 47,9 x 46,3 no 2º.
+
+As duas entraram. É o desacordo que o agregado existe para representar, e
+a Bahia deve aparecer em empate técnico.
+
+### Reconferência da ficha do Datafolha nacional, com três correções
+
+A ficha de 2º turno do Datafolha de hoje (Lula 47 x Flávio 46) passou por
+uma segunda rodada de verificação pedida pela sessão principal, e saiu com
+três correções:
+
+1. **O campo estava errado.** Havia sido gravado como um dia só (03/10),
+   de um resumo que dizia apenas "no sábado (3)". A ficha metodológica
+   completa diz 4.006 entrevistados **de 02 a 03/10** — e 4.006 entrevistas
+   presenciais num único dia não se sustentam. Corrigido.
+2. **A margem foi preenchida**: 2 p.p., afirmada pela fonte **desta**
+   rodada (usada ali para classificar o 47 x 46 como empate técnico), não
+   herdada da rodada de 01/10. A coincidência com o ±2 de 01/10 é fortuita:
+   lá n=2.506, aqui n=4.006.
+3. **As linhas de não-candidato ficaram sustentadas**, com um argumento que
+   vale guardar como método: os indecisos são **2** nesta rodada e **1** na
+   de 01/10. Se o valor tivesse sangrado da tabela anterior por contaminação
+   de resumo, teria vindo 1 — um número que lá não existe não pode ter
+   vindo de lá.
+
+Também ficaram datados dois pares divergentes atribuídos ao Datafolha no 2º
+turno: **46 x 45** é de abril e **45 x 45** é de campo 12–13/05. Um terceiro
+par, **46 x 44**, ficou **em aberto**: nenhuma busca o data, e o agente disse
+que não o sustenta em vez de inventar procedência.
+
+### Recusadas por existirem só em votos válidos
+
+Presidente: **Quaest nacional 1º turno** (n=3.702, margem 2, Editora Globo
+— tabela somando exatamente 100 e fonte dizendo textualmente que exclui
+brancos, nulos e indecisos); **Quaest nacional 2º turno**; **Datafolha 1º
+turno** de hoje; **PoderData** (BR-03519/2026, campo 30/09–02/10).
+
+Governador: **toda a onda Quaest** (SP Tarcísio 60/Haddad 36; MG Cleitinho
+54/Patrus 23/Kalil 10; RJ Paes 49/Ruas 40; PE Raquel Lyra 52/João Campos
+47; CE Elmano 50/Ciro 49) — números localizados, nenhum com corte do total;
+**AtlasIntel ES** (soma exatamente 100,0, prova de válidos), **PE**, **CE**,
+**RN**; **RJ cenário sem Garotinho** do Datafolha; **Real Time MG 2º turno**
+(soma 100).
+
+Senado: **toda a onda Quaest**, nominalmente conferida em CE, DF e PE;
+**AtlasIntel PR, PA, SE, SC, MT**.
+
+### Recusada por tabela irreconciliável
+
+**CNT/MDA nacional, 1º turno.** O teste de válidos exige soma de candidatos
+≈ 90,2 (43,1 ÷ 0,478 = 90,17 e 38,0 ÷ 0,421 = 90,26, duas contas
+concordando), mas as linhas localizadas somam 89,6. Faltam ~0,6 p.p. de
+linha de candidato, além de brancos/nulos e indecisos. O 2º turno da mesma
+rodada entrou, porque ali a tabela do total existe. Basta a linha faltante
+para o 1º turno ficar ingerível — vai para o backlog.
+
+### Armadilhas de rodada antiga republicada como nova
+
+Duas vezes no mesmo dia, veículos publicaram números velhos como se fossem
+da véspera, e a aritmética reprovou:
+
+- **AtlasIntel SC, Senado**: o conjunto "De Toni 30,7 / Amin 20,1 / Carlos
+  Bolsonaro 18,3" circulou hoje e é de **março** (campo 25–30/03, n=1.280).
+  30,7 ÷ 92,2 = 33,3 e não os 28,6 de hoje, e a ordem entre Amin e Carlos
+  Bolsonaro está invertida entre as duas rodadas.
+- **AtlasIntel SC, governador**: "Jorginho 51,6 / João Rodrigues 18,5 /
+  Merísio 17,6" é de setembro — nela Rodrigues estava à frente de Merísio;
+  na rodada de hoje Merísio o ultrapassa. Válido nunca é menor que total, o
+  que denunciou a mistura.
+- **Quaest CE, Senado**: cédulas separadas que pareciam da rodada nova eram
+  de 23–24/09. A aritmética reprovou — o consolidado de Cid seria
+  (32+17)/2 = 24,5, não 32.
+- **Quaest, suposto total via Diário do Centro do Mundo** (SP 44/24, MG
+  37/18/9, RJ 34/25/9, PE Campos 42/Lyra 42): não fecha. Em PE a ordem
+  inverte em relação aos válidos, e em MG as duas divisões exigem somas
+  incompatíveis (68,5 contra 78,3). Os 44/24 de SP são de uma rodada de
+  setembro.
+
+### Real Time Big Data e Instituto Veritá
+
+**Real Time MG entrou de propósito**: Minas não está entre os sete estados
+sob suspensão (PR, CE, MA, RN, AL, SE, TO). Nenhuma rodada nova do
+instituto apareceu nos estados suspensos hoje.
+
+**Veritá**: nada ingerido, conforme a regra. Cruzaram rodadas novas de
+senador em **MT** e **PR**, e uma onda de campo 26/09–02/10 cobrindo
+governador, senador e presidente em **SP, BA, CE e AL**, publicada em site
+próprio. O BA-03016/2026 segue suspenso judicialmente a pedido da coligação
+de Jerônimo Rodrigues.
+
+### Lacunas: a Bahia fechou o ciclo incompleta
+
+Das nove pesquisas baianas da reta final, entraram **duas** (AtlasIntel e
+Paraná Pesquisas). Têm registro e estavam marcadas para hoje, mas **não
+apareceram com números**: **Instituto Franca** (n=1.536, BA-05576/2026),
+**DataTrends** (n=1.200, BA-03357/2026), **Datasensus** (n=800,
+BA-07594/2026), **100% Cidades** (n=1.000, campo 28/09–02/10, margem 3,1) e
+**Publivende** (n=2.200, campo 27/09–01/10) — as duas últimas pendentes
+desde 02/10. O **Veritá** existe e está barrado por regra.
+
+Outras lacunas do dia:
+
+- **AtlasIntel nacional** (campo 27/09–02/10, n≈5.000, margem 1,0): a maior
+  do dia. Quatro buscas a descrevem sempre em tempo futuro, nenhum número
+  indexado. **Armadilha evitada**: o par "Flávio 47,7 x Lula 47,6" que
+  aparece associado a ela é da rodada de **23–28/09**.
+- **AtlasIntel CE** (CE-01031/2026, n=2.200, Focus Poder — contratante
+  afirmada, não parceria): recortes de governador e senador só em válidos.
+- **AtlasIntel SC governador**, a recusa mais frustrante do dia: rodada
+  27/09–02/10, n=1.794, SC-01831/2026, com Jorginho 56,7 / Merísio 22,6 /
+  João Rodrigues 18,4 / Brigadeiro 1,3 (soma 99,0). Não foi possível
+  excluir que os 56,7 sejam válidos com um 5º candidato a ~1,0 não
+  reportado, porque não havia nenhum número de válidos **desta** rodada
+  para rodar o teste. É o melhor alvo de backlog da onda.
+- **Datafolha PI**: calendário indicava campo até 03/10, nenhuma tabela
+  localizada — a divulgação era ~19h15 e pode ter saído depois da varredura.
+- **Gerp** (BR-08168/2026, 01–03/10, n=2.400), **Futura/Apex**
+  (BR-02431/2026, 29/09–03/10), **Palver** (BR-00198/2026, 30/09–03/10):
+  registros confirmados, nenhum número. O alerta do Palver segue de pé:
+  n=5.000 com margem citada de ±4 é o padrão de inconsistência que já fez
+  descartar ficha em 21/09.
+- **Paraná Pesquisas SP** (SP-09308/2026) e **MT** (MT-08062/2026):
+  registros de outubro, sem números.
+- Brancos, nulos e indecisos do **total** do Datafolha SP, e os menores de
+  RJ, MG e DF, seguem sem itemização nas fontes alcançadas — as fichas
+  entraram com a tabela incompleta declarada, sem nada estimado.
+
+### Rodadas anteriores ausentes da base (para recuperação futura)
+
+- **AtlasIntel nacional**: a base **não tem nenhuma AtlasIntel nacional
+  desde 19/05**, apesar de o instituto ser um dos de maior volume do ciclo.
+  É o maior buraco estrutural do agregado nacional. A rodada de campo
+  23–28/09 (n=5.005, margem 1,0, divulgada 29/09) tem tabela do 1º turno
+  levantada — mas com **ressalva**: um resumo dá o topo de Lula como 45,3 e
+  outro como 45,9, e a descrição de "3,1 pontos de vantagem" fecha com 45,3
+  (45,3 − 42,2). Precisa de busca própria antes de entrar.
+- **AtlasIntel RS governador**, campo 27/08–01/09, n=1.783: o 2º turno
+  (Zucco 48,5 x Juliana Brizola 43,9, com brancos/nulos/não sabe 7,6) soma
+  **100,0 e é corte do total** — pronto para ingestão. RS está sem nada
+  desde 28/09.
+- **AtlasIntel GO governador**, campo 27/08–01/09, n=1.214 (Daniel Vilela
+  43,5 / Wilder Morais 20,1 / Marconi Perillo 16,1).
+- **AtlasIntel MT governador**: nenhuma rodada na base.
+- **AtlasIntel CE senador**, campo 15–20/09, n=1.815, **com as três
+  cédulas publicadas** — material rico e provavelmente ingerível.
+- **AtlasIntel RN governador, 2º turno** de 23–28/09: o 1º turno está na
+  base, não há nenhum 2º turno; só há válidos.
+- **Instituto Franca BA governador**, divulgada 28/09 (Jerônimo 39,39 x ACM
+  Neto 36,44, margem 2,2) e **Instituto França BA presidente**, campo
+  23–26/09 (Lula 48,96 x Flávio 24,97) — a base não tem nenhum registro do
+  instituto na Bahia.
+- **Senador**: Paraná Pesquisas BA (campo 21–23/09, soma 132,7 → leitura 2);
+  Real Time BA (pub. 28/09, consolidado Rui 28 com 1º voto Rui 39 →
+  leitura 3); Real Time MS (campo 05–09/09 — **confirmado que não houve
+  rodada nova em outubro**); Real Time RR; Quaest RR; PoderData AM.
+- **Paraná Pesquisas TO** governador e Senado, outubro — TO está com último
+  campo em 24/09.
+- **CNT/MDA nacional 1º turno** de hoje, assim que a linha faltante
+  aparecer.
+
+### Estado da cobertura ao fim do ciclo
+
+Santa Catarina é a UF mais atrasada da base para governador. O Acre é a
+mais atrasada para senador. Rio Grande do Sul e Goiás ficaram sem rodada
+nova de véspera em nenhum dos institutos varridos.
