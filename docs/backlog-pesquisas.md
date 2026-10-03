@@ -1722,3 +1722,40 @@ Outras lacunas do dia:
 Santa Catarina é a UF mais atrasada da base para governador. O Acre é a
 mais atrasada para senador. Rio Grande do Sul e Goiás ficaram sem rodada
 nova de véspera em nenhum dos institutos varridos.
+
+### Reconferência da Neokemp/PR: a classificação original estava certa
+
+O agente de senador levantou a suspeita de que a ficha
+`2026-10-01-neokemp-pr-senador-t1`, classificada como leitura 3, fosse na
+verdade leitura 1, por analogia com a prova do Rio Grande do Sul (mesmo
+instituto, mesmo n=1.008, mesmo cliente OCP News, estrutura igual).
+
+**A suspeita foi verificada e é falsa.** A fonte da rodada do Paraná publica
+as três colunas, e a conta fecha exata:
+
+- 1º voto: Deltan 30,2 · Gleisi 20,7 · Filipe Barros 18,6
+- 2º voto: Barros 28,5 · Deltan 19,6 · Rosinha 13,6 · Curi 13,6
+- soma publicada: Deltan 49,8 · Barros 47,0
+
+**(30,2 + 19,6) ÷ 2 = 24,9**, exatamente o valor da tabela do estimulado. É
+consolidado. A ficha permanece como está, e a lição é que **semelhança
+estrutural não é prova**: o mesmo instituto, no mesmo dia, com o mesmo n e o
+mesmo cliente, publica cortes diferentes em estados diferentes — 1º voto no
+RS e consolidado no PR.
+
+### Lacuna encontrada na própria conferência: Neokemp/PR de véspera
+
+A mesma busca revelou que existe uma rodada **Neokemp/PR de Senado
+divulgada em 03/10**, com campo **01–02/10**, distinta da de 01/10 que está
+na base. Ficha técnica: n=1.008, margem 3,1, 95%, contratada pelo jornal **O
+Correio do Povo** (afirmado). Números localizados: Deltan Dallagnol 24,9 ·
+Filipe Barros 23,5 · Gleisi Hoffmann 15,3 · Alexandre Curi 13,3.
+
+São números diferentes dos da rodada de 01/10 (Barros 23,0; Gleisi 15,7;
+Curi 12,1), portanto é rodada nova e não duplicata.
+
+**Não foi ingerida**, pela mesma régua aplicada aos cinco agentes: só 4 dos
+6 candidatos apareceram, a tabela soma 77,0 — nem ~100 nem ~200 — e não há
+como provar a leitura pela aritmética **desta** rodada. Falta a tabela
+completa (Rosinha e Graeml, brancos/nulos, indecisos) ou as colunas de 1º e
+2º voto. É a lacuna mais próxima de fechar do último dia.
