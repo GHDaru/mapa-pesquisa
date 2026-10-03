@@ -1274,6 +1274,37 @@ suíte roda em ambiente `node`, sem DOM — esse teste **não existe**. A
 garantia da independência da largura hoje é leitura de código, não execução.
 Fechá-la exige um ambiente de teste com DOM.
 
+## Medição da exposição das três suspensas (03/10, véspera)
+
+Pedido de decisão aberto desde 28/09. Hoje mediu-se **quanto do que o site
+afirma sobre o Tocantins vem delas**, com o peso real do agregador
+(meia-vida de 14 dias × raiz da amostra, janela de 45 dias, relógio de
+03/10):
+
+| recorte | pesquisas na janela | peso das suspensas |
+|---|---|---|
+| governador, 1º turno | 5 | **30,7%** |
+| governador, 2º turno | 4 | **35,2%** |
+| senador | 4 | **37,8%** |
+
+Nos três casos a pesquisa suspensa é a **entrada de maior peso**, porque é a
+mais recente (campo encerrado em 24/09, 9 dias) e a de maior amostra. Não é
+uma linha a mais numa lista: é cerca de um terço do número exibido.
+
+Onde o aviso aparece hoje: a suspensão está registrada **só no texto livre
+da `observacao`**, sem campo estruturado. A `observacao` é renderizada em
+`polls-database-view.ts`, então quem abre a ficha na tela Base de pesquisas
+lê o aviso — mas o mapa, o painel do estado e a estimativa de votos usam os
+números sem nenhuma marca, e é ali que o peso de um terço age.
+
+A ordem (TO-04340/2026, multa de R$ 50 mil/dia) fala em divulgação,
+reprodução e republicação. Continua sendo decisão humana, e o prazo útil
+para ela é hoje: a eleição é amanhã.
+
+Uma alternativa estrutural, não implementada por não ter sido pedida: um
+campo de exclusão por ficha, que a tiraria da agregação mantendo-a na base
+com a anotação — reversível por um valor, sem apagar registro.
+
 ## O site ficou cinco dias parado, e pela mesma causa (02/10)
 
 A suíte vermelha não ficou contida nos testes. O workflow de deploy roda
