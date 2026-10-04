@@ -294,9 +294,10 @@ function montarComparacao(dados: ProjecaoComparada): HTMLElement | null {
       className: 'pj-nota',
       texto:
         'A coluna de pesquisas é o agregado ponderado por recência e amostra do mesmo ' +
-        'recorte, renormalizado para a base de votos válidos — sem isso a comparação ' +
-        'embutiria um erro do tamanho da fatia de brancos, nulos e indecisos, porque as ' +
-        'pesquisas da base estão no corte do total e a apuração publica válidos.' +
+        'recorte, renormalizado para somar 100 entre os candidatos — a mesma base em que ' +
+        'a apuração publica. O ranking do agregado já não inclui brancos, nulos e ' +
+        'indecisos, que são contados em separado, então a renormalização move pouco: ela ' +
+        'torna a base exata em vez de aproximada.' +
         (contagem
           ? ' A comparação aqui é contra uma CONTAGEM PARCIAL e é provisória: a ordem ' +
             'dos candidatos pode mudar conforme os estados terminam de totalizar.'

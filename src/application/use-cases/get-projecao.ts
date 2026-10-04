@@ -16,19 +16,19 @@ import { criarDisputa, UF_NACIONAL } from '../../domain/race.js';
  * pesquisas e agora existe o número real para confrontá-las. `erro` é em
  * pontos percentuais, positivo quando a pesquisa SUPERESTIMOU o candidato.
  *
- * **A comparação só é válida depois de igualar as bases.** As pesquisas da
- * base estão no corte do TOTAL (que inclui brancos, nulos e indecisos) —
- * foi a regra de ingestão do projeto inteiro, e o motivo de dezenas de fichas
- * terem sido recusadas. A apuração oficial publica percentual sobre VOTOS
- * VÁLIDOS, que excluem brancos e nulos. Subtrair um do outro direto embutiria
- * um erro sistemático do tamanho exato da fatia de brancos/nulos/indecisos,
- * uns dez pontos, e o chamaria de "erro das pesquisas".
+ * **As bases têm de ser igualadas, mas o ajuste é menor do que parece.** As
+ * pesquisas da base estão no corte do TOTAL e a apuração publica VOTOS
+ * VÁLIDOS, o que à primeira vista sugere um erro sistemático do tamanho da
+ * fatia de brancos/nulos/indecisos — uns dez pontos. **Não é o caso aqui, e
+ * vale registrar para não repetir o erro:** `Agregado.candidatos` já exclui as
+ * linhas de não-candidato, que vão para `Agregado.outros`, então esse ranking
+ * já soma perto de 100 por construção (medido em 04/10: 100,17).
  *
- * Por isso o agregado é renormalizado para a base de válidos antes da
- * comparação: cada candidato dividido pela soma dos candidatos do agregado.
- * Isso não inventa número nenhum — é a leitura de válidos dos mesmos valores
- * publicados, a mesma conta que o projeto usou o tempo todo para conferir
- * manchetes contra o corte do total.
+ * A renormalização continua certa, porque torna a base **exata** em vez de
+ * incidental — e porque aquele 100,17 é artefato: cada candidato é uma média
+ * ponderada sobre as pesquisas que o publicaram, e candidatos menores aparecem
+ * em poucas pesquisas. Mas o efeito é de centésimos, não de dez pontos: o
+ * primeiro colocado foi de 38,37 para 38,31. Não inventa número nenhum.
  */
 export interface ComparacaoPesquisaApuracao {
   readonly candidato: string;

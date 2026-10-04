@@ -330,7 +330,18 @@ export function projetarApuracao(
       ? porUf.reduce((t, u) => t + u.secoesTotalizadas * (u.eleitores ?? 0), 0) / pesoTotal
       : 0;
 
-  const somado = somarPorCandidato(porUf);
+  /*
+   * Somar candidatos entre UFs só faz sentido para PRESIDENTE, onde são os
+   * mesmos nomes no país inteiro. Para governador e senador é erro de
+   * categoria: somaria o votado na Bahia com o votado no Paraná numa lista
+   * única, como se disputassem entre si, e produziria um "líder nacional de
+   * governador" que não existe. Nesses cargos o agregado fica vazio de
+   * propósito e cada UF se lê sozinha, em `porUf`.
+   */
+  const somado =
+    cargo === 'presidente'
+      ? somarPorCandidato(porUf)
+      : { candidatos: [] as CandidatoProjetado[], validosApurados: 0, validosProjetados: 0 };
 
   return {
     cargo,

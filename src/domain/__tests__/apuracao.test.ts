@@ -178,8 +178,12 @@ describe('cobertura: o que falta é nomeado, não completado', () => {
     ]);
     const ufs = eleitorado([['AC', 600_000]]);
     expect(projetarApuracao(dados, 'presidente', 1, ufs).candidatos[0]!.candidato).toBe('A');
-    expect(projetarApuracao(dados, 'governador', 1, ufs).candidatos[0]!.candidato).toBe('Z');
     expect(projetarApuracao(dados, 'presidente', 2, ufs).candidatos[0]!.candidato).toBe('Y');
+    // Governador não tem agregado somado (ver o bloco sobre erro de categoria
+    // mais abaixo): o recorte dele se lê na UF.
+    const gov = projetarApuracao(dados, 'governador', 1, ufs);
+    expect(gov.candidatos).toEqual([]);
+    expect(gov.porUf[0]!.candidatos[0]!.candidato).toBe('Z');
   });
 });
 
@@ -309,5 +313,44 @@ describe('percentuais: cada um sobre a sua própria base', () => {
     expect(p.candidatos).toHaveLength(1);
     expect(p.candidatos[0]!.votosApurados).toBe(100);
     expect(p.candidatos[0]!.partido).toBe('PT');
+  });
+});
+
+describe('somar candidatos entre UFs só vale para presidente', () => {
+  /*
+   * Governador e senador são disputas por estado. Somar os candidatos entre
+   * UFs criaria um "líder nacional de governador" que não existe — o votado
+   * num estado aparecendo na mesma lista do votado em outro, como se
+   * concorressem. O agregado fica vazio nesses cargos, e cada UF se lê em
+   * `porUf`.
+   */
+  const dados = apuracao([
+    { ...recorte('BA', 67, [['Jerônimo', 2_925_886], ['ACM Neto', 2_463_015]]), cargo: 'governador' },
+    { ...recorte('PR', 99, [['Moro', 3_106_644], ['Sandro Alex', 1_565_324]]), cargo: 'governador' },
+  ]);
+  const ufs = eleitorado([['BA', 11_000_000], ['PR', 8_000_000]]);
+
+  it('governador não produz agregado somado, e não produz margem', () => {
+    const p = projetarApuracao(dados, 'governador', 1, ufs);
+    expect(p.candidatos).toEqual([]);
+    expect(p.margem).toBeNull();
+    expect(p.validosApurados).toBe(0);
+  });
+
+  it('mas cada UF continua projetada e com o seu próprio líder', () => {
+    const p = projetarApuracao(dados, 'governador', 1, ufs);
+    expect(p.porUf.map((u) => u.uf)).toEqual(['BA', 'PR']);
+    expect(p.porUf.find((u) => u.uf === 'BA')!.lider).toBe('Jerônimo');
+    expect(p.porUf.find((u) => u.uf === 'PR')!.lider).toBe('Moro');
+  });
+
+  it('presidente continua somando, que é o caso em que a soma tem sentido', () => {
+    const presidencial = apuracao([
+      recorte('BA', 67, [['Lula', 100], ['Flávio', 80]]),
+      recorte('PR', 99, [['Lula', 50], ['Flávio', 120]]),
+    ]);
+    const p = projetarApuracao(presidencial, 'presidente', 1, ufs);
+    expect(p.candidatos.map((c) => c.candidato).sort()).toEqual(['Flávio', 'Lula']);
+    expect(p.candidatos.find((c) => c.candidato === 'Lula')!.votosApurados).toBe(150);
   });
 });

@@ -264,6 +264,11 @@ export const CATEGORIA_OUTROS_CANDIDATOS = 'Outros candidatos';
 const PADROES_BRANCOS_NULOS_NAO_SABE: readonly RegExp[] = [
   /\bbranco/, /\bnulo/, /\bindecis/, /nao sabe/, /nao respond/, /nao opin/,
   /\bnenhum/, /espontan/, /nao vot/, /ns\/nr/,
+  // "Não souberam responder" (uma pesquisa usa essa flexão) escapava: os
+  // padrões acima exigem as palavras adjacentes, e "nao respond" não casa com
+  // "nao souberam responder". A linha entrava no ranking COMO CANDIDATO, com
+  // 0,30 no agregado nacional — não-candidato disputando a eleição.
+  /nao soube/,
 ];
 
 /** Padrões (sem acento, minúsculas) das linhas que somam candidatos não itemizados. */

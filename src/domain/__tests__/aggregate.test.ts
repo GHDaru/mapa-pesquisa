@@ -648,6 +648,12 @@ describe('categorias canônicas das linhas que não são candidato', () => {
       'Brancos/nulos/não sabe',
       'Nenhum/branco/nulo',
       'Não sabe/indeciso (cenário espontâneo)',
+      // Esta flexão escapava: os padrões exigem as palavras adjacentes, e
+      // "nao respond" não casa com "nao souberam responder". A linha entrava
+      // no ranking COMO CANDIDATO — um não-candidato com 0,30 no agregado
+      // nacional de presidente, achado em 04/10 ao conferir a aba Projeção.
+      'Não souberam responder',
+      'Não souberam opinar',
       'Outros',
       'outros candidatos',
     ]) {

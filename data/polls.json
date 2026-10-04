@@ -1029,6 +1029,100 @@
     "observacao": "LEITURA DA MÉTRICA: leitura 3 — CONSOLIDADO DO 1º E 2º VOTO REDUZIDO A 100%, no corte do TOTAL de entrevistados. SOMA DA TABELA INGERIDA = 80.6 (28.1+24.2+16.4+11.9), que é a soma apenas dos quatro nomes que a cobertura publicou no consolidado. A soma completa dos candidatos no consolidado é 85.85, porque entra a linha 'Outros' = 5.25, RECONSTRUÍDA a partir de números publicados (média das cédulas: 1º voto Outros = 2.6 e 2º voto Outros = 7.9 → (2.6+7.9)/2 = 5.25). Não lancei essa linha derivada em 'resultados' para não registrar valor não publicado. PROVA 1 (total vs. válidos, regra 3): valor ÷ 85.85 reproduz exatamente a manchete de votos válidos da Gazeta do Povo/Brasil no Centro para a mesma rodada — 28.1/85.85 = 32.73 ≈ 32.7 (Marcelo Castro); 24.2/85.85 = 28.19 ≈ 28.2 (Júlio César); 16.4/85.85 = 19.10 ≈ 19.1 (Ciro Nogueira). Logo a tabela aqui é o TOTAL e 32.7/28.2/19.1 é o corte de válidos — ingeri o total, reconstruído a partir de números publicados, sem converter nem estimar. PROVA 2 (é consolidado, não primeira escolha): no 1º voto Marcelo Castro tem 32.2 contra 28.1 no consolidado, e Tiago Junqueira cai de 16.6 no 1º voto para 11.9 no consolidado — padrão do caso RJ/Benedita. PROVA 3 (reconstrução do 2º voto, 2×consolidado − 1ºvoto, conferida contra o 2º voto publicado): Marcelo Castro 2×28.1−32.2 = 24.0 vs 24.0 publicado; Júlio César 2×24.2−24.4 = 24.0 vs 24.1; Ciro Nogueira 2×16.4−13.8 = 19.0 vs 19.0; Tiago Junqueira 2×11.9−16.6 = 7.2 vs 7.3. Todos positivos e plausíveis, fechando casa a casa (0.1 de arredondamento) — leitura 3 confirmada. PROVA 4 (o total fecha em 100): candidatos 85.85 + brancos/nulos 6.9 (média de 6.5 no 1º voto e 7.3 no 2º) + não sabe 7.1 (média de 3.9 e 10.3) = 99.85 ≈ 100 — por serem valores derivados, essas duas linhas também não foram lançadas em 'resultados'. Nota: a cédula do 1º voto, isolada, é uma tabela de total COMPLETA e publicada que soma exatamente 100.0 (Castro 32.2 + Júlio 24.4 + Junqueira 16.6 + Ciro 13.8 + Outros 2.6 + Branco/nulo 6.5 + Não sabe 3.9) e está disponível como leitura 1 alternativa; optei pelo consolidado por ser a métrica de manchete da rodada e a comparável com a ficha da Bahia. Nenhum valor foi ajustado para fechar soma. registroTSE null: o número de registro desta rodada não apareceu nos resumos de busca consultados (WebFetch bloqueado nesta sessão). contratante null: nenhuma fonte afirmou contratante. Rodada distinta da AtlasIntel PI já na base (campo até 03/09): aqui o campo é 27/09–02/10."
   },
   {
+    "id": "2026-10-03-atlasintel-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-00999/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-27",
+    "dataFim": "2026-10-02",
+    "publicadoEm": "2026-10-03",
+    "amostra": 4945,
+    "margem": 1,
+    "cenario": "estimulada, 1º turno — nacional (votos totais)",
+    "fonte": {
+      "nome": "Money Times",
+      "url": "https://www.moneytimes.com.br/lula-tem-467-e-flavio-bolsonaro-438-no-primeiro-turno-mostra-pesquisa-atlasintel-segundo-turno-tem-empate-tecnico-gaep/"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 46.7
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 43.8
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 4.6
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 2.1
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 1.4
+      },
+      {
+        "candidato": "Brancos e nulos",
+        "partido": null,
+        "pct": 0.3
+      },
+      {
+        "candidato": "Não souberam responder",
+        "partido": null,
+        "pct": 0.3
+      }
+    ],
+    "observacao": "Rodada final da AtlasIntel antes do 1º turno: campo de 27/09 a 02/10/2026, 4.945 entrevistas, margem de 1 p.p., 95% de confiança, registro TSE BR-00999/2026. DATA DE DIVULGAÇÃO: sábado 03/10/2026 (véspera da votação), confirmada por três buscas independentes — a rodada era a maior lacuna nacional aberta do projeto e chegou a ser procurada como possível divulgação de domingo 04/10, mas saiu no sábado. Não é duplicata da rodada anterior (pub. 29/09, campo 23–28/09, n=5.005, registro BR-04391/2026): campo, amostra e registro são distintos. NÚMEROS DO TOTAL: a manchete de 47,0% x 44,1% é voto válido e NÃO foi usada; os valores desta ficha são o corte de votos totais publicado pelas fontes. TESTE TOTAL-VS-VÁLIDOS: a soma dos candidatos nomeados no corte total é 46,7+43,8+4,6+2,1+1,4 = 98,6; a tabela de válidos publicada traz ainda uma linha agregada 'Outros' com 0,9%, que a cobertura não abriu no corte total, e cujo valor no total é o resíduo de 0,8 (100 − 98,6 − 0,3 − 0,3). Com o denominador 99,4 (= 98,6 + 0,8) todos os válidos publicados se reconstroem: 46,7/99,4 = 46,98 ≈ 47,0; 43,8/99,4 = 44,06 ≈ 44,1; 4,6/99,4 = 4,63 ≈ 4,6; 2,1/99,4 = 2,11 ≈ 2,1; 1,4/99,4 = 1,41 ≈ 1,4 — confirmando que o corte usado é o total. A linha 'Outros' NÃO foi incluída na ficha porque 0,8 é resíduo derivado, não número publicado no corte total; por isso a tabela desta ficha soma 99,2 em vez de 100. Nenhum valor foi ajustado para fechar em 100. CONTRATANTE null: as manchetes trazem a marca 'Atlas-Bloomberg', que é parceria de divulgação e não contratante, e nenhuma fonte localizada afirmou contratante ou autofinanciamento para ESTA rodada — o autofinanciamento declarado nas rodadas anteriores não foi transportado por inferência. Dados obtidos de resumos de WebSearch (WebFetch não utilizado nesta sessão)."
+  },
+  {
+    "id": "2026-10-03-atlasintel-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-00999/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-27",
+    "dataFim": "2026-10-02",
+    "publicadoEm": "2026-10-03",
+    "amostra": 4945,
+    "margem": 1,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro — nacional (votos totais)",
+    "fonte": {
+      "nome": "Terra",
+      "url": "https://www.terra.com.br/noticias/eleicoes/pesquisas/pesquisa-atlas-bloomberg-para-presidente-lula-tem-47-em-votos-validos-no-1-turno-flavio-441,30e08dda1f58c722cb2116d8dda5a4e4f9cmxmbb.html"
+    },
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 47.6
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 47.4
+      },
+      {
+        "candidato": "Brancos/nulos/indecisos",
+        "partido": null,
+        "pct": 5
+      }
+    ],
+    "observacao": "Mesma rodada da ficha de 1º turno: campo 27/09–02/10/2026, 4.945 entrevistas, margem de 1 p.p., 95% de confiança, registro TSE BR-00999/2026, divulgada em sábado 03/10/2026. NÚMEROS DO TOTAL: a manchete de 50,1% x 49,9% (empate técnico) é voto válido e NÃO foi usada; esta ficha traz o corte de votos totais. TESTE TOTAL-VS-VÁLIDOS: soma dos candidatos = 47,6 + 47,4 = 95,0; 47,6/95,0 = 50,105 ≈ 50,1 e 47,4/95,0 = 49,89 ≈ 49,9 — reproduz exatamente os válidos publicados, confirmando o corte total. A tabela fecha em 100,0 (95,0 + 5,0), sem ajuste de qualquer valor. CONTRATANTE null pela mesma razão da ficha de 1º turno: 'Atlas-Bloomberg' é parceria de divulgação, e nenhuma fonte afirmou contratante ou autofinanciamento desta rodada. Dados obtidos de resumos de WebSearch."
+  },
+  {
     "id": "2026-10-01-datafolha-rj-governador-t1",
     "uf": "RJ",
     "cargo": "governador",

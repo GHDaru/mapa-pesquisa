@@ -1686,13 +1686,26 @@ Outras lacunas do dia:
 
 ### Rodadas anteriores ausentes da base (para recuperação futura)
 
-- **AtlasIntel nacional**: a base **não tem nenhuma AtlasIntel nacional
-  desde 19/05**, apesar de o instituto ser um dos de maior volume do ciclo.
-  É o maior buraco estrutural do agregado nacional. A rodada de campo
-  23–28/09 (n=5.005, margem 1,0, divulgada 29/09) tem tabela do 1º turno
-  levantada — mas com **ressalva**: um resumo dá o topo de Lula como 45,3 e
-  outro como 45,9, e a descrição de "3,1 pontos de vantagem" fecha com 45,3
-  (45,3 − 42,2). Precisa de busca própria antes de entrar.
+- ~~**AtlasIntel nacional**: a base não tem nenhuma AtlasIntel nacional desde
+  19/05, e é o maior buraco estrutural do agregado nacional.~~
+  **ERRADO — corrigido em 04/10.** A base tem **26 fichas** AtlasIntel
+  nacionais de presidente, com rodadas publicadas em 19/05, 01/07, 29/07,
+  31/08, 10/09, 17/09, 23/09 e 29/09. O 19/05 era a **primeira**, não a
+  última. A afirmação veio de um relatório de agente em 03/10, foi escrita
+  aqui sem conferência e repetida ao usuário.
+
+  A lacuna real era só a rodada **final**, de campo 27/09–02/10 — divulgada em
+  **03/10**, não no domingo — e ela foi fechada em 04/10. A rodada de campo
+  23–28/09 (divulgada 29/09) **já estava na base**; a ressalva sobre 45,3
+  contra 45,9 no topo de Lula era, portanto, sobre ficha existente, não sobre
+  ingestão pendente.
+
+  **Regra que faltava e passa a valer:** quando um agente afirma uma AUSÊNCIA
+  na nossa própria base ("a base não tem X"), isso é verificável num comando e
+  tem de ser verificado antes de entrar em documento ou em briefing. É a
+  segunda vez na semana que uma afirmação de agente não conferida se propaga —
+  a primeira foi o calendário da Quaest cobrindo 26 estados, desmentido por
+  outro agente em 03/10.
 - **AtlasIntel RS governador**, campo 27/08–01/09, n=1.783: o 2º turno
   (Zucco 48,5 x Juliana Brizola 43,9, com brancos/nulos/não sabe 7,6) soma
   **100,0 e é corte do total** — pronto para ingestão. RS está sem nada
@@ -1759,3 +1772,126 @@ Curi 12,1), portanto é rodada nova e não duplicata.
 como provar a leitura pela aritmética **desta** rodada. Falta a tabela
 completa (Rosinha e Graeml, brancos/nulos, indecisos) ou as colunas de 1º e
 2º voto. É a lacuna mais próxima de fechar do último dia.
+
+## Anotadas em 2026-10-04 (domingo, dia da eleição)
+
+Rotina executada com **dois** agentes, não três — desvio deliberado,
+registrado em `docs/routine-diaria.md`: com a votação encerrada o valor está
+na apuração, não em varrer pesquisas que não existem.
+
+### Nenhuma pesquisa foi publicada em 04/10
+
+Resultado limpo nos três cargos. Também ficou confirmado por duas buscas
+independentes que **não houve boca de urna** no 1º turno de 2026, como já não
+houve em 2022.
+
+### A lacuna da AtlasIntel nacional fechou — e eu havia descrito a lacuna errada
+
+Entraram as duas fichas da rodada final da **AtlasIntel nacional**: campo
+27/09–02/10, n=4.945, margem 1,0, registro BR-00999/2026, divulgada em
+**03/10** (sábado, véspera), não no domingo. 1º turno Lula 46,7 x Flávio 43,8
+no total; 2º turno Lula 47,6 x Flávio 47,4, com a tabela fechando 100,0 e o
+teste de válidos exato (47,6/95,0 = 50,1 e 47,4/95,0 = 49,9).
+
+`contratante: null` — as manchetes citam "Atlas-Bloomberg", que é parceria de
+divulgação, e o autofinanciamento declarado em rodadas anteriores **não** foi
+transportado por inferência.
+
+Ver a correção registrada acima: a afirmação de que a base não tinha AtlasIntel
+nacional desde 19/05 era falsa — há 26 fichas, e a lacuna real era só esta
+rodada final.
+
+### Apuração: leitura avançada de 47,26% para 64,81%
+
+`data/apuracao.json` passou a ter três recortes, todos com `validosTotal`
+conferido por duas derivações independentes concordando dentro de 0,1%:
+
+| recorte | seções | líder | vantagem |
+|---|---|---|---|
+| presidente, nacional | **64,81%** | Flávio Bolsonaro 49,58% | Lula 42,25% |
+| governador PR | **99,17%** | Sergio Moro 50,19% | eleito no 1º turno por margem estreita |
+| governador BA | **67,11%** (novo) | Jerônimo Rodrigues 54,00% | ACM Neto 45,46%, 462.871 votos |
+
+No Paraná os três valores passaram a ser **absolutos publicados**, nenhum
+derivado — melhoria qualitativa sobre a leitura anterior.
+
+**2º turno: projetado, não confirmado.** Três fontes projetam Lula x Flávio em
+**25/10/2026**, com base em projeção Datafolha, e Flávio está abaixo de 50% dos
+válidos em 64,81%. **Não há proclamação oficial do TSE** nas buscas, e isso
+está registrado na `observacao` como projeção atribuída, não como fato.
+
+Dois pontos de atenção na ficha nacional: Caiado e Renan Santos aparecem com
+**votos idênticos** (1.772.883) porque ambos foram publicados em 2,34% e os
+votos são derivados do mesmo total — é consequência aritmética, não erro de
+transcrição, e está marcado como derivado e não oficial na `observacao`. E a
+leitura é das 19h06 enquanto a varredura rodou às 20h06: o teto do índice de
+busca, não o estado real da contagem.
+
+### Dois defeitos meus achados ao conferir a aba Projeção
+
+**1. Somar candidatos entre UFs era erro de categoria para governador e
+senador.** `projetarApuracao` somava os candidatos de todas as UFs num ranking
+único. Para presidente está certo — são os mesmos nomes no país. Para
+governador produziria o votado na Bahia e o votado no Paraná na mesma lista,
+como se disputassem entre si, e um "líder nacional de governador" que não
+existe. Com a entrada de BA e PR no arquivo, isso deixou de ser hipotético.
+Corrigido: fora de presidente o agregado fica vazio de propósito e cada UF se
+lê sozinha, com teste travando os dois comportamentos.
+
+**2. "Não souberam responder" estava classificado como CANDIDATO.** O
+normalizador de linhas de não-candidato usa padrões que exigem palavras
+adjacentes, e `/nao respond/` não casa com "nao souberam responder". A linha
+entrava no ranking do agregado nacional de presidente com 0,30 — um
+não-candidato disputando a eleição. Entrou o padrão `/nao soube/`, que cobre
+também "Não souberam opinar", com teste de regressão. Há 213 linhas de
+indeciso na base, em 10 grafias diferentes; esta era a única que escapava.
+
+### Correção a um exagero meu, registrada para não se repetir
+
+No commit da aba Projeção eu afirmei que comparar o agregado de pesquisas com
+a apuração sem igualar as bases embutia "um erro sistemático do tamanho dos
+brancos, nulos e indecisos, uns dez pontos". **Isso está errado.**
+`Agregado.candidatos` já exclui as linhas de não-candidato, que vão para
+`Agregado.outros`, então aquele ranking já soma perto de 100 por construção
+(medido: 100,17). A renormalização continua certa, porque torna a base exata
+em vez de incidental e porque o 100,17 é artefato — cada candidato é média
+ponderada sobre as pesquisas que o publicaram. Mas o efeito é de centésimos,
+não de dez pontos: o primeiro colocado foi de 38,37 para 38,31. O texto da
+tela e o comentário do caso de uso foram corrigidos.
+
+### O que a comparação mostra, com a ressalva que ela carrega
+
+Na leitura de 64,81%, o agregado de 821 pesquisas contra a contagem parcial:
+
+| candidato | agregado | contagem parcial | diferença |
+|---|---|---|---|
+| Flávio Bolsonaro | 38,4% | 49,6% | subestimado em 11,2 |
+| Lula | 40,9% | 42,2% | subestimado em 1,3 |
+| Augusto Cury | 4,8% | 3,0% | superestimado em 1,9 |
+| Renan Santos | 4,0% | 2,3% | superestimado em 1,7 |
+| Ronaldo Caiado | 3,2% | 2,3% | superestimado em 0,8 |
+
+Erro absoluto médio de 3,4 pontos. **A ressalva é parte do número**: é
+comparação contra parcial de 64,81%, e a tela diz isso. A diferença de 11,2
+pontos no primeiro colocado é grande demais para ser lida como erro de
+pesquisa sem a apuração fechada — pode ser viés de ordem de apuração, e é
+exatamente o que a falta de recortes estaduais impede de separar.
+
+### Lacunas do dia
+
+- **Presidente por estado: nada entrou, e é a lacuna mais custosa.** Sem ela a
+  projeção por estado — construída e testada — não tem insumo. Localizados sem
+  voto absoluto: SC (83,8%), RS (83%), GO (91%), MA (72%). Só percentual não
+  passa a regra.
+- **Governador sem absolutos**, descartados: SP (90,02%), MG (81%), SC
+  (93,84%), PE (60,18%), RS. CE, AM, PB e RJ sem nada utilizável.
+- **Senador**: nenhum recorte de apuração.
+- **Leitura acima de 64,81% não existe no índice de busca.** A cobertura
+  existe (páginas ao vivo), o que falta é o índice ter o estado atual delas.
+- **Quaest nacional de 03/10** (BR-02197/2026, campo 02–03/10, n=3.702):
+  recusada por divergência **não resolvida** — uma busca deu "Flávio 44 x Lula
+  42", outra "Lula 44 x Flávio 42", e a terceira busca não localizou a rodada.
+  Fica para decisão humana.
+- **O "super sábado" de 03/10 está mal coberto na base**: ausentes a Quaest
+  inteira (nacional, PB, MS, RS, PR), AtlasIntel RS, PoderData nacional, Palver
+  nacional, e o **1º turno do Datafolha nacional** — só o 2º turno entrou.
