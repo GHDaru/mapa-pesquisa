@@ -90,6 +90,26 @@ reescreve `data/polls.json`. Não é preciso mexer nos blocos antigos.
 - 2026-09-22: dois agentes se contradisseram sobre o Datafolha do CE. O que disse "não saiu" só tinha varrido o recorte presidencial; a rodada existia (Ciro 47 x Elmano 40). Lição registrada: **"não saiu" só vale para o cargo que aquele agente varreu** — o resumo precisa dizer qual. Na mesma execução, corrigido um palpite meu: eu havia passado ao agente que a rodada da AtlasIntel no CE de 21/09 era Lula 51,6 x 25,7; o agente provou que esses eram os números de 04/09 e trouxe os corretos (56,6 x 33,8), confirmados depois por busca independente. Removida também uma pesquisa com contratante "Rede Record de Televisão" inferido de um calendário, não afirmado pela matéria.
 - 2026-09-23: fechada a cobertura de 2º turno Lula x Flávio em AL, RR e SC. Registradas no backlog as armadilhas bloqueadas.
 - 2026-09-24 e 25: rodadas normais. Em 25/09 o usuário decidiu que as quatro pesquisas do Veritá **permanecem na base com o alerta**, em vez de serem removidas. TO fechou o 2º turno; RO é a última lacuna (só o Veritá tem rodada lá, e está suspensa).
+- 2026-10-04 (dia da eleição): a rotina rodou com **dois** agentes em vez de
+  três, e isso foi desvio deliberado do contrato. Com a votação encerrada, o
+  valor marginal de três varreduras completas de pesquisa é baixo — domingo de
+  eleição quase não tem divulgação nova — e o valor de uma leitura avançada da
+  **apuração** é alto, porque é ela que alimenta a aba Projeção criada hoje.
+  Um agente foi para a apuração e um cobriu os três cargos na janela magra.
+
+  **A rotina precisa ser repropósita, e isso é decisão humana.** Do jeito que
+  está, amanhã às 20:00 BRT ela vai lançar três agentes para procurar
+  pesquisas que não existem. O que faria sentido a partir de agora:
+
+  - se houver 2º turno, voltar a varrer pesquisas **quando a campanha do 2º
+    turno começar**, com o recorte reduzido ao confronto que sobrou;
+  - enquanto a apuração estiver aberta, trocar o objeto da rotina de
+    `polls-diario-*.json` para `data/apuracao.json`, com cadência muito mais
+    curta que diária (a apuração anda em minutos, não em dias);
+  - depois da diplomação, desligar.
+
+  Nenhuma dessas mudanças foi feita por esta sessão: mexer no agendamento é
+  ação externa e fica para o dono do projeto.
 - 2026-10-02: a execução descobriu que a suíte estava vermelha desde a
   mesclagem de 28/09 (contagens do dia cravadas como invariantes nos testes
   que leem dados reais) e que, por causa disso, **o deploy falhou nas quatro
