@@ -5,6 +5,7 @@ import type {
   ProjecaoComparada,
 } from '../../../../application/use-cases/get-projecao.js';
 import type { MargemProjetada, Projecao } from '../../../../domain/apuracao.js';
+import type { AcertoDoInstituto } from '../../../../domain/poll-accuracy.js';
 import { criarEl, formatarNumero, formatarPct } from './_shared.js';
 
 /**
@@ -186,6 +187,52 @@ export function rotuloDefasagem(isoLeitura: string, agora: Date): string | null 
   );
 }
 
+/**
+ * Frase do resultado final. Substitui a de contagem parcial quando a apuração
+ * fecha: aí a palavra "provisório" sai, porque deixaria o leitor desconfiar de
+ * número que já não vai mudar, e isso também é desinformar.
+ */
+export function rotuloResultadoFinal(secoesTotalizadas: number): string {
+  return (
+    `Apuração encerrada, com ${formatarPct(secoesTotalizadas)} das seções totalizadas. ` +
+    'Os percentuais são sobre os votos válidos, que excluem brancos e nulos — a base em ' +
+    'que o resultado oficial é publicado. Não há mais projeção a fazer: o que está abaixo ' +
+    'é contagem.'
+  );
+}
+
+/**
+ * Como ler o erro de um instituto, em palavras. Duas medidas, porque uma só
+ * esconderia metade: o erro por candidato mede calibração, o erro na margem
+ * mede o que a cobertura discute — quem está na frente e por quanto.
+ */
+export function rotuloErroDoInstituto(i: AcertoDoInstituto): string {
+  const partes = [`${formatarPct(i.erroMedioAbsoluto)} de erro médio por candidato`];
+  if (i.erroNaMargem != null) {
+    const abs = formatarPct(Math.abs(i.erroNaMargem));
+    partes.push(
+      Math.abs(i.erroNaMargem) < 0.05
+        ? 'margem exata'
+        : i.erroNaMargem > 0
+          ? `exagerou a margem do 1º em ${abs}`
+          : `subestimou a margem do 1º em ${abs}`,
+    );
+  }
+  if (!i.acertouOLider) partes.push('apontou outro candidato em primeiro');
+  return partes.join(' · ');
+}
+
+/**
+ * A ressalva de comparabilidade. Um instituto que foi a campo três semanas
+ * antes não disputa em igualdade com quem fechou na véspera, e o ranking sem
+ * essa informação é injusto — então ela anda junto do número, não em nota de pé.
+ */
+export function rotuloDistanciaDaEleicao(diasAntes: number): string {
+  if (diasAntes <= 0) return 'campo encerrado no dia da eleição';
+  if (diasAntes === 1) return 'campo encerrado 1 dia antes';
+  return `campo encerrado ${diasAntes} dias antes`;
+}
+
 /** Estado vazio: diz o que falta, em vez de desenhar resultado que não existe. */
 function montarVazio(): HTMLElement {
   return criarEl('section', { className: 'pj-vazio' }, [
@@ -260,11 +307,14 @@ function montarComparacao(dados: ProjecaoComparada): HTMLElement | null {
   if (pares.length === 0) return null;
   // Em modo só-nacional a coluna da direita é CONTAGEM, não projeção. Dizer
   // "projeção" aqui contradiria o aviso que está logo acima na mesma tela.
-  const contagem = dados.apenasNacional;
-  const rotuloColuna = contagem ? 'Contagem parcial' : 'Projeção da apuração';
-  const titulo = contagem
-    ? 'O que as pesquisas diziam, e o que a contagem parcial mostra'
-    : 'O que as pesquisas diziam, e o que a apuração projeta';
+  const final = dados.apuracaoEncerrada;
+  const contagem = dados.apenasNacional && !final;
+  const rotuloColuna = final ? 'Resultado' : contagem ? 'Contagem parcial' : 'Projeção da apuração';
+  const titulo = final
+    ? 'O que as pesquisas diziam, e o que deu'
+    : contagem
+      ? 'O que as pesquisas diziam, e o que a contagem parcial mostra'
+      : 'O que as pesquisas diziam, e o que a apuração projeta';
   const tabela = criarEl('table', { className: 'pj-tabela' }, [
     criarEl('thead', {}, [
       criarEl('tr', {}, [
@@ -342,6 +392,78 @@ function montarPorUf(projecao: Projecao): HTMLElement {
   ]);
 }
 
+/**
+ * Tabela de acerto por instituto. É a conta que o projeto existe para fazer e
+ * que só pode ser feita uma vez por eleição — e também a mais fácil de tornar
+ * injusta, então cada linha carrega a data do campo e a amostra ao lado do
+ * erro, e institutos sob ressalva aparecem marcados em vez de removidos.
+ */
+function montarAcerto(dados: ProjecaoComparada): HTMLElement | null {
+  const a = dados.acerto;
+  if (!a || a.institutos.length === 0) return null;
+  const linhas = a.institutos.map((i) =>
+    criarEl('tr', i.alerta ? { className: 'pj-linha-alerta' } : {}, [
+      criarEl('td', {}, [
+        criarEl('span', { className: 'pj-instituto', texto: i.instituto }),
+        i.alerta
+          ? criarEl('span', {
+              className: 'pj-selo-alerta',
+              texto: 'sob ressalva',
+              attrs: { title: i.alerta },
+            })
+          : null,
+      ]),
+      criarEl('td', { texto: rotuloDistanciaDaEleicao(i.diasAntes) }),
+      criarEl('td', { texto: i.amostra == null ? '—' : formatarVotos(i.amostra) }),
+      criarEl('td', { texto: rotuloErroDoInstituto(i) }),
+    ]),
+  );
+  const mediana = a.erroMedianoDoCampo;
+  return criarEl('section', { className: 'pj-secao' }, [
+    criarEl('h2', { texto: 'Quem chegou mais perto' }),
+    criarEl('p', {
+      className: 'pj-nota',
+      texto:
+        'Uma pesquisa por instituto: a última de cada um, renormalizada para a base de ' +
+        'votos válidos. A data do campo está ao lado porque quem foi a campo três semanas ' +
+        'antes não disputa em igualdade com quem fechou na véspera — e um ranking que ' +
+        'esconde isso é injusto. O erro médio por candidato mede calibração; o erro na ' +
+        'margem mede o que a cobertura discute, quem está na frente e por quanto.',
+    }),
+    criarEl('table', { className: 'pj-tabela pj-tabela--acerto' }, [
+      criarEl('thead', {}, [
+        criarEl('tr', {}, [
+          criarEl('th', { texto: 'Instituto' }),
+          criarEl('th', { texto: 'Quando' }),
+          criarEl('th', { texto: 'Amostra' }),
+          criarEl('th', { texto: 'Erro' }),
+        ]),
+      ]),
+      criarEl('tbody', {}, linhas),
+    ]),
+    mediana == null
+      ? null
+      : criarEl('p', {
+          className: 'pj-nota pj-nota--destaque',
+          texto:
+            `Erro médio do campo (mediana): ${formatarPct(mediana)}. ` +
+            `${a.acertaramOLider} de ${a.institutos.length} ` +
+            `${a.institutos.length === 1 ? 'instituto apontou' : 'institutos apontaram'} ` +
+            'em primeiro quem de fato ficou em primeiro.' +
+            (a.margemReal != null && a.primeiroESegundo
+              ? ` A margem real entre ${a.primeiroESegundo[0]} e ${a.primeiroESegundo[1]} ` +
+                `foi de ${formatarPct(a.margemReal)}.`
+              : ''),
+        }),
+    criarEl('p', {
+      className: 'pj-nota',
+      texto:
+        'Mediana, e não média, no resumo do campo: um instituto muito fora puxaria a ' +
+        'média e faria o conjunto parecer pior do que foi.',
+    }),
+  ]);
+}
+
 /** Monta o conteúdo completo da tela. Exportada para teste. */
 export function pjMontarConteudo(dados: ProjecaoComparada, agora: Date = new Date()): HTMLElement {
   const raiz = criarEl('div', { className: 'pj-raiz' });
@@ -371,14 +493,20 @@ export function pjMontarConteudo(dados: ProjecaoComparada, agora: Date = new Dat
     const cru = projecao.nacionalCru!;
     raiz.appendChild(
       criarEl('p', {
-        className: 'pj-cobertura',
-        texto: rotuloApenasNacional(cru.secoesTotalizadas),
+        className: dados.apuracaoEncerrada ? 'pj-final' : 'pj-cobertura',
+        texto: dados.apuracaoEncerrada
+          ? rotuloResultadoFinal(cru.secoesTotalizadas)
+          : rotuloApenasNacional(cru.secoesTotalizadas),
       }),
     );
     const maior = cru.candidatos[0]?.pctApurado ?? 0;
     raiz.appendChild(
       criarEl('section', { className: 'pj-secao' }, [
-        criarEl('h2', { texto: 'Contagem parcial nacional' }),
+        criarEl('h2', {
+          texto: dados.apuracaoEncerrada
+            ? 'Resultado final — 1º turno'
+            : 'Contagem parcial nacional',
+        }),
         criarEl(
           'ul',
           { className: 'pj-barras' },
@@ -433,6 +561,9 @@ export function pjMontarConteudo(dados: ProjecaoComparada, agora: Date = new Dat
 
   const comparacao = montarComparacao(dados);
   if (comparacao) raiz.appendChild(comparacao);
+
+  const acerto = montarAcerto(dados);
+  if (acerto) raiz.appendChild(acerto);
 
   if (projecao.porUf.length > 0) raiz.appendChild(montarPorUf(projecao));
 

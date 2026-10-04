@@ -240,3 +240,41 @@
   font-variation-settings: var(--font-variation-announce);
   max-width: 72ch;
 }
+
+/* Resultado final: o oposto visual da defasagem. Borda de acento em vez de
+   aviso, porque aqui não há ressalva a fazer — a contagem fechou. */
+.pj-final {
+  margin: 0;
+  padding: var(--space-4);
+  border: 1px solid var(--color-accent);
+  border-left: 4px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-2);
+  color: var(--color-text);
+  font-size: var(--text-body);
+  max-width: 72ch;
+}
+
+.pj-instituto {
+  font-variation-settings: var(--font-variation-read);
+}
+
+/* Instituto sob ressalva: marcado, não removido. O selo é textual e não
+   depende de cor — a ressalva completa fica no title. */
+.pj-selo-alerta {
+  margin-left: var(--space-2);
+  padding: 1px var(--space-2);
+  border: 1px solid var(--color-warning);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-caption);
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+.pj-linha-alerta td {
+  background: var(--color-surface-3);
+}
+
+.pj-tabela--acerto td:nth-child(4) {
+  font-variant-numeric: tabular-nums;
+}

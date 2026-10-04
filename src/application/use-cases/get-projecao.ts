@@ -1,5 +1,9 @@
 import type { Clock, Repositorios } from '../ports.js';
-import { agregarPesquisas } from '../../domain/aggregate.js';
+import { agregarPesquisas, ehLinhaNaoCandidato } from '../../domain/aggregate.js';
+import {
+  type AcertoDasPesquisas,
+  medirAcertoDasPesquisas,
+} from '../../domain/poll-accuracy.js';
 import {
   type CargoApuracao,
   type Projecao,
@@ -52,6 +56,14 @@ export interface ComparacaoPesquisaApuracao {
  * Exportada porque é a peça que torna a comparação legítima, e um erro aqui
  * se propaga para todo número da coluna de erro.
  */
+/**
+ * A partir de quantos por cento de seções totalizadas o resultado é tratado
+ * como final. Não é 100 porque a totalização fecha com frações residuais
+ * (seções no exterior, urnas em trânsito) que não movem o resultado — mas é
+ * alto o bastante para que o viés de ordem de apuração já tenha se esgotado.
+ */
+export const LIMIAR_APURACAO_ENCERRADA = 99.5;
+
 export function pctValidosDasPesquisas(
   candidatos: readonly { readonly candidato: string; readonly pct: number }[],
 ): Map<string, number> {
@@ -92,6 +104,21 @@ export interface ProjecaoComparada {
    * precisa aparecer na tela, não só no arquivo.
    */
   readonly observacoes: readonly string[];
+
+  /**
+   * `true` quando a apuração do recorte está encerrada (ou a tão poucos
+   * décimos do fim que o resultado não muda mais). Vira o enquadramento da
+   * tela de "contagem parcial" para "resultado final", e é o que autoriza
+   * tratar a comparação com as pesquisas como veredito em vez de provisório.
+   */
+  readonly apuracaoEncerrada: boolean;
+  /**
+   * Acerto de cada instituto contra o resultado. `null` enquanto a apuração
+   * não está encerrada: ranquear institutos contra um parcial enviesado pela
+   * ordem de apuração produziria um ranking falso, e publicá-lo seria pior que
+   * não publicar nada.
+   */
+  readonly acerto: AcertoDasPesquisas | null;
 }
 
 /**
@@ -166,9 +193,34 @@ export function criarGetProjecao(repos: Repositorios, clock: Clock) {
     const erroAbsolutoMedio =
       erros.length > 0 ? erros.reduce((t, e) => t + Math.abs(e), 0) / erros.length : null;
 
+    // Encerrada quando as seções passam do limiar no recorte que a tela usa —
+    // o nacional quando só há ele, ou a média ponderada por estado.
+    const secoesDoRecorte =
+      projecao.porUf.length > 0
+        ? projecao.secoesTotalizadasPonderada
+        : (projecao.nacionalCru?.secoesTotalizadas ?? 0);
+    const apuracaoEncerrada = !semDados && secoesDoRecorte >= LIMIAR_APURACAO_ENCERRADA;
+
+    // O ranking de institutos só sai com a apuração encerrada. Contra parcial,
+    // ele mediria o viés de ordem de apuração e o atribuiria aos institutos.
+    let acerto: AcertoDasPesquisas | null = null;
+    if (apuracaoEncerrada && cargo === 'presidente') {
+      const pctResultado = new Map(
+        baseComparacao.map((c) => [c.candidato, c.pctProjetado] as const),
+      );
+      const disputaAcerto = criarDisputa(UF_NACIONAL, 'presidente', turno);
+      acerto = medirAcertoDasPesquisas(
+        repos.polls.porDisputa(disputaAcerto),
+        pctResultado,
+        (rotulo) => ehLinhaNaoCandidato(rotulo, new Set<string>()),
+      );
+    }
+
     return {
       projecao,
       semDados,
+      apuracaoEncerrada,
+      acerto,
       apenasNacional: projecao.porUf.length === 0 && projecao.nacionalCru !== null,
       apuracaoAtualizadaEm: repos.apuracao.atualizadoEm(),
       comparacao,

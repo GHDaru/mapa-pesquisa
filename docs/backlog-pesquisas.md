@@ -1895,3 +1895,116 @@ exatamente o que a falta de recortes estaduais impede de separar.
 - **O "super sábado" de 03/10 está mal coberto na base**: ausentes a Quaest
   inteira (nacional, PB, MS, RS, PR), AtlasIntel RS, PoderData nacional, Palver
   nacional, e o **1º turno do Datafolha nacional** — só o 2º turno entrou.
+
+## Resultado e comparação com as pesquisas (04/10, 20h22)
+
+Pedido: "agora é resultado final e comparação com as pesquisas". Metade foi
+entregue, metade não existe — e a razão de não existir é verificável.
+
+### Não há resultado final disponível a esta sessão
+
+O teto do índice de busca é **84,96%** das seções no recorte nacional
+(424.153 de 499.248). Nenhuma fonte afirma encerramento, "100% apurado" ou
+"totalização concluída", e o TSE está bloqueado pela política de rede do
+ambiente. Cinco ângulos de busca diferentes bateram no mesmo teto.
+
+**E o número ainda está se movendo, o que é mensurável no nosso próprio dado:**
+entre as leituras de 64,81% e 84,96%, a vantagem do primeiro colocado **caiu de
+7,33 para 4,98 pontos** (49,58 → 48,47 contra 42,25 → 43,49), compatível com a
+entrada tardia do Nordeste. É a demonstração empírica do viés de ordem de
+apuração que a aba descreve.
+
+### O ranking de institutos está construído e desligado de propósito
+
+`src/domain/poll-accuracy.ts` mede o acerto de cada instituto contra o
+resultado, com 15 testes. A tela tem a seção pronta. **Ela não aparece**, porque
+`LIMIAR_APURACAO_ENCERRADA = 99,5%` e a apuração está em 84,96%.
+
+Isso é desenho, não omissão: ranquear institutos contra um parcial que ainda
+anda mediria o viés de ordem de apuração e o atribuiria ao trabalho deles. Com
+a vantagem do líder tendo encolhido 2,35 pontos nas últimas duas leituras,
+publicar um ranking agora seria assinar um número que vai mudar.
+
+Decisões de método do ranking, todas com teste que falha se mudarem:
+
+- **Uma pesquisa por instituto: a última.** Média de rodadas premiaria quem
+  publicou muito, e rodada de agosto não é tentativa de prever o resultado.
+- **Base de válidos nas duas pontas**, renormalizando cada pesquisa pela soma
+  dos seus próprios candidatos.
+- **Dois erros, não um**: erro médio por candidato (calibração) e erro na
+  margem entre os dois primeiros (o que a cobertura discute). Um instituto pode
+  acertar a margem errando os dois níveis — há teste construído para isso.
+- **Mediana, não média**, no resumo do campo, para um instituto muito fora não
+  fazer o conjunto parecer pior do que foi.
+- **A data do campo anda junto do erro.** Quem fechou em 02/10 e quem fechou em
+  13/09 não disputam em igualdade, e ranking que esconde isso é injusto.
+- **Instituto sob ressalva é marcado, não removido.** Veritá entra com o selo
+  do alerta de integridade; removê-lo esconderia a comparação.
+
+### Apuração: 3 para 6 recortes
+
+| recorte | seções | líder |
+|---|---|---|
+| presidente BR | 64,81% → **84,96%** | Flávio Bolsonaro 48,47% / Lula 43,49% |
+| governador PR | 99,17% (preservado) | Sergio Moro 50,19% |
+| governador RS | **97,40%** (novo) | Zucco 58,01%, eleito no 1º turno |
+| governador SP | **90,02%** (novo) | Tarcísio 62,85%, eleito no 1º turno |
+| governador MG | **81,15%** (novo) | Cleitinho 54,92%, eleito no 1º turno |
+| governador BA | 67,11% (preservado) | Jerônimo Rodrigues 54,00% |
+
+Minas é o único recorte com **brancos, nulos e abstenções** publicados na mesma
+leitura. Todos os `validosTotal` conferidos por duas derivações independentes,
+com discordância entre 0,006% e 0,014%; RS e MG têm terceira e quarta
+derivações fechando.
+
+**Custo da troca no recorte nacional, que vale declarar:** a leitura nova é mais
+avançada em seções mas **menos completa em candidatos** — a fonte publicou só os
+dois primeiros, cobrindo 91,96% dos válidos, contra cinco candidatos e 99,48% na
+leitura de 64,81%. A comparação com as pesquisas caiu de 5 para 2 linhas.
+Completar os menores com os percentuais da leitura anterior seria misturar
+instantes, e foi recusado.
+
+### 2º turno: projeção de instituto, não proclamação
+
+**Lula x Flávio Bolsonaro em 25/10/2026** é **projeção Datafolha**, e a própria
+cobertura diz que a confirmação depende da conclusão da totalização pelo TSE.
+Não há proclamação oficial nas buscas. Aritmeticamente é coerente: a 84,96% o
+primeiro colocado está em 48,47%, abaixo de 50% + 1. **Nenhum recorte de 2º
+turno foi gravado.**
+
+### Descartes por disciplina, não por falta de dado
+
+Três fichas de governador foram achadas e jogadas fora pelo teste das duas
+derivações de `validosTotal`:
+
+- **SC** (81,63%): as duas derivações discordam em **1,38%**, catorze vezes o
+  limite — as duas metades são de leituras diferentes.
+- **PE**: o mesmo percentual de 52,93% aparece com 1.996.491 votos a 73,06% das
+  seções **e** com 2.097.881 a 76,54%. Ficha misturada.
+- **CE** (66,78%): o primeiro colocado dá par limpo, mas o segundo saiu só em
+  percentual, sem absoluto, em três buscas — sem segundo par não há teste.
+
+Também foi recusada uma fonte que afirmava **Bahia a 100% das seções** com os
+**mesmos** números da leitura de 67,11%. Não pode ser as duas coisas; subir o
+percentual mantendo os números seria fabricar. BA ficou em 67,11%.
+
+### Presidente por estado: a lacuna que não fecha
+
+**Zero UFs**, depois de cinco ângulos de busca. Tudo o que aparece é pesquisa de
+intenção de voto, não apuração. É o que mantém a projeção por estado — que está
+construída e testada — sem insumo, e o que impede separar erro de pesquisa de
+viés de ordem de apuração na diferença de 10,1 pontos do primeiro colocado.
+
+### Dois achados de dados a resolver depois
+
+- **Grafias duplicadas de instituto na base**: "American Analytics" e "American
+  Analytics do Brasil", "IP Sensus" e "IPSensus", "Falpe" e "Instituto Falpe".
+  No recorte nacional **não** há duplicata (o normalizador já fundiu
+  "Futura/100% Cidades" em "Futura Inteligência" e "Ideia (Meio/Ideia)" em
+  "Ideia"), então o ranking não é afetado — mas em recortes estaduais o mesmo
+  instituto pode aparecer duas vezes.
+- **Nomes de candidato passam por `normalizarCandidato`**, que converte apelidos
+  ("Lula", "Flávio") na forma completa. O arquivo de apuração tem de usar a
+  forma canônica, senão a comparação não casa e o ranking volta vazio sem erro
+  nenhum. Custou uma rodada de teste para descobrir; está anotado no cabeçalho
+  de `get-projecao.test.ts`.
