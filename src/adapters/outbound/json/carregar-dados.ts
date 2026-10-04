@@ -1,8 +1,10 @@
 import type { Repositorios } from '../../../application/ports.js';
+import type { DadosApuracao } from '../../../domain/apuracao.js';
 import type { DadosEleitorado } from '../../../domain/electorate.js';
 import type { DadosPartido } from '../../../domain/party.js';
 import type { DadosPesquisa } from '../../../domain/poll.js';
 import type { DadosCadeiraSenado } from '../../../domain/senate.js';
+import { criarApuracaoRepositoryJson } from './apuracao-repository.js';
 import { criarEleitoradoRepositoryJson } from './electorate-repository.js';
 import { criarMetaRepositoryJson, type DadosMeta } from './meta-repository.js';
 import { criarPartyRepositoryJson } from './party-repository.js';
@@ -17,6 +19,7 @@ import partiesJson from '../../../../data/parties.json';
 import senateSeatsJson from '../../../../data/senate-seats.json';
 import metaJson from '../../../../data/meta.json';
 import electorateJson from '../../../../data/electorate.json';
+import apuracaoJson from '../../../../data/apuracao.json';
 
 /**
  * Monta os repositórios em memória a partir dos arquivos data/*.json.
@@ -30,5 +33,6 @@ export function carregarDados(): Repositorios {
     senateSeats: criarSenateSeatRepositoryJson(senateSeatsJson as unknown as DadosCadeiraSenado[]),
     meta: criarMetaRepositoryJson(metaJson as unknown as DadosMeta),
     electorate: criarEleitoradoRepositoryJson(electorateJson as unknown as DadosEleitorado[]),
+    apuracao: criarApuracaoRepositoryJson(apuracaoJson as unknown as DadosApuracao),
   };
 }

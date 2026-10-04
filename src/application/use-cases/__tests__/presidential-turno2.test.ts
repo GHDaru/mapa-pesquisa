@@ -15,6 +15,12 @@ import type {
 } from '../../ports.js';
 import { criarCasosDeUso, type CasosDeUso } from '../index.js';
 import { usouPesquisaForaDaJanela } from '../get-presidential-by-state.js';
+import { criarApuracaoRepositoryJson } from '../../../adapters/outbound/json/apuracao-repository.js';
+
+/** Porta de apuração vazia: estes testes não exercem a tela de projeção. */
+function apuracaoRepoVazio() {
+  return criarApuracaoRepositoryJson({ atualizadoEm: '2026-01-01T00:00:00Z', recortes: [] });
+}
 
 /**
  * 2º turno presidencial por estado, confronto Lula x Flávio Bolsonaro.
@@ -215,6 +221,7 @@ beforeAll(() => {
     parties: partyRepoFake(PARTIDOS),
     senateSeats: senateSeatRepoFake,
     meta: metaRepoFake,
+    apuracao: apuracaoRepoVazio(),
     electorate: electorateRepoFake([
       eleitores('SP', ELEITORES_SP),
       eleitores('GO', ELEITORES_GO),
@@ -431,6 +438,7 @@ describe('getVoteEstimate — 2º turno Lula x Flávio', () => {
       senateSeats: senateSeatRepoFake,
       meta: metaRepoFake,
       electorate: electorateRepoFake([eleitores('SP', ELEITORES_SP)]),
+      apuracao: apuracaoRepoVazio(),
     };
     // Só existe cenário contra Cury: no recorte Lula x Flávio não há nem
     // agregado estadual nem nacional — estimativa impossível, retorna null.

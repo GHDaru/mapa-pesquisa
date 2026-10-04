@@ -1,0 +1,242 @@
+/*
+ * Tela de projeção (prefixo `pj-`).
+ *
+ * Decisão de hierarquia visual: o percentual PROJETADO é o número grande e o
+ * APURADO fica ao lado, menor mas legível — nunca escondido em tooltip. Os
+ * dois são informações diferentes (inferência e contagem) e a tela não pode
+ * deixar o leitor confundi-las. Por isso o apurado tem contraste de texto
+ * normal, não `--color-text-subtle`: ele não é um detalhe secundário, é a
+ * única parte sem incerteza.
+ */
+
+.pj-raiz {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  max-width: 68rem;
+  margin: 0 auto;
+}
+
+.pj-cabecalho h1 {
+  font-size: var(--text-display);
+  font-variation-settings: var(--font-variation-announce);
+  margin: 0 0 var(--space-2);
+}
+
+.pj-nota {
+  font-size: var(--text-body-sm);
+  color: var(--color-text-muted);
+  margin: 0;
+  max-width: 60ch;
+}
+
+.pj-nota--destaque {
+  color: var(--color-text);
+  font-variation-settings: var(--font-variation-announce);
+}
+
+/* A cobertura é promovida a bloco próprio porque é a ressalva que qualifica
+   todo número da tela. Em caixa, com borda de aviso, para não ser lida como
+   legenda de rodapé. */
+.pj-cobertura {
+  margin: 0;
+  padding: var(--space-4);
+  border: 1px solid var(--color-border-strong);
+  border-left: 4px solid var(--color-warning);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-2);
+  font-size: var(--text-body);
+  color: var(--color-text);
+  max-width: 72ch;
+}
+
+.pj-secao {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.pj-secao h2 {
+  font-size: var(--text-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  margin: 0;
+  font-variation-settings: var(--font-variation-nav);
+}
+
+.pj-barras {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.pj-barra {
+  display: grid;
+  grid-template-columns: minmax(10rem, 16rem) 1fr auto;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.pj-barra__rotulo {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.pj-barra__nome {
+  font-variation-settings: var(--font-variation-read);
+  overflow-wrap: anywhere;
+}
+
+.pj-barra__partido {
+  font-size: var(--text-caption);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.pj-barra__trilha {
+  height: 1.5rem;
+  background: var(--color-surface-3);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.pj-barra__preenchimento {
+  height: 100%;
+  background: var(--color-accent);
+  border-radius: var(--radius-sm);
+}
+
+.pj-barra__numeros {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  white-space: nowrap;
+}
+
+.pj-barra__projetado {
+  font-size: var(--text-body);
+  font-variation-settings: var(--font-variation-announce);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Contraste de texto normal, de propósito: o apurado é a parte sem
+   incerteza e não pode parecer nota de pé de página. */
+.pj-barra__apurado {
+  font-size: var(--text-body-sm);
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.pj-barra__votos {
+  font-size: var(--text-caption);
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.pj-veredito p,
+.pj-contraste p {
+  margin: 0;
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-2);
+  max-width: 72ch;
+}
+
+.pj-tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-body-sm);
+}
+
+.pj-tabela th,
+.pj-tabela td {
+  text-align: left;
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.pj-tabela th {
+  font-size: var(--text-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+.pj-tabela td:nth-child(2),
+.pj-tabela td:nth-child(3),
+.pj-tabela td:nth-child(4) {
+  font-variant-numeric: tabular-nums;
+}
+
+.pj-vazio {
+  padding: var(--space-6);
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 72ch;
+}
+
+.pj-vazio h2 {
+  margin: 0;
+  font-size: var(--text-body);
+  font-variation-settings: var(--font-variation-announce);
+}
+
+.pj-vazio p {
+  margin: 0;
+  font-size: var(--text-body-sm);
+  color: var(--color-text-muted);
+}
+
+/* Em telas estreitas a barra empilha: rótulo, trilha e números em linhas
+   próprias, para o nome do candidato não ser truncado a 10rem. */
+@media (max-width: 40rem) {
+  .pj-barra {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+  }
+
+  .pj-barra__numeros {
+    flex-direction: row;
+    align-items: baseline;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+}
+
+.pj-fontes {
+  margin: 0;
+  padding-left: var(--space-5);
+  font-size: var(--text-body-sm);
+}
+
+.pj-procedencia .pj-nota {
+  max-width: 78ch;
+}
+
+/* Defasagem: é a ressalva que qualifica a tela inteira na noite de eleição,
+   então vem antes de qualquer número e com peso visual de alerta — não de
+   legenda. */
+.pj-defasagem {
+  margin: 0;
+  padding: var(--space-4);
+  border: 1px solid var(--color-warning);
+  border-left: 4px solid var(--color-warning);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-3);
+  color: var(--color-text);
+  font-size: var(--text-body);
+  font-variation-settings: var(--font-variation-announce);
+  max-width: 72ch;
+}

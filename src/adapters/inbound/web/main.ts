@@ -41,6 +41,7 @@ interface Rota {
 
 const ROTAS: readonly Rota[] = [
   { hash: '#/inicio', rotulo: 'Início' },
+  { hash: '#/projecao', rotulo: 'Projeção' },
   { hash: '#/mapa', rotulo: 'Governadores' },
   { hash: '#/presidente', rotulo: 'Presidente' },
   { hash: '#/presidente-estados', rotulo: 'Presidente por estado' },
@@ -211,6 +212,9 @@ async function renderizarRota(main: HTMLElement, nav: HTMLElement, casos: CasosD
       break;
     case '#/pesquisas':
       await renderPaginaOpcional(main, casos, './views/polls-database-view.ts', 'renderPollsDatabase');
+      break;
+    case '#/projecao':
+      await renderPaginaOpcional(main, casos, './views/projecao-view.ts', 'renderProjecao');
       break;
     case '#/mapa':
       renderMap(main, casos);

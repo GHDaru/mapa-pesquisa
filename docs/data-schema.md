@@ -60,3 +60,79 @@ Para as 54 cadeiras em disputa, também preencher `senador` e `partido` atuais (
 
 ## Pesquisas presidenciais por estado
 Mesmo esquema de `data/polls.json`, com `cargo: "presidente"` e `uf` igual à sigla do estado (não `BR`). Turno 1 e 2. Ficam em `data/research/polls-presidente-estados-*.json`.
+
+## `data/apuracao.json` — apuração oficial
+
+Arquivo da noite de eleição, consumido pela aba **Projeção**
+(`#/projecao`). **Não** passa pela mesclagem de pesquisas
+(`ingest/merge-research.ts`): é escrito direto.
+
+```json
+{
+  "atualizadoEm": "2026-10-04T21:55:00Z",
+  "recortes": [
+    {
+      "cargo": "presidente",
+      "uf": null,
+      "turno": 1,
+      "secoesTotalizadas": 47.26,
+      "validosTotal": 54749261,
+      "candidatos": [
+        { "candidato": "Flávio Bolsonaro", "partido": "PL", "votos": 27484298 }
+      ],
+      "brancos": null,
+      "nulos": null,
+      "abstencoes": null,
+      "fonte": { "nome": "...", "url": "https://..." },
+      "observacao": "..."
+    }
+  ]
+}
+```
+
+Campos e as razões de cada um:
+
+- `atualizadoEm` — instante da leitura, ISO 8601. **Obrigatório e crítico**: a
+  página é estática e a apuração não. A tela calcula a defasagem contra o
+  relógio do leitor e avisa quando a leitura envelheceu.
+- `uf` — `null` (ou `"BR"`) para o recorte nacional; sigla de duas letras para
+  estado. O código trata os dois casos de nacional.
+- `secoesTotalizadas` — percentual de 0 a 100. É a medida da incerteza, e
+  nenhum número da tela aparece sem ele ao lado. Ficha sem esse campo não
+  serve.
+- **`votos` em números absolutos.** É como a fonte oficial publica, e com
+  absolutos o problema de "total vs votos válidos" que domina a ingestão de
+  pesquisas desaparece: dá para calcular as duas bases sem converter nada.
+- `validosTotal` — total de válidos da leitura, quando publicado ou derivável
+  dos valores publicados. **É o denominador dos percentuais.** Sem ele o código
+  divide pela soma dos candidatos da ficha, e como a cobertura raramente
+  publica todos os candidatos, isso infla cada um: no recorte nacional de
+  04/10, cujos quatro candidatos somam 97,17% dos válidos, o primeiro colocado
+  subia de 50,2% (o que a fonte publica) para 51,7% — a tela contradizendo a
+  fonte citada ao lado dela.
+- `brancos`, `nulos`, `abstencoes` — opcionais, `null` quando não publicados.
+  Nunca completados por estimativa.
+- `fonte` e `observacao` — a `observacao` vai para a tela, não só para o
+  arquivo: é onde fica dito, por exemplo, que um valor foi derivado de
+  percentual em vez de publicado como voto absoluto.
+
+### O que a projeção faz, e o que se recusa a fazer
+
+A projeção é somada **por estado**, cada UF escalada pelo que falta totalizar
+nela, e nunca por extrapolação do percentual nacional parcial — esse
+percentual é enviesado pela ORDEM em que os estados totalizam, não pelo voto.
+
+- UF sem apuração **não é completada** por pesquisa nem por média: fica fora e
+  aparece nomeada em `ufsSemApuracao`.
+- A projeção **não é chamada de nacional** quando cobre parte do eleitorado; a
+  cobertura é declarada na tela.
+- Quando existe só o recorte nacional e nenhum estadual, a tela **não projeta**:
+  mostra a contagem parcial, dita como contagem, com os rótulos trocados para
+  não prometer projeção.
+- O único veredito emitido é aritmético (`matematicamenteDefinido`): a vantagem
+  do líder excede o teto de tudo o que ainda pode ser contado, incluindo o
+  eleitorado inteiro das UFs sem nenhuma apuração. A tela nunca usa "vencedor",
+  "eleito" ou "ganhou" — há teste travando isso.
+- A comparação com as pesquisas renormaliza o agregado para a base de válidos
+  antes de subtrair. Sem isso o "erro das pesquisas" embutiria a fatia de
+  brancos, nulos e indecisos, uns dez pontos.

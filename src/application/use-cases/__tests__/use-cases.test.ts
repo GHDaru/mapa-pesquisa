@@ -14,6 +14,12 @@ import type {
   SenateSeatRepository,
 } from '../../ports.js';
 import { criarCasosDeUso, type CasosDeUso } from '../index.js';
+import { criarApuracaoRepositoryJson } from '../../../adapters/outbound/json/apuracao-repository.js';
+
+/** Porta de apuração vazia: estes testes não exercem a tela de projeção. */
+function apuracaoRepoVazio() {
+  return criarApuracaoRepositoryJson({ atualizadoEm: '2026-01-01T00:00:00Z', recortes: [] });
+}
 
 function pollRepoFake(pesquisas: Pesquisa[]): PollRepository {
   return {
@@ -236,6 +242,7 @@ beforeAll(() => {
     senateSeats: senateSeatRepoFake(cadeiras),
     meta: metaRepoFake('2026-09-13'),
     electorate: electorateRepoFake(eleitorado),
+    apuracao: apuracaoRepoVazio(),
   };
 
   casos = criarCasosDeUso(repos, CLOCK);
@@ -544,6 +551,7 @@ describe('use-cases/getVoteEstimate', () => {
       senateSeats: senateSeatRepoFake([]),
       meta: metaRepoFake('2026-09-13'),
       electorate: electorateRepoFake([]),
+      apuracao: apuracaoRepoVazio(),
     };
     const casosSemEleitorado = criarCasosDeUso(reposSemEleitorado, CLOCK);
     expect(casosSemEleitorado.getVoteEstimate()).toBeNull();
@@ -560,6 +568,7 @@ describe('use-cases/getVoteEstimate', () => {
           resultados: [{ candidato: 'Candidato A', partido: 'PT', pct: 50 }],
         }),
       ]),
+      apuracao: apuracaoRepoVazio(),
       parties: partyRepoFake(PARTIDOS),
       senateSeats: senateSeatRepoFake([]),
       meta: metaRepoFake('2026-09-13'),

@@ -1,3 +1,4 @@
+import type { DadosApuracao } from '../domain/apuracao.js';
 import type { Eleitorado } from '../domain/electorate.js';
 import type { Partido } from '../domain/party.js';
 import type { Pesquisa } from '../domain/poll.js';
@@ -33,12 +34,24 @@ export interface EleitoradoRepository {
   porUf(uf: string): Eleitorado | undefined;
 }
 
+/**
+ * Apuração oficial (data/apuracao.json). Fica vazia fora da noite de
+ * eleição, e `vazia()` existe para que a tela declare a ausência em vez de
+ * desenhar um gráfico de zeros.
+ */
+export interface ApuracaoRepository {
+  dados(): DadosApuracao;
+  atualizadoEm(): string;
+  vazia(): boolean;
+}
+
 export interface Repositorios {
   polls: PollRepository;
   parties: PartyRepository;
   senateSeats: SenateSeatRepository;
   meta: MetaRepository;
   electorate: EleitoradoRepository;
+  apuracao: ApuracaoRepository;
 }
 
 /** Relógio injetável — permite testes determinísticos dos casos de uso. */

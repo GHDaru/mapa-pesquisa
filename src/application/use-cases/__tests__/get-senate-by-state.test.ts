@@ -13,6 +13,12 @@ import type {
   SenateSeatRepository,
 } from '../../ports.js';
 import { criarGetSenateByState } from '../get-senate-by-state.js';
+import { criarApuracaoRepositoryJson } from '../../../adapters/outbound/json/apuracao-repository.js';
+
+/** Porta de apuração vazia: estes testes não exercem a tela de projeção. */
+function apuracaoRepoVazio() {
+  return criarApuracaoRepositoryJson({ atualizadoEm: '2026-01-01T00:00:00Z', recortes: [] });
+}
 
 /**
  * Reproduz o bug P0 de docs/revisao-senado.md: `assentosProjetados` (vindo
@@ -121,6 +127,7 @@ function montarRepos(): Repositorios {
     senateSeats: senateSeatRepoFake(cadeiras),
     meta: metaRepoFake,
     electorate: electorateRepoFake,
+    apuracao: apuracaoRepoVazio(),
   };
 }
 

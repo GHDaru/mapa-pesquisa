@@ -1,0 +1,74 @@
+{
+  "atualizadoEm": "2026-10-04T21:55:00Z",
+  "recortes": [
+    {
+      "cargo": "presidente",
+      "uf": null,
+      "turno": 1,
+      "secoesTotalizadas": 47.26,
+      "candidatos": [
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 27484298
+        },
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 22791778
+        },
+        {
+          "candidato": "Augusto Cury",
+          "partido": "Avante",
+          "votos": 1620578
+        },
+        {
+          "candidato": "Ronaldo Caiado",
+          "partido": "PSD",
+          "votos": 1303032
+        }
+      ],
+      "brancos": null,
+      "nulos": null,
+      "abstencoes": null,
+      "fonte": {
+        "nome": "Rio Times Online - Brazil Election Results 2026: Live Updates, Vote Count and Runoff Scenarios",
+        "url": "https://www.riotimesonline.com/brazil-election-results-2026/"
+      },
+      "observacao": "PARCIAL em 47,26% das seções totalizadas. Base: percentual sobre VOTOS VÁLIDOS (exclui brancos e nulos), como publica o TSE. Percentuais na mesma leitura: Flávio Bolsonaro 50,20%, Lula 41,63%, Augusto Cury 2,96%, Ronaldo Caiado 2,38%. VOTOS PUBLICADOS (absolutos, da fonte): Flávio 27.484.298 e Lula 22.791.778. VOTOS DERIVADOS (Cury e Caiado): a fonte deu só percentual, então multipliquei pelo total de votos válidos implícito na própria leitura — 27.484.298/0,5020 = 54.749.598 e 22.791.778/0,4163 = 54.748.924, média 54.749.261 votos válidos (as duas derivações batem com erro de 0,001%, o que valida a leitura). Cury = 0,0296 x 54.749.261 = 1.620.578; Caiado = 0,0238 x 54.749.261 = 1.303.032. Esses dois valores têm incerteza de arredondamento de cerca de +/-3.000 votos e NÃO são números oficiais. Os quatro candidatos somam 97,17% dos válidos; o restante (Renan Santos/Missão e demais) não foi publicado nesta leitura e por isso não entrou. CORROBORAÇÃO: a mesma leitura de 47,26% com 50,20% x 41,63% aparece de forma independente no live blog da Exame (https://exame.com/live-blog/brasil/eleicoes-2026-apuracao-resultado-ao-vivo/). Coletado via resumo de WebSearch; WebFetch e acesso a resultados.tse.jus.br estão bloqueados neste ambiente, então os valores não foram conferidos na página original. Eleição de 2026 (Lula x FLÁVIO Bolsonaro), não de 2022. TOTAL DE VÁLIDOS DECLARADO (54.749.261) pela sessão principal: é o denominador que a fonte usa, derivado das duas razões voto/percentual publicadas — 27.484.298/0,5020 = 54.749.598 e 22.791.778/0,4163 = 54.748.924, que concordam com erro de 0,001%; adotada a média. Sem esse campo o código dividia pela soma dos quatro candidatos da ficha (53.199.686, ou 97,17% dos válidos) e publicava 51,7% para o primeiro colocado, contradizendo os 50,20% da própria fonte citada ao lado. Os candidatos não publicados nesta leitura respondem pelos 2,83% restantes.",
+      "validosTotal": 54749261
+    },
+    {
+      "cargo": "governador",
+      "uf": "PR",
+      "turno": 1,
+      "secoesTotalizadas": 88.35,
+      "candidatos": [
+        {
+          "candidato": "Sergio Moro",
+          "partido": "PL",
+          "votos": 2772093
+        },
+        {
+          "candidato": "Sandro Alex",
+          "partido": "PSD",
+          "votos": 1382918
+        },
+        {
+          "candidato": "Requião Filho",
+          "partido": "PDT",
+          "votos": 1291804
+        }
+      ],
+      "brancos": null,
+      "nulos": null,
+      "abstencoes": null,
+      "fonte": {
+        "nome": "Gazeta do Povo - Eleições 2026: resultado para governador do Paraná",
+        "url": "https://www.gazetadopovo.com.br/eleicoes/2026/resultado/parana/governador/"
+      },
+      "observacao": "PARCIAL em 88,35% das seções totalizadas. Base: percentual sobre VOTOS VÁLIDOS. Todos os três valores são ABSOLUTOS PUBLICADOS pela fonte, nenhum derivado: Sergio Moro 2.772.093 (50,34%), Sandro Alex 1.382.918 (25,12%), Requião Filho 1.291.804 (23,46%). Consistência interna conferida: cada par voto/percentual implica o mesmo total de válidos (5.506.740, 5.505.247 e 5.505.985 — convergem em cerca de 5,506 milhões), e os três somam 98,92% dos válidos, deixando cerca de 1,08% para os candidatos menores (Luiz França/Missão, Alexandre Salomão/Mobiliza, Tayná Miessa/UP, Samuel de Mattos/PSTU, Adriano Funileiro/PCO), cujos números não foram publicados nesta leitura. A fonte traz os nomes de urna completos: 'Sergio Fernando Moro' = Sergio Moro, 'Sandro Alex Cruz de Oliveira' = Sandro Alex, 'Mauricio Thadeu de Mello e Silva' = Requião Filho (nomes normalizados para casar com data/polls.json). Moro estava em 50,34% dos válidos, ou seja, no limite do 1º turno — com 11,65% das seções a totalizar, 2º turno no Paraná não estava descartado nesta leitura. Coletado via resumo de WebSearch; WebFetch bloqueado neste ambiente. TOTAL DE VÁLIDOS DECLARADO (5.506.000) pela sessão principal, derivado dos três pares voto/percentual publicados, que implicam 5.506.740, 5.505.247 e 5.505.985 — concordância de 0,03%. Os três candidatos publicados somam 98,92% dos válidos; o restante é dos menores, que a fonte não publicou e que NÃO foram completados.",
+      "validosTotal": 5506000
+    }
+  ]
+}
