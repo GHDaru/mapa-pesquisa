@@ -1,32 +1,52 @@
 {
-  "atualizadoEm": "2026-10-04T23:22:00Z",
+  "atualizadoEm": "2026-10-05T01:04:00Z",
   "recortes": [
     {
       "cargo": "presidente",
       "uf": null,
       "turno": 1,
-      "secoesTotalizadas": 84.96,
-      "validosTotal": 100489690,
+      "secoesTotalizadas": 99.79,
+      "validosTotal": 119057862,
       "candidatos": [
         {
           "candidato": "Flávio Bolsonaro",
           "partido": "PL",
-          "votos": 48704246
+          "votos": 56047284
         },
         {
           "candidato": "Luiz Inácio Lula da Silva",
           "partido": "PT",
-          "votos": 43705754
+          "votos": 53703660
+        },
+        {
+          "candidato": "Augusto Cury",
+          "partido": "Avante",
+          "votos": 3444052
+        },
+        {
+          "candidato": "Renan Santos",
+          "partido": "Missão",
+          "votos": 2673630
+        },
+        {
+          "candidato": "Ronaldo Caiado",
+          "partido": "PSD",
+          "votos": 2602710
+        },
+        {
+          "candidato": "Romeu Zema",
+          "partido": "Novo",
+          "votos": 326134
         }
       ],
-      "brancos": null,
-      "nulos": null,
-      "abstencoes": null,
+      "brancos": 2297528,
+      "nulos": 3665592,
+      "abstencoes": 33378099,
       "fonte": {
-        "nome": "Metrópoles — Apuração das Eleições 2026 em tempo real (parcial nacional do TSE, 424.153 de 499.248 seções = 84,96%)",
-        "url": "https://www.metropoles.com/eleicoes/2026/apuracao"
+        "nome": "Exame — Mapa de Apuração, Presidente 2026 1º turno (dados do TSE, 99,79% das seções, leitura de 04/10/2026 22h04)",
+        "url": "https://exame.com/eleicoes/2026/apuracao/primeiro-turno/presidente/mapa-de-apuracao/"
       },
-      "observacao": "PARCIAL em 84,96% das seções totalizadas (424.153 de 499.248 seções; 424.153/499.248 = 84,958%, que arredonda para o 84,96% publicado). SUBSTITUI a leitura anterior de 64,81% — ganho de 20,15 pontos de seções. A apuração NÃO está encerrada: nenhuma fonte encontrada afirma encerramento ou totalização concluída às 20h20 de 04/10/2026. Base: percentual sobre VOTOS VÁLIDOS (exclui brancos e nulos), como publica o TSE. VOTOS ABSOLUTOS PUBLICADOS pela fonte, nenhum derivado de percentual: Flávio Bolsonaro 48.704.246 (48,47%), Lula 43.705.754 (43,49%). Diferença entre os dois: 4.998.492 votos (4,98 pontos). TOTAL DE VÁLIDOS DECLARADO (100.489.690): derivado dos dois pares voto/percentual publicados — 48.704.246/0,4847 = 100.483.280 e 43.705.754/0,4349 = 100.496.100, que concordam com erro de 0,0128% (bem dentro do limite de 0,1%); adotada a média. Sem esse campo o código dividiria pela soma dos dois candidatos (92.410.000, ou 91,96% dos válidos) e inflaria ambos — Flávio saltaria de 48,47% para 52,7%, contradizendo a fonte citada ao lado. Os demais candidatos (Augusto Cury/Avante, Ronaldo Caiado/PSD, Renan Santos/Missão, Romeu Zema/Novo e outros) somam os 8,04% restantes dos válidos, mas NÃO foram publicados nesta leitura de 84,96% e por isso NÃO entraram: completá-los com os percentuais da parcial anterior de 64,81% seria misturar leituras de instantes diferentes. TENDÊNCIA: entre 64,81% e 84,96% a vantagem de Flávio caiu de 7,33 para 4,98 pontos (ele saiu de 49,58% para 48,47%; Lula subiu de 42,25% para 43,49%), movimento compatível com a entrada tardia das seções do Nordeste. CORROBORAÇÃO independente dos mesmos dois percentuais e absolutos: Capital News (https://www.capitalnews.com.br/politica-e-poder/judiciario/flavio-bolsonaro-lidera-disputa-pela-presidencia-da-republica-com-84-das-urnas-apuradas/447739, 'com 84% das urnas apuradas'), A Seguir Niterói (https://aseguirniteroi.com.br/noticias/com-cerca-de-75-das-urnas-apuradas-flavio-tem-4847-e-lula-4349/) e Gazeta do Povo (https://www.gazetadopovo.com.br/eleicoes/2026/resultado/presidente/). SEGUNDO TURNO: nesta leitura Flávio está em 48,47% dos válidos, abaixo dos 50% necessários, e a imprensa PROJETA 2º turno entre Lula (PT) e Flávio Bolsonaro (PL) em 25/10/2026 com base em projeção DATAFOLHA (O Tempo, Diário do Pará, Bloomberg Línea). ISSO É PROJEÇÃO DE INSTITUTO, NÃO PROCLAMAÇÃO OFICIAL DO TSE — a própria cobertura diz que 'a confirmação oficial depende da conclusão da totalização pelo TSE'. Por isso NENHUM recorte de turno 2 foi gravado. Coletado via resumo de WebSearch; WebFetch e resultados.tse.jus.br estão bloqueados neste ambiente, então os valores não foram conferidos na página original. Eleição de 2026 (Lula x FLÁVIO Bolsonaro), não de 2022 (Lula x JAIR Bolsonaro)."
+      "observacao": "LEITURA QUASE FINAL em 99,79% das seções totalizadas — SUBSTITUI a parcial anterior de 84,96% (ganho de 14,83 pontos de seções). ATENÇÃO AO ENQUADRAMENTO: 99,79% está acima de LIMIAR_APURACAO_ENCERRADA (99,5% em src/application/use-cases/get-projecao.ts), então o código passa a tratar este recorte como apuração encerrada e a liberar o ranking de institutos. O gatilho é o VALOR de secoesTotalizadas, não a palavra 'ENCERRADA' nesta observação. NÃO ACHEI FONTE QUE DECLARE A TOTALIZAÇÃO ENCERRADA: a leitura mais avançada encontrada é 99,87% (quenty.com.br, 05/10), e nenhuma fonte diz 100% nem 'totalização concluída'. Base: percentual sobre VOTOS VÁLIDOS (exclui brancos e nulos), como publica o TSE. SEIS ABSOLUTOS PUBLICADOS pela fonte, nenhum derivado de percentual: Flávio Bolsonaro 56.047.284 (47,08%), Luiz Inácio Lula da Silva 53.703.660 (45,11%), Augusto Cury 3.444.052 (2,89%), Renan Santos 2.673.630 (2,25%), Ronaldo Caiado 2.602.710 (2,19%), Romeu Zema 326.134 (0,27%). Os seis somam exatamente os 99,79% publicados; os 0,21% restantes (260.392 votos) são dos candidatos menores que a fonte não lista e que NÃO foram completados. TOTAL DE VÁLIDOS (119.057.862): valor PUBLICADO pela fonte, conferido por duas derivações independentes de pares voto/percentual — 56.047.284/0,4708 = 119.046.907 e 53.703.660/0,4511 = 119.050.454, que concordam entre si com erro de 0,0030% e ficam 0,0077% abaixo do valor publicado; as três medidas fecham, muito dentro do limite de 0,1%. Terceira conferência, independente dos percentuais: válidos 119.057.862 + brancos 2.297.528 + nulos 3.665.592 = 125.020.982, que é EXATAMENTE o total de votos computados que a fonte publica — prova de que válidos, brancos e nulos desta ficha vêm todos do MESMO instante. Conferências dos menores (Cury 119.171.003; Renan 118.828.000; Caiado 118.845.205; Zema 120.790.370) desviam entre 0,1% e 1,5%, dentro da janela de arredondamento de duas casas decimais para percentuais pequenos, e por isso não entraram no denominador. BRANCOS, NULOS E ABSTENÇÕES publicados nesta mesma leitura e gravados em absolutos: brancos 2.297.528 (1,84% dos votos computados), nulos 3.665.592 (2,93%), abstenções 33.378.099 (21,07% dos aptos). Válidos = 95,23% dos computados. Exame credita os números ao TSE e datou a leitura em 04/10/2026 às 22h04 (Brasília). CURVA DA APURAÇÃO, e por que o parcial nacional engana — este é o viés de ORDEM DE TOTALIZAÇÃO que a tela explica: 84,96% → Flávio 48,47% / Lula 43,49%; 97,01% → 47,48% / 44,66% (Revista Oeste, https://revistaoeste.com/politica/flavio-lula-2-turno/); 97,84% → 47,33% / 44,81% (Brasil Paralelo, https://www.brasilparalelo.com.br/noticias/lula-e-flavio-vao-para-o-segundo-turno); 98,59% → 47,28% / 44,87% (Money Times, https://www.moneytimes.com.br/apuracao-eleicoes-2026/); 99,79% → 47,08% / 45,11% (esta ficha); 99,87% → 47,06% / 45,12% (quenty, https://quenty.com.br/resumo/5-outubro-2026/resultado-1-turno-presidente-2026-flavio-bolsonaro-e-lula-vao-ao-2-turno). A vantagem de Flávio caiu monotonamente de 4,98 para 1,97 pontos conforme as seções do Nordeste entraram, sem que um eleitor mudasse de ideia. POR ISSO os percentuais de 47,50% / 44,61% que circulam como 'resultado final' NÃO ENTRARAM: eles pertencem à leitura de ~97% das seções (Revista Oeste publica 47,48% / 44,66% em 97,01%), não à leitura final, e são incompatíveis com a diferença de ~2,6 milhões de votos citada ao lado deles — 2,89 pontos sobre 119 milhões de válidos dariam 3,44 milhões, enquanto os 1,97 ponto desta ficha dão 2.343.624 votos, que é a diferença de fato. RECORTES REGIONAIS (sem campo no esquema; registrados aqui porque são a evidência direta do mesmo viés): Flávio liderou Centro-Oeste 57,16%, Norte 63,38%, Sudeste 51,99% e Sul 60,73%; Lula venceu o Nordeste com 62,92%. SEGUNDO TURNO em 25/10/2026 entre Flávio Bolsonaro (PL) e Luiz Inácio Lula da Silva (PT), já que ninguém passou de 50% dos válidos. A cobertura agora atribui a confirmação ao próprio TSE, na noite de 04/10 — Canal Rural (https://www.canalrural.com.br/politica/eleicoes/eleicoes-presidente-da-republica-votacao-apuracao/) e Money Times (https://www.moneytimes.com.br/eleicoes-2026-apuracao-presidente-gaep/) —, e não mais a uma projeção Datafolha como na ficha anterior. Não encontrei página do próprio TSE afirmando isso, e nenhum recorte de turno 2 foi gravado (a votação só ocorre em 25/10). VALORES RECUSADOS: um resumo de busca deu Flávio 56.045.248 e Lula 53.698.417 para os mesmos 99,79% — variante de 2.036 e 5.243 votos que não fecha com o total de computados publicado (125.020.982) e que nenhuma outra busca reproduziu; outro deu Flávio '44,85%' com o mesmo absoluto para os dois candidatos, aritmeticamente impossível. Também recusei MISTURAR a leitura de 99,87% (que traz só três candidatos e nenhuma abstenção) com os seis candidatos e as abstenções desta de 99,79%: ganhar 0,08 ponto de seções não paga perder quatro candidatos e as abstenções, e juntar as duas violaria a regra de não misturar instantes. Nomes e siglas grafados como em data/polls.json e data/parties.json. Coletado via resumo de WebSearch; WebFetch e resultados.tse.jus.br estão bloqueados neste ambiente, então os valores não foram conferidos na página original. Eleição de 2026 (Lula x FLÁVIO Bolsonaro), não de 2022 (Lula x JAIR Bolsonaro)."
     },
     {
       "cargo": "governador",
