@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-10-05T01:04:00Z",
+  "atualizadoEm": "2026-10-05T01:12:00Z",
   "recortes": [
     {
       "cargo": "presidente",
@@ -79,53 +79,43 @@
       "cargo": "governador",
       "uf": "MG",
       "turno": 1,
-      "secoesTotalizadas": 81.15,
-      "validosTotal": 9259912,
+      "secoesTotalizadas": 99.88,
+      "validosTotal": 11399767,
       "candidatos": [
         {
           "candidato": "Cleitinho Azevedo",
           "partido": "Republicanos",
-          "votos": 5085694
+          "votos": 6315235
         },
         {
           "candidato": "Patrus Ananias",
           "partido": "PT",
-          "votos": 2430655
+          "votos": 3002518
         },
         {
           "candidato": "Flávio Roscoe",
           "partido": "PL",
-          "votos": 668085
+          "votos": 794673
         },
         {
           "candidato": "Mateus Simões",
           "partido": "PSD",
-          "votos": 413959
+          "votos": 528821
         },
         {
           "candidato": "Alexandre Kalil",
           "partido": "PDT",
-          "votos": 353148
-        },
-        {
-          "candidato": "Gabriel Azevedo",
-          "partido": "MDB",
-          "votos": 207804
-        },
-        {
-          "candidato": "Ben Mendes",
-          "partido": "Missão",
-          "votos": 67979
+          "votos": 403386
         }
       ],
-      "brancos": 534484,
-      "nulos": 445631,
-      "abstencoes": 3019049,
+      "brancos": 658085,
+      "nulos": 556405,
+      "abstencoes": 3728656,
       "fonte": {
-        "nome": "Metrópoles — Apuração governador MG 2026 (42.246 de 52.062 seções = 81,15%)",
-        "url": "https://www.metropoles.com/eleicoes/2026/apuracao/governador/mg"
+        "nome": "Exame — Resultado Governador Minas Gerais 2026 ao vivo (dados do TSE, 99,88% das urnas apuradas, leitura de 04/10/2026 22h12)",
+        "url": "https://exame.com/eleicoes/2026/apuracao/primeiro-turno/governador/mg/minas-gerais/"
       },
-      "observacao": "PARCIAL em 81,15% das seções totalizadas (42.246 de 52.062 seções; 42.246/52.062 = 81,146%, que arredonda para 81,15%). RECORTE NOVO — não havia Minas Gerais no arquivo anterior. Base: percentual sobre VOTOS VÁLIDOS. Os SETE valores são ABSOLUTOS PUBLICADOS pela fonte, nenhum derivado de percentual: Cleitinho Azevedo 5.085.694 (54,92%), Patrus Ananias 2.430.655 (26,25%), Flávio Roscoe 668.085 (7,22%), Mateus Simões 413.959 (4,47%), Alexandre Kalil 353.148 (3,81%), Gabriel Azevedo 207.804 (2,24%), Ben Mendes 67.979 (0,73%). TOTAL DE VÁLIDOS DECLARADO (9.259.912): derivado dos dois pares dos primeiros colocados — 5.085.694/0,5492 = 9.260.186 e 2.430.655/0,2625 = 9.259.638, que concordam com erro de 0,0059%; adotada a média. Terceira conferência: Mateus Simões, 413.959/0,0447 = 9.260.828, a 0,0099% da média. Os candidatos menores derivam totais um pouco mais altos (Roscoe 9.253.255; Kalil 9.268.976; Gabriel 9.276.964; Ben Mendes 9.312.192), mas isso é apenas arredondamento: com percentual publicado em duas casas e um total de 9,26 milhões, a precisão é de cerca de +/-463 votos, e o desvio de cada um desses absolutos frente ao que o total adotado prevê fica entre 295 e 481 votos — dentro ou na borda da janela de arredondamento. Por isso nenhum deles foi usado no denominador, e nenhum é sinal de leituras misturadas. Os sete somam 99,65% dos válidos; o restante é dos candidatos menores não publicados (Indira Xavier/UP, Rafael Duda/PSTU, Túlio Lopes/PCB, Henrique Áreas/PCO), que NÃO foram completados. BRANCOS, NULOS E ABSTENÇÕES publicados pela fonte nesta mesma leitura e gravados em absolutos: brancos 534.484, nulos 445.631, abstenções 3.019.049. Cleitinho Azevedo (Republicanos) ficou com 54,92% dos válidos e aparece ELEITO NO 1º TURNO, com vantagem de 2.655.039 votos (28,67 pontos) sobre Patrus Ananias. CORROBORAÇÃO independente dos mesmos percentuais (54,92% e 26,25%) e do patamar de 81% de seções no Portal de Prefeitura (https://portaldeprefeitura.com.br/bastidores-da-politica/cleitinho-azevedo-republicanos-e-eleito-governador-de-minas-gerais/633482/) e na Rádio Educadora (https://radioeducadoramg.com.br/cleitinho-azevedo-e-eleito-governador-de-minas-gerais-no-primeiro-turno/). Nomes e siglas grafados como em data/polls.json e data/parties.json ('Gabriel Azevedo' é o 'Gabriel (MDB)' da fonte). Coletado via resumo de WebSearch; WebFetch bloqueado neste ambiente. Eleição de 2026."
+      "observacao": "LEITURA QUASE FINAL em 99,88% das seções totalizadas — SUBSTITUI a parcial anterior de 81,15% (ganho de 18,73 pontos de seções). Base: percentual sobre VOTOS VÁLIDOS. CINCO ABSOLUTOS PUBLICADOS pela fonte, nenhum derivado de percentual: Cleitinho Azevedo 6.315.235 (55,40%), Patrus Ananias 3.002.518 (26,34%), Flávio Roscoe 794.673 (6,97%), Mateus Simões 528.821 (4,64%), Alexandre Kalil 403.386 (3,54%). TOTAL DE VÁLIDOS (11.399.767): valor PUBLICADO, conferido por duas derivações independentes de pares voto/percentual — 6.315.235/0,5540 = 11.399.341 e 3.002.518/0,2634 = 11.399.081, que concordam entre si com erro de 0,0023% e ficam 0,0049% abaixo do valor publicado; muito dentro do limite de 0,1%. Mais três conferências, todas a menos de 0,04% da média: Roscoe 11.401.334, Simões 11.397.004, Kalil 11.395.085 — as cinco derivações fecham, sinal forte de que os cinco absolutos vêm do MESMO instante. Quarta conferência, independente dos percentuais: válidos 11.399.767 + brancos 658.085 + nulos 556.405 = 12.614.257, EXATAMENTE o total de votos apurados que a fonte publica. Quinta conferência, contra os dados do próprio projeto: votos apurados 12.614.257 + abstenções 3.728.656 = 16.342.913 eleitores nas seções totalizadas, que são 99,79% dos 16.377.659 aptos de MG em data/electorate.json — a 0,09 ponto do 99,88% publicado (o eleitorado é referência de 07/2026); e as abstenções são 22,815% desses aptos, contra os 22,82% publicados. BRANCOS, NULOS E ABSTENÇÕES desta mesma leitura, em absolutos: brancos 658.085 (5,22% dos apurados), nulos 556.405 (4,41%), abstenções 3.728.656 (22,82% dos aptos das seções totalizadas). Válidos = 90,37% dos apurados. Os cinco candidatos somam 96,89% dos válidos; os 3,11% restantes (355.134 votos) são de Gabriel Azevedo (MDB), Ben Mendes (Missão) e dos menores (Indira Xavier/UP, Rafael Duda/PSTU, Túlio Lopes/PCB, Henrique Áreas/PCO), que esta fonte não lista nesta leitura e que NÃO foram completados — a ficha anterior trazia Gabriel Azevedo e Ben Mendes, mas aos valores de 81,15% das seções, e trazê-los para cá seria misturar instantes. Cleitinho Azevedo (Republicanos) ficou com 55,40% dos válidos e está ELEITO NO 1º TURNO, com vantagem de 3.312.717 votos (29,06 pontos) sobre Patrus Ananias. A fonte credita os números ao TSE e datou a leitura em 04/10/2026 às 22h12. CORROBORAÇÃO independente dos mesmos 55,40% / 26,34% e dos absolutos dos três primeiros em Money Times (https://www.moneytimes.com.br/eleicoes-2026-apuracao-minas-gerais-mg/) e NSC Total (https://www.nsctotal.com.br/eleicoes/2026/mg/apuracao/governador); a eleição no 1º turno é confirmada pela Agência Brasil (https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/cleitinho-azevedo-e-eleito-governador-de-minas-gerais-no-primeiro-turn). ATENÇÃO: circula também uma leitura de 99,86% com Cleitinho 6.314.342 (55,40%) e Patrus 3.001.751 (26,34%), e outra com 55,41% / 6.276.925 e 26,28% / 2.977.570 — instantes distintos, deliberadamente NÃO misturados aqui. Nomes e siglas grafados como em data/polls.json e data/parties.json. Coletado via resumo de WebSearch; WebFetch e resultados.tse.jus.br estão bloqueados neste ambiente. Eleição de 2026."
     },
     {
       "cargo": "governador",
@@ -195,33 +185,38 @@
       "cargo": "governador",
       "uf": "BA",
       "turno": 1,
-      "secoesTotalizadas": 67.11,
-      "validosTotal": 5418145,
+      "secoesTotalizadas": 95.02,
+      "validosTotal": 7868400,
       "candidatos": [
         {
           "candidato": "Jerônimo Rodrigues",
           "partido": "PT",
-          "votos": 2925886
+          "votos": 4347817
         },
         {
           "candidato": "ACM Neto",
           "partido": "União Brasil",
-          "votos": 2463015
+          "votos": 3482055
         },
         {
           "candidato": "Ronaldo Mansur",
           "partido": "PSOL",
-          "votos": 20679
+          "votos": 26718
+        },
+        {
+          "candidato": "Aroldo Félix",
+          "partido": "UP",
+          "votos": 5109
         }
       ],
-      "brancos": null,
-      "nulos": null,
-      "abstencoes": null,
+      "brancos": 223725,
+      "nulos": 495731,
+      "abstencoes": 2144470,
       "fonte": {
-        "nome": "NSC Total — Apuração 2026: Governador (Bahia)",
-        "url": "https://www.nsctotal.com.br/eleicoes/2026/ba/apuracao/governador"
+        "nome": "Jornal Correio — Apuração 2026: Governador (Bahia), 95,02% das seções totalizadas (dados do TSE)",
+        "url": "https://eleicoes.correio24horas.com.br/eleicoes/2026/ba/apuracao/governador/"
       },
-      "observacao": "PARCIAL em 67,11% das seções totalizadas. RECORTE NOVO — não havia Bahia na leitura anterior. Base: percentual sobre VOTOS VÁLIDOS. Os três valores são ABSOLUTOS PUBLICADOS pela fonte, nenhum derivado de percentual: Jerônimo Rodrigues 2.925.886 (54,00%), ACM Neto 2.463.015 (45,46%), Ronaldo Mansur 20.679 (0,38%). TOTAL DE VÁLIDOS DECLARADO (5.418.145): derivado dos dois pares dos primeiros colocados — 2.925.886/0,54 = 5.418.307 e 2.463.015/0,4546 = 5.417.983, que concordam com erro de 0.006%; adotada a média. O par de Mansur implica 5.441.842 (0.44% acima da média), divergência esperada para um candidato de 0,38% publicado com duas casas decimais, e por isso ele não entrou no cálculo do denominador. Os três somam 99.84% dos válidos; o restante é dos candidatos menores, que a fonte não publicou e que NÃO foram completados. CORROBORAÇÃO independente dos mesmos absolutos e percentuais no Money Times (https://www.moneytimes.com.br/eleicoes-2026-apuracao-bahia-ba/) e no Jornal Correio (https://eleicoes.correio24horas.com.br/eleicoes/2026/ba/apuracao/governador/). Jerônimo Rodrigues (PT) aparece reeleito nesta leitura, com vantagem de 462.871 votos (8,54 pontos) sobre ACM Neto. Nomes grafados como em data/polls.json. Coletado via resumo de WebSearch; WebFetch bloqueado neste ambiente. Eleição de 2026."
+      "observacao": "LEITURA AVANÇADA em 95,02% das seções totalizadas — SUBSTITUI a parcial anterior de 67,11% (ganho de 27,91 pontos de seções, o maior salto deste arquivo). Base: percentual sobre VOTOS VÁLIDOS. QUATRO ABSOLUTOS PUBLICADOS pela fonte, nenhum derivado de percentual: Jerônimo Rodrigues 4.347.817 (55,26%), ACM Neto 3.482.055 (44,25%), Ronaldo Mansur 26.718 (0,34%), Aroldo Félix 5.109 (0,06%). TOTAL DE VÁLIDOS (7.868.400): valor PUBLICADO, conferido por duas derivações independentes de pares voto/percentual — 4.347.817/0,5526 = 7.867.928 e 3.482.055/0,4425 = 7.869.051, que concordam entre si com erro de 0,0143% e cuja média fica a 0,0011% do valor publicado; dentro do limite de 0,1%. Conferência de Mansur: 26.718/0,0034 = 7.858.235, a 0,130% da média — fora do limite de 0,1%, mas dentro da janela de arredondamento de um percentual de 0,34% publicado com duas casas (+/-1,5%), e por isso ele não entrou no denominador. Aroldo Félix (0,06%) deriva 8.515.000, 8,2% acima: puro arredondamento num percentual de duas casas na casa dos milhares de votos, e igualmente fora do cálculo. Terceira conferência, independente dos percentuais: válidos 7.868.400 + brancos 223.725 + nulos 495.731 = 8.587.856, EXATAMENTE o total de votos apurados da fonte. Quarta conferência, contra os dados do próprio projeto: votos apurados 8.587.856 + abstenções 2.144.470 = 10.732.326 eleitores nas seções totalizadas, que são 94,80% dos 11.321.005 aptos da Bahia em data/electorate.json — a 0,22 ponto do 95,02% publicado (o eleitorado é referência de 07/2026); e as abstenções são 19,981% desses aptos, contra os 19,98% publicados. BRANCOS, NULOS E ABSTENÇÕES desta mesma leitura, em absolutos: brancos 223.725 (2,61% dos apurados), nulos 495.731 (5,77%), abstenções 2.144.470 (19,98% dos aptos das seções totalizadas). Os quatro candidatos somam 99,91% dos válidos — resto de apenas 6.701 votos (0,085%) —, então esta é praticamente a chapa inteira. Jerônimo Rodrigues (PT) está REELEITO NO 1º TURNO com 55,26% dos válidos, vantagem de 865.762 votos (11,01 pontos) sobre ACM Neto. O percentual de seções (95,02%) e os quatro absolutos vieram batendo iguais em duas buscas independentes. ATENÇÃO: há outras leituras circulando, todas de instantes diferentes e NÃO misturadas aqui — 94,28% com Jerônimo 4.581.092 (55,69%), 96,18% com 55,35% / 44,16% (sem absolutos), e um par 55,19% / 4.307.196 e 44,32% / 3.459.056. RECUSEI a leitura de 96,18% por não publicar voto absoluto (o esquema exige votos, não percentual) e a de 94,28% por trazer só um par voto/percentual, insuficiente para a conferência dupla de validosTotal. CORROBORAÇÃO da reeleição no 1º turno em Money Times (https://www.moneytimes.com.br/eleicoes-2026-apuracao-bahia-ba/), Times Brasil (https://timesbrasil.com.br/eleicoes-2026/jeronimo-rodrigues-reeleito-governador-bahia-pt-senadores/) e Brasil de Fato (https://www.brasildefato.com.br/2026/10/04/jeronimo-rodrigues-e-reeleito-governador-da-bahia-no-1o-turno/). Nomes e siglas grafados como em data/polls.json e data/parties.json — note 'Aroldo Félix' COM ACENTO, que é a forma canônica do arquivo de pesquisas; sem o acento a comparação com as pesquisas sairia vazia sem dar erro. Coletado via resumo de WebSearch; WebFetch e resultados.tse.jus.br estão bloqueados neste ambiente. Eleição de 2026."
     }
   ]
 }

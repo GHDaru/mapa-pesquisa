@@ -2008,3 +2008,66 @@ viés de ordem de apuração na diferença de 10,1 pontos do primeiro colocado.
   forma canônica, senão a comparação não casa e o ranking volta vazio sem erro
   nenhum. Custou uma rodada de teste para descobrir; está anotado no cabeçalho
   de `get-projecao.test.ts`.
+
+## Dois erros meus na aba Projeção, achados ao fechar o ciclo (05/10)
+
+### 1. A palavra ENCERRADA não liga nada
+
+Eu afirmei, aqui, nas mensagens ao usuário e no prompt da Routine, que escrever
+**ENCERRADA** na `observacao` é o que faz a tela trocar "contagem parcial" por
+"resultado final". **É falso.** O código compara o **valor** de
+`secoesTotalizadas` com `LIMIAR_APURACAO_ENCERRADA` (99,5) em
+`get-projecao.ts`. A palavra não é lida por nada.
+
+A ficha nacional virou para "resultado final" sozinha ao chegar a 99,79%, e
+nenhuma fonte declarou encerramento. Verificado em execução por um agente, que
+corrigiu o briefing que eu havia escrito.
+
+### 2. Presidente por estado PARCIAL é regressão, não ganho
+
+Este é o mais consequente, e eu quase o mandei fazer: o prompt da Routine para
+05/10 pedia presidente por estado como prioridade máxima.
+
+Em `projetarApuracao`, **basta um** recorte de presidente com `uf` para que:
+
+- `projecao.candidatos` passe a ser `somarPorCandidato(porUf)` em vez de vir do
+  recorte nacional;
+- `secoesDoRecorte` no caso de uso passe a ser `secoesTotalizadasPonderada`, a
+  média ponderada pelo eleitorado das UFs **que têm dado**.
+
+Com 3 ou 5 UFs, essa média fica muito abaixo de 99,5%, `apuracaoEncerrada` cai
+para `false`, o ranking de institutos **desaparece** e a tela troca uma contagem
+nacional exata de 99,79% por uma projeção de cobertura parcial. Ou seja: dado
+novo e correto pioraria a página.
+
+**Presidente por UF só compensa com as 27 UFs de uma vez.** O prompt da Routine
+foi corrigido para dizer isso.
+
+O conserto estrutural, não feito por ser decisão de desenho e não de dado:
+quando o recorte nacional for mais completo que o agregado estadual, a tela
+deveria preferir o nacional e oferecer o estadual como detalhe, em vez de ser
+substituída por ele. Hoje a precedência é implícita e está na ordem errada.
+
+### Estado final do arquivo de apuração
+
+| recorte | seções | líder |
+|---|---|---|
+| presidente BR | **99,79%** | Flávio Bolsonaro 47,08% x Lula 45,11% |
+| governador MG | **99,88%** | Cleitinho Azevedo 55,40% |
+| governador PR | 99,17% | Sergio Moro 50,19% |
+| governador RS | 97,40% | Zucco 58,01% |
+| governador BA | **95,02%** | Jerônimo Rodrigues 55,26% |
+| governador SP | 90,02% | Tarcísio 62,85% |
+
+Validação independente que vale repetir em rodadas futuras, porque não usa
+busca nenhuma: **votos apurados + abstenções, dividido pelos aptos da UF em
+`data/electorate.json`, reproduz o percentual de seções publicado** — MG 99,79%
+contra 99,88% publicado, BA 94,80% contra 95,02%, SP 89,61% contra 90,02%.
+
+### Pendência mais barata de fechar
+
+Brancos (1.199.683), nulos (1.712.157) e abstenções (6.874.393) de **SP** fecham
+perfeitamente com a leitura de 90,02% que já está no arquivo — válidos + brancos
++ nulos = 23.686.764, o total publicado. **Não foram gravados por falta de fonte
+nomeada**: duas buscas não reproduziram o detalhamento. Os valores estão aqui e
+só falta a atribuição.
