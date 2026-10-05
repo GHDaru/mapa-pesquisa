@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-10-05T01:12:00Z",
+  "atualizadoEm": "2026-10-05T23:00:00Z",
   "recortes": [
     {
       "cargo": "presidente",
@@ -52,28 +52,38 @@
       "cargo": "governador",
       "uf": "SP",
       "turno": 1,
-      "secoesTotalizadas": 90.02,
-      "validosTotal": 20776148,
+      "secoesTotalizadas": 100.0,
+      "validosTotal": 23130513,
       "candidatos": [
         {
           "candidato": "Tarcísio de Freitas",
           "partido": "Republicanos",
-          "votos": 13057319
+          "votos": 14491874
         },
         {
           "candidato": "Fernando Haddad",
           "partido": "PT",
-          "votos": 7525403
+          "votos": 8423656
+        },
+        {
+          "candidato": "Vivian Mendes",
+          "partido": "UP",
+          "votos": 80480
+        },
+        {
+          "candidato": "Vera Lúcia",
+          "partido": "PSTU",
+          "votos": 75641
         }
       ],
-      "brancos": null,
-      "nulos": null,
-      "abstencoes": null,
+      "brancos": 1348262,
+      "nulos": 1915481,
+      "abstencoes": 7687443,
       "fonte": {
-        "nome": "ND Mais — São Paulo: Tarcísio de Freitas é reeleito governador no 1º turno (90,02% das seções)",
-        "url": "https://ndmais.com.br/politica/eleicoes-2026-sao-paulo-resultado-governador-eleito-primeiro-turno"
+        "nome": "Exame — Resultado Governador São Paulo 2026 ao Vivo: Apuração (dados do TSE, 100,00% das seções totalizadas, leitura de 05/10/2026 20h de Brasília)",
+        "url": "https://exame.com/eleicoes/2026/apuracao/primeiro-turno/governador/sp/sao-paulo/"
       },
-      "observacao": "PARCIAL em 90,02% das seções totalizadas. RECORTE NOVO — não havia São Paulo no arquivo anterior. Base: percentual sobre VOTOS VÁLIDOS. Os dois valores são ABSOLUTOS PUBLICADOS pela fonte, nenhum derivado de percentual: Tarcísio de Freitas 13.057.319 (62,85%), Fernando Haddad 7.525.403 (36,22%). TOTAL DE VÁLIDOS DECLARADO (20.776.148): derivado dos dois pares voto/percentual publicados — 13.057.319/0,6285 = 20.775.368 e 7.525.403/0,3622 = 20.776.927, que concordam com erro de 0,0075%; adotada a média. Os dois somam 99,07% dos válidos; o restante é dos candidatos menores (Vera Lúcia/PSTU, Vivian Mendes/UP, Carlos Machado/PCB, Policial Edjane/Agir, Izadora Dias/PCO), cujos números não foram publicados nesta leitura e que NÃO foram completados. Tarcísio ficou com 62,85% dos válidos e aparece ELEITO NO 1º TURNO; a vitória foi matematicamente definida às 19h40, quando a apuração chegou a 90% — a margem sobre Haddad é de 5.531.916 votos (26,63 pontos). CORROBORAÇÃO independente dos mesmos dois absolutos e percentuais, e do próprio 90,02% de seções, no Diário da Região (https://www.diariodaregiao.com.br/eleicoes-2026/tarcisio-de-freitas-e-reeleito-para-o-governo-de-sao-paulo.1791153822451), Times Brasil (https://timesbrasil.com.br/brasil/decisao-2026-tarcisio-de-freitas-republicanos-e-reeleito-governador-de-sao-paulo-no-1o-turno/) e Gazeta do Povo (https://www.gazetadopovo.com.br/eleicoes/2026/sao-paulo-2026/resultado-eleicoes-sao-paulo-tarcisio-de-freitas-reeleito-primeiro-turno/). ATENÇÃO: uma leitura ANTERIOR, de 76,22% das seções, dava Tarcísio 63,26% e Haddad 35,82% — números de outro instante, deliberadamente NÃO misturados nesta ficha. Nomes e siglas grafados como em data/polls.json e data/parties.json. Coletado via resumo de WebSearch; WebFetch bloqueado neste ambiente. Eleição de 2026."
+      "observacao": "LEITURA FINAL em 100,00% das seções totalizadas — SUBSTITUI a parcial anterior de 90,02% (ganho de 9,98 pontos de seções) e acrescenta DOIS candidatos que a leitura anterior não trazia (Vivian Mendes e Vera Lúcia) mais as três linhas que faltavam (brancos, nulos e abstenções). Base: percentual sobre VOTOS VÁLIDOS. QUATRO ABSOLUTOS PUBLICADOS: Tarcísio de Freitas 14.491.874 (62,65%), Fernando Haddad 8.423.656 (36,42%), Vivian Mendes 80.480 (0,35%), Vera Lúcia 75.641 (0,33%). Os quatro somam 23.071.651 = 99,75% dos válidos; os 0,25% restantes são de Carlos Machado (PCB), Policial Edjane (Agir) e Izadora Dias (PCO), que a fonte não itemiza nesta leitura e que NÃO foram completados. TOTAL DE VÁLIDOS (23.130.513): valor PUBLICADO pela fonte, conferido por duas derivações independentes de pares voto/percentual — 14.491.874/0,6265 = 23.131.084 (desvio de 0,0025% do publicado) e 8.423.656/0,3642 = 23.129.204 (0,0057%) —, que concordam entre si com erro de 0,0081%, muito dentro do limite de 0,1%. No sentido inverso, os dois absolutos sobre o válidos publicado reimprimem os dois percentuais publicados sem exceção: Tarcísio 62,6526% = 62,65% e Haddad 36,4179% = 36,42%. As derivações dos dois candidatos minúsculos (22.994.286 e 22.921.515) desviam 0,59% e 0,90%, dentro da janela de arredondamento de duas casas para percentuais de 0,3%, e por isso não entraram no denominador. MESMO INSTANTE, CONFERIDO SEM PERCENTUAL: validosTotal + brancos + nulos = o total de votos apurados que a fonte publica, EXATAMENTE, o que prova que as quatro linhas vêm da mesma leitura. Votos em ABSOLUTOS publicados, nenhum derivado de percentual. Nomes e siglas grafados como em data/polls.json e data/parties.json. Coletado via resumo de WebSearch; WebFetch e resultados.tse.jus.br bloqueados pela política de rede deste ambiente. AQUI: 23.130.513 + 1.348.262 + 1.915.481 = 26.394.256, o total publicado. BRANCOS 1.348.262 (5,11% dos computados), NULOS 1.915.481 (7,26%), ABSTENÇÕES 7.687.443 (22,56% dos aptos) — eram a pendência mais barata do projeto, aberta por falta de FONTE NOMEADA, e agora têm uma. TERCEIRA VALIDAÇÃO, sem busca: governador tem UM voto por eleitor, então o comparecimento é o próprio total apurado, 26.394.256; somado às abstenções dá 34.081.699 aptos nas seções totalizadas, 99,93% dos 34.104.226 aptos de SP em data/electorate.json (a folga de 0,07% é a diferença entre o eleitorado de julho/2026 do arquivo e o do dia da eleição), compatível com os 100,00% de seções publicados; e 7.687.443/34.081.699 = 22,5588%, que reproduz exatamente os 22,56% de abstenção publicados. QUARTA CONFIRMAÇÃO, cruzada com o recorte de SENADOR de SP desta mesma rodada: o total apurado para senador, 52.788.512, é exatamente 2x os 26.394.256 deste recorte, e as abstenções são as mesmas 7.687.443 — os dois recortes de SP são do mesmo instante. A LEITURA ANTERIOR, de 90,02%, dava Tarcísio 13.057.319 (62,85%) e Haddad 7.525.403 (36,22%), com válidos 20.776.148; a razão 23.130.513/20.776.148 = 1,1133 bate com 1/0,9002 = 1,1109, o que confirma que as duas leituras são a mesma eleição em dois instantes. Os brancos/nulos/abstenções daquele instante (1.199.683 / 1.712.157 / 6.874.393, total computado 23.686.764) FORAM LOCALIZADOS em fonte nomeada (TSE via Metrópoles, https://www.metropoles.com/eleicoes/2026/apuracao/governador/sp) e fecham com ela, mas NÃO foram gravados porque esta ficha de 100% os supera; ficam registrados aqui para auditoria. Tarcísio REELEITO no 1º turno, com recorde de votos para governador em SP (superou os 13.480.643 do 2º turno de 2022) e vitória em 639 dos 645 municípios. Eleição de 2026."
     },
     {
       "cargo": "governador",
@@ -217,6 +227,178 @@
         "url": "https://eleicoes.correio24horas.com.br/eleicoes/2026/ba/apuracao/governador/"
       },
       "observacao": "LEITURA AVANÇADA em 95,02% das seções totalizadas — SUBSTITUI a parcial anterior de 67,11% (ganho de 27,91 pontos de seções, o maior salto deste arquivo). Base: percentual sobre VOTOS VÁLIDOS. QUATRO ABSOLUTOS PUBLICADOS pela fonte, nenhum derivado de percentual: Jerônimo Rodrigues 4.347.817 (55,26%), ACM Neto 3.482.055 (44,25%), Ronaldo Mansur 26.718 (0,34%), Aroldo Félix 5.109 (0,06%). TOTAL DE VÁLIDOS (7.868.400): valor PUBLICADO, conferido por duas derivações independentes de pares voto/percentual — 4.347.817/0,5526 = 7.867.928 e 3.482.055/0,4425 = 7.869.051, que concordam entre si com erro de 0,0143% e cuja média fica a 0,0011% do valor publicado; dentro do limite de 0,1%. Conferência de Mansur: 26.718/0,0034 = 7.858.235, a 0,130% da média — fora do limite de 0,1%, mas dentro da janela de arredondamento de um percentual de 0,34% publicado com duas casas (+/-1,5%), e por isso ele não entrou no denominador. Aroldo Félix (0,06%) deriva 8.515.000, 8,2% acima: puro arredondamento num percentual de duas casas na casa dos milhares de votos, e igualmente fora do cálculo. Terceira conferência, independente dos percentuais: válidos 7.868.400 + brancos 223.725 + nulos 495.731 = 8.587.856, EXATAMENTE o total de votos apurados da fonte. Quarta conferência, contra os dados do próprio projeto: votos apurados 8.587.856 + abstenções 2.144.470 = 10.732.326 eleitores nas seções totalizadas, que são 94,80% dos 11.321.005 aptos da Bahia em data/electorate.json — a 0,22 ponto do 95,02% publicado (o eleitorado é referência de 07/2026); e as abstenções são 19,981% desses aptos, contra os 19,98% publicados. BRANCOS, NULOS E ABSTENÇÕES desta mesma leitura, em absolutos: brancos 223.725 (2,61% dos apurados), nulos 495.731 (5,77%), abstenções 2.144.470 (19,98% dos aptos das seções totalizadas). Os quatro candidatos somam 99,91% dos válidos — resto de apenas 6.701 votos (0,085%) —, então esta é praticamente a chapa inteira. Jerônimo Rodrigues (PT) está REELEITO NO 1º TURNO com 55,26% dos válidos, vantagem de 865.762 votos (11,01 pontos) sobre ACM Neto. O percentual de seções (95,02%) e os quatro absolutos vieram batendo iguais em duas buscas independentes. ATENÇÃO: há outras leituras circulando, todas de instantes diferentes e NÃO misturadas aqui — 94,28% com Jerônimo 4.581.092 (55,69%), 96,18% com 55,35% / 44,16% (sem absolutos), e um par 55,19% / 4.307.196 e 44,32% / 3.459.056. RECUSEI a leitura de 96,18% por não publicar voto absoluto (o esquema exige votos, não percentual) e a de 94,28% por trazer só um par voto/percentual, insuficiente para a conferência dupla de validosTotal. CORROBORAÇÃO da reeleição no 1º turno em Money Times (https://www.moneytimes.com.br/eleicoes-2026-apuracao-bahia-ba/), Times Brasil (https://timesbrasil.com.br/eleicoes-2026/jeronimo-rodrigues-reeleito-governador-bahia-pt-senadores/) e Brasil de Fato (https://www.brasildefato.com.br/2026/10/04/jeronimo-rodrigues-e-reeleito-governador-da-bahia-no-1o-turno/). Nomes e siglas grafados como em data/polls.json e data/parties.json — note 'Aroldo Félix' COM ACENTO, que é a forma canônica do arquivo de pesquisas; sem o acento a comparação com as pesquisas sairia vazia sem dar erro. Coletado via resumo de WebSearch; WebFetch e resultados.tse.jus.br estão bloqueados neste ambiente. Eleição de 2026."
+    },
+    {
+      "cargo": "senador",
+      "uf": "SP",
+      "turno": 1,
+      "secoesTotalizadas": 100.0,
+      "validosTotal": 43386635,
+      "candidatos": [
+        {
+          "candidato": "Guilherme Derrite",
+          "partido": "PP",
+          "votos": 13273880
+        },
+        {
+          "candidato": "André do Prado",
+          "partido": "PL",
+          "votos": 12703089
+        },
+        {
+          "candidato": "Simone Tebet",
+          "partido": "PSB",
+          "votos": 8342968
+        },
+        {
+          "candidato": "Marina Silva",
+          "partido": "Rede",
+          "votos": 7862400
+        }
+      ],
+      "brancos": 4291919,
+      "nulos": 5109958,
+      "abstencoes": 7687443,
+      "fonte": {
+        "nome": "Exame — Apuração Senador no estado de SP 2026 (dados do TSE, 100,00% das urnas apuradas, leitura de 05/10/2026 20h de Brasília)",
+        "url": "https://exame.com/eleicoes/2026/apuracao/primeiro-turno/senador/mapa-de-apuracao/?estado=sp"
+      },
+      "observacao": "RECORTE NOVO E PRIMEIRO DE SENADOR NO ARQUIVO — não havia NENHUM recorte de senador antes desta rodada. LEITURA FINAL em 100,00% das urnas apuradas. Base: percentual sobre VOTOS VÁLIDOS. QUATRO ABSOLUTOS PUBLICADOS: Guilherme Derrite 13.273.880 (30,59%), André do Prado 12.703.089 (29,28%), Simone Tebet 8.342.968 (19,23%), Marina Silva 7.862.400 (18,12%). Derrite e Prado ELEITOS (as duas cadeiras em disputa); Tebet e Marina Silva não. Os quatro somam 42.182.337 = 97,22% dos válidos; os 2,78% restantes são dos candidatos que a fonte não itemiza e que NÃO foram completados. TOTAL DE VÁLIDOS (43.386.635): valor PUBLICADO, conferido por QUATRO derivações independentes de pares voto/percentual — 13.273.880/0,3059 = 43.392.219 (0,0129% do publicado), 12.703.089/0,2928 = 43.385.550 (0,0025%), 8.342.968/0,1923 = 43.385.169 (0,0034%) e 7.862.400/0,1812 = 43.390.728 (0,0094%) —, todas dentro de 0,013%. No sentido inverso, os quatro absolutos sobre o válidos publicado reimprimem os quatro percentuais publicados sem exceção: 30,5900 / 29,2786 / 19,2270 / 18,1172. MESMO INSTANTE, CONFERIDO SEM PERCENTUAL: validosTotal + brancos + nulos = o total de votos apurados que a fonte publica, EXATAMENTE, o que prova que as quatro linhas vêm da mesma leitura. Votos em ABSOLUTOS publicados, nenhum derivado de percentual. Nomes e siglas grafados como em data/polls.json e data/parties.json. Coletado via resumo de WebSearch; WebFetch e resultados.tse.jus.br bloqueados pela política de rede deste ambiente. AQUI: 43.386.635 + 4.291.919 + 5.109.958 = 52.788.512, o total publicado. BRANCOS 4.291.919 (8,13% dos computados), NULOS 5.109.958 (9,68%), ABSTENÇÕES 7.687.443 (22,56% dos aptos). VALIDAÇÃO DE PARIDADE (própria do cargo): em 2026 cada UF elege DOIS senadores, logo cada eleitor tem dois votos e o total de votos apurados é exatamente 2x o comparecimento. AQUI: 52.788.512 é par, o comparecimento é 26.394.256 — exatamente o total apurado do recorte de GOVERNADOR de SP desta mesma rodada, que tem um voto por eleitor. Somado às abstenções dá 34.081.699 aptos nas seções totalizadas, 99,93% dos 34.104.226 aptos de SP em data/electorate.json, compatível com os 100,00% publicados; e 7.687.443/34.081.699 = 22,5588% reproduz os 22,56% publicados. Eleição de 2026; mandatos de oito anos, 2027-2035."
+    },
+    {
+      "cargo": "senador",
+      "uf": "MG",
+      "turno": 1,
+      "secoesTotalizadas": 99.99,
+      "validosTotal": 20524624,
+      "candidatos": [
+        {
+          "candidato": "Domingos Sávio",
+          "partido": "PL",
+          "votos": 4968794
+        },
+        {
+          "candidato": "Marília Campos",
+          "partido": "PT",
+          "votos": 3990520
+        }
+      ],
+      "brancos": 2200101,
+      "nulos": 2528619,
+      "abstencoes": 3733888,
+      "fonte": {
+        "nome": "Exame — Resultado Senador Minas Gerais 2026 ao Vivo: Apuração (dados do TSE, 99,99% das urnas apuradas, leitura de 05/10/2026 20h de Brasília)",
+        "url": "https://exame.com/eleicoes/2026/apuracao/primeiro-turno/senador/mg/minas-gerais/"
+      },
+      "observacao": "RECORTE NOVO (senador MG). LEITURA em 99,99% das urnas apuradas. Base: percentual sobre VOTOS VÁLIDOS. DOIS ABSOLUTOS PUBLICADOS: Domingos Sávio 4.968.794 (24,21%) e Marília Campos 3.990.520 (19,44%), os dois ELEITOS. Os dois somam 8.959.314 = 43,65% dos válidos; o resto é dos demais candidatos (Carlos Viana/PSD, Aécio Neves/PSDB, Marcelo Aro/PP e outros), que esta leitura não itemiza e que NÃO foram completados. TOTAL DE VÁLIDOS (20.524.624): valor PUBLICADO, conferido por duas derivações independentes — 4.968.794/0,2421 = 20.523.726 (0,0044% do publicado) e 3.990.520/0,1944 = 20.527.366 (0,0134%) —, que concordam entre si com erro de 0,0177%. No sentido inverso, os dois absolutos sobre o válidos publicado reimprimem 24,2091% e 19,4426%, isto é os 24,21% e 19,44% publicados. MESMO INSTANTE, CONFERIDO SEM PERCENTUAL: validosTotal + brancos + nulos = o total de votos apurados que a fonte publica, EXATAMENTE, o que prova que as quatro linhas vêm da mesma leitura. Votos em ABSOLUTOS publicados, nenhum derivado de percentual. Nomes e siglas grafados como em data/polls.json e data/parties.json. Coletado via resumo de WebSearch; WebFetch e resultados.tse.jus.br bloqueados pela política de rede deste ambiente. AQUI: 20.524.624 + 2.200.101 + 2.528.619 = 25.253.344, o total publicado. BRANCOS 2.200.101 (8,71% dos computados), NULOS 2.528.619 (10,01%), ABSTENÇÕES 3.733.888 (22,82% dos aptos). VALIDAÇÃO DE PARIDADE (própria do cargo): em 2026 cada UF elege DOIS senadores, logo cada eleitor tem dois votos e o total de votos apurados é exatamente 2x o comparecimento. AQUI: 25.253.344 é par, comparecimento 12.626.672; somado às abstenções dá 16.360.560 aptos nas seções totalizadas, 99,90% dos 16.377.659 aptos de MG em data/electorate.json, compatível com os 99,99% de seções publicados; e 3.733.888/16.360.560 = 22,823% reproduz os 22,82% publicados. DESCARTADA uma leitura ANTERIOR de 98,78% (Metrópoles, https://www.metropoles.com/eleicoes/2026/apuracao/senador/mg), com Domingos Sávio 4.928.663 (24,30%), Marília Campos 3.936.281 (19,41%) e Carlos Viana 3.540.728 (17,46%), válidos 20.279.693: é internamente coerente, mas é de OUTRO instante e tem menos seções — não foi misturada com esta. Eleição de 2026; mandatos de oito anos, 2027-2035."
+    },
+    {
+      "cargo": "senador",
+      "uf": "RJ",
+      "turno": 1,
+      "secoesTotalizadas": 94.57,
+      "validosTotal": 14980418,
+      "candidatos": [
+        {
+          "candidato": "Carlos Portinho",
+          "partido": "PL",
+          "votos": 4026299
+        },
+        {
+          "candidato": "Carlos Jordy",
+          "partido": "PL",
+          "votos": 3695401
+        }
+      ],
+      "brancos": 1582453,
+      "nulos": 1919809,
+      "abstencoes": 2800132,
+      "fonte": {
+        "nome": "Exame — Resultado Senador Rio de Janeiro 2026 ao Vivo: Apuração (dados do TSE, 94,57% das urnas apuradas, leitura de 05/10/2026 20h de Brasília)",
+        "url": "https://exame.com/eleicoes/2026/apuracao/primeiro-turno/senador/rj/rio-de-janeiro/"
+      },
+      "observacao": "RECORTE NOVO (senador RJ). PARCIAL em 94,57% das urnas apuradas. Base: percentual sobre VOTOS VÁLIDOS. DOIS ABSOLUTOS PUBLICADOS: Carlos Portinho 4.026.299 (26,88%) e Carlos Jordy 3.695.401 (24,67%), os dois ELEITOS (as duas cadeiras de senador do RJ, uma delas a que Flávio Bolsonaro deixa). Os dois somam 7.721.700 = 51,55% dos válidos; o resto é dos demais candidatos, que esta leitura não itemiza e que NÃO foram completados. TOTAL DE VÁLIDOS (14.980.418): valor PUBLICADO, conferido por duas derivações independentes — 4.026.299/0,2688 = 14.979.535 (0,0059% do publicado) e 3.695.401/0,2467 = 14.979.331 (0,0073%) —, que concordam entre si com erro de 0,0014%, a melhor concordância desta rodada. No sentido inverso, 26,8798% e 24,6682% reimprimem os 26,88% e 24,67% publicados. MESMO INSTANTE, CONFERIDO SEM PERCENTUAL: validosTotal + brancos + nulos = o total de votos apurados que a fonte publica, EXATAMENTE, o que prova que as quatro linhas vêm da mesma leitura. Votos em ABSOLUTOS publicados, nenhum derivado de percentual. Nomes e siglas grafados como em data/polls.json e data/parties.json. Coletado via resumo de WebSearch; WebFetch e resultados.tse.jus.br bloqueados pela política de rede deste ambiente. AQUI: 14.980.418 + 1.582.453 + 1.919.809 = 18.482.680, o total publicado. BRANCOS 1.582.453 (8,56% dos computados), NULOS 1.919.809 (10,39%), ABSTENÇÕES 2.800.132 (23,25% dos aptos). VALIDAÇÃO DE PARIDADE (própria do cargo): em 2026 cada UF elege DOIS senadores, logo cada eleitor tem dois votos e o total de votos apurados é exatamente 2x o comparecimento. AQUI: 18.482.680 é par, comparecimento 9.241.340; somado às abstenções dá 12.041.472 aptos nas seções totalizadas, 93,66% dos 12.857.000 aptos do RJ em data/electorate.json, contra os 94,57% de seções publicados — folga de 0,91 ponto, a maior desta rodada, esperada num recorte parcial, em que as seções que faltam não têm o tamanho médio das já contadas; e 2.800.132/12.041.472 = 23,254% reproduz exatamente os 23,25% de abstenção publicados. DESCARTADA uma leitura de 97,37% (Metrópoles, https://www.metropoles.com/eleicoes/2026/apuracao/senador/rj), com válidos 15.458.946 (80,97%), brancos 1.643.948 (8,61%) e nulos 1.990.237 (10,42%): apesar de os três percentuais reimprimirem, a soma das três linhas dá 19.093.131, um número ÍMPAR, impossível num cargo com dois votos por eleitor — a ficha é de instantes misturados, e aquela leitura não traz percentual de candidato que permitisse a dupla derivação exigida. Preferiu-se esta, de menos seções mas aritmeticamente fechada. Eleição de 2026; mandatos de oito anos, 2027-2035."
+    },
+    {
+      "cargo": "senador",
+      "uf": "PR",
+      "turno": 1,
+      "secoesTotalizadas": 100.0,
+      "validosTotal": 11552833,
+      "candidatos": [
+        {
+          "candidato": "Filipe Barros",
+          "partido": "PL",
+          "votos": 3148583
+        },
+        {
+          "candidato": "Deltan Dallagnol",
+          "partido": "Novo",
+          "votos": 2904594
+        }
+      ],
+      "brancos": 1058678,
+      "nulos": 1047719,
+      "abstencoes": 1771009,
+      "fonte": {
+        "nome": "Exame — Resultado Senador Paraná 2026 ao Vivo: Apuração (dados do TSE, 100,00% das urnas apuradas, leitura de 04/10/2026 22h43), com os absolutos da leitura final conferidos em Poder360 e O Paraná",
+        "url": "https://exame.com/eleicoes/2026/apuracao/primeiro-turno/senador/pr/parana/"
+      },
+      "observacao": "RECORTE NOVO (senador PR). LEITURA FINAL em 100,00% das urnas apuradas, datada pela fonte em 04/10/2026 às 22h43 (Brasília). Base: percentual sobre VOTOS VÁLIDOS. DOIS ABSOLUTOS PUBLICADOS na leitura final: Filipe Barros 3.148.583 (27,25%) e Deltan Dallagnol 2.904.594 (25,14%), os dois ELEITOS. Os dois somam 6.053.177 = 52,40% dos válidos; o resto é dos demais candidatos (Gleisi Hoffmann/PT, Cristina Graeml/PSD, Alexandre Curi/Republicanos e outros), não itemizados nesta leitura e NÃO completados. TOTAL DE VÁLIDOS (11.552.833): valor PUBLICADO, conferido por duas derivações independentes — 3.148.583/0,2725 = 11.554.433 (0,0138% do publicado) e 2.904.594/0,2514 = 11.557.653 (0,0417%) —, que concordam entre si com erro de 0,0279%. No sentido inverso, 27,2538% e 25,1375% reimprimem os 27,25% e 25,14% publicados. MESMO INSTANTE, CONFERIDO SEM PERCENTUAL: validosTotal + brancos + nulos = o total de votos apurados que a fonte publica, EXATAMENTE, o que prova que as quatro linhas vêm da mesma leitura. Votos em ABSOLUTOS publicados, nenhum derivado de percentual. Nomes e siglas grafados como em data/polls.json e data/parties.json. Coletado via resumo de WebSearch; WebFetch e resultados.tse.jus.br bloqueados pela política de rede deste ambiente. AQUI: 11.552.833 + 1.058.678 + 1.047.719 = 13.659.230, o total publicado. BRANCOS 1.058.678 (7,75% dos computados), NULOS 1.047.719 (7,67%), ABSTENÇÕES 1.771.009 (20,59% dos aptos). VALIDAÇÃO DE PARIDADE (própria do cargo): em 2026 cada UF elege DOIS senadores, logo cada eleitor tem dois votos e o total de votos apurados é exatamente 2x o comparecimento. AQUI: 13.659.230 é par, comparecimento 6.829.615; somado às abstenções dá 8.600.624 aptos nas seções totalizadas, 99,90% dos 8.609.026 aptos do PR em data/electorate.json, compatível com os 100,00% publicados; e 1.771.009/8.600.624 = 20,589% reproduz os 20,59% publicados. DIVERGÊNCIA RESOLVIDA EM TERCEIRA BUSCA: a primeira leitura trazia os absolutos de 99,17% das urnas (Barros 3.127.821, Deltan 2.885.230) ao lado dos percentuais de 100% (27,25% e 25,14%); esse par dava válidos de 11.478.242 e 11.480.628, 0,64% abaixo do válidos publicado de 100% — acima do limite de 0,1% e portanto ficha misturada. A terceira busca separou os dois instantes e devolveu os absolutos DE 100% (3.148.583 e 2.904.594), que são os gravados aqui; os absolutos de 99,17% ficam registrados apenas para auditoria e NÃO entraram. Os absolutos de 100% foram conferidos em Poder360 (https://www.poder360.com.br/poder-eleicoes-2026/filipe-barros-e-deltan-dallagnol-sao-eleitos-senadores-pelo-parana/) e O Paraná (https://oparana.com.br/politica/filipe-barros-e-deltan-dallagnol-sao-eleitos-senadores-pelo-parana/). RESSALVA JURÍDICA, da própria cobertura: os votos de Deltan Dallagnol estão sendo contados, mas a validade da eleição dele ainda depende de decisão final da Justiça Eleitoral — o registro da candidatura havia sido suspenso e foi restabelecido no dia da eleição. O número está gravado como a fonte publica; a ressalva fica aqui. Eleição de 2026; mandatos de oito anos, 2027-2035."
+    },
+    {
+      "cargo": "senador",
+      "uf": "RS",
+      "turno": 1,
+      "secoesTotalizadas": 100.0,
+      "validosTotal": 11468092,
+      "candidatos": [
+        {
+          "candidato": "Sanderson",
+          "partido": "PL",
+          "votos": 3453316
+        },
+        {
+          "candidato": "Marcel Van Hattem",
+          "partido": "Novo",
+          "votos": 3449053
+        }
+      ],
+      "brancos": 1089553,
+      "nulos": 837203,
+      "abstencoes": 1819041,
+      "fonte": {
+        "nome": "Exame — Apuração Senador no estado do RS 2026 (dados do TSE, 100,00% das urnas apuradas, leitura de 05/10/2026 20h de Brasília)",
+        "url": "https://exame.com/eleicoes/2026/apuracao/primeiro-turno/senador/mapa-de-apuracao/?estado=rs"
+      },
+      "observacao": "RECORTE NOVO (senador RS). LEITURA FINAL em 100,00% das urnas apuradas. Base: percentual sobre VOTOS VÁLIDOS. DOIS ABSOLUTOS PUBLICADOS: Sanderson 3.453.316 (30,11%) e Marcel Van Hattem 3.449.053 (30,08%), os dois ELEITOS por uma diferença de só 4.263 votos (0,03 ponto). Os dois somam 6.902.369 = 60,19% dos válidos; o resto é dos demais candidatos (Paulo Pimenta/PT, Manuela D'Ávila/PSOL, Frederico Antunes/PSD e outros), não itemizados nesta leitura e NÃO completados. TOTAL DE VÁLIDOS (11.468.092): valor PUBLICADO, conferido por duas derivações independentes — 3.453.316/0,3011 = 11.467.672 (0,0037% do publicado) e 3.449.053/0,3008 = 11.465.601 (0,0217%) —, que concordam entre si com erro de 0,0181%. No sentido inverso, 30,1123% e 30,0752% reimprimem os 30,11% e 30,08% publicados. MESMO INSTANTE, CONFERIDO SEM PERCENTUAL: validosTotal + brancos + nulos = o total de votos apurados que a fonte publica, EXATAMENTE, o que prova que as quatro linhas vêm da mesma leitura. Votos em ABSOLUTOS publicados, nenhum derivado de percentual. Nomes e siglas grafados como em data/polls.json e data/parties.json. Coletado via resumo de WebSearch; WebFetch e resultados.tse.jus.br bloqueados pela política de rede deste ambiente. AQUI: 11.468.092 + 1.089.553 + 837.203 = 13.394.848, o total publicado. BRANCOS 1.089.553 (8,13% dos computados), NULOS 837.203 (6,25%), ABSTENÇÕES 1.819.041 (21,36% dos aptos). VALIDAÇÃO DE PARIDADE (própria do cargo): em 2026 cada UF elege DOIS senadores, logo cada eleitor tem dois votos e o total de votos apurados é exatamente 2x o comparecimento. AQUI: 13.394.848 é par, comparecimento 6.697.424; somado às abstenções dá 8.516.465 aptos nas seções totalizadas, 99,89% dos 8.526.233 aptos do RS em data/electorate.json, compatível com os 100,00% publicados; e 1.819.041/8.516.465 = 21,359% reproduz os 21,36% publicados. DESCARTADO um par de absolutos de OUTRO instante que a mesma busca devolveu (Sanderson 3.426.424 e Marcel Van Hattem 3.422.284): sobre o válidos de 100% eles dariam 29,88% e 29,84%, não os 30,11% e 30,08% publicados, logo são de leitura anterior e NÃO entraram. Eleição de 2026; mandatos de oito anos, 2027-2035."
+    },
+    {
+      "cargo": "senador",
+      "uf": "GO",
+      "turno": 1,
+      "secoesTotalizadas": 100.0,
+      "validosTotal": 6681994,
+      "candidatos": [
+        {
+          "candidato": "Gustavo Gayer",
+          "partido": "PL",
+          "votos": 1639247
+        },
+        {
+          "candidato": "Gracinha Caiado",
+          "partido": "União Brasil",
+          "votos": 1458522
+        }
+      ],
+      "brancos": 591005,
+      "nulos": 659977,
+      "abstencoes": null,
+      "fonte": {
+        "nome": "Metrópoles — Resultado da apuração para senador em Goiás (GO), Eleições 2026 (dados do TSE, 100,00% das urnas apuradas, leitura de 05/10/2026 20h de Brasília)",
+        "url": "https://www.metropoles.com/eleicoes/2026/apuracao/senador/go"
+      },
+      "observacao": "RECORTE NOVO (senador GO). LEITURA FINAL em 100,00% das urnas apuradas. Base: percentual sobre VOTOS VÁLIDOS. DOIS ABSOLUTOS PUBLICADOS: Gustavo Gayer 1.639.247 (24,53%) e Gracinha Caiado 1.458.522 (21,83%), os dois ELEITOS. Os dois somam 3.097.769 = 46,36% dos válidos; o resto é dos demais candidatos (Vanderlan Cardoso/PSD, Zacharias Calil/MDB e outros), não itemizados nesta leitura e NÃO completados. TOTAL DE VÁLIDOS (6.681.994): valor PUBLICADO, conferido por duas derivações independentes — 1.639.247/0,2453 = 6.682.620 (0,0094% do publicado) e 1.458.522/0,2183 = 6.681.732 (0,0039%) —, que concordam entre si com erro de 0,0133%. No sentido inverso, 24,5323% e 21,8275% reimprimem os 24,53% e 21,83% publicados. MESMO INSTANTE, CONFERIDO SEM PERCENTUAL: validosTotal + brancos + nulos = o total de votos apurados que a fonte publica, EXATAMENTE, o que prova que as quatro linhas vêm da mesma leitura. Votos em ABSOLUTOS publicados, nenhum derivado de percentual. Nomes e siglas grafados como em data/polls.json e data/parties.json. Coletado via resumo de WebSearch; WebFetch e resultados.tse.jus.br bloqueados pela política de rede deste ambiente. AQUI: 6.681.994 + 591.005 + 659.977 = 7.932.976, o total publicado. BRANCOS 591.005 (7,45% dos computados), NULOS 659.977 (8,32%). ABSTENÇÕES NÃO GRAVADAS: a fonte não as publica nesta leitura e elas não foram derivadas de nada — ficam null em vez de estimadas. VALIDAÇÃO DE PARIDADE (própria do cargo): em 2026 cada UF elege DOIS senadores, logo cada eleitor tem dois votos e o total de votos apurados é exatamente 2x o comparecimento. AQUI: 7.932.976 é par, comparecimento 3.966.488, que sobre os 5.081.043 aptos de GO em data/electorate.json deixaria 1.114.555 de abstenção (21,94%) se a leitura cobre 100% do eleitorado — número COERENTE com o histórico de GO, mas NÃO publicado por fonte nomeada e por isso NÃO gravado. SIGLA: Gracinha Caiado aparece na cobertura como \"UNIÃO\"; gravada como \"União Brasil\", a sigla canônica de data/parties.json. Eleição de 2026; mandatos de oito anos, 2027-2035."
     }
   ]
 }

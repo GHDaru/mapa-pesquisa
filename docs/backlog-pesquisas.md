@@ -2085,3 +2085,99 @@ perfeitamente com a leitura de 90,02% que já está no arquivo — válidos + br
 + nulos = 23.686.764, o total publicado. **Não foram gravados por falta de fonte
 nomeada**: duas buscas não reproduziram o detalhamento. Os valores estão aqui e
 só falta a atribuição.
+
+## Rodada de 05/10 — o Senado entra na apuração, e São Paulo fecha
+
+Primeira rodada depois da eleição. O arquivo de apuração foi de 6 para **12
+recortes**.
+
+### Nenhuma pesquisa de 2º turno foi publicada ainda
+
+Seis buscas, de ângulos diferentes, e nada com campo posterior a 04/10. O 2º
+turno é em 25/10 e o campo leva dias — `[]` é o resultado esperado. A data de
+última checagem foi atualizada de todo modo, que é o que o contrato pede.
+
+**Lacuna que a varredura encontrou de passagem e que vale uma rodada
+dedicada:** cenários de 2º turno **pré-eleição** de Palver (30/09–03/10), Gerp
+(30/09–02/10), Meio/Ideia (30/09), PoderData (30/09–02/10, em válidos) e Quaest
+(02–03/10) apareceram nas buscas e **não estão na base**. Elas entram no ranking
+de acerto, então são ganho direto para a comparação.
+
+### Senador: de zero para seis UFs
+
+| UF | seções | 1º e 2º colocados |
+|---|---|---|
+| SP | **100,00%** | Guilherme Derrite (PP) 13.273.880 · André do Prado (PL) 12.703.089 |
+| PR | **100,00%** | Filipe Barros (PL) 3.148.583 · Deltan Dallagnol (Novo) 2.904.594 |
+| RS | **100,00%** | Sanderson (PL) 3.453.316 · Marcel Van Hattem (Novo) 3.449.053 |
+| GO | **100,00%** | Gustavo Gayer (PL) 1.639.247 · Gracinha Caiado (União Brasil) 1.458.522 |
+| MG | 99,99% | Domingos Sávio (PL) 4.968.794 · Marília Campos (PT) 3.990.520 |
+| RJ | 94,57% | Carlos Portinho (PL) 4.026.299 · Carlos Jordy (PL) 3.695.401 |
+
+No Rio Grande do Sul a diferença entre o segundo e o primeiro é de **4.263
+votos**. No Paraná, a cobertura ressalva que a validade da eleição de Deltan
+Dallagnol depende de decisão final da Justiça Eleitoral (registro suspenso e
+restabelecido no mesmo dia) — está na `observacao` da ficha.
+
+### A prova de paridade, que vale incorporar ao método
+
+Em 2026 cada UF elege **dois** senadores, então cada eleitor tem dois votos e o
+total apurado de senador é **par** e vale exatamente **2× o comparecimento**.
+
+Isso dá uma validação que não depende de percentual nenhum e cruza duas fichas
+de fontes diferentes: em São Paulo, o total computado de senador é **52.788.512**
+e o de governador é **26.394.256** — razão de **2,000000**, exata, e par.
+Conferido pela sessão principal.
+
+A mesma ideia fecha pelo outro lado: comparecimento mais abstenções, sobre os
+aptos da UF em `data/electorate.json`, reproduz o percentual de seções
+publicado.
+
+**Armadilha de rótulo que isso expôs:** em RJ, BA, CE e DF o número que a
+cobertura rotula "comparecimento (X% do eleitorado)" é na verdade os **aptos nas
+seções totalizadas**. Na Bahia, 10.645.667 contra um comparecimento real de
+8.518.579 derivado do total par. O rótulo da fonte foi ignorado em toda parte, e
+o comparecimento calculado como total ÷ 2.
+
+### São Paulo governador: 90,02% → 100,00%
+
+A busca pela fonte dos brancos, nulos e abstenções (a pendência mais barata do
+backlog) devolveu a leitura de **100,00%**, estritamente melhor. Tarcísio
+14.491.874 (62,65%) e Haddad 8.423.656 (36,42%), **mais dois candidatos que não
+existiam no recorte anterior** (Vivian Mendes 80.480 e Vera Lúcia 75.641), com
+brancos 1.348.262, nulos 1.915.481 e abstenções 7.687.443. Os três fecham:
+23.130.513 + 1.348.262 + 1.915.481 = 26.394.256, o total publicado, exato.
+
+Ganho sem perda nenhuma: mais seções, mais dois candidatos, mais três linhas.
+
+### Cinco descartes por ficha misturada, todos pelo teste das duas derivações
+
+- **Senador BA**: válidos, brancos e nulos fecham exatos a 94,28%, mas **nenhuma
+  fonte publica percentual de candidato nessa leitura** — as duas derivações não
+  existem. Os percentuais disponíveis são de 100% e, cruzados com os absolutos
+  de 94,28%, discordam em 0,157%.
+- **Senador PE**: três candidatos concordam num válidos de ~9.311.000, mas o
+  publicado é 9.202.852 (1,16% de desvio), e válidos+brancos+nulos dá 11.682.214
+  contra 11.700.360 publicado.
+- **Senador CE**: os cinco candidatos são perfeitamente coerentes entre si, mas
+  num válidos 6,0% acima do publicado — e o bloco não traz total nem percentual
+  de seções próprio.
+- **Senador DF**: os dois primeiros vêm **sem percentual**, logo sem as duas
+  derivações, e o bloco de totais discorda em 0,117%.
+- **Senador RJ a 97,37%**, recusada em favor da de 94,57%: a soma das linhas dá
+  **19.093.131, ímpar** — impossível num cargo com dois votos por eleitor, logo
+  instantes misturados. A de 94,57% tem a melhor concordância da rodada,
+  0,0014%.
+
+Houve ainda uma divergência resolvida na terceira busca: os absolutos de senador
+do Paraná apareciam ao lado dos percentuais de outra leitura, par que dava 0,64%
+abaixo do válidos publicado. A terceira busca separou os instantes.
+
+### Presidente por UF: segue em zero, mas a restrição caiu
+
+Nenhuma UF foi ingerida nesta rodada, por instrução do briefing — que descrevia
+o comportamento anterior ao commit `0cf1d45`. Com a precedência por cobertura
+agora no código, **presidente por UF pode ser ingerido em lotes parciais sem
+derrubar o ranking**. Verificado: com os 12 recortes atuais, presidente segue
+com `destaque: 'nacional'`, 99,79% e os 16 institutos intactos. A frente está
+liberada para a próxima rodada.
