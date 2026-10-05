@@ -72,6 +72,18 @@ export interface AcertoDasPesquisas {
   readonly erroMedianoDoCampo: number | null;
   /** Quantos institutos acertaram quem ficou em primeiro. */
   readonly acertaramOLider: number;
+  /**
+   * Quantos **subestimaram** a margem do 1º colocado, e quantos a
+   * superestimaram.
+   *
+   * É a estatística mais informativa do conjunto e a que um ranking esconde.
+   * Erro espalhado nas duas direções é ruído amostral, e cada instituto
+   * responde pelo seu. Erro concentrado numa direção é **viés de campo**: algo
+   * que todos os desenhos de amostra erraram junto, e aí a pergunta deixa de
+   * ser "qual instituto foi melhor" e passa a ser "o que o método não captou".
+   */
+  readonly subestimaramAMargem: number;
+  readonly superestimaramAMargem: number;
   /** Nome do 1º e do 2º colocado no resultado, na ordem. */
   readonly primeiroESegundo: readonly [string, string] | null;
   readonly margemReal: number | null;
@@ -210,6 +222,9 @@ export function medirAcertoDasPesquisas(
     institutos,
     erroMedianoDoCampo: medianaDe(institutos.map((i) => i.erroMedioAbsoluto)),
     acertaramOLider: institutos.filter((i) => i.acertouOLider).length,
+    // Tolerância de meio décimo para não contar "margem exata" como viés.
+    subestimaramAMargem: institutos.filter((i) => (i.erroNaMargem ?? 0) < -0.05).length,
+    superestimaramAMargem: institutos.filter((i) => (i.erroNaMargem ?? 0) > 0.05).length,
     primeiroESegundo,
     margemReal,
   };

@@ -233,6 +233,39 @@ export function rotuloDistanciaDaEleicao(diasAntes: number): string {
   return `campo encerrado ${diasAntes} dias antes`;
 }
 
+/**
+ * A frase da direção do erro, e a mais importante desta seção.
+ *
+ * Um ranking convida a ler "o instituto X ganhou". Quando o erro de quase todo
+ * o campo aponta para o mesmo lado, essa leitura é a errada: não houve um
+ * instituto sortudo e outros azarados, houve algo que os desenhos de amostra
+ * erraram juntos. Esta frase existe para dizer isso antes que a tabela diga
+ * outra coisa.
+ */
+export function rotuloDirecaoDoErro(
+  subestimaram: number,
+  superestimaram: number,
+  total: number,
+  lider: string | null,
+): string | null {
+  if (total === 0 || lider == null) return null;
+  const maior = Math.max(subestimaram, superestimaram);
+  const direcao = subestimaram >= superestimaram ? 'subestimaram' : 'superestimaram';
+  if (maior < total * 0.7) {
+    return (
+      `O erro se espalhou nas duas direções: ${subestimaram} de ${total} institutos ` +
+      `subestimaram a margem de ${lider} e ${superestimaram} a superestimaram. ` +
+      'Erro em direções opostas é ruído de amostra, e cada instituto responde pelo seu.'
+    );
+  }
+  return (
+    `${maior} dos ${total} institutos ${direcao} a margem de ${lider}. ` +
+    'Erro concentrado numa única direção não é ruído de amostra: é viés de campo — ' +
+    'algo que os desenhos de amostra erraram juntos. A pergunta deixa de ser qual ' +
+    'instituto foi melhor e passa a ser o que o método não captou.'
+  );
+}
+
 /** Estado vazio: diz o que falta, em vez de desenhar resultado que não existe. */
 function montarVazio(): HTMLElement {
   return criarEl('section', { className: 'pj-vazio' }, [
@@ -419,8 +452,18 @@ function montarAcerto(dados: ProjecaoComparada): HTMLElement | null {
     ]),
   );
   const mediana = a.erroMedianoDoCampo;
+  const direcao = rotuloDirecaoDoErro(
+    a.subestimaramAMargem,
+    a.superestimaramAMargem,
+    a.institutos.length,
+    a.primeiroESegundo?.[0] ?? null,
+  );
   return criarEl('section', { className: 'pj-secao' }, [
     criarEl('h2', { texto: 'Quem chegou mais perto' }),
+    // A direção do erro vem ANTES da tabela: sem ela o leitor conclui que um
+    // instituto acertou e os outros erraram, quando o que houve foi erro
+    // conjunto numa só direção.
+    direcao ? criarEl('p', { className: 'pj-vies', texto: direcao }) : null,
     criarEl('p', {
       className: 'pj-nota',
       texto:

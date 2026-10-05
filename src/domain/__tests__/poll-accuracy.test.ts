@@ -250,3 +250,39 @@ describe('candidato que uma das pontas não tem', () => {
     expect(r.erroMedianoDoCampo).toBeNull();
   });
 });
+
+describe('direção do erro: ruído amostral ou viés de campo', () => {
+  /*
+   * A estatística que um ranking esconde. Erro espalhado nas duas direções é
+   * ruído, e cada instituto responde pelo seu. Erro concentrado numa direção é
+   * viés de campo — algo que todos os desenhos de amostra erraram junto.
+   *
+   * No 1º turno de 2026 isso não foi hipotético: 15 dos 16 institutos
+   * subestimaram a margem do primeiro colocado.
+   */
+  it('conta separadamente quem subestimou e quem superestimou a margem', () => {
+    const r = medirAcertoDasPesquisas(
+      [
+        // Subestimam a margem de A (real: 8 pontos).
+        pesquisa('Sub1', '2026-10-02', [['A', 45], ['B', 47], ['C', 8]]),
+        pesquisa('Sub2', '2026-10-02', [['A', 46], ['B', 46], ['C', 8]]),
+        // Superestima.
+        pesquisa('Super', '2026-10-02', [['A', 58], ['B', 34], ['C', 8]]),
+      ],
+      RESULTADO,
+      ehNaoCandidato,
+    );
+    expect(r.subestimaramAMargem).toBe(2);
+    expect(r.superestimaramAMargem).toBe(1);
+  });
+
+  it('margem exata não conta como viés em nenhuma direção', () => {
+    const r = medirAcertoDasPesquisas(
+      [pesquisa('Exato', '2026-10-02', [['A', 50], ['B', 42], ['C', 8]])],
+      RESULTADO,
+      ehNaoCandidato,
+    );
+    expect(r.subestimaramAMargem).toBe(0);
+    expect(r.superestimaramAMargem).toBe(0);
+  });
+});

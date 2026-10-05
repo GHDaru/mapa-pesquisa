@@ -4,6 +4,8 @@ import type { MargemProjetada, Projecao } from '../../../../../domain/apuracao.j
 import {
   formatarVotos,
   rotuloDefasagem,
+  rotuloDirecaoDoErro,
+  rotuloResultadoFinal,
   rotuloApenasNacional,
   rotuloCobertura,
   rotuloErroCandidato,
@@ -281,5 +283,41 @@ describe('defasagem: a página é estática e a apuração não é', () => {
 
   it('data ilegível não inventa defasagem', () => {
     expect(rotuloDefasagem('não é data', new Date('2026-10-04T22:40:00Z'))).toBeNull();
+  });
+});
+
+describe('a direção do erro enquadra a leitura do ranking', () => {
+  it('erro concentrado numa direção é chamado de viés de campo, não de ruído', () => {
+    const t = rotuloDirecaoDoErro(15, 1, 16, 'Flávio Bolsonaro')!;
+    expect(t).toContain('15 dos 16');
+    expect(t).toContain('viés de campo');
+    expect(t).toContain('não é ruído de amostra');
+    // E redireciona a pergunta, em vez de deixar a tabela sugerir um vencedor.
+    expect(t).toContain('o que o método não captou');
+  });
+
+  it('erro espalhado nas duas direções é chamado de ruído', () => {
+    const t = rotuloDirecaoDoErro(8, 8, 16, 'Flávio Bolsonaro')!;
+    expect(t).toContain('nas duas direções');
+    expect(t).toContain('ruído de amostra');
+    expect(t).not.toContain('viés de campo');
+  });
+
+  it('sem institutos ou sem líder, não afirma nada', () => {
+    expect(rotuloDirecaoDoErro(0, 0, 0, 'A')).toBeNull();
+    expect(rotuloDirecaoDoErro(5, 1, 6, null)).toBeNull();
+  });
+});
+
+describe('modo resultado final', () => {
+  it('diz que a apuração encerrou e que não há projeção a fazer', () => {
+    const t = rotuloResultadoFinal(100);
+    expect(t).toContain('Apuração encerrada');
+    expect(t).toContain('projeção a fazer');
+    expect(t).toContain('votos válidos');
+  });
+
+  it('não usa a palavra provisório, que faria desconfiar de número que não muda mais', () => {
+    expect(rotuloResultadoFinal(100).toLowerCase()).not.toContain('provisóri');
   });
 });
