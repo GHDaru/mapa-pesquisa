@@ -13,6 +13,39 @@ os três cargos e voltou vazia. A primeira tentativa de correção, 18:00,
 ainda era cedo: o Datafolha nacional divulga às 19:15. Às 20:00 o dia
 está fechado.
 
+## O que esta rotina faz AGORA (a partir de 05/10/2026)
+
+O 1º turno foi em 04/10 e o resultado saiu: **Flávio Bolsonaro (PL) 47,50% x
+Lula (PT) 44,61%** dos votos válidos, com 2º turno em **25/10**. A varredura
+diária de pesquisas **perdeu o objeto** — não há rodada nova para achar até a
+campanha do 2º turno começar.
+
+A Routine (`trig_018yVtxvZDNPS4BLx8P3nzxg`) foi **repropósita em 05/10**, com o
+nome trocado para "fechar o 1º turno e abrir o 2º". O prompt dela mudou; o
+agendamento (23:00 UTC, 20:00 BRT) e o histórico de execuções foram
+preservados, em vez de recriar o gatilho e perder os dois.
+
+A ordem de prioridade passou a ser:
+
+1. **Fechar a ficha nacional em `data/apuracao.json`.** Ela está em 84,96% das
+   seções e com só os dois primeiros colocados. Falta: votos absolutos de todos
+   os candidatos, `validosTotal`, brancos/nulos/abstenções, e uma fonte que
+   afirme o encerramento. **Escrever ENCERRADA na `observacao`** é o que faz a
+   tela trocar "contagem parcial" por "resultado final" e **liga a seção de
+   ranking de institutos**, que está construída e desligada pelo limiar de
+   99,5% de seções (`LIMIAR_APURACAO_ENCERRADA`).
+2. **Presidente por estado** — a lacuna mais custosa. Sem ela a projeção por
+   estado, construída e testada, não tem insumo, e não há como separar erro de
+   pesquisa de viés de ordem de apuração.
+3. **Fechar os recortes parciais de governador**: BA 67,11%, MG 81,15%,
+   SP 90,02%. PR (99,17%) e RS (97,40%) já estão bons.
+4. **Senador**, que não tem nenhum recorte de apuração.
+5. **Pesquisas só de 2º turno**, quando a campanha começar, com o recorte
+   reduzido ao confronto Lula x Flávio.
+
+Quando a apuração estiver fechada e o ranking ligado, o ciclo de 2026 está
+cumprido e a rotina deve ser desligada ou reapontada para o 2º turno.
+
 ## Contrato da execução
 
 Data de hoje (UTC) = `HOJE`. Última atualização = `atualizadoEm` em `data/meta.json`.
