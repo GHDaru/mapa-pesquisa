@@ -83,6 +83,12 @@ export interface ProjecaoComparada {
    * tela pode mostrar é a contagem parcial, dita como contagem.
    */
   readonly apenasNacional: boolean;
+  /**
+   * Qual recorte comanda o destaque: `'nacional'` (a contagem que a fonte
+   * publica para o país) ou `'estadual'` (a soma projetada por estado). Vence o
+   * que cobre mais do eleitorado do país — ver o comentário no corpo da função.
+   */
+  readonly destaque: 'nacional' | 'estadual';
   /** Instante da leitura da apuração (ISO), como o arquivo declara. */
   readonly apuracaoAtualizadaEm: string;
   /**
@@ -193,12 +199,26 @@ export function criarGetProjecao(repos: Repositorios, clock: Clock) {
     const erroAbsolutoMedio =
       erros.length > 0 ? erros.reduce((t, e) => t + Math.abs(e), 0) / erros.length : null;
 
-    // Encerrada quando as seções passam do limiar no recorte que a tela usa —
-    // o nacional quando só há ele, ou a média ponderada por estado.
-    const secoesDoRecorte =
-      projecao.porUf.length > 0
-        ? projecao.secoesTotalizadasPonderada
-        : (projecao.nacionalCru?.secoesTotalizadas ?? 0);
+    /*
+     * Qual recorte comanda o destaque da tela: o nacional da fonte ou a soma
+     * por estado. Vence o que cobre MAIS do país.
+     *
+     * A versão anterior preferia o estadual sempre que existisse qualquer UF, e
+     * comparava o nacional com `secoesTotalizadasPonderada` — que é ponderada
+     * só pelas UFs COM dado e por isso dizia ~100% com três estados. O efeito
+     * era perverso: ingerir um recorte estadual correto derrubava
+     * `apuracaoEncerrada`, apagava o ranking de institutos e trocava uma
+     * contagem nacional de 99,79% por uma soma de 8% do eleitorado. Dado novo
+     * piorava a página, e a saída era avisar todo agente para não ingerir —
+     * remendo no lugar do conserto.
+     */
+    const secoesNacional = projecao.nacionalCru?.secoesTotalizadas ?? 0;
+    const coberturaEstadual = projecao.coberturaNacionalEfetiva;
+    const destaque: 'nacional' | 'estadual' =
+      projecao.porUf.length === 0 || secoesNacional >= coberturaEstadual
+        ? 'nacional'
+        : 'estadual';
+    const secoesDoRecorte = Math.max(secoesNacional, coberturaEstadual);
     const apuracaoEncerrada = !semDados && secoesDoRecorte >= LIMIAR_APURACAO_ENCERRADA;
 
     // O ranking de institutos só sai com a apuração encerrada. Contra parcial,
@@ -222,6 +242,7 @@ export function criarGetProjecao(repos: Repositorios, clock: Clock) {
       apuracaoEncerrada,
       acerto,
       apenasNacional: projecao.porUf.length === 0 && projecao.nacionalCru !== null,
+      destaque,
       apuracaoAtualizadaEm: repos.apuracao.atualizadoEm(),
       comparacao,
       erroAbsolutoMedio,

@@ -134,8 +134,24 @@ export interface Projecao {
   readonly ufsSemApuracao: readonly string[];
   readonly eleitoradoCoberto: number;
   readonly eleitoradoTotal: number;
-  /** Média de seções totalizadas ponderada pelo eleitorado das UFs cobertas. */
+  /**
+   * Média de seções totalizadas ponderada pelo eleitorado **das UFs cobertas**.
+   *
+   * CUIDADO: esta medida não fala do país. Três UFs totalizadas a 100% dão 100
+   * aqui, mesmo cobrindo 8% do eleitorado nacional. Para comparar com o recorte
+   * nacional, use `coberturaNacionalEfetiva`.
+   */
   readonly secoesTotalizadasPonderada: number;
+  /**
+   * Quanto do eleitorado DO PAÍS tem seções totalizadas, visto pelos recortes
+   * estaduais: a ponderada vezes a fração do eleitorado coberto.
+   *
+   * Existe porque confundir isso com `secoesTotalizadasPonderada` fazia dado
+   * novo e correto virar regressão. Com 3 UFs totalizadas, a ponderada dizia
+   * ~100% e passava por cima de um recorte nacional de 99,79%, trocando uma
+   * contagem exata do país por uma soma de 8% dele.
+   */
+  readonly coberturaNacionalEfetiva: number;
   readonly validosApurados: number;
   readonly validosProjetados: number;
   readonly margem: MargemProjetada | null;
@@ -338,6 +354,9 @@ export function projetarApuracao(
    * governador" que não existe. Nesses cargos o agregado fica vazio de
    * propósito e cada UF se lê sozinha, em `porUf`.
    */
+  const fracaoEleitoradoCoberto =
+    eleitoradoTotal > 0 ? eleitoradoCoberto / eleitoradoTotal : 0;
+
   const somado =
     cargo === 'presidente'
       ? somarPorCandidato(porUf)
@@ -352,6 +371,7 @@ export function projetarApuracao(
     eleitoradoCoberto,
     eleitoradoTotal,
     secoesTotalizadasPonderada,
+    coberturaNacionalEfetiva: secoesTotalizadasPonderada * fracaoEleitoradoCoberto,
     validosApurados: somado.validosApurados,
     validosProjetados: somado.validosProjetados,
     margem: calcularMargem(

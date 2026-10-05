@@ -202,3 +202,95 @@ describe('sem apuração, nada é afirmado', () => {
     expect(r.comparacao).toEqual([]);
   });
 });
+
+describe('precedência: vence o recorte que cobre mais do país', () => {
+  /*
+   * O bug que isto tranca: a versão anterior preferia o agregado estadual
+   * sempre que existisse QUALQUER UF, e comparava o nacional com a média
+   * ponderada — que é ponderada só pelas UFs COM dado, e por isso dizia ~100%
+   * com três estados. Ingerir um recorte estadual correto derrubava
+   * `apuracaoEncerrada`, apagava o ranking de institutos e trocava uma contagem
+   * nacional de 99,79% por uma soma de uma fração do eleitorado.
+   */
+  function comNacionalEEstadual(secoesNacional: number, ufs: readonly [string, number][]) {
+    const base = apuracaoFinal(secoesNacional);
+    return {
+      atualizadoEm: base.atualizadoEm,
+      recortes: [
+        ...base.recortes,
+        ...ufs.map(([uf, secoes]) => ({
+          cargo: 'presidente' as const,
+          uf,
+          turno: 1 as const,
+          secoesTotalizadas: secoes,
+          validosTotal: 1_000_000,
+          candidatos: [
+            { candidato: 'Flávio Bolsonaro', partido: 'PL', votos: 520_000 },
+            { candidato: 'Luiz Inácio Lula da Silva', partido: 'PT', votos: 480_000 },
+          ],
+          fonte: FONTE,
+        })),
+      ],
+    };
+  }
+
+  function reposComUfs(apuracao: ReturnType<typeof comNacionalEEstadual>) {
+    return {
+      ...repos(apuracao as never, [
+        pesquisa('X', '2026-10-02', [['Flávio Bolsonaro', 52], ['Luiz Inácio Lula da Silva', 48]]),
+      ]),
+      electorate: criarEleitoradoRepositoryJson([
+        { uf: 'SP', eleitores: 34_000_000, referencia: '2026-07', fonte: FONTE },
+        { uf: 'AC', eleitores: 600_000, referencia: '2026-07', fonte: FONTE },
+      ] as never),
+    };
+  }
+
+  it('UMA UF pequena a 100% NÃO toma o destaque de uma contagem nacional de 99,8%', () => {
+    const r = criarGetProjecao(reposComUfs(comNacionalEEstadual(99.8, [['AC', 100]])), CLOCK)(
+      'presidente',
+      1,
+    );
+    // O Acre a 100% cobre ~1,7% do eleitorado: muito menos que 99,8% do país.
+    expect(r.destaque).toBe('nacional');
+    expect(r.apuracaoEncerrada).toBe(true);
+    // E o ranking continua de pé, que era o que desaparecia.
+    expect(r.acerto).not.toBeNull();
+  });
+
+  it('a cobertura estadual efetiva desconta o eleitorado que falta', () => {
+    const r = criarGetProjecao(reposComUfs(comNacionalEEstadual(10, [['AC', 100]])), CLOCK)(
+      'presidente',
+      1,
+    );
+    // Ponderada sobre as UFs com dado seria 100; efetiva é ~1,7.
+    expect(r.projecao.secoesTotalizadasPonderada).toBeCloseTo(100, 6);
+    expect(r.projecao.coberturaNacionalEfetiva).toBeLessThan(2);
+  });
+
+  it('quando o estadual cobre mais, ELE comanda', () => {
+    // SP e AC totalizados cobrem quase todo o eleitorado da fixture, contra um
+    // nacional de só 20%.
+    const r = criarGetProjecao(
+      reposComUfs(comNacionalEEstadual(20, [['SP', 100], ['AC', 100]])),
+      CLOCK,
+    )('presidente', 1);
+    expect(r.destaque).toBe('estadual');
+    expect(r.projecao.coberturaNacionalEfetiva).toBeGreaterThan(99);
+  });
+
+  it('sem UF nenhuma, o destaque é nacional e apenasNacional é true', () => {
+    const r = criarGetProjecao(repos(apuracaoFinal(99.8), []), CLOCK)('presidente', 1);
+    expect(r.destaque).toBe('nacional');
+    expect(r.apenasNacional).toBe(true);
+  });
+
+  it('apuracaoEncerrada usa a MAIOR das duas coberturas, nunca a menor', () => {
+    const r = criarGetProjecao(reposComUfs(comNacionalEEstadual(99.8, [['AC', 50]])), CLOCK)(
+      'presidente',
+      1,
+    );
+    // O Acre a 50% cobre ~0,8%; a nacional a 99,8% é que decide.
+    expect(r.apuracaoEncerrada).toBe(true);
+  });
+});

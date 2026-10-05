@@ -266,6 +266,26 @@ export function rotuloDirecaoDoErro(
   );
 }
 
+/**
+ * A frase para quando EXISTE dado estadual mas o recorte nacional cobre mais do
+ * país. Aqui a tela não está escondendo o estadual: está dizendo por que o
+ * número grande vem do outro lado, e o estadual segue visível na tabela por UF.
+ */
+export function rotuloNacionalVenceEstadual(
+  secoesNacional: number,
+  coberturaEstadual: number,
+  ufsComDado: number,
+): string {
+  return (
+    `O número em destaque vem da contagem nacional da fonte, com ` +
+    `${formatarPct(secoesNacional)} das seções totalizadas. Há apuração em ` +
+    `${ufsComDado} ${ufsComDado === 1 ? 'estado' : 'estados'}, mas ela cobre ` +
+    `${formatarPct(coberturaEstadual)} do eleitorado do país — menos que a contagem ` +
+    'nacional —, então somar os estados daria um retrato mais estreito, não mais fino. ' +
+    'Os estados aparecem na tabela por UF, e passam a comandar quando cobrirem mais.'
+  );
+}
+
 /** Estado vazio: diz o que falta, em vez de desenhar resultado que não existe. */
 function montarVazio(): HTMLElement {
   return criarEl('section', { className: 'pj-vazio' }, [
@@ -341,7 +361,7 @@ function montarComparacao(dados: ProjecaoComparada): HTMLElement | null {
   // Em modo só-nacional a coluna da direita é CONTAGEM, não projeção. Dizer
   // "projeção" aqui contradiria o aviso que está logo acima na mesma tela.
   const final = dados.apuracaoEncerrada;
-  const contagem = dados.apenasNacional && !final;
+  const contagem = dados.destaque === 'nacional' && !final;
   const rotuloColuna = final ? 'Resultado' : contagem ? 'Contagem parcial' : 'Projeção da apuração';
   const titulo = final
     ? 'O que as pesquisas diziam, e o que deu'
@@ -532,14 +552,20 @@ export function pjMontarConteudo(dados: ProjecaoComparada, agora: Date = new Dat
 
   const { projecao } = dados;
 
-  if (dados.apenasNacional) {
+  if (dados.destaque === 'nacional' && projecao.nacionalCru) {
     const cru = projecao.nacionalCru!;
     raiz.appendChild(
       criarEl('p', {
         className: dados.apuracaoEncerrada ? 'pj-final' : 'pj-cobertura',
         texto: dados.apuracaoEncerrada
           ? rotuloResultadoFinal(cru.secoesTotalizadas)
-          : rotuloApenasNacional(cru.secoesTotalizadas),
+          : dados.apenasNacional
+            ? rotuloApenasNacional(cru.secoesTotalizadas)
+            : rotuloNacionalVenceEstadual(
+                cru.secoesTotalizadas,
+                projecao.coberturaNacionalEfetiva,
+                projecao.porUf.length,
+              ),
       }),
     );
     const maior = cru.candidatos[0]?.pctApurado ?? 0;

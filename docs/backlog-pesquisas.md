@@ -2043,10 +2043,24 @@ novo e correto pioraria a página.
 **Presidente por UF só compensa com as 27 UFs de uma vez.** O prompt da Routine
 foi corrigido para dizer isso.
 
-O conserto estrutural, não feito por ser decisão de desenho e não de dado:
-quando o recorte nacional for mais completo que o agregado estadual, a tela
-deveria preferir o nacional e oferecer o estadual como detalhe, em vez de ser
-substituída por ele. Hoje a precedência é implícita e está na ordem errada.
+O conserto estrutural **foi feito em 05/10**, e a armadilha não existe mais.
+
+A precedência passou a ser por **cobertura**: vence o recorte que cobre mais do
+eleitorado do país. Entrou no domínio `coberturaNacionalEfetiva`, que é a média
+ponderada **vezes** a fração do eleitorado coberto — porque
+`secoesTotalizadasPonderada` é ponderada só pelas UFs COM dado e por isso dizia
+~100% com três estados, passando por cima de uma contagem nacional de 99,79%.
+
+O caso de uso devolve `destaque: 'nacional' | 'estadual'` e usa a MAIOR das duas
+coberturas para `apuracaoEncerrada`. A tela ganhou uma frase para o caso novo
+(existe dado estadual, mas o nacional cobre mais), que diz por que o número
+grande vem do nacional e lembra que os estados seguem na tabela por UF e passam
+a comandar quando cobrirem mais.
+
+Cinco testes trancam o comportamento, incluindo o caso exato que motivou tudo:
+uma UF pequena a 100% **não** toma o destaque de uma contagem nacional de 99,8%,
+e o ranking de institutos continua de pé. **Presidente por UF deixou de ser
+regressão: pode ser ingerido em qualquer quantidade.**
 
 ### Estado final do arquivo de apuração
 

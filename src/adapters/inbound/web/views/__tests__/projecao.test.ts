@@ -35,6 +35,7 @@ function projecaoFake(parcial: Partial<Projecao> = {}): Projecao {
     eleitoradoCoberto: 0,
     eleitoradoTotal: 0,
     secoesTotalizadasPonderada: 0,
+    coberturaNacionalEfetiva: 0,
     validosApurados: 0,
     validosProjetados: 0,
     margem: null,
