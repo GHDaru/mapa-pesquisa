@@ -2337,3 +2337,69 @@ contamina o agregado.
   medido.
 - Institutos com grafia duplicada: "American Analytics" / "American Analytics do
   Brasil", "IP Sensus" / "IPSensus", "Falpe" / "Instituto Falpe".
+
+### Senador: de 6 para 17 UFs, e a paridade pegou duas fichas
+
+Onze UFs entraram, em 28 buscas. **BA, CE e DF eram três das quatro recusadas em
+05/10** e foram recuperadas com fontes diferentes (Senado Notícias, Exame,
+Metrópoles). Faltam 10: AL, AC, MS, MT, PE, PI, RO, RR, SE e TO — todas
+recusadas hoje, com o motivo aritmético registrado.
+
+| UF | seções | 1º colocado | 2º colocado | total (par) |
+|---|---|---|---|---|
+| BA | **100,00%** | Rui Costa (PT) 4.335.196 | Jaques Wagner (PT) 3.986.690 | 18.092.358 |
+| CE | **100,00%** | Cid Gomes (PSB) 3.033.562 | Luizianne Lins (Rede) 2.822.806 | 11.811.044 |
+| PA | **100,00%** | Helder Barbalho (MDB) 2.342.070 | Chicão (União Brasil) 2.014.409 | 10.125.500 |
+| SC | **100,00%** | Carol de Toni (PL) 2.694.918 | Carlos Bolsonaro (PL) 2.041.840 | 9.269.100 |
+| MA | **100,00%** | André Fufuca (PP) 1.530.187 | Lahesio Bonfim (Novo) 1.471.859 | 8.316.790 |
+| PB | 99,08% | João Azevêdo (PSB) 1.382.679 | Veneziano (MDB) 965.911 | 5.316.784 |
+| ES | **100,00%** | Casagrande (PSB) 995.361 | Evair de Mello (Republicanos) 982.978 | 4.697.224 |
+| AM | **100,00%** | Eduardo Braga (MDB) 1.240.471 | Plínio Valério (PSDB) 948.793 | 4.464.542 |
+| RN | **100,00%** | Styvenson (Podemos) 1.055.000 | Samanda de Lula (PT) 635.924 | 4.335.428 |
+| DF | **100,00%** | Michelle Bolsonaro (PL) 938.496 | Bia Kicis (PL) 886.616 | 3.635.842 |
+| AP | **100,00%** | Rayssa Furlan (Podemos) 264.799 | Lucas Barreto (PSD) 213.948 | 952.038 |
+
+**Conferência independente feita pela sessão principal, em um comando, sem
+busca:** as onze têm total **par**; o comparecimento (total ÷ 2) dá participação
+de 78,5% a 84,4%, faixa plausível em todas; e onde há abstenções em absoluto,
+comparecimento + abstenções reproduz 99,82% a 99,90% dos aptos de
+`data/electorate.json`. Nenhuma acendeu alerta.
+
+**A paridade derrubou duas fichas**, e é a validação mais barata do conjunto:
+
+- **TO**: 1.629.320 + 92.069 + 177.968 = 1.899.357, **ímpar** — impossível num
+  cargo com dois votos por eleitor. E quatro derivações convergiam para
+  1.653.690, 1,5% acima do publicado.
+- **PA**: a fonte publica um "válidos" rotulado "99,82%" cuja soma com brancos e
+  nulos dá 10.109.687, **ímpar**. O `validosTotal` foi derivado (total publicado
+  − brancos − nulos = 8.973.375), cai dentro do intervalo das cinco derivações e
+  reimprime os **seis** percentuais. Derivação declarada na `observacao`, como em
+  DF.
+
+**A armadilha do rótulo "comparecimento" apareceu de novo, na PB:** os
+"3.217.890 eleitores computados (99,27%)" são os **aptos nas seções**, e
+3.217.890 = 99,09% dos aptos da UF — o que confirma **99,08%** de seções, não os
+99,27% do rótulo. Foi o valor usado.
+
+**As dez recusas, com o número:** PE (candidatos derivam ~9.311.000 contra
+9.221.513 de total − brancos − nulos, **0,96%**); AL (as três derivações
+concordam em 0,07% entre si mas ficam **4,89% acima** do publicado); PI (duas
+derivações divergem **0,182%**); MT (duas fontes publicam absolutos **diferentes
+para os mesmos dois candidatos** repetindo o mesmo trio de totais; derivações a
+**0,126%**); MS (**2,2%–2,4%** abaixo do publicado); SE (brancos e nulos apontam
+total ≈2.868.000, válidos apontam **3,4% abaixo**, e a soma não reproduz nenhum
+dos três percentuais); RO (**três** valores incompatíveis de válidos, spread de
+2,1%); RR (candidatos vs brancos/nulos a **0,436%**); AC (absolutos publicados só
+como "cerca de 233.000" — inutilizáveis — e a soma daria comparecimento de 67,6%
+contra os 79,4% publicados); TO (ímpar, acima).
+
+**Ressalvas que ficaram nas observações, sem contradição aritmética:** RN tem
+Styvenson em `1.055.000`, milhar exato e forma suspeita de arredondamento —
+mantido o publicado, que fica a nove votos (0,0009%) do que o percentual implica;
+AP tem brancos+nulos em só 7,23% dos computados contra 12%–20% nas outras,
+atípico mas com as três conferências fechando; ES, PB e AP têm cobertura de 49% a
+55% porque só os dois eleitos têm absoluto publicado, e nelas o `validosTotal`
+publicado é indispensável como denominador.
+
+`atualizadoEm` **não avançou**: as leituras são de 04–05/10 e nenhuma fonte
+documenta instante posterior ao `2026-10-05T23:00:00Z` que já estava no arquivo.
