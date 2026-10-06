@@ -2403,3 +2403,81 @@ publicado é indispensável como denominador.
 
 `atualizadoEm` **não avançou**: as leituras são de 04–05/10 e nenhuma fonte
 documenta instante posterior ao `2026-10-05T23:00:00Z` que já estava no arquivo.
+
+### Presidente por UF: de zero para 10, e um erro meu de processo
+
+A frente que estava em zero desde o começo abriu com **10 UFs**, em 27 buscas.
+
+| UF | % seções | líder | segundo | `validosTotal` | cobertura |
+|---|---|---|---|---|---|
+| SP | **100** | Flávio 12.922.023 (51,93%) | Lula 9.505.413 (38,20%) | 24.882.948 | 99,28% |
+| MG | **100** | Flávio 5.777.548 (48,24%) | Lula 5.188.936 (43,33%) | 11.976.032 | 91,57% |
+| RJ | **100** | Flávio 4.966.844 (53,01%) | Lula 3.693.021 (39,41%) | 9.369.700 | 92,42% |
+| BA | 99,95 | **Lula** 5.661.527 (66,17%) | Flávio 2.441.882 (28,54%) | 8.556.213 | 94,71% |
+| RS | **100** | Flávio 3.573.783 (55,64%) | Lula 2.294.759 (35,73%) | 6.423.046 | 91,37% |
+| PR | **100** | Flávio 3.945.345 (59,91%) | Lula 2.054.597 (31,20%) | 6.585.243 | 99,52% |
+| PE | **100** | **Lula** 3.553.971 (63,45%) | Flávio 1.738.043 (31,03%) | 5.601.017 | 94,48% |
+| SC | **100** | Flávio 3.000.020 (66,65%) | Lula 1.127.168 (25,04%) | 4.500.897 | 91,70% |
+| GO | 99,99 | Flávio 2.051.888 (53,60%) | Lula 1.188.880 (31,06%) | 3.827.401 | 97,01% |
+| MA | **100** | **Lula** 2.566.301 (63,99%) | Flávio 1.239.040 (30,90%) | 4.010.155 | 94,89% |
+
+**O ERRO DE PROCESSO, que é meu e vale mais que a tabela.** Os dez recortes já
+estavam no arquivo quando eu commitei o lote de senador, e **entraram no commit
+`e1ea286` sem que eu os tivesse conferido**, sob uma mensagem que fala só de
+senador. O sinal estava na minha própria tela: inseri 11 recortes num arquivo que
+tinha 12 e imprimi "recortes agora 33". **12 + 11 = 23, não 33.** Li o 33 e segui.
+Um `git add -A` com agente trabalhando em paralelo no mesmo arquivo publica o que
+o agente escreveu, e a conferência tem de vir ANTES do commit, não depois.
+Conferidos agora, os dez passam — mas isso é sorte, não método.
+
+**Conferência independente feita depois, em um comando e sem busca:** nenhuma
+soma de candidatos excede o `validosTotal`; todos os nomes estão na forma
+canônica; onde há brancos, nulos e abstenções, (válidos+brancos+nulos+abstenções)
+÷ aptos reproduz o percentual de seções publicado (SP 100,055 · BA 99,881 · RS
+99,957 · PR 100,054 · PE 99,968 · SC 100,155 · GO 99,979 — as frações acima de 100
+são a diferença entre o eleitorado de 2026-07 e os aptos da eleição); e **nenhuma
+soma estadual excede a nacional**: válidos 85.732.652 = 71,86% do nacional,
+Flávio 74,25%, Lula 68,37%, com aptos das 10 UFs em 72,45% — as coberturas
+caminham juntas, como têm de caminhar.
+
+O viés aparece exatamente como a tela explica: nas 10 UFs Flávio tem 48,59% e Lula
+42,96%, contra 47,03% e 45,16% nacionais, porque o conjunto leva Sul e Sudeste
+inteiros e deixa fora CE, PB, PI, RN, AL, SE e quase todo o Norte.
+
+**Dois achados que derrubariam leituras, e que são o mesmo tipo de armadilha:**
+
+1. **MG — os brancos e nulos oferecidos eram de GOVERNADOR.** A busca colou
+   "brancos 658.416, nulos 556.916, abstenções 3.734.021" nos votos de presidente.
+   A prova veio de dentro do próprio arquivo, sem busca nenhuma: o recorte
+   `governador/MG` já existente traz 658.085 / 556.405 / 3.728.656. Aceitos,
+   dariam válidos 11.414.455 — **4,92% (561.577 votos) abaixo** dos 11.976.032
+   que os pares voto/percentual exigem, 50× o limite. MG entrou com os três campos
+   em `null`.
+2. **RJ — o "total de votos válidos 9.859.802" é o total de COMPUTADOS.** Tomado
+   como válidos, derrubaria Flávio de 53,01% para 50,38%. E o par
+   "brancos 501.537 / nulos 675.292" oferecido para o RJ foi recusado: daria
+   válidos 8.682.973 e Flávio 57,20%, **7,91% de erro no denominador**. Os que
+   fecham exatamente com 53,01% / 39,41% são 201.979 e 288.123.
+
+**Duas UFs recusadas:**
+
+- **CE** — as duas derivações concordam (0,0162%), mas os válidos derivados são
+  **80,27% dos aptos**, o que exigiria abstenção de ~15,5%, **~4 pontos fora** da
+  faixa real do Nordeste nesta eleição (PE 18,17%, BA 19,97%, MA 19,73%). Pior:
+  **nenhuma fonte publicou % de seções, brancos, nulos ou computados do CE** — as
+  três buscas devolveram os números NACIONAIS estampados no banner da página do
+  estado.
+- **PA** — Lula 2.427.237 (49,91%) x Flávio 2.163.957 (44,50%), derivações
+  concordando em 0,0083%, e ainda assim fora: **nenhuma fonte publicou o % de
+  seções**. Dava para inferir 99,885% pelos aptos, e inferir justamente o campo que
+  mede a incerteza é o que não se faz. **É a UF mais perto de entrar: falta uma
+  busca.**
+
+Outras recusas: em MA o par "63,92% / 30,96%" (derivações discordam **0,3196%**);
+em PR a parcial de 18,99%; em MG uma leitura de 88,39% internamente perfeita, por
+custar 11,61 pontos de seções; em GO, Rui Costa Pimenta (PCO, 260 votos), por não
+estar entre os seis nomes canônicos. GO ficou em **99,99** e não 100 porque é o
+número que a fonte imprime colado aos votos, embora o texto corrido diga "100%".
+
+Faltam **17 UFs**: AC, AL, AM, AP, CE, DF, ES, MS, MT, PA, PB, PI, RN, RO, RR, SE,
+TO.
