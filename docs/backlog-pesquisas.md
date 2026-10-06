@@ -2481,3 +2481,33 @@ número que a fonte imprime colado aos votos, embora o texto corrido diga "100%"
 
 Faltam **17 UFs**: AC, AL, AM, AP, CE, DF, ES, MS, MT, PA, PB, PI, RN, RO, RR, SE,
 TO.
+
+### O defeito que eu publiquei hoje, e por que ele escapou do conserto de 05/10
+
+Ingerir as 10 UFs **quebrou o ranking de institutos no ar**, e eu só vi porque
+sondei o estado ao vivo depois do push em vez de confiar na suíte verde.
+
+`destaque` foi consertado em 05/10 (commit `0cf1d45`) para escolher por cobertura
+efetiva. Mas **`baseComparacao`, no mesmo arquivo, continuava preferindo a soma
+por estado sempre que existisse qualquer UF** — a variável que o conserto não
+alcançou. Ela alimenta a tabela de comparação **e** o `pctResultado` do ranking.
+
+O efeito, medido no dado real: `destaque` ficou corretamente `'nacional'` e a tela
+mostrava o resultado de 100% das seções, enquanto o ranking media os 16 institutos
+contra a **soma de 10 das 27 UFs**, cobrindo 72,9% do eleitorado e pesada para Sul
+e Sudeste. **`margemReal` saiu 5,89 pontos em vez de 1,87.** Era exatamente o
+"ranking falso" contra o qual o comentário do próprio ranking adverte — e, de
+novo, **dado correto piorava a página**.
+
+A suíte estava verde antes e depois do conserto: **nenhum teste cobria a
+propriedade**. Agora há quatro, e eles pegam o defeito (mutação confirmada: 3
+falham com a condição desligada). A propriedade travada é a que importa —
+**acrescentar UF não muda o resultado contra o qual os institutos são medidos**,
+enquanto o nacional cobrir mais do país — e a ponta oposta também: com o nacional
+em 20% e uma UF em 100%, o estadual comanda, porque a precedência é por cobertura
+e não uma preferência fixa pelo nacional.
+
+**A lição de método, que é a mesma de 05/10 e eu repeti:** quando o conserto é
+"deixar de preferir X cegamente", é preciso procurar **todas** as variáveis que
+preferem X cegamente, não só a que apareceu no sintoma. E suíte verde num caminho
+sem teste não é evidência de nada — a sonda sobre `data/` real é que foi.

@@ -464,3 +464,108 @@ describe('2º turno: confrontos hipotéticos não entram no agregado nem no rank
     expect(r.acerto!.institutos.map((i) => i.instituto)).toEqual(['Preciso']);
   });
 });
+
+describe('ingerir UF não pode mudar contra o que os institutos são medidos', () => {
+  /**
+   * Isto foi ao ar em 06/10 e é o defeito mais caro da rodada. `destaque` já
+   * tinha sido consertado para escolher por cobertura (commit 0cf1d45), mas
+   * `baseComparacao` — que alimenta a tabela de comparação E o ranking de
+   * institutos — continuava preferindo a soma por estado sempre que existisse
+   * qualquer UF. Com 10 das 27 UFs no arquivo, cobrindo 72,9% do eleitorado e
+   * pesadas para Sul e Sudeste, a tela mostrava o nacional de 100% enquanto o
+   * ranking media os institutos contra a soma dos 10 estados: margem de 5,89
+   * pontos no lugar de 1,87.
+   *
+   * O teste trava a propriedade que importa: **acrescentar UF não muda o
+   * resultado contra o qual os institutos são medidos**, enquanto o nacional
+   * cobrir mais do país.
+   */
+  const pesquisas = [
+    pesquisa('Preciso', '2026-10-02', [
+      ['Flávio Bolsonaro', 52],
+      ['Luiz Inácio Lula da Silva', 48],
+    ]),
+  ];
+
+  /** UF onde a ordem é oposta à nacional e a margem é enorme. */
+  function comUf(): DadosApuracao {
+    const base = apuracaoFinal(100);
+    return {
+      ...base,
+      recortes: [
+        ...base.recortes,
+        {
+          cargo: 'presidente',
+          uf: 'SP',
+          turno: 1,
+          secoesTotalizadas: 100,
+          validosTotal: 20_000_000,
+          candidatos: [
+            { candidato: 'Luiz Inácio Lula da Silva', partido: 'PT', votos: 14_000_000 },
+            { candidato: 'Flávio Bolsonaro', partido: 'PL', votos: 6_000_000 },
+          ],
+          fonte: FONTE,
+          observacao: 'UF (fixture).',
+        },
+      ],
+    };
+  }
+
+  it('o nacional segue comandando a comparação, e a margem não se move', () => {
+    const semUf = criarGetProjecao(repos(apuracaoFinal(100), pesquisas), CLOCK)('presidente');
+    const comUma = criarGetProjecao(repos(comUf(), pesquisas), CLOCK)('presidente');
+
+    expect(semUf.destaque).toBe('nacional');
+    expect(comUma.destaque).toBe('nacional');
+    // 52 x 48 no nacional: 4 pontos. A UF diria 40 pontos ao contrário.
+    expect(semUf.acerto!.margemReal).toBeCloseTo(4, 6);
+    expect(comUma.acerto!.margemReal).toBeCloseTo(4, 6);
+    expect(comUma.acerto!.primeiroESegundo).toEqual([
+      'Flávio Bolsonaro',
+      'Luiz Inácio Lula da Silva',
+    ]);
+  });
+
+  it('a tabela de comparação também fica no nacional, não na soma de uma UF', () => {
+    const r = criarGetProjecao(repos(comUf(), pesquisas), CLOCK)('presidente');
+    const flavio = r.comparacao.find((c) => c.candidato === 'Flávio Bolsonaro')!;
+    expect(flavio.pctProjetado).toBeCloseTo(52, 6);
+  });
+
+  it('o ranking inteiro é idêntico com e sem a UF', () => {
+    const semUf = criarGetProjecao(repos(apuracaoFinal(100), pesquisas), CLOCK)('presidente');
+    const comUma = criarGetProjecao(repos(comUf(), pesquisas), CLOCK)('presidente');
+    expect(comUma.acerto!.institutos.map((i) => [i.instituto, i.erroMedioAbsoluto])).toEqual(
+      semUf.acerto!.institutos.map((i) => [i.instituto, i.erroMedioAbsoluto]),
+    );
+  });
+
+  it('quando o estadual cobre MAIS que o nacional, é ele que comanda', () => {
+    // A outra ponta: a precedência é por cobertura, não uma preferência fixa
+    // pelo nacional. Com o nacional em 20% das seções e a UF em 100%, o
+    // estadual vence — e aí a comparação tem de segui-lo.
+    const base = apuracaoFinal(20);
+    const dados: DadosApuracao = {
+      ...base,
+      recortes: [
+        ...base.recortes,
+        {
+          cargo: 'presidente',
+          uf: 'SP',
+          turno: 1,
+          secoesTotalizadas: 100,
+          validosTotal: 20_000_000,
+          candidatos: [
+            { candidato: 'Luiz Inácio Lula da Silva', partido: 'PT', votos: 14_000_000 },
+            { candidato: 'Flávio Bolsonaro', partido: 'PL', votos: 6_000_000 },
+          ],
+          fonte: FONTE,
+          observacao: 'UF (fixture).',
+        },
+      ],
+    };
+    const r = criarGetProjecao(repos(dados, pesquisas), CLOCK)('presidente');
+    expect(r.destaque).toBe('estadual');
+    expect(r.comparacao[0]!.candidato).toBe('Luiz Inácio Lula da Silva');
+  });
+});
