@@ -294,3 +294,173 @@ describe('precedência: vence o recorte que cobre mais do país', () => {
     expect(r.apuracaoEncerrada).toBe(true);
   });
 });
+
+describe('25/10: a tela escolhe o turno pelo dado, não pelo código', () => {
+  /**
+   * A chamada da aba era `getProjecao('presidente', 1)` — o turno fixo no
+   * código. Enquanto só havia 1º turno isso estava certo e era invisível. Com a
+   * ficha do 2º turno no arquivo, a aba continuaria publicando o resultado de
+   * 04/10 como se fosse o atual, e **sem dar erro nenhum** — por isso o caso
+   * precisa de teste antes de 25/10, não depois.
+   */
+  const pesquisasT2 = [
+    {
+      ...pesquisa('Preciso', '2026-10-23', [
+        ['Luiz Inácio Lula da Silva', 51],
+        ['Flávio Bolsonaro', 49],
+      ]),
+      id: '2026-10-23-preciso-br-presidente-t2',
+      turno: 2,
+      cenario: 'estimulada, 2º turno: Lula x Flávio Bolsonaro',
+    } as unknown as DadosPesquisa,
+  ];
+
+  /** Ficha do 2º turno onde Lula vira o líder — ordem oposta à do 1º turno. */
+  const segundoTurno: DadosApuracao = {
+    atualizadoEm: '2026-10-25T23:40:00Z',
+    recortes: [
+      ...apuracaoFinal(99.9).recortes,
+      {
+        cargo: 'presidente',
+        uf: null,
+        turno: 2,
+        secoesTotalizadas: 99.9,
+        validosTotal: 100_000_000,
+        candidatos: [
+          { candidato: 'Luiz Inácio Lula da Silva', partido: 'PT', votos: 51_000_000 },
+          { candidato: 'Flávio Bolsonaro', partido: 'PL', votos: 49_000_000 },
+        ],
+        fonte: FONTE,
+        observacao: '2º turno (fixture).',
+      },
+    ],
+  };
+
+  it('com só o 1º turno no arquivo, nada muda', () => {
+    const r = criarGetProjecao(repos(apuracaoFinal(99.9), []), CLOCK)('presidente');
+    expect(r.projecao.turno).toBe(1);
+  });
+
+  it('com o 2º turno no arquivo, é ele que vai ao ar', () => {
+    const r = criarGetProjecao(repos(segundoTurno, pesquisasT2), CLOCK)('presidente');
+    expect(r.projecao.turno).toBe(2);
+    // E o líder é o do 2º turno, não o do 1º: é o erro que ninguém veria.
+    expect(r.projecao.nacionalCru!.candidatos[0]!.candidato).toBe('Luiz Inácio Lula da Silva');
+  });
+
+  it('o ranking de institutos passa a medir o 2º turno, com as pesquisas do 2º turno', () => {
+    const r = criarGetProjecao(repos(segundoTurno, pesquisasT2), CLOCK)('presidente');
+    expect(r.apuracaoEncerrada).toBe(true);
+    expect(r.acerto).not.toBeNull();
+    expect(r.acerto!.primeiroESegundo).toEqual([
+      'Luiz Inácio Lula da Silva',
+      'Flávio Bolsonaro',
+    ]);
+    expect(r.acerto!.margemReal).toBeCloseTo(2, 6);
+  });
+
+  it('pedir um turno explicitamente continua valendo — é como se olha o 1º turno depois de 25/10', () => {
+    const r = criarGetProjecao(repos(segundoTurno, pesquisasT2), CLOCK)('presidente', 1);
+    expect(r.projecao.turno).toBe(1);
+    expect(r.projecao.nacionalCru!.candidatos[0]!.candidato).toBe('Flávio Bolsonaro');
+  });
+});
+
+describe('2º turno: confrontos hipotéticos não entram no agregado nem no ranking', () => {
+  /**
+   * Antes da definição dos finalistas os institutos testam vários confrontos de
+   * 2º turno na MESMA disputa (`BR` + presidente + turno 2). A base tem 116
+   * pesquisas nacionais de 2º turno e entre elas Lula x Augusto Cury, Lula x
+   * Ronaldo Caiado, Lula x Romeu Zema e Lula x Renan Santos — eleições que não
+   * aconteceram.
+   *
+   * Este caso de uso filtrava só por turno, e por isso somaria todas. Enquanto
+   * a tela fixava turno 1 no código o defeito era inalcançável; passar a
+   * escolher o turno pelo dado o tornaria ativo em 25/10. O recorte vem do
+   * confronto da própria ficha de apuração — ver `domain/runoff.ts`.
+   */
+  const apuracaoT2: DadosApuracao = {
+    atualizadoEm: '2026-10-25T23:40:00Z',
+    recortes: [
+      {
+        cargo: 'presidente',
+        uf: null,
+        turno: 2,
+        secoesTotalizadas: 99.9,
+        validosTotal: 100_000_000,
+        candidatos: [
+          { candidato: 'Luiz Inácio Lula da Silva', partido: 'PT', votos: 51_000_000 },
+          { candidato: 'Flávio Bolsonaro', partido: 'PL', votos: 49_000_000 },
+        ],
+        fonte: FONTE,
+        observacao: '2º turno (fixture).',
+      },
+    ],
+  };
+
+  function t2(
+    instituto: string,
+    resultados: readonly [string, number][],
+    id: string,
+  ): DadosPesquisa {
+    return {
+      ...pesquisa(instituto, '2026-10-23', resultados),
+      id,
+      turno: 2,
+      cenario: 'estimulada, 2º turno',
+    } as unknown as DadosPesquisa;
+  }
+
+  const real = t2(
+    'Confronto Real',
+    [
+      ['Luiz Inácio Lula da Silva', 51],
+      ['Flávio Bolsonaro', 49],
+    ],
+    '2026-10-23-real-br-presidente-t2-lula-flavio',
+  );
+  // Confronto que nunca foi submetido a voto, na MESMA disputa, com números
+  // muito distantes — se entrar, ele move o agregado e aparece no ranking.
+  const hipotetico = t2(
+    'Confronto Hipotetico',
+    [
+      ['Luiz Inácio Lula da Silva', 70],
+      ['Augusto Cury', 30],
+    ],
+    '2026-10-23-hipotetico-br-presidente-t2-lula-cury',
+  );
+
+  it('o ranking só traz o instituto que mediu o confronto que aconteceu', () => {
+    const r = criarGetProjecao(repos(apuracaoT2, [real, hipotetico]), CLOCK)('presidente');
+    expect(r.acerto).not.toBeNull();
+    expect(r.acerto!.institutos.map((i) => i.instituto)).toEqual(['Confronto Real']);
+  });
+
+  it('o agregado comparado não é contaminado pelo confronto hipotético', () => {
+    const r = criarGetProjecao(repos(apuracaoT2, [real, hipotetico]), CLOCK)('presidente');
+    const lula = r.comparacao.find((c) => c.candidato === 'Luiz Inácio Lula da Silva')!;
+    // Só o confronto real: 51 em base de válidos, erro zero contra os 51% apurados.
+    expect(lula.pctPesquisas).toBeCloseTo(51, 6);
+    expect(lula.erro).toBeCloseTo(0, 6);
+    // Augusto Cury não aparece: ele não estava na eleição de 2º turno.
+    expect(r.comparacao.map((c) => c.candidato)).not.toContain('Augusto Cury');
+  });
+
+  it('sem nenhuma pesquisa do confronto real, não há ranking — e não há erro zero fingido', () => {
+    const r = criarGetProjecao(repos(apuracaoT2, [hipotetico]), CLOCK)('presidente');
+    expect(r.acerto!.institutos).toHaveLength(0);
+    expect(r.comparacao.every((c) => c.erro === null)).toBe(true);
+    expect(r.erroAbsolutoMedio).toBeNull();
+  });
+
+  it('no 1º turno nada é filtrado: não há confronto a recortar', () => {
+    const muitos = [
+      pesquisa('Preciso', '2026-10-02', [
+        ['Flávio Bolsonaro', 52],
+        ['Luiz Inácio Lula da Silva', 48],
+      ]),
+    ];
+    const r = criarGetProjecao(repos(apuracaoFinal(99.9), muitos), CLOCK)('presidente', 1);
+    expect(r.acerto!.institutos.map((i) => i.instituto)).toEqual(['Preciso']);
+  });
+});

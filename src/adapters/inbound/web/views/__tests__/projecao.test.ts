@@ -9,7 +9,9 @@ import {
   rotuloApenasNacional,
   rotuloCobertura,
   rotuloErroCandidato,
+  rotuloErroDoInstituto,
   rotuloErroMedio,
+  rotuloTurno,
   rotuloVeredito,
   textoContrasteNacional,
 } from '../projecao-view.js';
@@ -320,5 +322,59 @@ describe('modo resultado final', () => {
 
   it('não usa a palavra provisório, que faria desconfiar de número que não muda mais', () => {
     expect(rotuloResultadoFinal(100).toLowerCase()).not.toContain('provisóri');
+  });
+});
+
+describe('o rótulo do turno segue o dado, não o código', () => {
+  it('nomeia cada turno', () => {
+    expect(rotuloTurno(1)).toBe('1º turno');
+    expect(rotuloTurno(2)).toBe('2º turno');
+  });
+
+  it('o título do resultado final usa o turno da projeção', () => {
+    // O título trazia "1º turno" escrito à mão. Em 25/10 isso rotularia o
+    // resultado do 2º turno como se fosse o do 1º, sem erro nenhum para avisar.
+    expect(`Resultado final — ${rotuloTurno(projecaoFake({ turno: 2 }).turno)}`).toBe(
+      'Resultado final — 2º turno',
+    );
+  });
+});
+
+describe('o erro médio só é comparável se a tela disser sobre quantos candidatos', () => {
+  function instituto(erro: number, candidatosComparados: number) {
+    return {
+      instituto: 'X',
+      pollId: 'p',
+      dataReferencia: '2026-10-01',
+      diasAntes: 3,
+      amostra: 2000,
+      margemDeclarada: 2,
+      candidatosComparados,
+      erroMedioAbsoluto: erro,
+      erroPorCandidato: [],
+      erroNaMargem: null,
+      acertouOLider: true,
+      alerta: null,
+    };
+  }
+
+  it('declara o número de candidatos da média', () => {
+    expect(rotuloErroDoInstituto(instituto(2.4, 6))).toContain('sobre 6 candidatos');
+    expect(rotuloErroDoInstituto(instituto(2.4, 2))).toContain('sobre 2 candidatos');
+  });
+
+  it('não escreve "1 candidatos"', () => {
+    expect(rotuloErroDoInstituto(instituto(1, 1))).toContain('sobre 1 candidato');
+    expect(rotuloErroDoInstituto(instituto(1, 1))).not.toContain('1 candidatos');
+  });
+
+  it('o mesmo erro sobre bases diferentes não é apresentado como o mesmo número', () => {
+    // É o defeito que o rótulo antigo escondia: "2,4% de erro médio por
+    // candidato" sobre 6 candidatos e sobre 2 liam igual, e o ranking ordenava
+    // os dois lado a lado. Candidato pequeno é fácil de quase acertar, então a
+    // média sobre 6 dilui o erro nos dois primeiros e a média sobre 2 não.
+    expect(rotuloErroDoInstituto(instituto(2.4, 6))).not.toBe(
+      rotuloErroDoInstituto(instituto(2.4, 2)),
+    );
   });
 });

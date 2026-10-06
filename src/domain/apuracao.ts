@@ -406,3 +406,24 @@ export function projetarApuracao(
 export function semApuracao(projecao: Projecao): boolean {
   return projecao.porUf.length === 0 && projecao.nacionalCru === null;
 }
+
+/**
+ * Qual turno da apuração a tela deve mostrar para um cargo: o **mais avançado
+ * que tem dado**.
+ *
+ * Existe porque a tela de projeção fixava o turno 1 no código. Enquanto só o 1º
+ * turno existia isso era invisível; a partir de 25/10, com a ficha do 2º turno
+ * no arquivo, a aba continuaria publicando o resultado de 04/10 como se fosse o
+ * atual — e sem dar erro nenhum, que é a pior forma de errar. A regra é a
+ * mínima que resolve: se existe recorte de turno 2 para o cargo, é ele que
+ * manda; senão, turno 1.
+ *
+ * Não inventa turno: com o arquivo vazio devolve 1, e a projeção sai zerada com
+ * `semApuracao`, que é o que faz a tela dizer que não há apuração.
+ */
+export function turnoMaisAvancado(
+  dados: DadosApuracao,
+  cargo: CargoApuracao,
+): 1 | 2 {
+  return dados.recortes.some((r) => r.cargo === cargo && r.turno === 2) ? 2 : 1;
+}

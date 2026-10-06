@@ -1,10 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import {
   ApuracaoError,
+  type CargoApuracao,
   type DadosApuracao,
   type DadosApuracaoRecorte,
   projetarApuracao,
   semApuracao,
+  turnoMaisAvancado,
 } from '../apuracao.js';
 import { criarEleitorado, type Eleitorado } from '../electorate.js';
 
@@ -352,5 +354,51 @@ describe('somar candidatos entre UFs só vale para presidente', () => {
     const p = projetarApuracao(presidencial, 'presidente', 1, ufs);
     expect(p.candidatos.map((c) => c.candidato).sort()).toEqual(['Flávio', 'Lula']);
     expect(p.candidatos.find((c) => c.candidato === 'Lula')!.votosApurados).toBe(150);
+  });
+});
+
+describe('qual turno a tela mostra', () => {
+  function dados(recortes: { cargo: string; turno: number }[]) {
+    return {
+      atualizadoEm: '2026-10-25T23:00:00Z',
+      recortes: recortes.map((r) => ({
+        cargo: r.cargo as CargoApuracao,
+        uf: null,
+        turno: r.turno as 1 | 2,
+        secoesTotalizadas: 99.9,
+        validosTotal: 100,
+        candidatos: [],
+        fonte: { nome: 'f', url: 'u' },
+      })),
+    };
+  }
+
+  it('com só o 1º turno no arquivo, mostra o 1º turno', () => {
+    expect(turnoMaisAvancado(dados([{ cargo: 'presidente', turno: 1 }]), 'presidente')).toBe(1);
+  });
+
+  it('quando o 2º turno entra, ele passa a mandar — é a razão de a função existir', () => {
+    // Em 25/10 a ficha do 2º turno chega ao lado da do 1º. Antes disso a tela
+    // fixava turno 1 no código e continuaria publicando o resultado de 04/10
+    // como se fosse o atual, sem erro nenhum para avisar.
+    const d = dados([
+      { cargo: 'presidente', turno: 1 },
+      { cargo: 'presidente', turno: 2 },
+    ]);
+    expect(turnoMaisAvancado(d, 'presidente')).toBe(2);
+  });
+
+  it('o turno de um cargo não contamina o outro', () => {
+    // Governador e senador não têm 2º turno em 2026; presidente tem.
+    const d = dados([
+      { cargo: 'presidente', turno: 2 },
+      { cargo: 'governador', turno: 1 },
+    ]);
+    expect(turnoMaisAvancado(d, 'governador')).toBe(1);
+    expect(turnoMaisAvancado(d, 'senador')).toBe(1);
+  });
+
+  it('arquivo vazio devolve 1, não null nem 0', () => {
+    expect(turnoMaisAvancado(dados([]), 'presidente')).toBe(1);
   });
 });

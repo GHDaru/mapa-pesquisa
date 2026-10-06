@@ -2181,3 +2181,159 @@ agora no código, **presidente por UF pode ser ingerido em lotes parciais sem
 derrubar o ranking**. Verificado: com os 12 recortes atuais, presidente segue
 com `destaque: 'nacional'`, 99,79% e os 16 institutos intactos. A frente está
 liberada para a próxima rodada.
+
+## Rodada de 06/10 — a totalização encerrada, e um defeito no ranking
+
+Base de **821 para 824 pesquisas**. A apuração nacional passou de 99,79% para
+**100% das seções**. E a rodada encontrou um defeito de método no ranking de
+institutos que era invisível até a troca da ficha.
+
+### A ficha nacional: 99,79% → 100%, com perda declarada
+
+O TSE **consolidou o 1º turno às 2h58 de 05/10, com 100% das seções**, e existe
+fonte declarando a totalização encerrada — inclusive o próprio TSE. A ficha
+anterior registrava explicitamente que não havia achado nenhuma, enquanto a tela
+já dizia "resultado final". Esse é o ganho maior, não os 0,21 ponto de seções.
+
+| | 99,79% (anterior) | **100% (atual)** |
+|---|---|---|
+| Flávio Bolsonaro | 56.047.284 (47,08%) | **56.104.268 (47,03%)** |
+| Lula | 53.703.660 (45,11%) | **53.876.617 (45,16%)** |
+| margem | 1,97 pt · 2.343.624 votos | **1,87 pt · 2.227.651 votos** |
+| válidos | 119.057.862 | **119.300.788** |
+| candidatos em absoluto | 6 | **2** |
+| abstenções | 33.378.099 | **omitidas** |
+
+**A margem é a régua do ranking de acerto dos 16 institutos**, que é a análise
+central do projeto. Todo erro de margem publicado até ontem estava 0,10 ponto
+deslocado. Foi o que pagou a troca.
+
+As três conferências fecham na leitura nova: os dois percentuais se reconstroem
+sobre o `validosTotal` publicado sem aproximação (47,02758% e 45,16032%); as
+derivações inversas concordam em 0,0059%; e **válidos + brancos + nulos =
+125.275.835, exatamente o total de computados publicado**.
+
+Esse terceiro teste pegou uma armadilha real: duas buscas devolveram **pares
+diferentes** de brancos/nulos para a MESMA leitura — 2.300.781/3.674.149 (soma
+117 votos a menos que os computados) e 2.300.798/3.674.249 (exato). As duas
+variantes dão 1,84% e 2,93% nos percentuais, **indistinguíveis**. Só o
+fechamento as separa.
+
+**O que a troca perdeu, dito às claras.** Do 3º ao 6º lugar só há percentual
+publicado na leitura final (Cury 2,89%, Renan 2,24%, Caiado 2,18%, Zema 0,27%),
+sem absoluto em nenhuma fonte encontrada. Não foram derivados (a janela de
+arredondamento de duas casas vale ±5.965 votos por candidato) **nem transportados
+da ficha de 99,79%, e a razão é demonstrável: dois deles mudaram entre as duas
+leituras** — Caiado 2,19% → 2,18% e Renan 2,25% → 2,24%. Transportar seria
+misturar instantes. As **abstenções foram omitidas de propósito**: o valor
+publicado (33.469.244) discorda de aptos − computados (33.469.667) em 423 votos,
+e apareceu na mesma busca que o par de brancos/nulos reprovado. Campo vazio é
+melhor que número que falha a conferência.
+
+### O defeito que a troca expôs: o erro médio não era comparável
+
+Trocar a ficha reordenou o ranking muito além dos 0,10 ponto de margem. O
+Instituto Veritá saiu de **pior do campo (5,52) para o 4º melhor (2,91)**; a
+CNT/MDA foi de 12º (3,51) para pior (6,85); a mediana do campo foi de 2,56 para
+3,87. Isso não se explica pela margem, e a investigação achou a causa.
+
+`erroMedioAbsoluto` é a média do erro **por candidato**, e com a ficha de seis
+candidatos cada instituto era medido sobre um número DIFERENTE de candidatos:
+
+| candidatos comparados | institutos |
+|---|---|
+| 6 | Datafolha, Real Time, Vox, Gerp, Futura, Indexa, Quaest, DataTrends, American Analytics, Nexus/FSB, CNT/MDA, Ideia |
+| 5 | AtlasIntel |
+| 3 | **Instituto Veritá** |
+| 2 | **PoderData, Palver** |
+
+Candidato pequeno é fácil de quase acertar — errar 0,7 ponto num candidato de
+0,27% é quase acertar. Então **a média sobre seis DILUI um erro grande nos dois
+primeiros, e a média sobre dois não dilui nada.** O ranking, ordenado por esse
+número, punia quem publicou menos candidatos. A tela escrevia "X% de erro médio
+por candidato" e **nunca dizia sobre quantos**.
+
+Com a ficha de dois candidatos, todos os 16 passam a ser medidos sobre
+exatamente os mesmos dois — a comparação ficou uniforme por acidente da troca.
+Mas acidente não é método: o rótulo agora **declara o número de candidatos da
+média**, com teste, para que o número nunca volte a ser lido como comparável
+quando não é.
+
+**Correção que isto obriga a fazer:** o relato de 05/10 apresentou "Veritá, com
+o leitor certo do líder e o pior erro do campo" como um resultado sobre o
+instituto. Era, em boa parte, artefato de ele ter sido comparado sobre 3
+candidatos enquanto os outros diluíam sobre 6. O alerta de integridade e a idade
+do campo (30 dias) continuam valendo; o 5,52 não.
+
+### Pesquisas de 2º turno pós-04/10: nenhuma, e agora se sabe quando vêm
+
+Oito buscas hoje, somadas às seis de 05/10: **14 sem resultado**. E a razão
+apareceu — as fontes anunciam as datas, todas futuras:
+
+- **Datafolha** — 1ª rodada do 2º turno em **08/10**, 2.520 entrevistas;
+- **PoderData/Aya** — **08/10**, 3.000 por telefone, **campo 05–07/10** (em
+  andamento agora, sem números divulgados);
+- **AtlasIntel** — **09/10**, 5.000 entrevistas, margem 1 ponto.
+
+`data/research/polls-diario-2026-10-06-t2.json` ficou `[]`, que é o resultado
+correto. **A próxima varredura com objeto é 08/10.**
+
+### Pesquisas de 2º turno pré-eleição: 3 de 5 entraram
+
+| instituto | campo | corte TOTAL | registro |
+|---|---|---|---|
+| **Palver** | 30/09–03/10 | Flávio 49 x Lula 44 (+6 br/nulos, +1 indecisos = 100) | BR-00198/2026 |
+| **Gerp** | 30/09–02/10 | Flávio 49 x Lula 44 (soma 93) | BR-00509/2026 |
+| **Quaest** | 02–03/10 | Flávio 44 x Lula 42 (+13 br/nulos, +1 indecisos = 100) | BR-02197/2026 |
+
+- **PoderData recusado pela regra do corte total.** O 2º turno saiu só em
+  **válidos: Lula 50 x Flávio 50**. Com 50–50 em válidos a fatia de
+  brancos/nulos/indecisos é **indeterminada** — qualquer total seria invenção. O
+  único par plausível que as buscas devolveram (45 x 43) reprova no teste
+  (45/88 = 51,1 → 51 x 49, não reproduz os 50–50) e a Exame o titula como **1º
+  turno**. É a lacuna que mais dói no ranking.
+- **Ideia (Meio/Ideia): a lacuna não existia.** A única rodada encontrada é campo
+  25–28/09, já na base como `2026-09-30-meio-ideia-br-presidente-t2-lula-flavio`
+  com os mesmos percentuais. **A premissa de "campo 30/09" era minha, herdada de
+  um relato de agente de 05/10 que eu não conferi** — é a terceira vez que
+  repasso uma afirmação de agente sobre a nossa própria base sem checar em um
+  comando. A regra existe desde 04/10 e falhei nela de novo.
+- **Gerp tem duas leituras divulgadas no mesmo sábado** e precisa de olho humano:
+  49 x 44 (campo 30/09–02/10, registro BR-00509/2026) e 49 x 46 (campo 01–03/10,
+  válidos 52 x 48, registro BR-08168/2026). Ingeri só a primeira, que é a
+  corroborada de forma independente; a segunda está na `observacao` da ficha.
+
+### Defeito de 2º turno que ia entrar no ar em 25/10
+
+A aba Projeção chamava `getProjecao('presidente', 1)` — **turno fixo no código**.
+Enquanto só havia 1º turno isso estava certo e era invisível; com a ficha do 2º
+turno no arquivo, a aba continuaria publicando o resultado de 04/10 como atual,
+**sem erro nenhum para avisar**. Agora o turno vem do dado
+(`turnoMaisAvancado`), e o rótulo do título também.
+
+Isso destapou um defeito pior, no mesmo caminho. `Disputa` é só
+`{uf, cargo, turno}` — **`cenario` não entra na chave**. A base tem 116 pesquisas
+nacionais de 2º turno e entre elas Lula x Augusto Cury, Lula x Ronaldo Caiado,
+Lula x Romeu Zema e Lula x Renan Santos: **eleições que não aconteceram.**
+Filtrar só por turno somaria todas num agregado só, e o ranking mediria o erro
+dos institutos contra um resultado que nunca foi submetido a voto.
+
+O projeto **já tinha a peça** para isso em `src/domain/runoff.ts`
+(`filtrarPorConfronto`), usada por três outros casos de uso — só este não a
+usava. O confronto agora vem da **própria ficha de apuração**, não de uma
+constante: quem foi ao 2º turno é o que a contagem diz. Quatro testes cobrem o
+caso, incluindo o de que uma pesquisa Lula x Cury não entra no ranking nem
+contamina o agregado.
+
+### Pendências que seguem abertas
+
+- Os **quatro absolutos do 3º ao 6º lugar** na leitura de 100%, e o par
+  aptos/abstenções que fecha. Foram os dois itens que resistiram a seis buscas.
+- **PoderData de véspera** no corte total (ver acima).
+- `contratante` está pulverizado: **33 grafias distintas só para a Quaest**
+  ("TV Globo", "Rede Globo", "Globo", "Globo Comunicação", "Globo Comunicação e
+  Participações S/A"...). A ficha nova usa "Globo", que já existia, então não
+  criou variante — mas a normalização continua pendente e agora tem tamanho
+  medido.
+- Institutos com grafia duplicada: "American Analytics" / "American Analytics do
+  Brasil", "IP Sensus" / "IPSensus", "Falpe" / "Instituto Falpe".

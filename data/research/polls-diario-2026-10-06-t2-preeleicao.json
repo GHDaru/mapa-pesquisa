@@ -1,0 +1,118 @@
+[
+  {
+    "id": "2026-10-03-palver-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Palver",
+    "registroTSE": "BR-00198/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-30",
+    "dataFim": "2026-10-03",
+    "publicadoEm": "2026-10-03",
+    "amostra": 5000,
+    "margem": 2.4,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula — nacional",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/palver-presidente-outubro-2026-vespera-1-turno/"
+    },
+    "observacao": "Rodada de véspera (onda 6 do Palver): campo 30/09–03/10/2026, 5.000 entrevistas recrutadas online, margem de 2,4 p.p., 95% de confiança, divulgada em 03/10/2026. CORTE TOTAL, e a tabela fecha exatamente em 100,0: Flávio 49 + Lula 44 + 6 de brancos/nulos/não votaria + 1 de indecisos. Em votos válidos a mesma rodada daria 52,7 x 47,3 (49/93 e 44/93), figura que NÃO foi manchetada nas fontes acessíveis e NÃO foi ingerida. CAMPO NOVO CONFIRMADO: a rodada anterior da base (campo 24–28/09, publicada 29/09) traz Flávio 47 x Lula 45 — datas e percentuais diferentes, logo não é republicação. CONTRATANTE null: nenhuma fonte acessível nomeia quem encomendou. Registro TSE BR-00198/2026 citado para esta onda (a onda anterior na base traz BR-02990/2026); o número não pôde ser conferido no site do TSE porque WebFetch está bloqueado. Dados obtidos de resumos de WebSearch.",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 49
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 44
+      },
+      {
+        "candidato": "Brancos/nulos/não votaria",
+        "partido": null,
+        "pct": 6
+      },
+      {
+        "candidato": "Indecisos",
+        "partido": null,
+        "pct": 1
+      }
+    ]
+  },
+  {
+    "id": "2026-10-03-gerp-br-presidente-t2-flavio-lula",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Gerp",
+    "registroTSE": "BR-00509/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-30",
+    "dataFim": "2026-10-02",
+    "publicadoEm": "2026-10-03",
+    "amostra": 2400,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula — nacional (votos totais)",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/pesquisa-gerp-flavio-bolsonaro-tem-49-e-lula-44-no-2o-turno/"
+    },
+    "observacao": "Campo 30/09–02/10/2026, 2.400 entrevistas, margem de 2 p.p., divulgada em 03/10/2026, registro TSE BR-00509/2026. VOTOS TOTAIS: Flávio 49 x Lula 44, soma 93,0 — a vantagem de 5 pontos citada pelas matérias confere, e em válidos a mesma rodada daria 52,7 x 47,3 (49/0,93 e 44/0,93), figura que NÃO foi manchetada e NÃO foi ingerida. A linha residual de 7,0 pontos (brancos/nulos/não sabe) não foi publicada de forma explícita nas fontes acessíveis e por isso não foi criada. CAMPO NOVO CONFIRMADO: a rodada anterior da base (campo 24–28/09, publicada 29/09) traz Flávio 50 x Lula 43 — datas e percentuais diferentes. RESSALVA IMPORTANTE: as buscas também devolveram manchetes de uma leitura Gerp de Flávio 49 x Lula 46 (válidos 52 x 48, soma total 95, confiança 95,55%, registro BR-08168/2026) atribuída a campo 01–03/10 e também divulgada em sábado 03/10 — possivelmente uma segunda divulgação de véspera, possivelmente a MESMA rodada com metadados embaralhados nos resumos de busca. Não foi possível decidir sem acesso direto às fontes (WebFetch bloqueado), e por isso ela NÃO foi ingerida, para não duplicar a mesma pesquisa; fica registrada aqui para conferência humana. CONTRATANTE null: nenhuma fonte acessível afirma quem encomendou ESTA rodada (a ficha anterior da base traz 'Gerp (recursos próprios)', informação que não se pode transportar). Dados obtidos de resumos de WebSearch.",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 49
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 44
+      }
+    ]
+  },
+  {
+    "id": "2026-10-03-quaest-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "BR-02197/2026",
+    "contratante": "Globo",
+    "dataInicio": "2026-10-02",
+    "dataFim": "2026-10-03",
+    "publicadoEm": "2026-10-03",
+    "amostra": 3702,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/quaest-2-turno/"
+    },
+    "observacao": "Rodada de véspera: campo 02–03/10/2026, 3.702 entrevistas, margem de 2 p.p., 95% de confiança, divulgada em 03/10/2026, registro TSE BR-02197/2026. A fonte rotula explicitamente o recorte como VOTOS TOTAIS ('Flávio tem 44% em votos totais no 2º turno; Lula, 42%'), e a tabela fecha em 100,0: 44 + 42 + 13 de branco/nulo/não vai votar + 1 de indecisos. TESTE TOTAL-VS-VÁLIDOS: soma dos candidatos = 86,0; 44/86 = 51,2 e 42/86 = 48,8 — ou seja, o corte de válidos desta rodada seria 51 x 49, e não é o que está nesta ficha. Diferença de 2 pontos dentro da margem: empate técnico. CAMPO NOVO CONFIRMADO: a rodada anterior da base (campo 24–27/09, publicada 28/09) traz Lula 42 x Flávio 42 com 13 de brancos/nulos e 3 de não sabe — datas, amostra e percentuais diferentes. CONTRATANTE: as matérias afirmam que a pesquisa foi contratada pela Globo (o 1º turno da mesma rodada é citado como encomenda da Globo e do jornal O Globo); gravado como 'Globo' por ser a formulação literal das fontes acessíveis, sem transportar a razão social usada em fichas anteriores. Dados obtidos de resumos de WebSearch.",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 44
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 42
+      },
+      {
+        "candidato": "Branco/nulo/não vai votar",
+        "partido": null,
+        "pct": 13
+      },
+      {
+        "candidato": "Indecisos",
+        "partido": null,
+        "pct": 1
+      }
+    ]
+  }
+]

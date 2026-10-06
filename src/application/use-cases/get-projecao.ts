@@ -9,8 +9,10 @@ import {
   type Projecao,
   projetarApuracao,
   semApuracao,
+  turnoMaisAvancado,
 } from '../../domain/apuracao.js';
 import { criarDisputa, UF_NACIONAL } from '../../domain/race.js';
+import { filtrarPorConfronto } from '../../domain/runoff.js';
 
 /**
  * Comparação entre o que as pesquisas apontavam e o que a apuração projeta,
@@ -143,27 +145,20 @@ export interface ProjecaoComparada {
 export function criarGetProjecao(repos: Repositorios, clock: Clock) {
   return function getProjecao(
     cargo: CargoApuracao = 'presidente',
-    turno: 1 | 2 = 1,
+    turnoPedido: 1 | 2 | 'auto' = 'auto',
   ): ProjecaoComparada {
-    const projecao = projetarApuracao(
-      repos.apuracao.dados(),
-      cargo,
-      turno,
-      repos.electorate.todos(),
-    );
+    const dados = repos.apuracao.dados();
+    /*
+     * `'auto'` (o padrão) mostra o turno MAIS AVANÇADO que tem dado — ver
+     * `turnoMaisAvancado`. A tela fixava turno 1 no código, o que estava certo
+     * enquanto só o 1º turno existia e passaria a publicar o resultado de 04/10
+     * como se fosse o atual depois de 25/10, sem erro nenhum para avisar.
+     * Chamadas com turno explícito continuam valendo, e é como os testes pedem
+     * um turno específico.
+     */
+    const turno = turnoPedido === 'auto' ? turnoMaisAvancado(dados, cargo) : turnoPedido;
+    const projecao = projetarApuracao(dados, cargo, turno, repos.electorate.todos());
     const semDados = semApuracao(projecao);
-
-    // O agregado de pesquisas do mesmo recorte, só para presidente nacional —
-    // é o único recorte em que a comparação tem um par bem definido sem
-    // escolher confronto de 2º turno nem UF.
-    let pctPorCandidato = new Map<string, number>();
-    if (!semDados && cargo === 'presidente') {
-      const disputa = criarDisputa(UF_NACIONAL, 'presidente', turno);
-      const agregado = agregarPesquisas(repos.polls.porDisputa(disputa), {}, clock.hoje());
-      // Sem pesquisa do recorte não há comparação a fazer — o mapa fica vazio e
-      // cada `erro` sai `null`, em vez de 0, que leria como acerto exato.
-      if (agregado) pctPorCandidato = pctValidosDasPesquisas(agregado.candidatos);
-    }
 
     // Em modo só-nacional a projeção por estado está vazia, e a comparação
     // passa a usar o recorte nacional da fonte — que é contagem parcial, não
@@ -172,6 +167,45 @@ export function criarGetProjecao(repos: Repositorios, clock: Clock) {
       projecao.candidatos.length > 0
         ? projecao.candidatos
         : (projecao.nacionalCru?.candidatos ?? []);
+
+    /*
+     * As pesquisas do mesmo recorte, só para presidente nacional — é o único
+     * recorte em que a comparação tem um par bem definido sem escolher UF.
+     *
+     * **No 2º turno, filtrar só por `turno === 2` é um erro grosseiro**, e o
+     * projeto já tinha a peça para evitá-lo em `domain/runoff.ts`: antes da
+     * definição dos finalistas os institutos testam vários confrontos
+     * hipotéticos na MESMA disputa. A base tem 116 pesquisas nacionais de 2º
+     * turno, e entre elas Lula x Augusto Cury, Lula x Ronaldo Caiado, Lula x
+     * Romeu Zema e Lula x Renan Santos — eleições que não aconteceram. Somadas
+     * ao confronto real, elas produziriam um agregado de números de disputas
+     * diferentes e um ranking de institutos medindo o erro deles contra um
+     * resultado que nunca foi submetido a voto.
+     *
+     * O confronto vem da PRÓPRIA FICHA de apuração, não de uma constante: quem
+     * foi ao 2º turno é o que a contagem diz, e `filtrarPorConfronto` exige
+     * conjunto de candidatos exatamente igual — nem a mais, nem a menos. No 1º
+     * turno não há confronto a recortar e a lista passa inteira.
+     */
+    const todasDoRecorte =
+      !semDados && cargo === 'presidente'
+        ? repos.polls.porDisputa(criarDisputa(UF_NACIONAL, 'presidente', turno))
+        : [];
+    const pesquisasDoRecorte =
+      turno === 2
+        ? filtrarPorConfronto(
+            todasDoRecorte,
+            baseComparacao.map((c) => c.candidato),
+          )
+        : todasDoRecorte;
+
+    let pctPorCandidato = new Map<string, number>();
+    if (pesquisasDoRecorte.length > 0) {
+      const agregado = agregarPesquisas(pesquisasDoRecorte, {}, clock.hoje());
+      // Sem pesquisa do recorte não há comparação a fazer — o mapa fica vazio e
+      // cada `erro` sai `null`, em vez de 0, que leria como acerto exato.
+      if (agregado) pctPorCandidato = pctValidosDasPesquisas(agregado.candidatos);
+    }
 
     const comparacao: ComparacaoPesquisaApuracao[] = semDados
       ? []
@@ -187,9 +221,7 @@ export function criarGetProjecao(repos: Repositorios, clock: Clock) {
         });
 
     // Fontes e ressalvas dos recortes do cargo/turno em questão.
-    const usados = repos.apuracao
-      .dados()
-      .recortes.filter((r) => r.cargo === cargo && r.turno === turno);
+    const usados = dados.recortes.filter((r) => r.cargo === cargo && r.turno === turno);
     const fontes = [...new Map(usados.map((r) => [r.fonte.url, r.fonte])).values()];
     const observacoes = usados
       .map((r) => r.observacao)
@@ -228,9 +260,8 @@ export function criarGetProjecao(repos: Repositorios, clock: Clock) {
       const pctResultado = new Map(
         baseComparacao.map((c) => [c.candidato, c.pctProjetado] as const),
       );
-      const disputaAcerto = criarDisputa(UF_NACIONAL, 'presidente', turno);
       acerto = medirAcertoDasPesquisas(
-        repos.polls.porDisputa(disputaAcerto),
+        pesquisasDoRecorte,
         pctResultado,
         (rotulo) => ehLinhaNaoCandidato(rotulo, new Set<string>()),
       );

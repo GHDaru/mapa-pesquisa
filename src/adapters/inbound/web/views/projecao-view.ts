@@ -192,6 +192,15 @@ export function rotuloDefasagem(isoLeitura: string, agora: Date): string | null 
  * fecha: aí a palavra "provisório" sai, porque deixaria o leitor desconfiar de
  * número que já não vai mudar, e isso também é desinformar.
  */
+/**
+ * "1º turno" ou "2º turno". Existe porque o título do resultado final trazia
+ * "1º turno" escrito à mão: a partir de 25/10 a tela passaria a rotular o
+ * resultado do 2º turno como se fosse o do 1º, sem erro nenhum para avisar.
+ */
+export function rotuloTurno(turno: 1 | 2): string {
+  return turno === 2 ? '2º turno' : '1º turno';
+}
+
 export function rotuloResultadoFinal(secoesTotalizadas: number): string {
   return (
     `Apuração encerrada, com ${formatarPct(secoesTotalizadas)} das seções totalizadas. ` +
@@ -205,9 +214,26 @@ export function rotuloResultadoFinal(secoesTotalizadas: number): string {
  * Como ler o erro de um instituto, em palavras. Duas medidas, porque uma só
  * esconderia metade: o erro por candidato mede calibração, o erro na margem
  * mede o que a cobertura discute — quem está na frente e por quanto.
+ *
+ * **O rótulo diz SOBRE QUANTOS candidatos a média foi tirada, e isso não é
+ * detalhe.** O erro médio por candidato só é comparável entre institutos quando
+ * o número de candidatos é o mesmo: candidato pequeno é fácil de quase acertar
+ * (errar 0,7 ponto num candidato de 0,27% é quase acertar), então uma média
+ * sobre seis DILUI um erro grande nos dois primeiros, enquanto uma média sobre
+ * dois não dilui nada. Medido na ficha nacional de 99,79%, que listava seis
+ * candidatos: a maioria dos institutos era comparada sobre 6, o Instituto Veritá
+ * sobre 3, PoderData e Palver sobre 2 — e o ranking, ordenado por esse número,
+ * punia quem publicou menos candidatos. O Veritá aparecia como o pior do campo
+ * (5,52) e passou a 2,91 quando a base virou uniforme. A ordenação era, em
+ * parte, uma medida de quantos candidatos cada instituto divulgou.
  */
 export function rotuloErroDoInstituto(i: AcertoDoInstituto): string {
-  const partes = [`${formatarPct(i.erroMedioAbsoluto)} de erro médio por candidato`];
+  const partes = [
+    `${formatarPct(i.erroMedioAbsoluto)} de erro médio sobre ` +
+      (i.candidatosComparados === 1
+        ? '1 candidato'
+        : `${i.candidatosComparados} candidatos`),
+  ];
   if (i.erroNaMargem != null) {
     const abs = formatarPct(Math.abs(i.erroNaMargem));
     partes.push(
@@ -573,7 +599,7 @@ export function pjMontarConteudo(dados: ProjecaoComparada, agora: Date = new Dat
       criarEl('section', { className: 'pj-secao' }, [
         criarEl('h2', {
           texto: dados.apuracaoEncerrada
-            ? 'Resultado final — 1º turno'
+            ? `Resultado final — ${rotuloTurno(projecao.turno)}`
             : 'Contagem parcial nacional',
         }),
         criarEl(
@@ -666,5 +692,5 @@ export function pjMontarConteudo(dados: ProjecaoComparada, agora: Date = new Dat
 /** Ponto de entrada da rota `#/projecao`. */
 export function renderProjecao(container: HTMLElement, casos: CasosDeUso): void {
   container.innerHTML = '';
-  container.appendChild(pjMontarConteudo(casos.getProjecao('presidente', 1)));
+  container.appendChild(pjMontarConteudo(casos.getProjecao('presidente')));
 }
