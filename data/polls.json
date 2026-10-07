@@ -1239,6 +1239,115 @@
     ]
   },
   {
+    "id": "2026-10-03-poderdata-br-presidente-t1",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 1,
+    "instituto": "PoderData",
+    "registroTSE": "BR-03519/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-30",
+    "dataFim": "2026-10-02",
+    "publicadoEm": "2026-10-03",
+    "amostra": 4000,
+    "margem": 1.5,
+    "cenario": "estimulada, 1º turno",
+    "fonte": {
+      "nome": "Poder360 — PoderData/Aya, rodada de véspera do 1º turno (quadro de votos totais)",
+      "url": "https://www.poder360.com.br/poderdata/na-vespera-do-1o-turno-lula-tem-45-e-flavio-43-dos-votos-validos/"
+    },
+    "observacao": "Rodada de véspera do 1º turno no corte de votos TOTAIS, campo 30/09–02/10, 4.000 entrevistas por telefone (celular e fixo) em 786 municípios das 27 UFs, margem 1,5, confiança 95%. ENTRA PARA FECHAR UMA LACUNA QUE AFETA O RANKING DE ACERTO: a última rodada de 1º turno do PoderData na base era a de campo 20–23/09, encerrada 11 dias antes da eleição, enquanto a maioria dos institutos tem campo de 2 a 7 dias antes. A medida de acerto usa UMA pesquisa por instituto, a última, e a distância da eleição é um eixo declarado da comparabilidade — então substituir 11 dias por 2 torna a comparação mais justa, independentemente de o número do instituto melhorar ou piorar. Aqui ele PIORA: em válidos a rodada dava Lula 45 x Flávio 43, e as urnas deram Flávio 47,03 x Lula 45,16, ou seja erro de ~4 pontos em Flávio e INVERSÃO do líder; os minoritários foram superestimados (13% na pesquisa contra 7,81% nas urnas). Registrar isso afasta qualquer suspeita de seleção favorável. QUADRO COMPLETO, ao contrário do registro de 24/09 já na base, que soma 86 e deixa ~14 pontos de minoritários de fora: aqui as linhas somam 99, e o ponto que falta é o arredondamento dos seis candidatos que não pontuaram (Samara Martins/UP, Clariana Barão/DC, Wilson Grassi/Democrata, Hertz Dias/PSTU, Edmilson Costa/PCB, e Leonardo Avalanche/PRTB, que desistiu em 30/09). RESSALVA METODOLÓGICA, declarada para não parecer erro de ingestão numa auditoria futura: o TESTE DE CORTE NÃO REPRODUZ os válidos publicados em 3 das 7 linhas. Dividindo cada total pela soma dos candidatos (93), sai Lula 45,16→45 (publicado 45, confere), Flávio 44,09→44 (publicado 43, DIVERGE +1), Cury 3,23→3 (publicado 4, DIVERGE −1), Renan 3,23→3 (publicado 3, confere), Caiado 2,15→2 (publicado 3, DIVERGE −1), Pimenta e Zema 1,08→1 (publicados 1, conferem). A DIVERGÊNCIA NÃO É CONTRADIÇÃO ENTRE FONTES, é arredondamento duplo: o PoderData publica só inteiros nos dois quadros, e existe conjunto de valores reais que gera os dois simultaneamente — com soma real de candidatos 93,25, Lula 41,55 dá total 42 e válidos 44,56→45; Flávio 40,55 dá 41 e 43,49→43; Cury 3,30 dá 3 e 3,54→4; Caiado 2,45 dá 2 e 2,63→3. Conferido pela sessão principal: as três divergências são de exatamente 1 ponto e todas no sentido esperado de quem arredonda duas vezes em bases diferentes. O que falhou foi a VERIFICAÇÃO CRUZADA em precisão inteira, não o dado: o quadro total é publicado e rotulado como total pela fonte, e a identificação do corte não depende desse teste — ela vem da presença das linhas de brancos/nulos (4) e Não sabe (2) como linhas separadas. Fechar a lacuna exigiria a tabela com decimais da ficha do TSE, fora de alcance com WebSearch. O cenário de 1º turno em VÁLIDOS da mesma rodada (Lula 45 x Flávio 43, Cury 4, Renan 3, Caiado 3, Pimenta 1, Zema 1, somando 100) NÃO foi ingerido: a base guarda o corte do total. Não confundir com o cenário de 2º turno da mesma rodada (Lula 46 x Flávio 46 em totais), que é outra pergunta e está em registro próprio. Rodada feita com recursos próprios do grupo Poder360 Jornalismo; a Aya Bancah é parceira apenas de divulgação, não contratante — por isso contratante null. Quadro completo convergente em três fontes independentes além do Poder360: Gazeta do Povo, Jovem Pan e Brasil em Folhas, todas com a mesma lista de minoritários no total. Nomes e siglas grafados como em data/polls.json e data/parties.json. Coletado via resumo de WebSearch; WebFetch aos portais está bloqueado neste ambiente, então os valores não foram conferidos na página original.",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 42
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 41
+      },
+      {
+        "candidato": "Augusto Cury",
+        "partido": "Avante",
+        "pct": 3
+      },
+      {
+        "candidato": "Renan Santos",
+        "partido": "Missão",
+        "pct": 3
+      },
+      {
+        "candidato": "Ronaldo Caiado",
+        "partido": "PSD",
+        "pct": 2
+      },
+      {
+        "candidato": "Rui Costa Pimenta",
+        "partido": "PCO",
+        "pct": 1
+      },
+      {
+        "candidato": "Romeu Zema",
+        "partido": "Novo",
+        "pct": 1
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 4
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 2
+      }
+    ]
+  },
+  {
+    "id": "2026-10-03-poderdata-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "PoderData",
+    "registroTSE": "BR-03519/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-30",
+    "dataFim": "2026-10-02",
+    "publicadoEm": "2026-10-03",
+    "amostra": 4000,
+    "margem": 1.5,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poderdata/lula-e-flavio-tem-46-cada-um-no-2o-turno-diz-poderdata-aya/"
+    },
+    "observacao": "Rodada de véspera do 1º turno, recuperada no corte de votos TOTAIS. 4.000 entrevistas por telefone (celular e fixo) em 786 municípios das 27 UFs. Teste de consistência: 46 ÷ (46+46) = 50,0% para cada candidato, reproduzindo exatamente os 50% x 50% em votos válidos publicados pelo próprio instituto — o corte total está confirmado. Soma das linhas = 100. Brancos/nulos (7) e Não sabe (1) confirmados por Revista Oeste e CNN Brasil. Não confundir com o cenário de 1º turno da mesma rodada (Lula 45 x Flávio 43 em válidos), que é outra pergunta. Realizada com recursos próprios do grupo Poder360; Aya Bancah é parceira apenas de divulgação, não contratante.",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 46
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 46
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 7
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 1
+      }
+    ]
+  },
+  {
     "id": "2026-10-01-datafolha-rj-governador-t1",
     "uf": "RJ",
     "cargo": "governador",

@@ -2595,3 +2595,109 @@ ranking de acerto do 2º turno depois de 25/10**.
 Terceiro dia sem nenhuma, como o calendário anunciado previa (Datafolha e
 PoderData em 08/10, AtlasIntel em 09/10). O arquivo do dia traz só a recuperação
 acima.
+
+### O Pará entra, e com um bônus que corrige o fechamento de 06/10
+
+`presidente/PA` a **100,00% das urnas** (percentual PUBLICADO, não inferido da razão
+entre aptos — que era justamente o que barrava a ficha ontem): **Lula 2.427.237
+(49,91%) x Flávio Bolsonaro 2.163.957 (44,50%)**, mais Augusto Cury 125.172 (2,57%)
+e Renan Santos 84.165 (1,73%); brancos 54.203, nulos 149.129, abstenções 1.195.412.
+
+A busca achou também o **`validosTotal` PUBLICADO (4.863.172)**, e isso corrigiu o
+fechamento que estava errado ontem. Conferido aqui: os quatro percentuais
+reimprimem sobre ele (49,9106 / 44,4968 / 2,5739 / 1,7307), as duas derivações
+concordam em **0,0083%** com o publicado caindo entre elas, e
+(computados 5.066.504 + abstenções) ÷ aptos = **99,945%**. Brancos+nulos são 4,01%
+dos computados, dentro da faixa das fichas aceitas (3,17% SC a 5,86% SP).
+
+Presidente agora em **11 UFs**: 90.595.824 válidos = **75,94%** do nacional com
+**76,40%** dos aptos — o vão entre as duas coberturas até encostou, de 0,59pp para
+0,46pp. Nenhum campo estadual excede o nacional.
+
+Teste "100% colado em contagem parcial" (o caso BA) passa: a leitura parcial
+anterior é estritamente menor (99,92%, com comparecimento 5.062.748 e vantagem de
+~262 mil contra 263.280 aqui), logo 100,00% é instante posterior, não rótulo falso.
+Os 99,92% ficam declarados na `observacao` como alternativa conservadora.
+
+### A recusa do Ceará estava certa na conclusão e ERRADA no argumento
+
+Isto é uma correção minha, e o dado que a refuta já estava no nosso arquivo.
+
+Ontem recusei `presidente/CE` dizendo que os válidos derivados implicariam
+abstenção de ~15,5%, "~4 pontos fora da faixa real do Nordeste", comparando com PE
+18,17%, BA 19,97% e MA 19,73%. **Mas a ficha `senador/CE`, que eu mesmo aceitei na
+mesma rodada, mede a abstenção do Ceará em 15,53%.** Conferido num comando:
+válidos 9.717.683 + brancos 845.706 + nulos 1.247.655 = 11.811.044 (par), logo
+comparecimento 5.905.522; com as abstenções 1.085.522 da própria ficha, a taxa é
+**15,53%** e os aptos nas seções dão 99,894% dos aptos da UF. E os 5.617.870 de
+válidos implicariam brancos+nulos de 4,87% dos computados, dentro da faixa.
+
+**O argumento aritmético cai inteiro.** O CE continua fora, mas por **ausência de
+dado publicado** — não achei absolutos por candidato nem % de seções —, não por
+contradição aritmética. Publiquei o motivo errado no backlog e no prompt da
+Routine, e os dois ficam corrigidos.
+
+**Método que isso adiciona, e que é de graça:** a ficha de **senador** de uma UF
+dá o comparecimento e a taxa de abstenção daquela UF sem busca nenhuma, porque o
+total é par e vale 2× o comparecimento. **Isso calibra todos os outros cargos da
+mesma UF.** Eu tinha as duas fichas no mesmo arquivo e comparei o CE com os
+vizinhos em vez de comparar o CE com o CE.
+
+### O PoderData de 1º turno entra, com a verificação cruzada declarada como falha
+
+A lacuna que de fato afetava o ranking não era a de 2º turno (ver a correção
+acima) — era esta: a última rodada de **1º turno** do PoderData na base tinha campo
+encerrado **11 dias** antes da eleição, enquanto o campo dos 16 institutos vai de
+2 a 30 dias e a mediana fica em 6. A medida usa **uma pesquisa por instituto, a
+última**, e a distância da eleição é eixo declarado da comparabilidade.
+
+O quadro de votos TOTAIS de campo 30/09–02/10 está completo e convergente em quatro
+fontes (Poder360, Gazeta do Povo, Jovem Pan, Brasil em Folhas): Lula 42, Flávio 41,
+Cury 3, Renan 3, Caiado 2, Pimenta 1, Zema 1, brancos/nulos 4, Não sabe 2 — soma 99,
+e o ponto que falta é o arredondamento dos seis que não pontuaram.
+
+**O teste de corte FALHA em 3 das 7 linhas**, e isso fica declarado na ficha:
+dividindo por 93, Flávio dá 44 contra 43 publicado, Cury 3 contra 4, Caiado 2
+contra 3. **Não é contradição entre fontes, é arredondamento duplo** — conferido
+aqui que existe conjunto real que gera os dois quadros (soma 93,25: Lula 41,55 →
+42 e 44,56→45; Flávio 40,55 → 41 e 43,49→43; Cury 3,30 → 3 e 3,54→4; Caiado 2,45 →
+2 e 2,63→3), com as três divergências de exatamente 1 ponto e no sentido esperado.
+**Ingeri porque a identificação do corte não depende desse teste:** ela vem de a
+fonte rotular o quadro como total e publicar brancos/nulos e "Não sabe" como linhas
+separadas. O que falhou foi a verificação cruzada em precisão inteira.
+
+**EFEITO MEDIDO, e ele contraria a previsão que me foi entregue.** Fui avisado de
+que o registro *pioraria* o PoderData. **Não piorou: ele vai da 11ª para a 1ª
+posição**, erro médio de 3,91 para **1,47** e erro de margem de −4,37 para −2,94.
+A previsão raciocinava sobre a lista inteira de candidatos; o ranking compara só os
+**dois** candidatos da ficha de apuração. Lula renormalizado dá 45,16 contra 45,16
+apurado — erro **zero** —, e Flávio 44,09 contra 47,03, erro −2,94; a média dos dois
+é 1,47.
+
+**Risco de leitura que isso cria, e que vale vigiar:** com a ficha nacional de dois
+candidatos, "erro médio por candidato" é na prática o erro nos dois primeiros, então
+um instituto que acerta um na mosca e erra o outro pode liderar o ranking **com o
+líder invertido** — que é exatamente o caso do PoderData agora. A tela já diz
+"apontou outro candidato em primeiro" e publica o erro de margem ao lado, então a
+leitura honesta está disponível; mas é o segundo efeito colateral da ficha de dois
+candidatos (o primeiro foi a uniformização, em 06/10) e merece acompanhamento.
+Mediana do campo: 3,87 → **3,48**.
+
+### O erro mais grave da rodada: dei por publicado um dado que não foi mesclado
+
+Relatei que o registro de 2º turno (46 x 46) estava no ar. **Não estava.** O commit
+`50ab8e1` levou só o arquivo-fonte em `data/research/` e o backlog: `data/polls.json`
+seguia em **824 pesquisas, sem o registro**, e é esse arquivo que
+`carregar-dados.ts` importa e o site lê.
+
+O que aconteceu: eu verifiquei o `polls.json` mesclado (825 pesquisas, conferido na
+sonda), e **entre a verificação e o commit o subagente rodou o `git checkout` de
+limpeza** que o próprio contrato manda ele rodar. O `git add -A` então não encontrou
+mudança nenhuma em `polls.json`. O deploy ficou **verde sobre dado não mesclado**.
+
+É a mesma família da armadilha de 01–05/10 ("push bem-sucedido ≠ site atualizado"),
+um nível mais fundo: **commit feito e deploy verde ≠ dado mesclado**. A regra que
+faltava, e que agora vale: **depois de commitar dado, conferir que o arquivo
+COMMITADO contém o registro** — `git show HEAD:data/polls.json`, não `git status`,
+não o working tree, não a contagem de testes. Verificar antes do commit não serve
+quando há agente vivo com direito de escrita no mesmo arquivo.

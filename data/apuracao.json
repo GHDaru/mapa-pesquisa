@@ -1075,6 +1075,43 @@
         "url": "https://exame.com/brasil/resultado-das-eleicoes-para-senador-do-amapa-2026-rayssa-furlan-e-lucas-barreto-sao-eleitos/"
       },
       "observacao": "RECORTE NOVO (não havia senador no AP). LEITURA FINAL, 100,00% das urnas. Base dos percentuais: VOTOS VÁLIDOS. Votos em ABSOLUTOS publicados. COBERTURA BAIXA, DECLARADA: só os dois ELEITOS têm absoluto publicado e somam 478.747 = 54,20% dos válidos; os outros 45,80% NÃO foram completados. VALIDAÇÕES QUE FECHARAM: (i) PARIDADE — o total é PAR: 952.038, comparecimento 476.019. (iv) FECHAMENTO EXATO — 883.225 + 22.756 + 46.057 = 952.038, IGUAL ao total publicado, e os três percentuais saem certos: 92,7720% (92,77), 2,3902% (2,39), 4,8377% (4,84). (iii) DUAS DERIVAÇÕES de validosTotal concordam: 264.799/0,2998 = 883.252 (0,0031% do publicado) e 213.948/0,2422 = 883.353 (0,0145%) — 0,011% entre si. (v) SEM BUSCA — abstenções não publicadas em absoluto nem em percentual nesta leitura: null, nunca estimadas; o comparecimento 476.019 dá 82,42% dos 577.534 aptos do AP em data/electorate.json, participação alta mas plausível para a UF. RESSALVA DECLARADA: brancos e nulos somam só 7,23% dos computados, bem abaixo do padrão das outras UFs desta rodada (12% a 20%). É um valor atípico, mas não há NENHUMA contradição aritmética — paridade, fechamento exato contra o total publicado e as duas derivações todos fecham —, então registro a estranheza sem descartar a leitura. Coletado via resumo de WebSearch."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "PA",
+      "turno": 1,
+      "secoesTotalizadas": 100,
+      "validosTotal": 4863172,
+      "candidatos": [
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 2427237
+        },
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 2163957
+        },
+        {
+          "candidato": "Augusto Cury",
+          "partido": "Avante",
+          "votos": 125172
+        },
+        {
+          "candidato": "Renan Santos",
+          "partido": "Missão",
+          "votos": 84165
+        }
+      ],
+      "brancos": 54203,
+      "nulos": 149129,
+      "abstencoes": 1195412,
+      "fonte": {
+        "nome": "Band — Apuração Presidente em Pará, Eleições 2026 (dados do TSE, 100,00% das urnas apuradas), leitura de 07/10/2026; percentuais do líder e do segundo colocado conferidos também na tabela de UFs do Metrópoles e o resultado estadual (Lula em 1º) em A Província do Pará e Diário do Pará",
+        "url": "https://www.band.com.br/politica/eleicoes/2026/apuracao/presidente/pa"
+      },
+      "observacao": "RECORTE NOVO (nao havia presidente no PA). Esta e a leitura que em 06/10 foi RECUSADA por faltar o percentual de secoes; a busca de 07/10 achou o campo E, de quebra, o validosTotal PUBLICADO, que corrigiu o fechamento. SECOES: 100,00% das urnas apuradas, PUBLICADO pela fonte (dados do TSE) — NAO inferido de razao entre aptos. Leitura parcial anterior existe e e estritamente menor: o Diario do Para publicou 99,92% das urnas com comparecimento 5.062.748 e vantagem de ~262 mil votos, contra 263.280 aqui, o que confirma que 100,00% e um instante POSTERIOR e nao um rotulo de 100% colado em contagem parcial. VALIDOS PUBLICADOS: 4.863.172 (nao derivado). Conferido por QUATRO derivacoes voto/percentual: 2.427.237/0,4991 = 4.863.228 (-0,0011% do publicado), 2.163.957/0,4450 = 4.862.825 (+0,0071%), 125.172/0,0257 = 4.870.506 e 84.165/0,0173 = 4.865.029; as duas primeiras concordam entre si com erro de 0,0083%, muito dentro do limite de 0,1%, e o publicado cai entre elas. No sentido inverso, os QUATRO absolutos sobre 4.863.172 reimprimem os QUATRO percentuais publicados: 49,9106 / 44,4968 / 2,5739 / 1,7307 contra 49,91 / 44,50 / 2,57 / 1,73. FECHAMENTO: validos 4.863.172 + brancos 54.203 + nulos 149.129 = 5.066.504 votos computados; brancos+nulos sao 4,01% dos computados, dentro da faixa das outras fichas de presidente (3,17% em SC a 5,86% em SP). CHECAGEM CONTRA O ELEITORADO, sem busca: computados 5.066.504 + abstencoes 1.195.412 = 6.261.916, que e 99,945% dos 6.265.355 aptos do PA em data/electorate.json (referencia 2026-07), reproduzindo os 100% de secoes publicados. ATENCAO — TENSAO DE FONTES DECLARADA: a leitura de 06/10 trazia 'comparecimento publicado 5.062.750', que e exatamente metade dos 10.125.500 computados do recorte senador/PA (dois votos por eleitor) e o mesmo numero que a Noticia Marajo publica como comparecimento do estado ao lado da abstencao de 1.195.412 (19,10% dos 6.258.162 aptos nas secoes). Esse 5.062.750 e 3.754 votos (0,074%) MENOR que os 5.066.504 computados que fecham com os validos publicados de presidente; tomar 5.062.750 como computados de presidente daria validos 4.859.418 e reimprimiria 49,95%/44,53%, CONTRADIZENDO os 49,91%/44,50% da fonte — por isso o valor publicado 4.863.172 foi preferido. Discrepancias dessa ordem entre cargos ja existem nas fichas aceitas (presidente/SC tem computados 0,29% acima do comparecimento implicito em senador/SC; presidente/BA, 0,034% acima). Como a abstencao e por ELEITOR e nao por cargo, as abstencoes 1.195.412 publicadas para o PA foram mantidas; a alternativa derivada seria 6.258.162 - 5.066.504 = 1.191.658, e a diferenca de 3.754 e a mesma tensao acima. Os brancos e nulos NAO sao de outro cargo: senador/PA publica 458.028 brancos e 694.097 nulos e o governador do PA fecha com ~495,5 mil entre brancos e nulos, numeros que nada tem a ver com os 54.203 e 149.129 de presidente. COBERTURA: os quatro candidatos listados somam 4.800.531 votos = 98,71% dos validos; os 1,29% restantes (62.641 votos) pertencem a Ronaldo Caiado, Romeu Zema e demais candidatos menores, que a fonte NAO itemiza nesta UF e que NAO FORAM COMPLETADOS. Nenhum candidato fora dos seis nomes canonicos aparece nesta leitura. Base dos percentuais: VOTOS VALIDOS (exclui brancos e nulos), como publica o TSE. Eleicao de 2026 (Lula x FLAVIO Bolsonaro), nao de 2022. Coletado via resumo de WebSearch: WebFetch a band.com.br, metropoles.com, hubpolitico.com.br e diariodopara.com.br esta BLOQUEADO pelo proxy de egresso deste ambiente, entao os valores NAO foram conferidos na pagina original e vem de uma fonte unica para os absolutos de Cury e Renan Santos e para o validosTotal."
     }
   ]
 }
