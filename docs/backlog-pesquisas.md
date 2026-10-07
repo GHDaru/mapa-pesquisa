@@ -2551,3 +2551,47 @@ estimativa". Cinco testes, mutação confirmada.
 existia um modo, que vira mentira quando o segundo modo recebe dado. Ontem foi
 `baseComparacao`, hoje a nota da tabela. Vale procurar a próxima: qualquer frase
 fixa que afirme uma relação entre dois números da tela.
+
+### O PoderData de véspera entrou — e era 46 x 46, não 50 x 50
+
+A recusa de 06/10 foi resolvida do jeito certo: **a fonte publicou o corte total**,
+não houve reconstrução. A rodada de campo **30/09–02/10** (4.000 entrevistas por
+telefone em 786 municípios, margem 1,5, publicada 03/10, registro BR-03519/2026)
+em votos **totais** é:
+
+| linha | % |
+|---|---|
+| Luiz Inácio Lula da Silva (PT) | **46** |
+| Flávio Bolsonaro (PL) | **46** |
+| Brancos/nulos | 7 |
+| Não sabe | 1 |
+| **soma** | **100** |
+
+O "Lula 50 x Flávio 50" que circulava era o corte de **válidos** — 46 ÷ 92 = 50,0%
+para cada um, exato. **Ressalva sobre esse teste, que vale registrar: com os dois
+candidatos empatados ele passa para qualquer par igual** (45/45, 40/40 dariam o
+mesmo 50%), então não foi ele que autorizou a ingestão. O que autorizou foram as
+quatro linhas publicadas somando 100, com brancos/nulos e "Não sabe" confirmados
+por dois veículos além do próprio instituto. Conferido aqui: as duas linhas de
+não-candidato são reconhecidas por `ehLinhaNaoCandidato` e ficam fora do ranking —
+era a armadilha que já tinha deixado "Não souberam responder" entrar como
+candidato em 04/10.
+
+Contratante `null`: a rodada é com recursos próprios do grupo Poder360, e a Aya
+Bancah é parceira **de divulgação**, não contratante. Campo novo confirmado contra
+a base: a rodada anterior (20–23/09) dava Flávio 46 x Lula 45.
+
+**CORREÇÃO DE UM ENQUADRAMENTO MEU.** Escrevi no prompt da Routine que esta era
+"a lacuna que mais dói no ranking". **Está errado, e medi:** é uma pesquisa de **2º
+turno**, e o ranking que está no ar mede o **1º turno** — PoderData segue nele com
+exatamente os mesmos números (erro médio 3,91, erro de margem −4,37, campo 11 dias
+antes). Uma pesquisa de 2º turno não pode ser medida contra o resultado do 1º.
+O valor real deste registro é outro, e é legítimo: completa a série do agregado de
+2º turno que serve de linha de base para ler as rodadas pós-04/10, e **entra no
+ranking de acerto do 2º turno depois de 25/10**.
+
+### Pesquisas de 2º turno com campo posterior a 04/10: segue em nenhuma
+
+Terceiro dia sem nenhuma, como o calendário anunciado previa (Datafolha e
+PoderData em 08/10, AtlasIntel em 09/10). O arquivo do dia traz só a recuperação
+acima.

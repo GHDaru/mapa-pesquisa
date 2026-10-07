@@ -1,0 +1,28 @@
+[
+  {
+    "id": "2026-10-03-poderdata-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "PoderData",
+    "registroTSE": "BR-03519/2026",
+    "contratante": null,
+    "dataInicio": "2026-09-30",
+    "dataFim": "2026-10-02",
+    "publicadoEm": "2026-10-03",
+    "amostra": 4000,
+    "margem": 1.5,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poderdata/lula-e-flavio-tem-46-cada-um-no-2o-turno-diz-poderdata-aya/"
+    },
+    "observacao": "Rodada de véspera do 1º turno, recuperada no corte de votos TOTAIS. 4.000 entrevistas por telefone (celular e fixo) em 786 municípios das 27 UFs. Teste de consistência: 46 ÷ (46+46) = 50,0% para cada candidato, reproduzindo exatamente os 50% x 50% em votos válidos publicados pelo próprio instituto — o corte total está confirmado. Soma das linhas = 100. Brancos/nulos (7) e Não sabe (1) confirmados por Revista Oeste e CNN Brasil. Não confundir com o cenário de 1º turno da mesma rodada (Lula 45 x Flávio 43 em válidos), que é outra pergunta. Realizada com recursos próprios do grupo Poder360; Aya Bancah é parceira apenas de divulgação, não contratante.",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 46 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 46 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 7 },
+      { "candidato": "Não sabe", "partido": null, "pct": 1 }
+    ]
+  }
+]
