@@ -1112,6 +1112,386 @@
         "url": "https://www.band.com.br/politica/eleicoes/2026/apuracao/presidente/pa"
       },
       "observacao": "RECORTE NOVO (nao havia presidente no PA). Esta e a leitura que em 06/10 foi RECUSADA por faltar o percentual de secoes; a busca de 07/10 achou o campo E, de quebra, o validosTotal PUBLICADO, que corrigiu o fechamento. SECOES: 100,00% das urnas apuradas, PUBLICADO pela fonte (dados do TSE) — NAO inferido de razao entre aptos. Leitura parcial anterior existe e e estritamente menor: o Diario do Para publicou 99,92% das urnas com comparecimento 5.062.748 e vantagem de ~262 mil votos, contra 263.280 aqui, o que confirma que 100,00% e um instante POSTERIOR e nao um rotulo de 100% colado em contagem parcial. VALIDOS PUBLICADOS: 4.863.172 (nao derivado). Conferido por QUATRO derivacoes voto/percentual: 2.427.237/0,4991 = 4.863.228 (-0,0011% do publicado), 2.163.957/0,4450 = 4.862.825 (+0,0071%), 125.172/0,0257 = 4.870.506 e 84.165/0,0173 = 4.865.029; as duas primeiras concordam entre si com erro de 0,0083%, muito dentro do limite de 0,1%, e o publicado cai entre elas. No sentido inverso, os QUATRO absolutos sobre 4.863.172 reimprimem os QUATRO percentuais publicados: 49,9106 / 44,4968 / 2,5739 / 1,7307 contra 49,91 / 44,50 / 2,57 / 1,73. FECHAMENTO: validos 4.863.172 + brancos 54.203 + nulos 149.129 = 5.066.504 votos computados; brancos+nulos sao 4,01% dos computados, dentro da faixa das outras fichas de presidente (3,17% em SC a 5,86% em SP). CHECAGEM CONTRA O ELEITORADO, sem busca: computados 5.066.504 + abstencoes 1.195.412 = 6.261.916, que e 99,945% dos 6.265.355 aptos do PA em data/electorate.json (referencia 2026-07), reproduzindo os 100% de secoes publicados. ATENCAO — TENSAO DE FONTES DECLARADA: a leitura de 06/10 trazia 'comparecimento publicado 5.062.750', que e exatamente metade dos 10.125.500 computados do recorte senador/PA (dois votos por eleitor) e o mesmo numero que a Noticia Marajo publica como comparecimento do estado ao lado da abstencao de 1.195.412 (19,10% dos 6.258.162 aptos nas secoes). Esse 5.062.750 e 3.754 votos (0,074%) MENOR que os 5.066.504 computados que fecham com os validos publicados de presidente; tomar 5.062.750 como computados de presidente daria validos 4.859.418 e reimprimiria 49,95%/44,53%, CONTRADIZENDO os 49,91%/44,50% da fonte — por isso o valor publicado 4.863.172 foi preferido. Discrepancias dessa ordem entre cargos ja existem nas fichas aceitas (presidente/SC tem computados 0,29% acima do comparecimento implicito em senador/SC; presidente/BA, 0,034% acima). Como a abstencao e por ELEITOR e nao por cargo, as abstencoes 1.195.412 publicadas para o PA foram mantidas; a alternativa derivada seria 6.258.162 - 5.066.504 = 1.191.658, e a diferenca de 3.754 e a mesma tensao acima. Os brancos e nulos NAO sao de outro cargo: senador/PA publica 458.028 brancos e 694.097 nulos e o governador do PA fecha com ~495,5 mil entre brancos e nulos, numeros que nada tem a ver com os 54.203 e 149.129 de presidente. COBERTURA: os quatro candidatos listados somam 4.800.531 votos = 98,71% dos validos; os 1,29% restantes (62.641 votos) pertencem a Ronaldo Caiado, Romeu Zema e demais candidatos menores, que a fonte NAO itemiza nesta UF e que NAO FORAM COMPLETADOS. Nenhum candidato fora dos seis nomes canonicos aparece nesta leitura. Base dos percentuais: VOTOS VALIDOS (exclui brancos e nulos), como publica o TSE. Eleicao de 2026 (Lula x FLAVIO Bolsonaro), nao de 2022. Coletado via resumo de WebSearch: WebFetch a band.com.br, metropoles.com, hubpolitico.com.br e diariodopara.com.br esta BLOQUEADO pelo proxy de egresso deste ambiente, entao os valores NAO foram conferidos na pagina original e vem de uma fonte unica para os absolutos de Cury e Renan Santos e para o validosTotal."
+    },
+    {
+      "cargo": "senador",
+      "uf": "PE",
+      "turno": 1,
+      "secoesTotalizadas": 100,
+      "validosTotal": 9310957,
+      "candidatos": [
+        {
+          "candidato": "Humberto Costa",
+          "partido": "PT",
+          "votos": 2531389
+        },
+        {
+          "candidato": "Marília Arraes",
+          "partido": "PDT",
+          "votos": 2325127
+        },
+        {
+          "candidato": "Mendonça Filho",
+          "partido": "PL",
+          "votos": 1728587
+        },
+        {
+          "candidato": "Eduardo da Fonte",
+          "partido": "PP",
+          "votos": 1289058
+        },
+        {
+          "candidato": "Carlos Sant'Anna",
+          "partido": "Novo",
+          "votos": 698316
+        }
+      ],
+      "brancos": 1124608,
+      "nulos": 1374907,
+      "abstencoes": 1311753,
+      "fonte": {
+        "nome": "O Tempo — Apuração para senador em PE 2026 (dados do TSE, 100% das seções; candidatos e comparecimento), com Folha PE (brancos, nulos e abstenções) e Olhar Direto (100,00% · 21.418 de 21.418 seções; cinco absolutos)",
+        "url": "https://www.otempo.com.br/eleicoes/2026/apuracao/pernambuco/senador"
+      },
+      "observacao": "FONTE DIFERENTE da rodada de 06/10, que foi RECUSADA: la os candidatos (100%) foram colados no bloco de totais do Metropoles a 99,06% (total 11.700.360 - brancos - nulos = 9.220.998), e os candidatos derivavam 9.311.000 — os 0,96% de divergencia. AQUI O BLOCO E O MESMO INSTANTE. VALIDOSTOTAL 9.310.957 E DERIVADO, NAO PUBLICADO: vem do fechamento 2 x comparecimento publicado (5.905.236, O Tempo) = 11.810.472, menos brancos 1.124.608 menos nulos 1.374.907. Em 2026 cada UF elege DOIS senadores, logo cada eleitor tem DOIS votos e o total apurado e exatamente 2x o comparecimento. TOTAL 11.810.472 E PAR e vale exatamente 2x os 5.905.236 eleitores que O Tempo publica como comparecimento em PE. CINCO DERIVACOES voto/percentual: 2.531.389/0,2719 = 9.310.000, 2.325.127/0,2497 = 9.311.682, 1.728.587/0,1857 = 9.308.492, 1.289.058/0,1384 = 9.314.003 e 698.316/0,0750 = 9.310.880; a INTERSECAO dos cinco intervalos de arredondamento de 2 casas e [9.310.640 .. 9.310.999], faixa de apenas 359 votos (0,0039%), e o valor de fechamento 9.310.957 CAI DENTRO DELA. No sentido inverso, os cinco absolutos sobre 9.310.957 reimprimem os cinco percentuais publicados: 27,1872 / 24,9719 / 18,5651 / 13,8445 / 7,4999. FECHAMENTO DE PERCENTUAIS SOBRE O TOTAL: brancos 1.124.608/11.810.472 = 9,5221% (Folha PE publica 9,52%) e nulos 1.374.907/11.810.472 = 11,6414% (publica 11,64%); validos 78,8365%; os tres somam 100,00%. Esses dois percentuais SO fecham sobre 11.810.472 — sobre o total 11.700.360 do Metropoles dariam 9,55% e 11,64%, o que isola o instante correto. ELEITORADO, SEM BUSCA: comparecimento 5.905.236 + abstencoes 1.311.753 = 7.216.989, EXATAMENTE os aptos que O Tempo publica para PE, 99,879% dos 7.225.744 de data/electorate.json — compativel com os 100% de secoes; comparecimento 81,8241% (publicado 81,82%) e abstencao 18,1759% (publicado 18,18%). CRUZAMENTO 2x CONTRA O RECORTE DE PRESIDENTE DE PE ja no arquivo: ali o comparecimento (validos 5.601.017 + brancos 109.491 + nulos 200.554) e 5.911.062; o comparecimento desta leitura de senador e 5.905.236, 0,099% abaixo — concordancia dentro de um decimo de por cento entre fontes diferentes (Correio Braziliense no presidente, O Tempo/Folha PE aqui). A propria Folha PE publica OS DOIS pares, 5.905.236/18,18% e 5.911.062/18,17%; usei o da pagina de senador porque e o unico cujo dobro reproduz exatamente os percentuais de brancos e nulos acima. O VALIDOS PUBLICADO POR O TEMPO E 9.292.778, 18.179 votos ABAIXO do fechamento: e o validos LIQUIDO de votos anulados sub judice, padrao que se repete em AC, RR e TO desta mesma rodada; o denominador dos percentuais dos candidatos e o BRUTO, 9.310.957, e e ele que este campo grava. COBERTURA: os cinco candidatos somam 8.572.477 = 92,069% dos validos (a soma dos cinco percentuais publicados e 92,07%); os 7,93% restantes sao de Túlio Gadêlha e demais, NAO COMPLETADOS. ARMADILHA DE OUTRO CARGO CONFERIDA: o recorte de presidente de PE tem brancos 109.491 e nulos 200.554, uma ordem de grandeza abaixo dos 1.124.608 e 1.374.907 daqui — nao ha contaminacao. As abstencoes 1.311.753 ficam a 635 votos das 1.312.388 do recorte de presidente, e isso e ESPERADO, nao copia: a abstencao e por eleitor e identica em todos os cargos; a diferenca de 635 e so a de bases de aptos entre as duas fontes (7.216.989 contra 7.223.450). Humberto Costa e Marília Arraes ELEITOS (as duas cadeiras); Mendonça Filho, Eduardo da Fonte e Sant'Anna nao. Base dos percentuais: VOTOS VALIDOS. Coletado via resumo de WebSearch; WebFetch esta BLOQUEADO pelo proxy de egresso deste ambiente para cnnbrasil, olhardireto, gazetadopovo e demais portais, e para resultados.tse.jus.br, portanto NENHUM valor foi conferido na pagina original. Eleicao de 2026; mandatos de oito anos, 2027-2035."
+    },
+    {
+      "cargo": "senador",
+      "uf": "AL",
+      "turno": 1,
+      "secoesTotalizadas": 100,
+      "validosTotal": 3286601,
+      "candidatos": [
+        {
+          "candidato": "Arthur Lira",
+          "partido": "PP",
+          "votos": 948703
+        },
+        {
+          "candidato": "Marina JHC",
+          "partido": "PSDB",
+          "votos": 926860
+        },
+        {
+          "candidato": "Renan Calheiros",
+          "partido": "MDB",
+          "votos": 731045
+        },
+        {
+          "candidato": "Dr. Wanderley",
+          "partido": "MDB",
+          "votos": 358478
+        },
+        {
+          "candidato": "Davi Davino Filho",
+          "partido": "Republicanos",
+          "votos": 293008
+        },
+        {
+          "candidato": "Alexandre Fleming",
+          "partido": "UP",
+          "votos": 26048
+        }
+      ],
+      "brancos": 226942,
+      "nulos": 358097,
+      "abstencoes": 503370,
+      "fonte": {
+        "nome": "Band — Apuração Senador em Alagoas, Eleições 2026 (dados do TSE, 100,00% das urnas apuradas), com TRE-AL via Cada Minuto (encerramento do processamento das 7.101 seções às 22h57 de 04/10: válidos, brancos, nulos, comparecimento e abstenção)",
+        "url": "https://www.cadaminuto.com.br/noticia/2026/10/05/1-turno-em-alagoas-tre-al-conclui-apuracao-com-79-36-de-presenca-e-consolida-vencedores"
+      },
+      "observacao": "FONTE DIFERENTE da rodada de 06/10, que foi RECUSADA porque as derivacoes concordavam entre si mas ficavam ACIMA de um validos publicado de 3.076.072. AQUI O VALIDOS E 3.286.601, PUBLICADO pelo TRE-AL e pela Band, e TODAS as validacoes fecham EXATAS. FECHAMENTO: 3.286.601 + 226.942 + 358.097 = 3.871.640, EXATAMENTE o total de votos que a Band publica, sem resto. Em 2026 cada UF elege DOIS senadores, logo cada eleitor tem DOIS votos e o total apurado e exatamente 2x o comparecimento. TOTAL 3.871.640 E PAR e metade dele e 1.935.820 — EXATAMENTE o comparecimento que o TRE-AL publica (1.935.820 eleitores, 79,36%). Essa igualdade ao voto, entre duas fontes distintas, e a validacao mais forte desta ficha. SEIS DERIVACOES voto/percentual: 948.703/0,2887 = 3.286.121, 926.860/0,2820 = 3.286.738, 731.045/0,2224 = 3.287.073, 358.478/0,1091 = 3.285.775, 293.008/0,0892 = 3.284.843 e 26.048/0,0079 = 3.297.215; a intersecao dos intervalos de arredondamento e [3.286.335 .. 3.286.685], faixa de 350 votos, e o validos publicado 3.286.601 CAI DENTRO DELA. No inverso, os seis absolutos sobre 3.286.601 reimprimem os seis percentuais publicados sem excecao: 28,8658 / 28,2012 / 22,2432 / 10,9073 / 8,9152 / 0,7926. PERCENTUAIS SOBRE O TOTAL: brancos 5,8617% (publicado 5,86%), nulos 9,2492% (9,25%), validos 84,8891% (o TRE-AL publica 84,89%); somam 100,00%. ELEITORADO, SEM BUSCA: comparecimento 1.935.820 + abstencoes 503.370 = 2.439.190, EXATAMENTE os aptos que o TRE-AL publica para AL, e 99,893% dos 2.441.794 de data/electorate.json — compativel com 100% de secoes; abstencao 20,637% (publicado 20,64%) e comparecimento 79,363% (publicado 79,36%). ROTULO IGNORADO: a Band imprime \"Validos 3.286.601 | 100,00%\", e esses 100,00% sao o percentual de SECOES, nao a fatia dos computados, que e 84,89% — a mesma armadilha de rotulo de RJ, BA, CE, DF, PB e SP. COBERTURA: os seis candidatos somam 3.284.142 = 99,925% dos validos (a soma dos seis percentuais publicados e 99,93%); faltam 2.459 votos, atribuidos pelo ND Mais a Mariedson (Democrata, 2.425 votos) — NAO INCLUIDO porque os numeros do ND Mais sao de parcial anterior (ali Lira aparece com 929.940) e nao do instante desta ficha. ARMADILHA DE OUTRO CARGO: nao ha recorte de governador nem de presidente de AL no arquivo para cruzar, de modo que esta ficha se sustenta no fechamento interno e na igualdade total/2 = comparecimento publicado. Arthur Lira e Marina JHC ELEITOS. Base dos percentuais: VOTOS VALIDOS. Coletado via resumo de WebSearch; WebFetch esta BLOQUEADO pelo proxy de egresso deste ambiente para cnnbrasil, olhardireto, gazetadopovo e demais portais, e para resultados.tse.jus.br, portanto NENHUM valor foi conferido na pagina original. Eleicao de 2026; mandatos de oito anos, 2027-2035."
+    },
+    {
+      "cargo": "senador",
+      "uf": "SE",
+      "turno": 1,
+      "secoesTotalizadas": 100,
+      "validosTotal": 2333169,
+      "candidatos": [
+        {
+          "candidato": "Rogério Carvalho",
+          "partido": "PT",
+          "votos": 511142
+        },
+        {
+          "candidato": "Delegado Alessandro",
+          "partido": "MDB",
+          "votos": 399775
+        }
+      ],
+      "brancos": 220770,
+      "nulos": 319279,
+      "abstencoes": 300851,
+      "fonte": {
+        "nome": "Metrópoles — Resultado da apuração para senador em Sergipe (SE), Eleições 2026 (dados do TSE, 100% das urnas; total, brancos, nulos, abstenções e comparecimento), com Revista Oeste e Diário do Poder para os dois absolutos pós-totalização",
+        "url": "https://www.metropoles.com/eleicoes/2026/apuracao/senador/se"
+      },
+      "observacao": "FONTE DIFERENTE da rodada de 06/10, que foi RECUSADA porque os brancos e nulos apontavam total ~2.868.000, o validos publicado ficava 3,4% abaixo e a soma 2.790.044 nao reproduzia nenhum dos tres percentuais. O DIAGNOSTICO SE CONFIRMOU: o validos publicado de 2.254.769 e que esta errado. VALIDOSTOTAL 2.333.169 E DERIVADO, NAO PUBLICADO: vem do fechamento total publicado 2.873.218 menos brancos 220.770 menos nulos 319.279. Em 2026 cada UF elege DOIS senadores, logo cada eleitor tem DOIS votos e o total apurado e exatamente 2x o comparecimento. TOTAL 2.873.218 E PAR e metade dele e 1.436.609 — EXATAMENTE o numero de eleitores que o Metropoles publica como tendo comparecido as urnas em SE. DUAS DERIVACOES voto/percentual: 511.142/0,2191 = 2.332.916 e 399.775/0,1713 = 2.333.771, que concordam entre si em 0,037%; a intersecao dos dois intervalos de arredondamento e [2.333.091 .. 2.333.448], faixa de 357 votos, e o valor de fechamento 2.333.169 CAI DENTRO DELA. No inverso, 511.142/2.333.169 = 21,9076% (publicado 21,91%) e 399.775/2.333.169 = 17,1344% (publicado 17,13%). O PUBLICADO 2.254.769 esta 3,36% abaixo de 2.333.169 e sobre ele os absolutos dariam 22,67% e 17,73%, que NAO sao os percentuais publicados — e um numero de outro instante. Sobre 2.333.169 o validos vale 81,2040% do total, e a Gazeta do Povo publica 81,20% a 99,86% das urnas: corroboracao independente do denominador. ELEITORADO, SEM BUSCA: comparecimento 1.436.609 + abstencoes 300.851 = 1.737.460 aptos nas secoes, 99,840% dos 1.740.240 de data/electorate.json — dentro da faixa de 99,8%-100,2% que as fichas boas exibem a 100% de secoes; abstencao 300.851/1.737.460 = 17,316%, reproduzindo os 17,32% publicados. ROTULO IGNORADO: o Metropoles imprime um \"96,64%\" ao lado do validos que nao e a fatia dos computados (81,20%) nem o percentual de secoes (100%) — descartado. COBERTURA BAIXA, DECLARADA: os dois candidatos listados somam 910.917 = apenas 39,042% dos validos (a soma dos dois percentuais publicados e 39,04%); os 60,96% restantes sao de André David (Republicanos), André Moura (União Brasil) e demais, para os quais NAO ha absolutos publicados no instante de 100% e que por isso NAO FORAM COMPLETADOS. E por existir validosTotal que essa cobertura de 39% nao infla os dois listados na tela. ARMADILHA DE OUTRO CARGO: nao ha recorte de governador nem de presidente de SE no arquivo para cruzar. Rogério Carvalho e Delegado Alessandro REELEITOS (as duas cadeiras). Base dos percentuais: VOTOS VALIDOS. Coletado via resumo de WebSearch; WebFetch esta BLOQUEADO pelo proxy de egresso deste ambiente para cnnbrasil, olhardireto, gazetadopovo e demais portais, e para resultados.tse.jus.br, portanto NENHUM valor foi conferido na pagina original. Eleicao de 2026; mandatos de oito anos, 2027-2035."
+    },
+    {
+      "cargo": "senador",
+      "uf": "PI",
+      "turno": 1,
+      "secoesTotalizadas": 100,
+      "validosTotal": 3666473,
+      "candidatos": [
+        {
+          "candidato": "Marcelo Castro",
+          "partido": "MDB",
+          "votos": 1307833
+        },
+        {
+          "candidato": "Júlio César",
+          "partido": "PSD",
+          "votos": 989146
+        },
+        {
+          "candidato": "Ciro Nogueira",
+          "partido": "PP",
+          "votos": 904961
+        },
+        {
+          "candidato": "Tiago Junqueira",
+          "partido": "PL",
+          "votos": 324530
+        },
+        {
+          "candidato": "Antônio Barros",
+          "partido": "Novo",
+          "votos": 38544
+        },
+        {
+          "candidato": "Maria Madalena Nunes",
+          "partido": "PSOL",
+          "votos": 27015
+        }
+      ],
+      "brancos": 299182,
+      "nulos": 513267,
+      "abstencoes": 463678,
+      "fonte": {
+        "nome": "Olhar Direto — Resultados senador PI 2026 (dados do TSE, 100% das seções; candidatos e votos válidos), com Cidade Verde / 180graus para brancos e nulos da totalização e Portal O Dia para abstenção e comparecimento",
+        "url": "https://www.olhardireto.com.br/eleicoes/2026/resultados/senador/pi"
+      },
+      "observacao": "FONTE DIFERENTE da rodada de 06/10, que foi RECUSADA porque duas derivacoes divergiam 0,182% (1.284.456/0,3565 = 3.602.963 contra 973.129/0,2696 = 3.609.529) e a soma 4.384.376 exigia total ~4.408.000-4.410.000. Aqueles eram numeros da Gazeta do Povo a 98,44%. AQUI SAO OS DE 100%. VALIDOS 3.666.473 E PUBLICADO (Olhar Direto, 100% das secoes). SEIS DERIVACOES voto/percentual: 1.307.833/0,3567 = 3.666.479, 989.146/0,2698 = 3.666.219, 904.961/0,2468 = 3.666.779, 324.530/0,0885 = 3.667.006, 38.544/0,0105 = 3.670.857 e 27.015/0,0074 = 3.650.676; a intersecao dos intervalos de arredondamento e [3.666.037 .. 3.666.898] e o publicado 3.666.473 CAI DENTRO DELA — a derivacao do primeiro colocado, 3.666.479, bate no publicado com 6 votos de diferenca (0,0002%). No inverso, os seis absolutos sobre 3.666.473 reimprimem os seis percentuais: 35,6701 / 26,9781 / 24,6821 / 8,8513 / 1,0513 / 0,7368. Em 2026 cada UF elege DOIS senadores, logo cada eleitor tem DOIS votos e o total apurado e exatamente 2x o comparecimento. TOTAL 3.666.473 + 299.182 + 513.267 = 4.478.922, PAR; comparecimento 2.239.461. DESEMPATE ENTRE DUAS PUBLICACOES DE BRANCOS/NULOS: o proprio Olhar Direto imprime 299.136 brancos e 506.975 nulos, enquanto a totalizacao citada por Cidade Verde e 180graus da 299.182 e 513.267. O segundo par e o correto e os numeros provam: com ele brancos+nulos = 812.449 valem 18,1394% do total, reproduzindo os 18,14% publicados, e o comparecimento 2.239.461 vale 82,849% dos 2.703.064 aptos publicados, reproduzindo os 82,85% publicados; com o par do Olhar Direto o total cairia para 4.472.584 e o comparecimento para 82,732%, que NAO e o percentual publicado. ELEITORADO, SEM BUSCA: comparecimento 2.239.461 + abstencoes 463.678 = 2.703.139, que e 100,003% dos 2.703.064 aptos publicados pelo TSE para o PI (75 eleitores de diferenca, 0,003%) e 99,815% dos 2.708.160 de data/electorate.json — a diferenca entre as duas bases e a atualizacao do cadastro entre julho e a eleicao; abstencao 463.678/2.703.064 = 17,154%, reproduzindo os 17,15% publicados. COBERTURA: os seis candidatos somam 3.592.029 = 97,970% dos validos, exatamente a soma dos seis percentuais publicados (97,97%); os 2,03% restantes NAO FORAM COMPLETADOS. Cloves José (PCO, 634 votos) NAO FOI INCLUIDO: registro anulado sub judice e sem percentual publicado. ARMADILHA DE OUTRO CARGO: nao ha recorte de governador nem de presidente do PI no arquivo para cruzar. Marcelo Castro e Júlio César ELEITOS; Ciro Nogueira, terceiro, ficou sem vaga. Base dos percentuais: VOTOS VALIDOS. Coletado via resumo de WebSearch; WebFetch esta BLOQUEADO pelo proxy de egresso deste ambiente para cnnbrasil, olhardireto, gazetadopovo e demais portais, e para resultados.tse.jus.br, portanto NENHUM valor foi conferido na pagina original. Eleicao de 2026; mandatos de oito anos, 2027-2035."
+    },
+    {
+      "cargo": "senador",
+      "uf": "MT",
+      "turno": 1,
+      "secoesTotalizadas": 100,
+      "validosTotal": 3575264,
+      "candidatos": [
+        {
+          "candidato": "Mauro Mendes",
+          "partido": "União Brasil",
+          "votos": 1187352
+        },
+        {
+          "candidato": "José Medeiros",
+          "partido": "PL",
+          "votos": 977777
+        },
+        {
+          "candidato": "Janaína Riva",
+          "partido": "MDB",
+          "votos": 519434
+        },
+        {
+          "candidato": "Carlos Fávaro",
+          "partido": "PSD",
+          "votos": 411020
+        },
+        {
+          "candidato": "Pedro Taques",
+          "partido": "PSB",
+          "votos": 224621
+        },
+        {
+          "candidato": "Galvan",
+          "partido": "Avante",
+          "votos": 169265
+        }
+      ],
+      "brancos": 233512,
+      "nulos": 290660,
+      "abstencoes": 585274,
+      "fonte": {
+        "nome": "Exame — Apuração Senador no estado do MT 2026 (dados do TSE, 100,00% · 8.287 de 8.287 seções apuradas), com Plural (apuração final de MT: total, válidos, brancos, nulos e abstenções) e Olhar Direto (brancos e nulos somam 524.172)",
+        "url": "https://exame.com/eleicoes/2026/apuracao/primeiro-turno/senador/mapa-de-apuracao/?estado=mt"
+      },
+      "observacao": "FONTE DIFERENTE da rodada de 06/10, que foi RECUSADA porque duas fontes publicavam ABSOLUTOS DIFERENTES para os mesmos dois candidatos repetindo um trio validos/brancos/nulos identico (1.172.583/966.991 a 98,75% contra 1.187.352/977.777 a 97,96%), com derivacoes a 0,126%. O IMPASSE SE RESOLVEU: 1.172.583/966.991 e a parcial de 98,75% e 1.187.352/977.777 e a leitura de 100,00% (8.287 de 8.287 secoes), e e esta que esta aqui, agora com um trio de totais proprio. FECHAMENTO: 3.575.264 + 233.512 + 290.660 = 4.099.436, EXATAMENTE o total de votos apurados que a Plural publica, sem resto. Em 2026 cada UF elege DOIS senadores, logo cada eleitor tem DOIS votos e o total apurado e exatamente 2x o comparecimento. TOTAL 4.099.436 E PAR; comparecimento 2.049.718. SEIS DERIVACOES voto/percentual: 1.187.352/0,3321 = 3.575.285, 977.777/0,2735 = 3.575.053, 519.434/0,1453 = 3.574.907, 411.020/0,1150 = 3.574.087, 224.621/0,0628 = 3.576.768 e 169.265/0,0473 = 3.578.541; a intersecao dos intervalos de arredondamento e [3.574.763 .. 3.575.641] e o validos publicado 3.575.264 CAI DENTRO DELA. No inverso, os seis absolutos sobre 3.575.264 reimprimem os seis percentuais publicados sem excecao: 33,2102 / 27,3484 / 14,5285 / 11,4962 / 6,2826 / 4,7343. PERCENTUAIS SOBRE O TOTAL: validos 87,2136% (publicado 87,21%), brancos 5,6962% (5,70%), nulos 7,0902% (7,09%); somam 100,00%. Brancos + nulos = 524.172, exatamente o valor que o Olhar Direto publica em materia propria, terceira fonte independente para esse par. ELEITORADO, SEM BUSCA: comparecimento 2.049.718 + abstencoes 585.274 = 2.634.992 aptos nas secoes, 99,894% dos 2.637.801 aptos publicados para MT e 99,877% dos 2.638.230 de data/electorate.json — dentro da faixa de 99,8%-100,2% a 100% de secoes; abstencao 585.274/2.634.992 = 22,212%, reproduzindo os 22,20%-22,21% publicados, e comparecimento 77,788% contra os 77,80% publicados. COBERTURA: os seis candidatos somam 3.489.469 = 97,600% dos validos, exatamente a soma dos seis percentuais publicados (97,60%); os 2,40% restantes sao dos quatro candidatos restantes da lista de dez, NAO COMPLETADOS. ARMADILHA DE OUTRO CARGO: nao ha recorte de governador nem de presidente de MT no arquivo para cruzar. Mauro Mendes e José Medeiros (Zé Medeiros na urna) ELEITOS; Janaína Riva, terceira, ficou sem vaga. Base dos percentuais: VOTOS VALIDOS. Coletado via resumo de WebSearch; WebFetch esta BLOQUEADO pelo proxy de egresso deste ambiente para cnnbrasil, olhardireto, gazetadopovo e demais portais, e para resultados.tse.jus.br, portanto NENHUM valor foi conferido na pagina original. Eleicao de 2026; mandatos de oito anos, 2027-2035."
+    },
+    {
+      "cargo": "senador",
+      "uf": "MS",
+      "turno": 1,
+      "secoesTotalizadas": 100,
+      "validosTotal": 2608059,
+      "candidatos": [
+        {
+          "candidato": "Reinaldo Azambuja",
+          "partido": "PL",
+          "votos": 903554
+        },
+        {
+          "candidato": "Capitão Contar",
+          "partido": "PL",
+          "votos": 856045
+        }
+      ],
+      "brancos": 225530,
+      "nulos": 244429,
+      "abstencoes": 482860,
+      "fonte": {
+        "nome": "Exame — Apuração Senador no estado do MS 2026 (dados do TSE, 100% das urnas, leitura de 04/10 às 20h05)",
+        "url": "https://exame.com/eleicoes/2026/apuracao/primeiro-turno/senador/mapa-de-apuracao/?estado=ms"
+      },
+      "observacao": "FONTE DIFERENTE da rodada de 06/10, que foi RECUSADA porque as derivacoes apontavam 2.544.537-2.549.205 contra um validos publicado de 2.606.186, 2,2%-2,4% abaixo. Os 2.606.186 e as derivacoes vinham de instantes distintos (Gazeta do Povo a 99,93% e Agencia Senado a 97,5%). AQUI O BLOCO INTEIRO E DA LEITURA DE 100% DO EXAME. FECHAMENTO: 2.608.059 + 225.530 + 244.429 = 3.078.018, EXATAMENTE o total de votos apurados que o Exame publica, sem resto. Em 2026 cada UF elege DOIS senadores, logo cada eleitor tem DOIS votos e o total apurado e exatamente 2x o comparecimento. TOTAL 3.078.018 E PAR; comparecimento 1.539.009. DUAS DERIVACOES voto/percentual: 903.554/0,3464 = 2.608.412 e 856.045/0,3282 = 2.608.303, que concordam entre si em 0,004%; a intersecao dos dois intervalos de arredondamento e [2.608.036 .. 2.608.700] e o validos publicado 2.608.059 CAI DENTRO DELA. No inverso, 903.554/2.608.059 = 34,6447% (publicado 34,64%) e 856.045/2.608.059 = 32,8231% (publicado 32,82%). ESSE TESTE DESEMPATA UMA DIVERGENCIA DE FONTES: o Midiamax publica 852.045 para Capitão Contar em vez de 856.045, e 852.045 sobre 2.608.059 daria 32,67%, que NAO e o percentual publicado — 856.045 e o valor certo e 852.045 e erro de transcricao. PERCENTUAIS SOBRE O TOTAL: validos 84,7318% (publicado 84,73%), brancos 7,3271% (7,33%), nulos 7,9411% (7,94%); somam 100,00%. ELEITORADO, SEM BUSCA: comparecimento 1.539.009 + abstencoes 482.860 = 2.021.869 aptos nas secoes, 99,851% dos 2.024.884 de data/electorate.json — dentro da faixa de 99,8%-100,2% a 100% de secoes; abstencao 482.860/2.021.869 = 23,882%, reproduzindo os 23,88% publicados. ROTULO IGNORADO: a Gazeta do Povo imprime \"comparecimento de 2.020.391 eleitores\" a 99,93% das urnas, e esse numero NAO e comparecimento — e 2.020.391 fosse comparecimento o total apurado passaria de 4 milhoes, contra os 3.078.018 publicados. Sao os APTOS NAS SECOES TOTALIZADAS, praticamente os 2.021.869 que esta ficha deriva do total par: a mesma armadilha de rotulo de RJ, BA, CE, DF e PB. COBERTURA: os dois candidatos somam 1.759.599 = 67,468% dos validos (a soma dos dois percentuais publicados e 67,46%); os 32,53% restantes sao de Vander Loubet (PT, 13,88%) e Soraya Thronicke (PSB, 13,07%), para quem o Exame publica APENAS percentual e nenhum absoluto, e demais — NAO COMPLETADOS, porque um voto derivado de percentual de duas casas teria incerteza de cerca de 130 votos e este arquivo grava absolutos. ARMADILHA DE OUTRO CARGO: nao ha recorte de governador nem de presidente de MS no arquivo para cruzar. Reinaldo Azambuja e Capitão Contar ELEITOS, os dois pelo PL. ATENCAO: a Radio Senado inverte os percentuais dos dois (34,6% para Contar e 32,8% para Azambuja), contrariando Exame, Midiamax e Agencia Senado — leitura descartada. Base dos percentuais: VOTOS VALIDOS. Coletado via resumo de WebSearch; WebFetch esta BLOQUEADO pelo proxy de egresso deste ambiente para cnnbrasil, olhardireto, gazetadopovo e demais portais, e para resultados.tse.jus.br, portanto NENHUM valor foi conferido na pagina original. Eleicao de 2026; mandatos de oito anos, 2027-2035."
+    },
+    {
+      "cargo": "senador",
+      "uf": "RO",
+      "turno": 1,
+      "secoesTotalizadas": 100,
+      "validosTotal": 1785214,
+      "candidatos": [
+        {
+          "candidato": "Dr. Fernando Máximo",
+          "partido": "PL",
+          "votos": 570799
+        },
+        {
+          "candidato": "Bruno Bolsonaro Scheid",
+          "partido": "PL",
+          "votos": 474226
+        }
+      ],
+      "brancos": 82933,
+      "nulos": 112479,
+      "abstencoes": null,
+      "fonte": {
+        "nome": "Plural — Apuração final em Rondônia, Eleições 2026 (dados do TSE, 100% das urnas; candidatos e percentuais), com O Tempo para comparecimento, brancos e nulos da totalização",
+        "url": "https://www.plural.jor.br/apuracao-final-rondonia-eleicoes-2026/"
+      },
+      "observacao": "FONTE DIFERENTE da rodada de 06/10, que foi RECUSADA por TRES valores incompativeis de validos (1.748.761, 1.785.421 e o publicado 1.759.898), spread de 2,1%. O impasse se resolveu e os tres se explicam. VALIDOSTOTAL 1.785.214 E DERIVADO, NAO PUBLICADO: vem do fechamento 2 x comparecimento publicado (990.313 eleitores, O Tempo) = 1.980.626, menos brancos 82.933 menos nulos 112.479. Em 2026 cada UF elege DOIS senadores, logo cada eleitor tem DOIS votos e o total apurado e exatamente 2x o comparecimento. TOTAL 1.980.626 E PAR e vale exatamente 2x os 990.313 que compareceram. DUAS DERIVACOES voto/percentual: 570.799/0,3197 = 1.785.421 e 474.226/0,2656 = 1.785.489, que concordam entre si em 0,004%; a intersecao dos dois intervalos de arredondamento e [1.785.154 .. 1.785.699] e o valor de fechamento 1.785.214 CAI DENTRO DELA. No inverso, 570.799/1.785.214 = 31,9737% (publicado 31,97%) e 474.226/1.785.214 = 26,5641% (publicado 26,56%). OS OUTROS DOIS VALORES: 1.785.421 e simplesmente a derivacao do primeiro colocado, nao um publicado independente; e 1.759.898, que O Tempo imprime como \"votos validos\", esta 1,42% abaixo do fechamento feito com os brancos e nulos da PROPRIA O Tempo e com o comparecimento da PROPRIA O Tempo — bloco internamente misturado, e e o validos liquido de anulados sub judice, o mesmo padrao de AC, RR, TO e PE desta rodada. Sobre 1.759.898 os absolutos dariam 32,43% e 26,95%, que NAO sao os percentuais publicados. SELECAO DO INSTANTE DOS CANDIDATOS: a Revista Forum publica 537.532 e 445.639 com percentuais 31,86% e 26,41%, e a Gazeta do Povo 570.428 e 473.919 a 99,94%; os valores da Plural (570.799 e 474.226) sao os maiores e os unicos que reproduzem 31,97% e 26,56%, logo sao os de 100%. ELEITORADO, SEM BUSCA: a abstencao publicada e 21,71%, o que coloca os aptos nas secoes em 990.313/0,7829 = 1.264.929, 99,828% dos 1.267.105 de data/electorate.json — dentro da faixa de 99,8%-100,2% a 100% de secoes; e a Gazeta do Povo imprime 1.264.178 como \"comparecimento (99,94% do eleitorado total)\", que e justamente esse numero de APTOS NAS SECOES e nao comparecimento, a armadilha de rotulo de RJ, BA, CE, DF e PB. ABSTENCOES FICOU null DE PROPOSITO: o valor seria 274.616, mas sai de uma DIVISAO por 21,71% arredondado, nao de um absoluto publicado, e este arquivo nao completa brancos, nulos ou abstencoes por estimativa. Brancos e nulos valem 9,866% do total, proporcao baixa mas da ordem dos 7,23% do recorte de AP ja no arquivo. COBERTURA: os dois candidatos somam 1.045.025 = 58,538% dos validos (a soma dos dois percentuais publicados e 58,53%); os 41,46% restantes NAO FORAM COMPLETADOS por falta de absolutos no instante de 100%. ARMADILHA DE OUTRO CARGO: nao ha recorte de governador nem de presidente de RO no arquivo para cruzar. Dr. Fernando Máximo e Bruno Scheid ELEITOS, os dois pelo PL. Base dos percentuais: VOTOS VALIDOS. Coletado via resumo de WebSearch; WebFetch esta BLOQUEADO pelo proxy de egresso deste ambiente para cnnbrasil, olhardireto, gazetadopovo e demais portais, e para resultados.tse.jus.br, portanto NENHUM valor foi conferido na pagina original. Eleicao de 2026; mandatos de oito anos, 2027-2035."
+    },
+    {
+      "cargo": "senador",
+      "uf": "RR",
+      "turno": 1,
+      "secoesTotalizadas": 100,
+      "validosTotal": 609613,
+      "candidatos": [
+        {
+          "candidato": "Nicoletti",
+          "partido": "PL",
+          "votos": 138269
+        },
+        {
+          "candidato": "Teresa Surita",
+          "partido": "MDB",
+          "votos": 117270
+        },
+        {
+          "candidato": "Helena da Asatur",
+          "partido": "PSD",
+          "votos": 106652
+        }
+      ],
+      "brancos": 21446,
+      "nulos": 32859,
+      "abstencoes": null,
+      "fonte": {
+        "nome": "Olhar Direto — Resultados senador RR 2026 (dados do TSE, 100,00% · 1.519 de 1.519 seções; candidatos), com O Tempo para comparecimento, brancos e nulos da totalização",
+        "url": "https://www.olhardireto.com.br/eleicoes/2026/resultados/senador/rr"
+      },
+      "observacao": "FONTE DIFERENTE da rodada de 06/10, que foi RECUSADA porque os candidatos derivavam 609.652 e 609.511, os brancos e nulos exigiam validos 606.931 e o publicado era 600.271 — 0,436% de divergencia. Aqueles brancos e nulos eram da Gazeta do Povo a 99,61% (21.414 e 32.655), cujo bloco e internamente inconsistente: o validos pede base 653.819 enquanto brancos e nulos pedem 660.926 e 661.032. AQUI OS TOTAIS SAO OS DE O TEMPO NA TOTALIZACAO. VALIDOSTOTAL 609.613 E DERIVADO, NAO PUBLICADO: vem do fechamento 2 x comparecimento publicado (331.959 eleitores, O Tempo) = 663.918, menos brancos 21.446 menos nulos 32.859. Em 2026 cada UF elege DOIS senadores, logo cada eleitor tem DOIS votos e o total apurado e exatamente 2x o comparecimento. TOTAL 663.918 E PAR e vale exatamente 2x os 331.959 que compareceram. TRES DERIVACOES voto/percentual: 138.269/0,2268 = 609.652, 117.270/0,1924 = 609.511 e 106.652/0,1750 = 609.440; a intersecao dos tres intervalos de arredondamento e [609.518 .. 609.614], faixa de apenas 96 votos (0,016%), e o valor de fechamento 609.613 CAI DENTRO DELA, a um voto do teto. No inverso, 138.269/609.613 = 22,6814% (publicado 22,68%), 117.270/609.613 = 19,2368% (19,24%) e 106.652/609.613 = 17,4950% (publicado 17,50%, diferenca de 0,005 ponto). O PUBLICADO 603.365 (O Tempo) fica 6.248 votos abaixo do fechamento feito com os brancos, nulos e comparecimento da PROPRIA O Tempo: e o validos liquido de anulados sub judice — o Canal Rural lista Hiperion de Oliveira (PV) e Mario Rocha (PSOL) como anulados sub judice —, o mesmo padrao de AC, TO, PE e RO desta rodada; o denominador dos percentuais e o BRUTO, 609.613. E 600.271 (Gazeta, 99,61%) e leitura anterior e de bloco incoerente. ELEITORADO, SEM BUSCA: comparecimento 331.959 sobre os 400.603 aptos que a Gazeta publica para RR da 82,8648%, e o complemento 17,1352% reproduz EXATAMENTE os 17,14% de abstencao que O Tempo publica — fechamento ao centesimo. Esses 400.603 aptos sao 99,758% dos 401.574 de data/electorate.json, um pouco abaixo da faixa de 99,8%: a diferenca de 971 eleitores e a atualizacao do cadastro entre a referencia de julho de 2026 e a eleicao, e contra a base publicada o fechamento e exato. ROTULO IGNORADO: a Gazeta imprime \"comparecimento de 398.555 eleitores, de um eleitorado total de 400.603\" — 398.555 nao pode ser comparecimento, pois implicaria abstencao proxima de zero; sao os APTOS NAS SECOES TOTALIZADAS a 99,61%, a armadilha de rotulo de RJ, BA, CE, DF e PB. ABSTENCOES FICOU null DE PROPOSITO: o valor seria 68.644 por subtracao (400.603 - 331.959), mas os dois absolutos vem de FONTES E INSTANTES DIFERENTES (aptos da Gazeta a 99,61%, comparecimento de O Tempo a 100%) e nenhuma fonte publica a abstencao de RR como absoluto. Brancos e nulos valem 3,2302% e 4,9493% do total. COBERTURA: os tres candidatos somam 362.191 = 59,413% dos validos (a soma dos tres percentuais publicados e 59,42%); os 40,59% restantes NAO FORAM COMPLETADOS. ARMADILHA DE OUTRO CARGO: nao ha recorte de governador nem de presidente de RR no arquivo para cruzar. Nicoletti e Teresa Surita ELEITOS; Helena da Asatur (Maria Helena Teixeira Lima na urna), terceira, ficou sem vaga. RR renovou DUAS das suas tres cadeiras; a terceira segue com Dr. Hiran (PP) ate 2031. Base dos percentuais: VOTOS VALIDOS. Coletado via resumo de WebSearch; WebFetch esta BLOQUEADO pelo proxy de egresso deste ambiente para cnnbrasil, olhardireto, gazetadopovo e demais portais, e para resultados.tse.jus.br, portanto NENHUM valor foi conferido na pagina original. Eleicao de 2026; mandatos de oito anos, 2027-2035."
+    },
+    {
+      "cargo": "senador",
+      "uf": "AC",
+      "turno": 1,
+      "secoesTotalizadas": 100,
+      "validosTotal": 875302,
+      "candidatos": [
+        {
+          "candidato": "Márcio Bittar",
+          "partido": "PL",
+          "votos": 223972
+        },
+        {
+          "candidato": "Mara Rocha",
+          "partido": "Republicanos",
+          "votos": 157104
+        },
+        {
+          "candidato": "Gladson Cameli",
+          "partido": "PP",
+          "votos": 145244
+        },
+        {
+          "candidato": "Jorge Viana",
+          "partido": "PT",
+          "votos": 124063
+        }
+      ],
+      "brancos": 38954,
+      "nulos": 61686,
+      "abstencoes": null,
+      "fonte": {
+        "nome": "Olhar Direto — Resultados senador AC 2026 (dados do TSE, 100,00% · 2.270 de 2.270 seções; candidatos e percentuais), com O Tempo para comparecimento, brancos, nulos e o válidos líquido da totalização",
+        "url": "https://www.olhardireto.com.br/eleicoes/2026/resultados/senador/ac"
+      },
+      "observacao": "FONTE DIFERENTE da rodada de 06/10, que foi RECUSADA porque os absolutos sairam so como aproximacao (\"cerca de 233.000\", ND Mais) e a soma daria comparecimento de 67,6% contra os 79,4% publicados. AQUI OS ABSOLUTOS SAO EXATOS, do TSE. VALIDOSTOTAL 875.302 E DERIVADO, NAO PUBLICADO, e foi obtido por DUAS ROTAS INDEPENDENTES QUE DAO O MESMO INTEIRO — esta e a validacao mais forte desta ficha. ROTA 1, paridade: Em 2026 cada UF elege DOIS senadores, logo cada eleitor tem DOIS votos e o total apurado e exatamente 2x o comparecimento. 2 x comparecimento publicado (487.971 eleitores, O Tempo) = 975.942, que E PAR, menos brancos 38.954 menos nulos 61.686 = 875.302. ROTA 2, recomposicao do sub judice: o validos que O Tempo publica e 730.058, e 730.058 + 145.244 = 875.302, onde 145.244 sao EXATAMENTE os votos de Gladson Cameli, terceiro colocado, marcado \"Anulado sub judice\" — ou seja, 730.058 e o validos LIQUIDO desses votos e 875.302 e o BRUTO, que e o denominador dos percentuais. As duas rotas coincidem AO VOTO, sem ajuste. QUATRO DERIVACOES voto/percentual: 223.972/0,2558 = 875.575, 157.104/0,1795 = 875.231, 145.244/0,1659 = 875.491 e 124.063/0,1417 = 875.533, com spread de 0,039% entre si e media a 0,018% de 875.302 — dentro da tolerancia de 0,1%. No inverso, os quatro absolutos sobre 875.302 dao 25,5880 / 17,9485 / 16,5936 / 14,1737, que reproduzem os quatro percentuais publicados (25,58 / 17,95 / 16,59 / 14,17) com desvio maximo de 0,008 ponto, a diferenca sendo so de convencao de truncamento contra arredondamento na segunda casa. PERCENTUAIS SOBRE O TOTAL: brancos 3,9914%, nulos 6,3207%, validos 89,6879%. COERENCIA COM A PARCIAL: a 98,06% das secoes Band e Canal Rural publicam total 954.668 (tambem PAR), brancos 38.232 (4,00%) e nulos 60.051 (6,29%); de la para ca brancos crescem 722 e nulos 1.635, crescimento compativel com os 1,94% de secoes que faltavam — confirma que 38.954 e 61.686 sao de fato os valores de 100%. ELEITORADO, SEM BUSCA: a abstencao publicada e 20,44% (20,43% em O Alto Acre), o que coloca os aptos nas secoes em 487.971/0,7956 = 613.337, 99,789% dos 614.631 de data/electorate.json — praticamente na faixa de 99,8%-100,2% a 100% de secoes, com a diferenca explicada pela atualizacao do cadastro entre julho e a eleicao. ABSTENCOES FICOU null DE PROPOSITO: o valor seria 125.366, mas sai de uma DIVISAO por 20,44% arredondado e nao de um absoluto publicado. COBERTURA: os quatro candidatos somam 650.383 = 74,304% dos validos BRUTOS (a soma dos quatro percentuais publicados e 74,29%); os 25,70% restantes NAO FORAM COMPLETADOS. GLADSON CAMELI FOI MANTIDO NA LISTA porque seus 145.244 votos INTEGRAM o validosTotal gravado aqui e sao o que explica a diferenca entre 730.058 e 875.302 — mas ele esta \"Anulado sub judice\" e NAO figura entre os eleitos, apesar de ter sido o terceiro mais votado; sem ele a lista cobriria 57,710% dos validos. ARMADILHA DE OUTRO CARGO: nao ha recorte de governador nem de presidente do AC no arquivo para cruzar. Márcio Bittar e Mara Rocha (Cylmara Fernandes da Rocha Gripp na urna) ELEITOS. Base dos percentuais: VOTOS VALIDOS. Coletado via resumo de WebSearch; WebFetch esta BLOQUEADO pelo proxy de egresso deste ambiente para cnnbrasil, olhardireto, gazetadopovo e demais portais, e para resultados.tse.jus.br, portanto NENHUM valor foi conferido na pagina original. Eleicao de 2026; mandatos de oito anos, 2027-2035."
+    },
+    {
+      "cargo": "senador",
+      "uf": "TO",
+      "turno": 1,
+      "secoesTotalizadas": 100,
+      "validosTotal": 1653665,
+      "candidatos": [
+        {
+          "candidato": "Eduardo Gomes",
+          "partido": "PL",
+          "votos": 450191
+        },
+        {
+          "candidato": "Alexandre Guimarães",
+          "partido": "MDB",
+          "votos": 316786
+        },
+        {
+          "candidato": "Eli Borges",
+          "partido": "Republicanos",
+          "votos": 271829
+        },
+        {
+          "candidato": "Gaguim",
+          "partido": "União Brasil",
+          "votos": 255548
+        },
+        {
+          "candidato": "Paulo Mourão",
+          "partido": "PT",
+          "votos": 129838
+        },
+        {
+          "candidato": "Ronaldo Dimas",
+          "partido": "Podemos",
+          "votos": 93009
+        }
+      ],
+      "brancos": 93579,
+      "nulos": 180376,
+      "abstencoes": 216623,
+      "fonte": {
+        "nome": "Plural — Apuração final no Tocantins, Eleições 2026 (dados do TSE, 100% das seções; candidatos, brancos, nulos e percentuais), com O Tempo para comparecimento, abstenção e aptos nas seções instaladas",
+        "url": "https://www.plural.jor.br/apuracao-final-tocantins-eleicoes-2026/"
+      },
+      "observacao": "FONTE DIFERENTE da rodada de 06/10, que foi RECUSADA porque a soma das linhas dava 1.899.357, IMPAR e portanto impossivel para um cargo de dois votos por eleitor, e quatro derivacoes convergiam 1,5% acima do publicado. AQUI A PARIDADE FECHA AO VOTO. VALIDOSTOTAL 1.653.665 E DERIVADO, NAO PUBLICADO: Em 2026 cada UF elege DOIS senadores, logo cada eleitor tem DOIS votos e o total apurado e exatamente 2x o comparecimento. 2 x comparecimento publicado (963.810 eleitores) = 1.927.620, que E PAR, menos brancos 93.579 menos nulos 180.376 = 1.653.665. FECHAMENTO EXATO EM QUATRO LINHAS: 1.653.665 + 93.579 + 180.376 = 1.927.620, sem resto, e os tres percentuais que a fonte publica saem todos sobre esse total: validos 85,7879% (publicado 85,79%), brancos 4,8546% (4,85%) e nulos 9,3574% (9,36%), somando 100,00%. ONDE ESTAVA O ERRO DO VALOR PUBLICADO: a fonte imprime \"1.650.411 (85,79%) votos validos\", e 1.650.411 + 3.254 = 1.653.665, onde 3.254 sao EXATAMENTE os votos de Helio Rodrigues Bolsonaro (Democrata), anulados sub judice — ou seja, 1.650.411 e o validos LIQUIDO e os 85,79% publicados pertencem ao BRUTO, 1.653.665; sobre 1.650.411 o percentual seria 85,62%, que nao e o publicado. O mesmo padrao aparece em AC, RR, PE e RO desta rodada. SEIS DERIVACOES voto/percentual: 450.191/0,2722 = 1.653.898, 316.786/0,1916 = 1.653.372, 271.829/0,1644 = 1.653.461, 255.548/0,1545 = 1.654.032, 129.838/0,0785 = 1.653.987 e 93.009/0,0562 = 1.654.964; a intersecao dos intervalos de arredondamento e [1.653.595 .. 1.653.803] e 1.653.665 CAI DENTRO DELA, enquanto 1.650.411 fica FORA, 0,19% abaixo. No inverso, os seis absolutos sobre 1.653.665 reimprimem os seis percentuais publicados sem excecao: 27,2238 / 19,1566 / 16,4380 / 15,4534 / 7,8515 / 5,6244 — e sobre 1.650.411 nenhum deles fecharia. ELEITORADO, SEM BUSCA: comparecimento 963.810 + abstencoes 216.623 = 1.180.433, EXATAMENTE os aptos nas secoes instaladas que O Tempo publica, 99,841% dos 1.182.307 de data/electorate.json — dentro da faixa de 99,8%-100,2% a 100% de secoes; abstencao 216.623/1.180.433 = 18,351% e comparecimento 81,649%, reproduzindo os 18,35% e 81,65% publicados. COBERTURA: os seis candidatos somam 1.517.201 = 91,748% dos validos, exatamente a soma dos seis percentuais publicados (91,74%); os 8,25% restantes NAO FORAM COMPLETADOS. Helio Rodrigues Bolsonaro (Democrata, 3.254 votos) NAO FOI INCLUIDO como candidato, por estar anulado sub judice e sem percentual publicado — mas seus votos integram o validosTotal, como explicado acima. ARMADILHA DE OUTRO CARGO: nao ha recorte de governador nem de presidente de TO no arquivo para cruzar; o governo de TO foi ao segundo turno. Eduardo Gomes e Alexandre Guimarães ELEITOS. ATENCAO: o site srzd publica 27,26% e 19,15%, que nao fecham com nenhuma das bases acima — leitura descartada. Base dos percentuais: VOTOS VALIDOS. Coletado via resumo de WebSearch; WebFetch esta BLOQUEADO pelo proxy de egresso deste ambiente para cnnbrasil, olhardireto, gazetadopovo e demais portais, e para resultados.tse.jus.br, portanto NENHUM valor foi conferido na pagina original. Eleicao de 2026; mandatos de oito anos, 2027-2035."
     }
   ]
 }

@@ -2701,3 +2701,97 @@ faltava, e que agora vale: **depois de commitar dado, conferir que o arquivo
 COMMITADO contém o registro** — `git show HEAD:data/polls.json`, não `git status`,
 não o working tree, não a contagem de testes. Verificar antes do commit não serve
 quando há agente vivo com direito de escrita no mesmo arquivo.
+
+### Senador fecha em 27/27 UFs — e as 10 recusas de ontem caíram por um erro de leitura meu
+
+As dez UFs que recusei ontem com discordância aritmética medida **entraram todas**,
+a 100% das seções, todos os totais pares. O senador está **completo: 27 de 27**.
+
+| UF | 1º e 2º colocados | total (par) |
+|---|---|---|
+| PE | Humberto Costa (PT) 2.531.389 · Marília Arraes (PDT) 2.325.127 | 11.810.472 |
+| PI | Marcelo Castro (MDB) 1.307.833 · Júlio César (PSD) 989.146 | 4.478.922 |
+| MT | Mauro Mendes (União Brasil) 1.187.352 · José Medeiros (PL) 977.777 | 4.099.436 |
+| AL | Arthur Lira (PP) 948.703 · Marina JHC (PSDB) 926.860 | 3.871.640 |
+| MS | Reinaldo Azambuja (PL) 903.554 · Capitão Contar (PL) 856.045 | 3.078.018 |
+| SE | Rogério Carvalho (PT) 511.142 · Delegado Alessandro (MDB) 399.775 | 2.873.218 |
+| RO | Dr. Fernando Máximo (PL) 570.799 · Bruno Scheid (PL) 474.226 | 1.980.626 |
+| TO | Eduardo Gomes (PL) 450.191 · Alexandre Guimarães (MDB) 316.786 | 1.927.620 |
+| AC | Márcio Bittar (PL) 223.972 · Mara Rocha (Republicanos) 157.104 | 975.942 |
+| RR | Nicoletti (PL) 138.269 · Teresa Surita (MDB) 117.270 | 663.918 |
+
+**A causa das recusas não era ficha misturada: era eu comparando dois denominadores
+diferentes.** Vários portais publicam, na mesma linha, um "votos válidos" que é o
+**líquido de votos anulados sub judice**, enquanto **o denominador dos percentuais
+dos candidatos é o bruto**. A diferença não é ruído — é um número nomeado:
+
+- **AC**, e esta é a prova decisiva, conferida aqui: o válidos publicado 730.058
+  **mais os 145.244 votos de Gladson Cameli** (3º mais votado, "Anulado sub
+  judice") dá 875.302. E a rota da paridade, que **não usa nada disso** —
+  2 × 487.971 de comparecimento − 38.954 brancos − 61.686 nulos — dá **875.302, o
+  mesmo inteiro, ao voto**. Duas rotas independentes, diferença zero. Coincidência
+  dessa ordem não se fabrica.
+- **TO**: 1.650.411 + 3.254 (Helio Rodrigues Bolsonaro, anulado) = 1.653.665, e aí
+  1.653.665 ÷ 1.927.620 = **85,7879% → 85,79, o publicado**. Sobre o líquido daria
+  85,62%, que não é o publicado. **E resolve a soma ímpar de 1.899.357 que foi o
+  motivo da minha recusa de ontem.**
+- O mesmo padrão em **PE**, **RR** (6.248) e **RO**.
+
+**Validação nova que o agente trouxe e que vale adotar: interseção dos intervalos
+de arredondamento** de todas as derivações `votos ÷ (pct/100)`, em vez de só a
+concordância a 0,1%. Em PE a interseção de cinco derivações tem **359 votos de
+largura** (0,0039%) e o válidos do fechamento cai dentro; em RR a interseção de três
+tem **96 votos**, e o valor cai a um voto do teto. É muito mais apertado que o teste
+de 0,1%.
+
+**Cruzamento 2× em PE, de fontes diferentes:** o comparecimento desta leitura
+(5.905.236, via total ÷ 2) fica a **0,0986%** do comparecimento implícito no
+`presidente/PE` já na base (5.911.062). Confirmado aqui.
+
+**Um erro meu durante a conferência, que retrato:** acusei o agente de atribuir
+errado a diferença bruto/líquido de PE, porque 9.310.957 − 9.221.513 = 89.444 e não
+os 18.179 citados. **Eu estava errado** — os 18.179 referem-se ao válidos de O Tempo
+(9.292.778), e 9.310.957 − 9.292.778 = 18.179, exato. Comparei o bruto com o
+9.221.513 de ontem, que é um **terceiro** valor publicado, de outra fonte. Fica
+registrado que **circulam três válidos para o senador de PE**; o da ficha vem do
+fechamento por paridade e é o único que reimprime os cinco percentuais.
+
+**Ressalvas que ficam declaradas:** `validosTotal` **derivado** do fechamento em PE,
+SE, RO, RR, AC e TO (publicado em AL, PI, MT, MS); `abstencoes: null` em RO, AC e RR
+de propósito, porque sairiam de divisão por percentual arredondado ou de fontes de
+instantes diferentes; cobertura baixa em **SE (39,04%)**, RO 58,5%, RR 59,4%, MS
+67,5% e AC 74,3%, onde só os eleitos têm absoluto — é o `validosTotal` publicado ou
+derivado que impede isso de inflar alguém na tela. **AC inclui Gladson Cameli**
+porque é ele que explica o bruto e seus votos integram os válidos, com a anulação
+declarada; ele não está entre os eleitos.
+
+### A paridade virou diagnóstico de todo o arquivo
+
+Com senador em 27 UFs, o total par permite conferir **cada** UF onde há outro cargo.
+Rodado aqui: a razão senador/presidente dá 1,996–1,999 em SP, BA, RS, PR, PE, SC, GO
+e PA. Os três desvios têm causa conhecida e quantificada:
+
+- **MG (2,109) e MA (2,074)**: as fichas de presidente dessas UFs têm brancos e nulos
+  em `null`, então o denominador está subestimado. Supondo brancos+nulos de ~4% dos
+  computados, as razões vão a **2,024** e **1,991**.
+- **RJ (1,875)**: o senador está a 94,57% e o presidente a 100% — instantes
+  diferentes. Escalado para 100%, a razão vai a **1,982**.
+- Nas razões senador/governador, os desvios de RS, PR e BA são exatamente as três
+  fichas de governador que seguem parciais (97,40%, 99,17%, 95,02%).
+
+Nenhum desvio sem explicação, ou seja: **nenhuma ficha misturando instantes.** Vale
+rodar esta checagem a cada rodada — ela custa um comando e nenhuma busca.
+
+### Estado da apuração ao fim de 07/10
+
+**44 recortes**: presidente BR 100% + 11 UFs, **senador 27/27**, governador 5.
+Sonda ao vivo: presidente com destaque nacional, encerrada, 16 institutos e margem
+1,8673; **senador encerrado com 99,54% de cobertura efetiva** nas 27 UFs e
+`acerto: null`, como projetado (o ranking é só presidencial); governador não
+encerrado, 49,46%.
+
+Faltam: **presidente em 16 UFs** (AC AL AM AP CE DF ES MS MT PB PI RN RO RR SE TO) e
+**governador em 22**. As abstenções que as fichas de senador agora medem de graça —
+PE 18,18%, AL 20,64%, SE 17,32%, PI 17,15%, MT 22,21%, MS 23,88%, TO 18,35%, RO
+21,71%, RR 17,14%, AC 20,44% — calibram qualquer futura ficha de presidente ou
+governador nessas UFs sem uma única busca.
