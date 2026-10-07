@@ -2511,3 +2511,43 @@ e não uma preferência fixa pelo nacional.
 "deixar de preferir X cegamente", é preciso procurar **todas** as variáveis que
 preferem X cegamente, não só a que apareceu no sintoma. E suíte verde num caminho
 sem teste não é evidência de nada — a sonda sobre `data/` real é que foi.
+
+## Rodada de 07/10 — a varredura que o defeito de ontem obrigou
+
+Nenhuma pesquisa nova era esperada hoje: o calendário anunciado põe Datafolha e
+PoderData em **08/10** e AtlasIntel em **09/10**.
+
+### A varredura pela mesma classe de defeito, e o que ela achou
+
+A lição de 06/10 foi: quando o conserto é "deixar de preferir X cegamente", é
+preciso procurar **todas** as variáveis que preferem X cegamente. Fiz a varredura
+em `get-projecao.ts`, `projecao-view.ts` e `domain/apuracao.ts`.
+
+**Resultado limpo em quase tudo.** As duas pontas do destaque na tela são
+mutuamente exclusivas (`if (destaque === 'nacional')` … `else`), e
+`rotuloCobertura` — que fala de "média ponderada de N estados" — só renderiza no
+ramo estadual, então não compete com o número nacional. `baseComparacao` está
+consertado e travado por quatro testes.
+
+**Mas havia um defeito, e estava no ar.** A nota da tabela "Por estado" afirmava,
+fixo no código:
+
+> "Cada estado é projetado pelo que falta totalizar nele. **É a soma destas linhas
+> que forma a projeção acima.**"
+
+Com os 10 recortes de UF ingeridos ontem, isso virou **falso**: o destaque acima
+é a contagem nacional do TSE em 100% das seções, e a tabela são 10 de 27 estados.
+Duas grandezas diferentes na mesma tela, com uma frase ligando a errada — e o
+leitor que somasse as linhas obteria um número enviesado para Sul e Sudeste,
+achando que reproduzia o destaque. A tabela também **não dizia que faltavam 17
+UFs**: dez linhas sem denominador parecem o país.
+
+A nota agora segue `destaque`, nega explicitamente a relação no modo nacional,
+avisa que somar daria resultado enviesado, e declara "10 de 27 unidades da
+federação: 17 ainda sem nenhuma apuração, e elas NÃO são completadas por
+estimativa". Cinco testes, mutação confirmada.
+
+**É exatamente a mesma classe do defeito de ontem** — texto escrito quando só
+existia um modo, que vira mentira quando o segundo modo recebe dado. Ontem foi
+`baseComparacao`, hoje a nota da tabela. Vale procurar a próxima: qualquer frase
+fixa que afirme uma relação entre dois números da tela.

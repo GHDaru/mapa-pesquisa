@@ -437,14 +437,47 @@ function montarComparacao(dados: ProjecaoComparada): HTMLElement | null {
   ]);
 }
 
-function montarPorUf(projecao: Projecao): HTMLElement {
+/**
+ * A nota da tabela por estado, que **tem de seguir `destaque`**.
+ *
+ * Ela afirmava, fixo no código, "é a soma destas linhas que forma a projeção
+ * acima". Isso só é verdade no modo estadual. Em 06/10 passou a ser falso no ar:
+ * com 10 das 27 UFs no arquivo, o destaque é a contagem nacional de 100% das
+ * seções, e a tabela logo abaixo dizia ao leitor que aquele número vinha da soma
+ * de 10 estados. Duas grandezas diferentes na mesma tela, com uma frase ligando
+ * a errada.
+ *
+ * É o mesmo defeito que `baseComparacao` tinha: texto escrito quando só existia
+ * um modo. A nota agora diz o que a tabela é em cada caso, e **declara quantas
+ * UFs faltam** — sem isso, uma tabela de 10 linhas parece o país.
+ */
+export function rotuloPorUf(
+  destaque: 'nacional' | 'estadual',
+  comApuracao: number,
+  semApuracao: number,
+): string {
+  const total = comApuracao + semApuracao;
+  const cobertura =
+    semApuracao === 0
+      ? `Todas as ${total} unidades da federação têm apuração.`
+      : `São ${comApuracao} de ${total} unidades da federação: ` +
+        `${semApuracao} ainda sem nenhuma apuração, e elas NÃO são completadas por estimativa.`;
+  const relacao =
+    destaque === 'nacional'
+      ? 'O destaque acima é a contagem nacional da fonte, não a soma destas linhas — ' +
+        'esta tabela é o detalhamento do que já foi totalizado estado por estado, ' +
+        'e somá-la daria um resultado enviesado para as UFs que aqui estão.'
+      : 'Cada estado é projetado pelo que falta totalizar nele, e é a soma destas ' +
+        'linhas que forma a projeção acima.';
+  return `${relacao} ${cobertura}`;
+}
+
+function montarPorUf(projecao: Projecao, destaque: 'nacional' | 'estadual'): HTMLElement {
   return criarEl('section', { className: 'pj-secao' }, [
     criarEl('h2', { texto: 'Por estado' }),
     criarEl('p', {
       className: 'pj-nota',
-      texto:
-        'Cada estado é projetado pelo que falta totalizar nele. É a soma destas linhas ' +
-        'que forma a projeção acima.',
+      texto: rotuloPorUf(destaque, projecao.porUf.length, projecao.ufsSemApuracao.length),
     }),
     criarEl('table', { className: 'pj-tabela' }, [
       criarEl('thead', {}, [
@@ -660,7 +693,7 @@ export function pjMontarConteudo(dados: ProjecaoComparada, agora: Date = new Dat
   const acerto = montarAcerto(dados);
   if (acerto) raiz.appendChild(acerto);
 
-  if (projecao.porUf.length > 0) raiz.appendChild(montarPorUf(projecao));
+  if (projecao.porUf.length > 0) raiz.appendChild(montarPorUf(projecao, dados.destaque));
 
   if (dados.fontes.length > 0 || dados.observacoes.length > 0) {
     raiz.appendChild(

@@ -11,6 +11,7 @@ import {
   rotuloErroCandidato,
   rotuloErroDoInstituto,
   rotuloErroMedio,
+  rotuloPorUf,
   rotuloTurno,
   rotuloVeredito,
   textoContrasteNacional,
@@ -376,5 +377,44 @@ describe('o erro médio só é comparável se a tela disser sobre quantos candid
     expect(rotuloErroDoInstituto(instituto(2.4, 6))).not.toBe(
       rotuloErroDoInstituto(instituto(2.4, 2)),
     );
+  });
+});
+
+describe('a tabela por estado não pode dizer que forma um número que não forma', () => {
+  /**
+   * A nota afirmava, fixo no código, "é a soma destas linhas que forma a
+   * projeção acima". Com 10 das 27 UFs no arquivo e o destaque na contagem
+   * nacional de 100% das seções, isso passou a ser falso no ar: duas grandezas
+   * diferentes na mesma tela, com uma frase ligando a errada.
+   */
+  it('no modo nacional, nega explicitamente que a soma das linhas seja o destaque', () => {
+    const t = rotuloPorUf('nacional', 10, 17);
+    expect(t).toContain('não a soma destas linhas');
+    expect(t).toContain('contagem nacional da fonte');
+    // E avisa que somar daria número enviesado, que é o erro que o leitor faria.
+    expect(t).toContain('enviesado');
+  });
+
+  it('no modo estadual, afirma a relação — ali ela é verdadeira', () => {
+    const t = rotuloPorUf('estadual', 27, 0);
+    expect(t).toContain('é a soma destas linhas que forma a projeção acima');
+    expect(t).not.toContain('não a soma destas linhas');
+  });
+
+  it('declara quantas UFs faltam, porque 10 linhas parecem o país', () => {
+    const t = rotuloPorUf('nacional', 10, 17);
+    expect(t).toContain('10 de 27');
+    expect(t).toContain('17 ainda sem nenhuma apuração');
+    expect(t).toContain('NÃO são completadas por estimativa');
+  });
+
+  it('com as 27 completas, diz isso em vez de omitir', () => {
+    const t = rotuloPorUf('estadual', 27, 0);
+    expect(t).toContain('Todas as 27 unidades da federação têm apuração.');
+    expect(t).not.toContain('sem nenhuma apuração');
+  });
+
+  it('as duas frases de relação são mutuamente exclusivas', () => {
+    expect(rotuloPorUf('nacional', 10, 17)).not.toBe(rotuloPorUf('estadual', 10, 17));
   });
 });
