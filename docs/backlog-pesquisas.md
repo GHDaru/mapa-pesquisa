@@ -2889,3 +2889,73 @@ O ranking segue com **16 institutos** e margem real **1,8673**, intactos.
   PoderData em 07/10. Vale uma busca dedicada.
 - **Ipespe não tem grafia em `data/polls.json`** (conferido). Se publicar, a grafia
   canônica precisa ser definida antes de ingerir.
+
+### O teste de corte pode PASSAR numa reconstrução falsa — e isso muda o método
+
+Este é o achado mais importante da semana, e veio de uma recusa, não de um dado.
+
+A Futura/100% Cidades divulgou em 03/10 uma rodada (campo 02–03/10) cujo **1º
+turno** eu queria na base, porque encurtaria a distância de campo do instituto no
+ranking de 5 dias para 1. **Não entrou, e a razão é que a reconstrução que parecia
+confirmada era falsa.**
+
+A cobertura publica, para o 1º turno: Flávio 44,8 · Lula 42,6 · Cury 4,1 · Caiado
+3,9 · Renan 2,8 · Zema 0,8 · Samara Martins 0,4 · Edmilson Costa 0,2 · Pimenta,
+Barão, Grassi e Hertz Dias 0,1 cada. **Conferido aqui: a lista soma exatamente
+100,0** — logo é toda base de **votos válidos**, inclusive os menores, e não existe
+corte do total publicado em fonte nenhuma.
+
+**A armadilha.** Num passo intermediário surgiu a hipótese de que só os dois
+primeiros fossem válidos e os menores já fossem totais. Sob ela, a soma dos
+candidatos daria 92,0, com Flávio 41,2 e Lula 39,2 — e o teste de corte
+**reproduziria as duas manchetes ao mesmo tempo**: 41,2/92,0 = 44,78 → **44,8** e
+39,2/92,0 = 42,61 → **42,6**. Conferido aqui, bate nas duas linhas. Era exatamente
+o padrão que eu venho tratando como prova ("bateu em duas linhas, está
+confirmado"), **e a reconstrução é falsa.** O que a derrubou foi a cauda da lista
+fechar em 100,0 — uma informação de fora do teste.
+
+**Consequência para o método, e ela é dura:** `valor ÷ soma_dos_candidatos =
+manchete de válidos` é **necessário, não suficiente**. Um conjunto inventado de
+"totais" pode satisfazê-lo por construção, porque há mais graus de liberdade do que
+equações. O que realmente identifica o corte do total é a **presença das linhas de
+não-candidato publicadas** (brancos/nulos e não sabe) somando ~100 com os
+candidatos — foi o que autorizou PoderData e Datafolha hoje, e foi o que faltou
+aqui. Onde a soma dá exatamente 100 **sem** linhas de não-candidato, a base é de
+válidos, não de total.
+
+Mesmo na hipótese falsa o registro seria incompleto: o residual de ~8 pontos teria
+de ser **repartido** entre brancos/nulos e não sabe, e esse split não existe
+publicado. Seria invenção.
+
+**A Futura segue no ranking com campo encerrado em 29/09, a 5 dias da eleição.** O
+movimento que funcionou com o PoderData em 07/10 não teve equivalente aqui. O t1
+desta rodada é recuperável com uma única leitura do PDF do PesqEle — que o WebFetch
+quebrado impede. **Enquanto o DNS não voltar, recortes que exigem a tabela inteira
+continuam sendo recusa, não registro.**
+
+### O 2º turno da Futura entrou, confirmado por um teste de tipo novo
+
+| campo | valor |
+|---|---|
+| campo | **02–03/10** · amostra 2.000 · margem 2,2 · BR-02431/2026 |
+| corte TOTAL | **Flávio 48,0 · Lula 45,1 · brancos/nulos 5,7 · não sabe 1,2** |
+
+Soma **exatamente 100,0**. E o segundo teste é de um tipo que vale adotar: a
+cobertura afirma que Flávio **caiu 1,0** e Lula **subiu 1,6** contra a rodada
+anterior, cujos **totais** (49,0 e 43,5) já estão na base. Conferido: 49,0 − 1,0 =
+**48,0** e 43,5 + 1,6 = **45,1**, os dois exatos. **É o teste do DELTA contra a
+rodada anterior da própria base**, e ele é independente de qualquer hipótese sobre
+o corte do novo registro — justamente o que faltou no 1º turno. Válidos derivados
+(não publicados): 51,6 x 48,4.
+
+Ressalvas na ficha: a CNN repete "25–29/09" no bloco de metodologia da mesma
+matéria que traz 02–03/10 e o registro novo — tem cara de boilerplate da rodada
+anterior, e **a divergência não foi resolvida**. `contratante` ficou `null` por
+conflito direto entre fontes ("contratada pela 100% Cidades" x "recursos próprios
+do instituto"), e a série na base já alterna entre as duas formas.
+
+**Armadilha de veículo registrada na ficha:** circula manchete da Exame — "no 2º
+turno, Flávio tem 48% e Lula, 42,6%" — que **mistura o 48,0 do 2º turno com o 42,6
+que é o válido do Lula no 1º**. Soma 90,6 e não fecha com nada. E o 48,0 desta
+rodada não deve ser confundido com o 48,1 da rodada de 11/09, já na base; o que
+separa é o Lula (45,1 contra 43,7) e o campo.

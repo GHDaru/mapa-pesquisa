@@ -616,6 +616,48 @@
     ]
   },
   {
+    "id": "2026-10-03-futura-100-cidades-br-presidente-t2-flavio-lula",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Futura/100% Cidades",
+    "registroTSE": "BR-02431/2026",
+    "contratante": null,
+    "dataInicio": "2026-10-02",
+    "dataFim": "2026-10-03",
+    "publicadoEm": "2026-10-03",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/futura-flavio-tem-48-das-intencoes-de-voto-no-2o-turno-lula-451/"
+    },
+    "observacao": "Rodada Futura/100% Cidades divulgada no sábado 03/10/2026, véspera do 1º turno — lacuna da base, que até agora tinha como Futura mais recente o campo 25–29/09 (BR-01122/2026). CORTE DO TOTAL CONFIRMADO por dois testes independentes: (1) as quatro linhas publicadas somam exatamente 100,0 (Flávio 48,0 + Lula 45,1 + brancos/nulos/nenhum 5,7 + não sabe/não respondeu 1,2); (2) a cobertura afirma que Flávio caiu 1,0 ponto e Lula subiu 1,6 em relação à rodada anterior, e os valores reproduzem exatamente os totais publicados daquela rodada (49,0 − 1,0 = 48,0; 43,5 + 1,6 = 45,1) — ou seja, mesma base de comparação, totais. Válidos derivados: 48,0/93,1 = 51,6% e 45,1/93,1 = 48,4%. CAMPO: a Exame informa 02–03/10/2026 e o registro BR-02431/2026; a CNN Brasil, no bloco de metodologia da mesma rodada, repete 25–29/09, que é o campo da rodada ANTERIOR (BR-01122/2026) e tem cara de boilerplate reaproveitado. Adotado 02–03/10 por ser coerente com registro TSE novo e com percentuais distintos dos da rodada anterior; divergência não resolvida nas fontes. CONTRATANTE DEIXADA NULA por conflito direto entre fontes: uma cobertura diz 'contratada pela 100% Cidades' e outra diz 'custeada com recursos do próprio instituto'. Não inferido. Para referência, a série na base alterna: BR-00749 e BR-05268 estão com '100% Cidades' e BR-01122 com 'Futura Inteligência (recursos próprios)' — vale normalizar quando houver fonte primária. ARMADILHA: circula uma manchete da Exame 'no 2º turno, Flávio tem 48% e Lula, 42,6%' — é erro de veículo, que mistura o 48,0 do 2º turno com o 42,6 que é o VÁLIDO de Lula no 1º turno; não usar. Não confundir também com a rodada BR-00749 (2º turno 48,1 x 43,7), que é outra. O 1º TURNO desta mesma rodada NÃO foi registrado: as fontes publicam apenas votos válidos e não há corte do total reconstruível — ver relato. Dados via WebSearch; WebFetch indisponível no ambiente (falha de DNS em todos os domínios).",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 48
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 45.1
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 5.7
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 1.2
+      }
+    ]
+  },
+  {
     "id": "2026-10-03-parana-pesquisas-ba-governador-t1",
     "uf": "BA",
     "cargo": "governador",
