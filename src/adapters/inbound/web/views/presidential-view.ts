@@ -83,7 +83,13 @@ export function renderPresidential(container: HTMLElement, casos: CasosDeUso): v
   if (turno2.length > 0) {
     raiz.append(
       criarEl('section', {}, [
-        criarEl('h2', { className: 'pv-section-title', texto: '2º turno — cenários testados' }),
+        criarEl('h2', {
+          className: 'pv-section-title',
+          texto:
+            turno2.some((c) => c.situacao === 'superado')
+              ? '2º turno — o confronto definido e os cenários superados'
+              : '2º turno — cenários testados',
+        }),
         criarEl(
           'div',
           { className: 'pv-card-grid' },
@@ -261,6 +267,29 @@ function criarCartaoTurno1(
   return card;
 }
 
+/**
+ * O rótulo de situação de um cenário de 2º turno. Vazio (`null`) enquanto o 1º
+ * turno não decidiu, porque aí todos são hipótese e dizer isso em cada cartão
+ * seria ruído.
+ *
+ * O cartão de um cenário **superado** precisa dizer o que ele é, e não basta
+ * ordená-lo para o fim: até 08/10 a tela publicava "Lula x Romeu Zema" ao lado
+ * do confronto real, com a mesma aparência, e nada avisava que aquela disputa
+ * tinha deixado de ser possível em 04/10.
+ */
+export function rotuloSituacaoCenario(
+  situacao: 'vigente' | 'superado' | 'indefinido',
+): string | null {
+  if (situacao === 'vigente') return 'É este o 2º turno — confronto definido pelas urnas em 04/10.';
+  if (situacao === 'superado')
+    return (
+      'Cenário SUPERADO: este 2º turno não vai acontecer. Era uma das hipóteses ' +
+      'testadas antes de 04/10, e fica no ar como registro do que as pesquisas ' +
+      'diziam sobre uma disputa que não houve.'
+    );
+  return null;
+}
+
 function criarCartaoTurno2(
   cenario: CenarioAgregado,
   espectroDe: (partido: string | null) => Espectro,
@@ -277,6 +306,17 @@ function criarCartaoTurno2(
       agregado.empateTecnico ? criarSeloEmpateTecnico() : null,
     ]),
   );
+
+  const situacao = rotuloSituacaoCenario(cenario.situacao);
+  if (situacao) {
+    card.append(
+      criarEl('p', {
+        className:
+          cenario.situacao === 'superado' ? 'pv-meta pv-cenario-superado' : 'pv-meta pv-cenario-vigente',
+        texto: situacao,
+      }),
+    );
+  }
 
   const doisCandidatos = [agregado.lider, agregado.segundo].filter(
     (c): c is CandidatoAgregado => c != null,

@@ -5,6 +5,7 @@ import {
   type DadosApuracao,
   type DadosApuracaoRecorte,
   projetarApuracao,
+  finalistasDecididos,
   semApuracao,
   turnoMaisAvancado,
 } from '../apuracao.js';
@@ -400,5 +401,71 @@ describe('qual turno a tela mostra', () => {
 
   it('arquivo vazio devolve 1, não null nem 0', () => {
     expect(turnoMaisAvancado(dados([]), 'presidente')).toBe(1);
+  });
+});
+
+describe('quem de fato foi ao 2º turno', () => {
+  /**
+   * O 1º turno responde uma pergunta que o site vinha tratando como aberta.
+   * Antes de 04/10 os institutos testavam vários 2º turnos hipotéticos, e a tela
+   * publicava os cinco lado a lado — "Lula x Romeu Zema" e "Lula x Ronaldo
+   * Caiado" entre eles. Depois da urna só um deles é uma disputa, e nada no
+   * código notava a diferença.
+   */
+  function nacional(
+    secoes: number,
+    candidatos: { candidato: string; votos: number }[],
+    uf: string | null = null,
+  ): DadosApuracao {
+    return {
+      atualizadoEm: '2026-10-05T05:58:00Z',
+      recortes: [
+        {
+          cargo: 'presidente',
+          uf,
+          turno: 1,
+          secoesTotalizadas: secoes,
+          validosTotal: 100,
+          candidatos: candidatos.map((c) => ({ ...c, partido: null })),
+          fonte: { nome: 'f', url: 'u' },
+        },
+      ],
+    };
+  }
+
+  const REAL = [
+    { candidato: 'Flávio Bolsonaro', votos: 56_104_268 },
+    { candidato: 'Luiz Inácio Lula da Silva', votos: 53_876_617 },
+    { candidato: 'Augusto Cury', votos: 3_444_052 },
+  ];
+
+  it('devolve os dois primeiros da ficha fechada', () => {
+    expect(finalistasDecididos(nacional(100, REAL))).toEqual([
+      'Flávio Bolsonaro',
+      'Luiz Inácio Lula da Silva',
+    ]);
+  });
+
+  it('os dois primeiros saem por VOTOS, não pela ordem do arquivo', () => {
+    // O terceiro colocado listado primeiro não vira finalista.
+    const fora = [REAL[2]!, REAL[1]!, REAL[0]!];
+    expect(finalistasDecididos(nacional(100, fora))).toEqual([
+      'Flávio Bolsonaro',
+      'Luiz Inácio Lula da Silva',
+    ]);
+  });
+
+  it('abaixo do limiar não declara finalistas — seria chamar a eleição', () => {
+    // 84,96% era a parcial da noite de 04/10, quando a ordem ainda podia mudar.
+    expect(finalistasDecididos(nacional(84.96, REAL))).toBeNull();
+  });
+
+  it('um recorte ESTADUAL não decide finalistas nacionais', () => {
+    expect(finalistasDecididos(nacional(100, REAL, 'SP'))).toBeNull();
+  });
+
+  it('arquivo vazio e ficha de um só candidato não inventam par', () => {
+    expect(finalistasDecididos({ atualizadoEm: 'x', recortes: [] })).toBeNull();
+    expect(finalistasDecididos(nacional(100, [REAL[0]!]))).toBeNull();
   });
 });

@@ -1,5 +1,89 @@
 [
   {
+    "id": "2026-10-08-datafolha-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Datafolha",
+    "registroTSE": "BR-02949/2026",
+    "contratante": "Folha de S.Paulo e Grupo Globo",
+    "dataInicio": "2026-10-06",
+    "dataFim": "2026-10-08",
+    "publicadoEm": "2026-10-08",
+    "amostra": 2520,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/pesquisa-datafolha-2o-turno-flavio-bolsonaro-tem-52-e-lula-48-dos-votos-validos/"
+    },
+    "observacao": "Primeira pesquisa Datafolha do 2º turno. Corte do TOTAL registrado aqui; a manchete de válidos foi Flávio 52% x Lula 48% (49/94=52,1% e 45/94=47,9%), compatível. 2.520 entrevistas presenciais em pontos de fluxo populacional, eleitores de 16 anos ou mais, confiança 95%; empate técnico no limite da margem de 2 pontos. Divergência de fontes sobre o fim do campo: Exame, DGABC e a ficha prévia do NSC Total indicam 6 a 8/10 (terça a quinta), enquanto a Gazeta do Povo cita 6 e 7/10 — adotado 6 a 8/10, conforme o registro TSE BR-02949/2026. A linha de brancos/nulos é publicada como \"branco, nulo ou nenhum\" (5%) e a de não sabe como \"indecisos\" (1%).",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 45
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 49
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 5
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 1
+      }
+    ]
+  },
+  {
+    "id": "2026-10-08-poderdata-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "PoderData",
+    "registroTSE": "BR-08134/2026",
+    "contratante": null,
+    "dataInicio": "2026-10-05",
+    "dataFim": "2026-10-07",
+    "publicadoEm": "2026-10-08",
+    "amostra": 3000,
+    "margem": 1.8,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poderdata/flavio-tem-53-contra-47-de-lula-no-2o-turno-diz-pesquisa-poderdata-aya/"
+    },
+    "observacao": "Primeira rodada PoderData com campo integralmente posterior ao 1º turno (04/10). Corte do TOTAL registrado aqui; a manchete de válidos foi Flávio 53% x Lula 47% (49/93=52,7% e 44/93=47,3%), compatível. 3.000 entrevistas por telefone em 705 municípios das 27 UFs, confiança 95%. PoderData integra o Poder360 e roda com recursos próprios; a Aya Bancah é parceira de divulgação, não contratante, por isso contratante=null.",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 44
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 49
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 5
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 2
+      }
+    ]
+  },
+  {
     "id": "2026-10-03-datafolha-sp-governador-t1",
     "uf": "SP",
     "cargo": "governador",

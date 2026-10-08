@@ -1125,3 +1125,24 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
     text-align: left;
   }
 }
+
+/*
+ * Situação de um cenário de 2º turno, depois que as urnas decidiram quem passou.
+ * O cenário superado não é escondido — o que as pesquisas diziam sobre um 2º
+ * turno que não houve é registro legítimo —, mas tem de ser distinguível do
+ * confronto real à primeira vista, não só pela leitura do texto.
+ */
+.pv-cenario-vigente {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.pv-cenario-superado {
+  color: var(--color-warning);
+}
+
+.pv-card:has(.pv-cenario-superado) {
+  opacity: 0.72;
+  /* .pv-card nao tem borda propria, entao a borda inteira e declarada aqui. */
+  border: 1px dashed var(--color-warning);
+}

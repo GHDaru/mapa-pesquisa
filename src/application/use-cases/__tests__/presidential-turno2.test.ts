@@ -562,3 +562,108 @@ describe('2º turno Lula x Flávio nos dados reais', () => {
     }
   });
 });
+
+/**
+ * Cenários de 2º turno depois que as urnas decidiram quem passou.
+ *
+ * Até 08/10 a tela publicava todos os cenários lado a lado, com a mesma
+ * aparência: o confronto real e as hipóteses contra candidatos que o 1º turno
+ * eliminou. Eram corretos enquanto ninguém sabia quem passaria e viraram
+ * enganosos no instante em que a urna respondeu — **sem que nada no código
+ * notasse**. O recorte vem da própria ficha de apuração, nunca de constante.
+ */
+describe('situação do cenário de 2º turno', () => {
+  const FONTE = { nome: 'fixture', url: 'https://exemplo.invalido' };
+  const CURY = 'Augusto Cury';
+
+  function t2(confronto: readonly [string, string], pct: readonly [number, number]) {
+    return criarPesquisa({
+      id: `2026-10-06-fix-${confronto[1].toLowerCase().replace(/\W+/g, '-')}-t2`,
+      uf: 'BR',
+      cargo: 'presidente',
+      turno: 2,
+      instituto: 'Fixture',
+      registroTSE: null,
+      contratante: null,
+      dataInicio: '2026-10-05',
+      dataFim: '2026-10-06',
+      publicadoEm: '2026-10-06',
+      amostra: 2000,
+      margem: 2,
+      cenario: 'estimulada, 2º turno',
+      fonte: FONTE,
+      resultados: [
+        { candidato: confronto[0], partido: 'PT', pct: pct[0] },
+        { candidato: confronto[1], partido: 'PL', pct: pct[1] },
+      ],
+    } as unknown as DadosPesquisa);
+  }
+
+  /** Ficha nacional fechada: Flávio e Lula são os finalistas, Cury é o 3º. */
+  function apuracaoFechada(secoes = 100) {
+    return criarApuracaoRepositoryJson({
+      atualizadoEm: '2026-10-05T05:58:00Z',
+      recortes: [
+        {
+          cargo: 'presidente',
+          uf: null,
+          turno: 1,
+          secoesTotalizadas: secoes,
+          validosTotal: 119_300_788,
+          candidatos: [
+            { candidato: FLAVIO_BOLSONARO, partido: 'PL', votos: 56_104_268 },
+            { candidato: LULA, partido: 'PT', votos: 53_876_617 },
+            { candidato: CURY, partido: 'Avante', votos: 3_444_052 },
+          ],
+          fonte: FONTE,
+        },
+      ],
+    });
+  }
+
+  function montar(apuracao: Repositorios['apuracao']): CasosDeUso {
+    const pesquisas = [
+      t2([LULA, FLAVIO_BOLSONARO], [45, 49]),
+      t2([LULA, CURY], [46, 38]),
+    ];
+    return criarCasosDeUso(
+      {
+        polls: pollRepoFake(pesquisas),
+        parties: partyRepoFake(PARTIDOS),
+        senateSeats: senateSeatRepoFake,
+        meta: metaRepoFake,
+        apuracao,
+        electorate: electorateRepoFake([]),
+      },
+      CLOCK,
+    );
+  }
+
+  it('o confronto da ficha é vigente e o eliminado é superado', () => {
+    const t = montar(apuracaoFechada()).getPresidentialAggregate().turno2;
+    const porSituacao = new Map(t.map((c) => [c.situacao, c.cenario]));
+    expect(porSituacao.get('vigente')).toContain(FLAVIO_BOLSONARO);
+    expect(porSituacao.get('superado')).toContain(CURY);
+  });
+
+  it('o vigente vem PRIMEIRO, mesmo quando o superado é igualmente recente', () => {
+    // As duas fixtures têm a mesma data, então só a situação pode decidir a
+    // ordem — era a recência sozinha que mandava antes.
+    const t = montar(apuracaoFechada()).getPresidentialAggregate().turno2;
+    expect(t[0]!.situacao).toBe('vigente');
+    expect(t.filter((c) => c.situacao === 'superado')).toHaveLength(1);
+  });
+
+  it('com o 1º turno ainda aberto, nenhum cenário é superado', () => {
+    // 84,96% era a parcial da noite de 04/10: a ordem ainda podia mudar, e
+    // declarar um cenário morto ali seria chamar a eleição.
+    const t = montar(apuracaoFechada(84.96)).getPresidentialAggregate().turno2;
+    expect(t.every((c) => c.situacao === 'indefinido')).toBe(true);
+  });
+
+  it('sem apuração nenhuma, nada é superado — é o estado de antes de 04/10', () => {
+    const t = montar(apuracaoRepoVazio()).getPresidentialAggregate().turno2;
+    expect(t).toHaveLength(2);
+    expect(t.every((c) => c.situacao === 'indefinido')).toBe(true);
+  });
+});

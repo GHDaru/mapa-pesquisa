@@ -427,3 +427,34 @@ export function turnoMaisAvancado(
 ): 1 | 2 {
   return dados.recortes.some((r) => r.cargo === cargo && r.turno === 2) ? 2 : 1;
 }
+
+/**
+ * Os dois finalistas do 2º turno presidencial, quando a apuração do 1º turno
+ * já os decidiu. `null` enquanto não há ficha nacional de 1º turno fechada.
+ *
+ * Existe porque o 1º turno responde uma pergunta que o site vinha tratando como
+ * aberta: antes de 04/10 os institutos testavam vários 2º turnos hipotéticos, e
+ * depois da urna só um deles é uma disputa. Sem isto, a tela publicava "Lula x
+ * Romeu Zema" ao lado do confronto real como se ambos fossem possíveis.
+ *
+ * O limiar é o mesmo do resto do projeto (99,5% das seções): abaixo disso a
+ * ordem dos dois primeiros ainda pode mudar, e declarar finalistas seria chamar
+ * a eleição. Os dois primeiros saem por VOTOS, não pela ordem do arquivo.
+ */
+export function finalistasDecididos(
+  dados: DadosApuracao,
+  limiarSecoes = 99.5,
+): readonly [string, string] | null {
+  const nacional = dados.recortes.find(
+    (r) =>
+      r.cargo === 'presidente' &&
+      r.uf == null &&
+      r.turno === 1 &&
+      r.secoesTotalizadas >= limiarSecoes,
+  );
+  if (!nacional) return null;
+  const ordenados = [...nacional.candidatos].sort((a, b) => b.votos - a.votos);
+  const [primeiro, segundo] = ordenados;
+  if (!primeiro || !segundo) return null;
+  return [primeiro.candidato, segundo.candidato];
+}

@@ -2795,3 +2795,97 @@ Faltam: **presidente em 16 UFs** (AC AL AM AP CE DF ES MS MT PB PI RN RO RR SE T
 PE 18,18%, AL 20,64%, SE 17,32%, PI 17,15%, MT 22,21%, MS 23,88%, TO 18,35%, RO
 21,71%, RR 17,14%, AC 20,44% — calibram qualquer futura ficha de presidente ou
 governador nessas UFs sem uma única busca.
+
+## Rodada de 08/10 — a primeira safra de 2º turno, e os cenários que morreram
+
+O calendário se confirmou: **as duas rodadas previstas para hoje saíram**, e são as
+duas primeiras pesquisas de 2º turno com campo posterior ao 1º turno.
+
+| instituto | campo | amostra | corte TOTAL | manchete (válidos) |
+|---|---|---|---|---|
+| **PoderData/Aya** | 05–07/10 | 3.000, telefone | Flávio 49 · Lula 44 · br/nulos 5 · não sabe 2 | **53 x 47** |
+| **Datafolha** | 06–08/10 | 2.520, presencial | Flávio 49 · Lula 45 · br/nulos 5 · não sabe 1 | **52 x 48** |
+
+Conferido aqui: as duas somam **exatamente 100** e os dois testes de corte
+reproduzem as manchetes — 49/93 = 52,69 → 53 e 44/93 = 47,31 → 47 no PoderData;
+49/94 = 52,13 → 52 e 45/94 = 47,87 → 48 no Datafolha. **No PoderData o teste é
+discriminante**, porque os candidatos têm valores diferentes — ao contrário do caso
+de 07/10, em que o empate 46–46 fazia o teste passar para qualquer par igual.
+
+`contratante`: **null** no PoderData (recursos próprios do Poder360; a Aya Bancah é
+parceira **de divulgação**, e a regra manda não inferir contratante — a base tem
+rodadas antigas com "Poder360" e "Poder360 e Aya", inconsistência que fica para
+normalização); **"Folha de S.Paulo e Grupo Globo"** no Datafolha, afirmado
+explicitamente pela cobertura, com grafia já existente na base.
+
+**Divergência declarada na ficha:** sobre o fim do campo do Datafolha, Exame, DGABC
+e NSC Total dizem 06–08/10 e a Gazeta do Povo diz 06–07/10. Adotado 06–08/10, que é
+o que casa com o registro BR-02949/2026.
+
+Agregado do confronto real passou a **Flávio 46,26 x Lula 44,98**.
+
+**Nenhum outro instituto divulgou rodada de 2º turno com campo pós-04/10**, e isso
+foi confirmado instituto por instituto: AtlasIntel, Vox Brasil, DataTrends, Quaest,
+Paraná Pesquisas, Futura, Nexus/FSB, Gerp, Palver, Ideia, Indexa, CNT/MDA, American
+Analytics e Real Time Big Data param todos em campo encerrado em 02/10 ou antes.
+**Nenhum recorte estadual de 2º turno com campo pós-04/10 existe ainda.** Próximas
+previstas: Vox Brasil e AtlasIntel em 09/10, Ipespe em 10/10, DataTrends em 11/10,
+Quaest (RJ e DF, estaduais) em 12/10.
+
+### O defeito que a data de hoje expôs: cenários impossíveis publicados como vivos
+
+A tela publicava **cinco** cenários de 2º turno lado a lado, com a mesma aparência:
+o confronto real e **"Lula x Romeu Zema", "Lula x Ronaldo Caiado", "Lula x Renan
+Santos" e "Lula x Augusto Cury"** — quatro disputas que o 1º turno de 04/10 tornou
+**impossíveis**. Eram cenários legítimos enquanto ninguém sabia quem passaria, e
+viraram enganosos no instante em que a urna respondeu. **Nada no código notava a
+diferença**, e isso estava no ar desde 05/10.
+
+É a terceira ocorrência da mesma família nesta semana — conteúdo correto num mundo
+que o dado novo tornou falso: em 06/10 foi `baseComparacao` preferindo a soma
+estadual, em 07/10 a nota da tabela por estado afirmando uma relação que deixara de
+valer, hoje os cenários mortos.
+
+O conserto: `finalistasDecididos` (domínio) lê a ficha nacional de 1º turno **a
+partir de 99,5% das seções** e devolve os dois primeiros **por votos**, não pela
+ordem do arquivo. Cada cenário recebe `situacao`: `'vigente'`, `'superado'` ou
+`'indefinido'`. O vigente vem primeiro, o superado fica atrás, desbotado e com
+borda tracejada, e **o cartão diz o que ele é** — ordenar não basta. Abaixo do
+limiar, ou sem ficha, todos ficam `'indefinido'`: declarar um cenário morto com o 1º
+turno em aberto seria chamar a eleição.
+
+**Os cenários superados NÃO foram apagados.** O que as pesquisas diziam sobre um 2º
+turno que não houve é dado histórico legítimo; só não pode ser lido como disputa
+viva. Treze testes novos, mutação confirmada (4 falham com a função desligada).
+
+### Duas suspeitas que investiguei e que NÃO eram defeito
+
+Vale registrar os negativos, porque custaram verificação e poupam a próxima rodada:
+
+- **"Futura Inteligência" e "Futura/100% Cidades"** são a mesma instituição com duas
+  grafias, e eu suspeitei que o ranking as contasse duas vezes, usando uma pesquisa
+  velha. **Não:** `normalizarInstituto` já unifica as duas em "Futura Inteligência",
+  e o ranking tem **uma** entrada, usando a rodada de 30/09 (campo 5 dias antes). O
+  mesmo vale para **"Veritá" / "Instituto Veritá"**, unificadas — então o bloqueio
+  do Veritá cobre as duas grafias, o que é o comportamento desejado.
+- **"American Analytics" / "American Analytics do Brasil"** e **"IP Sensus" /
+  "IPSensus"** **não** são unificadas. Mas conferido: nenhuma das grafias
+  secundárias tem pesquisa presidencial nacional de 1º turno, então **o ranking não
+  é afetado**. A duplicação é cosmética, aparece na tela de Base de pesquisas, e
+  segue pendente.
+
+O ranking segue com **16 institutos** e margem real **1,8673**, intactos.
+
+### Pendências e avisos de ambiente
+
+- **`WebFetch` está sem resolução de DNS neste container** (`getaddrinfo ENOTFOUND`
+  em todos os hosts), então toda a coleta de hoje veio de resumo de WebSearch com
+  corroboração entre veículos, sem leitura da página primária. Funcionou, mas é
+  fragilidade conhecida.
+- **Lacuna de 1º turno encontrada de passagem:** uma rodada Futura/100% Cidades
+  divulgada em 03/10 (campo até 02/10, Flávio 48,0 x Lula 45,1) **não está na base**
+  — a mais recente é de campo 25–29/09. Como o Futura está no ranking com campo de 5
+  dias antes, uma rodada de 02/10 seria ganho de recência, como foi o caso do
+  PoderData em 07/10. Vale uma busca dedicada.
+- **Ipespe não tem grafia em `data/polls.json`** (conferido). Se publicar, a grafia
+  canônica precisa ser definida antes de ingerir.

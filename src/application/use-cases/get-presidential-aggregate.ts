@@ -3,12 +3,30 @@ import { type Agregado, agregarPesquisas } from '../../domain/aggregate.js';
 import { dataReferencia, type Pesquisa } from '../../domain/poll.js';
 import { chaveConfronto, confrontoDaPesquisa } from '../../domain/runoff.js';
 import { criarDisputa, UF_NACIONAL } from '../../domain/race.js';
+import { finalistasDecididos } from '../../domain/apuracao.js';
 
 const CENARIO_PADRAO = 'sem cenário';
 
 export interface CenarioAgregado {
   readonly cenario: string;
   readonly agregado: Agregado;
+  /**
+   * Situação do cenário depois que o 1º turno é decidido.
+   *
+   * - `'vigente'`: é o confronto que vai de fato acontecer.
+   * - `'superado'`: era hipótese antes do 1º turno e **não pode mais ocorrer**.
+   * - `'indefinido'`: o 1º turno ainda não está apurado, e todos são hipótese.
+   *
+   * Existe porque até 08/10 a tela publicava os cinco cenários lado a lado como
+   * se fossem igualmente possíveis — "Lula x Zema", "Lula x Caiado" e "Lula x
+   * Renan Santos" entre eles, três disputas que o 1º turno de 04/10 tornou
+   * impossíveis. Eram corretos enquanto ninguém sabia quem passaria; viraram
+   * enganosos no instante em que a urna respondeu, e **nada no código notava a
+   * diferença**. Os cenários superados NÃO são apagados: o que as pesquisas
+   * diziam sobre um 2º turno que não houve é dado histórico legítimo. Só não
+   * podem ser lidos como disputa viva.
+   */
+  readonly situacao: 'vigente' | 'superado' | 'indefinido';
 }
 
 export interface AgregadoPresidencial {
@@ -35,6 +53,13 @@ export function criarGetPresidentialAggregate(repos: Repositorios, clock: Clock)
     const pollsTurno1 = repos.polls.porDisputa(criarDisputa(UF_NACIONAL, 'presidente', 1));
     const turno1 = agregarPesquisas(pollsTurno1, {}, hoje);
 
+    /*
+     * Quem de fato foi ao 2º turno, segundo a apuração — `null` enquanto o 1º
+     * turno não está decidido. Vem do dado, nunca de constante: quem passou é
+     * o que a contagem diz.
+     */
+    const finalistas = finalistasDecididos(repos.apuracao.dados());
+
     const pollsTurno2 = repos.polls.porDisputa(criarDisputa(UF_NACIONAL, 'presidente', 2));
     const porCenario = new Map<string, Pesquisa[]>();
     for (const p of pollsTurno2) {
@@ -50,10 +75,31 @@ export function criarGetPresidentialAggregate(repos: Repositorios, clock: Clock)
     const turno2: CenarioAgregado[] = [];
     for (const [chave, grupo] of porCenario) {
       const agregado = agregarPesquisas(grupo, {}, hoje);
-      if (agregado) turno2.push({ cenario: rotuloDoCenario(agregado.candidatos.map((c) => c.candidato), chave), agregado });
+      if (agregado) {
+        turno2.push({
+          cenario: rotuloDoCenario(agregado.candidatos.map((c) => c.candidato), chave),
+          agregado,
+          situacao:
+            finalistas == null
+              ? 'indefinido'
+              : chave === chaveConfronto(finalistas)
+                ? 'vigente'
+                : 'superado',
+        });
+      }
     }
-    turno2.sort((a, b) =>
-      dataReferencia(b.agregado.ultimaPesquisa).localeCompare(dataReferencia(a.agregado.ultimaPesquisa)),
+    /*
+     * O confronto que vai acontecer vem primeiro; os superados ficam depois, na
+     * ordem de recência de antes. Enquanto o 1º turno não está decidido todos
+     * são `'indefinido'` e a ordenação é só por recência, como sempre foi.
+     */
+    const ordem = { vigente: 0, indefinido: 1, superado: 2 } as const;
+    turno2.sort(
+      (a, b) =>
+        ordem[a.situacao] - ordem[b.situacao] ||
+        dataReferencia(b.agregado.ultimaPesquisa).localeCompare(
+          dataReferencia(a.agregado.ultimaPesquisa),
+        ),
     );
 
     const todasAsPesquisas = [...pollsTurno1, ...pollsTurno2].sort((a, b) =>
