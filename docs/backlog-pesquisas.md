@@ -2959,3 +2959,80 @@ turno, Flávio tem 48% e Lula, 42,6%" — que **mistura o 48,0 do 2º turno com 
 que é o válido do Lula no 1º**. Soma 90,6 e não fecha com nada. E o 48,0 desta
 rodada não deve ser confundido com o 48,1 da rodada de 11/09, já na base; o que
 separa é o Lula (45,1 contra 43,7) e o campo.
+
+### Presidente por UF: 11 → 17, e sete UFs estão a um número de entrar
+
+Seis UFs entraram, todas a **100% das seções**, todas com `validosTotal`
+**publicado** (nenhum derivado) e **fechamento exato sem resíduo**.
+
+| UF | líder | 2º colocado |
+|---|---|---|
+| **MT** | Flávio 1.298.581 (65,15%) | Lula 581.681 (29,18%) |
+| **MS** | Flávio 873.351 (58,60%) | Lula 516.855 (34,68%) |
+| **ES** | Flávio 1.233.194 (54,78%) | Lula 850.028 (37,76%) |
+| **TO** | Flávio 469.321 (50,44%) | Lula 404.009 (43,42%) |
+| **RN** | **Lula** 1.237.963 (59,75%) | Flávio 720.493 (34,77%) |
+| **AL** | **Lula** 995.459 (54,73%) | Flávio 735.718 (40,45%) |
+
+**A razão senador/presidente foi o critério de aceitação, não a derivação de
+percentual** — exatamente o que o achado do dia recomenda. As seis ficam entre
+**1,99688 e 1,99765**, dentro da faixa empírica medida nas 11 UFs anteriores
+(1,99414 em SC a 1,99932 em BA). Conferido aqui, com as checagens de seções
+batendo em 99,96%–100,04%.
+
+Presidente agora em **17 UFs**: 101.151.669 válidos = **84,79%** do nacional sobre
+**85,18%** dos aptos — o vão entre as coberturas caiu de 0,46pp para **0,39pp**.
+Nenhum campo excede o nacional.
+
+**A armadilha do RJ reapareceu no ES:** a fonte estampa "foram registrados 2.352.282
+**votos válidos**", e 2.352.282 é o total de **COMPUTADOS** (2.251.078 + 43.211 +
+57.993, conferido). Usá-lo como válidos daria 52,43% para o líder contra os 54,78%
+publicados ao lado.
+
+**Duas faixas alargadas, declaradas nas fichas:** brancos+nulos de presidente ia de
+3,17% (SC) a 5,86% (SP); **AL leva o teto a 6,17%** (nulos em 4,43% contra 2,93%
+nacionais, padrão que se repete em `senador/AL`, 9,25%) e **MT o piso a 2,87%**.
+
+### As dez recusas, e sete delas estão a UM número publicado
+
+Vale registrar com precisão, porque sete viram ficha com uma única busca futura:
+
+- **DF** — o caso mais doloroso. Válidos 1.772.808 publicados, interseção de cinco
+  derivações de só **215 votos**, fechamento exato. Mas o TRE-DF publica
+  comparecimento **1.817.921**, que é exatamente metade dos 3.635.842 de
+  `senador/DF`, enquanto a ficha implica 13.475 computados a mais (+0,741%) e razão
+  **1,98528**, fora da faixa. **Não é caso de anulado:** anulado *sub judice* move os
+  **válidos**, nunca o **comparecimento**. Falta uma fonte que diga qual dos dois
+  comparecimentos é o do DF.
+- **AC** — bloco honesto a 98,06%, fechamento exato, percentuais reimprimindo; mas
+  (computados+abstenções)/aptos dá **97,65%** contra os 98,06% publicados, 0,42pp de
+  diferença, além da tolerância. Existe instante 100% posterior cujos absolutos
+  ninguém publica.
+- **SE** — 100%, cinco candidatos em absoluto, brancos e nulos publicados, e
+  **válidos nunca publicado**: a interseção das cinco derivações cruzada com a janela
+  do comparecimento dá válidos em **[1.364.119 ; 1.364.282]**, 164 votos de largura.
+  Sem total de computados, não há fechamento.
+- **CE** — Metrópoles a 99,97%: Lula 3.552.535 (63,28%) x Flávio 1.756.239 (31,28%),
+  com as derivações concordando numa interseção de **760 votos**. Falta brancos,
+  nulos e o total. **E corrige o registro: um resumo de busca afirmava que "os
+  percentuais não batem com os absolutos", e isso é falso** — o resumo dividiu pela
+  soma dos dois candidatos em vez do total de válidos. Além disso a cobertura de
+  presidente publica abstenção cearense de **15,52%** contra os 15,53% que
+  `senador/CE` mede: **confirmação independente de que o meu argumento de 06/10
+  estava morto.**
+- **RO** e **RR** — tudo existe menos o `secoesTotalizadas`. "Apuração final" no
+  título não foi aceito como percentual: é o campo que mede a incerteza. RR tem a
+  segunda interseção mais estreita da rodada, **46 votos**.
+- **AP** — a interseção mais estreita de todas, **16 votos**, e ainda assim recusada:
+  os absolutos vêm de agregador enquanto a fonte primária publica só percentuais, e
+  **a margem estadual é de 225 votos** (Lula 212.503 x Flávio 212.278), ou seja o
+  líder vira com o instante.
+- **AM**, **PB**, **PI** — dado publicado não existe em absoluto; só percentuais
+  soltos, e no PI com conflito de 0,02pp entre duas matérias do mesmo veículo.
+
+Restam **10 UFs** sem presidente: AC AM AP CE DF PB PI RO RR SE.
+
+**Nenhum caso novo de anulado sub judice:** nas seis aceitas o fechamento é exato com
+resíduo zero, logo não há nada para um anulado explicar. Fica anotado que
+`senador/TO` no arquivo **é** um caso de anulado (+3.254) e que `presidente/TO`
+fecha direto, sem ser afetado.

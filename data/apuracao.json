@@ -1492,6 +1492,203 @@
         "url": "https://www.plural.jor.br/apuracao-final-tocantins-eleicoes-2026/"
       },
       "observacao": "FONTE DIFERENTE da rodada de 06/10, que foi RECUSADA porque a soma das linhas dava 1.899.357, IMPAR e portanto impossivel para um cargo de dois votos por eleitor, e quatro derivacoes convergiam 1,5% acima do publicado. AQUI A PARIDADE FECHA AO VOTO. VALIDOSTOTAL 1.653.665 E DERIVADO, NAO PUBLICADO: Em 2026 cada UF elege DOIS senadores, logo cada eleitor tem DOIS votos e o total apurado e exatamente 2x o comparecimento. 2 x comparecimento publicado (963.810 eleitores) = 1.927.620, que E PAR, menos brancos 93.579 menos nulos 180.376 = 1.653.665. FECHAMENTO EXATO EM QUATRO LINHAS: 1.653.665 + 93.579 + 180.376 = 1.927.620, sem resto, e os tres percentuais que a fonte publica saem todos sobre esse total: validos 85,7879% (publicado 85,79%), brancos 4,8546% (4,85%) e nulos 9,3574% (9,36%), somando 100,00%. ONDE ESTAVA O ERRO DO VALOR PUBLICADO: a fonte imprime \"1.650.411 (85,79%) votos validos\", e 1.650.411 + 3.254 = 1.653.665, onde 3.254 sao EXATAMENTE os votos de Helio Rodrigues Bolsonaro (Democrata), anulados sub judice — ou seja, 1.650.411 e o validos LIQUIDO e os 85,79% publicados pertencem ao BRUTO, 1.653.665; sobre 1.650.411 o percentual seria 85,62%, que nao e o publicado. O mesmo padrao aparece em AC, RR, PE e RO desta rodada. SEIS DERIVACOES voto/percentual: 450.191/0,2722 = 1.653.898, 316.786/0,1916 = 1.653.372, 271.829/0,1644 = 1.653.461, 255.548/0,1545 = 1.654.032, 129.838/0,0785 = 1.653.987 e 93.009/0,0562 = 1.654.964; a intersecao dos intervalos de arredondamento e [1.653.595 .. 1.653.803] e 1.653.665 CAI DENTRO DELA, enquanto 1.650.411 fica FORA, 0,19% abaixo. No inverso, os seis absolutos sobre 1.653.665 reimprimem os seis percentuais publicados sem excecao: 27,2238 / 19,1566 / 16,4380 / 15,4534 / 7,8515 / 5,6244 — e sobre 1.650.411 nenhum deles fecharia. ELEITORADO, SEM BUSCA: comparecimento 963.810 + abstencoes 216.623 = 1.180.433, EXATAMENTE os aptos nas secoes instaladas que O Tempo publica, 99,841% dos 1.182.307 de data/electorate.json — dentro da faixa de 99,8%-100,2% a 100% de secoes; abstencao 216.623/1.180.433 = 18,351% e comparecimento 81,649%, reproduzindo os 18,35% e 81,65% publicados. COBERTURA: os seis candidatos somam 1.517.201 = 91,748% dos validos, exatamente a soma dos seis percentuais publicados (91,74%); os 8,25% restantes NAO FORAM COMPLETADOS. Helio Rodrigues Bolsonaro (Democrata, 3.254 votos) NAO FOI INCLUIDO como candidato, por estar anulado sub judice e sem percentual publicado — mas seus votos integram o validosTotal, como explicado acima. ARMADILHA DE OUTRO CARGO: nao ha recorte de governador nem de presidente de TO no arquivo para cruzar; o governo de TO foi ao segundo turno. Eduardo Gomes e Alexandre Guimarães ELEITOS. ATENCAO: o site srzd publica 27,26% e 19,15%, que nao fecham com nenhuma das bases acima — leitura descartada. Base dos percentuais: VOTOS VALIDOS. Coletado via resumo de WebSearch; WebFetch esta BLOQUEADO pelo proxy de egresso deste ambiente para cnnbrasil, olhardireto, gazetadopovo e demais portais, e para resultados.tse.jus.br, portanto NENHUM valor foi conferido na pagina original. Eleicao de 2026; mandatos de oito anos, 2027-2035."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "AL",
+      "turno": 1,
+      "secoesTotalizadas": 100,
+      "validosTotal": 1818856,
+      "candidatos": [
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 995459
+        },
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 735718
+        },
+        {
+          "candidato": "Augusto Cury",
+          "partido": "Avante",
+          "votos": 42427
+        }
+      ],
+      "brancos": 33712,
+      "nulos": 85860,
+      "abstencoes": 503698,
+      "fonte": {
+        "nome": "Cadaminuto — \"Eleições 2026: Lula vence Flávio Bolsonaro em Alagoas com 54,73% dos votos válidos\", sobre a totalização OFICIAL do TRE-AL concluída e HOMOLOGADA às 22h56 de 04/10/2026, com 100% das 7.101 seções eleitorais principais apuradas; leitura de 08/10/2026",
+        "url": "https://www.cadaminuto.com.br/noticia/2026/10/05/eleicoes-2026-lula-vence-flavio-bolsonaro-em-alagoas-com-54-73-dos-votos-validos"
+      },
+      "observacao": "RECORTE NOVO (não havia presidente no AL). A MAIS FORTE DESTA RODADA: os números são da totalização OFICIAL do TRE-AL, concluída e HOMOLOGADA às 22h56 de 04/10, não de um agregador. SEÇÕES: 100% das 7.101 seções eleitorais principais, PUBLICADO pela fonte com a contagem absoluta de seções — NÃO inferido de razão entre aptos. VÁLIDOS PUBLICADOS: 1.818.856 (não derivado), ao lado do comparecimento de 1.938.428. (ii) FECHAMENTO EXATO, E EM DOIS SENTIDOS: válidos 1.818.856 + brancos 33.712 + nulos 85.860 = 1.938.428, que é IGUAL ao total de computados publicado E igual ao comparecimento de 1.938.428 eleitores que o TRE-AL publica, sem resíduo. Os TRÊS percentuais publicados sobre o total são reimpressos pelos absolutos: 93,8315% (93,83 publicado), 1,7391% (1,74) e 4,4294% (4,43). (i) TRÊS DERIVAÇÕES: 995.459/0,5473 = 1.818.855, 735.718/0,4045 = 1.818.833 e 42.427/0,0233 = 1.820.901; as duas primeiras concordam entre si com erro de 0,0012%, muito abaixo do limite de 0,1%. A INTERSEÇÃO dos intervalos de arredondamento das TRÊS derivações é [1.818.688 ; 1.819.021], largura 332 votos (0,0183% dos válidos), e o valor PUBLICADO 1.818.856 cai DENTRO dela. No sentido inverso, os três absolutos sobre 1.818.856 reimprimem os três percentuais publicados: 54,7300 (54,73), 40,4495 (40,45) e 2,3326 (2,33). (iii) CHECAGEM CONTRA O ELEITORADO, sem busca: computados 1.938.428 + abstenções 503.698 = 2.442.126, exatamente os aptos que o TRE-AL publica, e 100,0136% dos 2.441.794 aptos do AL em data/electorate.json (referência 2026-07) — dentro da faixa 99,8%-100,2%; e 503.698/2.442.126 = 20,6254% REIMPRIME os 20,63% de abstenção publicados. (iv) CRUZAMENTO COM O SENADOR DA MESMA UF: senador/AL tem 3.871.640 computados (dois votos por eleitor, total par); 3.871.640 / 1.938.428 = 1,99731, dentro da faixa empírica das 11 UFs de presidente já no arquivo com brancos e nulos preenchidos, de 1,99414 (SC) a 1,99932 (BA). O comparecimento implícito em senador/AL é 1.935.820, 2.608 votos (0,135%) abaixo dos 1.938.428 de presidente, e senador/AL publica abstenções 503.370 contra as 503.698 daqui (328 votos) — mesma ordem das tensões já aceitas (PA 0,074%, SC 0,29%). As abstenções gravadas são as PUBLICADAS PELO TRE-AL para o eleitorado do estado (503.698), e são o único valor que reimprime os 20,63% publicados. PONTO FORA DA FAIXA, DECLARADO E EXPLICADO: brancos+nulos = 119.572 = 6,17% dos computados, ACIMA do teto de 5,86% (SP) observado nas 11 fichas de presidente já aceitas. Isso NÃO é contaminação de outro cargo, e sim o padrão próprio de Alagoas: os nulos de presidente aqui são 4,43% do total contra 2,93% nacionais, e o mesmo excesso aparece no recorte senador/AL do arquivo, onde os nulos são 358.097 de 3.871.640 = 9,25% — padrão repetido em senador/SE (11,11%) e senador/RN (9,84%). As quatro validações duras (i)-(iv) passam; esta ficha simplesmente ALARGA a faixa empírica de brancos+nulos de presidente para 6,17%. BRANCOS E NULOS NÃO SÃO DE OUTRO CARGO: senador/AL publica 226.942 brancos e 358.097 nulos (6,7x e 4,2x maiores que os daqui) e o governador do AL não está no arquivo — nenhum desses números tem relação com os 33.712 e 85.860 de presidente. LEITURA PARCIAL ANTERIOR DESCARTADA, e ela é estritamente menor em TODOS os campos: a página da Band foi capturada com 97,42% das urnas e trazia Lula com 963.462 votos (54,55%) e Flávio com 717.558 (40,63%), abstenção 20,52%, brancos 1,74% e nulos 4,41%. Os dois absolutos são MENORES que os gravados aqui (963.462 < 995.459 e 717.558 < 735.718), o que PROVA que 100% é um instante POSTERIOR e não um rótulo de 100% colado em contagem parcial — exatamente o teste que a regra manda fazer. COBERTURA PARCIAL, DECLARADA: os TRÊS candidatos listados somam 1.773.604 = 97,51% dos válidos; os 2,49% restantes (45.252 votos) pertencem a Renan Santos, Ronaldo Caiado, Romeu Zema e aos demais candidatos menores, que a fonte NÃO itemiza nesta UF e que NÃO FORAM COMPLETADOS. Nenhum candidato fora dos seis nomes canônicos aparece nesta leitura; a fonte escreve \"Augusto Jorge Cury\", gravado aqui com o nome canônico \"Augusto Cury\". NENHUM caso de anulado sub judice nesta UF: o fechamento é exato e não sobra resíduo a explicar. Base dos percentuais dos candidatos: VOTOS VÁLIDOS; a dos brancos e nulos: TOTAL DE VOTOS. Eleição de 2026 (Lula x FLÁVIO Bolsonaro), não de 2022. Coletado via RESUMO DE WEBSEARCH: WebFetch a cadaminuto.com.br, band.com.br e exame.com está BLOQUEADO pelo proxy de egresso deste ambiente (ENOTFOUND), então os valores NÃO FORAM CONFERIDOS NA PÁGINA ORIGINAL."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "ES",
+      "turno": 1,
+      "secoesTotalizadas": 100,
+      "validosTotal": 2251078,
+      "candidatos": [
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 1233194
+        },
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 850028
+        }
+      ],
+      "brancos": 43211,
+      "nulos": 57993,
+      "abstencoes": 639368,
+      "fonte": {
+        "nome": "Exame — Apuração Presidente no estado do ES 2026, mapa de apuração (dados do TSE, 100,00% das urnas apuradas), página de 04/10/2026 com última atualização às 20:55 (horário de Brasília); os percentuais do líder e do segundo colocado conferidos também na Folha Vitória e no ES Hoje, que publicam os mesmos 1.233.194 (54,78%) e 850.028 (37,76%)",
+        "url": "https://exame.com/eleicoes/2026/apuracao/primeiro-turno/presidente/mapa-de-apuracao/?estado=es"
+      },
+      "observacao": "RECORTE NOVO (não havia presidente no ES). SEÇÕES: 100,00% das urnas apuradas, PUBLICADO pela fonte (dados do TSE) — NÃO inferido de razão entre aptos. VÁLIDOS PUBLICADOS: 2.251.078 (não derivado). ARMADILHA DESARMADA: a primeira leitura trazia 'foram registrados 2.352.282 votos válidos', e esse número NÃO é de válidos — é o TOTAL DE COMPUTADOS, a mesma troca de rótulo já vista no RJ. A conta prova: 2.251.078 + 43.211 brancos + 57.993 nulos = 2.352.282. Tomar 2.352.282 como válidos daria 52,42% para o líder e 36,14% para o segundo, CONTRADIZENDO os 54,78% e 37,76% publicados ao lado. (i) DUAS DERIVAÇÕES: 1.233.194/0,5478 = 2.251.176 (+0,0043% do publicado) e 850.028/0,3776 = 2.251.134 (+0,0025%); as duas concordam entre si com erro de 0,0019%, muito abaixo do limite de 0,1%. A INTERSEÇÃO dos intervalos de arredondamento das duas derivações é [2.250.970 ; 2.251.381], largura 411 votos (0,0183% dos válidos), e o valor PUBLICADO 2.251.078 cai DENTRO dela. No sentido inverso, os dois absolutos sobre 2.251.078 reimprimem os dois percentuais publicados: 54,7824 (54,78) e 37,7609 (37,76). (ii) FECHAMENTO EXATO: válidos 2.251.078 + brancos 43.211 + nulos 57.993 = 2.352.282, IGUAL ao total de computados publicado, sem resíduo. brancos+nulos = 101.204 = 4,30% dos computados, dentro da faixa das fichas de presidente já aceitas (3,17% em SC a 5,86% em SP). (iii) CHECAGEM CONTRA O ELEITORADO, sem busca: computados 2.352.282 + abstenções 639.368 = 2.991.650, que é 100,039% dos 2.990.490 aptos do ES em data/electorate.json (referência 2026-07), dentro da faixa 99,8%-100,2% das fichas boas; e 639.368/2.991.650 = 21,3718% REIMPRIME os 21,37% de abstenção publicados pela fonte. (iv) CRUZAMENTO COM O SENADOR DA MESMA UF: senador/ES tem 4.697.224 computados (senador tem dois votos por eleitor, total par); 4.697.224 / 2.352.282 = 1,99688, dentro da faixa empírica medida nas 11 UFs de presidente já no arquivo que têm brancos e nulos preenchidos, de 1,99414 (SC) a 1,99932 (BA). TENSÃO DE FONTES DECLARADA: o comparecimento implícito em senador/ES é 2.348.612 (= 4.697.224/2), que é 3.670 votos (0,156%) MENOR que os 2.352.282 computados de presidente, e senador/ES publica abstenções 638.972 contra as 639.368 gravadas aqui (396 votos, 0,062%). Discrepâncias dessa ordem entre cargos já existem nas fichas aceitas (presidente/PA está 0,074% acima do comparecimento implícito em senador/PA; presidente/SC, 0,29%). As abstenções gravadas aqui são as PUBLICADAS NA PRÓPRIA PÁGINA DE PRESIDENTE (639.368), não importadas de outro cargo, e são o único valor que reimprime os 21,37% publicados. BRANCOS E NULOS NÃO SÃO DE OUTRO CARGO: senador/ES publica 319.565 brancos e 347.732 nulos (7,4x e 6,0x maiores que os daqui), e o governador do ES fecha com válidos de ~2,11 milhões (Pazolini 1.048.633 = 49,65%; Ferraço 719.397 = 34,06%) — nenhum desses números tem relação com os 43.211 e 57.993 de presidente. COBERTURA PARCIAL, DECLARADA: só os DOIS PRIMEIROS colocados têm absoluto publicado, e eles somam 2.083.222 = 92,54% dos válidos. Os 7,46% restantes (167.856 votos) pertencem a Escritor Augusto Cury (Avante, 2,89% publicado) e Renan Santos (Missão, 2,36% publicado) e aos demais candidatos menores: a fonte publica apenas os PERCENTUAIS desses dois, NÃO os absolutos, e eles NÃO FORAM COMPLETADOS. Os absolutos implícitos seriam ~65.056 e ~53.125 e NÃO foram gravados, para não inventar número. Nenhum candidato fora dos seis nomes canônicos aparece nesta leitura. NENHUM caso de anulado sub judice nesta UF: o fechamento é exato e não sobra resíduo a explicar. Base dos percentuais: VOTOS VÁLIDOS (exclui brancos e nulos), como publica o TSE. Eleição de 2026 (Lula x FLÁVIO Bolsonaro), não de 2022. Coletado via RESUMO DE WEBSEARCH: WebFetch a exame.com, eshoje.com.br, hubpolitico.com.br e brasildefato.com.br está BLOQUEADO pelo proxy de egresso deste ambiente (ENOTFOUND), então os valores NÃO FORAM CONFERIDOS NA PÁGINA ORIGINAL."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "MS",
+      "turno": 1,
+      "secoesTotalizadas": 100,
+      "validosTotal": 1490278,
+      "candidatos": [
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 873351
+        },
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 516855
+        }
+      ],
+      "brancos": 21270,
+      "nulos": 29672,
+      "abstencoes": 482860,
+      "fonte": {
+        "nome": "Apuração consolidada do 1º turno em Mato Grosso do Sul (dados do TSE, 100,00% das seções totalizadas), com os totais de votos do estado publicados pelo Capital News e A Crítica de Campo Grande e o resultado estadual conferido no Correio do Estado; leitura de 08/10/2026",
+        "url": "https://www.capitalnews.com.br/politica-e-poder/judiciario/flavio-bolsonaro-vence-em-73-municipios-de-mato-grosso-do-sul-lula-leva-seis-cidades/447757"
+      },
+      "observacao": "RECORTE NOVO (não havia presidente no MS). SEÇÕES: 100,00% das seções totalizadas, PUBLICADO pela fonte (dados do TSE) — NÃO inferido de razão entre aptos. VÁLIDOS PUBLICADOS: 1.490.278 (não derivado), ao lado do total de 1.541.220 votos para presidente no estado. (ii) FECHAMENTO EXATO: válidos 1.490.278 + brancos 21.270 + nulos 29.672 = 1.541.220, IGUAL ao total publicado, sem resíduo. Além do fechamento, os TRÊS percentuais que a fonte publica sobre o total são reimpressos pelos absolutos: 1.490.278/1.541.220 = 96,6947% (96,69 publicado), 21.270/1.541.220 = 1,3801% (1,38) e 29.672/1.541.220 = 1,9252% (1,93). brancos+nulos = 50.942 = 3,30% dos computados, dentro da faixa das fichas de presidente já aceitas (3,17% em SC a 5,86% em SP). (i) DUAS DERIVAÇÕES: 873.351/0,5860 = 1.490.360 (+0,0055% do publicado) e 516.855/0,3468 = 1.490.354 (+0,0051%); as duas concordam entre si com erro de 0,0004% — 6 votos de diferença —, muito abaixo do limite de 0,1%. A INTERSEÇÃO dos intervalos de arredondamento das duas derivações é [1.490.233 ; 1.490.487], largura 254 votos (0,0171% dos válidos), e o valor PUBLICADO 1.490.278 cai DENTRO dela. No sentido inverso, os dois absolutos sobre 1.490.278 reimprimem os percentuais publicados: 58,6032 (58,60) e 34,6818 (34,68). (iii) CHECAGEM CONTRA O ELEITORADO, sem busca: computados 1.541.220 + abstenções 482.860 = 2.024.080, que é 99,960% dos 2.024.884 aptos do MS em data/electorate.json (referência 2026-07), bem dentro da faixa 99,8%-100,2%. (iv) CRUZAMENTO COM O SENADOR DA MESMA UF: senador/MS tem 3.078.018 computados (dois votos por eleitor, total par); 3.078.018 / 1.541.220 = 1,99713, dentro da faixa empírica das 11 UFs de presidente já no arquivo com brancos e nulos preenchidos, de 1,99414 (SC) a 1,99932 (BA), e praticamente igual ao 1,99714 de SP. O comparecimento implícito em senador/MS é 1.539.009, 2.211 votos (0,143%) abaixo dos 1.541.220 computados de presidente — mesma ordem de grandeza das tensões já aceitas (PA 0,074%, SC 0,29%). ABSTENÇÕES — ORIGEM DECLARADA: as 482.860 gravadas aqui NÃO vêm da página de presidente, que publica apenas o PERCENTUAL (23,87%, a maior abstenção do país no 1º turno, segundo Midiamax e Correio do Estado). São a abstenção PUBLICADA para o eleitorado do MS na fonte de senador/MS; como a abstenção é por ELEITOR e não por cargo, ela vale para os dois recortes. Conferência: 482.860/(1.541.220+482.860) = 23,8558%, ou 23,86%, contra os 23,87% publicados — 0,01 ponto de diferença. O valor alternativo, derivado dos 23,87% sobre os computados de presidente, seria 483.227 (367 votos a mais); ele NÃO foi gravado porque seria um número derivado onde existe um publicado. BRANCOS E NULOS NÃO SÃO DE OUTRO CARGO: senador/MS publica 225.530 brancos e 244.429 nulos (10,6x e 8,2x maiores que os daqui), e o governador do MS não está no arquivo — nenhum desses números tem relação com os 21.270 e 29.672 de presidente. COBERTURA PARCIAL, DECLARADA: só os DOIS PRIMEIROS colocados têm absoluto publicado, e eles somam 1.390.206 = 93,29% dos válidos; os 6,71% restantes (100.072 votos) pertencem a Escritor Augusto Cury, Renan Santos, Ronaldo Caiado, Romeu Zema e aos demais candidatos menores, que a fonte NÃO itemiza nesta UF e que NÃO FORAM COMPLETADOS. Nenhum candidato fora dos seis nomes canônicos aparece nesta leitura. NENHUM caso de anulado sub judice nesta UF: o fechamento é exato e não sobra resíduo a explicar. LEITURA PARCIAL ANTERIOR DESCARTADA, e ela é estritamente menor: nas primeiras horas a Exame mostrava 873.192 votos (58,63%) para o líder e 516.176 para o segundo — ambos MENORES que os gravados aqui, o que confirma que esta é a leitura POSTERIOR e não um rótulo de 100% colado em contagem parcial. Base dos percentuais dos candidatos: VOTOS VÁLIDOS; a dos brancos e nulos: TOTAL DE VOTOS. Eleição de 2026 (Lula x FLÁVIO Bolsonaro), não de 2022. Coletado via RESUMO DE WEBSEARCH: WebFetch a capitalnews.com.br, exame.com, acritica.net e correiodoestado.com.br está BLOQUEADO pelo proxy de egresso deste ambiente (ENOTFOUND), então os valores NÃO FORAM CONFERIDOS NA PÁGINA ORIGINAL."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "MT",
+      "turno": 1,
+      "secoesTotalizadas": 100,
+      "validosTotal": 1993288,
+      "candidatos": [
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 1298581
+        },
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 581681
+        },
+        {
+          "candidato": "Augusto Cury",
+          "partido": "Avante",
+          "votos": 40019
+        },
+        {
+          "candidato": "Renan Santos",
+          "partido": "Missão",
+          "votos": 33170
+        },
+        {
+          "candidato": "Ronaldo Caiado",
+          "partido": "PSD",
+          "votos": 33079
+        }
+      ],
+      "brancos": 20756,
+      "nulos": 38089,
+      "abstencoes": 585668,
+      "fonte": {
+        "nome": "Band — Apuração Presidente em Mato Grosso, Eleições 2026 (dados do TSE, 100% das urnas apuradas), para os totais do estado e os absolutos; a atribuição dos candidatos menores e os aptos/comparecimento conferidos na Plural (\"Apuração final em Mato Grosso\", que também registra 100% das seções totalizadas); leitura de 08/10/2026",
+        "url": "https://www.band.com.br/politica/eleicoes/2026/apuracao/presidente/mt"
+      },
+      "observacao": "RECORTE NOVO (não havia presidente no MT). SEÇÕES: 100% das urnas apuradas, PUBLICADO por DUAS fontes independentes (Band, dados do TSE; e Plural, que registra que o estado fechou a apuração com 100% das seções totalizadas) — NÃO inferido de razão entre aptos. VÁLIDOS PUBLICADOS: 1.993.288 (não derivado), ao lado do total de 2.052.133 votos. (ii) FECHAMENTO EXATO: válidos 1.993.288 + brancos 20.756 + nulos 38.089 = 2.052.133, IGUAL ao total de votos publicado, sem resíduo. Os dois percentuais publicados sobre o total também são reimpressos: 20.756/2.052.133 = 1,0114% (1,01 publicado) e 38.089/2.052.133 = 1,8561% (1,86). (i) CINCO DERIVAÇÕES, todas coerentes: os CINCO absolutos sobre os válidos publicados 1.993.288 reimprimem os CINCO percentuais publicados, um a um — 65,1477 (65,15), 29,1820 (29,18), 2,0077 (2,01), 1,6641 (1,66) e 1,6595 (1,66). No sentido inverso, as duas derivações mais precisas dão 1.298.581/0,6515 = 1.993.217 e 581.681/0,2918 = 1.993.423, que concordam entre si com erro de 0,0103%, muito abaixo do limite de 0,1%; a INTERSEÇÃO dos intervalos de arredondamento dessas duas é [1.993.082 ; 1.993.370], largura 288 votos (0,0144% dos válidos), e o valor PUBLICADO 1.993.288 cai DENTRO dela. RESSALVA DE LAYOUT DA FONTE, RESOLVIDA: a página da Band embaralha as colunas e o valor 40.019 aparece colado ao nome do primeiro colocado; a atribuição correta (40.019 para Escritor Augusto Cury) vem da Plural, e a conferência acima CONFIRMA a atribuição por aritmética — só com ela os cinco percentuais publicados são reimpressos sobre os válidos publicados. (iii) CHECAGEM CONTRA O ELEITORADO, sem busca: computados 2.052.133 + abstenções 585.668 = 2.637.801, EXATAMENTE os aptos que a Plural publica para o estado, e 99,984% dos 2.638.230 aptos do MT em data/electorate.json (referência 2026-07) — bem dentro da faixa 99,8%-100,2%; e 585.668/2.637.801 = 22,2029% REIMPRIME os 22,20% de abstenção publicados, assim como o comparecimento de 77,80% que a Plural publica ao lado. ABSTENÇÕES — ORIGEM DECLARADA: as 585.668 são DERIVADAS de dois valores publicados (aptos 2.637.801 menos computados 2.052.133), não publicadas como absoluto. Foram preferidas às 585.274 de senador/MT porque são as únicas que fecham com os aptos publicados e reimprimem os 22,20%; a diferença entre as duas é de 394 votos (0,067%). (iv) CRUZAMENTO COM O SENADOR DA MESMA UF: senador/MT tem 4.099.436 computados (dois votos por eleitor, total par); 4.099.436 / 2.052.133 = 1,99765, dentro da faixa empírica das 11 UFs de presidente já no arquivo com brancos e nulos preenchidos, de 1,99414 (SC) a 1,99932 (BA). O comparecimento implícito em senador/MT é 2.049.718, 2.415 votos (0,118%) abaixo dos 2.052.133 de presidente — mesma ordem das tensões já aceitas (PA 0,074%, SC 0,29%). PONTO FORA DA FAIXA, DECLARADO E EXPLICADO: brancos+nulos = 58.845 = 2,87% dos computados, ABAIXO do piso de 3,17% (SC) observado nas 11 fichas de presidente já aceitas. Isso NÃO é contaminação nem campo faltante, e sim o padrão próprio do MT: brancos 1,01% e nulos 1,86% contra 1,84% e 2,93% nacionais. As quatro validações duras (i)-(iv) passam; esta ficha ALARGA a faixa empírica de brancos+nulos de presidente para baixo, até 2,87% (e a ficha AL desta mesma rodada a alarga para cima, até 6,17%). BRANCOS E NULOS NÃO SÃO DE OUTRO CARGO: senador/MT publica 233.512 brancos e 290.660 nulos (11,2x e 7,6x maiores que os daqui), e o governador do MT, que não está no arquivo, fechou com 82.690 brancos (4,03%) e 110.735 nulos (5,40%) sobre válidos de 1.856.293 — nenhum desses números tem relação com os 20.756 e 38.089 de presidente, nem os válidos de governador (1.856.293) com os 1.993.288 daqui. LEITURA PARCIAL ANTERIOR DESCARTADA, e ela é estritamente menor nos dois absolutos: o RD News publicou 1.277.551 votos (65,29%) para o primeiro colocado e 568.430 (29,02%) para o segundo, ambos MENORES que os gravados aqui (1.277.551 < 1.298.581 e 568.430 < 581.681), o que PROVA que 100% é um instante POSTERIOR e não um rótulo de 100% colado em contagem parcial. COBERTURA QUASE TOTAL, DECLARADA: os CINCO candidatos listados somam 1.986.530 = 99,66% dos válidos; sobram 6.758 votos (0,34%) de candidatos que a fonte não itemiza e que NÃO FORAM COMPLETADOS. Nenhum candidato fora dos seis nomes canônicos aparece nesta leitura (Romeu Zema não é itemizado aqui). NENHUM caso de anulado sub judice nesta UF: o fechamento é exato e não sobra resíduo a explicar. Base dos percentuais dos candidatos: VOTOS VÁLIDOS; a dos brancos e nulos: TOTAL DE VOTOS. Eleição de 2026 (Lula x FLÁVIO Bolsonaro), não de 2022. Coletado via RESUMO DE WEBSEARCH: WebFetch a band.com.br, plural.jor.br, rdnews.com.br e exame.com está BLOQUEADO pelo proxy de egresso deste ambiente (ENOTFOUND), então os valores NÃO FORAM CONFERIDOS NA PÁGINA ORIGINAL."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "RN",
+      "turno": 1,
+      "secoesTotalizadas": 100,
+      "validosTotal": 2071898,
+      "candidatos": [
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 1237963
+        },
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 720493
+        }
+      ],
+      "brancos": 33172,
+      "nulos": 65943,
+      "abstencoes": 488812,
+      "fonte": {
+        "nome": "Tribuna do Norte — \"Como o RN votou para presidente? Lula tem 59,75% e Flávio, 34,77%\" (dados do TSE, 100% das seções totalizadas), com os totais do estado; resultado estadual conferido também na Plural (apuração final do Rio Grande do Norte), na Exame e no Portal N10; leitura de 08/10/2026",
+        "url": "https://tribunadonorte.com.br/politica/como-o-rn-votou-para-presidente-lula-tem-5975-e-flavio-3477/"
+      },
+      "observacao": "RECORTE NOVO (não havia presidente no RN). SEÇÕES: 100% das seções totalizadas, PUBLICADO pela fonte (dados do TSE) — NÃO inferido de razão entre aptos. VÁLIDOS PUBLICADOS: 2.071.898 (não derivado). (ii) FECHAMENTO EXATO, E EM DOIS SENTIDOS: válidos 2.071.898 + brancos 33.172 + nulos 65.943 = 2.171.013, que é IGUAL ao comparecimento de 2.171.013 eleitores publicado pela fonte, sem resíduo. Os dois percentuais publicados sobre o total são reimpressos pelos absolutos: 33.172/2.171.013 = 1,5280% (1,53 publicado) e 65.943/2.171.013 = 3,0374% (3,04). brancos+nulos = 99.115 = 4,57% dos computados, dentro da faixa das fichas de presidente já aceitas (3,17% em SC a 5,86% em SP). (i) DUAS DERIVAÇÕES: 1.237.963/0,5975 = 2.071.905 e 720.493/0,3477 = 2.072.169; as duas concordam entre si com erro de 0,0127%, abaixo do limite de 0,1%. A INTERSEÇÃO dos intervalos de arredondamento das duas derivações é [2.071.871 ; 2.072.078], largura 207 votos (0,0100% dos válidos), e o valor PUBLICADO 2.071.898 cai DENTRO dela. No sentido inverso, os dois absolutos sobre 2.071.898 reimprimem os dois percentuais publicados: 59,7502 (59,75) e 34,7745 (34,77). TRÊS CONFERÊNCIAS INDEPENDENTES A MAIS, todas exatas: (a) a diferença entre os dois primeiros, 1.237.963 - 720.493 = 517.470, é EXATAMENTE a vantagem de 517.470 votos que a fonte publica; (b) o resíduo dos demais candidatos, 2.071.898 - 1.958.456 = 113.442, é EXATAMENTE os 113.442 votos que a fonte atribui aos outros candidatos — o que confirma o valor de válidos por um terceiro caminho; (c) a abstenção fecha com os aptos, abaixo. (iii) CHECAGEM CONTRA O ELEITORADO, sem busca: computados 2.171.013 + abstenções 488.812 = 2.659.825, EXATAMENTE os aptos que a fonte publica para o estado, e 99,972% dos 2.660.565 aptos do RN em data/electorate.json (referência 2026-07) — bem dentro da faixa 99,8%-100,2%; e 488.812/2.659.825 = 18,3776% REIMPRIME os 18,38% de abstenção publicados. (iv) CRUZAMENTO COM O SENADOR DA MESMA UF: senador/RN tem 4.335.428 computados (dois votos por eleitor, total par); 4.335.428 / 2.171.013 = 1,99696, dentro da faixa empírica das 11 UFs de presidente já no arquivo com brancos e nulos preenchidos, de 1,99414 (SC) a 1,99932 (BA). O comparecimento implícito em senador/RN é 2.167.714, 3.299 votos (0,152%) abaixo dos 2.171.013 de presidente — mesma ordem das tensões já aceitas (PA 0,074%, SC 0,29%). TENSÃO DE ABSTENÇÃO DECLARADA: senador/RN publica 488.493 abstenções e a própria Tribuna do Norte traz 488.493 (18,39%) em outra matéria, enquanto o Agora RN publica 18,3%. As 488.812 gravadas aqui foram preferidas porque são as ÚNICAS que fecham exatamente com os aptos publicados (2.171.013 + 488.812 = 2.659.825) e que reimprimem os 18,38% publicados ao lado; a alternativa 488.493 daria 18,3678%, ou 18,37%, contradizendo os 18,38%. A diferença entre as duas é de 319 votos (0,065%). BRANCOS E NULOS NÃO SÃO DE OUTRO CARGO: senador/RN publica 301.982 brancos e 426.640 nulos (9,1x e 6,5x maiores que os daqui), e para o GOVERNO do RN a imprensa publica que ausências mais brancos e nulos somam 25,2% do eleitorado, outro recorte — nenhum desses números tem relação com os 33.172 e 65.943 de presidente. COBERTURA PARCIAL, DECLARADA: só os DOIS PRIMEIROS colocados têm absoluto publicado, e eles somam 1.958.456 = 94,52% dos válidos. Os 5,48% restantes são os 113.442 votos que a fonte atribui em bloco aos demais candidatos, SEM itemizar por candidato, e que NÃO FORAM COMPLETADOS — Escritor Augusto Cury, Renan Santos, Ronaldo Caiado e Romeu Zema não têm absoluto nem percentual publicados nesta UF. Nenhum candidato fora dos seis nomes canônicos aparece nesta leitura. NENHUM caso de anulado sub judice nesta UF: o fechamento é exato e não sobra resíduo a explicar. Base dos percentuais dos candidatos: VOTOS VÁLIDOS; a dos brancos e nulos: TOTAL DE VOTOS REGISTRADOS. Eleição de 2026 (Lula x FLÁVIO Bolsonaro), não de 2022. Coletado via RESUMO DE WEBSEARCH: WebFetch a tribunadonorte.com.br, plural.jor.br, exame.com e portaln10.com.br está BLOQUEADO pelo proxy de egresso deste ambiente (ENOTFOUND), então os valores NÃO FORAM CONFERIDOS NA PÁGINA ORIGINAL."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "TO",
+      "turno": 1,
+      "secoesTotalizadas": 100,
+      "validosTotal": 930447,
+      "candidatos": [
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 469321
+        },
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 404009
+        },
+        {
+          "candidato": "Augusto Cury",
+          "partido": "Avante",
+          "votos": 22434
+        },
+        {
+          "candidato": "Ronaldo Caiado",
+          "partido": "PSD",
+          "votos": 20189
+        },
+        {
+          "candidato": "Renan Santos",
+          "partido": "Missão",
+          "votos": 12983
+        }
+      ],
+      "brancos": 8344,
+      "nulos": 26405,
+      "abstencoes": 216827,
+      "fonte": {
+        "nome": "Band — Apuração Presidente em Tocantins, Eleições 2026 (dados do TSE, 100,00% das urnas apuradas); os brancos (8.344) e nulos (26.405) conferidos também na Plural e o resultado estadual no Jornal do Tocantins e no Cleber Toledo; leitura de 08/10/2026",
+        "url": "https://www.band.com.br/politica/eleicoes/2026/apuracao/presidente/to"
+      },
+      "observacao": "RECORTE NOVO (não havia presidente no TO). SEÇÕES: 100,00% das urnas apuradas, PUBLICADO pela fonte (dados do TSE) — NÃO inferido de razão entre aptos. VÁLIDOS PUBLICADOS: 930.447 (não derivado), ao lado do total de 965.196 votos. COBERTURA QUASE TOTAL: os CINCO candidatos listados somam 928.936 = 99,84% dos válidos; sobram 1.511 votos (0,16%) de candidatos que a fonte não itemiza e que NÃO FORAM COMPLETADOS. Nenhum candidato fora dos seis nomes canônicos aparece nesta leitura (Romeu Zema não é itemizado aqui). (ii) FECHAMENTO EXATO: válidos 930.447 + brancos 8.344 + nulos 26.405 = 965.196, IGUAL ao total de votos publicado, sem resíduo. Os percentuais de brancos e nulos sobre o total também são reimpressos: 8.344/965.196 = 0,8645% (0,86 publicado) e 26.405/965.196 = 2,7357% (2,74). brancos+nulos = 34.749 = 3,60% dos computados, dentro da faixa das fichas de presidente já aceitas (3,17% em SC a 5,86% em SP). (i) CINCO DERIVAÇÕES, todas coerentes: os CINCO absolutos sobre os válidos publicados 930.447 reimprimem os CINCO percentuais publicados, um a um — 50,4404 (50,44), 43,4210 (43,42), 2,4111 (2,41), 2,1698 (2,17) e 1,3954 (1,40). No sentido inverso, as duas derivações mais precisas dão 469.321/0,5044 = 930.454 e 404.009/0,4342 = 930.468, que concordam entre si com erro de 0,0015% (14 votos), muito abaixo do limite de 0,1%; a INTERSEÇÃO dos intervalos de arredondamento dessas duas é [930.362 ; 930.546], largura 184 votos (0,0198% dos válidos), e o valor PUBLICADO 930.447 cai DENTRO dela. (iii) CHECAGEM CONTRA O ELEITORADO, sem busca: computados 965.196 + abstenções 216.827 = 1.182.023, que é 99,976% dos 1.182.307 aptos do TO em data/electorate.json (referência 2026-07), bem dentro da faixa 99,8%-100,2%; e 216.827/1.182.023 = 18,3437% REIMPRIME os 18,34% de abstenção publicados pela fonte, assim como o comparecimento de 81,66% que ela publica ao lado. (iv) CRUZAMENTO COM O SENADOR DA MESMA UF: senador/TO tem 1.927.620 computados (dois votos por eleitor, total par); 1.927.620 / 965.196 = 1,99713, dentro da faixa empírica das 11 UFs de presidente já no arquivo com brancos e nulos preenchidos, de 1,99414 (SC) a 1,99932 (BA). O comparecimento implícito em senador/TO é 963.810, 1.386 votos (0,144%) abaixo dos 965.196 computados de presidente, e senador/TO publica abstenções 216.623 contra as 216.827 daqui (204 votos) — mesma ordem das tensões já aceitas (PA 0,074%, SC 0,29%). As abstenções gravadas aqui são as PUBLICADAS NA PRÓPRIA PÁGINA DE PRESIDENTE (216.827) e são o único valor que reimprime os 18,34% publicados. BRANCOS E NULOS NÃO SÃO DE OUTRO CARGO: senador/TO publica 93.579 brancos e 180.376 nulos (11,2x e 6,8x maiores que os daqui) e o governo do TO foi para 2º turno — nenhum desses números tem relação com os 8.344 e 26.405 de presidente. VARIANTE DE FONTE RECUSADA, com o número: a CNN publica 469.521 votos para o líder, 200 votos acima dos 469.321 usados aqui. Esse valor foi RECUSADO porque 469.521/930.447 = 50,4619%, ou 50,46%, que CONTRADIZ os 50,44% publicados ao lado, e porque o intervalo de arredondamento que ele implica, [930.758 ; 930.943], EXCLUI os válidos publicados 930.447; já 469.321 reimprime 50,44% exato. NENHUM caso de anulado sub judice no recorte de presidente desta UF: o fechamento é exato e não sobra resíduo. Vale registrar que o recorte senador/TO do arquivo É um caso de anulado — lá o válido publicado só fecha somando +3.254 de um candidato anulado —, mas isso NÃO afeta esta ficha, cujo fechamento é direto. Base dos percentuais dos candidatos: VOTOS VÁLIDOS; a dos brancos e nulos: TOTAL DE VOTOS. Eleição de 2026 (Lula x FLÁVIO Bolsonaro), não de 2022. Coletado via RESUMO DE WEBSEARCH: WebFetch a band.com.br, exame.com, plural.jor.br e jornaldotocantins.com.br está BLOQUEADO pelo proxy de egresso deste ambiente (ENOTFOUND), então os valores NÃO FORAM CONFERIDOS NA PÁGINA ORIGINAL."
     }
   ]
 }
