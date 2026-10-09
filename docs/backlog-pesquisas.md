@@ -3036,3 +3036,47 @@ Restam **10 UFs** sem presidente: AC AM AP CE DF PB PI RO RR SE.
 resíduo zero, logo não há nada para um anulado explicar. Fica anotado que
 `senador/TO` no arquivo **é** um caso de anulado (+3.254) e que `presidente/TO`
 fecha direto, sem ser afetado.
+
+## Rodada de 09/10 — e a causa do "DNS quebrado" era outra
+
+### CORREÇÃO DE DIAGNÓSTICO: não é DNS, é a política de rede do ambiente
+
+Desde 07/10 eu vinha registrando — e repassando aos agentes — que o `WebFetch`
+estava com "DNS quebrado neste container", porque é assim que a falha aparece:
+`getaddrinfo ENOTFOUND` em todos os hosts. **Está errado, e o erro importa porque
+aponta para um conserto que não existe.**
+
+Conferido hoje no diagnóstico do próprio proxy
+(`curl -sS "$HTTPS_PROXY/__agentproxy/status"`):
+
+```
+"recentRelayFailures": [{
+  "kind": "connect_rejected",
+  "detail": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
+  "host": "exame.com:443"
+}]
+```
+
+É **negação de política**: o gateway responde **403 ao CONNECT** para os hosts de
+notícia, e isso chega ao Node como `ENOTFOUND`. Ou seja, não é falha transitória de
+container — é a configuração de **Network access** do ambiente, que **o usuário pode
+mudar**. O que trava é uma lista de domínios permitidos, não o resolvedor.
+
+**Hosts negados que já custaram dado a este projeto:** exame.com, poder360.com.br,
+gazetadopovo.com.br, cartacapital.com.br, metropoles.com, band.com.br,
+diariodopara.com.br, hubpolitico.com.br, brasildefato.com.br, revistaoeste.com,
+gcmais.com.br, eshoje.com.br — mais `tse.jus.br` e `resultados.tse.jus.br`, negados
+desde o começo do projeto.
+
+**O que isso custou, concretamente:** o 1º turno da Futura (campo 02–03/10), que
+encurtaria a distância de campo do instituto no ranking de 5 dias para 1 e precisa
+de uma leitura da tabela inteira; e sete fichas de presidente por UF que estão a um
+único número publicado de entrar (RO e RR precisam só do `secoesTotalizadas`; SE e
+CE do total de válidos; DF de qual é o comparecimento; AC do instante de 100%; AP de
+absoluto que não venha de agregador).
+
+**Enquanto a política não mudar, a regra de trabalho segue a mesma** — só WebSearch,
+com corroboração entre veículos e a limitação declarada em cada `observacao`, e
+recorte que exija a tabela inteira continua sendo recusa, não registro. Mas a
+pendência deixa de ser "esperar o DNS voltar" e passa a ser uma decisão de
+configuração.
