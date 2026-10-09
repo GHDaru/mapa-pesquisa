@@ -667,3 +667,150 @@ describe('situação do cenário de 2º turno', () => {
     expect(t.every((c) => c.situacao === 'indefinido')).toBe(true);
   });
 });
+
+/**
+ * A janela do agregado vigente, depois que o 1º turno pôs uma descontinuidade
+ * dentro dela.
+ *
+ * Em 09/10 a janela de recência tinha 55 pesquisas de "Lula x Flávio", **51 delas
+ * anteriores a 04/10**, com **84,9% do peso**, e publicava empate técnico (Flávio
+ * 46,43 x Lula 45,00) enquanto as quatro pesquisas que mediam a disputa real
+ * davam Flávio 48,42 x Lula 44,83, vantagem de 3,59 pontos e **fora do empate**.
+ * A manchete era 85% a medição de uma corrida que deixou de existir.
+ */
+describe('janela do agregado de 2º turno', () => {
+  const FONTE = { nome: 'fixture', url: 'https://exemplo.invalido' };
+
+  function t2(id: string, dataFim: string, pct: readonly [number, number], amostra = 2000) {
+    return criarPesquisa({
+      id,
+      uf: 'BR',
+      cargo: 'presidente',
+      turno: 2,
+      instituto: `Fix-${id}`,
+      registroTSE: null,
+      contratante: null,
+      dataInicio: dataFim,
+      dataFim,
+      publicadoEm: dataFim,
+      amostra,
+      margem: 2,
+      cenario: 'estimulada, 2º turno',
+      fonte: FONTE,
+      resultados: [
+        { candidato: LULA, partido: 'PT', pct: pct[0] },
+        { candidato: FLAVIO_BOLSONARO, partido: 'PL', pct: pct[1] },
+      ],
+    } as unknown as DadosPesquisa);
+  }
+
+  function apuracaoFechada() {
+    return criarApuracaoRepositoryJson({
+      atualizadoEm: '2026-10-05T05:58:00Z',
+      recortes: [
+        {
+          cargo: 'presidente',
+          uf: null,
+          turno: 1,
+          secoesTotalizadas: 100,
+          validosTotal: 119_300_788,
+          candidatos: [
+            { candidato: FLAVIO_BOLSONARO, partido: 'PL', votos: 56_104_268 },
+            { candidato: LULA, partido: 'PT', votos: 53_876_617 },
+          ],
+          fonte: FONTE,
+        },
+      ],
+    });
+  }
+
+  function montar(pesquisas: Pesquisa[], apuracao = apuracaoFechada()): CasosDeUso {
+    return criarCasosDeUso(
+      {
+        polls: pollRepoFake(pesquisas),
+        parties: partyRepoFake(PARTIDOS),
+        senateSeats: senateSeatRepoFake,
+        meta: metaRepoFake,
+        apuracao,
+        electorate: electorateRepoFake([]),
+      },
+      CLOCK,
+    );
+  }
+
+  /** Pré-eleição dizendo empate; pós-eleição dizendo vantagem clara. */
+  const PRE = [
+    t2('pre-1', '2026-09-28', [46, 46]),
+    t2('pre-2', '2026-09-30', [46, 46]),
+    t2('pre-3', '2026-10-03', [46, 46]),
+  ];
+  const POS = [t2('pos-1', '2026-10-07', [44, 49]), t2('pos-2', '2026-10-08', [45, 49])];
+
+  it('o vigente usa SÓ o campo posterior ao 1º turno, e a conta muda', () => {
+    const t = montar([...PRE, ...POS]).getPresidentialAggregate().turno2;
+    const v = t.find((c) => c.situacao === 'vigente')!;
+    expect(v.janela).toBe('pos-1o-turno');
+    expect(v.agregado.pesquisasUsadas).toHaveLength(2);
+    // Se as três pré-eleição entrassem, o líder viria perto do empate.
+    expect(v.agregado.lider!.candidato).toBe(FLAVIO_BOLSONARO);
+    expect(v.agregado.lider!.pct).toBeGreaterThan(48);
+  });
+
+  it('sem nenhuma pesquisa pós-eleição, NÃO esconde o cartão — avisa', () => {
+    // Foi o estado de 05 a 07/10: o 1º turno decidido e nenhuma rodada nova.
+    const t = montar(PRE).getPresidentialAggregate().turno2;
+    const v = t.find((c) => c.situacao === 'vigente')!;
+    expect(v.janela).toBe('inclui-pre-1o-turno');
+    expect(v.agregado.pesquisasUsadas).toHaveLength(3);
+  });
+
+  it('cenário superado mantém a janela inteira — ali não há descontinuidade a respeitar', () => {
+    // Confronto contra um candidato que o 1º turno eliminou.
+    const contraCury = criarPesquisa({
+      id: 'cury-2',
+      uf: 'BR',
+      cargo: 'presidente',
+      turno: 2,
+      instituto: 'Fix-cury',
+      registroTSE: null,
+      contratante: null,
+      dataInicio: '2026-09-28',
+      dataFim: '2026-09-28',
+      publicadoEm: '2026-09-28',
+      amostra: 2000,
+      margem: 2,
+      cenario: 'estimulada, 2º turno',
+      fonte: FONTE,
+      resultados: [
+        { candidato: LULA, partido: 'PT', pct: 46 },
+        { candidato: 'Augusto Cury', partido: 'Avante', pct: 38 },
+      ],
+    } as unknown as DadosPesquisa);
+    const t = montar([...POS, contraCury]).getPresidentialAggregate().turno2;
+    const sup = t.find((c) => c.situacao === 'superado')!;
+    expect(sup.janela).toBe('inclui-pre-1o-turno');
+  });
+
+  it('com o 1º turno ainda aberto, nenhum cenário é recortado', () => {
+    const abertoRepo = criarApuracaoRepositoryJson({
+      atualizadoEm: 'x',
+      recortes: [
+        {
+          cargo: 'presidente',
+          uf: null,
+          turno: 1,
+          secoesTotalizadas: 84.96,
+          validosTotal: 100,
+          candidatos: [
+            { candidato: FLAVIO_BOLSONARO, partido: 'PL', votos: 52 },
+            { candidato: LULA, partido: 'PT', votos: 48 },
+          ],
+          fonte: FONTE,
+        },
+      ],
+    });
+    const t = montar([...PRE, ...POS], abertoRepo).getPresidentialAggregate().turno2;
+    expect(t.every((c) => c.janela === 'inclui-pre-1o-turno')).toBe(true);
+    expect(t[0]!.agregado.pesquisasUsadas).toHaveLength(5);
+  });
+});

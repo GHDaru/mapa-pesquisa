@@ -290,6 +290,37 @@ export function rotuloSituacaoCenario(
   return null;
 }
 
+/**
+ * De quando fala o número do cartão de 2º turno.
+ *
+ * Sem isto, um agregado de quatro pesquisas e um de cinquenta e cinco leem igual.
+ * E o caso que obrigou a existir é pior que impreciso: em 09/10 a janela de
+ * recência tinha 55 pesquisas de "Lula x Flávio", **51 delas anteriores ao 1º
+ * turno**, com 84,9% do peso — e publicava empate técnico, enquanto as quatro
+ * pesquisas que mediam a disputa real davam vantagem de 3,59 pontos, fora do
+ * empate. Antes de 04/10 a pergunta era hipotética; depois, é a eleição marcada.
+ */
+export function rotuloJanelaCenario(
+  janela: 'pos-1o-turno' | 'inclui-pre-1o-turno',
+  situacao: 'vigente' | 'superado' | 'indefinido',
+  quantas: number,
+): string | null {
+  if (situacao !== 'vigente') return null;
+  const n = quantas === 1 ? '1 pesquisa' : `${quantas} pesquisas`;
+  if (janela === 'pos-1o-turno') {
+    return (
+      `Só ${n} com campo POSTERIOR ao 1º turno. As rodadas anteriores a 04/10 ` +
+      'mediam um 2º turno hipotético, com o eleitor sem saber quem passaria, e por ' +
+      'isso ficam fora desta conta — seguem na base e na série histórica.'
+    );
+  }
+  return (
+    `ATENÇÃO: ${n} numa janela que ATRAVESSA o 1º turno. Ainda não há rodada com ` +
+    'campo posterior a 04/10 neste confronto, então este número fala sobre o 2º ' +
+    'turno hipotético testado antes da eleição, não sobre a disputa marcada.'
+  );
+}
+
 function criarCartaoTurno2(
   cenario: CenarioAgregado,
   espectroDe: (partido: string | null) => Espectro,
@@ -306,6 +337,23 @@ function criarCartaoTurno2(
       agregado.empateTecnico ? criarSeloEmpateTecnico() : null,
     ]),
   );
+
+  const janela = rotuloJanelaCenario(
+    cenario.janela,
+    cenario.situacao,
+    agregado.pesquisasUsadas.length,
+  );
+  if (janela) {
+    card.append(
+      criarEl('p', {
+        className:
+          cenario.janela === 'pos-1o-turno'
+            ? 'pv-meta pv-janela-pos'
+            : 'pv-meta pv-janela-mista',
+        texto: janela,
+      }),
+    );
+  }
 
   const situacao = rotuloSituacaoCenario(cenario.situacao);
   if (situacao) {

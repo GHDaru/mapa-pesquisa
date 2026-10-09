@@ -42,6 +42,43 @@
     ]
   },
   {
+    "id": "2026-10-09-atlasintel-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-03663/2026",
+    "contratante": null,
+    "dataInicio": "2026-10-03",
+    "dataFim": "2026-10-08",
+    "publicadoEm": "2026-10-09",
+    "amostra": 5026,
+    "margem": 1,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/atlasintel-flavio-tem-528-e-lula-472-no-2o-turno-em-votos-validos"
+    },
+    "observacao": "Corte do TOTAL: Flávio 51,1 · Lula 45,7 · branco/nulo/indeciso 3,2 — linha de não-candidato PUBLICADA, as três somam exatamente 100,0. Manchete de válidos: Flávio 52,8% x Lula 47,2% (equivale a 51,1/96,8 e 45,7/96,8, confirmando a base total). O instituto publica o espaço de não-voto em UMA linha combinada e não divulga a quebra entre brancos/nulos e indecisos; mantida como linha única (mesmo padrão do registro AtlasIntel de 03/10 já na base), pois repartir o residual seria inventar. Campo 03–08/10 atravessa o dia da eleição (04/10). 5.026 entrevistas pela internet, confiança 95%. Contratante null: a Gazeta do Povo informa pesquisa contratada pelo próprio instituto e o Metrópoles a identifica como AtlasIntel/Bloomberg — parceria de divulgação não é contratante. Registro TSE BR-03663/2026 conforme o pré-anúncio da rodada (Band/ND Mais), que bate com amostra ~5.000 e margem 1. Valores obtidos de resumo de busca na web, corroborados entre veículos (Metrópoles, Exame, Gazeta do Povo, Revista Fórum), SEM conferência na página original — o WebFetch está sem resolução de DNS neste container.",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 45.7
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 51.1
+      },
+      {
+        "candidato": "Brancos/nulos/indecisos",
+        "partido": null,
+        "pct": 3.2
+      }
+    ]
+  },
+  {
     "id": "2026-10-08-poderdata-br-presidente-t2-lula-flavio",
     "uf": "BR",
     "cargo": "presidente",
@@ -80,6 +117,48 @@
         "candidato": "Não sabe",
         "partido": null,
         "pct": 2
+      }
+    ]
+  },
+  {
+    "id": "2026-10-09-vox-brasil-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Vox Brasil",
+    "registroTSE": "BR-09623/2026",
+    "contratante": null,
+    "dataInicio": "2026-10-05",
+    "dataFim": "2026-10-07",
+    "publicadoEm": "2026-10-09",
+    "amostra": 2100,
+    "margem": 2.15,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/vox-brasil-no-2o-turno-lula-tem-5086-e-flavio-4914-dos-votos-validos"
+    },
+    "observacao": "Corte do TOTAL: Lula 44,2 · Flávio 42,7 · brancos/nulos/nenhum 3,4 · não sabe/não opinou 9,7 — as quatro linhas publicadas somam exatamente 100,0. Manchete de válidos: Lula 50,86% x Flávio 49,14% (equivale a 44,2/86,9 e 42,7/86,9, confirmando que 44,2/42,7 é a base total). Empate técnico pela margem de 2,15 pp. 2.100 entrevistas presenciais domiciliares, confiança 95%. Valores obtidos de resumo de busca na web, corroborados entre veículos (Metrópoles, CartaCapital, Exame, Estado de Minas, BPMoney), SEM conferência na página original — o WebFetch está sem resolução de DNS neste container.",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 44.2
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 42.7
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 3.4
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 9.7
       }
     ]
   },

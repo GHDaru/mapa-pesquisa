@@ -1146,3 +1146,16 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
   /* .pv-card nao tem borda propria, entao a borda inteira e declarada aqui. */
   border: 1px dashed var(--color-warning);
 }
+
+/*
+ * De quando fala o agregado de 2º turno. A janela que atravessa o 1º turno é
+ * aviso, não informação neutra: ali o número mede uma pergunta hipotética.
+ */
+.pv-janela-pos {
+  color: var(--color-text-muted);
+}
+
+.pv-janela-mista {
+  color: var(--color-warning);
+  font-weight: 600;
+}

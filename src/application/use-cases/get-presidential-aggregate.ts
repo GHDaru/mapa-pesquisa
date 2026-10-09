@@ -4,6 +4,8 @@ import { dataReferencia, type Pesquisa } from '../../domain/poll.js';
 import { chaveConfronto, confrontoDaPesquisa } from '../../domain/runoff.js';
 import { criarDisputa, UF_NACIONAL } from '../../domain/race.js';
 import { finalistasDecididos } from '../../domain/apuracao.js';
+import { DATA_PRIMEIRO_TURNO } from '../../domain/poll-accuracy.js';
+import { dataReferencia as refDe } from '../../domain/poll.js';
 
 const CENARIO_PADRAO = 'sem cenário';
 
@@ -27,6 +29,28 @@ export interface CenarioAgregado {
    * podem ser lidos como disputa viva.
    */
   readonly situacao: 'vigente' | 'superado' | 'indefinido';
+  /**
+   * De que janela de campo saiu este agregado.
+   *
+   * - `'pos-1o-turno'`: só pesquisas com campo POSTERIOR ao 1º turno.
+   * - `'inclui-pre-1o-turno'`: a janela atravessa 04/10.
+   *
+   * **Por que isto existe, e é o defeito mais consequente que achei na semana.**
+   * A janela de recência (45 dias, meia-vida de 14) foi desenhada quando não
+   * havia descontinuidade dentro dela. O 1º turno de 04/10 pôs uma: antes dele
+   * as pesquisas de "Lula x Flávio" mediam um 2º turno **hipotético**, com o
+   * eleitor sem saber quem passaria; depois, medem a eleição marcada e com
+   * finalistas conhecidos. São perguntas diferentes.
+   *
+   * Medido em 09/10, com as quatro primeiras pesquisas pós-eleição na base: a
+   * janela tinha **55 pesquisas, 51 delas anteriores a 04/10**, e os pesos davam
+   * **84,9% para as pré-eleição**. O agregado publicava Flávio 46,43 x Lula 45,00
+   * com `empateTecnico: true` — enquanto as quatro pesquisas que de fato mediam
+   * esta disputa davam Flávio 48,42 x Lula 44,83, vantagem de 3,59 pontos e
+   * **fora do empate técnico**. A manchete era 85% a medição de uma corrida que
+   * deixou de existir.
+   */
+  readonly janela: 'pos-1o-turno' | 'inclui-pre-1o-turno';
 }
 
 export interface AgregadoPresidencial {
@@ -74,17 +98,29 @@ export function criarGetPresidentialAggregate(repos: Repositorios, clock: Clock)
 
     const turno2: CenarioAgregado[] = [];
     for (const [chave, grupo] of porCenario) {
-      const agregado = agregarPesquisas(grupo, {}, hoje);
+      const vigente = finalistas != null && chave === chaveConfronto(finalistas);
+      /*
+       * No cenário VIGENTE, depois que o 1º turno decidiu, a manchete sai só das
+       * pesquisas com campo posterior à eleição — ver `janela`. Os cenários
+       * superados e o estado de 1º turno aberto seguem com a janela inteira: ali
+       * não há descontinuidade a respeitar, e recortar não significaria nada.
+       *
+       * **Com fallback declarado:** se ainda não existe nenhuma pesquisa
+       * pós-eleição (foi o estado de 05 a 07/10), usa a janela inteira e marca
+       * `'inclui-pre-1o-turno'`. Sumir com o cartão por falta de dado novo seria
+       * pior que mostrá-lo dizendo de quando ele fala.
+       */
+      const posEleicao = vigente
+        ? grupo.filter((p) => refDe(p) > DATA_PRIMEIRO_TURNO)
+        : [];
+      const usarSoPos = vigente && posEleicao.length > 0;
+      const agregado = agregarPesquisas(usarSoPos ? posEleicao : grupo, {}, hoje);
       if (agregado) {
         turno2.push({
           cenario: rotuloDoCenario(agregado.candidatos.map((c) => c.candidato), chave),
           agregado,
-          situacao:
-            finalistas == null
-              ? 'indefinido'
-              : chave === chaveConfronto(finalistas)
-                ? 'vigente'
-                : 'superado',
+          situacao: finalistas == null ? 'indefinido' : vigente ? 'vigente' : 'superado',
+          janela: usarSoPos ? 'pos-1o-turno' : 'inclui-pre-1o-turno',
         });
       }
     }

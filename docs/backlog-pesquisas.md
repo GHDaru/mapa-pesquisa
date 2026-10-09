@@ -3080,3 +3080,79 @@ com corroboração entre veículos e a limitação declarada em cada `observacao
 recorte que exija a tabela inteira continua sendo recusa, não registro. Mas a
 pendência deixa de ser "esperar o DNS voltar" e passa a ser uma decisão de
 configuração.
+
+### Vox Brasil e AtlasIntel entram, e o campo se abre em dois
+
+| instituto | campo | amostra | corte TOTAL | manchete (válidos) |
+|---|---|---|---|---|
+| **Vox Brasil** | 05–07/10 | 2.100 presenciais | **Lula 44,2** · Flávio 42,7 · br/nulos/nenhum 3,4 · não sabe 9,7 | **Lula 50,86 x 49,14** |
+| **AtlasIntel** | 03–08/10 | 5.026 internet | **Flávio 51,1** · Lula 45,7 · branco/nulo/indeciso 3,2 | **Flávio 52,8 x 47,2** |
+
+As duas somam **exatamente 100,0**, com as linhas de não-candidato **publicadas**
+— que é o que identifica o corte do total, não o teste de divisão (ver o achado de
+08/10). A AtlasIntel era o caso a vigiar, porque costuma publicar só válidos: ela
+publicou "3,2% dizem branco, nulo ou não sabem", e o registro usa **uma linha
+combinada** `Brancos/nulos/indecisos`, porque o instituto **não divulga a quebra** e
+repartir seria invenção. Conferi no código que os cinco rótulos usados hoje —
+`Brancos/nulos`, `Não sabe`, `Brancos/nulos/nenhum`, `Não sabe/não opinou` e
+`Brancos/nulos/indecisos` — **todos normalizam para não-candidato** e ficam fora do
+ranking. Contratante `null` nas duas (nenhum veículo nomeia encomendante; a
+rotulagem "AtlasIntel/Bloomberg" é divulgação).
+
+**O campo de 2º turno está rachado**, e vale registrar porque é o fato jornalístico
+da rodada: em votos válidos, Datafolha +4,3, PoderData +5,4 e AtlasIntel +5,6 para
+Flávio, contra **Vox Brasil −1,7, dando Lula à frente**. Spread de **7,3 pontos**
+entre Vox e AtlasIntel, com campos que se sobrepõem.
+
+### O defeito mais consequente da semana: a janela atravessava o 1º turno
+
+A janela de recência do agregado (45 dias, meia-vida 14) foi desenhada quando não
+havia descontinuidade dentro dela. **O 1º turno pôs uma em 04/10**, e nada no código
+notou.
+
+Medido hoje, antes do conserto: o agregado do confronto real tinha **55 pesquisas,
+51 delas com campo anterior a 04/10**, e os pesos davam **84,9% para as
+pré-eleição**. Ele publicava **Flávio 46,43 x Lula 45,00 com `empateTecnico: true`**
+— enquanto as quatro pesquisas que de fato medem esta disputa dão **Flávio 48,42 x
+Lula 44,83, vantagem de 3,59 pontos e FORA do empate técnico**.
+
+Ou seja: **a manchete do site era 85% a medição de uma corrida que deixou de
+existir**, e dizia "empate" onde a evidência pós-eleição diz vantagem. Antes de
+04/10 a pergunta "Lula x Flávio" era **hipotética** — o eleitor não sabia quem
+passaria; depois, é a eleição marcada com finalistas conhecidos. São perguntas
+diferentes, e misturá-las produz um número que não é nem um nem outro.
+
+**O conserto:** decidido o 1º turno, o cenário **vigente** passa a agregar **só
+pesquisas com campo posterior a 04/10** (`DATA_PRIMEIRO_TURNO`, constante que já
+existia no domínio). Os cenários **superados** seguem com a janela inteira — ali não
+há descontinuidade a respeitar — e com o 1º turno **em aberto** nada é recortado.
+
+**Com fallback declarado, e ele importa:** se ainda não existe nenhuma pesquisa
+pós-eleição — foi o estado de 05 a 07/10 — o cartão **não desaparece**: usa a janela
+inteira e **avisa em destaque** que o número fala do 2º turno hipotético, não da
+disputa marcada. Sumir com o cartão por falta de dado novo seria pior que mostrá-lo
+dizendo de quando ele fala.
+
+E o cartão agora **declara a janela e quantas pesquisas**: "Só 4 pesquisas com campo
+POSTERIOR ao 1º turno…" — sem isso, um agregado de quatro e um de cinquenta e cinco
+leem igual. Oito testes novos, mutação confirmada.
+
+**É a quarta ocorrência da mesma família numa semana**, e a maior: 06/10
+`baseComparacao` preferindo a soma estadual; 07/10 a nota da tabela por estado;
+08/10 os cenários que as urnas mataram; hoje a janela que atravessa a eleição.
+**O padrão é sempre o mesmo — código escrito num mundo, lido em outro, sem nada que
+notasse a virada.** Vale procurar deliberadamente pelo próximo: qualquer regra,
+janela, rótulo ou constante escrita antes de 04/10 que ainda trate o 1º turno como
+futuro.
+
+### Lacunas apontadas de passagem
+
+- **Vox Brasil, rodada de ~02/10** (Flávio 48,2 x Lula 45,2, via CNN) **não está na
+  base** — pré-eleição, fora do escopo de hoje, mas é lacuna do retrospecto.
+- **Grafia canônica proposta para o Ipespe** (prevista para 10/10): **`Ipespe`**, sem
+  sufixo de parceiro, coerente com `Datafolha`, `Quaest` e `Gerp`.
+- Confirmado que **não divulgaram** rodada com campo pós-04/10: Ipespe (prevista
+  10/10), DataTrends (11/10), Quaest nacional e os estaduais de RJ e DF (ainda em
+  campo), Paraná Pesquisas, Real Time, Nexus/FSB (manchete sem metodologia,
+  descartada), Gerp, Palver, Futura, Ideia, Indexa e CNT/MDA. **Nenhum recorte
+  estadual de 2º turno pós-eleição existe ainda.**
