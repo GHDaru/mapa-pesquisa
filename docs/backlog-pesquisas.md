@@ -3156,3 +3156,87 @@ futuro.
   campo), Paraná Pesquisas, Real Time, Nexus/FSB (manchete sem metodologia,
   descartada), Gerp, Palver, Futura, Ideia, Indexa e CNT/MDA. **Nenhum recorte
   estadual de 2º turno pós-eleição existe ainda.**
+
+### Presidente por UF: 17 → 24. Faltam CE, PB e PI
+
+Sete UFs entraram, todas a **100% das seções**. Cobertura: **91,10% dos válidos
+nacionais sobre 91,26% dos aptos** — vão de **0,16pp**, o mais estreito até agora.
+
+| UF | líder / 2º | `validosTotal` | razão sen/pres |
+|---|---|---|---|
+| **AM** | **Lula** 48,23% / Flávio 45,00% | 2.170.721 *(derivado)* | 1,99800 |
+| **DF** | Flávio 51,31% / Lula 38,11% | **1.772.808 publicado** | **1,98528** ⚠ |
+| **SE** | **Lula** 62,75% / Flávio 30,63% | 1.364.174 *(derivado)* | 1,99659 |
+| **RO** | Flávio 67,45% / Lula 25,89% | 968.107 *(derivado)* | 1,99836 |
+| **AC** | Flávio 64,56% / Lula 28,73% | **469.066 publicado** | 1,99853 |
+| **AP** | **Lula** 45,71% / Flávio 45,67% | 464.852 *(derivado)* | 1,99775 |
+| **RR** | Flávio 71,06% / Lula 22,86% | 325.531 *(derivado)* | 1,99520 |
+
+**O campo que faltava, achado caso a caso:** em RO e RR a Plural afirma 100% **no
+corpo** da matéria, citando o TSE, não no título — era a diferença entre inferir e
+ler. Em AM os "48,08%" que eu tinha como único dado eram **leitura antiga**: a Band
+a 100% publica absolutos e cinco percentuais que reimprimem com os mesmos válidos.
+Em AP a Plural publica os absolutos como jornalismo citando o TSE, e a interseção
+tem **16 votos** contra uma margem estadual de **225** — a derivação não pode
+inverter o líder. Em AC os absolutos de 100% apareceram com `validosTotal`
+publicado e a própria margem reimpressa pela fonte.
+
+**DF: aceito com a anomalia declarada.** A razão senador/presidente dá **1,98528**,
+fora da faixa empírica (1,99414–1,99932) e cerca de três vezes o pior desvio aceito.
+Entrou porque o **fechamento é exato contra total publicado** — 1.772.808 + 25.362 +
+33.226 = 1.831.396, com 96,8013% reimprimindo os 96,80% publicados — e porque o
+percentual publicado de 51,31% **só funciona** com 1.772.808: sobre os 1.817.921 do
+TRE-DF daria 50,04%, contradizendo a própria fonte. Os 1.817.921 são exatamente
+metade dos 3.635.842 de `senador/DF`, ou seja o comparecimento do pleito estadual.
+**Hipótese registrada como hipótese, sem fonte que a confirme:** o TRE-DF totaliza
+os **votos do exterior**, que existem só para presidente; se o painel os soma à linha
+do DF, isso explicaria os +13.475 e a razão baixa. Direção e magnitude são
+compatíveis, mas não confirmei.
+
+**Armadilha efetivamente evitada em RO:** o TRE-RO publica, para **governador**,
+945.058 válidos + 23.607 brancos + 21.648 nulos = exatamente 990.313 (= senador ÷ 2).
+Usar esses brancos/nulos em presidente seria repetir o erro de MG.
+
+**brancos+nulos abaixo do mínimo histórico** (2,87% em MT) em RR 2,17%, RO 2,32%,
+AP 2,46% e AM 2,85% — declarado em cada ficha. São estados pequenos.
+
+### O CEARÁ FOI RECUSADO POR MIM, contra a recomendação do levantamento
+
+A ficha do CE veio pronta e **eu a deixei de fora**, e vale registrar o critério.
+
+Ela passaria **só no teste da interseção** — e foi exatamente esse teste que o achado
+de 08/10 mostrou ser **necessário, não suficiente**. Além disso: `secoesTotalizadas`
+99,97 e não 100, `validosTotal` **derivado**, brancos e nulos em `null`, e por isso
+**a razão senador/presidente não é nem calculável**. Cobertura de 94,56%.
+
+E o decisivo: o próprio levantamento **achou uma ficha completa do TRE-CE a 100%** —
+5.910.471 totais = 5.617.814 válidos + 103.295 brancos + 189.362 nulos, fechamento
+exato, razão 1,99833, checagem de seções em 99,972%. Ela não foi usada porque
+3.552.535 ÷ 5.617.814 = 63,24% contra os 63,28% publicados. **Mas essa discordância
+é esperada: os absolutos são da leitura de 99,97% e os válidos da de 100% — são
+instantes diferentes.** Misturá-los é o erro que a base inteira existe para evitar.
+
+**O que falta no CE é um item só: os absolutos por candidato no instante de 100%.**
+Com eles, a ficha do TRE-CE fecha sozinha e é das mais fortes do arquivo. Bônus de
+confiança: os 9.717.683 válidos de senador que o TRE-CE publica são **idênticos** aos
+já gravados em `senador/CE`.
+
+### Uma heurística que me foi oferecida e que é FALSA
+
+O levantamento corrigiu uma inversão de brancos/nulos no DF — correção legítima,
+porque a fonte rotula os dois — mas justificou-a dizendo que **"nulos > brancos vale
+em todas as 27 fichas de senador e nas 17 de presidente"**. Conferido num comando:
+**há quatro contraexemplos na nossa própria base** — `governador/MG` (658.085 brancos
+contra 556.405 nulos), `senador/PR`, `senador/RS` e **`presidente/RS`** (148.339
+contra 131.518). A regra não existe; em 42 fichas vale e em 4 não.
+
+A correção do DF segue válida porque vem **rotulada pela fonte**, não da heurística.
+Mas fica registrado: **não use ordem de brancos e nulos para decidir qual é qual.**
+
+### Seguem recusadas: PB e PI
+
+- **PB** — nenhuma fonte publica absoluto nem brancos/nulos; só "Lula 61,31%" solto.
+  **Falta: qualquer voto absoluto de candidato no estado.**
+- **PI** — o TRE-PI publica a 100% **só percentuais** (Lula 70,99%, Flávio 24,09%). O
+  único absoluto que existe é de **~22% das seções**. **Falta: os absolutos no
+  instante de 100%, ou o total de válidos.**
