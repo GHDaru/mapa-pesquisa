@@ -3240,3 +3240,81 @@ Mas fica registrado: **não use ordem de brancos e nulos para decidir qual é qu
 - **PI** — o TRE-PI publica a 100% **só percentuais** (Lula 70,99%, Flávio 24,09%). O
   único absoluto que existe é de **~22% das seções**. **Falta: os absolutos no
   instante de 100%, ou o total de válidos.**
+
+## Rodada de 10/10 — o Ipespe entra, e a regra da soma ganha um sinal
+
+### Quinta pesquisa de 2º turno, e a primeira grafia nova do Ipespe
+
+**Ipespe**, registro BR-00933/2026, campo **06–08/10**, 1.500 entrevistas por
+telefone (CATI), margem 2,6. Corte TOTAL: **Flávio 49 · Lula 44 · brancos/nulos 5
+· não sabe 3**. Manchete de válidos: **52,7 x 47,3**.
+
+Grafia canônica adotada: **`Ipespe`**, sem sufixo de parceiro, coerente com
+`Datafolha`, `Quaest` e `Gerp` — conferido antes de gravar que não existia grafia
+dele na base. `contratante: null`, nenhum veículo nomeia encomendante.
+
+O confronto real agora tem **cinco** rodadas de campo pós-eleição, e o Ipespe cai
+no bloco majoritário: em válidos (Flávio − Lula), Datafolha **+4,3**, Ipespe
+**+5,4**, PoderData **+5,4**, AtlasIntel **+5,6** — contra Vox Brasil **−1,7**. O
+spread segue governado por esse único outlier. Agregado do cenário vigente:
+**Flávio 48,51 x Lula 44,70**, sem empate técnico, sobre as cinco.
+
+### A REGRA DA SOMA PRECISA DE UM SINAL: abaixo de 100 e acima de 100 não são o mesmo caso
+
+Este registro **soma 101**, e é o primeiro que aceitei fora do ~100. Vale a conta
+inteira, porque ela mostra o que o excesso significa.
+
+- Candidatos 49 + 44 = **93**; não-candidato 5 + 3 = **8**; total **101**.
+- Mas 100 − 8 = **92**, e não 93. Uma das linhas está errada.
+- **Os candidatos estão corroborados duas vezes:** 49/93 = 52,69 → **52,7** e
+  44/93 = 47,31 → **47,3**, as duas manchetes publicadas. E nenhuma alternativa
+  funciona: 48/92 = 52,17 e 49/92 = 53,26, nenhum dos dois dá 52,7. **Logo 49 e 44
+  estão certos, e o ponto sobrando está nas linhas de não-candidato**, que deveriam
+  somar 7.
+
+**E aqui está a assimetria que eu não tinha enunciado.** A regra que firmei em
+08/10 — "as linhas de não-candidato publicadas somando ~100 com os candidatos é o
+que identifica o corte do total" — não distingue o sinal do desvio, e deveria:
+
+- **Soma ABAIXO de 100 é explicável sem erro:** são os candidatos que a fonte não
+  lista. Foi o caso da Futura (99, com seis candidatos de 0% não itemizados) e do
+  Gerp (93, residual não publicado).
+- **Soma ACIMA de 100 só pode ser arredondamento ou erro de publicação**, porque
+  candidato omitido faz a soma **cair**, nunca subir. Então um excesso **tem de ser
+  localizado** antes de aceitar a ficha — não basta chamar de "artefato".
+
+Aqui o excesso **foi** localizado: está no bloco de não-candidato, não nos
+candidatos. Entrou **exatamente como publicado, sem ajuste**, porque corrigir uma
+linha para forçar 100 seria inventar número. Conferido o efeito prático: os
+candidatos entram no agregado como 49 e 44 — que é o que a manchete usa — e o ponto
+sobrando só dilui na fatia combinada de não-candidato (`outros`, 6,94% na média
+ponderada das cinco rodadas). **Nenhum número de candidato é afetado.**
+
+### Nada mais saiu, e o calendário mudou
+
+Confirmado instituto por instituto que não há outra rodada com campo pós-04/10.
+Duas correções de calendário:
+
+- **DataTrends** (campo 07–09/10) segue para **11/10** — registrada, sem números.
+- **Quaest nacional escorregou de 12/10 para 14/10** (2.154 entrevistas
+  presenciais).
+- **Quaest RJ e DF**, estaduais, campo 08–11/10, seguem previstas para **12/10** —
+  serão os **primeiros recortes estaduais de 2º turno com campo pós-eleição** na
+  base, que hoje não tem nenhum.
+
+Descartes de rotina: AtlasIntel e Vox Brasil só devolveram as rodadas **já
+ingeridas** (a menção "Lula 50,86 x Flávio 49,14" é a mesma Vox de 05–07/10, e
+44,2/86,9 = 50,86 confirma); Gerp, CNT/MDA, Futura, Palver, Paraná Pesquisas, Real
+Time, Nexus/FSB, Ideia e Indexa todos param antes de 04/10. Veritá não apareceu em
+nenhuma das 12 buscas por nome — e segue barrado e pendente de decisão humana.
+Nenhum número veio de agregador.
+
+### Lapso meu de processo
+
+**Esqueci de atualizar o prompt da Routine no fim da rodada de 09/10**, e por isso a
+execução de 10/10 começou com o contexto de **08/10**: 50 recortes em vez de 57, 17
+UFs em vez de 24, e o diagnóstico de rede que eu mesmo já tinha corrigido. Nada se
+perdeu, porque conferi a contagem real num comando antes de agir — mas o prompt é a
+memória da rotina entre execuções, e deixá-lo defasado desfaz o trabalho de
+registro. O prompt agora manda explicitamente atualizá-lo no fim de cada rodada, e
+manda conferir a contagem antes de confiar no bloco de contexto.

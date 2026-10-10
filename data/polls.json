@@ -79,6 +79,48 @@
     ]
   },
   {
+    "id": "2026-10-10-ipespe-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Ipespe",
+    "registroTSE": "BR-00933/2026",
+    "contratante": null,
+    "dataInicio": "2026-10-06",
+    "dataFim": "2026-10-08",
+    "publicadoEm": "2026-10-10",
+    "amostra": 1500,
+    "margem": 2.6,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "Exame",
+      "url": "https://exame.com/brasil/pesquisa-presidente-2o-turno-flavio-bolsonaro-tem-49-e-lula-44-diz-ipespe/"
+    },
+    "observacao": "Primeira rodada Ipespe do 2º turno, divulgada em 10/10/2026. CORTE INGERIDO = VOTOS TOTAIS, identificado pela PRESENÇA das linhas de não-candidato efetivamente PUBLICADAS pelas coberturas: Flávio 49%, Lula 44%, 5% brancos/nulos e 3% não sabe/não respondeu. Esse split de não-candidato é publicado, NÃO foi inferido nem repartido a partir de residual. A manchete de válidos da própria rodada é Flávio 52,7% x Lula 47,3% (vantagem de 5,4 pontos), e o TESTE DE DIVISÃO corrobora o corte total: 49/93 = 52,69 -> 52,7 e 44/93 = 47,31 -> 47,3, reproduzindo as duas manchetes. RESSALVA DE ARREDONDAMENTO: 49+44+5+3 = 101, e a base de válidos implícita no teste de divisão é 93, enquanto 100-(5+3) = 92; a inconsistência de 1 ponto é artefato de arredondamento das coberturas, e por isso os valores foram mantidos exatamente como publicados, sem ajuste. TESTE DO DELTA não aplicável: é a primeira rodada de 2º turno do Ipespe e o instituto não tinha nenhum registro anterior nesta base (grafia inédita; adotado 'Ipespe', sem sufixo de parceiro, coerente com Datafolha, Quaest e Gerp). CONTRATANTE: nenhuma fonte afirma quem encomendou a rodada, portanto null. METODOLOGIA: 1.500 eleitores, margem de 2,6 pontos e nível de confiança de 95,45%, registro TSE BR-00933/2026 reproduzido na ficha técnica das coberturas (não conferido no site do TSE). DIVERGÊNCIA DE COLETA: a maioria das coberturas descreve entrevistas telefônicas assistidas por computador (CATI), mas ao menos uma fala em recrutamento digital aleatório; prevalece aqui a descrição telefônica/CATI, majoritária. PROVENIÊNCIA: valores obtidos de RESUMO DE BUSCA (WebSearch), corroborados entre veículos (Exame, A Crítica de Campo Grande, PE Notícias, Jornal GGN para o corte total; Revista Fórum, Midiamax, BPMoney, Revista Oeste, O Cafezinho para a manchete de válidos e ficha técnica), SEM conferência na página original — WebFetch indisponível, pois a política de rede do ambiente nega os hosts (gateway responde 403 ao CONNECT, que chega ao Node como getaddrinfo ENOTFOUND).",
+    "resultados": [
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 44
+      },
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 49
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 5
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 3
+      }
+    ]
+  },
+  {
     "id": "2026-10-08-poderdata-br-presidente-t2-lula-flavio",
     "uf": "BR",
     "cargo": "presidente",
