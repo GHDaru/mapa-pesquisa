@@ -461,7 +461,9 @@ export function rotuloPorUf(
     semApuracao === 0
       ? `Todas as ${total} unidades da federação têm apuração.`
       : `São ${comApuracao} de ${total} unidades da federação: ` +
-        `${semApuracao} ainda sem nenhuma apuração, e elas NÃO são completadas por estimativa.`;
+        (semApuracao === 1
+          ? '1 ainda sem nenhuma apuração, e ela NÃO é completada por estimativa.'
+          : `${semApuracao} ainda sem nenhuma apuração, e elas NÃO são completadas por estimativa.`);
   const relacao =
     destaque === 'nacional'
       ? 'O destaque acima é a contagem nacional da fonte, não a soma destas linhas — ' +

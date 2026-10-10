@@ -3318,3 +3318,86 @@ perdeu, porque conferi a contagem real num comando antes de agir — mas o promp
 memória da rotina entre execuções, e deixá-lo defasado desfaz o trabalho de
 registro. O prompt agora manda explicitamente atualizá-lo no fim de cada rodada, e
 manda conferir a contagem antes de confiar no bloco de contexto.
+
+### Presidente por UF: 26 de 27. O Ceará entrou, e o Piauí é o último
+
+**O Ceará entrou — e pelo motivo exato que eu exigi ao recusá-lo em 09/10.** Os
+absolutos do instante de 100% são **outros**, não uma releitura dos mesmos: Lula
+**3.555.263** (não 3.552.535) e Flávio **1.756.850** (não 1.756.239).
+
+Conferido aqui, e é o teste que separa os dois instantes de forma limpa:
+
+| sobre válidos 5.617.814 | resultado | publicado a 100% |
+|---|---|---|
+| Lula 3.555.263 | **63,28552%** → 63,29 | 63,29 ✔ |
+| Flávio 1.756.850 | **31,27284%** → 31,27 | 31,27 ✔ |
+| *(Lula de 99,97%: 3.552.535)* | 63,23696% → 63,24 | ✗ |
+| *(Flávio de 99,97%: 1.756.239)* | 31,26196% → 31,26 | ✗ |
+
+E explica de passagem o "63,28%" que circulava: é o **truncamento** de 63,2855.
+Fechamento exato (5.617.814 + 103.295 + 189.362 = 5.910.471), razão
+senador/presidente **1,99833**, checagem de seções **99,9643%**, e um bônus que
+fecha ao voto: **11.811.044 ÷ 2 = 5.905.522**, exatamente o comparecimento geral
+que o TRE-CE publica. `validosTotal` **publicado**, não derivado.
+
+Uma variante da CNN (Flávio 1.758.850) foi **descartada** porque dá 31,3084% →
+31,31, e não os 31,27 publicados — a mesma matéria também traz 56.104.503 nacionais
+contra os 56.104.268 da ficha.
+
+**A Paraíba entrou, e o meu diagnóstico de que "nenhuma fonte publica absoluto"
+estava desatualizado.** Lula 1.541.127 (61,31%) x Flávio 831.377 (33,07%), a 100%
+(10.712 de 10.712 seções). `validosTotal` **2.513.750 derivado por subtração de
+publicados** (2.683.988 − 52.294 − 117.944) e declarado — com duas rotas que não
+compartilham insumo convergindo: a interseção dos percentuais dá
+[2.513.612 ; 2.513.868], **256 votos de largura**, e o derivado cai dentro sem
+ajuste. A checagem (iii) fecha **ao voto**: 2.683.988 + 564.543 = 3.248.531, os
+aptos que o TRE-PB publica.
+
+**Tensão registrada, não escondida:** há dois pares concorrentes de
+comparecimento/abstenção para a PB. O TRE-PB publica 2.677.904 / 564.062, que **não
+fecham** contra os próprios aptos (faltam 6.565); o par 2.683.988 / 564.543 fecha
+exato e é o único compatível com a interseção. Foi o escolhido. E a razão
+senador/presidente é o **único teste degradado**, por culpa do numerador:
+`senador/PB` está a 99,08%, então a razão crua dá 1,98093; reescalada a 100% vira
+**1,99932**, a borda superior exata da faixa — confirma sem provar, e está dito na
+ficha. Os brancos+nulos da PB (6,343%) são os mais altos do conjunto, 0,17pp acima
+de AL, mas coerentes com o Nordeste (SE 5,20 · PE 5,25 · BA 5,45 · AL 6,17).
+
+Também testada e afastada a armadilha de brancos/nulos de outro cargo: para
+**governador** da PB a Gazeta do Povo publica 127.816 / 263.466, e `senador/PB` traz
+439.470 / 625.581 — números de outra ordem. Os 52.294 / 117.944 só fecham com os
+válidos de **presidente**.
+
+**Cobertura nacional: 116.818.492 válidos = 97,92%**, com todos os resíduos
+positivos (Flávio +661.396, Lula +1.681.420) e 2.482.296 de válidos restantes para
+PI + exterior — PI esperado ~2,13 milhões, exterior ~0,35 milhão: encaixa.
+
+**Nota sobre a inversão de cobertura, conferida para não virar suspeita falsa:** a
+cobertura de válidos (97,92%) passou a ser MAIOR que a de aptos (97,72%). Não é
+defeito. **917.577 aptos (0,578% do nacional) não estão em UF nenhuma** — são o
+exterior e ajuste de cadastro —, então a cobertura de aptos por UF tem teto de
+**99,42%**, e como o eleitor no exterior comparece muito menos, a cobertura de
+válidos sobe acima da de aptos. As 26 UFs cobrem 98,28% dos aptos das UFs.
+
+### PI segue recusada, e o que falta é nomeável
+
+**Falta o `validosTotal`** — ou, equivalentemente, brancos/nulos de presidente, ou
+qualquer absoluto de candidato no instante de 100%. O TRE-PI publica a 100% **só
+percentuais** (Lula 70,99%, Flávio 24,09%), e o único absoluto que existe é de ~22%
+das seções, inservível. Sem válidos, **nenhum `votos` absoluto pode ser escrito**:
+percentual × computados seria inventar número.
+
+O que já está montado e **não basta**: o total de computados é derivável de
+publicados (aptos 2.704.758 − abstenção 463.790 = **2.240.968**) e passa a razão
+com folga — 4.478.922 ÷ 2.240.968 = **1,99866**, dentro da faixa.
+
+E uma armadilha pega no caminho: a única fonte que dá "brancos 1,84% / nulos 2,93%"
+para o PI publica, na verdade, os **percentuais NACIONAIS** — reproduzem os
+125.275.835 computados e 119.300.788 válidos da ficha nacional. Mesma família do
+banner nacional estampado na página do CE.
+
+### Concordância no aviso de UFs faltantes
+
+Com presidente chegando a 26 de 27, apareceu um defeito do meu próprio rótulo de
+07/10: ele dizia "**1** ainda sem nenhuma apuração, e **elas** NÃO são completadas".
+Corrigido para o singular, com teste nos dois ramos.

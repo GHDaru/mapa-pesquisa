@@ -418,3 +418,18 @@ describe('a tabela por estado não pode dizer que forma um número que não form
     expect(rotuloPorUf('nacional', 10, 17)).not.toBe(rotuloPorUf('estadual', 10, 17));
   });
 });
+
+describe('concordância no aviso de UFs sem apuração', () => {
+  it('com uma UF faltando, fala no singular', () => {
+    // Apareceu quando presidente chegou a 26 de 27: o texto dizia "1 ainda sem
+    // nenhuma apuração, e ELAS não são completadas".
+    const t = rotuloPorUf('nacional', 26, 1);
+    expect(t).toContain('1 ainda sem nenhuma apuração, e ela NÃO é completada');
+    expect(t).not.toContain('elas NÃO são completadas');
+  });
+
+  it('com mais de uma, segue no plural', () => {
+    const t = rotuloPorUf('nacional', 24, 3);
+    expect(t).toContain('3 ainda sem nenhuma apuração, e elas NÃO são completadas');
+  });
+});
