@@ -3463,3 +3463,94 @@ tenho de procurar **todas** as funções que compõem a mesma frase — é o mes
 que cometi em 06/10 consertando `destaque` e deixando `baseComparacao` atrás. Dois
 dias seguidos achando o gêmeo do defeito do dia anterior sugere que a varredura
 deveria ser por **forma de frase**, não por função.
+
+### Governador: 5 → 16 UFs, o maior lote da série
+
+Onze UFs novas (RJ, PA, PE, CE, SC, ES, AM, PB, RO, RR, AL) mais **uma
+substituição no RS**, em 31 buscas. Governador sai de 5 para **16 de 27**;
+cobertura efetiva do cargo passa a **82,62%**.
+
+**O teste que carregou o lote foi o cruzamento de paridade, e ele veio exato.** Em
+**seis UFs — PA, SC, ES, AM, RO e RS — os computados de governador são IDÊNTICOS a
+`senador ÷ 2`, ao voto**, conferido aqui. Razão 2,00000 exata. É a evidência mais
+forte de instante único que este arquivo consegue produzir, e não custou busca
+nenhuma: senador tem dois votos por eleitor, governador um.
+
+| UF | seções | líder / segundo | sen/gov | gov/pres |
+|---|---|---|---|---|
+| **RJ** | 100 | Douglas Ruas (PL) 49,27 / Eduardo Paes (PSD) 42,76 | — | **0,99859** |
+| **RS** | 100 | Zucco (PL) 58,05 / Juliana Brizola (PDT) 31,65 | **2,00000** | 0,99918 |
+| **PE** | 99,07 | Raquel Lyra (PSD) 53,25 / João Campos (PSB) 44,82 | — | 0,99909¹ |
+| **CE** | 100 | Elmano de Freitas (PT) 53,19 / Ciro Gomes (PSDB) 46,22 | — | — |
+| **PA** | 100 | Dr. Daniel (Podemos) 51,36 / Hana Ghassan (MDB) 46,53 | **2,00000** | 0,99926 |
+| **SC** | 100 | Jorginho Mello (PL) 68,98 / Gelson Merísio (PSB) 15,66 | **2,00000** | 0,99707 |
+| **ES** | 100 | Lorenzo Pazolini (Republicanos) 49,65 / Ricardo Ferraço (MDB) 34,06 | **2,00000** | 0,99844 |
+| **AM** | 100 | Omar Aziz (PSD) 40,63 / Maria do Carmo (PL) 24,49 | **2,00000** | 0,99900 |
+| **PB** | 100 | Lucas Ribeiro (PP) 64,30 / Efraim Filho (PL) 24,18 | 1,98543² | 0,99773 |
+| **RO** | 100 | Marcos Rogério (PL) 56,86 / Adailton Fúria (PSD) 20,06 | **2,00000** | 0,99918 |
+| **RR** | 100 | Arthur Henrique (PL) 69,13 / Soldado Sampaio (Republicanos) 29,25 | — | — |
+| **AL** | 98,28 | JHC (PSDB) 52,09 / Renan Filho (MDB) 47,48 | — | — |
+
+¹ reescalado pelos 99,07% de seções (bruto 0,98980). ² `senador/PB` está a 99,08%.
+
+**A anomalia do RJ, conferida e explicada:** a razão sen/gov dá 1,87720, muito fora
+da faixa — mas `senador/RJ` é a **única ficha de senador parcial** (94,57%), e o
+reescalonamento linear ainda deixa 0,751% de folga porque as seções não se
+distribuem uniformemente. **O teste que vale no RJ não usa o senador:**
+`gov/pres` = **0,99859**, com os dois cargos a 100% e um voto por eleitor cada.
+
+**Armadilha NOVA, e é uma variante que eu não tinha catalogado: "válidos" que OMITE
+um candidato.** No **PA** a fonte publica `válidos 4.564.841`, e a diferença para o
+correto (4.566.828) é **exatamente 1.987 = a votação de Ruth Reis**. Conferido: com
+o publicado o líder daria **51,39%** contra os **51,36%** publicados ao lado; com o
+correto dá 51,36 exato. **Mesmíssimo defeito no RS**, diferença de 2.137 — e nas
+duas páginas o rótulo é "válidos (99,96%)", o que sugere artefato de template.
+Soma-se à família do "válidos que é computados" (RJ e ES de presidente): **todo
+"válidos" publicado merece o teste de reimpressão do percentual.**
+
+**O caso do Rio, que rendeu uma validação de brinde.** Gravei a **primeira
+totalização de 04/10**, com o `validosTotal` **bruto** (8.669.038, incluindo os
+274.411 de Garotinho, depois anulados). Conferência: 4.271.199 ÷ (8.669.038 −
+274.411) = **50,8802% = os 50,88% que a retotalização de 10/10 publica**, exato. E
+confirma a regra do anulado pela outra ponta: **comparecimento e abstenções são
+idênticos antes e depois** (9.845.867 e 2.996.650) — anulado move válidos, nunca
+comparecimento. O RJ chegou a ter 2º turno marcado e **cancelado** pela
+retotalização; a ficha é a da primeira.
+
+**A substituição do RS, com a perda declarada.** 97,40% → **100%** (+2,60 pontos) e
+três linhas que eram `null` (brancos 324.123, nulos 315.858, abstenções 1.819.041),
+com os computados batendo `senador ÷ 2` **ao voto**. **Custa:** Gabriel Souza (MDB)
+sai dos candidatos — a 100% só existe percentual dele — e a cobertura cai de 98,13%
+para 89,70%. Aceitei pela mesma razão da ficha nacional em 06/10: `validosTotal`
+está presente, então a cobertura menor **não infla ninguém na tela**, e a paridade
+exata é a melhor evidência de instante único que existe. BA e PR não tiveram leitura
+melhor localizada.
+
+**As três fichas mais fracas do lote, declaradas:** CE, RR e AL têm brancos e nulos
+em `null` — os publicados eram de instante incompatível —, logo **sem fechamento e
+sem razão calculável**. Entraram pela interseção das derivações, que é apertada (RR
+**45 votos** de largura, AL 126, CE 806) e com cobertura alta (99,91%, 99,57%,
+99,41%). **Diferente do CE de presidente que recusei em 09/10**, aqui não há
+instante melhor identificado — e "melhor disponível com a fraqueza declarada" é o
+padrão que já apliquei ao DF.
+
+**Siglas e cobertura pendentes de um item:** em **PB** (Cícero Lucena 252.884, Yuri
+Ezequiel 8.272) e em **PA** (Araceli 85.857, Gal Leite 5.503, Well Macedo 2.676,
+Ruth Reis 1.987) os absolutos existem e reproduzem os percentuais, mas **a sigla do
+partido não foi encontrada** — ficaram fora de `candidatos` e nomeados na
+`observacao`. Confirmando as siglas, a cobertura da PB sobe de 88,47% para 99,90% e
+a do PA fecha em 100,00%. **Conflito registrado:** a sigla de Gelson Merísio (SC) é
+**PSB** no TRE-SC e na totalização do TSE, e PSD na Gazeta do Povo; gravado PSB com
+o conflito na ficha.
+
+**As 11 que faltam, com o campo que falta em cada uma:** **GO** (só o
+`secoesTotalizadas` — a derivação é boa, interseção de 514 votos, mas nenhuma fonte
+publica o percentual de seções do cargo); **MA** (seções + válidos/brancos/nulos do
+mesmo instante: os totais publicados põem o líder em 54,70% contra os 54,02% dos
+absolutos); **RN** (os dois absolutos finais têm intervalos **DISJUNTOS**, faltam 56
+votos para se tocarem — precisa do `validosTotal` publicado no instante final);
+**AP** (segundo colocado em absoluto + brancos/nulos; só há o líder, 62,75% de
+cobertura); **DF** (`validosTotal` + absolutos); e **AC, MS, MT, PI, SE, TO** sem
+nenhum voto absoluto publicado. Duas substituições ao alcance e não gastas: **PR**
+99,17% → 99,72% e **MG** 99,88% → 100% (esta com ganho de só 0,12 ponto; a razão
+senador/governador do candidato a substituto dá 1,9999).

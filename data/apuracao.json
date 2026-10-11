@@ -110,33 +110,28 @@
       "cargo": "governador",
       "uf": "RS",
       "turno": 1,
-      "secoesTotalizadas": 97.4,
-      "validosTotal": 5915730,
+      "secoesTotalizadas": 100,
+      "validosTotal": 6057443,
       "candidatos": [
         {
           "candidato": "Zucco",
           "partido": "PL",
-          "votos": 3431475
+          "votos": 3516048
         },
         {
           "candidato": "Juliana Brizola",
           "partido": "PDT",
-          "votos": 1876601
-        },
-        {
-          "candidato": "Gabriel Souza",
-          "partido": "MDB",
-          "votos": 496870
+          "votos": 1917374
         }
       ],
-      "brancos": null,
-      "nulos": null,
-      "abstencoes": null,
+      "brancos": 324123,
+      "nulos": 315858,
+      "abstencoes": 1819041,
       "fonte": {
-        "nome": "Gazeta do Povo — Resultado eleições 2026 RS: Zucco é eleito governador (97,40% das urnas apuradas)",
-        "url": "https://www.gazetadopovo.com.br/eleicoes/2026/rio-grande-do-sul/resultado-eleicoes-rio-grande-do-sul-zucco-eleito-governador/"
+        "nome": "Metrópoles — Apuração para governador no Rio Grande do Sul, Eleições 2026 (dados do TSE, 100% das urnas apuradas); absolutos dos candidatos por Poder360 (TSE, 100% dos votos apurados)",
+        "url": "https://www.metropoles.com/eleicoes/2026/apuracao/governador/rs"
       },
-      "observacao": "PARCIAL em 97,40% das urnas apuradas — a leitura mais avançada de todo este arquivo. RECORTE NOVO — não havia Rio Grande do Sul no arquivo anterior. Base: percentual sobre VOTOS VÁLIDOS. Os três valores são ABSOLUTOS PUBLICADOS pela fonte, nenhum derivado de percentual: Zucco 3.431.475 (58,01%), Juliana Brizola 1.876.601 (31,72%), Gabriel Souza 496.870 (8,40%). TOTAL DE VÁLIDOS DECLARADO (5.915.730): derivado dos dois pares dos primeiros colocados — 3.431.475/0,5801 = 5.915.316 e 1.876.601/0,3172 = 5.916.144, que concordam com erro de 0,0140%; adotada a média. Terceira conferência: Gabriel Souza, 496.870/0,0840 = 5.915.119, a 0,0103% da média — as três derivações fecham, o que é um sinal forte de que os três absolutos vêm do MESMO instante de apuração. Os três somam 98,13% dos válidos; o restante é dos candidatos menores (Marcelo Maranata/PSDB, Priscila Voigt/UP, Rejane de Oliveira/PSTU), cujos números não foram publicados nesta leitura e que NÃO foram completados. Zucco (PL) ficou com 58,01% dos válidos e aparece ELEITO NO 1º TURNO, com vantagem de 1.554.874 votos (26,29 pontos) sobre Juliana Brizola. CORROBORAÇÃO independente da eleição de Zucco no 1º turno em O Tempo (https://www.otempo.com.br/eleicoes/2026/governadores/2026/10/4/vitoria-de-zucco-para-governador-do-rio-grande-do-sul-e-matematicamente-confirmada-nas-eleicoes-2026), Poder360 (https://www.poder360.com.br/poder-eleicoes-2026/luciano-zucco-e-eleito-governador-do-rio-grande-do-sul-no-1o-turno/) e NSC Total (https://www.nsctotal.com.br/politica/zucco-pl-e-eleito-governador-do-rio-grande-do-sul-no-primeiro-turno-das-eleicoes-2026). Nomes e siglas grafados como em data/polls.json e data/parties.json ('Zucco' é Luciano Zucco). Coletado via resumo de WebSearch; WebFetch bloqueado neste ambiente. Eleição de 2026."
+      "observacao": "SUBSTITUI a ficha anterior de governador/RS, que estava em 97,40% das urnas: GANHO DE 2,60 PONTOS DE SEÇÕES, mais TRÊS LINHAS QUE ANTES ERAM NULL — brancos 324.123, nulos 315.858 e abstenções 1.819.041 — e absolutos atualizados dos dois primeiros. A leitura anterior dava Zucco 3.431.475, Juliana Brizola 1.876.601 e Gabriel Souza 496.870 sobre 5.915.730 válidos; a razão 6.057.443 ÷ 5.915.730 = 1,02395 bate com 1/0,9740 = 1,02669, o que confirma que as duas leituras são a mesma eleição em dois instantes. PERDA DECLARADA: Gabriel Souza (MDB) tinha absoluto na leitura de 97,40% e no instante de 100% só tem percentual publicado (8,43%), logo SAIU da lista em vez de ser completado por derivação — a cobertura cai de 98,47% para 89,70% dos válidos, e quem preferir cobertura a seções deve saber disso. CANDIDATOS QUE ESTA FICHA LISTA: dois, em absolutos publicados — Zucco (PL) 3.516.048 (58,05%) e Juliana Brizola (PDT) 1.917.374 (31,65%) —, que somam 5.433.422 = 89,70% dos válidos. LINHAS DE TOTAL PUBLICADAS: total apurado 6.697.424, brancos 324.123 (4,84%), nulos 315.858 (4,72%), abstenções 1.819.041 (21,36%). FECHAMENTO EXATO, SEM RESÍDUO: validosTotal é DERIVADO por subtração dos publicados — 6.697.424 − 324.123 − 315.858 = 6.057.443 —, logo as três linhas somam o total publicado ao voto; brancos 4,8395% = 4,84% e nulos 4,7161% = 4,72% sobre COMPUTADOS. ARMADILHA DESARMADA, a mesma do PA nesta rodada: a página do Metrópoles estampa 'válidos 6.055.306 (99,96%)', número que NÃO fecha — a diferença de 2.137 contra 6.057.443 é a votação de um candidato que o 'válidos' publicado omite, e o rótulo '99,96%' é artefato de template (aparece idêntico na página do PA). Usar 6.055.306 daria Zucco 58,0655% (58,07%), contradizendo os 58,05% publicados; sobre 6.057.443 os dois absolutos reimprimem os percentuais publicados — 58,0451% = 58,05% e 31,6532% = 31,65%. INTERSEÇÃO DOS ARREDONDAMENTOS das duas derivações votos÷(pct/100): [6.057.097; 6.057.451], LARGURA 354; o valor adotado, 6.057.443, cai dentro dela, e não foi dela que saiu. CRUZAMENTO COM OS OUTROS CARGOS DA MESMA UF, o teste mais forte: razão senador/governador = 13.394.848 ÷ 6.697.424 = 2,00000 EXATO — senador/RS está em 100% e dá comparecimento 6.697.424 ao voto, IDÊNTICO aos computados desta ficha. Razão governador/presidente = 6.697.424 ÷ 6.702.903 = 0,99918, ~1,000. TERCEIRA VALIDAÇÃO: 6.697.424 + 1.819.041 = 8.516.465 aptos nas seções, e 1.819.041 ÷ 8.516.465 = 21,3591% = os 21,36% publicados; contra os 8.522.545 eleitores aptos do RS citados pela fonte dá 99,93%, compatível com 100% de seções, e o comparecimento 6.697.424 ÷ 8.516.465 = 78,64% reproduz os 78,65% publicados. BRANCOS MAIOR QUE NULOS aqui (324.123 > 315.858) — decidido SÓ pela rotulagem da fonte, nunca pela heurística falsa de que nulos superam brancos, que a base já contraria em quatro recortes. OUTRO INSTANTE DESCARTADO: um retrato anterior dava 322.245 brancos e 314.255 nulos, e NÃO foi misturado. Siglas conferidas em data/parties.json (PL, PDT). Zucco eleito no 1º turno. LIMITAÇÃO DE AMBIENTE: só resumo de WebSearch; a política de rede nega os hosts, tse.jus.br incluído, e WebFetch não foi usado. Eleição de 2026."
     },
     {
       "cargo": "governador",
@@ -1962,6 +1957,328 @@
         "url": "https://www.otempo.com.br/eleicoes/2026/analises/mapa-dos-votos/pb"
       },
       "observacao": "RECORTE NOVO, E MUITO MAIS FORTE DO QUE O DIAGNÓSTICO ANTERIOR: a PB estava listada como UF em que 'nenhuma fonte publica absoluto nem brancos/nulos; só Lula 61,31% solto'. Os absolutos EXISTEM: o Mapa dos Votos de O Tempo publica, com 100% das seções (10.712 de 10.712) e dados do TSE, Lula 1.541.127 e Flávio Bolsonaro 831.377; e o paraiba.com.br publica brancos, nulos, comparecimento e abstenção na mesma leitura de 100%. SEÇÕES: 100% PUBLICADO, NÃO INFERIDO — O Tempo estampa a contagem de seções (10.712/10.712) e o TRE-PB declarou a apuração concluída com 100% das urnas totalizadas às 23h21 de 04/10. VÁLIDOS DERIVADOS, E DECLARADOS: 2.513.750 NÃO é publicado; é o resultado de 2.683.988 (comparecimento publicado) − 52.294 (brancos) − 117.944 (nulos), portanto uma SUBTRAÇÃO de valores publicados, não uma divisão por percentual. DUAS DERIVAÇÕES INDEPENDENTES CONVERGEM, e a segunda é o teste (iv): os percentuais publicados dos candidatos exigem válidos em [2.513.459 ; 2.513.868] por Lula (1.541.127 ÷ 61,31%) e [2.513.612 ; 2.514.371] por Flávio (831.377 ÷ 33,07%); a INTERSEÇÃO é [2.513.612 ; 2.513.868], largura 256 votos = 0,0102% dos válidos. Os 2.513.750 obtidos pela subtração caem DENTRO dessa interseção, sem que nada tenha sido ajustado — e o caminho da subtração não usa nenhum percentual de candidato, de modo que as duas rotas não compartilham insumo. QUATRO percentuais publicados reimprimem: Lula 61,3079% (61,31), Flávio 33,0732% (33,07), brancos 52.294/2.683.988 = 1,9484% (1,95) e nulos 117.944/2.683.988 = 4,3944% (4,39); mais a abstenção, 564.543/3.248.531 = 17,3784% (17,38). (i) FECHAMENTO: 2.513.750 + 52.294 + 117.944 = 2.683.988, EXATAMENTE o comparecimento publicado, sem resíduo — por construção, mas a interseção independente limita o resíduo possível a ±138 votos, porque os computados de presidente têm de estar em [2.683.850 ; 2.684.106]. (iii) CHECAGEM CONTRA O ELEITORADO, EXATA: 2.683.988 + 564.543 = 3.248.531, idêntico aos aptos publicados pelo TRE-PB; contra os 3.247.397 de electorate.json (referência 2026-07) dá 100,035%, dentro da faixa 99,8%-100,2%. (ii) RAZÃO SENADOR/PRESIDENTE — ÚNICO TESTE DEGRADADO, e por culpa do senador, não do presidente: senador/PB está a 99,08% de seções, não a 100%, e tem 5.316.784 computados; 5.316.784/2.683.988 = 1,98093, ABAIXO da faixa empírica, exatamente como se espera de um numerador 0,92% incompleto. Reescalado para 100% (5.316.784 ÷ 0,9908 = 5.366.149), a razão vira 1,99932 — a borda SUPERIOR da faixa (1,99414-1,99932). A razão, aqui, CONFIRMA sem provar, e isso está dito. TENSÃO REGISTRADA, NÃO ESCONDIDA: existem DOIS pares concorrentes de comparecimento/abstenção para a PB. O TRE-PB publica comparecimento 2.677.904 (82,60%) e abstenção 564.062 (17,40%), que NÃO fecham contra os próprios aptos (2.677.904 + 564.062 = 3.241.966, 6.565 a menos que 3.248.531). O outro par, 2.683.988 e 564.543, fecha EXATAMENTE nos aptos. Foi escolhido o par que fecha, e porque é também o único compatível com a interseção dos percentuais de candidato. É plausível que 2.677.904 seja o comparecimento de outra base (o alerta conhecido de que 'comparecimento (X% do eleitorado)' em PB é aptos nas seções). BRANCOS E NULOS NÃO SÃO DE OUTRO CARGO — este foi o risco principal e foi testado: a Gazeta do Povo publica, para GOVERNADOR da PB, brancos 127.816 (4,77%) e nulos 263.466 (9,84%), números completamente distintos, sobre base de ~2.678.000; e senador/PB tem 439.470 brancos (8,27% dos seus computados) e 625.581 nulos (11,77%). Os 52.294/117.944 só fecham com os válidos de PRESIDENTE: o resíduo que produzem cai numa janela de 256 votos em 2,5 milhões fixada apenas pelos percentuais de presidente — coincidência de ~0,2% se fossem de outro cargo. Isso é o oposto do erro de MG e do caso de RO. brancos+nulos = 170.238 = 6,343% dos computados, o valor MAIS ALTO do conjunto, 0,17pp acima de AL (6,17%) — mas a PB é do Nordeste, onde a faixa já roda alto (SE 5,20%, PE 5,25%, BA 5,45%, AL 6,17%), e nulos > brancos aqui pela rotulagem da fonte, não por heurística. ATENÇÃO À COBERTURA: os dois candidatos gravados somam 2.372.504 = 94,381% dos válidos; os 5,619% restantes (141.246 votos) são de Augusto Cury, Ronaldo Caiado, Renan Santos, Romeu Zema e demais e NÃO FORAM COMPLETADOS — nenhuma fonte encontrada publica esses absolutos na Paraíba. NENHUM caso de anulado sub judice identificado em presidente/PB; o fechamento exato contra os aptos indica válidos BRUTOS. Base dos percentuais dos candidatos: VOTOS VÁLIDOS; a dos brancos e nulos: TOTAL DE VOTOS; a da abstenção: APTOS. Eleição de 2026 (Lula x FLÁVIO Bolsonaro). Coletado via RESUMO DE WEBSEARCH: a política de rede do ambiente nega os hosts (gateway responde 403 ao CONNECT, chega como ENOTFOUND; tse.jus.br entre os bloqueados), confirmado em 10/10/2026 — NENHUM valor foi conferido na página original."
+    },
+    {
+      "cargo": "governador",
+      "uf": "RJ",
+      "turno": 1,
+      "secoesTotalizadas": 100,
+      "validosTotal": 8669038,
+      "candidatos": [
+        {
+          "candidato": "Douglas Ruas",
+          "partido": "PL",
+          "votos": 4271199
+        },
+        {
+          "candidato": "Eduardo Paes",
+          "partido": "PSD",
+          "votos": 3706984
+        },
+        {
+          "candidato": "Garotinho",
+          "partido": "Republicanos",
+          "votos": 274411
+        }
+      ],
+      "brancos": 501537,
+      "nulos": 675292,
+      "abstencoes": 2996650,
+      "fonte": {
+        "nome": "Exame — Resultado Governador Rio de Janeiro 2026 ao Vivo: Apuração (dados do TSE, 100,00% das urnas apuradas no Estado do Rio de Janeiro, última atualização 22:19h de 04/10/2026); absolutos dos candidatos por Poder360 (TSE)",
+        "url": "https://exame.com/eleicoes/2026/apuracao/primeiro-turno/governador/rj/rio-de-janeiro/"
+      },
+      "observacao": "PRIMEIRA TOTALIZAÇÃO de 04/10 em 100,00% das urnas apuradas — este é o recorte de 1º TURNO e segue válido como turno 1; NÃO é a retotalização de 10/10 (ver abaixo). CANDIDATOS QUE A FICHA LISTA: três, todos em ABSOLUTOS PUBLICADOS — Douglas Ruas (PL) 4.271.199 (49,27%), Eduardo Paes (PSD) 3.706.984 (42,76%) e Garotinho (Republicanos) 274.411 (3,17%). Somam 8.252.594 = 95,20% dos válidos; os 4,80% restantes são de candidatos que as fontes não itemizam (André Marinho/Novo, Coronel Busnello/Missão, Cyro Garcia/PSTU, Juliete Pantoja/UP, William Siri/PSOL) e NÃO foram completados. FONTE DOS ABSOLUTOS: Poder360, https://poder360.com.br/poder-eleicoes-2026/votos-de-garotinho-sao-anulados-e-douglas-ruas-e-eleito-no-1o-turno-no-rj (dados do TSE). FONTE DAS LINHAS DE TOTAL: Exame, que publica para o RJ 9.845.867 votos apurados, 501.537 brancos (5,09%) e 675.292 nulos (6,86%), com 2.996.650 abstenções (23,33%). FECHAMENTO EXATO, SEM RESÍDUO: validosTotal é DERIVADO por subtração dos publicados — 9.845.867 − 501.537 − 675.292 = 8.669.038 —, de modo que 8.669.038 + 501.537 + 675.292 = 9.845.867, o total publicado, ao voto. CONFERÊNCIA REVERSA: os três absolutos sobre esse válidos reimprimem os três percentuais publicados sem exceção — Ruas 49,2696% = 49,27%, Paes 42,7612% = 42,76%, Garotinho 3,1654% = 3,17%. INTERSEÇÃO DOS ARREDONDAMENTOS das três derivações votos÷(pct/100): [8.668.944; 8.669.889], largura 945; o valor adotado, 8.669.038, cai dentro dela, e não foi dela que saiu (veio da subtração exata). QUARTA DERIVAÇÃO, INDEPENDENTE E DE OUTRO INSTANTE: o TSE anulou em 08/10 os 274.411 votos de Garotinho (registro indeferido) e a retotalização do TRE-RJ de 10/10 levou Ruas de 49,27% a 50,88% dos válidos, elegendo-o no 1º turno; 4.271.199 ÷ (8.669.038 − 274.411) = 4.271.199 ÷ 8.394.627 = 50,8802% = 50,88% EXATO — o que confirma, por um caminho que não usa nenhum número desta ficha além dos próprios absolutos, que 8.669.038 é o válidos BRUTO (com Garotinho) desta leitura. ANULADO MOVE VÁLIDOS, NUNCA COMPARECIMENTO: os 9.845.867 computados e as 2.996.650 abstenções são os mesmos antes e depois da anulação. CRUZAMENTO COM OS OUTROS CARGOS DA MESMA UF: governador/presidente = 9.845.867 ÷ 9.859.802 = 0,99859, dentro de ~0,15% de 1,000 como exige o fato de os dois serem UM voto por eleitor. A razão senador/governador NÃO pôde ser medida de forma exata porque senador/RJ está em 94,57%: reescalado, 9.241.340 ÷ 0,9457 = 9.771.852 de comparecimento projetado, e 2 × 9.771.852 ÷ 9.845.867 = 1,98497 — a folga de 0,75% é artefato do reescalonamento linear de uma parcial de 94,57%, não discordância de instante; o teste forte aqui é o fechamento exato mais a razão governador/presidente. TERCEIRA VALIDAÇÃO: 9.845.867 + 2.996.650 = 12.842.517 aptos nas seções, e 2.996.650 ÷ 12.842.517 = 23,3338% = os 23,33% de abstenção publicados. NÃO USEI o rótulo de comparecimento percentual do eleitorado, que no RJ é os aptos nas seções. Siglas conferidas em data/parties.json (PL, PSD, Republicanos). LIMITAÇÃO DE AMBIENTE: coletado apenas por resumo de WebSearch — a política de rede deste ambiente nega os hosts, inclusive tse.jus.br, e WebFetch não foi usado. Eleição de 2026."
+    },
+    {
+      "cargo": "governador",
+      "uf": "PA",
+      "turno": 1,
+      "secoesTotalizadas": 100,
+      "validosTotal": 4566828,
+      "candidatos": [
+        {
+          "candidato": "Dr. Daniel",
+          "partido": "Podemos",
+          "votos": 2345721
+        },
+        {
+          "candidato": "Hana Ghassan",
+          "partido": "MDB",
+          "votos": 2125084
+        }
+      ],
+      "brancos": 106097,
+      "nulos": 389825,
+      "abstencoes": 1195412,
+      "fonte": {
+        "nome": "Metrópoles — Resultado da apuração para governador no Pará (PA), Eleições 2026 (dados do TSE, 100% das urnas apuradas); itemização dos seis candidatos por apuracoes.defatoonline.com.br e TRE-PA",
+        "url": "https://www.metropoles.com/eleicoes/2026/apuracao/governador/pa"
+      },
+      "observacao": "LEITURA FINAL em 100% das urnas apuradas. CANDIDATOS QUE A FICHA LISTA: dois, em absolutos publicados — Dr. Daniel (Podemos) 2.345.721 (51,36%) e Hana Ghassan (MDB) 2.125.084 (46,53%), que somam 4.470.805 = 97,90% dos válidos. OS OUTROS QUATRO NÃO ENTRARAM POR FALTA DE SIGLA CONFIRMADA, não por falta de voto: a fonte itemiza Araceli 85.857, Gal Leite 5.503, Well Macedo 2.676 e Ruth Reis 1.987, e os SEIS somam 2.345.721+2.125.084+85.857+5.503+2.676+1.987 = 4.566.828 = EXATAMENTE o validosTotal desta ficha, ou seja a cobertura publicada é de 100,00% dos válidos e o validosTotal está fechado candidato por candidato. FECHAMENTO EXATO, SEM RESÍDUO: 4.566.828 + 106.097 brancos + 389.825 nulos = 5.062.750, o total de votos apurados publicado. ARMADILHA DESARMADA, E É A RAZÃO DE ESTE RECORTE EXISTIR: a página do Metrópoles estampa 'válidos 4.564.841 (99,96%)', número que NÃO fecha (5.062.750 − 106.097 − 389.825 = 4.566.828, uma diferença de 1.987) — e 1.987 é justamente a votação de Ruth Reis, isto é, o 'válidos' publicado OMITE um candidato. Quem usasse 4.564.841 obteria Dr. Daniel 51,3879% (51,39%) e Hana 46,5544% (46,55%), contradizendo os 51,36% e 46,53% publicados; sobre 4.566.828 os dois absolutos reimprimem os percentuais publicados — 51,3643% e 46,5330%. Por isso validosTotal é DERIVADO (total publicado menos brancos e nulos publicados) e CONFIRMADO em dois caminhos independentes: a soma dos seis candidatos e as duas razões voto/percentual. O rótulo '99,96%' da página é artefato de template, não base de cálculo. SEGUNDA ARMADILHA DESARMADA: o título da notícia do TRE-PA usa 2.322.289 votos (51,63%), instante anterior; o corpo da mesma página traz 2.345.721 (51,36%), que é o final — e foi o corpo que valeu. O NSC Total, a 99,34%, dava Dr. Daniel 2.335.877 (51,48%), brancos 105.770 e nulos 387.203: instante diferente, NÃO MISTURADO. CRUZAMENTOS COM OS OUTROS CARGOS DA MESMA UF, o teste mais forte: razão senador/governador = 10.125.500 ÷ 5.062.750 = 2,00000 EXATO (senador/PA está em 100% e cada eleitor tem dois votos de senador, logo o comparecimento do PA é 5.062.750 ao voto, idêntico aos computados desta ficha, como tem de ser para um cargo de UM voto por eleitor); razão governador/presidente = 5.062.750 ÷ 5.066.504 = 0,99926. TERCEIRA VALIDAÇÃO: 5.062.750 + 1.195.412 = 6.258.162 aptos nas seções, e 1.195.412 ÷ 6.258.162 = 19,1016%; os 6.258.162 coincidem ao voto com o eleitorado do PA citado por O Tempo, compatível com 100% de seções. Brancos 106.097 = 2,0956% dos computados (publicado 2,10%) e nulos 389.825 = 7,6999% (publicado 7,70%), ambos sobre COMPUTADOS, não sobre válidos. Siglas conferidas em data/parties.json (Podemos, MDB). LIMITAÇÃO DE AMBIENTE: só resumo de WebSearch; a política de rede nega os hosts, tse.jus.br incluído, e WebFetch não foi usado. Eleição de 2026."
+    },
+    {
+      "cargo": "governador",
+      "uf": "PE",
+      "turno": 1,
+      "secoesTotalizadas": 99.07,
+      "validosTotal": 5219209,
+      "candidatos": [
+        {
+          "candidato": "Raquel Lyra",
+          "partido": "PSD",
+          "votos": 2779401
+        },
+        {
+          "candidato": "João Campos",
+          "partido": "PSB",
+          "votos": 2339151
+        }
+      ],
+      "brancos": 155353,
+      "nulos": 476233,
+      "abstencoes": 1296778,
+      "fonte": {
+        "nome": "Exame — Resultado Governador Pernambuco 2026 ao Vivo: Apuração (dados do TSE, 99,07% das urnas apuradas no Estado de Pernambuco, leitura de 21:10 de 04/10/2026)",
+        "url": "https://exame.com/eleicoes/2026/apuracao/primeiro-turno/governador/pe/pernambuco/"
+      },
+      "observacao": "PARCIAL de 99,07% das urnas apuradas, percentual PUBLICADO pela fonte (não inferido). CANDIDATOS QUE A FICHA LISTA: dois, em absolutos publicados — Raquel Lyra (PSD) 2.779.401 (53,25%) e João Campos (PSB) 2.339.151 (44,82%) —, que somam 5.118.552 = 98,07% dos válidos. Os 1,93% restantes são de Ivan Moraes (PSOL, 1,49%), Renan (Missão, 0,35%) e Professora Camila (UP, 0,07%), que a fonte publica SÓ em percentual neste instante e que NÃO foram completados por derivação. TODOS OS VALORES SÃO PUBLICADOS: válidos 5.219.209 (89,21%), brancos 155.353 (2,66%), nulos 476.233 (8,14%), abstenções 1.296.778 (18,14%). FECHAMENTO EXATO, SEM RESÍDUO: 5.219.209 + 155.353 + 476.233 = 5.850.795, e os três percentuais publicados se reimprimem sobre esse total de COMPUTADOS — válidos 89,2051% = 89,21%, brancos 2,6552% = 2,66%, nulos 8,1396% = 8,14% —, o que prova que as quatro linhas são do MESMO instante e que a base dos percentuais é computados, não válidos. CONFERÊNCIA REVERSA DOS CANDIDATOS: 2.779.401 ÷ 5.219.209 = 53,2533% = 53,25% e 2.339.151 ÷ 5.219.209 = 44,8181% = 44,82%, os dois percentuais publicados, sem exceção. CRUZAMENTO COM OS OUTROS CARGOS DA MESMA UF: senador/PE está em 100% e dá comparecimento 5.905.236 ao voto (11.810.472 ÷ 2); a razão senador/governador bruta é 11.810.472 ÷ 5.850.795 = 2,01861, que REESCALADA pelos 99,07% de seções deste recorte dá 2,01861 × 0,9907 = 1,99984 — dentro da faixa empírica 1,99414–1,99932 medida em presidente, e praticamente em cima de 2,000 como exige o fato de governador ser UM voto por eleitor. Razão governador/presidente = 5.850.795 ÷ 5.911.062 = 0,98980, que reescalada dá 0,98980 ÷ 0,9907 = 0,99909, ou seja ~1,000. TERCEIRA VALIDAÇÃO: 5.850.795 + 1.296.778 = 7.147.573 aptos nas seções, e 1.296.778 ÷ 7.147.573 = 18,1429% = os 18,14% publicados; contra os 7.223.450 aptos que o recorte de presidente/PE implica a 100%, isso dá 98,95%, que sobre os 99,07% de seções é 99,88% — dentro da janela 99,8%–100,2%. NÃO USEI nenhum rótulo de 'comparecimento (X% do eleitorado)'. DESCONFIANÇA SOBRE 'VÁLIDOS': o 5.219.209 publicado NÃO é o total de computados (5.850.795), está 631.586 abaixo dele, logo não é o caso RJ/ES de 'válidos que é computados'. Siglas conferidas em data/parties.json (PSD, PSB). Raquel Lyra reeleita no 1º turno. NÃO FOI LOCALIZADA leitura de 100% para PE com absolutos; se aparecer, substitui esta. LIMITAÇÃO DE AMBIENTE: só resumo de WebSearch; a política de rede nega os hosts, tse.jus.br incluído, e WebFetch não foi usado. Eleição de 2026."
+    },
+    {
+      "cargo": "governador",
+      "uf": "CE",
+      "turno": 1,
+      "secoesTotalizadas": 100,
+      "validosTotal": 5406336,
+      "candidatos": [
+        {
+          "candidato": "Elmano de Freitas",
+          "partido": "PT",
+          "votos": 2875573
+        },
+        {
+          "candidato": "Ciro Gomes",
+          "partido": "PSDB",
+          "votos": 2498891
+        }
+      ],
+      "brancos": null,
+      "nulos": null,
+      "abstencoes": null,
+      "fonte": {
+        "nome": "Gazeta do Povo — Resultado eleições 2026 CE: Elmano de Freitas é reeleito governador (dados do TSE, 100% das seções eleitorais totalizadas)",
+        "url": "https://www.gazetadopovo.com.br/eleicoes/2026/ceara/resultado-eleicoes-ceara-elmano-de-freitas-reeleito/"
+      },
+      "observacao": "LEITURA FINAL em 100% das seções eleitorais totalizadas, percentual PUBLICADO no corpo da matéria citando o TSE. CANDIDATOS QUE A FICHA LISTA: dois, em absolutos publicados — Elmano de Freitas (PT) 2.875.573 (53,19%) e Ciro Gomes (PSDB) 2.498.891 (46,22%) —, que somam 5.374.464 = 99,41% dos válidos; os 0,59% restantes são de candidatos que a fonte não itemiza e NÃO foram completados. VALIDOSTOTAL É DERIVADO E ESTÁ AQUI DECLARADO COM INTERVALO: a interseção dos arredondamentos das duas derivações votos÷(pct/100) é [5.405.930; 5.406.736], LARGURA 806 (0,015% do valor). O ponto adotado, 5.406.336, é o único do intervalo apoiado por uma terceira via independente: O Tempo publica para o CE comparecimento de 5.905.522 eleitores em 6.991.044 aptos (84,47%), e 5.905.522 é EXATAMENTE senador/CE ÷ 2 (11.811.044 ÷ 2), ou seja o comparecimento do estado ao voto; subtraídos dele os 170.234 brancos e 328.952 nulos publicados pelo retrato de 22h47 chega-se a 5.905.522 − 499.186 = 5.406.336, que cai dentro do intervalo. CONFERÊNCIA REVERSA: sobre 5.406.336 os dois absolutos reimprimem os dois percentuais publicados — Elmano 53,1889% = 53,19% e Ciro 46,2215% = 46,22%. POR QUE BRANCOS E NULOS FICARAM NULL, e esta é a lacuna desta ficha: os 170.234 e 328.952 são do retrato de 22h47, cuja diferença líder-segundo é 375.074, enquanto a leitura final de 100% tem diferença 2.875.573 − 2.498.891 = 376.682 — são 1.608 votos de distância, logo INSTANTES DIFERENTES, e não os misturei; no instante final os dois seriam marginalmente maiores. Sem eles não há fechamento válidos+brancos+nulos = total publicado, e é a razão de esta ficha ser mais fraca que as de PA, RO, SC, ES, AM e RS desta mesma rodada. CRUZAMENTO COM OS OUTROS CARGOS DA MESMA UF: razão senador/governador = 11.811.044 ÷ 5.905.522 = 2,00000 EXATO, tomando como computados de governador o comparecimento publicado de 5.905.522; razão governador/presidente = 5.905.522 ÷ 5.910.471 = 0,99916, ou seja ~1,000 como exige UM voto por eleitor nos dois cargos. ARMADILHAS DESARMADAS: (1) O Povo estampa na página do CE 'eleito com 58,75%, Ciro 40,93%', que contradiz o próprio corpo do texto (52,8% com quase 96% apurados) e todas as outras fontes — é o caso de PERCENTUAIS DE OUTRO RECORTE estampados na página de um estado, já visto no CE e no PI, e foi descartado; (2) a Agência Brasil publica Elmano 52,88% com 2.770.571 votos e Ciro 46,52% com 2.437.165, que é o instante de 96,86% e NÃO foi misturado; (3) a Exame só tem brancos/nulos do CE a 15,84% das urnas, instante inútil aqui. ABSTENÇÕES deixadas em null de propósito: 6.991.044 − 5.905.522 = 1.085.522 seria derivável, mas 6.991.044 é rótulo de eleitorado do estado e não de aptos nas seções totalizadas, e prefiro a lacuna. Siglas conferidas em data/parties.json (PT, PSDB). Elmano reeleito no 1º turno, sem 2º turno estadual. LIMITAÇÃO DE AMBIENTE: só resumo de WebSearch; a política de rede nega os hosts, tse.jus.br incluído, e WebFetch não foi usado. Eleição de 2026."
+    },
+    {
+      "cargo": "governador",
+      "uf": "SC",
+      "turno": 1,
+      "secoesTotalizadas": 100,
+      "validosTotal": 4265641,
+      "candidatos": [
+        {
+          "candidato": "Jorginho Mello",
+          "partido": "PL",
+          "votos": 2942386
+        },
+        {
+          "candidato": "Gelson Merísio",
+          "partido": "PSB",
+          "votos": 668021
+        },
+        {
+          "candidato": "João Rodrigues",
+          "partido": "PSD",
+          "votos": 569263
+        },
+        {
+          "candidato": "Marcelo Brigadeiro",
+          "partido": "Missão",
+          "votos": 46624
+        }
+      ],
+      "brancos": 169920,
+      "nulos": 198989,
+      "abstencoes": 1084991,
+      "fonte": {
+        "nome": "Exame — Resultado Governador Santa Catarina 2026 ao Vivo: Apuração (dados do TSE, 100,00% das urnas apuradas no Estado de Santa Catarina)",
+        "url": "https://exame.com/eleicoes/2026/apuracao/primeiro-turno/governador/sc/santa-catarina/"
+      },
+      "observacao": "LEITURA FINAL em 100,00% das urnas apuradas, percentual PUBLICADO pela fonte. CANDIDATOS QUE A FICHA LISTA: quatro, todos em absolutos publicados — Jorginho Mello (PL) 2.942.386 (68,98%), Gelson Merísio (PSB) 668.021 (15,66%), João Rodrigues (PSD) 569.263 (13,35%) e Marcelo Brigadeiro (Missão) 46.624 (1,09%) —, que somam 4.226.294 = 99,08% dos válidos; os 0,92% restantes não são itemizados pela fonte e NÃO foram completados. TODOS OS VALORES SÃO PUBLICADOS: válidos 4.265.641, brancos 169.920 (3,67%), nulos 198.989 (4,29%), abstenções 1.084.991 (18,97%), total apurado 4.634.550. FECHAMENTO EXATO, SEM RESÍDUO: 4.265.641 + 169.920 + 198.989 = 4.634.550, o total publicado, ao voto. CONFERÊNCIA REVERSA: os quatro absolutos sobre o válidos publicado reimprimem os quatro percentuais publicados sem exceção — 68,9788% = 68,98%, 15,6605% = 15,66%, 13,3453% = 13,35%, 1,0930% = 1,09% — e brancos 3,6664% = 3,67% e nulos 4,2936% = 4,29% sobre COMPUTADOS, com válidos 92,0400% = 92,04%. CRUZAMENTO COM OS OUTROS CARGOS DA MESMA UF, o teste mais forte: razão senador/governador = 9.269.100 ÷ 4.634.550 = 2,00000 EXATO — senador/SC está em 100% e cada eleitor tem dois votos de senador, logo o comparecimento de SC é 4.634.550 ao voto, idêntico aos computados desta ficha, como tem de ser para um cargo de UM voto por eleitor. Razão governador/presidente = 4.634.550 ÷ 4.648.159 = 0,99707: a folga de 0,29% é do recorte de presidente/SC, cuja própria razão senador/presidente é 1,99415, encostada no piso da faixa empírica 1,99414–1,99932; o cruzamento exato com senador manda mais. TERCEIRA VALIDAÇÃO: 4.634.550 + 1.084.991 = 5.719.541 aptos nas seções, e 1.084.991 ÷ 5.719.541 = 18,9699% = os 18,97% publicados; o TRE-SC publica comparecimento de 81,05% do eleitorado, e 4.634.550 ÷ 5.719.541 = 81,03%, compatível. ATENÇÃO À SIGLA DE MERÍSIO: a Gazeta do Povo o lista como PSD, mas TRE-SC e a totalização ao vivo do TSE o listam como PSB, e foi PSB que entrou; se a conferência oficial disser outra coisa, é esse o campo a corrigir. BRANCOS MAIOR QUE NULOS? Não: aqui nulos 198.989 > brancos 169.920, mas isso NÃO foi usado como critério — só a rotulagem da fonte decidiu qual é qual, porque a base tem quatro contraexemplos (governador/MG, senador/PR, senador/RS, presidente/RS). Siglas conferidas em data/parties.json (PL, PSB, PSD, Missão). Jorginho Mello reeleito no 1º turno. LIMITAÇÃO DE AMBIENTE: só resumo de WebSearch; a política de rede nega os hosts, tse.jus.br incluído, e WebFetch não foi usado. Eleição de 2026."
+    },
+    {
+      "cargo": "governador",
+      "uf": "ES",
+      "turno": 1,
+      "secoesTotalizadas": 100,
+      "validosTotal": 2112171,
+      "candidatos": [
+        {
+          "candidato": "Lorenzo Pazolini",
+          "partido": "Republicanos",
+          "votos": 1048633
+        },
+        {
+          "candidato": "Ricardo Ferraço",
+          "partido": "MDB",
+          "votos": 719397
+        }
+      ],
+      "brancos": 110040,
+      "nulos": 126401,
+      "abstencoes": 638972,
+      "fonte": {
+        "nome": "Exame — Resultado Governador Espírito Santo 2026 ao Vivo: Apuração (dados do TSE, 100,00% das urnas apuradas no Estado do Espírito Santo)",
+        "url": "https://exame.com/eleicoes/2026/apuracao/primeiro-turno/governador/es/espirito-santo/"
+      },
+      "observacao": "LEITURA FINAL DO 1º TURNO em 100,00% das urnas apuradas, percentual PUBLICADO pela fonte. O ES TEM 2º TURNO em 25/10 entre Pazolini e Ferraço — este recorte é o de PRIMEIRO turno e segue válido com turno 1; nada do 2º turno foi misturado. CANDIDATOS QUE A FICHA LISTA: dois, em absolutos publicados — Lorenzo Pazolini (Republicanos) 1.048.633 (49,65%) e Ricardo Ferraço (MDB) 719.397 (34,06%) —, que somam 1.768.030 = 83,71% dos válidos. OS DEMAIS NÃO ENTRARAM por não terem absoluto publicado neste instante: Helder Salomão (PT) 15,32%, Breno Barcelos (Missão) 0,85% e Rafael Demuner (UP) 0,13% — nenhum foi completado por derivação de percentual. LINHAS DE TOTAL PUBLICADAS: total apurado 2.348.612, brancos 110.040 (4,69%), nulos 126.401 (5,38%), abstenções 638.972 (21,39%). FECHAMENTO EXATO, SEM RESÍDUO: validosTotal é DERIVADO por subtração dos publicados — 2.348.612 − 110.040 − 126.401 = 2.112.171 —, logo 2.112.171 + 110.040 + 126.401 = 2.348.612, o total publicado, ao voto; e brancos 4,6853% = 4,69% e nulos 5,3819% = 5,38% sobre COMPUTADOS, com válidos 89,9327%. CONFIRMAÇÃO POR SEGUNDA FONTE INDEPENDENTE: a reportagem que traz os absolutos de Pazolini e Ferraço publica, por si, 2.112.171 válidos, 110.040 brancos e 126.401 nulos — os mesmos três números, chegando ao válidos sem passar pela minha subtração (https://www.blogalangoncalvesoficial.com/2026/10/pazolini-e-ferraco-vao-ao-segundo-turno.html). CONFERÊNCIA REVERSA: 1.048.633 ÷ 2.112.171 = 49,6472% = 49,65% e 719.397 ÷ 2.112.171 = 34,0596% = 34,06%, os dois percentuais publicados. CRUZAMENTO COM OS OUTROS CARGOS DA MESMA UF, o teste mais forte: razão senador/governador = 4.697.224 ÷ 2.348.612 = 2,00000 EXATO — senador/ES está em 100% e dá comparecimento 2.348.612 ao voto, idêntico aos computados desta ficha. Razão governador/presidente = 2.348.612 ÷ 2.352.282 = 0,99844, ~1,000. ARMADILHA DESARMADA, A MESMA QUE QUASE DERRUBOU PRESIDENTE/ES: NÃO usei como válidos nenhum número próximo do total de computados — em presidente/ES a fonte estampa 'votos válidos' em 2.352.282, que é o total de computados (2.251.078+43.211+57.993); aqui os válidos de governador, 2.112.171, estão 236.441 abaixo dos computados, e a diferença é exatamente brancos+nulos. Instante concorrente de 99,70% das urnas dava Pazolini 49,63%: NÃO foi misturado. TERCEIRA VALIDAÇÃO: 2.348.612 + 638.972 = 2.987.584 aptos nas seções, e 638.972 ÷ 2.987.584 = 21,3876% = os 21,39% publicados. Siglas conferidas em data/parties.json (Republicanos, MDB). LIMITAÇÃO DE AMBIENTE: só resumo de WebSearch; a política de rede nega os hosts, tse.jus.br incluído, e WebFetch não foi usado. Eleição de 2026."
+    },
+    {
+      "cargo": "governador",
+      "uf": "AM",
+      "turno": 1,
+      "secoesTotalizadas": 100,
+      "validosTotal": 2071985,
+      "candidatos": [
+        {
+          "candidato": "Omar Aziz",
+          "partido": "PSD",
+          "votos": 841846
+        },
+        {
+          "candidato": "Professora Maria do Carmo",
+          "partido": "PL",
+          "votos": 507335
+        }
+      ],
+      "brancos": 50340,
+      "nulos": 109946,
+      "abstencoes": 563782,
+      "fonte": {
+        "nome": "Exame — Resultado Governador Amazonas 2026 ao Vivo: Apuração (dados do TSE, 100,00% das urnas apuradas no Estado do Amazonas, atualizada na madrugada de 05/10/2026)",
+        "url": "https://exame.com/eleicoes/2026/apuracao/primeiro-turno/governador/am/amazonas/"
+      },
+      "observacao": "LEITURA FINAL DO 1º TURNO em 100,00% das urnas apuradas, percentual PUBLICADO pela fonte. O AM TEM 2º TURNO em 25/10 entre Omar Aziz e Professora Maria do Carmo — este recorte é o de PRIMEIRO turno e segue válido com turno 1; nada do 2º turno foi misturado. CANDIDATOS QUE A FICHA LISTA: dois, em absolutos publicados — Omar Aziz (PSD) 841.846 (40,63%) e Professora Maria do Carmo (PL) 507.335 (24,49%) —, que somam 1.349.181 = 65,12% dos válidos. ESTA É A COBERTURA MAIS BAIXA DAS 12 FICHAS DESTA RODADA e está declarada como tal: Roberto Cidade (União Brasil) 21,91% e David Almeida (Avante) 10,54% têm percentual no instante de 100% mas só têm ABSOLUTO no retrato do TRE-AM a 98,74% das urnas (446.990 e 216.660, com 21,84% e 10,59%), instante DIFERENTE, e por isso NÃO entraram nem foram completados por derivação. LINHAS DE TOTAL PUBLICADAS: total apurado 2.232.271, brancos 50.340 (2,26%), nulos 109.946 (4,93%), abstenções 563.782 (20,16%). FECHAMENTO EXATO, SEM RESÍDUO: validosTotal é DERIVADO por subtração dos publicados — 2.232.271 − 50.340 − 109.946 = 2.071.985 —, logo as três linhas somam o total publicado ao voto; brancos 2,2551% = 2,26% e nulos 4,9253% = 4,93% sobre COMPUTADOS, válidos 92,8196% = 92,82%. CONFERÊNCIA REVERSA: 841.846 ÷ 2.071.985 = 40,6299% = os 40,63% publicados, e 507.335 ÷ 2.071.985 = 24,4855% = os 24,49% publicados — nenhuma exceção. CRUZAMENTO COM OS OUTROS CARGOS DA MESMA UF, o teste mais forte: razão senador/governador = 4.464.542 ÷ 2.232.271 = 2,00000 EXATO — senador/AM está em 100% e dá comparecimento 2.232.271 ao voto, idêntico aos computados desta ficha. Razão governador/presidente = 2.232.271 ÷ 2.234.507 = 0,99900, ~1,000. TERCEIRA VALIDAÇÃO: 2.232.271 + 563.782 = 2.796.053 aptos nas seções, e 563.782 ÷ 2.796.053 = 20,1635% = os 20,16% publicados. Siglas conferidas em data/parties.json (PSD, PL). LIMITAÇÃO DE AMBIENTE: só resumo de WebSearch; a política de rede nega os hosts, tse.jus.br incluído, e WebFetch não foi usado. Eleição de 2026."
+    },
+    {
+      "cargo": "governador",
+      "uf": "PB",
+      "turno": 1,
+      "secoesTotalizadas": 100,
+      "validosTotal": 2286622,
+      "candidatos": [
+        {
+          "candidato": "Lucas Ribeiro",
+          "partido": "PP",
+          "votos": 1470252
+        },
+        {
+          "candidato": "Efraim Filho",
+          "partido": "PL",
+          "votos": 552836
+        }
+      ],
+      "brancos": 127816,
+      "nulos": 263466,
+      "abstencoes": 564062,
+      "fonte": {
+        "nome": "Exame — Resultado Governador Paraíba 2026 ao Vivo: Apuração (dados do TSE, 100,00% das urnas apuradas no Estado da Paraíba); absolutos dos candidatos pela totalização final do TSE em 04/10/2026 às 23:21 via Hub Político e Gazeta do Povo",
+        "url": "https://exame.com/eleicoes/2026/apuracao/primeiro-turno/governador/pb/paraiba/"
+      },
+      "observacao": "LEITURA FINAL em 100,00% das urnas apuradas, percentual PUBLICADO pela fonte; os absolutos vêm da totalização final do TSE de 04/10/2026 às 23:21 (https://hubpolitico.com.br/eleicoes/2026/apuracao/pb/governador). CANDIDATOS QUE A FICHA LISTA: dois, em absolutos publicados — Lucas Ribeiro (PP) 1.470.252 (64,30%) e Efraim Filho (PL) 552.836 (24,18%) —, que somam 2.023.088 = 88,47% dos válidos. OUTROS DOIS NÃO ENTRARAM POR FALTA DE SIGLA CONFIRMADA, não por falta de voto: a mesma fonte publica Cícero Lucena 252.884 (11,06%) e Yuri Ezequiel 8.272 (0,36%), e os QUATRO somam 2.284.244 = 99,90% dos válidos, isto é a cobertura publicada é quase total e os dois ausentes são identificáveis se a sigla for confirmada em data/parties.json. TODOS OS VALORES DE TOTAL SÃO PUBLICADOS: válidos 2.286.622 (85,39%), brancos 127.816 (4,77%), nulos 263.466 (9,84%), abstenções 564.062 (17,40%), total apurado 2.677.904. FECHAMENTO EXATO, SEM RESÍDUO: 2.286.622 + 127.816 + 263.466 = 2.677.904, o total publicado, ao voto, e os percentuais se reimprimem sobre COMPUTADOS — válidos 85,3885% = 85,39%, brancos 4,7730% = 4,77%, nulos 9,8385% = 9,84%. CONFERÊNCIA REVERSA DOS QUATRO ABSOLUTOS sobre o válidos publicado: 64,2980% = 64,30%, 24,1770% = 24,18%, 11,0592% = 11,06%, 0,3618% = 0,36% — nenhuma exceção, o que amarra os absolutos e as linhas de total ao MESMO instante, apesar de virem de duas fontes. CRUZAMENTOS COM OS OUTROS CARGOS DA MESMA UF, e aqui está a fraqueza relativa desta ficha, declarada: senador/PB é o ÚNICO senador parcial da base, a 99,08%, com comparecimento 2.658.392; reescalado, 2.658.392 ÷ 0,9908 = 2.683.076, e a razão senador/governador fica 2 × 2.683.076 ÷ 2.677.904 = 2,00386, isto é 0,19% acima de 2,000; a razão governador/presidente é 2.677.904 ÷ 2.683.988 = 0,99773, 0,23% abaixo de 1,000. As duas folgas são da mesma ordem da que SC apresenta contra presidente (0,29%) com senador EXATO, e vêm do reescalonamento linear de uma parcial de 99,08% mais diferença de instante entre os três recortes; o teste que decide aqui é o FECHAMENTO EXATO com válidos, brancos e nulos todos PUBLICADOS pela mesma fonte. TERCEIRA VALIDAÇÃO: 2.677.904 + 564.062 = 3.241.966 aptos nas seções, e 564.062 ÷ 3.241.966 = 17,3988% = os 17,40% publicados; a fonte ainda publica comparecimento de 82,60%, e 2.677.904 ÷ 3.241.966 = 82,60%, coerente. ARMADILHA DESARMADA: a nota do TSE sobre a definição matemática cita 64,34% com 1.242.457 votos, retrato parcial do início da totalização, e NÃO foi misturada. Siglas conferidas em data/parties.json (PP, PL). Lucas Ribeiro reeleito no 1º turno. LIMITAÇÃO DE AMBIENTE: só resumo de WebSearch; a política de rede nega os hosts, tse.jus.br incluído, e WebFetch não foi usado. Eleição de 2026."
+    },
+    {
+      "cargo": "governador",
+      "uf": "RO",
+      "turno": 1,
+      "secoesTotalizadas": 100,
+      "validosTotal": 945058,
+      "candidatos": [
+        {
+          "candidato": "Marcos Rogério",
+          "partido": "PL",
+          "votos": 537370
+        },
+        {
+          "candidato": "Adailton Fúria",
+          "partido": "PSD",
+          "votos": 189547
+        },
+        {
+          "candidato": "Hildon Chaves",
+          "partido": "União Brasil",
+          "votos": 134355
+        }
+      ],
+      "brancos": 23607,
+      "nulos": 21648,
+      "abstencoes": null,
+      "fonte": {
+        "nome": "Rondônia Dinâmica — Marcos Rogério é eleito governador de Rondônia no primeiro turno (dados do TSE/TRE-RO, 100% das 4.698 seções totalizadas)",
+        "url": "https://www.rondoniadinamica.com/noticias/2026/10/marcos-rogerio-e-eleito-governador-de-rondonia-no-primeiro-turno,255710.shtml"
+      },
+      "observacao": "LEITURA FINAL em 100% das seções — o percentual NÃO foi inferido de título: está no CORPO da matéria, que diz 100% das 4.698 seções totalizadas citando o TSE, exatamente como em RR. CANDIDATOS QUE A FICHA LISTA: três, todos em absolutos publicados — Marcos Rogério (PL) 537.370 (56,86%), Adailton Fúria (PSD) 189.547 (20,06%) e Hildon Chaves (União Brasil) 134.355 (14,22%) —, que somam 861.272 = 91,13% dos válidos; os 8,87% restantes não são itemizados e NÃO foram completados. O terceiro vem do levantamento do Plural sobre os arquivos do TSE (https://www.plural.jor.br/apuracao-final-rondonia-eleicoes-2026/), que confirma os mesmos totais. TODOS OS VALORES SÃO PUBLICADOS PELO TRE-RO VIA ESTA FONTE: válidos 945.058, brancos 23.607, nulos 21.648. FECHAMENTO EXATO, SEM RESÍDUO: 945.058 + 23.607 + 21.648 = 990.313. CONFERÊNCIA REVERSA: os três absolutos sobre o válidos publicado reimprimem os três percentuais publicados sem exceção — 56,8611% = 56,86%, 20,0567% = 20,06%, 14,2166% = 14,22%. CRUZAMENTO COM OS OUTROS CARGOS DA MESMA UF, o teste mais forte: razão senador/governador = 1.980.626 ÷ 990.313 = 2,00000 EXATO — senador/RO está em 100% e dá comparecimento 990.313 ao voto, IDÊNTICO aos 990.313 computados desta ficha. Razão governador/presidente = 990.313 ÷ 991.128 = 0,99918, ~1,000. ARMADILHA DESARMADA, E É O PONTO INTEIRO DESTE RECORTE: estes 945.058 + 23.607 + 21.648 são os números que o TRE-RO publica PARA GOVERNADOR; eles fecham em 990.313 = senador ÷ 2, e usá-los em PRESIDENTE/RO é que seria o erro — aqui, no cargo a que pertencem, são os certos, e a ficha de presidente/RO, com 968.107 + 9.846 + 13.175 = 991.128, permanece intocada e discorda desta em 815 computados (0,08%), o que é a diferença de instante entre os dois recortes, não contaminação. ABSTENÇÕES EM NULL de propósito: as 274.695 que a base guarda são do recorte de PRESIDENTE/RO e fecham com os computados DELE (991.128), não com os 990.313 destes; completá-las aqui seria justamente trocar linhas entre cargos, e prefiro a lacuna. Siglas conferidas em data/parties.json (PL, PSD, União Brasil). Marcos Rogério eleito no 1º turno. LIMITAÇÃO DE AMBIENTE: só resumo de WebSearch; a política de rede nega os hosts, tse.jus.br incluído, e WebFetch não foi usado. Eleição de 2026."
+    },
+    {
+      "cargo": "governador",
+      "uf": "RR",
+      "turno": 1,
+      "secoesTotalizadas": 100,
+      "validosTotal": 319412,
+      "candidatos": [
+        {
+          "candidato": "Arthur Henrique",
+          "partido": "PL",
+          "votos": 220809
+        },
+        {
+          "candidato": "Soldado Sampaio",
+          "partido": "Republicanos",
+          "votos": 93434
+        },
+        {
+          "candidato": "Rosimayre Patrícia",
+          "partido": "PSOL",
+          "votos": 4880
+        }
+      ],
+      "brancos": null,
+      "nulos": null,
+      "abstencoes": null,
+      "fonte": {
+        "nome": "Olhar Direto — Eleições 2026, resultados para governador em Roraima (dados do TSE, 100% das seções apuradas)",
+        "url": "https://www.olhardireto.com.br/eleicoes/2026/resultados/governador/rr"
+      },
+      "observacao": "LEITURA FINAL em 100% das seções, percentual PUBLICADO no corpo da página citando o TSE — não inferido de título, como já havia sido o caso em RR e RO. CANDIDATOS QUE A FICHA LISTA: três, todos em absolutos publicados — Arthur Henrique (PL) 220.809 (69,13%), Soldado Sampaio (Republicanos) 93.434 (29,25%) e Rosimayre Patrícia (PSOL) 4.880 (1,53%) —, que somam 319.123 = 99,91% dos válidos; os 0,09% restantes (289 votos) são de candidato não itemizado e NÃO foram completados. VALIDOSTOTAL É DERIVADO E ESTÁ AQUI DECLARADO COM INTERVALO: a interseção dos arredondamentos das duas derivações votos÷(pct/100) dos dois primeiros é [319.389; 319.434], LARGURA 45 — 0,014% do valor, a interseção mais estreita desta rodada. O ponto adotado, 319.412, é o centro do intervalo e é a própria divisão do líder (220.809 ÷ 0,6913). NÃO ADOTEI 319.123, a soma dos três candidatos, exatamente porque ela derrubaria o líder para 69,1931% (69,19%) contra os 69,13% publicados — prova de que existe um quarto candidato não itemizado. CONFERÊNCIA REVERSA: sobre 319.412 os três absolutos reimprimem os percentuais publicados — 69,1300% = 69,13%, 29,2521% = 29,25%, 1,5278% = 1,53%. BRANCOS, NULOS E ABSTENÇÕES EM NULL, e esta é a lacuna desta ficha: o único retrato que os traz (Canal Rural, brancos 2.049, nulos 5.481, abstenções 41.592) é de 04/10 às 18:54, com a apuração em andamento, instante INCOMPATÍVEL com os 100% desta leitura, e não os misturei — logo NÃO há aqui fechamento válidos+brancos+nulos = total publicado. CRUZAMENTO COM OS OUTROS CARGOS DA MESMA UF, feito sem busca: senador/RR está em 100% e dá comparecimento 331.959 ao voto (663.918 ÷ 2); como governador é UM voto por eleitor, os computados desta leitura têm de ser esses 331.959, e então brancos+nulos = 331.959 − 319.412 = 12.547, ou 3,78% dos computados — magnitude plausível para RR e coerente com a proporção vista nas UFs pequenas desta rodada, o que sustenta o validosTotal adotado sem que nenhum dos dois valores tenha sido gravado por estimativa. Razão governador/presidente, pelo mesmo comparecimento: 331.959 ÷ 332.758 = 0,99760, ~1,000. ARMADILHA DESARMADA: a Agência Brasil publica 68,99% com 187.790 votos a 86,31% das urnas totalizadas — instante diferente, NÃO misturado. Siglas conferidas em data/parties.json (PL, Republicanos, PSOL); o nome de urna do segundo colocado aparece na fonte como FRANCISCO DOS SANTOS SAMPAIO, grafado aqui pelo nome de urna usual, Soldado Sampaio. Arthur Henrique eleito no 1º turno. LIMITAÇÃO DE AMBIENTE: só resumo de WebSearch; a política de rede nega os hosts, tse.jus.br incluído, e WebFetch não foi usado. Eleição de 2026."
+    },
+    {
+      "cargo": "governador",
+      "uf": "AL",
+      "turno": 1,
+      "secoesTotalizadas": 98.28,
+      "validosTotal": 1677725,
+      "candidatos": [
+        {
+          "candidato": "JHC",
+          "partido": "PSDB",
+          "votos": 873978
+        },
+        {
+          "candidato": "Renan Filho",
+          "partido": "MDB",
+          "votos": 796530
+        }
+      ],
+      "brancos": null,
+      "nulos": null,
+      "abstencoes": null,
+      "fonte": {
+        "nome": "Agência Brasil — Alagoas elege JHC governador no primeiro turno (dados do TSE, 98,28% das urnas totalizadas)",
+        "url": "https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/alagoas-elege-jhc-governador-no-primeiro-turno"
+      },
+      "observacao": "PARCIAL de 98,28% das urnas totalizadas, percentual PUBLICADO pela fonte citando o TSE (não inferido). CANDIDATOS QUE A FICHA LISTA: dois, em absolutos publicados — JHC (PSDB) 873.978 (52,09%) e Renan Filho (MDB) 796.530 (47,48%) —, que somam 1.670.508 = 99,57% dos válidos; os 0,43% restantes não são itemizados e NÃO foram completados. VALIDOSTOTAL É DERIVADO E ESTÁ AQUI DECLARADO COM INTERVALO: a interseção dos arredondamentos das duas derivações votos÷(pct/100) é [1.677.662; 1.677.788], LARGURA 126, ou 0,0075% do valor; o ponto adotado, 1.677.725, é o centro dela. CONFERÊNCIA REVERSA: sobre 1.677.725 os dois absolutos reimprimem os dois percentuais publicados — 52,0932% = 52,09% e 47,4770% = 47,48%. BRANCOS, NULOS E ABSTENÇÕES EM NULL, e esta é a lacuna: o único retrato que traz brancos 54.504 e nulos 163.908 é de 95,56% das urnas (ND Mais), instante diferente, e NÃO foi misturado; sem eles não há fechamento válidos+brancos+nulos = total publicado. INSTANTES CONCORRENTES, SEPARADOS: o portal br104 publica JHC 830.256 (51,76%) e Renan 767.102 (47,82%), par internamente coerente que deriva válidos ≈ 1.604.100 e corresponde ao instante de ~95,6% — os absolutos de cada instante, sobre o SEU válidos, só reimprimem os percentuais daquele instante, e é por isso que o par de 98,28% é o único usado aqui; a parcial de 13,07% das urnas (Renan 99.354, JHC 93.997), em que Renan liderava, também foi descartada. CRUZAMENTO COM OS OUTROS CARGOS DA MESMA UF, feito sem busca: senador/AL está em 100% e dá comparecimento 1.935.820 ao voto; a 98,28% os computados de governador seriam ~1.902.724 e brancos+nulos ≈ 225.000, cerca de 11,8% dos computados — magnitude normal para disputa estadual com dois polos e coerente com os 54.504+163.908 = 218.412 que o retrato de 95,56% registra. Razão governador/presidente, projetada: 1.938.428 × 0,9828 = 1.904.869 contra os computados implicados, ~1,000. ESSES DOIS CRUZAMENTOS SÃO INDICATIVOS, NÃO EXATOS, porque brancos e nulos estão em null: é a ficha mais fraca desta rodada junto com AM, e está declarada como tal. NÃO FOI LOCALIZADA leitura de 100% para AL com absolutos; se aparecer, substitui esta. Siglas conferidas em data/parties.json (PSDB, MDB). JHC eleito no 1º turno embora Renan Filho tenha vencido em 71 dos 102 municípios. LIMITAÇÃO DE AMBIENTE: só resumo de WebSearch; a política de rede nega os hosts, tse.jus.br incluído, e WebFetch não foi usado. Eleição de 2026."
     }
   ]
 }
