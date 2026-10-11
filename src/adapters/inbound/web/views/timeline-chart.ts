@@ -248,8 +248,54 @@ export function tokenTomSerie(espectro: Espectro, tom: TomSerie): string {
  * unidade (manipula DOM); a geometria que consome já foi testada acima.
  * ======================================================================= */
 
-/** Data do 1º turno das eleições de 2026 — única marca fixa do eixo X. */
+/** Data do 1º turno das eleições de 2026. */
 export const DATA_ELEICAO_1O_TURNO = '2026-10-04';
+
+/** Data do 2º turno das eleições de 2026. */
+export const DATA_ELEICAO_2O_TURNO = '2026-10-25';
+
+/** Uma data de eleição a marcar no eixo X, com o rótulo que a nomeia. */
+export interface MarcaDeEleicao {
+  readonly data: string;
+  readonly rotulo: string;
+}
+
+/**
+ * As marcas padrão: só o 1º turno. É o que a série de 1º turno quer.
+ *
+ * O comentário que estava aqui dizia que a data do 1º turno era a "única marca
+ * fixa do eixo X" — verdade quando havia uma eleição só. Com o 2º turno em
+ * 25/10, o gráfico da série de 2º turno **não marcava a eleição de que ele
+ * trata**, e o eixo parava na última pesquisa, sem alcançar o dia do voto.
+ */
+export const MARCAS_1O_TURNO: readonly MarcaDeEleicao[] = Object.freeze([
+  Object.freeze({ data: DATA_ELEICAO_1O_TURNO, rotulo: '1º turno' }),
+]);
+
+/**
+ * As marcas da série de 2º turno: **as duas**. O 1º turno continua marcado de
+ * propósito, porque na série de 2º turno ele é a descontinuidade — à esquerda
+ * dele as pesquisas mediam um confronto hipotético, à direita medem a eleição
+ * marcada.
+ */
+export const MARCAS_2O_TURNO: readonly MarcaDeEleicao[] = Object.freeze([
+  Object.freeze({ data: DATA_ELEICAO_1O_TURNO, rotulo: '1º turno' }),
+  Object.freeze({ data: DATA_ELEICAO_2O_TURNO, rotulo: '2º turno' }),
+]);
+
+/**
+ * Onde o eixo X termina: na última data com dado, ou na última eleição marcada,
+ * o que vier depois. Sem isto o gráfico da série de 2º turno terminaria na
+ * última pesquisa e o dia do voto ficaria fora da área visível.
+ */
+export function fimDoEixo(
+  ultimaDataDados: string,
+  marcas: readonly MarcaDeEleicao[] = MARCAS_1O_TURNO,
+): string {
+  let fim = ultimaDataDados;
+  for (const m of marcas) if (m.data > fim) fim = m.data;
+  return fim;
+}
 
 /**
  * Contador de instâncias — sufixo dos `id` gerados (tooltip, região
@@ -278,6 +324,11 @@ export interface OpcoesTimelineChart {
   readonly serie: SerieTemporal;
   readonly candidatosDestacados: readonly SerieCandidato[];
   readonly tituloAcessivel: string;
+  /**
+   * Quais eleições marcar no eixo X. Omitido, marca só o 1º turno
+   * (`MARCAS_1O_TURNO`) — o padrão de antes, para a série de 1º turno.
+   */
+  readonly eleicoes?: readonly MarcaDeEleicao[];
 }
 
 const LARGURA = 720;
@@ -350,7 +401,8 @@ export function renderTimelineChart(host: HTMLElement, opcoes: OpcoesTimelineCha
 
   const primeiraData = serie.dias[0]!.data;
   const ultimaDataDados = serie.dias[serie.dias.length - 1]!.data;
-  const fimEixo = ultimaDataDados > DATA_ELEICAO_1O_TURNO ? ultimaDataDados : DATA_ELEICAO_1O_TURNO;
+  const marcas = opcoes.eleicoes ?? MARCAS_1O_TURNO;
+  const fimEixo = fimDoEixo(ultimaDataDados, marcas);
 
   const valoresY: number[] = [];
   for (const dia of serie.dias) {
@@ -431,25 +483,30 @@ export function renderTimelineChart(host: HTMLElement, opcoes: OpcoesTimelineCha
   }
   overlay.append(overlayEixoX);
 
-  // --- Marca da data da eleição ---
-  const xEleicao = escalaX(DATA_ELEICAO_1O_TURNO);
+  // --- Marcas das datas de eleição (uma por turno relevante à série) ---
   const grupoEleicao = criarSvgEl('g', { class: 'pv-timeline-election' });
-  grupoEleicao.append(
-    criarSvgEl('line', {
-      x1: String(xEleicao), x2: String(xEleicao), y1: String(areaY[1]), y2: String(areaY[0]),
-      class: 'pv-timeline-election-line',
-    }),
-  );
+  for (const marca of marcas) {
+    const xEleicao = escalaX(marca.data);
+    grupoEleicao.append(
+      criarSvgEl('line', {
+        x1: String(xEleicao), x2: String(xEleicao), y1: String(areaY[1]), y2: String(areaY[0]),
+        class: 'pv-timeline-election-line',
+      }),
+    );
+  }
   svg.append(grupoEleicao);
-  const ancoraEleicaoFim = xEleicao > LARGURA - MARGEM.direita - 60;
-  overlay.append(
-    criarRotuloOverlay(
-      `1º turno · ${formatarRotuloDataCurta(DATA_ELEICAO_1O_TURNO)}`,
-      xEleicao,
-      MARGEM.topo,
-      `pv-timeline-election-label ${ancoraEleicaoFim ? 'pv-timeline-election-label--end' : 'pv-timeline-election-label--mid'}`,
-    ),
-  );
+  for (const marca of marcas) {
+    const xEleicao = escalaX(marca.data);
+    const ancoraEleicaoFim = xEleicao > LARGURA - MARGEM.direita - 60;
+    overlay.append(
+      criarRotuloOverlay(
+        `${marca.rotulo} · ${formatarRotuloDataCurta(marca.data)}`,
+        xEleicao,
+        MARGEM.topo,
+        `pv-timeline-election-label ${ancoraEleicaoFim ? 'pv-timeline-election-label--end' : 'pv-timeline-election-label--mid'}`,
+      ),
+    );
+  }
 
   // --- Pontos de "Outros" (cinza, sem linha) ---
   const grupoOutros = criarSvgEl('g', { class: 'pv-timeline-outros' });

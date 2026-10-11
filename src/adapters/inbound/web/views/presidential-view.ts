@@ -17,7 +17,13 @@ import {
   tokenFillEspectro,
 } from './_shared.js';
 import { nomeCurto } from './candidate-names.js';
-import { atribuirTomSerie, renderTimelineChart, type SerieCandidato } from './timeline-chart.js';
+import {
+  atribuirTomSerie,
+  MARCAS_1O_TURNO,
+  MARCAS_2O_TURNO,
+  renderTimelineChart,
+  type SerieCandidato,
+} from './timeline-chart.js';
 
 /**
  * Rótulo curto de um cenário de 2º turno ("2º turno: Luiz Inácio Lula da
@@ -211,6 +217,10 @@ function criarCartaoTimeline(
         valorSelecionado === ''
           ? 'Gráfico de evolução das pesquisas presidenciais no 1º turno, de agosto até a eleição'
           : `Gráfico de evolução das pesquisas do 2º turno, cenário ${valorSelecionado}`,
+      // Na série de 2º turno, marca os DOIS turnos: o 1º é a descontinuidade
+      // (à esquerda, confronto hipotético; à direita, a eleição marcada) e o
+      // 2º é o dia do voto de que a série trata.
+      eleicoes: valorSelecionado === '' ? MARCAS_1O_TURNO : MARCAS_2O_TURNO,
     });
   }
 

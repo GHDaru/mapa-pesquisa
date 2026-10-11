@@ -47,9 +47,15 @@ export function rotuloCobertura(projecao: Projecao): string {
     `${projecao.porUf.length === 1 ? 'estado' : 'estados'} ` +
     `(${formatarPct(pctEleitorado)} do eleitorado do país)`;
   if (projecao.ufsSemApuracao.length === 0) return `${base}. Todas as UFs têm apuração.`;
+  // Concordância: com uma UF só, "essas UFs ficam fora" vira erro de leitura.
+  // Mesmo defeito que `rotuloPorUf` tinha, em outra função — apareceu quando
+  // presidente chegou a 26 de 27 e sobrou o Piauí.
+  const uma = projecao.ufsSemApuracao.length === 1;
   return (
     `${base}. Sem nenhuma apuração: ${projecao.ufsSemApuracao.join(', ')} — ` +
-    'essas UFs ficam fora da projeção, não são completadas por estimativa.'
+    (uma
+      ? 'essa UF fica fora da projeção, não é completada por estimativa.'
+      : 'essas UFs ficam fora da projeção, não são completadas por estimativa.')
   );
 }
 

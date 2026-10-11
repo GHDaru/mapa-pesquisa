@@ -3401,3 +3401,65 @@ banner nacional estampado na página do CE.
 Com presidente chegando a 26 de 27, apareceu um defeito do meu próprio rótulo de
 07/10: ele dizia "**1** ainda sem nenhuma apuração, e **elas** NÃO são completadas".
 Corrigido para o singular, com teste nos dois ramos.
+
+## Rodada de 11/10 — nada de pesquisa, e a caça ao padrão rende dois achados
+
+### Pesquisas: `[]`, e a DataTrends não saiu
+
+Doze buscas por instituto, nenhuma rodada de 2º turno nova com campo pós-04/10. A
+**DataTrends** (campo 07–09/10), prevista para hoje, **não divulgou** — três buscas
+distintas, inclusive pela grafia alternativa "Data Trends", convergem todas na
+rodada antiga de campo 12–14/09. Os estaduais **Quaest de RJ e DF** (campo 08–11/10)
+seguem previstos para **12/10**, e a **Quaest nacional para 14/10**. Nenhum recorte
+estadual de 2º turno pós-eleição existe ainda.
+
+O campo segue rachado sem nenhum dado novo para arbitrar: quatro institutos entre
+**+4,3 e +5,6** para Flávio, contra **Vox Brasil em −1,7**. A DataTrends, quando
+sair, é o primeiro voto de desempate disponível.
+
+**Um descarte que vale registrar pelo método:** uma matéria dava "Palver 46 x 46,
+divulgado nesta segunda-feira (10)". **Conferido aqui: 10/10/2026 é sábado.** A data
+interna do texto se contradiz, e sem campo nem metodologia a manchete não entra. É
+um teste barato e novo para a caixa de ferramentas — **quando a fonte nomeia o dia
+da semana, confira o dia da semana.**
+
+### A caça ao padrão achou dois casos, e um deles é visível
+
+A rotina manda procurar deliberadamente por "código ou texto escrito num mundo,
+lido em outro". Varri datas fixas, turnos fixos e textos de contagem. **Dois
+achados.**
+
+**1. O gráfico de evolução não marcava o 2º turno — a eleição de que ele trata.**
+
+O código trazia, literalmente:
+
+```
+/** Data do 1º turno das eleições de 2026 — única marca fixa do eixo X. */
+export const DATA_ELEICAO_1O_TURNO = '2026-10-04';
+```
+
+"Única marca fixa" era verdade quando havia uma eleição. Com o 2º turno em 25/10, ao
+selecionar a série de 2º turno o gráfico **marcava só 04/10** e o eixo X terminava
+na **última pesquisa** — então **o dia do voto ficava fora da área visível**, num
+gráfico cujo título diz "Evolução das pesquisas — Lula x Flávio Bolsonaro".
+
+Agora as marcas são um parâmetro: `MARCAS_1O_TURNO` para a série de 1º turno e
+`MARCAS_2O_TURNO` para a de 2º. **O 1º turno segue marcado na série de 2º turno, de
+propósito** — ali ele é a **descontinuidade**: à esquerda as pesquisas mediam um
+confronto hipotético, à direita medem a eleição marcada. É a mesma fronteira que o
+agregado passou a respeitar em 09/10, agora visível no gráfico. O eixo sai de
+`fimDoEixo`, função pura e testada: termina na última data com dado **ou** na última
+eleição marcada, o que vier depois — e dado além da eleição manda, para o eixo nunca
+cortar pesquisa. Seis testes, mutação confirmada.
+
+**2. O mesmo defeito de concordância de ontem, em outra função.** Ontem corrigi
+`rotuloPorUf` ("1 ainda sem nenhuma apuração, e **elas** NÃO são completadas"). A
+varredura achou `rotuloCobertura` com a forma gêmea: "Sem nenhuma apuração: PI —
+**essas UFs ficam** fora da projeção, **não são completadas**". Corrigido para o
+singular, com teste nos dois ramos.
+
+**A lição de método:** quando conserto uma concordância que depende de contagem,
+tenho de procurar **todas** as funções que compõem a mesma frase — é o mesmo erro
+que cometi em 06/10 consertando `destaque` e deixando `baseComparacao` atrás. Dois
+dias seguidos achando o gêmeo do defeito do dia anterior sugere que a varredura
+deveria ser por **forma de frase**, não por função.

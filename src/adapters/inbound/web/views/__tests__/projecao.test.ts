@@ -433,3 +433,40 @@ describe('concordância no aviso de UFs sem apuração', () => {
     expect(t).toContain('3 ainda sem nenhuma apuração, e elas NÃO são completadas');
   });
 });
+
+describe('concordância também em rotuloCobertura', () => {
+  function comSemApuracao(ufs: string[]) {
+    return rotuloCobertura(
+      projecaoFake({
+        porUf: [
+          {
+            uf: 'SP',
+            secoesTotalizadas: 100,
+            candidatos: [],
+            validosApurados: 0,
+            validosProjetados: 0,
+            eleitores: 34_000_000,
+            lider: null,
+          },
+        ],
+        ufsSemApuracao: ufs,
+        eleitoradoCoberto: 34_000_000,
+        eleitoradoTotal: 158_000_000,
+        secoesTotalizadasPonderada: 100,
+      }),
+    );
+  }
+
+  it('com uma UF faltando, fala no singular', () => {
+    // O mesmo defeito que `rotuloPorUf` tinha, em outra função: só apareceu
+    // quando presidente chegou a 26 de 27 e sobrou o Piauí.
+    const t = comSemApuracao(['PI']);
+    expect(t).toContain('essa UF fica fora da projeção, não é completada');
+    expect(t).not.toContain('essas UFs ficam fora');
+  });
+
+  it('com mais de uma, segue no plural', () => {
+    const t = comSemApuracao(['PI', 'PB']);
+    expect(t).toContain('essas UFs ficam fora da projeção, não são completadas');
+  });
+});

@@ -9,7 +9,12 @@ import {
   formatarRotuloDataCurta,
   gerarTicksTempo,
   gerarTicksY,
+  DATA_ELEICAO_1O_TURNO,
+  DATA_ELEICAO_2O_TURNO,
+  fimDoEixo,
   marcadoresFinaisOcultos,
+  MARCAS_1O_TURNO,
+  MARCAS_2O_TURNO,
   raioPonto,
   RAIO_AMOSTRA_DESCONHECIDA,
 } from '../timeline-chart.js';
@@ -189,5 +194,39 @@ describe('timeline-chart: atribuirTomSerie', () => {
 
   it('segunda ocorrência do mesmo espectro (ex.: dois candidatos de direita) usa o tom alt', () => {
     expect(atribuirTomSerie(['esquerda', 'direita', 'direita'])).toEqual(['base', 'base', 'alt']);
+  });
+});
+
+describe('o eixo X alcança a eleição de que a série trata', () => {
+  /**
+   * O comentário no código dizia que a data do 1º turno era a "única marca fixa
+   * do eixo X" — verdade quando havia uma eleição só. Com o 2º turno em 25/10, o
+   * gráfico da série de 2º turno não marcava a eleição de que trata, e o eixo
+   * parava na última pesquisa, deixando o dia do voto fora da área visível.
+   */
+  it('na série de 1º turno, o eixo vai até 04/10 mesmo sem pesquisa depois', () => {
+    expect(fimDoEixo('2026-09-29', MARCAS_1O_TURNO)).toBe(DATA_ELEICAO_1O_TURNO);
+  });
+
+  it('na série de 2º turno, o eixo alcança 25/10', () => {
+    expect(fimDoEixo('2026-10-08', MARCAS_2O_TURNO)).toBe(DATA_ELEICAO_2O_TURNO);
+    // Sem as marcas do 2º turno, pararia na última pesquisa — o defeito.
+    expect(fimDoEixo('2026-10-08', MARCAS_1O_TURNO)).toBe('2026-10-08');
+  });
+
+  it('dado além da eleição manda: o eixo nunca corta pesquisa', () => {
+    expect(fimDoEixo('2026-10-28', MARCAS_2O_TURNO)).toBe('2026-10-28');
+  });
+
+  it('o padrão, sem marcas informadas, é só o 1º turno', () => {
+    expect(fimDoEixo('2026-09-01')).toBe(DATA_ELEICAO_1O_TURNO);
+  });
+
+  it('as marcas do 2º turno incluem o 1º, que é a descontinuidade da série', () => {
+    expect(MARCAS_2O_TURNO.map((m) => m.data)).toEqual([
+      DATA_ELEICAO_1O_TURNO,
+      DATA_ELEICAO_2O_TURNO,
+    ]);
+    expect(MARCAS_2O_TURNO.map((m) => m.rotulo)).toEqual(['1º turno', '2º turno']);
   });
 });
