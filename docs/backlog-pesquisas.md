@@ -3554,3 +3554,141 @@ cobertura); **DF** (`validosTotal` + absolutos); e **AC, MS, MT, PI, SE, TO** se
 nenhum voto absoluto publicado. Duas substituições ao alcance e não gastas: **PR**
 99,17% → 99,72% e **MG** 99,88% → 100% (esta com ganho de só 0,12 ponto; a razão
 senador/governador do candidato a substituto dá 1,9999).
+
+---
+
+## 12/10/2026 — a primeira estadual do outro lado da eleição, e o oitavo defeito da mesma família
+
+### O que entrou
+
+Uma única pesquisa: **Quaest no Distrito Federal**, campo de 8 a 11/10, 1.104
+eleitores de 16 anos ou mais, margem de 3 pontos, confiança de 95%, contratada
+pela TV Globo. **Flávio Bolsonaro 50%, Lula 40%, brancos/nulos/nenhum 6%,
+indecisos/não souberam responder 4%** — soma exatamente 100. Base vai de 832
+para **833 pesquisas**.
+
+O corte é de **votos totais**, identificado pela regra de sempre: as linhas de
+não-candidato estão **publicadas**, não inferidas nem repartidas a partir de
+residual. Aqui o corte ficaria determinado mesmo sem elas, porque os dois
+candidatos somam 90 e não 100 — mas o split 6/4 veio da fonte, e é o que foi
+gravado. O recorte de válidos (55,56% x 44,44%, vantagem de 11,11 pontos) **não
+foi ingerido**: a fonte não o publica, e derivá-lo para a base seria inventar um
+número que ninguém divulgou.
+
+Ela é a **primeira estadual de 2º turno com campo posterior ao 1º turno** a
+entrar. A base já tinha 63 estaduais de 2º turno, mas todas com campo encerrado
+até 29/09. Essa distinção é o assunto do resto desta seção.
+
+### Armadilha evitada, da família já catalogada
+
+Um resumo de cobertura ofereceu, como contexto de 1º turno **no DF**, "Flávio
+47,03% x Lula 45,16% dos votos válidos". São exatamente os percentuais
+**NACIONAIS** — a mesma armadilha do banner nacional estampado na página do CE e
+do PI. Descartados sem uso.
+
+### O registro no TSE não era conflito, era par
+
+Duas coberturas davam **DF-08737/2026** e outras duas **BR-06799/2026**. Antes de
+declarar divergência, vale olhar o padrão: rodadas Quaest no DF aparecem
+registradas **em pares** — DF-02596 e BR-03609 em 23/09; DF-01987 e BR-04442 em
+08/09. Adotado o prefixo regional, coerente com uma amostra só do DF e com as
+outras fichas estaduais da Quaest na base (RJ-04419/2026, PB-01325/2026,
+MG-04716/2026), e a outra numeração ficou declarada na `observacao`.
+
+### Teste do delta: não executável, e dizer isso é melhor que forçar
+
+Não havia nenhuma rodada Quaest de presidente/2º turno no DF na base (as duas
+fichas do DF são Real Time Big Data 48x40, campo até 28/09, e AtlasIntel
+47,4x42,5, campo até 01/09). As coberturas citam rodadas Quaest anteriores no DF
+que **divergem entre si** — 49x38 em 23/09 e 48x33 em 29/09 —, então nem
+serviriam de base externa confiável. Registrado como não executável em vez de
+comparado contra o número mais à mão.
+
+### O que NÃO saiu
+
+A **Quaest do Rio** era a outra prevista para hoje, com campo de 8 a 11/10 e
+1.302 entrevistas; não apareceu em busca nenhuma até o fechamento. Uma manchete
+do Poder360, "Flávio Bolsonaro e Lula têm empate técnico no RJ, diz Quaest", tem
+URL sem data e os números não batem com a rodada de 23/09 (44x36) nem com o 1º
+turno no estado (Flávio 53% dos válidos) — quase certamente é a matéria de
+julho. Não ingerida. A **DataTrends** segue sem publicar, segundo dia.
+
+### O defeito do dia: o mapa estadual de 2º turno não sabia de que lado da eleição estava
+
+Este é o **oitavo** defeito da família "código ou texto escrito num mundo, lido
+em outro, sem nada que notasse a virada", e o mais instrutivo até agora, porque
+**foi o dado de hoje que o tornou visível**.
+
+O agregado nacional ganhou em 09/10 toda a aparelhagem de janela: `situacao`
+(vigente/superado/indefinido), `janela` (pos-1o-turno/inclui-pre-1o-turno), o
+aviso de que a janela atravessa a eleição. A tela **"Presidente por estado"**, no
+recorte de 2º turno, nunca ganhou nada disso. Ela filtra por confronto
+(`CONFRONTO_LULA_FLAVIO`), o que está certo, e para por aí.
+
+Até ontem isso não tinha consequência observável: **as 27 UFs do mapa de 2º turno
+tinham leitura inteira de antes de 04/10**. Todas respondiam à mesma pergunta
+hipotética — "se fosse Lula x Flávio", com o eleitor sem saber quem passaria — e
+pintar as 27 igual era correto. Hoje o DF passou para o outro lado, e o mapa
+desenhou o Distrito Federal, que mede a eleição marcada, **com a mesma tinta** de
+26 estados que medem uma hipótese. A cor afirma uma equivalência que deixou de
+existir, e nada na tela dizia isso.
+
+**O que mudou.** `get-presidential-by-state.ts` passa a devolver, por UF,
+`medidaAposOPrimeiroTurno: boolean | null` (null no 1º turno, onde a pergunta não
+cabe, e em UF `semDados`), e, no recorte, `ufsAntesDoPrimeiroTurno`. A
+comparação é a **mesma** do agregado nacional — `dataReferencia(p) >
+DATA_PRIMEIRO_TURNO` sobre as pesquisas que o agregado **declara ter usado** —
+para os dois canais não divergirem. No `_shared.ts`, `avisoJanelaDoTurno2` monta
+a frase; no cabeçalho da tela ela sai como um segundo parágrafo de aviso,
+separado do de recência **porque fala de outra coisa**: aquele diz que o dado é
+velho, este diz que a pergunta era outra, e uma UF pode estar numa situação, na
+outra, nas duas ou em nenhuma.
+
+Hoje a tela diz: *"Das 27 UFs com dado neste mapa, só Distrito Federal tem
+leitura posterior ao 1º turno. As outras 26 medem o confronto como ele era antes
+de 04/10/2026: uma hipótese, com o eleitor ainda sem saber quem passaria. São
+perguntas diferentes, e a cor do mapa não distingue uma da outra."*
+
+**O aviso não promete marca visual.** A tela não distingue as duas situações na
+tinta, e prometer uma marca que não existe seria repetir, com outra roupa,
+exatamente o defeito que o aviso existe para cobrir. Há teste para isso.
+
+### A borda, e por que ela precisou de teste próprio
+
+A comparação é **estrita**: campo que fecha **em** 04/10 ainda ouviu o eleitor
+sem o resultado, logo pertence ao lado de antes. O primeiro mutante que tentei
+— trocar `>` por `>=` — **passou** nos testes de dados reais, porque nenhuma
+pesquisa da base tem data de referência exatamente 04/10. Foi preciso um teste
+de fixture com campo encerrado no próprio dia da eleição para prender a borda; com
+`>=` ele falha. Lição: **teste de dados reais não cobre borda que os dados reais
+não visitam** — e a borda não visitada hoje é a que o próximo instituto pode
+visitar amanhã.
+
+Também entrou a guarda contra o acidente de 06/10 em outra roupa: um teste que
+exige que ingerir a primeira estadual pós-eleição **não mexa** no que a tela
+afirma sobre as outras 26.
+
+### Varredura por forma de frase, de novo
+
+Seguindo a lição de ontem, a concordância foi varrida por **forma**, não por
+função: "só X tem" / "apenas X e Y têm"; "A outra mede" / "As outras N medem";
+"Nenhuma das N ... Todas as N medem". Os cinco casos têm teste, inclusive o de
+`comDado === 3` com duas UFs já medidas, em que o resto é **uma** e o artigo tem
+de ir para o singular.
+
+### Estado ao vivo, conferido depois da ingestão
+
+Presidente: destaque nacional, apuração encerrada, 26 UFs, cobertura efetiva
+98,28%, **16 institutos**, **margemReal 1,8673** — todos idênticos a ontem, o que
+é o esperado: uma pesquisa estadual de 2º turno não pode mexer no ranking do 1º
+turno nem no agregado nacional. Cenário vigente segue `pos-1o-turno`, n=5,
+**Flávio 48,51 x Lula 44,70**, vantagem 3,81. Senador 27/27 encerrado; governador
+16/27, cobertura efetiva 82,62%.
+
+**722 testes** (eram 709), build limpo.
+
+### Defeito de dado anotado, não corrigido
+
+A ficha `Ranking Brasil Inteligência` de MS, presidente/2º turno, está com
+`dataFim: null`. Não afeta nada hoje (a `dataReferencia` cai no `publicadoEm`),
+mas é a única da base nessa situação e merece verificação numa rodada com folga.

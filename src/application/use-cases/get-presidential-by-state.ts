@@ -3,6 +3,8 @@ import { type Agregado, agregarPesquisas, serieTemporal, type SerieTemporal } fr
 import type { Pesquisa } from '../../domain/poll.js';
 import { criarDisputa, UFS } from '../../domain/race.js';
 import { CONFRONTO_LULA_FLAVIO, type Confronto, filtrarPorConfronto } from '../../domain/runoff.js';
+import { DATA_PRIMEIRO_TURNO } from '../../domain/poll-accuracy.js';
+import { dataReferencia } from '../../domain/poll.js';
 
 export interface PresidencialUf {
   readonly uf: string;
@@ -18,6 +20,20 @@ export interface PresidencialUf {
   readonly empateTecnico: boolean;
   readonly semDados: boolean;
   readonly ultimaPesquisa: Pesquisa | null;
+  /**
+   * No 2º turno: `true` quando a leitura da UF foi medida DEPOIS do 1º turno,
+   * `false` quando vem inteira de antes dele. `null` no 1º turno (onde a
+   * pergunta não cabe) e quando a UF está `semDados`.
+   *
+   * A distinção não é cosmética. Antes de 04/10 uma pesquisa de "Lula x Flávio"
+   * media um confronto HIPOTÉTICO, com o eleitor sem saber quem passaria;
+   * depois, mede a eleição marcada. São perguntas diferentes, e até 12/10 as 27
+   * UFs do mapa de 2º turno respondiam todas a primeira — por isso nada na tela
+   * precisava distinguir. O Distrito Federal é a primeira a responder a
+   * segunda, e a partir daí desenhar as duas do mesmo jeito afirma uma
+   * equivalência que não existe.
+   */
+  readonly medidaAposOPrimeiroTurno: boolean | null;
 }
 
 /**
@@ -50,6 +66,12 @@ export interface PresidencialPorEstado {
    * caso de RO, cuja única pesquisa do confronto é de julho.
    */
   readonly ufsForaDaJanela: readonly string[];
+  /**
+   * No 2º turno, as UFs com dado cuja leitura é INTEIRA de antes de 04/10 —
+   * isto é, mede o confronto hipotético, não a eleição marcada (ver
+   * `PresidencialUf.medidaAposOPrimeiroTurno`). Vazio no 1º turno.
+   */
+  readonly ufsAntesDoPrimeiroTurno: readonly string[];
 }
 
 /** Opções do recorte por estado. */
@@ -83,6 +105,7 @@ export function criarGetPresidentialByState(repos: Repositorios, clock: Clock) {
     const confronto = turno === 2 ? (opcoes.confronto ?? CONFRONTO_LULA_FLAVIO) : null;
     let eleitoradoComPesquisa = 0;
     const ufsForaDaJanela: string[] = [];
+    const ufsAntesDoPrimeiroTurno: string[] = [];
 
     const ufs: PresidencialUf[] = UFS.map((uf): PresidencialUf => {
       const todas = repos.polls.porDisputa(criarDisputa(uf, 'presidente', turno));
@@ -111,6 +134,17 @@ export function criarGetPresidentialByState(repos: Repositorios, clock: Clock) {
       }
       if (agregado?.foraDaJanela) ufsForaDaJanela.push(uf);
 
+      // Lado da eleição em que a leitura da UF foi medida. Olha as pesquisas
+      // que o agregado DECLARA ter usado (não todas as da disputa): se alguma
+      // delas tem campo posterior a 04/10, a leitura já fala da eleição
+      // marcada. Mesma data e mesma comparação do agregado nacional
+      // (`get-presidential-aggregate.ts`), para os dois canais não divergirem.
+      const medidaAposOPrimeiroTurno =
+        turno === 2 && agregado != null
+          ? agregado.pesquisasUsadas.some((p) => dataReferencia(p) > DATA_PRIMEIRO_TURNO)
+          : null;
+      if (medidaAposOPrimeiroTurno === false) ufsAntesDoPrimeiroTurno.push(uf);
+
       return {
         uf,
         eleitores,
@@ -122,6 +156,7 @@ export function criarGetPresidentialByState(repos: Repositorios, clock: Clock) {
         empateTecnico: agregado?.empateTecnico ?? false,
         semDados: agregado == null,
         ultimaPesquisa: agregado?.ultimaPesquisa ?? null,
+        medidaAposOPrimeiroTurno,
       };
     });
 
@@ -129,6 +164,14 @@ export function criarGetPresidentialByState(repos: Repositorios, clock: Clock) {
     const eleitoradoNacional =
       todoOEleitorado.length > 0 ? todoOEleitorado.reduce((soma, e) => soma + e.eleitores, 0) : null;
 
-    return { ufs, eleitoradoNacional, eleitoradoComPesquisa, turno, confronto, ufsForaDaJanela };
+    return {
+      ufs,
+      eleitoradoNacional,
+      eleitoradoComPesquisa,
+      turno,
+      confronto,
+      ufsForaDaJanela,
+      ufsAntesDoPrimeiroTurno,
+    };
   };
 }

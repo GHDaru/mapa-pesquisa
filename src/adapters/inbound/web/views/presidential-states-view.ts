@@ -16,9 +16,11 @@ import {
 import type { SerieTemporal } from '../../../../domain/aggregate.js';
 import type { Pesquisa } from '../../../../domain/poll.js';
 import { espectroDoPartido, type Espectro } from '../../../../domain/spectrum.js';
+import { DATA_PRIMEIRO_TURNO } from '../../../../domain/poll-accuracy.js';
 import { nomeCurtissimo } from './candidate-names.js';
 import {
   avisoForaDaJanela,
+  avisoJanelaDoTurno2,
   listaEmPortugues,
   rotuloConfronto,
   rotuloForaDaJanela,
@@ -200,6 +202,7 @@ function itemFallback(uf: string): PresidencialUf {
     empateTecnico: false,
     semDados: true,
     ultimaPesquisa: null,
+    medidaAposOPrimeiroTurno: null,
   };
 }
 
@@ -601,6 +604,27 @@ export function ufsComDadoForaDaJanela(dados: PresidencialPorEstado): UfForaDaJa
 }
 
 /**
+ * As UFs (nome por extenso) cuja leitura de 2º turno foi medida DEPOIS do 1º
+ * turno, e quantas UFs têm dado no recorte — a entrada do aviso de janela.
+ * Exportada para teste: com os dados de hoje é `{ apos: ['Distrito Federal'],
+ * comDado: 27 }` no 2º turno e `{ apos: [], comDado: 27 }` no 1º, onde a
+ * pergunta não cabe e o aviso não sai.
+ */
+export function janelaDoTurno2(dados: PresidencialPorEstado): {
+  apos: string[];
+  comDado: number;
+} {
+  const comDado = dados.ufs.filter((item) => !item.semDados).length;
+  const apos =
+    dados.turno === 2
+      ? dados.ufs
+          .filter((item) => item.medidaAposOPrimeiroTurno === true)
+          .map((item) => NOME_POR_UF.get(item.uf) ?? item.uf)
+      : [];
+  return { apos, comDado: dados.turno === 2 ? comDado : 0 };
+}
+
+/**
  * Eleitorado das UFs cujo agregado usou pesquisa DE DENTRO da janela de
  * recência. Exportada para teste: com os dados de hoje é ~99,2% do eleitorado
  * nacional no 2º turno (Rondônia fora) e ~96,6% no 1º (Mato Grosso e Piauí
@@ -855,6 +879,13 @@ function criarCabecalho(
   aviso.className = 'ps-aviso';
   header.appendChild(aviso);
 
+  // Segundo aviso, separado do de recência porque fala de outra coisa: aquele
+  // diz que o dado é velho, este diz que a PERGUNTA era outra. Um estado pode
+  // estar numa situação, na outra, nas duas ou em nenhuma.
+  const avisoJanela = document.createElement('p');
+  avisoJanela.className = 'ps-aviso';
+  header.appendChild(avisoJanela);
+
   function atualizar(novos: PresidencialPorEstado): void {
     const recorte = recorteDe(novos);
 
@@ -904,6 +935,13 @@ function criarCabecalho(
     const texto = avisoForaDaJanela(ufsComDadoForaDaJanela(novos));
     aviso.textContent = texto ?? '';
     aviso.hidden = texto == null;
+
+    const textoJanela = avisoJanelaDoTurno2({
+      ...janelaDoTurno2(novos),
+      dataPrimeiroTurno: formatarData(DATA_PRIMEIRO_TURNO),
+    });
+    avisoJanela.textContent = textoJanela ?? '';
+    avisoJanela.hidden = textoJanela == null;
   }
 
   atualizar(dados);

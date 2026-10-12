@@ -814,3 +814,81 @@ describe('janela do agregado de 2º turno', () => {
     expect(t[0]!.agregado.pesquisasUsadas).toHaveLength(5);
   });
 });
+
+/**
+ * De que lado da eleição cada UF do mapa de 2º turno foi medida
+ * (`PresidencialUf.medidaAposOPrimeiroTurno`). A borda importa: uma pesquisa
+ * cujo campo FECHA em 04/10 ainda ouviu o eleitor sem o resultado, então
+ * pertence ao lado de antes — a comparação é estritamente `>`, a mesma do
+ * agregado nacional. Com `>=` as duas leituras cairiam no mesmo balde e a tela
+ * diria que a UF já mede a eleição marcada.
+ */
+describe('get-presidential-by-state / janela do 2º turno', () => {
+  const FONTE = { nome: 'fixture', url: 'https://exemplo.invalido' };
+  const CLOCK_POS: Clock = { hoje: () => new Date('2026-10-12T00:00:00Z') };
+
+  function t2Uf(uf: string, dataFim: string): Pesquisa {
+    return criarPesquisa({
+      id: `${dataFim}-fix-${uf.toLowerCase()}-t2`,
+      uf,
+      cargo: 'presidente',
+      turno: 2,
+      instituto: 'Fixture',
+      registroTSE: null,
+      contratante: null,
+      dataInicio: dataFim,
+      dataFim,
+      publicadoEm: dataFim,
+      amostra: 1000,
+      margem: 3,
+      cenario: 'estimulada, 2º turno',
+      fonte: FONTE,
+      resultados: [
+        { candidato: LULA, partido: 'PT', pct: 45 },
+        { candidato: FLAVIO_BOLSONARO, partido: 'PL', pct: 49 },
+      ],
+    } as unknown as DadosPesquisa);
+  }
+
+  function montarUf(pesquisas: Pesquisa[]): CasosDeUso {
+    return criarCasosDeUso(
+      {
+        polls: pollRepoFake(pesquisas),
+        parties: partyRepoFake(PARTIDOS),
+        senateSeats: senateSeatRepoFake,
+        meta: metaRepoFake,
+        apuracao: apuracaoRepoVazio(),
+        electorate: electorateRepoFake([]),
+      },
+      CLOCK_POS,
+    );
+  }
+
+  it('campo encerrado DEPOIS de 04/10 mede a eleição marcada', () => {
+    const dados = montarUf([t2Uf('DF', '2026-10-11')]).getPresidentialByState(2);
+    const df = dados.ufs.find((u) => u.uf === 'DF')!;
+    expect(df.medidaAposOPrimeiroTurno).toBe(true);
+    expect(dados.ufsAntesDoPrimeiroTurno).not.toContain('DF');
+  });
+
+  it('campo encerrado NO DIA 04/10 ainda é a pergunta hipotética — a borda é estrita', () => {
+    const dados = montarUf([t2Uf('DF', '2026-10-04')]).getPresidentialByState(2);
+    const df = dados.ufs.find((u) => u.uf === 'DF')!;
+    expect(df.medidaAposOPrimeiroTurno).toBe(false);
+    expect(dados.ufsAntesDoPrimeiroTurno).toContain('DF');
+  });
+
+  it('UF sem dado não entra em nenhum dos dois lados', () => {
+    const dados = montarUf([t2Uf('DF', '2026-10-11')]).getPresidentialByState(2);
+    const ac = dados.ufs.find((u) => u.uf === 'AC')!;
+    expect(ac.semDados).toBe(true);
+    expect(ac.medidaAposOPrimeiroTurno).toBeNull();
+    expect(dados.ufsAntesDoPrimeiroTurno).not.toContain('AC');
+  });
+
+  it('no 1º turno a pergunta não cabe: null em toda UF e lista vazia', () => {
+    const dados = montarUf([t2Uf('DF', '2026-10-11')]).getPresidentialByState(1);
+    expect(dados.ufs.every((u) => u.medidaAposOPrimeiroTurno === null)).toBe(true);
+    expect(dados.ufsAntesDoPrimeiroTurno).toEqual([]);
+  });
+});

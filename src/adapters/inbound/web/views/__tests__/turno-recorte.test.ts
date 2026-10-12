@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   avisoForaDaJanela,
+  avisoJanelaDoTurno2,
   listaEmPortugues,
   rotuloConfronto,
   rotuloForaDaJanela,
@@ -147,5 +148,113 @@ describe('presidential-states-view/ufsComDadoForaDaJanela (dados reais)', () => 
     expect(dados.ufs).toHaveLength(27);
     expect(dados.ufs.filter((u) => u.semDados)).toEqual([]);
     expect(rotuloRecorte(dados.turno, dados.confronto)).toBe('2º turno · Lula x Flávio Bolsonaro');
+  });
+});
+
+describe('_shared/avisoJanelaDoTurno2', () => {
+  const D = '04/10/2026';
+
+  it('no 1º turno (comDado 0, a pergunta não cabe) não há aviso', () => {
+    expect(avisoJanelaDoTurno2({ apos: [], comDado: 0, dataPrimeiroTurno: D })).toBeNull();
+  });
+
+  it('com TODAS as UFs medidas depois do 1º turno o aviso seria falso, e não sai', () => {
+    expect(
+      avisoJanelaDoTurno2({ apos: ['Acre', 'Bahia'], comDado: 2, dataPrimeiroTurno: D }),
+    ).toBeNull();
+  });
+
+  it('o estado até 12/10: nenhuma UF do outro lado da eleição', () => {
+    const aviso = avisoJanelaDoTurno2({ apos: [], comDado: 27, dataPrimeiroTurno: D });
+    expect(aviso).toContain('Nenhuma das 27 UFs com dado neste mapa foi medida depois do 1º turno');
+    expect(aviso).toContain('Todas as 27 medem');
+    expect(aviso).toContain('antes de 04/10/2026');
+    expect(aviso).toContain('uma hipótese');
+    // Não promete marca visual que a tela não tem.
+    expect(aviso).not.toContain('marcad');
+  });
+
+  it('o estado de 12/10: só o Distrito Federal, no singular em todos os pontos', () => {
+    const aviso = avisoJanelaDoTurno2({
+      apos: ['Distrito Federal'],
+      comDado: 27,
+      dataPrimeiroTurno: D,
+    });
+    expect(aviso).toContain('Das 27 UFs com dado neste mapa, só Distrito Federal tem leitura');
+    expect(aviso).toContain('As outras 26 medem');
+    expect(aviso).not.toContain('têm leitura');
+    expect(aviso).not.toContain('A outra mede');
+  });
+
+  it('concorda no plural quando mais de uma UF já foi medida depois', () => {
+    const aviso = avisoJanelaDoTurno2({
+      apos: ['Distrito Federal', 'Rio de Janeiro'],
+      comDado: 27,
+      dataPrimeiroTurno: D,
+    });
+    expect(aviso).toContain('apenas Distrito Federal e Rio de Janeiro têm leitura');
+    expect(aviso).toContain('As outras 25 medem');
+    expect(aviso).not.toContain('só Distrito Federal');
+  });
+
+  it('quando falta UMA, o verbo e o artigo vão para o singular', () => {
+    const aviso = avisoJanelaDoTurno2({
+      apos: ['Distrito Federal', 'Rio de Janeiro'],
+      comDado: 3,
+      dataPrimeiroTurno: D,
+    });
+    expect(aviso).toContain('A outra mede');
+    expect(aviso).not.toContain('As outras 1');
+  });
+});
+
+describe('presidential-states-view/janelaDoTurno2 (dados reais)', () => {
+  async function montar(hoje: string) {
+    const { carregarDados } = await import('../../../../outbound/json/carregar-dados.js');
+    const { criarCasosDeUso } = await import('../../../../../application/use-cases/index.js');
+    const { janelaDoTurno2 } = await import('../presidential-states-view.js');
+    const casos = criarCasosDeUso(carregarDados(), { hoje: () => new Date(hoje) });
+    return { casos, janelaDoTurno2 };
+  }
+
+  it('o Distrito Federal é a única UF cuja leitura de 2º turno é posterior ao 1º turno', async () => {
+    const { casos, janelaDoTurno2 } = await montar('2026-10-12T12:00:00Z');
+    const dados = casos.getPresidentialByState(2);
+
+    expect(dados.ufsAntesDoPrimeiroTurno).toHaveLength(26);
+    expect(dados.ufsAntesDoPrimeiroTurno).not.toContain('DF');
+    expect(janelaDoTurno2(dados)).toEqual({ apos: ['Distrito Federal'], comDado: 27 });
+
+    const aviso = avisoJanelaDoTurno2({
+      ...janelaDoTurno2(dados),
+      dataPrimeiroTurno: '04/10/2026',
+    });
+    expect(aviso).toContain('só Distrito Federal tem leitura posterior ao 1º turno');
+    expect(aviso).toContain('As outras 26 medem');
+  });
+
+  it('no 1º turno a pergunta não cabe e o aviso não sai, por mais UFs que haja', async () => {
+    const { casos, janelaDoTurno2 } = await montar('2026-10-12T12:00:00Z');
+    const dados = casos.getPresidentialByState(1);
+
+    expect(dados.ufsAntesDoPrimeiroTurno).toEqual([]);
+    expect(dados.ufs.every((u) => u.medidaAposOPrimeiroTurno === null)).toBe(true);
+    expect(
+      avisoJanelaDoTurno2({ ...janelaDoTurno2(dados), dataPrimeiroTurno: '04/10/2026' }),
+    ).toBeNull();
+  });
+
+  it('ingerir a primeira estadual pós-eleição não pode mexer no recorte das outras 26', async () => {
+    // Guarda contra o acidente de 06/10 em outra roupa: um dado novo numa UF
+    // mudando o que a tela afirma sobre as demais. O DF sai do grupo "antes";
+    // nenhuma outra UF pode sair junto.
+    const { casos } = await montar('2026-10-12T12:00:00Z');
+    const dados = casos.getPresidentialByState(2);
+    const comDado = dados.ufs.filter((u) => !u.semDados).map((u) => u.uf);
+
+    expect(comDado).toHaveLength(27);
+    expect([...dados.ufsAntesDoPrimeiroTurno].sort()).toEqual(
+      comDado.filter((uf) => uf !== 'DF').sort(),
+    );
   });
 });

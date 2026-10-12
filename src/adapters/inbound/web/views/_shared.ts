@@ -240,6 +240,60 @@ export function listaEmPortugues(itens: readonly string[]): string {
   return `${itens.slice(0, -1).join(', ')} e ${itens[itens.length - 1]!}`;
 }
 
+/** Entrada do aviso de janela do 2º turno: quantas UFs têm dado e quais já foram medidas depois da eleição. */
+export interface JanelaDoTurno2 {
+  /** Nomes por extenso das UFs cuja leitura é POSTERIOR ao 1º turno. */
+  readonly apos: readonly string[];
+  /** Quantas UFs têm dado neste recorte (as `semDados` não contam). */
+  readonly comDado: number;
+  /** Data do 1º turno, já formatada para leitura (ex.: "04/10/2026"). */
+  readonly dataPrimeiroTurno: string;
+}
+
+/**
+ * Aviso de página sobre DE QUE LADO DA ELEIÇÃO cada UF do mapa de 2º turno
+ * foi medida. Antes de 04/10 uma pesquisa de "Lula x Flávio" media um
+ * confronto HIPOTÉTICO, com o eleitor sem saber quem passaria; depois, mede a
+ * eleição marcada. São perguntas diferentes e o mapa pinta as duas igual.
+ *
+ * Até 12/10 as 27 UFs respondiam todas à primeira, e por isso a distinção não
+ * tinha consequência observável nem aviso nenhum — o mesmo descuido que o
+ * agregado nacional teve em 09/10, quando a janela atravessava a eleição. O
+ * Distrito Federal (Quaest, campo de 8 a 11/10) é a primeira UF do outro lado.
+ *
+ * `null` quando não há o que ressalvar: no 1º turno, sem UF alguma com dado,
+ * ou quando TODAS as UFs com dado já foram medidas depois do 1º turno — aí o
+ * mapa inteiro fala da eleição marcada e a ressalva seria falsa.
+ *
+ * O aviso NÃO promete marca visual: a tela não distingue as duas situações na
+ * tinta, e prometer uma marca que não existe seria repetir, com outra roupa,
+ * exatamente o defeito que este aviso existe para cobrir.
+ */
+export function avisoJanelaDoTurno2(janela: JanelaDoTurno2): string | null {
+  const { apos, comDado, dataPrimeiroTurno } = janela;
+  if (comDado === 0 || apos.length >= comDado) return null;
+
+  const antes = comDado - apos.length;
+  const restantes =
+    antes === 1
+      ? 'A outra mede'
+      : apos.length === 0
+        ? `Todas as ${antes} medem`
+        : `As outras ${antes} medem`;
+  const abertura =
+    apos.length === 0
+      ? `Nenhuma das ${comDado} UFs com dado neste mapa foi medida depois do 1º turno.`
+      : `Das ${comDado} UFs com dado neste mapa, ${apos.length === 1 ? 'só' : 'apenas'} ` +
+        `${listaEmPortugues([...apos])} ${apos.length === 1 ? 'tem' : 'têm'} ` +
+        `leitura posterior ao 1º turno.`;
+
+  return (
+    `${abertura} ${restantes} o confronto como ele era antes de ${dataPrimeiroTurno}: ` +
+    'uma hipótese, com o eleitor ainda sem saber quem passaria. São perguntas diferentes, ' +
+    'e a cor do mapa não distingue uma da outra.'
+  );
+}
+
 /** Uma UF cujo agregado usou pesquisa fora da janela, com a data dessa pesquisa. */
 export interface UfForaDaJanela {
   /** Nome por extenso do estado (ex.: "Rondônia"). */

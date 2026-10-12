@@ -1,0 +1,28 @@
+[
+  {
+    "id": "2026-10-12-quaest-df-presidente-t2-flavio-lula",
+    "uf": "DF",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "DF-08737/2026",
+    "contratante": "TV Globo",
+    "dataInicio": "2026-10-08",
+    "dataFim": "2026-10-11",
+    "publicadoEm": "2026-10-12",
+    "amostra": 1104,
+    "margem": 3,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula — eleitorado do Distrito Federal (votos totais)",
+    "fonte": {
+      "nome": "CNN Brasil",
+      "url": "https://www.cnnbrasil.com.br/eleicoes/quaest-no-df-flavio-bolsonaro-tem-50-no-2o-turno-lula-40/"
+    },
+    "observacao": "PRIMEIRA pesquisa ESTADUAL de 2º turno com campo POSTERIOR ao 1º turno a entrar na base: as 63 estaduais de 2º turno que já havia têm todas campo encerrado até 29/09. Campo de 8 a 11/10, 1.104 eleitores de 16 anos ou mais no DF, margem de 3 pontos, confiança de 95%, contratada pela TV Globo. CORTE INGERIDO = VOTOS TOTAIS, identificado pela PRESENÇA das linhas de não-candidato efetivamente publicadas: Flávio 50%, Lula 40%, brancos/nulos/nenhum 6%, indecisos/não souberam responder 4%, somando exatamente 100. O corte fica determinado mesmo sem as linhas, porque os dois candidatos somam 90 e não 100 — mas o split 6/4 é PUBLICADO, não foi inferido nem repartido a partir de residual. Recorte de válidos NÃO publicado; derivado aqui apenas para referência e não ingerido: 50/90 = 55,56% e 40/90 = 44,44%, vantagem de 11,11 pontos. TESTE DO DELTA não executável contra a nossa base: não havia nenhuma rodada Quaest de presidente/2º turno no DF (as duas fichas de DF que temos são Real Time Big Data 48x40, campo até 28/09, e AtlasIntel 47,4x42,5, campo até 01/09). As coberturas citam rodadas Quaest anteriores no DF que divergem entre si — 49x38 em 23/09 e 48x33 em 29/09 —, então não serviriam de base de comparação confiável. REGISTRO TSE: as coberturas divergem entre DF-08737/2026 e BR-06799/2026; adotado o DF-, que é o prefixo regional coerente com uma amostra só do DF e com as demais fichas estaduais da Quaest na base (RJ-04419/2026, PB-01325/2026, MG-04716/2026). A divergência provavelmente não é erro: rodadas Quaest no DF aparecem registradas em pares (DF-02596 e BR-03609 em 23/09; DF-01987 e BR-04442 em 08/09). ARMADILHA EVITADA: um resumo de cobertura apresentou como contexto de 1º turno no DF 'Flávio 47,03% x Lula 45,16% dos votos válidos' — esses são exatamente os percentuais NACIONAIS, a mesma família de armadilha do banner nacional estampado na página do CE; descartados. LIMITAÇÃO DE AMBIENTE: a política de rede do ambiente responde 403 ao CONNECT para todos os veículos (inclusive g1.globo.com e cnnbrasil.com.br), então a tabela não pôde ser lida na fonte; os quatro percentuais foram corroborados por buscas independentes e pelas manchetes de CNN Brasil, Band, Metrópoles, SBT News, BNews, SpaceMoney, CLM Brasil e NC News.",
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 50 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 40 },
+      { "candidato": "Brancos/nulos/nenhum", "partido": null, "pct": 6 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 4 }
+    ]
+  }
+]
