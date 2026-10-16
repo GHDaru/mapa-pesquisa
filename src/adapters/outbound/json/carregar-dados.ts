@@ -3,12 +3,14 @@ import type { DadosApuracao } from '../../../domain/apuracao.js';
 import type { DadosEleitorado } from '../../../domain/electorate.js';
 import type { DadosPartido } from '../../../domain/party.js';
 import type { DadosPesquisa } from '../../../domain/poll.js';
+import type { DadosResultado } from '../../../domain/resultado.js';
 import type { DadosCadeiraSenado } from '../../../domain/senate.js';
 import { criarApuracaoRepositoryJson } from './apuracao-repository.js';
 import { criarEleitoradoRepositoryJson } from './electorate-repository.js';
 import { criarMetaRepositoryJson, type DadosMeta } from './meta-repository.js';
 import { criarPartyRepositoryJson } from './party-repository.js';
 import { criarPollRepositoryJson } from './poll-repository.js';
+import { criarResultadoRepositoryJson } from './resultado-repository.js';
 import { criarSenateSeatRepositoryJson } from './senate-seat-repository.js';
 
 // Import estático dos dados versionados no repositório (embutidos no bundle
@@ -20,6 +22,7 @@ import senateSeatsJson from '../../../../data/senate-seats.json';
 import metaJson from '../../../../data/meta.json';
 import electorateJson from '../../../../data/electorate.json';
 import apuracaoJson from '../../../../data/apuracao.json';
+import resultadoJson from '../../../../data/resultado-1o-turno.json';
 
 /**
  * Monta os repositórios em memória a partir dos arquivos data/*.json.
@@ -34,5 +37,6 @@ export function carregarDados(): Repositorios {
     meta: criarMetaRepositoryJson(metaJson as unknown as DadosMeta),
     electorate: criarEleitoradoRepositoryJson(electorateJson as unknown as DadosEleitorado[]),
     apuracao: criarApuracaoRepositoryJson(apuracaoJson as unknown as DadosApuracao),
+    resultado: criarResultadoRepositoryJson(resultadoJson as unknown as DadosResultado),
   };
 }

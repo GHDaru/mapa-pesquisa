@@ -2,6 +2,7 @@ import type { DadosApuracao } from '../domain/apuracao.js';
 import type { Eleitorado } from '../domain/electorate.js';
 import type { Partido } from '../domain/party.js';
 import type { Pesquisa } from '../domain/poll.js';
+import type { DadosResultado } from '../domain/resultado.js';
 import type { Disputa } from '../domain/race.js';
 import type { CadeiraSenado } from '../domain/senate.js';
 
@@ -45,6 +46,15 @@ export interface ApuracaoRepository {
   vazia(): boolean;
 }
 
+/**
+ * Resultado consumado da eleição (data/resultado-1o-turno.json): governadores
+ * eleitos ou em 2º turno e bancadas da Câmara. O Senado NÃO está aqui — é
+ * derivado da apuração, que já cobre as 27 UFs.
+ */
+export interface ResultadoRepository {
+  dados(): DadosResultado;
+}
+
 export interface Repositorios {
   polls: PollRepository;
   parties: PartyRepository;
@@ -52,6 +62,7 @@ export interface Repositorios {
   meta: MetaRepository;
   electorate: EleitoradoRepository;
   apuracao: ApuracaoRepository;
+  resultado: ResultadoRepository;
 }
 
 /** Relógio injetável — permite testes determinísticos dos casos de uso. */

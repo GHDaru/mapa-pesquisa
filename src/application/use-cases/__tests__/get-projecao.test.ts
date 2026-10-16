@@ -1,3 +1,4 @@
+import { resultadoRepoFake } from './_resultado-fake.js';
 import { describe, expect, it } from 'vitest';
 import { criarGetProjecao, LIMIAR_APURACAO_ENCERRADA } from '../get-projecao.js';
 import { criarApuracaoRepositoryJson } from '../../../adapters/outbound/json/apuracao-repository.js';
@@ -85,6 +86,7 @@ function repos(apuracao: DadosApuracao, pesquisas: readonly DadosPesquisa[]): Re
       { uf: 'SP', eleitores: 34_000_000, referencia: '2026-07', fonte: FONTE },
     ] as never),
     apuracao: criarApuracaoRepositoryJson(apuracao),
+        resultado: resultadoRepoFake,
   };
 }
 

@@ -4,6 +4,7 @@ import { criarGetMapOverview } from './get-map-overview.js';
 import { criarGetMeta } from './get-meta.js';
 import { criarGetPollsDatabase } from './get-polls-database.js';
 import { criarGetProjecao } from './get-projecao.js';
+import { criarGetResultado } from './get-resultado.js';
 import { criarGetPresidentialAggregate } from './get-presidential-aggregate.js';
 import { criarGetPresidentialByState } from './get-presidential-by-state.js';
 import { criarGetPresidentialTimeline } from './get-presidential-timeline.js';
@@ -18,6 +19,7 @@ export * from './get-map-overview.js';
 export * from './get-meta.js';
 export * from './get-polls-database.js';
 export * from './get-projecao.js';
+export * from './get-resultado.js';
 export * from './get-presidential-aggregate.js';
 export * from './get-presidential-by-state.js';
 export * from './get-presidential-timeline.js';
@@ -41,6 +43,7 @@ export interface CasosDeUso {
   readonly getMeta: ReturnType<typeof criarGetMeta>;
   readonly getDailyDigest: ReturnType<typeof criarGetDailyDigest>;
   readonly getProjecao: ReturnType<typeof criarGetProjecao>;
+  readonly getResultado: ReturnType<typeof criarGetResultado>;
 }
 
 /** Fábrica dos casos de uso, com repositórios e relógio injetados. */
@@ -59,5 +62,6 @@ export function criarCasosDeUso(repos: Repositorios, clock: Clock): CasosDeUso {
     getMeta: criarGetMeta(repos),
     getDailyDigest: criarGetDailyDigest(repos),
     getProjecao: criarGetProjecao(repos, clock),
+    getResultado: criarGetResultado(repos),
   };
 }

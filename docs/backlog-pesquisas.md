@@ -3732,3 +3732,87 @@ O cenário vigente passou de **n=5 para n=7** e a vantagem encolheu: **Flávio 4
 A **Quaest do RJ** (campo 8–11/10, 1.302 entrevistas) segue sem publicação, cinco dias depois do previsto — já é o caso de tratar como cancelada ou adiada, não como atrasada. **DataTrends** não publica desde 16/09. Nenhuma rodada nova de **PoderData, Ipespe, AtlasIntel, Vox Brasil, Real Time, Paraná Pesquisas ou Futura** apareceu entre 13 e 16/10.
 
 **835 pesquisas, 722 testes**, build limpo.
+
+---
+
+## 16/10/2026 (2ª rodada do dia) — o fechamento do 1º turno ganha tela própria
+
+Pedido do usuário: comparar pesquisas com o resultado oficial numa aba, fechar
+Senado e Câmara, e um mapa do Brasil com os governadores eleitos.
+
+### O que já existia, e por isso não foi refeito
+
+A comparação **pesquisas × resultado oficial** já está na aba **Projeção**:
+ranking dos 16 institutos por erro médio nos dois primeiros colocados, com
+`acertouOLider`, a ressalva de comparabilidade (quantos candidatos cada um
+publicou) e a margem real de 1,8673. Nada a construir ali; o que faltava era
+apontar para ela a partir do fechamento, e a nova tela faz isso.
+
+### O defeito, outra vez, e agora na maior escala
+
+As abas **Senado** e **Governadores** ainda **projetavam a eleição a partir de
+pesquisas**. A de Senado monta as "cadeiras projetadas" com os dois primeiros
+do agregado de pesquisas; a de Governadores pinta o mapa do Brasil por quem
+lidera nas pesquisas. Ambas foram escritas quando a eleição era futura e
+continuaram rodando depois que as urnas decidiram, com a apuração completa
+guardada em `data/apuracao.json` e não usada por nenhuma das duas. É o **nono**
+caso da família "escrito num mundo, lido em outro", e o de maior consequência
+até aqui: um mapa do Brasil inteiro afirmando uma disputa que já acabou.
+
+### Dados novos, e os fechamentos que os sustentam
+
+`data/resultado-1o-turno.json` (copiado pelo merge a partir de
+`data/research/`), com duas coisas que a apuração não cobre:
+
+**Governadores, 27 UFs.** **21 eleitos no 1º turno** e **6 em 2º turno** (AC,
+AM, DF, ES, RN, TO). Três conferências antes de aceitar: as UFs somam 27
+exatas; os 13 eleitos que já tínhamos em ficha de apuração batem **nome e
+partido, sem uma divergência**; e as coberturas independentes convergem.
+
+**E uma correção que só a nossa base permitiu.** Toda a cobertura de 04–05/10
+lista **sete** segundos turnos, incluindo o Rio. Mas o TSE anulou em 08/10 os
+274.411 votos de Garotinho e a retotalização de 10/10 levou Douglas Ruas a
+50,88% — eleito no 1º turno. A nossa ficha do RJ já documentava essa conta ao
+quarto decimal (4.271.199 ÷ 8.394.627 = 50,8802%). São **6** segundos turnos,
+não 7, e as matérias que dizem 7 estão congeladas no dia da eleição. O mesmo
+padrão que persigo no nosso código, agora na fonte.
+
+**Câmara dos Deputados, 513 cadeiras** em 20 partidos: PL 121, PT 70, União
+Brasil 46, PSD 43, PP 41, Republicanos 41, MDB 36, Podemos 27, PSB 15, PSOL 14,
+PSDB 11, PCdoB 11, Novo 10, PV 7, PDT 6, Avante 5, PRD 5, Solidariedade 2,
+Rede 1, Missão 1. **A lista fecha em 513 exatos, sem resíduo** — é esse
+fechamento que distingue lista completa de lista plausível, e ele virou
+validação de domínio: bancada que não soma o total declarado é recusada na
+carga. Duas fontes divergiam em PSD (43 ou 44) e Republicanos (41 ou 40), e as
+divergências **se cancelam** (44+40 = 43+41); adotada a combinação que fecha.
+
+### O Senado NÃO virou arquivo
+
+Ele é **derivado da apuração**, que já cobre 27/27 UFs: os dois mais votados de
+cada estado são os eleitos. Manter a mesma informação em dois lugares que podem
+divergir seria criar o problema que passo as rodadas caçando. O fechamento sai
+exato: **81 = 54 eleitas agora + 27 que seguem de 2022**. Maior bancada, PL com
+**27** (19 eleitas agora + 8 remanescentes), seguido de PT 9 e MDB 8.
+
+**A folga da segunda vaga.** Uma tabela de bancadas dá a toda cadeira a mesma
+aparência de solidez, e cinco não têm: **RN 0,16**, **PA 0,19**, **AM 1,03**,
+**AC 1,35** e **RR 1,74** pontos sobre o 3º colocado. A tela declara essas.
+E declara também o que **não** sabe: em 11 UFs a nossa ficha lista só os dois
+eleitos, então não há 3º contra quem medir — a dupla é a publicada, a folga
+fica em branco em vez de estimada.
+
+### A tela
+
+Nova aba **Resultados** (`#/resultados`): mapa do Brasil com os governadores
+eleitos pintados pelo espectro do partido e os 6 estados de 2º turno
+**hachurados** — pintá-los da cor de quem está à frente afirmaria uma vitória
+que não aconteceu, e pintá-los de cinza os confundiria com ausência de dado.
+Abaixo, governadores por partido (PL 6, PSD 4, PT 3, Republicanos 3, PP 2, MDB
+1, Podemos 1, PSDB 1), a composição do Senado e a da Câmara.
+
+E a aba antiga de **Governadores** passa a dizer, em aviso no topo, que é um
+mapa de **pesquisas** e não do resultado, com link para a nova — dois mapas do
+Brasil com cores diferentes nos mesmos estados, sem isso, convidam à leitura
+errada.
+
+**752 testes** (eram 722), build limpo.

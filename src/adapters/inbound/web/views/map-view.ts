@@ -43,6 +43,16 @@ interface MapaSvg {
 }
 const brazilMap = brazilMapDados as MapaSvg;
 
+/**
+ * O que este mapa é, dito antes que o leitor conclua outra coisa: ele desenha
+ * a liderança nas PESQUISAS de governador, e a eleição de 4 de outubro já
+ * decidiu a maioria dos estados. Exportado para teste porque é afirmação
+ * sobre o mundo, não enfeite.
+ */
+export const ALERTA_MAPA_DE_PESQUISA =
+  'Este mapa é das PESQUISAS, não do resultado: ele mostra quem liderava antes de 4 de outubro, ' +
+  'e as urnas já decidiram a maioria dos estados.';
+
 /** Nomes por UF (em português, já vêm assim de @svg-maps/brazil). */
 const NOME_POR_UF = new Map(brazilMap.locations.map((loc) => [loc.id.toUpperCase(), loc.name]));
 
@@ -158,7 +168,7 @@ export function renderMap(container: HTMLElement, casos: CasosDeUso): void {
   const heading = document.createElement('h2');
   heading.id = 'map-view-heading';
   heading.className = 'map-view__heading';
-  heading.textContent = 'Governadores 2026 — quem lidera em cada estado';
+  heading.textContent = 'Governadores 2026 — quem liderava nas pesquisas';
   secao.appendChild(heading);
 
   const intro = document.createElement('p');
@@ -166,6 +176,21 @@ export function renderMap(container: HTMLElement, casos: CasosDeUso): void {
   intro.textContent =
     'A cor do estado mostra o espectro do partido do candidato que lidera a média ponderada de pesquisas para governador; quanto mais clara/transparente, menor a confiança na liderança. Passe o mouse para uma prévia ou clique/Enter para abrir os detalhes.';
   secao.appendChild(intro);
+
+  // Este mapa mede PESQUISA, e a eleição já aconteceu. Enquanto ele era a
+  // única tela de governadores, "quem lidera" bastava; com a aba Resultados
+  // ao lado, dois mapas do Brasil com cores diferentes nos mesmos estados
+  // convidam a ler este como se fosse o resultado. O aviso diz qual é qual.
+  const avisoResultado = document.createElement('p');
+  avisoResultado.className = 'map-view__aviso-resultado';
+  avisoResultado.append(
+    document.createTextNode(ALERTA_MAPA_DE_PESQUISA + ' '),
+  );
+  const linkResultado = document.createElement('a');
+  linkResultado.href = '#/resultados';
+  linkResultado.textContent = 'Ver os governadores eleitos';
+  avisoResultado.append(linkResultado, document.createTextNode('.'));
+  secao.appendChild(avisoResultado);
 
   const layout = document.createElement('div');
   layout.className = 'map-view__layout';

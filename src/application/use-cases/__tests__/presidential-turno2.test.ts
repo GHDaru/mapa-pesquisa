@@ -1,3 +1,4 @@
+import { resultadoRepoFake } from './_resultado-fake.js';
 import { beforeAll, describe, expect, it } from 'vitest';
 import { criarEleitorado, type Eleitorado } from '../../../domain/electorate.js';
 import { criarPartido, type Partido } from '../../../domain/party.js';
@@ -222,6 +223,7 @@ beforeAll(() => {
     senateSeats: senateSeatRepoFake,
     meta: metaRepoFake,
     apuracao: apuracaoRepoVazio(),
+        resultado: resultadoRepoFake,
     electorate: electorateRepoFake([
       eleitores('SP', ELEITORES_SP),
       eleitores('GO', ELEITORES_GO),
@@ -439,6 +441,7 @@ describe('getVoteEstimate — 2º turno Lula x Flávio', () => {
       meta: metaRepoFake,
       electorate: electorateRepoFake([eleitores('SP', ELEITORES_SP)]),
       apuracao: apuracaoRepoVazio(),
+        resultado: resultadoRepoFake,
     };
     // Só existe cenário contra Cury: no recorte Lula x Flávio não há nem
     // agregado estadual nem nacional — estimativa impossível, retorna null.
@@ -633,6 +636,7 @@ describe('situação do cenário de 2º turno', () => {
         senateSeats: senateSeatRepoFake,
         meta: metaRepoFake,
         apuracao,
+        resultado: resultadoRepoFake,
         electorate: electorateRepoFake([]),
       },
       CLOCK,
@@ -732,6 +736,7 @@ describe('janela do agregado de 2º turno', () => {
         senateSeats: senateSeatRepoFake,
         meta: metaRepoFake,
         apuracao,
+        resultado: resultadoRepoFake,
         electorate: electorateRepoFake([]),
       },
       CLOCK,
@@ -858,6 +863,7 @@ describe('get-presidential-by-state / janela do 2º turno', () => {
         senateSeats: senateSeatRepoFake,
         meta: metaRepoFake,
         apuracao: apuracaoRepoVazio(),
+        resultado: resultadoRepoFake,
         electorate: electorateRepoFake([]),
       },
       CLOCK_POS,

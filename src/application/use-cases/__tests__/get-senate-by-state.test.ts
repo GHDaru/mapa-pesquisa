@@ -1,3 +1,4 @@
+import { resultadoRepoFake } from './_resultado-fake.js';
 import { describe, expect, it } from 'vitest';
 import { criarPartido, type Partido } from '../../../domain/party.js';
 import { criarPesquisa, type DadosPesquisa, type Pesquisa } from '../../../domain/poll.js';
@@ -128,6 +129,7 @@ function montarRepos(): Repositorios {
     meta: metaRepoFake,
     electorate: electorateRepoFake,
     apuracao: apuracaoRepoVazio(),
+        resultado: resultadoRepoFake,
   };
 }
 

@@ -7,6 +7,8 @@
  *   id; o arquivo processado por último vence; ordenado por dataFim desc).
  * - data/research/parties.json -> copiado para data/parties.json, se existir.
  * - data/research/senate-seats.json -> copiado para data/senate-seats.json, se existir.
+ * - data/research/resultado-1o-turno.json -> copiado para data/resultado-1o-turno.json,
+ *   se existir (governadores eleitos/2º turno e bancadas da Câmara).
  * - data/research/electorate.json -> copiado para data/electorate.json, se existir
  *   (data/electorate.json começa como `[]` até o agente publicar os números do TSE).
  * - data/meta.json é reescrito com atualizadoEm = hoje (ou --date).
@@ -116,6 +118,7 @@ function main(): void {
   copiarSeExistir('parties.json', 'parties.json');
   copiarSeExistir('senate-seats.json', 'senate-seats.json');
   copiarSeExistir('electorate.json', 'electorate.json');
+  copiarSeExistir('resultado-1o-turno.json', 'resultado-1o-turno.json');
 
   const data = lerArg('date') ?? hojeIso();
   if (!/^\d{4}-\d{2}-\d{2}$/.test(data)) {

@@ -1159,3 +1159,15 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
   color: var(--color-warning);
   font-weight: 600;
 }
+
+/* Aviso no mapa de pesquisas de governador, que convive com o mapa de
+   resultados na aba Resultados. Borda declarada por inteiro: o bloco não tem
+   borda própria, e só `border-style` não renderiza nada. */
+.map-view__aviso-resultado {
+  border: 1px dashed var(--color-warning, #b45309);
+  border-radius: var(--radius-md, 8px);
+  padding: var(--space-2, 0.5rem) var(--space-3, 0.75rem);
+  margin: var(--space-3, 0.75rem) 0 0;
+  font-size: 0.875rem;
+  max-width: 68ch;
+}
