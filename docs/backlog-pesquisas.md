@@ -3816,3 +3816,39 @@ Brasil com cores diferentes nos mesmos estados, sem isso, convidam à leitura
 errada.
 
 **752 testes** (eram 722), build limpo.
+
+---
+
+## 16/10/2026 (rodada noturna) — a CNT/MDA entra, duas são recusadas, e eu quase apaguei o trabalho da manhã
+
+### O erro da rodada, e ele foi meu
+
+Gravei a rodada nova em `data/research/polls-diario-2026-10-16-t2.json` — **o mesmo nome do arquivo que eu havia criado de manhã**, com a Quaest de 14/10 e o Datafolha de 15/10. O heredoc sobrescreveu o arquivo e as duas sumiram da carga.
+
+O que pegou foi a disciplina de contagem: `835 + 1` tem de dar 836, e o merge imprimiu **834**. Dois a menos, não um a mais. Recuperei as duas de `git show HEAD:...` e juntei as três no mesmo arquivo; a carga voltou a 836 e as três estão lá.
+
+**A causa é o nome por data numa rodada que correu duas vezes no mesmo dia.** A convenção `polls-diario-AAAA-MM-DD-t2.json` pressupõe uma rodada por dia; hoje houve a recuperação dos quatro dias parados, de manhã, e a rodada agendada, à noite. **Regra nova: antes de escrever um arquivo de research, verifique se ele já existe e ACRESCENTE em vez de sobrescrever.** E a contagem M+N continua sendo o que separa um susto de um dado perdido em silêncio.
+
+### O que entrou: CNT/MDA
+
+Campo 13–15/10, 2.002 eleitores em cerca de 140 municípios, margem 2,2, registro BR-00652/2026, divulgada em 16/10 (sexta — dia da semana conferido). **Flávio 46,8%, Lula 45,9%, brancos/nulos 4,9%, indecisos 2,4%**, somando **100,0 exatos**. O teste de divisão reproduz as duas manchetes: 46,8/92,7 = 50,485 → 50,5 e 45,9/92,7 = 49,515 → 49,5.
+
+**Delta contra a nossa ficha de 03/10:** Lula 47,3 → 45,9, Flávio 43,1 → 46,8, brancos/nulos 7,6 → 4,9. Em válidos a rodada **vira**: era Lula 52,3 x 47,7, passa a Flávio 50,5 x 49,5. Movimento grande, mas na direção do 1º turno e com o bloco de não-candidato encolhendo 2,7 pontos.
+
+**Uma contradição de fonte que se resolveu na base.** Uma busca devolveu manchete da Exame com "CNT/MDA 2º turno: Lula 47,3% e Flávio 43,1%", que parecia desmentir a rodada nova. É **a nossa própria ficha de 03/10**, linha por linha. Conferir contra a base, e não entre fontes, foi o que resolveu.
+
+### O que foi RECUSADO, e por um motivo novo
+
+**Gerp** (52% x 48% em válidos, 2.400 entrevistas) e **Futura** (50,8% x 49,2% em válidos) saíram hoje e **não entraram**. As duas publicam **somente votos válidos**, e aqui há um risco que eu não tinha enunciado:
+
+**as 128 fichas nacionais de 2º turno da base são TODAS de votos totais — nenhuma é de válidos —, e o agregado usa o percentual CRU, sem renormalizar.** Medido: a média simples dos sete pct crus pós-eleição dá 47,69 e o agregado ponderado dá 47,84. Jogar um 52 de base de válidos no meio de números de base total (42,7 a 51,1) **inflaria o agregado** e a tela publicaria uma vantagem que nenhuma pesquisa mediu.
+
+Isso não é a regra antiga "lista que soma 100 sem não-candidato é base de válidos" — essa continua valendo para **identificar** o corte. O que é novo: **identificar o corte não basta para ingerir; o corte tem de ser o mesmo que a base usa**. Enquanto o agregado não distinguir bases, pesquisa publicada só em válidos fica de fora, com o motivo nomeado.
+
+**Pendência para quando houver folga:** ou `agregarPesquisas` passa a conhecer a base de cada ficha e normalizar, ou o schema ganha um campo de base e a tela separa as duas famílias. Hoje seriam duas rodadas perdidas; a nove dias da eleição pode virar muitas.
+
+**Ressalva registrada sobre a Gerp:** duas leituras circulam para a mesma amostra de 2.400 e margem 2 — 55% x 45% atribuída a 13/10 e 52% x 48% atribuída a 16/10. Pode ser rodada nova ou a mesma mal datada; de todo modo não entraria, pelo motivo acima.
+
+### Estado
+
+**836 pesquisas**, 752 testes. Agregado do cenário vigente: **Flávio 47,70 x Lula 44,83, vantagem 2,87** sobre **oito** rodadas — encolhendo de novo (era 3,20 com sete, 3,81 com cinco). Ranking, fechamento do Senado (81 = 54 + 27), governadores (21 e 6) e Câmara (513) inalterados, como tem de ser.

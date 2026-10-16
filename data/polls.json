@@ -42,6 +42,48 @@
     ]
   },
   {
+    "id": "2026-10-16-cnt-mda-br-presidente-t2-flavio-lula",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "CNT/MDA",
+    "registroTSE": "BR-00652/2026",
+    "contratante": "Confederação Nacional do Transporte (CNT)",
+    "dataInicio": "2026-10-13",
+    "dataFim": "2026-10-15",
+    "publicadoEm": "2026-10-16",
+    "amostra": 2002,
+    "margem": 2.2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/cnt-mda-presidente-outubro-2026-segundo-turno/"
+    },
+    "observacao": "Divulgada em 16/10 (sexta-feira — dia da semana conferido). Campo de 13 a 15/10, 2.002 eleitores em cerca de 140 municípios, margem 2,2, registro BR-00652/2026. CORTE INGERIDO = VOTOS TOTAIS, pelas linhas de não-candidato publicadas: Flávio 46,8%, Lula 45,9%, brancos/nulos 4,9%, indecisos 2,4% — FECHAMENTO EXATO em 100,0, sem resíduo. TESTE DE DIVISÃO: 46,8/92,7 = 50,485 -> 50,5 e 45,9/92,7 = 49,515 -> 49,5, reproduzindo as duas manchetes de válidos. TESTE DO DELTA contra a nossa ficha de 03/10 (campo 30/09–02/10): Lula 47,3 -> 45,9 (-1,4), Flávio 43,1 -> 46,8 (+3,7), brancos/nulos 7,6 -> 4,9, indecisos 1,9 -> 2,4. Em válidos a rodada VIRA: era Lula 52,3 x 47,7 e passa a Flávio 50,5 x 49,5 — movimento grande, mas na direção do resultado do 1º turno e com o bloco de brancos/nulos encolhendo 2,7 pontos, o que é coerente com indecisão se definindo. RESSALVA DE FONTE RESOLVIDA, NÃO IGNORADA: uma busca devolveu uma manchete da Exame com 'CNT/MDA 2º turno: Lula 47,3% e Flávio 43,1%', que parecia contradizer esta rodada; é a NOSSA PRÓPRIA FICHA DE 03/10, linha por linha, e não uma leitura concorrente. Conferir contra a base resolveu o que pareceria divergência entre fontes. LIMITAÇÃO DE AMBIENTE: a política de rede responde 403 ao CONNECT para todos os veículos; percentuais corroborados por Gazeta do Povo, Metrópoles, O Liberal, Estado de Minas, Comunhão e Gazeta Mercantil.",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 46.8
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 45.9
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 4.9
+      },
+      {
+        "candidato": "Indecisos",
+        "partido": null,
+        "pct": 2.4
+      }
+    ]
+  },
+  {
     "id": "2026-10-14-quaest-br-presidente-t2-flavio-lula",
     "uf": "BR",
     "cargo": "presidente",
