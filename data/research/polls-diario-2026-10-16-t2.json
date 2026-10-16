@@ -1,0 +1,56 @@
+[
+  {
+    "id": "2026-10-14-quaest-br-presidente-t2-flavio-lula",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "BR-08729/2026",
+    "contratante": "Globo Comunicação e Participações S.A. e Editora Globo",
+    "dataInicio": "2026-10-10",
+    "dataFim": "2026-10-13",
+    "publicadoEm": "2026-10-14",
+    "amostra": 2154,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-46-e-lula-tem-44-no-2o-turno-diz-quaest/"
+    },
+    "observacao": "Primeira rodada Quaest do 2º turno com campo pós-eleição, divulgada em 14/10 (quarta-feira — dia da semana conferido). CORTE INGERIDO = VOTOS TOTAIS, identificado pela PRESENÇA das linhas de não-candidato publicadas: Flávio 46%, Lula 44%, brancos/nulos 9%, indecisos 1%, somando exatamente 100. TESTE DE DIVISÃO corrobora: 46/90 = 51,11 -> 51 e 44/90 = 48,89 -> 49, reproduzindo a manchete de válidos (Flávio 51% x Lula 49%). Campo de 10 a 13/10, 2.154 entrevistas, margem 2 pontos, confiança 95%. TESTE DO DELTA contra a nossa base: a rodada Quaest anterior do mesmo confronto (campo 02-03/10) tinha Flávio 44 / Lula 42 / branco-nulo-nenhum 13 / indecisos 1; a variação é Flávio +2, Lula +2 e bloco de brancos/nulos -4, compatível com indecisão se definindo. RESSALVA SOBRE A COBERTURA: uma matéria descreveu a rodada anterior como 'Flávio 45 x Lula 46' e, no mesmo texto, como '44 a 42' — contradição interna; a nossa ficha de 03/10 registra 44 x 42, que é a leitura coerente, e os números da cobertura para a rodada ANTERIOR foram descartados. CONTRATANTE: as fontes dizem 'Editora Globo e Rede Globo'; gravado com a grafia canônica já usada na base para essas duas entidades. LIMITAÇÃO DE AMBIENTE: a política de rede responde 403 ao CONNECT para todos os veículos, então a tabela não pôde ser lida na fonte; os quatro percentuais foram corroborados por buscas independentes e por Poder360, Metrópoles, Estado de Minas, TVT News e Gazeta do Povo."
+    ,
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 46 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 44 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 9 },
+      { "candidato": "Indecisos", "partido": null, "pct": 1 }
+    ]
+  },
+  {
+    "id": "2026-10-15-datafolha-br-presidente-t2-flavio-lula",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Datafolha",
+    "registroTSE": "BR-00466/2026",
+    "contratante": "Folha de S.Paulo e Grupo Globo",
+    "dataInicio": "2026-10-13",
+    "dataFim": "2026-10-15",
+    "publicadoEm": "2026-10-15",
+    "amostra": 2520,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/lula-x-flavio-datafolha-divulga-nova-pesquisa-de-2o-turno-hoje-15-10"
+    },
+    "observacao": "Segunda rodada Datafolha do 2º turno, divulgada em 15/10 (quinta-feira — dia da semana conferido, e 'a 10 dias do 2º turno' fecha com 25/10). CORTE INGERIDO = VOTOS TOTAIS pelas linhas publicadas: Flávio 47%, Lula 45%, brancos/nulos/nenhum 6%, indecisos 2%, somando exatamente 100. TESTE DE DIVISÃO: 47/92 = 51,09 -> 51 e 45/92 = 48,91 -> 49, reproduzindo a manchete de válidos (51 x 49, empate técnico na margem de 2). TESTE DO DELTA: a cobertura descreve a rodada anterior como Flávio 49 / Lula 45 / brancos-nulos 5 / indecisos 1 e válidos 52 x 48 — **idêntico, linha por linha, à ficha que já temos** (2026-10-08-datafolha-br-presidente-t2-lula-flavio). A variação é Flávio -2, Lula estável, bloco de não-candidato +2. É o teste do delta passando no caso mais forte possível: a fonte nova reimprime a rodada antiga exatamente como a gravamos. DIVERGÊNCIA DE CAMPO: um resumo de cobertura deu '13 e 14 de outubro' e outro, com citação direta, 'entre os dias 13 e 15 de outubro'; adotado 13 a 15/10, que é a leitura citada literalmente e é compatível com divulgação no próprio dia 15 (o Datafolha publica no mesmo dia). RESSALVA SOBRE O REGISTRO TSE: BR-00466/2026 está fora da sequência que as outras rodadas de outubro mostram (a Datafolha de 08/10 é BR-02949/2026 e a Quaest de 14/10 é BR-08729/2026); gravado como publicado, sem ajuste, mas a numeração não pôde ser conferida no PesqEle porque tse.jus.br também responde 403. CONTRATANTE: as fontes divergem entre 'Globo e Folha de S.Paulo' e 'apenas Folha'; gravada a grafia canônica das rodadas anteriores do mesmo instituto. LIMITAÇÃO DE AMBIENTE: tabela não lida na fonte; percentuais corroborados por Metrópoles, Gazeta do Povo, A Crítica e BHAZ."
+    ,
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 47 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 45 },
+      { "candidato": "Brancos/nulos/nenhum", "partido": null, "pct": 6 },
+      { "candidato": "Indecisos", "partido": null, "pct": 2 }
+    ]
+  }
+]

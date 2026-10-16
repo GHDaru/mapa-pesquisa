@@ -3692,3 +3692,41 @@ turno nem no agregado nacional. Cenário vigente segue `pos-1o-turno`, n=5,
 A ficha `Ranking Brasil Inteligência` de MS, presidente/2º turno, está com
 `dataFim: null`. Não afeta nada hoje (a `dataReferencia` cai no `publicadoEm`),
 mas é a única da base nessa situação e merece verificação numa rodada com folga.
+
+---
+
+## 16/10/2026 — quatro dias parados, e a recuperação
+
+### Por que houve um buraco
+
+A base ficou congelada em **12/10**. A Routine disparou em 13, 14 e 15/10 e os três disparos constam como entregues, mas **nenhuma rodada rodou**: o contêiner da sessão foi reciclado e o checkout veio vazio — `git log` na abertura de hoje dizia *"your current branch 'master' does not have any commits yet"*. O trabalho só retomou quando o usuário perguntou se as pesquisas de 2º turno estavam sendo atualizadas.
+
+**Lição operacional, e ela não é sobre dados:** para uma Routine presa a uma sessão persistente, `last_run: SUCCEEDED` significa **que o despertar foi entregue**, não que o turno rodou. O único sinal confiável de que a rodada aconteceu é o **commit do dia**. Qualquer checagem futura de "estamos atualizando?" tem de olhar `git log` e `meta.atualizadoEm`, nunca o status da Routine.
+
+### O que entrou
+
+Duas rodadas nacionais de 2º turno, ambas com campo pós-eleição. Base vai de 833 para **835**.
+
+**Quaest, divulgada em 14/10** (quarta-feira — dia da semana conferido). Campo 10–13/10, 2.154 entrevistas, margem 2, confiança 95%, contratada por Rede Globo e Editora Globo, registro BR-08729/2026. **Flávio 46%, Lula 44%, brancos/nulos 9%, indecisos 1%** — soma 100, corte de votos totais pelas linhas publicadas. Teste de divisão: 46/90 = 51,11 → 51 e 44/90 = 48,89 → 49, reproduzindo a manchete de válidos.
+
+**Datafolha, divulgada em 15/10** (quinta-feira; "a 10 dias do 2º turno" fecha com 25/10). Campo 13–15/10, 2.520 entrevistas, margem 2, registro BR-00466/2026. **Flávio 47%, Lula 45%, brancos/nulos/nenhum 6%, indecisos 2%** — soma 100. Teste de divisão: 47/92 = 51,09 → 51 e 45/92 = 48,91 → 49.
+
+### O teste do delta no caso mais forte possível
+
+A cobertura do Datafolha descreveu a rodada anterior como Flávio 49 / Lula 45 / brancos-nulos 5 / indecisos 1, válidos 52 x 48. Isso é **idêntico, linha por linha**, à ficha que já tínhamos de 08/10. Quando a fonte nova reimprime a rodada antiga exatamente como a gravamos, o delta deixa de ser só uma checagem de plausibilidade e vira confirmação de que as duas leituras estão na mesma base.
+
+Na Quaest o delta também passou, com uma ressalva registrada: contra a nossa ficha de 03/10 (Flávio 44 / Lula 42 / branco-nulo-nenhum 13 / indecisos 1), a variação é +2, +2 e −4 no bloco de não-candidato. Mas **uma matéria descreveu a rodada anterior de dois jeitos incompatíveis no mesmo texto** — "Flávio 45 x Lula 46" e "44 a 42". A nossa ficha registra 44 x 42, que é a leitura coerente; os números da cobertura para a rodada anterior foram descartados. Contradição interna de uma fonte não é empate entre duas leituras: é motivo para preferir a que já passou por verificação própria.
+
+### Uma ressalva que ficou declarada, não resolvida
+
+O registro **BR-00466/2026** do Datafolha está fora da sequência que as outras rodadas de outubro mostram — a Datafolha de 08/10 é BR-02949/2026 e a Quaest de 14/10 é BR-08729/2026. Gravado como publicado, sem ajuste, porque o PesqEle não é alcançável (tse.jus.br também responde 403). Pode ser erro de transcrição da cobertura ou registro antigo reaproveitado; não dá para decidir daqui.
+
+### O que mudou na tela
+
+O cenário vigente passou de **n=5 para n=7** e a vantagem encolheu: **Flávio 47,84 x Lula 44,65, vantagem 3,20** (era 48,51 x 44,70, vantagem 3,81). Continua sem empate técnico. O ranking do 1º turno ficou intacto, como tem de ficar — margemReal 1,8673, 16 institutos, 3 acertaram o líder —, e as projeções de senador e governador não se mexeram.
+
+### Ainda não saíram
+
+A **Quaest do RJ** (campo 8–11/10, 1.302 entrevistas) segue sem publicação, cinco dias depois do previsto — já é o caso de tratar como cancelada ou adiada, não como atrasada. **DataTrends** não publica desde 16/09. Nenhuma rodada nova de **PoderData, Ipespe, AtlasIntel, Vox Brasil, Real Time, Paraná Pesquisas ou Futura** apareceu entre 13 e 16/10.
+
+**835 pesquisas, 722 testes**, build limpo.
