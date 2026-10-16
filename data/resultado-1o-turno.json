@@ -3,57 +3,404 @@
   "turno1": "2026-10-04",
   "turno2": "2026-10-25",
   "governadores": [
-    { "uf": "AC", "situacao": "segundo-turno", "finalistas": [{ "nome": "Mailza Assis", "partido": "PP", "pctValidos": 49.76 }, { "nome": "Alan Rick", "partido": "Republicanos", "pctValidos": 32.27 }], "eleito": null },
-    { "uf": "AL", "situacao": "eleito", "eleito": { "nome": "JHC", "partido": "PSDB", "pctValidos": 52.09 }, "finalistas": [] },
-    { "uf": "AM", "situacao": "segundo-turno", "finalistas": [{ "nome": "Omar Aziz", "partido": "PSD", "pctValidos": 40.63 }, { "nome": "Professora Maria do Carmo", "partido": "PL", "pctValidos": 24.49 }], "eleito": null },
-    { "uf": "AP", "situacao": "eleito", "eleito": { "nome": "Dr. Furlan", "partido": "PSD", "pctValidos": 62.7 }, "finalistas": [] },
-    { "uf": "BA", "situacao": "eleito", "eleito": { "nome": "Jerônimo Rodrigues", "partido": "PT", "pctValidos": 55.26 }, "finalistas": [] },
-    { "uf": "CE", "situacao": "eleito", "eleito": { "nome": "Elmano de Freitas", "partido": "PT", "pctValidos": 53.19 }, "finalistas": [] },
-    { "uf": "DF", "situacao": "segundo-turno", "finalistas": [{ "nome": "Celina Leão", "partido": "PP", "pctValidos": 49.93 }, { "nome": "Leandro Grass", "partido": "PT", "pctValidos": 34.47 }], "eleito": null },
-    { "uf": "ES", "situacao": "segundo-turno", "finalistas": [{ "nome": "Lorenzo Pazolini", "partido": "Republicanos", "pctValidos": 49.65 }, { "nome": "Ricardo Ferraço", "partido": "MDB", "pctValidos": 34.06 }], "eleito": null },
-    { "uf": "GO", "situacao": "eleito", "eleito": { "nome": "Daniel Vilela", "partido": "MDB", "pctValidos": 59.1 }, "finalistas": [] },
-    { "uf": "MA", "situacao": "eleito", "eleito": { "nome": "Eduardo Braide", "partido": "PSD", "pctValidos": 54.0 }, "finalistas": [] },
-    { "uf": "MG", "situacao": "eleito", "eleito": { "nome": "Cleitinho Azevedo", "partido": "Republicanos", "pctValidos": 55.4 }, "finalistas": [] },
-    { "uf": "MS", "situacao": "eleito", "eleito": { "nome": "Eduardo Riedel", "partido": "PP", "pctValidos": 67.1 }, "finalistas": [] },
-    { "uf": "MT", "situacao": "eleito", "eleito": { "nome": "Otaviano Pivetta", "partido": "Republicanos", "pctValidos": 60.8 }, "finalistas": [] },
-    { "uf": "PA", "situacao": "eleito", "eleito": { "nome": "Dr. Daniel", "partido": "Podemos", "pctValidos": 51.36 }, "finalistas": [] },
-    { "uf": "PB", "situacao": "eleito", "eleito": { "nome": "Lucas Ribeiro", "partido": "PP", "pctValidos": 64.3 }, "finalistas": [] },
-    { "uf": "PE", "situacao": "eleito", "eleito": { "nome": "Raquel Lyra", "partido": "PSD", "pctValidos": 53.25 }, "finalistas": [] },
-    { "uf": "PI", "situacao": "eleito", "eleito": { "nome": "Rafael Fonteles", "partido": "PT", "pctValidos": 70.9 }, "finalistas": [] },
-    { "uf": "PR", "situacao": "eleito", "eleito": { "nome": "Sergio Moro", "partido": "PL", "pctValidos": 50.19 }, "finalistas": [] },
-    { "uf": "RJ", "situacao": "eleito", "eleito": { "nome": "Douglas Ruas", "partido": "PL", "pctValidos": 50.88 }, "finalistas": [] },
-    { "uf": "RN", "situacao": "segundo-turno", "finalistas": [{ "nome": "Allyson Bezerra", "partido": "União Brasil", "pctValidos": null }, { "nome": "Cadu de Lula", "partido": "PT", "pctValidos": null }], "eleito": null },
-    { "uf": "RO", "situacao": "eleito", "eleito": { "nome": "Marcos Rogério", "partido": "PL", "pctValidos": 56.86 }, "finalistas": [] },
-    { "uf": "RR", "situacao": "eleito", "eleito": { "nome": "Arthur Henrique", "partido": "PL", "pctValidos": 69.13 }, "finalistas": [] },
-    { "uf": "RS", "situacao": "eleito", "eleito": { "nome": "Zucco", "partido": "PL", "pctValidos": 58.05 }, "finalistas": [] },
-    { "uf": "SC", "situacao": "eleito", "eleito": { "nome": "Jorginho Mello", "partido": "PL", "pctValidos": 68.98 }, "finalistas": [] },
-    { "uf": "SE", "situacao": "eleito", "eleito": { "nome": "Fábio Mitidieri", "partido": "PSD", "pctValidos": 59.3 }, "finalistas": [] },
-    { "uf": "SP", "situacao": "eleito", "eleito": { "nome": "Tarcísio de Freitas", "partido": "Republicanos", "pctValidos": 62.65 }, "finalistas": [] },
-    { "uf": "TO", "situacao": "segundo-turno", "finalistas": [{ "nome": "Professora Dorinha", "partido": "União Brasil", "pctValidos": 45.52 }, { "nome": "Vicentinho Júnior", "partido": "PSDB", "pctValidos": 43.94 }], "eleito": null }
+    {
+      "uf": "AC",
+      "situacao": "segundo-turno",
+      "finalistas": [
+        {
+          "nome": "Mailza Assis",
+          "partido": "PP",
+          "pctValidos": 49.76
+        },
+        {
+          "nome": "Alan Rick",
+          "partido": "Republicanos",
+          "pctValidos": 32.27
+        }
+      ],
+      "eleito": null
+    },
+    {
+      "uf": "AL",
+      "situacao": "eleito",
+      "eleito": {
+        "nome": "JHC",
+        "partido": "PSDB",
+        "pctValidos": 52.09
+      },
+      "finalistas": []
+    },
+    {
+      "uf": "AM",
+      "situacao": "segundo-turno",
+      "finalistas": [
+        {
+          "nome": "Omar Aziz",
+          "partido": "PSD",
+          "pctValidos": 40.63
+        },
+        {
+          "nome": "Professora Maria do Carmo",
+          "partido": "PL",
+          "pctValidos": 24.49
+        }
+      ],
+      "eleito": null
+    },
+    {
+      "uf": "AP",
+      "situacao": "eleito",
+      "eleito": {
+        "nome": "Dr. Furlan",
+        "partido": "PSD",
+        "pctValidos": 62.7
+      },
+      "finalistas": [],
+      "observacao": "Eleito com o registro de candidatura SUB JUDICE: o julgamento está suspenso por pedido de vista do ministro André Mendonça. A eleição está declarada, mas pode ser desfeita — é a mesma família do caso do RJ, onde uma decisão posterior mudou o resultado do 1º turno."
+    },
+    {
+      "uf": "BA",
+      "situacao": "eleito",
+      "eleito": {
+        "nome": "Jerônimo Rodrigues",
+        "partido": "PT",
+        "pctValidos": 55.26
+      },
+      "finalistas": []
+    },
+    {
+      "uf": "CE",
+      "situacao": "eleito",
+      "eleito": {
+        "nome": "Elmano de Freitas",
+        "partido": "PT",
+        "pctValidos": 53.19
+      },
+      "finalistas": []
+    },
+    {
+      "uf": "DF",
+      "situacao": "segundo-turno",
+      "finalistas": [
+        {
+          "nome": "Celina Leão",
+          "partido": "PP",
+          "pctValidos": 49.93
+        },
+        {
+          "nome": "Leandro Grass",
+          "partido": "PT",
+          "pctValidos": 34.47
+        }
+      ],
+      "eleito": null
+    },
+    {
+      "uf": "ES",
+      "situacao": "segundo-turno",
+      "finalistas": [
+        {
+          "nome": "Lorenzo Pazolini",
+          "partido": "Republicanos",
+          "pctValidos": 49.65
+        },
+        {
+          "nome": "Ricardo Ferraço",
+          "partido": "MDB",
+          "pctValidos": 34.06
+        }
+      ],
+      "eleito": null
+    },
+    {
+      "uf": "GO",
+      "situacao": "eleito",
+      "eleito": {
+        "nome": "Daniel Vilela",
+        "partido": "MDB",
+        "pctValidos": 59.1
+      },
+      "finalistas": []
+    },
+    {
+      "uf": "MA",
+      "situacao": "eleito",
+      "eleito": {
+        "nome": "Eduardo Braide",
+        "partido": "PSD",
+        "pctValidos": 54.0
+      },
+      "finalistas": []
+    },
+    {
+      "uf": "MG",
+      "situacao": "eleito",
+      "eleito": {
+        "nome": "Cleitinho Azevedo",
+        "partido": "Republicanos",
+        "pctValidos": 55.4
+      },
+      "finalistas": []
+    },
+    {
+      "uf": "MS",
+      "situacao": "eleito",
+      "eleito": {
+        "nome": "Eduardo Riedel",
+        "partido": "PP",
+        "pctValidos": 67.1
+      },
+      "finalistas": []
+    },
+    {
+      "uf": "MT",
+      "situacao": "eleito",
+      "eleito": {
+        "nome": "Otaviano Pivetta",
+        "partido": "Republicanos",
+        "pctValidos": 60.8
+      },
+      "finalistas": []
+    },
+    {
+      "uf": "PA",
+      "situacao": "eleito",
+      "eleito": {
+        "nome": "Dr. Daniel",
+        "partido": "Podemos",
+        "pctValidos": 51.36
+      },
+      "finalistas": []
+    },
+    {
+      "uf": "PB",
+      "situacao": "eleito",
+      "eleito": {
+        "nome": "Lucas Ribeiro",
+        "partido": "PP",
+        "pctValidos": 64.3
+      },
+      "finalistas": []
+    },
+    {
+      "uf": "PE",
+      "situacao": "eleito",
+      "eleito": {
+        "nome": "Raquel Lyra",
+        "partido": "PSD",
+        "pctValidos": 53.25
+      },
+      "finalistas": []
+    },
+    {
+      "uf": "PI",
+      "situacao": "eleito",
+      "eleito": {
+        "nome": "Rafael Fonteles",
+        "partido": "PT",
+        "pctValidos": 70.9
+      },
+      "finalistas": []
+    },
+    {
+      "uf": "PR",
+      "situacao": "eleito",
+      "eleito": {
+        "nome": "Sergio Moro",
+        "partido": "PL",
+        "pctValidos": 50.19
+      },
+      "finalistas": []
+    },
+    {
+      "uf": "RJ",
+      "situacao": "eleito",
+      "eleito": {
+        "nome": "Douglas Ruas",
+        "partido": "PL",
+        "pctValidos": 50.88
+      },
+      "finalistas": [],
+      "observacao": "Não foi eleito na contagem de 04/10 (49,27% dos válidos brutos): o TSE anulou em 08/10 os 274.411 votos de Garotinho, por registro indeferido, e a retotalização do TRE-RJ de 10/10 levou Douglas Ruas a 50,88% (4.271.199 ÷ 8.394.627 = 50,8802%), elegendo-o no 1º turno. A cobertura de 04–05/10 ainda lista o RJ em 2º turno."
+    },
+    {
+      "uf": "RN",
+      "situacao": "segundo-turno",
+      "finalistas": [
+        {
+          "nome": "Allyson Bezerra",
+          "partido": "União Brasil",
+          "pctValidos": null
+        },
+        {
+          "nome": "Cadu de Lula",
+          "partido": "PT",
+          "pctValidos": null
+        }
+      ],
+      "eleito": null
+    },
+    {
+      "uf": "RO",
+      "situacao": "eleito",
+      "eleito": {
+        "nome": "Marcos Rogério",
+        "partido": "PL",
+        "pctValidos": 56.86
+      },
+      "finalistas": []
+    },
+    {
+      "uf": "RR",
+      "situacao": "eleito",
+      "eleito": {
+        "nome": "Arthur Henrique",
+        "partido": "PL",
+        "pctValidos": 69.13
+      },
+      "finalistas": []
+    },
+    {
+      "uf": "RS",
+      "situacao": "eleito",
+      "eleito": {
+        "nome": "Zucco",
+        "partido": "PL",
+        "pctValidos": 58.05
+      },
+      "finalistas": []
+    },
+    {
+      "uf": "SC",
+      "situacao": "eleito",
+      "eleito": {
+        "nome": "Jorginho Mello",
+        "partido": "PL",
+        "pctValidos": 68.98
+      },
+      "finalistas": []
+    },
+    {
+      "uf": "SE",
+      "situacao": "eleito",
+      "eleito": {
+        "nome": "Fábio Mitidieri",
+        "partido": "PSD",
+        "pctValidos": 59.3
+      },
+      "finalistas": []
+    },
+    {
+      "uf": "SP",
+      "situacao": "eleito",
+      "eleito": {
+        "nome": "Tarcísio de Freitas",
+        "partido": "Republicanos",
+        "pctValidos": 62.65
+      },
+      "finalistas": []
+    },
+    {
+      "uf": "TO",
+      "situacao": "segundo-turno",
+      "finalistas": [
+        {
+          "nome": "Professora Dorinha",
+          "partido": "União Brasil",
+          "pctValidos": 45.52
+        },
+        {
+          "nome": "Vicentinho Júnior",
+          "partido": "PSDB",
+          "pctValidos": 43.94
+        }
+      ],
+      "eleito": null
+    }
   ],
   "camara": {
     "totalCadeiras": 513,
     "bancadas": [
-      { "partido": "PL", "cadeiras": 121 },
-      { "partido": "PT", "cadeiras": 70 },
-      { "partido": "União Brasil", "cadeiras": 46 },
-      { "partido": "PSD", "cadeiras": 43 },
-      { "partido": "PP", "cadeiras": 41 },
-      { "partido": "Republicanos", "cadeiras": 41 },
-      { "partido": "MDB", "cadeiras": 36 },
-      { "partido": "Podemos", "cadeiras": 27 },
-      { "partido": "PSB", "cadeiras": 15 },
-      { "partido": "PSOL", "cadeiras": 14 },
-      { "partido": "PSDB", "cadeiras": 11 },
-      { "partido": "PCdoB", "cadeiras": 11 },
-      { "partido": "Novo", "cadeiras": 10 },
-      { "partido": "PV", "cadeiras": 7 },
-      { "partido": "PDT", "cadeiras": 6 },
-      { "partido": "Avante", "cadeiras": 5 },
-      { "partido": "PRD", "cadeiras": 5 },
-      { "partido": "Solidariedade", "cadeiras": 2 },
-      { "partido": "Rede", "cadeiras": 1 },
-      { "partido": "Missão", "cadeiras": 1 }
+      {
+        "partido": "PL",
+        "cadeiras": 121
+      },
+      {
+        "partido": "PT",
+        "cadeiras": 70
+      },
+      {
+        "partido": "União Brasil",
+        "cadeiras": 46
+      },
+      {
+        "partido": "PSD",
+        "cadeiras": 43
+      },
+      {
+        "partido": "PP",
+        "cadeiras": 41
+      },
+      {
+        "partido": "Republicanos",
+        "cadeiras": 41
+      },
+      {
+        "partido": "MDB",
+        "cadeiras": 36
+      },
+      {
+        "partido": "Podemos",
+        "cadeiras": 27
+      },
+      {
+        "partido": "PSB",
+        "cadeiras": 15
+      },
+      {
+        "partido": "PSOL",
+        "cadeiras": 14
+      },
+      {
+        "partido": "PSDB",
+        "cadeiras": 11
+      },
+      {
+        "partido": "PCdoB",
+        "cadeiras": 11
+      },
+      {
+        "partido": "Novo",
+        "cadeiras": 10
+      },
+      {
+        "partido": "PV",
+        "cadeiras": 7
+      },
+      {
+        "partido": "PDT",
+        "cadeiras": 6
+      },
+      {
+        "partido": "Avante",
+        "cadeiras": 5
+      },
+      {
+        "partido": "PRD",
+        "cadeiras": 5
+      },
+      {
+        "partido": "Solidariedade",
+        "cadeiras": 2
+      },
+      {
+        "partido": "Rede",
+        "cadeiras": 1
+      },
+      {
+        "partido": "Missão",
+        "cadeiras": 1
+      }
     ]
   }
 }

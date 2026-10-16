@@ -137,3 +137,18 @@
     display: none;
   }
 }
+
+/* Ressalvas por UF: registro sub judice, retotalização que mudou o quadro.
+   Uma eleição declarada pode ser desfeita, e a lista existe para que a tabela
+   acima não afirme solidez que o caso não tem. */
+.rv-ressalvas {
+  margin: var(--space-3, 0.75rem) 0 0;
+  padding-left: 1.1rem;
+  max-width: 68ch;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+.rv-ressalvas li + li {
+  margin-top: var(--space-2, 0.5rem);
+}

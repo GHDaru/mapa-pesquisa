@@ -20,6 +20,14 @@ export interface CandidatoResultado {
 export interface GovernadorUf {
   readonly uf: string;
   readonly situacao: SituacaoGovernador;
+  /**
+   * Ressalva da UF, quando existe: registro sub judice, retotalização que
+   * mudou o resultado, anulação pendente. Fica aqui porque a eleição de um
+   * governador pode ser desfeita depois da apuração — foi o que aconteceu no
+   * sentido inverso no RJ, onde a anulação dos votos de Garotinho ELEGEU
+   * Douglas Ruas no 1º turno dias depois de ele ter ido ao 2º.
+   */
+  readonly observacao?: string;
   /** Preenchido quando `situacao` é 'eleito'. */
   readonly eleito: CandidatoResultado | null;
   /** Os dois que vão ao 2º turno; vazio quando já há eleito. */

@@ -267,6 +267,19 @@ export function renderResultado(container: HTMLElement, casos: CasosDeUso): void
       ),
     );
   }
+  const comRessalva = f.dados.governadores.filter((g) => g.observacao);
+  if (comRessalva.length > 0) {
+    secaoGov.appendChild(criarEl('h3', { texto: 'Ressalvas' }));
+    secaoGov.appendChild(
+      criarEl(
+        'ul',
+        { className: 'rv-ressalvas' },
+        comRessalva.map((g) =>
+          criarEl('li', {}, [criarEl('strong', { texto: `${g.uf}: ` }), g.observacao ?? '']),
+        ),
+      ),
+    );
+  }
   container.appendChild(secaoGov);
 
   // --- Senado -------------------------------------------------------------
