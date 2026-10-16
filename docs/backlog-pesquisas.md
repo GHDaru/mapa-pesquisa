@@ -3699,9 +3699,11 @@ mas é a única da base nessa situação e merece verificação numa rodada com 
 
 ### Por que houve um buraco
 
-A base ficou congelada em **12/10**. A Routine disparou em 13, 14 e 15/10 e os três disparos constam como entregues, mas **nenhuma rodada rodou**: o contêiner da sessão foi reciclado e o checkout veio vazio — `git log` na abertura de hoje dizia *"your current branch 'master' does not have any commits yet"*. O trabalho só retomou quando o usuário perguntou se as pesquisas de 2º turno estavam sendo atualizadas.
+A base ficou congelada em **12/10**. A Routine disparou em 13, 14 e 15/10 e **nenhuma rodada rodou**: o contêiner da sessão foi reciclado e o checkout veio vazio — `git log` na abertura de hoje dizia *"your current branch 'master' does not have any commits yet"*. O trabalho só retomou quando o usuário perguntou se as pesquisas de 2º turno estavam sendo atualizadas.
 
 **Lição operacional, e ela não é sobre dados:** para uma Routine presa a uma sessão persistente, `last_run: SUCCEEDED` significa **que o despertar foi entregue**, não que o turno rodou. O único sinal confiável de que a rodada aconteceu é o **commit do dia**. Qualquer checagem futura de "estamos atualizando?" tem de olhar `git log` e `meta.atualizadoEm`, nunca o status da Routine.
+
+**E o mecanismo ficou conhecido, não suposto:** no meio desta rodada de recuperação os três disparos **chegaram**, enfileirados, todos com 8 minutos de atraso sobre a leitura — o de 13/10 esperou 2d3h, o de 14/10 esperou 1d3h, o de 15/10 esperou 3h29. Ou seja, **o disparo não se perde: ele fica na fila e é entregue quando o contêiner volta**, carregando o prompt congelado na versão do dia em que foi enfileirado. Duas consequências práticas. Primeira: `last_run: SUCCEEDED` marcou a ENTREGA ao servidor, e a entrega à sessão veio dias depois — o indicador é ainda mais fraco do que parecia. Segunda, e é a que vale como regra: **quando vários disparos vencidos chegarem de uma vez, eles são UMA rodada de recuperação, não N rodadas** — o prompt já manda comparar a data do último commit com hoje e recuperar o buraco, e é isso que cobre o caso; repetir a rodada uma vez por disparo só duplicaria trabalho e poderia reingerir a mesma pesquisa.
 
 ### O que entrou
 
