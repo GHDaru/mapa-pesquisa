@@ -5,6 +5,7 @@ import {
   ehLinhaNaoCandidato,
   MARGEM_REFERENCIA_PADRAO,
   serieTemporal,
+  baseDaPesquisa,
 } from '../aggregate.js';
 import {
   CATEGORIA_BRANCOS_NULOS_NAO_SABE,
@@ -119,8 +120,12 @@ describe('domain/aggregate', () => {
       id: 'p1',
       dataFim: '2026-09-14',
       amostra: 1000,
+      // Soma 90, não 100: uma lista de candidatos que fecha em 100 sem linha
+      // de brancos/nulos é lida como base de VÁLIDOS (`baseDaPesquisa`), e aí
+      // esta pesquisa seria descartada por misturar base com a p2. O que o
+      // teste mede é a ponderação, não a base.
       resultados: [
-        { candidato: 'Só na p1', partido: 'PT', pct: 80 },
+        { candidato: 'Só na p1', partido: 'PT', pct: 70 },
         { candidato: 'Em ambas', partido: 'PL', pct: 20 },
       ],
     });
@@ -134,8 +139,8 @@ describe('domain/aggregate', () => {
     const agregado = agregarPesquisas([p1, p2], {}, HOJE)!;
     const soNaP1 = agregado.candidatos.find((c) => c.candidato === 'Só na p1')!;
     // Peso igual em ambas as pesquisas (mesma data e amostra) -> média simples 20 e 40 -> 30,
-    // e "Só na p1" não é diluído pelo peso de p2 (onde não apareceu): fica em 80, não 40.
-    expect(soNaP1.pct).toBeCloseTo(80, 6);
+    // e "Só na p1" não é diluído pelo peso de p2 (onde não apareceu): fica em 70, não 35.
+    expect(soNaP1.pct).toBeCloseTo(70, 6);
     const emAmbas = agregado.candidatos.find((c) => c.candidato === 'Em ambas')!;
     expect(emAmbas.pct).toBeCloseTo(30, 6);
   });
@@ -664,5 +669,98 @@ describe('categorias canônicas das linhas que não são candidato', () => {
       expect(ehLinhaNaoCandidato(nome, vazio)).toBe(false);
       expect(normalizarLinhaNaoCandidato(nome)).toBeNull();
     }
+  });
+});
+
+/**
+ * Base do percentual. A regra já existia em prosa — "lista que soma 100 sem
+ * linha de não-candidato é base de válidos" — e aqui vira código executável,
+ * porque foi dela que dependeu a recusa de duas rodadas em 16/10.
+ */
+describe('domain/aggregate — base do percentual', () => {
+  const HOJE_B = new Date('2026-10-17T00:00:00Z');
+  function p(id: string, resultados: readonly { candidato: string; partido: string | null; pct: number }[]) {
+    return pesquisa({ id, dataFim: '2026-10-14', amostra: 1000, resultados: [...resultados] });
+  }
+  const A = { candidato: 'Alfa', partido: 'PT' as string | null };
+  const B = { candidato: 'Beta', partido: 'PL' as string | null };
+
+  it('candidatos fechando 100 sem linha de não-candidato é base de VÁLIDOS', () => {
+    expect(baseDaPesquisa(p('v', [{ ...A, pct: 52 }, { ...B, pct: 48 }]))).toBe('validos');
+  });
+
+  it('com linha de brancos/nulos é base de TOTAIS, mesmo que os candidatos somem 100', () => {
+    expect(
+      baseDaPesquisa(p('t', [{ ...A, pct: 52 }, { ...B, pct: 48 }, { candidato: 'Brancos/nulos', partido: null, pct: 6 }])),
+    ).toBe('totais');
+  });
+
+  it('candidatos somando bem abaixo de 100 é base de TOTAIS', () => {
+    expect(baseDaPesquisa(p('t2', [{ ...A, pct: 47 }, { ...B, pct: 45 }]))).toBe('totais');
+  });
+
+  it('na dúvida o lado seguro é TOTAIS: a tolerância não estica', () => {
+    // 98,8 é o limite exato da tolerância e só passa por causa do epsilon:
+    // em binário, 50 + 48.8 - 100 dá 1,2000000000000028.
+    expect(baseDaPesquisa(p('b1', [{ ...A, pct: 50 }, { ...B, pct: 48.8 }]))).toBe('validos');
+    expect(baseDaPesquisa(p('b2', [{ ...A, pct: 50 }, { ...B, pct: 48.5 }]))).toBe('totais');
+  });
+
+  it('conjunto HOMOGÊNEO não descarta nada — a base dele é a base do agregado', () => {
+    const so = [p('v1', [{ ...A, pct: 52 }, { ...B, pct: 48 }]), p('v2', [{ ...A, pct: 54 }, { ...B, pct: 46 }])];
+    const ag = agregarPesquisas(so, {}, HOJE_B)!;
+    expect(ag.descartadasPorBase).toEqual([]);
+    expect(ag.pesquisasUsadas).toHaveLength(2);
+    expect(ag.candidatos.find((c) => c.candidato === 'Alfa')!.pct).toBeCloseTo(53, 6);
+  });
+
+  it('conjunto MISTO descarta a de válidos e a nomeia, ficando na base de totais', () => {
+    const totais = p('t1', [{ ...A, pct: 46 }, { ...B, pct: 44 }, { candidato: 'Brancos/nulos', partido: null, pct: 10 }]);
+    const validos = p('v1', [{ ...A, pct: 52 }, { ...B, pct: 48 }]);
+    const ag = agregarPesquisas([totais, validos], {}, HOJE_B)!;
+    expect(ag.descartadasPorBase.map((x) => x.id)).toEqual(['v1']);
+    expect(ag.pesquisasUsadas.map((x) => x.id)).toEqual(['t1']);
+    // Sem a guarda, Alfa viria de (46+52)/2 = 49 — quatro pontos acima do que
+    // qualquer pesquisa de totais mediu.
+    expect(ag.candidatos.find((c) => c.candidato === 'Alfa')!.pct).toBeCloseTo(46, 6);
+  });
+
+  it('descartar por base nunca esvazia o agregado quando sobra alguma de totais', () => {
+    const ag = agregarPesquisas(
+      [p('t1', [{ ...A, pct: 46 }, { ...B, pct: 44 }, { candidato: 'Não sabe', partido: null, pct: 10 }]),
+       p('v1', [{ ...A, pct: 52 }, { ...B, pct: 48 }])],
+      {}, HOJE_B,
+    );
+    expect(ag).not.toBeNull();
+  });
+});
+
+describe('domain/aggregate — base, nos dados reais', () => {
+  it('as três disputas que misturam base descartam exatamente uma cada', async () => {
+    const { carregarDados } = await import('../../adapters/outbound/json/carregar-dados.js');
+    const { criarDisputa } = await import('../race.js');
+    const repos = carregarDados();
+    const hoje = new Date('2026-10-17T12:00:00Z');
+    const casos: [string, 'presidente' | 'governador', 1 | 2][] = [
+      ['CE', 'governador', 2], ['PR', 'governador', 2], ['BA', 'presidente', 1],
+    ];
+    for (const [uf, cargo, turno] of casos) {
+      const ag = agregarPesquisas(repos.polls.porDisputa(criarDisputa(uf, cargo, turno)), {}, hoje)!;
+      expect(ag.descartadasPorBase, `${uf}/${cargo}`).toHaveLength(1);
+      expect(ag.descartadasPorBase[0]!.instituto).toBe('AtlasIntel');
+    }
+  });
+
+  it('o agregado nacional de 2º turno não descarta nada: as oito são de totais', async () => {
+    const { carregarDados } = await import('../../adapters/outbound/json/carregar-dados.js');
+    const { criarDisputa, UF_NACIONAL } = await import('../race.js');
+    const { filtrarPorConfronto, CONFRONTO_LULA_FLAVIO } = await import('../runoff.js');
+    const repos = carregarDados();
+    const polls = filtrarPorConfronto(
+      repos.polls.porDisputa(criarDisputa(UF_NACIONAL, 'presidente', 2)),
+      CONFRONTO_LULA_FLAVIO,
+    );
+    const ag = agregarPesquisas(polls, {}, new Date('2026-10-17T12:00:00Z'))!;
+    expect(ag.descartadasPorBase).toEqual([]);
   });
 });

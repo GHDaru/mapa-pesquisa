@@ -105,6 +105,19 @@ export interface Agregado {
   readonly algumaNaoRegistrada: boolean;
   /** true quando nenhuma pesquisa caiu dentro da janela e a mais recente disponível foi usada mesmo assim. */
   readonly foraDaJanela: boolean;
+  /**
+   * Pesquisas descartadas por estarem em BASE diferente da que o agregado
+   * fala. O agregado usa o percentual cru, que é base de totais; uma rodada
+   * publicada só em válidos traz números de 50 e poucos para uma média de 40
+   * e poucos, e entraria inflando o resultado sem que nada acusasse.
+   *
+   * Converter válidos -> totais é impossível sem o bloco de brancos/nulos, que
+   * a fonte não publicou; converter o resto para válidos mudaria todos os
+   * números que o projeto publica. Então a ficha fica de fora e é DECLARADA
+   * aqui, para a tela poder dizer quantas e quais — descarte silencioso é
+   * justamente o que esta lista existe para impedir.
+   */
+  readonly descartadasPorBase: readonly Pesquisa[];
 }
 
 /** Idade em dias inteiros de uma data ISO (YYYY-MM-DD) em relação a `hoje`, calculada em UTC. */
@@ -152,6 +165,59 @@ interface LinhaAgregavel {
  * Nada é estimado: pesquisa que não publica a quebra não entra no denominador
  * da categoria (é o que `CandidatoAgregado.pesquisas` reporta).
  */
+/**
+ * Em que base os percentuais de uma pesquisa estão expressos.
+ *
+ * - `'totais'`: sobre todos os entrevistados; brancos, nulos e indecisos
+ *   aparecem como linhas e entram no denominador.
+ * - `'validos'`: só sobre quem declarou voto em candidato; os candidatos
+ *   somam ~100 sozinhos.
+ */
+export type BaseDoPercentual = 'totais' | 'validos';
+
+/** Folga, em pontos, para a soma dos candidatos ser lida como "fecha em 100". */
+const TOLERANCIA_SOMA_VALIDOS = 1.2;
+
+/**
+ * Margem contra erro de ponto flutuante na comparação com a tolerância.
+ * Sem ela, uma lista que soma 98,8 — escrita assim pela fonte, e exatamente
+ * no limite — cai fora por 2,8e-15: `50 + 48.8 - 100` dá 1,2000000000000028
+ * em binário, não 1,2.
+ */
+const EPSILON_SOMA = 1e-9;
+
+/**
+ * Infere a base de uma pesquisa das suas PRÓPRIAS linhas, sem campo novo no
+ * schema: lista que soma ~100 **sem nenhuma linha de não-candidato** é base de
+ * válidos; qualquer outra é base de totais.
+ *
+ * É a regra que o projeto já usava para ler uma fonte, agora executável. Note
+ * que ela é conservadora de propósito: uma pesquisa de totais em que os
+ * candidatos por acaso somem 100 sem brancos/nulos publicados não existe na
+ * prática (o corte total só é identificável pelas linhas publicadas), e na
+ * dúvida o lado seguro é `'totais'`, que é a base em que o agregado fala.
+ */
+export function baseDaPesquisa(
+  pesquisa: Pesquisa,
+  excluidos: ReadonlySet<string> = new Set(
+    CANDIDATOS_EXCLUIDOS_PADRAO.map((s) => s.toLowerCase().trim()),
+  ),
+): BaseDoPercentual {
+  let somaCandidatos = 0;
+  let temNaoCandidato = false;
+  for (const r of pesquisa.resultados) {
+    if (ehLinhaNaoCandidato(r.candidato, excluidos)) {
+      temNaoCandidato = true;
+      continue;
+    }
+    somaCandidatos += r.pct;
+  }
+  if (temNaoCandidato) return 'totais';
+  return Math.abs(somaCandidatos - 100) <= TOLERANCIA_SOMA_VALIDOS + EPSILON_SOMA
+    ? 'validos'
+    : 'totais';
+}
+
 function linhasAgregaveis(
   pesquisa: Pesquisa,
   excluidos: ReadonlySet<string>,
@@ -205,14 +271,35 @@ export function agregarPesquisas(
     (p) => idadeEmDias(dataReferencia(p), hoje) <= janelaDias,
   );
 
-  let usadas: Pesquisa[];
+  let candidatasDaJanela: Pesquisa[];
   let foraDaJanela: boolean;
   if (dentroDaJanela.length > 0) {
-    usadas = dentroDaJanela;
+    candidatasDaJanela = dentroDaJanela;
     foraDaJanela = false;
   } else {
-    usadas = [maisRecente];
+    candidatasDaJanela = [maisRecente];
     foraDaJanela = true;
+  }
+
+  // O agregado fala em percentual CRU. Isso só é um problema quando a janela
+  // MISTURA bases: um conjunto homogêneo é internamente consistente, seja ele
+  // de totais ou de válidos, e o agregado simplesmente fala na base dele.
+  // Misturado, não — um 52 de válidos entre números de totais de 42 a 51 puxa
+  // a média para cima sem que nada acuse.
+  //
+  // Quando mistura, fica a base de TOTAIS: é a de 832 das 836 pesquisas da
+  // base, e converter válidos -> totais é impossível (exigiria o bloco de
+  // brancos/nulos que a fonte não publicou), enquanto converter o resto para
+  // válidos mudaria todo número que o projeto publica. O descarte é declarado
+  // em `descartadasPorBase`, nunca silencioso.
+  const bases = candidatasDaJanela.map((p) => baseDaPesquisa(p, excluidos));
+  const misturaBases = bases.includes('totais') && bases.includes('validos');
+  const usadas: Pesquisa[] = [];
+  const descartadasPorBase: Pesquisa[] = [];
+  for (let i = 0; i < candidatasDaJanela.length; i++) {
+    const p = candidatasDaJanela[i]!;
+    if (misturaBases && bases[i] === 'validos') descartadasPorBase.push(p);
+    else usadas.push(p);
   }
 
   const disputa = usadas[0]!.disputa;
@@ -288,6 +375,7 @@ export function agregarPesquisas(
     ultimaPesquisa: usadas[0]!,
     algumaNaoRegistrada,
     foraDaJanela,
+    descartadasPorBase,
   };
 }
 

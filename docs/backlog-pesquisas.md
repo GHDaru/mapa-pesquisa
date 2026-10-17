@@ -3852,3 +3852,46 @@ Isso não é a regra antiga "lista que soma 100 sem não-candidato é base de v�
 ### Estado
 
 **836 pesquisas**, 752 testes. Agregado do cenário vigente: **Flávio 47,70 x Lula 44,83, vantagem 2,87** sobre **oito** rodadas — encolhendo de novo (era 3,20 com sete, 3,81 com cinco). Ranking, fechamento do Senado (81 = 54 + 27), governadores (21 e 6) e Câmara (513) inalterados, como tem de ser.
+
+---
+
+## 17/10/2026 — a regra da base vira código, e três fichas antigas saem do agregado
+
+### Nada a ingerir
+
+A única rodada de 2º turno divulgada hoje foi do **Instituto Veritá**, barrado desde 06/10, e ainda por cima publicada só em **votos válidos** (51,1 x 48,9) — recusada por dois motivos independentes. Nenhum outro instituto publicou.
+
+### O que foi feito: a pendência de 16/10
+
+Ontem recusei Gerp e Futura porque publicam só válidos e o agregado usa o percentual cru, que é base de totais. A recusa dependia de eu lembrar da regra a cada rodada. Agora ela é código.
+
+**`baseDaPesquisa`** infere a base das **próprias linhas** da ficha, sem campo novo no schema: lista que soma ~100 (tolerância de 1,2 ponto) **sem nenhuma linha de não-candidato** é base de válidos; qualquer outra é de totais. Na dúvida, totais — que é a base em que o agregado fala.
+
+**A guarda é estreita de propósito.** A primeira versão descartava toda ficha de válidos, e quebrou oito testes: fixtures com dois candidatos somando 100 são comuns, e conjuntos **homogêneos** de válidos não têm problema nenhum — são internamente consistentes e o agregado simplesmente fala na base deles. O risco é **misturar**. A versão final só descarta quando a janela tem as duas bases, e aí fica com a de totais.
+
+### O que a medição na base revelou
+
+Medi antes de aceitar, como a disciplina manda. Das 836 pesquisas, **4 são de base de válidos** — todas da **AtlasIntel** — e **as quatro estão em disputas mistas**, ou seja, **já contaminavam o agregado hoje**:
+
+| Disputa | Ficha descartada | Antes | Depois |
+|---|---|---|---|
+| CE governador 2º t. | AtlasIntel 21/09 | Ciro 47,90 x Elmano 47,22 | Ciro 47,67 x Elmano 46,84 |
+| PR governador 2º t. | AtlasIntel 17/09 | Moro 47,95, vantagem 7,22 | Moro 46,91, vantagem 6,18 |
+| BA presidente 1º t. | AtlasIntel 03/09 | Lula 58,18 | Lula 58,48 |
+| PI presidente 2º t. | AtlasIntel 22/06 | — | — (fora da janela de 45 dias, nunca pesou) |
+
+Nenhuma mudança inverte líder nem muda o veredito de empate técnico, e a maior é de 1,04 ponto. **Zero disputas são só-válidos**, então o descarte nunca esvazia um agregado. O ranking (16 institutos, margemReal 1,8673, 3 acertaram) e o agregado nacional de 2º turno (n=8, 47,70 x 44,83) ficam **idênticos** — as oito são todas de totais.
+
+Era incoerente recusar rodadas novas por mistura de base e deixar quatro antigas misturando em silêncio.
+
+### Duas lições
+
+**A borda da tolerância é frágil a ponto flutuante.** Escrevi um teste em 98,8, exatamente o limite de 1,2, e ele falhou: `50 + 48.8 - 100` dá **1,2000000000000028** em binário. A fonte escreve 98,8 e espera que caia dentro, então a correção foi no código — um epsilon de 1e-9 na comparação —, não no teste. Comparação com tolerância precisa de epsilon sempre que o valor puder vir de uma soma.
+
+**Teste que quebra pode estar certo.** Os oito testes que caíram na primeira versão não eram ruído: estavam dizendo que a regra era larga demais. O fixture que sobrou, com p1 somando exatamente 100 sem brancos, foi ajustado para 90 — mais realista, e a intenção do teste (ponderação, não base) ficou intacta.
+
+### Pendência aberta, e ela é visível
+
+`Agregado.descartadasPorBase` nomeia as fichas descartadas, mas **nenhuma tela lê esse campo ainda**. Com os dados de hoje a lista só é não vazia em três recortes estaduais, com efeito menor que 1 ponto cada — mas o descarte não aparece para o leitor. É pendência declarada, não resolvida.
+
+**761 testes** (eram 752), build limpo, nenhum dado novo.
