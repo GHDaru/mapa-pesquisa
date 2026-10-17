@@ -764,3 +764,51 @@ describe('domain/aggregate — base, nos dados reais', () => {
     expect(ag.descartadasPorBase).toEqual([]);
   });
 });
+
+/**
+ * O gêmeo. `agregarPesquisas` produz o número de hoje e `serieTemporal` produz
+ * a linha do gráfico, por caminhos diferentes — `mediaBilateral` não passa
+ * pelo agregado. A primeira versão da guarda protegeu só o número, e a média
+ * móvel desenhada ao lado dele continuou somando bases diferentes.
+ */
+describe('domain/aggregate — a guarda de base vale também para a série', () => {
+  const HOJE_S = new Date('2026-10-17T00:00:00Z');
+  function ps(id: string, dataFim: string, resultados: readonly { candidato: string; partido: string | null; pct: number }[]) {
+    return pesquisa({ id, dataFim, amostra: 1000, resultados: [...resultados] });
+  }
+  const A = { candidato: 'Alfa', partido: 'PT' as string | null };
+  const B = { candidato: 'Beta', partido: 'PL' as string | null };
+
+  it('a série descarta a ficha de base diferente e a nomeia', () => {
+    const totais = ps('t1', '2026-10-10', [{ ...A, pct: 46 }, { ...B, pct: 44 }, { candidato: 'Brancos/nulos', partido: null, pct: 10 }]);
+    const validos = ps('v1', '2026-10-12', [{ ...A, pct: 52 }, { ...B, pct: 48 }]);
+    const s = serieTemporal([totais, validos], {}, HOJE_S);
+    expect(s.descartadasPorBase.map((p) => p.id)).toEqual(['v1']);
+    const ultimo = s.dias[s.dias.length - 1]!;
+    // Com a de válidos dentro, Alfa seria puxado acima de 46 — a mais recente
+    // e de peso maior é justamente a de 52.
+    expect(ultimo.valores['Alfa']!).toBeCloseTo(46, 6);
+  });
+
+  it('conjunto homogêneo entra inteiro na série', () => {
+    const s = serieTemporal(
+      [ps('v1', '2026-10-10', [{ ...A, pct: 52 }, { ...B, pct: 48 }]),
+       ps('v2', '2026-10-12', [{ ...A, pct: 54 }, { ...B, pct: 46 }])],
+      {}, HOJE_S,
+    );
+    expect(s.descartadasPorBase).toEqual([]);
+    expect(s.pontos.length).toBeGreaterThan(0);
+  });
+
+  it('a série e o agregado concordam sobre o que foi descartado, nos dados reais', async () => {
+    const { carregarDados } = await import('../../adapters/outbound/json/carregar-dados.js');
+    const { criarDisputa } = await import('../race.js');
+    const repos = carregarDados();
+    const hoje = new Date('2026-10-17T12:00:00Z');
+    const polls = repos.polls.porDisputa(criarDisputa('CE', 'governador', 2));
+    const ag = agregarPesquisas(polls, {}, hoje)!;
+    const s = serieTemporal(polls, {}, hoje);
+    expect(s.descartadasPorBase.map((p) => p.id)).toEqual(ag.descartadasPorBase.map((p) => p.id));
+    expect(s.descartadasPorBase).toHaveLength(1);
+  });
+});

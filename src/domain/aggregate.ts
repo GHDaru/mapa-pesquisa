@@ -218,6 +218,32 @@ export function baseDaPesquisa(
     : 'totais';
 }
 
+/**
+ * Separa um conjunto de pesquisas pela base, aplicando a regra de mistura.
+ *
+ * Existe como função própria porque o filtro é necessário em DOIS lugares que
+ * não compartilham caminho: `agregarPesquisas`, que produz o número de hoje, e
+ * `serieTemporal`/`mediaBilateral`, que produz a linha do gráfico. A primeira
+ * versão protegeu só o agregado, e a série temporal — a média móvel que a tela
+ * desenha — continuou somando bases diferentes. Duas cópias divergentes da
+ * mesma regra é como esse defeito voltaria.
+ */
+export function separarPorBase(
+  pesquisas: readonly Pesquisa[],
+  excluidos: ReadonlySet<string>,
+): { usadas: Pesquisa[]; descartadas: Pesquisa[] } {
+  const bases = pesquisas.map((p) => baseDaPesquisa(p, excluidos));
+  const mistura = bases.includes('totais') && bases.includes('validos');
+  const usadas: Pesquisa[] = [];
+  const descartadas: Pesquisa[] = [];
+  for (let i = 0; i < pesquisas.length; i++) {
+    const p = pesquisas[i]!;
+    if (mistura && bases[i] === 'validos') descartadas.push(p);
+    else usadas.push(p);
+  }
+  return { usadas, descartadas };
+}
+
 function linhasAgregaveis(
   pesquisa: Pesquisa,
   excluidos: ReadonlySet<string>,
@@ -292,15 +318,10 @@ export function agregarPesquisas(
   // brancos/nulos que a fonte não publicou), enquanto converter o resto para
   // válidos mudaria todo número que o projeto publica. O descarte é declarado
   // em `descartadasPorBase`, nunca silencioso.
-  const bases = candidatasDaJanela.map((p) => baseDaPesquisa(p, excluidos));
-  const misturaBases = bases.includes('totais') && bases.includes('validos');
-  const usadas: Pesquisa[] = [];
-  const descartadasPorBase: Pesquisa[] = [];
-  for (let i = 0; i < candidatasDaJanela.length; i++) {
-    const p = candidatasDaJanela[i]!;
-    if (misturaBases && bases[i] === 'validos') descartadasPorBase.push(p);
-    else usadas.push(p);
-  }
+  const { usadas, descartadas: descartadasPorBase } = separarPorBase(
+    candidatasDaJanela,
+    excluidos,
+  );
 
   const disputa = usadas[0]!.disputa;
 
@@ -424,6 +445,8 @@ export interface SerieTemporal {
   readonly pontos: readonly PontoSerieTemporal[];
   /** Nomes dos candidatos (exclui brancos/nulos/etc.), ordenados pela média final (hoje) desc. */
   readonly candidatos: readonly string[];
+  /** Pesquisas fora da série por estarem em base diferente — ver `Agregado.descartadasPorBase`. */
+  readonly descartadasPorBase: readonly Pesquisa[];
 }
 
 /**
@@ -442,7 +465,7 @@ export function serieTemporal(
   hoje: Date = new Date(),
 ): SerieTemporal {
   if (pesquisas.length === 0) {
-    return { dias: [], pontos: [], candidatos: [] };
+    return { dias: [], pontos: [], candidatos: [], descartadasPorBase: [] };
   }
 
   const { passoDias: passoDiasBruto, ...opcoesAgregacao } = opcoes;
@@ -451,6 +474,18 @@ export function serieTemporal(
   const excluidos = new Set(
     (opcoes.excluirCandidatos ?? CANDIDATOS_EXCLUIDOS_PADRAO).map((s) => s.toLowerCase().trim()),
   );
+
+  // Mesma guarda de base do agregado, pela mesma razão: a linha também é uma
+  // média ponderada, e misturar bases a desloca sem que nada acuse. Sem isto,
+  // o número de hoje ficaria limpo e o gráfico ao lado dele, não.
+  const { usadas: pesquisasNaBase, descartadas: descartadasPorBase } = separarPorBase(
+    pesquisas,
+    excluidos,
+  );
+  if (pesquisasNaBase.length === 0) {
+    return { dias: [], pontos: [], candidatos: [], descartadasPorBase };
+  }
+  pesquisas = pesquisasNaBase;
 
   const primeiraDataIso = [...pesquisas].map((p) => dataReferencia(p)).sort()[0]!;
   const primeiraDataMs = Date.parse(`${primeiraDataIso}T00:00:00Z`);
@@ -509,7 +544,7 @@ export function serieTemporal(
 
   const candidatos = agregadoFinal ? agregadoFinal.candidatos.map((c) => c.candidato) : [];
 
-  return { dias, pontos, candidatos };
+  return { dias, pontos, candidatos, descartadasPorBase };
 }
 
 

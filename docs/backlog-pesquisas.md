@@ -3894,4 +3894,12 @@ Era incoerente recusar rodadas novas por mistura de base e deixar quatro antigas
 
 `Agregado.descartadasPorBase` nomeia as fichas descartadas, mas **nenhuma tela lê esse campo ainda**. Com os dados de hoje a lista só é não vazia em três recortes estaduais, com efeito menor que 1 ponto cada — mas o descarte não aparece para o leitor. É pendência declarada, não resolvida.
 
-**761 testes** (eram 752), build limpo, nenhum dado novo.
+### E o gêmeo, achado na mesma rodada
+
+Depois de proteger o agregado, fui conferir se a guarda cobria o gráfico. **Não cobria.** `serieTemporal` suaviza por `mediaBilateral`, que **não passa por `agregarPesquisas`** — itera as pesquisas direto. O número de hoje ficaria limpo e a média móvel desenhada ao lado dele, não, nas séries de BA, CE e PR.
+
+O filtro virou função própria, `separarPorBase`, usada pelos dois caminhos. Duas cópias divergentes da mesma regra é exatamente como o defeito voltaria. Há teste exigindo que a série e o agregado **concordem sobre o que foi descartado** nos dados reais, e o mutante que faz a série parar de filtrar cai.
+
+É o **décimo** caso da família, e o primeiro em que o gêmeo apareceu porque eu fui procurá-lo em vez de tropeçar nele. A pergunta que o achou: *o número e o gráfico vêm pelo mesmo caminho?*
+
+**764 testes** (eram 752), build limpo, nenhum dado novo.
