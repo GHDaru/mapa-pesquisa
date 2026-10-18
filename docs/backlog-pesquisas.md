@@ -3903,3 +3903,52 @@ O filtro virou função própria, `separarPorBase`, usada pelos dois caminhos. D
 É o **décimo** caso da família, e o primeiro em que o gêmeo apareceu porque eu fui procurá-lo em vez de tropeçar nele. A pergunta que o achou: *o número e o gráfico vêm pelo mesmo caminho?*
 
 **764 testes** (eram 752), build limpo, nenhum dado novo.
+
+---
+
+## 18/10/2026 — duas rodadas entram, e o agregado chega a 0,2 ponto do empate técnico
+
+### O que entrou
+
+**Ipespe/Abrapel, divulgada em 17/10** (sábado), campo 13–15/10, 1.500 eleitores, margem 2,6, confiança 95,45%, recursos próprios. **Flávio 48%, Lula 46%, brancos/nulos 3%, não sabe 3%** — fechamento exato em 100. Escapou da rodada de ontem; achada hoje.
+
+**Vox Brasil, divulgada em 18/10** (domingo), campo 15–17/10, 2.100 presenciais, margem 2,15. **Lula 46,4%, Flávio 44,6%, brancos/nulos/nenhum 5,0%, indecisos 3,9%** — soma 99,9, abaixo de 100 por arredondamento, que é o lado explicável do desvio.
+
+Base vai de 836 para **838**.
+
+### O Vox deu três confirmações independentes de uma vez
+
+A cobertura descreve a rodada anterior do instituto como Lula 44,2 → 46,4, Flávio 42,7 → 44,6, indecisos 9,7 → 3,9, brancos/nulos 3,4 → 5,0. **Os quatro valores de partida são exatamente a nossa ficha de 09/10.**
+
+Mais: a leitura de válidos **"50,86 × 49,14"** que circula em várias matérias **não é desta rodada** — é da anterior, e a nossa ficha a reproduz ao centésimo (44,2 ÷ 86,9 = 50,863). E a cobertura atribui o registro **BR-09623/2026** à rodada anterior, que é precisamente o que a nossa ficha de 09/10 já guarda.
+
+Três caminhos independentes dizendo que a base está alinhada com a fonte. Sem a ficha antiga, o "50,86" seria uma leitura concorrente a explicar; com ela, é confirmação.
+
+### Uma ressalva declarada no Ipespe, não varrida
+
+O teste de divisão **não fecha exato**: 48/94 = 51,06 e 46/94 = 48,94, enquanto a manchete de válidos diz 51,2 × 48,8. A diferença de 0,14 ponto é arredondamento — valores não arredondados de 48,13 e 45,87 reproduzem 51,2 e 48,8 e estão a 0,13 dos inteiros publicados. **O corte continua identificado pelo critério forte** (as linhas de não-candidato estão publicadas e o conjunto fecha em 100), e os percentuais entraram como publicados, sem ajuste. A ressalva ficou na `observacao`.
+
+O delta do Ipespe também é forte: a cobertura diz que a diferença em válidos "caiu de 5,4 para 2,4 pontos", e a nossa ficha de 10/10 produz **5,38** — os 5,4 citados.
+
+Registro **BR-00223/2026** veio de **uma única fonte** e não foi corroborado; gravado com a limitação declarada.
+
+### O número que importa
+
+O agregado do cenário vigente, agora sobre **dez** rodadas:
+
+| n | Flávio | Lula | Vantagem |
+|---|---|---|---|
+| 5 | 48,51 | 44,70 | 3,81 |
+| 7 | 47,84 | 44,65 | 3,20 |
+| 8 | 47,70 | 44,83 | 2,87 |
+| **10** | **47,34** | **45,13** | **2,21** |
+
+A vantagem encolhe a cada rodada, e agora está a **0,2 ponto de virar empate técnico**: a margem de referência do agregado é **2,008** e a vantagem é **2,208**. Uma rodada a mais na direção atual cruza o limiar, e a tela passa a dizer empate.
+
+O Vox segue sendo o **único** instituto que dá Lula à frente — e a vantagem dele cresceu, de 1,5 para 1,8 ponto em totais.
+
+### Rotulagem preservada, não uniformizada
+
+A rodada nova do Vox publica "branco, nulo ou nenhum" e "indecisos"; a de 09/10 publicava "brancos/nulos" e "não sabe". Gravadas como cada fonte rotula. Uniformizar seria apagar informação sobre como o instituto apresentou cada rodada — e `normalizarLinhaNaoCandidato` já reduz as duas à mesma categoria no agregado.
+
+**838 pesquisas**, 764 testes, build limpo. Faltam 7 dias.

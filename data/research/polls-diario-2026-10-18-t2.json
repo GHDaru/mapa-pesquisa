@@ -1,0 +1,56 @@
+[
+  {
+    "id": "2026-10-17-ipespe-br-presidente-t2-flavio-lula",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Ipespe",
+    "registroTSE": "BR-00223/2026",
+    "contratante": null,
+    "dataInicio": "2026-10-13",
+    "dataFim": "2026-10-15",
+    "publicadoEm": "2026-10-17",
+    "amostra": 1500,
+    "margem": 2.6,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-512-contra-488-de-lula-diz-ipespe-abrapel/"
+    },
+    "observacao": "Divulgada em 17/10 (sábado — dia da semana conferido), campo 13 a 15/10, 1.500 eleitores, margem 2,6, confiança 95,45%, feita com recursos próprios (por isso contratante null; 'Abrapel' aparece no nome da divulgação e parceria de divulgação não é contratante). CORTE INGERIDO = VOTOS TOTAIS pelas linhas publicadas: Flávio 48%, Lula 46%, brancos/nulos 3%, não sabe/não respondeu 3% — fechamento exato em 100. TESTE DE DIVISÃO com RESSALVA DECLARADA: 48/94 = 51,06 e 46/94 = 48,94, enquanto a manchete de válidos diz 51,2 x 48,8. A diferença de 0,14 ponto é artefato de ARREDONDAMENTO dos totais: valores não arredondados de 48,13 e 45,87 reproduzem 51,2 e 48,8 exatamente, e estão a 0,13 ponto dos inteiros publicados. O corte permanece identificado pelo critério forte — as linhas de não-candidato estão PUBLICADAS e o conjunto fecha em 100 —, e os percentuais entraram como publicados, sem ajuste. TESTE DO DELTA, e ele é forte: a cobertura diz que a diferença em válidos 'caiu de 5,4 para 2,4 pontos'; a NOSSA ficha de 10/10 (campo 06-08/10, Flávio 49 / Lula 44 / brancos-nulos 5 / não sabe 3) produz 52,69 x 47,31, diferença de 5,38 = os 5,4 citados. A fonte nova reimprime a rodada antiga exatamente como a gravamos. RESSALVA DE REGISTRO: BR-00223/2026 veio de uma única fonte (Mixvale) e não foi corroborado; gravado como publicado, com a limitação declarada, porque o PesqEle não é alcançável. LIMITAÇÃO DE AMBIENTE: percentuais corroborados por Poder360, Carta Capital, A Crítica, Gilberto Léda, Portal Debate e Mixvale."
+    ,
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 48 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 46 },
+      { "candidato": "Brancos/nulos", "partido": null, "pct": 3 },
+      { "candidato": "Não sabe", "partido": null, "pct": 3 }
+    ]
+  },
+  {
+    "id": "2026-10-18-vox-brasil-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Vox Brasil",
+    "registroTSE": "BR-04332/2026",
+    "contratante": null,
+    "dataInicio": "2026-10-15",
+    "dataFim": "2026-10-17",
+    "publicadoEm": "2026-10-18",
+    "amostra": 2100,
+    "margem": 2.15,
+    "cenario": "estimulada, 2º turno: Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "Carta Capital",
+      "url": "https://www.cartacapital.com.br/politica/vox-brasil-aponta-lula-a-frente-de-flavio-bolsonaro-no-2o-turno/"
+    },
+    "observacao": "Divulgada em 18/10 (domingo — dia da semana conferido), campo 15 a 17/10, 2.100 entrevistas presenciais, margem 2,15, confiança 95%. CORTE INGERIDO = VOTOS TOTAIS pelas linhas publicadas: Lula 46,4%, Flávio 44,6%, brancos/nulos/nenhum 5,0%, indecisos 3,9% — soma 99,9, abaixo de 100 por arredondamento, que é o lado EXPLICÁVEL do desvio (acima de 100 é que exigiria localização). TESTE DE DIVISÃO: 46,4/91 = 50,989 -> 51 e 44,6/91 = 49,011 -> 49, reproduzindo a manchete de válidos. **O Vox segue sendo o ÚNICO instituto que dá Lula à frente**, e agora com a vantagem crescendo: era 1,5 ponto em totais, passa a 1,8. TESTE DO DELTA, triplamente confirmado contra a nossa base: (1) a cobertura descreve a rodada anterior como Lula 44,2 -> 46,4, Flávio 42,7 -> 44,6, indecisos 9,7 -> 3,9 e brancos/nulos 3,4 -> 5,0, e os quatro valores de partida são EXATAMENTE a nossa ficha de 09/10; (2) a leitura de válidos '50,86 x 49,14' que circula em várias matérias NÃO é desta rodada — é a da anterior, e a nossa ficha de 09/10 a reproduz ao centésimo (44,2/86,9 = 50,863); (3) a cobertura atribui o registro BR-09623/2026 à rodada anterior, que é precisamente o que a nossa ficha de 09/10 já registra. Três confirmações independentes de que a base está alinhada com a fonte. O colapso dos indecisos (9,7 -> 3,9) com brancos/nulos subindo (3,4 -> 5,0) é o movimento que explica a alta dos dois candidatos. ROTULAGEM: esta rodada publica 'branco, nulo ou nenhum' e 'indecisos', enquanto a de 09/10 publicava 'brancos/nulos' e 'não sabe' — gravadas como a fonte de cada uma rotula, sem uniformizar. LIMITAÇÃO DE AMBIENTE: percentuais corroborados por Carta Capital, Exame, Metrópoles, Revista Fórum, CNN Brasil e Mais Goiás."
+    ,
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 46.4 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 44.6 },
+      { "candidato": "Brancos/nulos/nenhum", "partido": null, "pct": 5.0 },
+      { "candidato": "Indecisos", "partido": null, "pct": 3.9 }
+    ]
+  }
+]
