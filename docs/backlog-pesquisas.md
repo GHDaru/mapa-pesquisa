@@ -4061,7 +4061,12 @@ A varredura **por forma de frase** (não por função) encontrou a mesma compara
 A rede desta máquina responde **403 ao CONNECT** para todo domínio externo — `tse.jus.br` e `resultados.tse.jus.br` inclusive. O WebFetch está bloqueado; só o WebSearch passa. Permanecem em aberto, com o campo que falta nomeado:
 
 - `presidente/PI` — falta `validosTotal`
-- `governador` em 11 UFs — AC, AP, DF, GO, MA, MS, MT, PI, RN, SE, TO
+- `governador` em **10** UFs — AC, AP, GO, MA, MS, MT, PI, RN, SE, TO (o **DF entrou** nesta rodada: 100,00% das seções, `validosTotal` 1.653.237 DERIVADO do fechamento do boletim e conferido por seis vias independentes, inclusive contra os 49,93% e 34,47% que a nossa ficha de resultado já guardava)
+
+  As outras três UFs em 2º turno foram tentadas e **não entraram**, cada uma por um motivo que vale registrar, porque são três formas distintas de a fonte não fechar:
+  - **TO** — tem votos (Dorinha 386.260, Vicentinho 372.848) e percentuais que batem com a nossa ficha, mas o comparecimento só existe derivado de percentuais arredondados, e o `validosTotal` resultante (848.684) diverge em ~135 votos do que os percentuais publicados implicam (848.54x). Fecha "quase", e quase não fecha.
+  - **AC** — a apuração alcançável está em **99,91%** das seções, não 100%, e há duas contagens circulando (218.524/141.665 e 218.760/141.859). Além disso o percentual de Alan Rick na fonte (32,26%) difere do que a nossa ficha guarda (32,27%).
+  - **RN** — as fontes publicam os percentuais (Allyson 36,94%, Cadu 36,16%, Álvaro Dias 26,71%) mas **nenhum voto por candidato**. Derivar votos de percentual arredondado seria inventar número.
 - substituições não gastas: PR 99,17% → 99,72%, MG 99,88% → 100%
 - siglas de partido para PB e PA; conflito de sigla de Gelson Merísio (SC)
 - ficha `Ranking Brasil Inteligência`/MS com `dataFim: null`
@@ -4069,4 +4074,4 @@ A rede desta máquina responde **403 ao CONNECT** para todo domínio externo —
 
 A decisão sobre o **Instituto Veritá** segue com o usuário, sem mudança desde 06/10.
 
-**846 pesquisas**, 825 testes, build limpo. Faltam 6 dias.
+**846 pesquisas**, 825 testes, build limpo. Apuração de governador em **17/27** UFs. Faltam 6 dias.
