@@ -4075,3 +4075,44 @@ A rede desta máquina responde **403 ao CONNECT** para todo domínio externo —
 A decisão sobre o **Instituto Veritá** segue com o usuário, sem mudança desde 06/10.
 
 **846 pesquisas**, 825 testes, build limpo. Apuração de governador em **17/27** UFs. Faltam 6 dias.
+
+---
+
+## 19/10, segunda passagem (disparo da Rotina às 20:00 BRT) — o limiar foi cruzado
+
+A rodada do dia já havia acontecido horas antes (dois commits, deploy verde), então esta foi passagem de verificação. O estado conferiu em tudo com o prompt: 846 pesquisas, 71 recortes, governador 17/27, mapa 21 decididas e 6 em disputa, RN em empate técnico. Mas a varredura por pesquisa nova achou duas coisas.
+
+### PoderData: uma rodada que faltava, e uma que não entrou
+
+A série da PoderData na base tinha buraco. A cobertura desta noite esclareceu a cronologia, e **o teste do delta identificou uma ficha nossa**: o "Flávio 53 x Lula 47" que várias matérias citam como rodada anterior são os **nossos próprios números de 05–07/10** (Lula 44, Flávio 49, brancos/nulos 5, não sabe 2) convertidos para válidos — 49/93 = 52,7 e 44/93 = 47,3.
+
+**Entrou:** rodada divulgada em 16/10, campo 13–15/10, 3.000 eleitores, margem 1,8, registro BR-04258/2026. Flávio 47, Lula 47, brancos/nulos 4, não sabe 2 — fechamento em 100 exatos, e a divisão 47/94 = 50,0 para cada um reproduz a manchete de empate sem resíduo nenhum.
+
+**Não entrou:** a rodada divulgada em 19/10 (campo 16–18/10). As linhas publicadas — Flávio 49, Lula 46, brancos/nulos 4, sem escolha 2 — somam **101**, e o excesso **não é localizável**: tanto 49/46 (51,58 / 48,42) quanto 49/45 (52,13 / 47,87) reproduzem a manchete de válidos "52 x 48". A diferença entre as duas leituras é exatamente **1 ponto em Lula**, com o agregado nacional a 0,02 ponto do limiar do empate técnico. Adivinhar ali mudaria o que a tela afirma. Também segue faltando a rodada divulgada em 13/10 (campo 10–12/10, 51 x 49 em válidos).
+
+### O agregado presidencial virou EMPATE TÉCNICO
+
+Com a entrada da rodada de 13–15/10 (47 x 47, amostra 3.000, a maior da leva):
+
+| | |
+|---|---|
+| Pesquisas pós-eleição | **12** |
+| Flávio | **47,22** |
+| Lula | **45,41** |
+| Vantagem | **1,8103** |
+| Margem de referência | **1,9852** |
+| `empateTecnico` | **true** |
+
+A série da vantagem fecha o arco: 3,81 (n=5) → 3,20 → 2,87 → 2,21 → 2,03 → **1,81**. A tela foi aberta no navegador e exibe o selo **EMPATE TÉCNICO** com 47,2% x 45,4%.
+
+### Décimo terceiro defeito da família, e estava na tela principal
+
+Aberta a página `#/presidente` para confirmar o selo, a linha acima dele dizia:
+
+> **Líder: Luiz Inácio Lula da Silva** — vantagem de 2,2 pontos sobre Flávio Bolsonaro.
+
+Sob o título **"1º turno"**. Uma eleição que as urnas decidiram **ao contrário** em 4 de outubro: Flávio terminou à frente por 1,87 ponto. O cartão era correto durante a campanha e virou afirmação falsa depois dela — exatamente a terceira lição de método (*de que mundo cada TELA fala*), e a contradição ficava ao lado de uma aba Resultados e de um mapa que dizem que a eleição acabou.
+
+Corrigido: o título passa a "1º turno — o que as pesquisas diziam antes de 4 de outubro", "Líder" vira "Liderava nas pesquisas", e entra uma linha nova dizendo o que as urnas fizeram. O resultado oficial vem do **mesmo caso de uso que alimenta a aba Projeção** — nenhuma segunda fonte de verdade. A nota reusa `mesmoCandidato`, então grafia diferente do mesmo nome não vira "erro", e ela se inverte sozinha para "As urnas confirmaram" quando o líder das pesquisas é quem venceu.
+
+**847 pesquisas**, 831 testes, build limpo. Faltam 6 dias.

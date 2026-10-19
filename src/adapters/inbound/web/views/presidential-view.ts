@@ -1,3 +1,4 @@
+import { mesmoCandidato } from '../../../../domain/candidate-identity.js';
 import '../styles/views.css';
 import type { CasosDeUso } from '../../../../application/use-cases/index.js';
 import type { CenarioAgregado } from '../../../../application/use-cases/get-presidential-aggregate.js';
@@ -84,7 +85,17 @@ export function renderPresidential(container: HTMLElement, casos: CasosDeUso): v
 
   raiz.append(criarCartaoTimeline(casos, turno2, espectroDe));
 
-  raiz.append(criarCartaoTurno1(turno1, espectroDe));
+  // O 1º turno acabou, e o cartão de média de pesquisas tem de dizer isso em
+  // vez de anunciar um líder. O resultado oficial vem do mesmo caso de uso que
+  // alimenta a aba Projeção — número só, sem segunda fonte de verdade.
+  const projecao = casos.getProjecao('presidente', 'auto');
+  const encerrado = projecao.apuracaoEncerrada
+    ? {
+        primeiroESegundo: projecao.acerto?.primeiroESegundo ?? null,
+        margemReal: projecao.acerto?.margemReal ?? null,
+      }
+    : null;
+  raiz.append(criarCartaoTurno1(turno1, espectroDe, encerrado));
 
   if (turno2.length > 0) {
     raiz.append(
@@ -231,12 +242,50 @@ function criarCartaoTimeline(
   return card;
 }
 
+/**
+ * A frase que faltava no cartão de 1º turno.
+ *
+ * O cartão mostra a média das pesquisas de 1º turno, e durante a campanha isso
+ * bastava. Depois de 4 de outubro ele passou a anunciar "Líder: Lula —
+ * vantagem de 2,2 pontos" numa eleição que as urnas já decidiram ao
+ * contrário: Flávio terminou à frente por 1,87 ponto. Média de pesquisa
+ * continua valendo como registro do que se media antes; o que não pode é ser
+ * lida como quem está ganhando. Exportada para teste porque é afirmação sobre
+ * o mundo.
+ */
+export function notaPrimeiroTurnoEncerrado(
+  liderNasPesquisas: string,
+  primeiroESegundo: readonly [string, string] | null,
+  margemReal: number | null,
+): string | null {
+  if (!primeiroESegundo) return null;
+  const [primeiro, segundo] = primeiroESegundo;
+  const pontos =
+    margemReal === null
+      ? ''
+      : ` por ${formatarNumero(Math.abs(margemReal))} ${
+          Math.abs(margemReal) === 1 ? 'ponto' : 'pontos'
+        }`;
+  const abertura = mesmoCandidato(liderNasPesquisas, primeiro)
+    ? 'As urnas confirmaram'
+    : 'As urnas decidiram ao contrário';
+  return `${abertura}: em 4 de outubro ${primeiro} terminou à frente de ${segundo}${pontos}.`;
+}
+
 function criarCartaoTurno1(
   turno1: Agregado | null,
   espectroDe: (partido: string | null) => Espectro,
+  encerrado: { primeiroESegundo: readonly [string, string] | null; margemReal: number | null } | null,
 ): HTMLElement {
   const card = criarEl('div', { className: 'pv-card' });
-  card.append(criarEl('h2', { className: 'pv-section-title', texto: '1º turno' }));
+  card.append(
+    criarEl('h2', {
+      className: 'pv-section-title',
+      texto: encerrado
+        ? '1º turno — o que as pesquisas diziam antes de 4 de outubro'
+        : '1º turno',
+    }),
+  );
 
   if (!turno1 || !turno1.lider) {
     card.append(criarEl('p', { className: 'pv-meta', texto: 'Nenhuma pesquisa presidencial de 1º turno disponível.' }));
@@ -246,13 +295,24 @@ function criarCartaoTurno1(
   const cabecalho = criarEl('div', { className: 'pv-controls-row' }, [
     criarEl('p', {
       className: 'pv-meta',
-      texto: `Líder: ${turno1.lider.candidato} — vantagem de ${formatarNumero(turno1.vantagem)} ${
-        turno1.vantagem === 1 ? 'ponto' : 'pontos'
-      } sobre ${turno1.segundo?.candidato ?? 'o 2º colocado'}.`,
+      texto: `${encerrado ? 'Liderava nas pesquisas' : 'Líder'}: ${turno1.lider.candidato} — vantagem de ${formatarNumero(
+        turno1.vantagem,
+      )} ${turno1.vantagem === 1 ? 'ponto' : 'pontos'} sobre ${
+        turno1.segundo?.candidato ?? 'o 2º colocado'
+      }.`,
     }),
     turno1.empateTecnico ? criarSeloEmpateTecnico() : null,
   ]);
   card.append(cabecalho);
+
+  if (encerrado) {
+    const nota = notaPrimeiroTurnoEncerrado(
+      turno1.lider.candidato,
+      encerrado.primeiroESegundo,
+      encerrado.margemReal,
+    );
+    if (nota) card.append(criarEl('p', { className: 'pv-meta pv-urnas-decidiram', texto: nota }));
+  }
 
   const lista = criarEl(
     'div',

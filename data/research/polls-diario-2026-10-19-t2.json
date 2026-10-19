@@ -19,10 +19,26 @@
   },
   "observacao": "Primeira rodada do instituto no 2º turno a entrar na base. Campo 16 a 18/10, 2.002 eleitores, margem 2 pontos, confiança 95%, registro BR-04499/2026. CORTE INGERIDO = VOTOS TOTAIS pelo critério forte: as linhas de não-candidato estão PUBLICADAS e o conjunto fecha em 100 exatos — Flávio 46,5, Lula 45,9, branco/nulo/nenhum 4,7, não sabe/não respondeu 2,9. TESTE DE DIVISÃO limpo: 46,5/92,4 = 50,32 e 45,9/92,4 = 49,68, reproduzindo a manchete de válidos (50,3 x 49,7) sem resíduo. Detalhamento das linhas de não-candidato conferido em DUAS fontes independentes (Revista Factual e Gazeta do Povo). RESSALVA DECLARADA sobre a rodada anterior do instituto: as fontes divergem (SRZD diz brancos/nulos estáveis em 4,7 e indecisos de 2,3 para 2,9; outra cobertura diz brancos/nulos de 5,2 para 4,7 e indecisos de 3,9 para 6,2), e a rodada anterior (divulgada em 13/10) NÃO está na base — fica registrada como pendência, não foi inferida. RESSALVA DE RÓTULO: o instituto é a Nexus e o contratante é o BTG Pactual; mantido o rótulo 'Nexus/FSB' por continuidade com as 12 fichas anteriores da mesma série na base. RESSALVA DE AMOSTRA: n=2.002 coincide com o n da ficha CNT/MDA de 13-15/10 — são pesquisas distintas (institutos, campos e linhas diferentes), a coincidência está declarada e não houve fusão. LIMITAÇÃO DE AMBIENTE: dados via WebSearch (WebFetch bloqueado pela política de rede), corroborados em Revista Factual, Gazeta do Povo, CNN Brasil, Exame, SRZD, ND Mais e Perfil Brasil.",
   "resultados": [
-   { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 46.5 },
-   { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 45.9 },
-   { "candidato": "Branco/nulo/nenhum", "partido": null, "pct": 4.7 },
-   { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 2.9 }
+   {
+    "candidato": "Flávio Bolsonaro",
+    "partido": "PL",
+    "pct": 46.5
+   },
+   {
+    "candidato": "Luiz Inácio Lula da Silva",
+    "partido": "PT",
+    "pct": 45.9
+   },
+   {
+    "candidato": "Branco/nulo/nenhum",
+    "partido": null,
+    "pct": 4.7
+   },
+   {
+    "candidato": "Não sabe/não respondeu",
+    "partido": null,
+    "pct": 2.9
+   }
   ]
  },
  {
@@ -45,10 +61,26 @@
   },
   "observacao": "PRIMEIRA pesquisa de governador do AC com campo POSTERIOR ao 1º turno e com o confronto real definido pelas urnas. Campo 9 a 12/10, 1.098 eleitores, margem 3, confiança 95%, registro AC-05379/2026. CORTE = VOTOS TOTAIS pelo critério forte: linhas de não-candidato publicadas e fechamento em 100 exatos — Mailza 49, Alan Rick 32, brancos/nulos/nenhum 9, não sabe 10. RESSALVA DE MANCHETE, e ela é grave: o Poder360 publicou o título 'Alan Rick lidera corrida pelo governo do Acre no 2º turno, diz Quaest', que INVERTE o resultado; todos os outros veículos (Folha do Acre, Tribuna do Sertão, Nortão, Acre News, Diário Local, Gazeta do Povo) e o próprio detalhamento das linhas dão Mailza na frente por 17 pontos. Adotada a leitura majoritária e coerente com o detalhamento; a manchete divergente fica declarada. RESSALVA DE CONTRATANTE: a maioria dos veículos nomeia a Rede Amazônica e a Gazeta do Povo registra 'Rádio TV do Amazonas LTDA' — razão social do mesmo grupo; gravada a Rede Amazônica com a dupla nomeação declarada, sem inferir terceiro. RESSALVA DE REGISTRO: AC-05379/2026 na maioria das fontes e BR-05379/2026 na Tribuna do Sertão; adotado o prefixo estadual, coerente com pesquisa de âmbito estadual. Observação de método: n=1.098 é o tamanho padrão desta rodada estadual da Quaest, que repete o mesmo desenho em AC, AM, ES, RN e TO. LIMITAÇÃO DE AMBIENTE: dados via WebSearch, WebFetch bloqueado; PesqEle/TSE inalcançável.",
   "resultados": [
-   { "candidato": "Mailza Assis", "partido": "PP", "pct": 49 },
-   { "candidato": "Alan Rick", "partido": "Republicanos", "pct": 32 },
-   { "candidato": "Brancos/nulos/nenhum", "partido": null, "pct": 9 },
-   { "candidato": "Não sabe", "partido": null, "pct": 10 }
+   {
+    "candidato": "Mailza Assis",
+    "partido": "PP",
+    "pct": 49
+   },
+   {
+    "candidato": "Alan Rick",
+    "partido": "Republicanos",
+    "pct": 32
+   },
+   {
+    "candidato": "Brancos/nulos/nenhum",
+    "partido": null,
+    "pct": 9
+   },
+   {
+    "candidato": "Não sabe",
+    "partido": null,
+    "pct": 10
+   }
   ]
  },
  {
@@ -71,10 +103,26 @@
   },
   "observacao": "PRIMEIRA pesquisa de governador do AM com campo posterior ao 1º turno e com o confronto real. Campo 9 a 12/10, 1.098 eleitores, margem 3, confiança 95%, registro AM-09760/2026, contratada pela Rede Amazônica (atribuição explícita na 18 Horas). CORTE = VOTOS TOTAIS pelo critério forte: Omar Aziz 51, Professora Maria do Carmo 37, brancos/nulos/nenhum 6, indecisos 6 — fechamento em 100 exatos. Cenário espontâneo (NÃO ingerido, registrado só como contexto): Aziz 42, Maria do Carmo 30, 25 indecisos. TESTE DO DELTA contra o 1º turno: as fontes citam 40,63% e 24,49% dos válidos para Aziz e Maria do Carmo nas urnas, exatamente os valores que a nossa ficha de resultado do 1º turno já guarda — a fonte nova reimprime o que gravamos. Observação de método: mesmo desenho (n=1.098, campo 9-12/10) das rodadas de AC e RN, da mesma leva estadual da Quaest. LIMITAÇÃO DE AMBIENTE: dados via WebSearch, corroborados em Metrópoles, 18 Horas, Amazonas Atual, Jurua 24 Horas e Gazeta do Povo.",
   "resultados": [
-   { "candidato": "Omar Aziz", "partido": "PSD", "pct": 51 },
-   { "candidato": "Professora Maria do Carmo", "partido": "PL", "pct": 37 },
-   { "candidato": "Brancos/nulos/nenhum", "partido": null, "pct": 6 },
-   { "candidato": "Indecisos", "partido": null, "pct": 6 }
+   {
+    "candidato": "Omar Aziz",
+    "partido": "PSD",
+    "pct": 51
+   },
+   {
+    "candidato": "Professora Maria do Carmo",
+    "partido": "PL",
+    "pct": 37
+   },
+   {
+    "candidato": "Brancos/nulos/nenhum",
+    "partido": null,
+    "pct": 6
+   },
+   {
+    "candidato": "Indecisos",
+    "partido": null,
+    "pct": 6
+   }
   ]
  },
  {
@@ -97,10 +145,26 @@
   },
   "observacao": "CORROBORAÇÃO INTERNA FORTE: esta ficha compartilha o registro DF-08737/2026 com a ficha de presidente/DF que já está na base (2026-10-12-quaest-df-presidente-t2-flavio-lula), e os dois metadados coincidem exatamente — campo 8 a 11/10, 1.104 entrevistados, contratante TV Globo. É a MESMA rodada cobrindo dois cargos, não duas pesquisas: o registro único com múltiplos cargos é o padrão, e a coincidência de campo e amostra confirma as datas por dentro da nossa própria base. Entrevistas presenciais, margem 3, confiança 95%. CORTE = VOTOS TOTAIS pelo critério forte: Celina Leão 53, Leandro Grass 33, brancos/nulos/nenhum 8, não sabe/não respondeu 6 — fechamento em 100 exatos. RESSALVA DE AGRUPAMENTO: o Congresso em Foco soma brancos, nulos e indecisos num único 14%, coerente com 8 + 6 das outras fontes, mas sem separar; adotada a separação publicada pelas demais. Rodada anterior do instituto (divulgada em 3/10): Celina 50 x Grass 33, com brancos/nulos caindo de 11 para 8. LIMITAÇÃO DE AMBIENTE: dados via WebSearch, corroborados em Congresso em Foco, CNN Brasil, Poder360, Band, Revista Oeste e Revista Fórum.",
   "resultados": [
-   { "candidato": "Celina Leão", "partido": "PP", "pct": 53 },
-   { "candidato": "Leandro Grass", "partido": "PT", "pct": 33 },
-   { "candidato": "Brancos/nulos/nenhum", "partido": null, "pct": 8 },
-   { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 6 }
+   {
+    "candidato": "Celina Leão",
+    "partido": "PP",
+    "pct": 53
+   },
+   {
+    "candidato": "Leandro Grass",
+    "partido": "PT",
+    "pct": 33
+   },
+   {
+    "candidato": "Brancos/nulos/nenhum",
+    "partido": null,
+    "pct": 8
+   },
+   {
+    "candidato": "Não sabe/não respondeu",
+    "partido": null,
+    "pct": 6
+   }
   ]
  },
  {
@@ -123,10 +187,26 @@
   },
   "observacao": "Primeira pesquisa Datafolha do 2º turno no DF. Campo 6 a 8/10, 910 entrevistados, margem 3, confiança 95%. CORTE = VOTOS TOTAIS pelo critério forte, e A ARITMÉTICA RESOLVEU UM CONFLITO DE FONTES: as coberturas divergem sobre os indecisos (3% numa, 5% noutra), mas só a versão com 3% fecha o conjunto em 100 (55 + 37 + 5 + 3); com 5% a soma daria 102, impossível para percentuais sobre o total. Adotada a versão aritmeticamente forçada, e o conflito fica declarado em vez de varrido. TESTE DE DIVISÃO coerente: 55/92 = 59,78, que arredonda para os 60% de válidos noticiados (Grass 40). RESSALVA DE DIVERGÊNCIA: o Jornal de Brasília publicou 'Celina 55 contra 32 de Grass'; os 37% de Grass estão em Exame, Metro 1, Brasil de Fato e Gazeta do Povo, e só eles fecham a conta em 100 — adotado 37, divergência declarada. CONTRATANTE NULL POR REGRA: parte da cobertura descreve a pesquisa como 'contratada por Folha e Globo', mas isso descreve a parceria de divulgação habitual do instituto e não há atribuição inequívoca de contratante na matéria; não se infere contratante. REGISTRO NÃO LOCALIZADO: nenhuma das fontes publicou o número do registro no TSE e o PesqEle não é alcançável desta máquina; gravado null em vez de inventado. LIMITAÇÃO DE AMBIENTE: dados via WebSearch, WebFetch bloqueado.",
   "resultados": [
-   { "candidato": "Celina Leão", "partido": "PP", "pct": 55 },
-   { "candidato": "Leandro Grass", "partido": "PT", "pct": 37 },
-   { "candidato": "Brancos/nulos", "partido": null, "pct": 5 },
-   { "candidato": "Indecisos", "partido": null, "pct": 3 }
+   {
+    "candidato": "Celina Leão",
+    "partido": "PP",
+    "pct": 55
+   },
+   {
+    "candidato": "Leandro Grass",
+    "partido": "PT",
+    "pct": 37
+   },
+   {
+    "candidato": "Brancos/nulos",
+    "partido": null,
+    "pct": 5
+   },
+   {
+    "candidato": "Indecisos",
+    "partido": null,
+    "pct": 3
+   }
   ]
  },
  {
@@ -149,10 +229,26 @@
   },
   "observacao": "Campo 9 a 13/10, 1.600 eleitores, margem 2, registro DF-01170/2026. CORTE = VOTOS TOTAIS pelo critério forte: Celina Leão 53, Leandro Grass 36, brancos ou nulos 8, não souberam/não responderam 3 — fechamento em 100 exatos. TESTE DE DIVISÃO coerente: 53/89 = 59,55, que arredonda para os 60% de válidos noticiados (Grass 40). SOBRE A SUSPENSÃO DO INSTITUTO: a Real Time Big Data está suspensa nesta base em PR, CE, MA, RN, AL, SE e TO — o DF NÃO está na lista, e a suspensão não é geral; por isso a ficha entra. CONTRATANTE: nenhuma fonte nomeia contratante; gravado null, sem inferência. Ressalva de leitura: a Quaest da mesma janela dá Grass 33 e esta dá 36 — a diferença de 3 pontos está na fronteira das margens somadas e fica como está, sem conciliação. LIMITAÇÃO DE AMBIENTE: dados via WebSearch, corroborados em Sou Brasília, Poder360, CNN Brasil e Gazeta do Povo.",
   "resultados": [
-   { "candidato": "Celina Leão", "partido": "PP", "pct": 53 },
-   { "candidato": "Leandro Grass", "partido": "PT", "pct": 36 },
-   { "candidato": "Brancos ou nulos", "partido": null, "pct": 8 },
-   { "candidato": "Não souberam/não responderam", "partido": null, "pct": 3 }
+   {
+    "candidato": "Celina Leão",
+    "partido": "PP",
+    "pct": 53
+   },
+   {
+    "candidato": "Leandro Grass",
+    "partido": "PT",
+    "pct": 36
+   },
+   {
+    "candidato": "Brancos ou nulos",
+    "partido": null,
+    "pct": 8
+   },
+   {
+    "candidato": "Não souberam/não responderam",
+    "partido": null,
+    "pct": 3
+   }
   ]
  },
  {
@@ -175,9 +271,21 @@
   },
   "observacao": "A pesquisa de 2º turno do DF com o campo MAIS RECENTE (16 e 17/10), 1.200 eleitores, margem 2,8, registro DF-08796/2026. A manchete é de VÁLIDOS (Celina 60,7 x Grass 39,3), mas a matéria publica também o cenário estimulado sobre o total, e é ele que entra: Celina 55,5, Grass 35,9, não souberam/não opinaram 8,6 — fechamento em 100,0 exatos. TESTE DE DIVISÃO limpo, e ele confirma o corte: 55,5/91,4 = 60,72 e 35,9/91,4 = 39,28, reproduzindo a manchete de válidos sem resíduo. RÓTULO COMO A FONTE RÓTULA: a fonte traz UMA ÚNICA linha de não-candidato ('não souberam ou não opinaram', 8,6), sem separar brancos e nulos — gravada exatamente assim, sem desmembrar o que não foi publicado. CONTRATANTE NULL POR REGRA: a pesquisa circula como 'Igape/Record', mas a Record é parceira de DIVULGAÇÃO e parceria de divulgação não é contratante; nenhuma fonte nomeia quem contratou. LIMITAÇÃO DE AMBIENTE: dados via WebSearch, corroborados em Jornal de Brasília e Ao Vivo de Brasília.",
   "resultados": [
-   { "candidato": "Celina Leão", "partido": "PP", "pct": 55.5 },
-   { "candidato": "Leandro Grass", "partido": "PT", "pct": 35.9 },
-   { "candidato": "Não souberam/não opinaram", "partido": null, "pct": 8.6 }
+   {
+    "candidato": "Celina Leão",
+    "partido": "PP",
+    "pct": 55.5
+   },
+   {
+    "candidato": "Leandro Grass",
+    "partido": "PT",
+    "pct": 35.9
+   },
+   {
+    "candidato": "Não souberam/não opinaram",
+    "partido": null,
+    "pct": 8.6
+   }
   ]
  },
  {
@@ -200,10 +308,26 @@
   },
   "observacao": "PRIMEIRA pesquisa de governador do ES com campo posterior ao 1º turno e com o confronto real. Campo 10 a 13/10, 1.098 eleitores de 16 anos ou mais, margem 3, confiança 95%, registro ES-00468/2026, contratada pela TV Gazeta (custo de R$ 130.936,50 informado no registro). CORTE = VOTOS TOTAIS pelo critério forte: Pazolini 47, Ferraço 38, e as linhas de não-candidato somando 15 — fechamento em 100 exatos. CONFLITO DE FONTES DECLARADO na REPARTIÇÃO das linhas de não-candidato: Poder360 e InfoMoney dão brancos/nulos/nenhum 10 e não sabe 5; a Gazeta do Povo inverte (5 e 10). Adotada a leitura de duas fontes contra uma, e a ressalva fica registrada. O conflito NÃO afeta nenhuma leitura do site: as duas linhas são de não-candidato, entram as duas na base do percentual e a soma delas (15) é idêntica nas duas versões — a agregação e a liderança são exatamente as mesmas. Contexto NÃO ingerido: a AtlasIntel divulgada em 3/10 (Pazolini 52,9 x Ferraço 47,1) é de VÁLIDOS e tem campo ANTERIOR ao 1º turno. LIMITAÇÃO DE AMBIENTE: dados via WebSearch, corroborados em A Gazeta, Poder360, InfoMoney, Repórter Diário, Serra Noticiário e Gazeta do Povo.",
   "resultados": [
-   { "candidato": "Lorenzo Pazolini", "partido": "Republicanos", "pct": 47 },
-   { "candidato": "Ricardo Ferraço", "partido": "MDB", "pct": 38 },
-   { "candidato": "Brancos/nulos/nenhum", "partido": null, "pct": 10 },
-   { "candidato": "Não sabe", "partido": null, "pct": 5 }
+   {
+    "candidato": "Lorenzo Pazolini",
+    "partido": "Republicanos",
+    "pct": 47
+   },
+   {
+    "candidato": "Ricardo Ferraço",
+    "partido": "MDB",
+    "pct": 38
+   },
+   {
+    "candidato": "Brancos/nulos/nenhum",
+    "partido": null,
+    "pct": 10
+   },
+   {
+    "candidato": "Não sabe",
+    "partido": null,
+    "pct": 5
+   }
   ]
  },
  {
@@ -226,10 +350,26 @@
   },
   "observacao": "PRIMEIRA pesquisa de governador do RN com campo posterior ao 1º turno e com o confronto real; é também o 2º turno estadual MAIS APERTADO da leva. Campo 9 a 12/10, 1.098 entrevistados, margem 3, confiança 95%, registro RN-03210/2026. CORTE = VOTOS TOTAIS pelo critério forte: Allyson Bezerra 45, Cadu de Lula 42, brancos/nulos/nenhum 7, indecisos 6 — fechamento em 100 exatos. A diferença de 3 pontos é igual à margem: EMPATE TÉCNICO, como a própria cobertura registra. Cenário espontâneo (NÃO ingerido, contexto): Allyson 38, Cadu 35, 24 não souberam, 3 brancos/nulos. CONTRATANTE — RECONCILIAÇÃO DECLARADA, NÃO INFERÊNCIA: a Gazeta do Povo diz TV Cabugi e a 96 FM diz Inter TV; são o mesmo veículo (Inter TV Cabugi, afiliada em Natal), e a ficha grava o nome completo com a dupla nomeação declarada. Não houve escolha entre dois contratantes distintos. TESTE DO DELTA contra as urnas: a cobertura cita Allyson com 36,94% e Cadu com 36,16% dos válidos no 1º turno — diferença de 0,78 ponto, coerente com o empate que as pesquisas agora mostram. RESSALVA: a Affare (Cadu 49,1 x Allyson 44,2) aparece citada apenas via tabela da Wikipédia, que é agregador e não entra nesta base; ficha não ingerida. LIMITAÇÃO DE AMBIENTE: dados via WebSearch, corroborados em Terra, Carta Capital, 96 FM, Brasil 247 e Gazeta do Povo.",
   "resultados": [
-   { "candidato": "Allyson Bezerra", "partido": "União Brasil", "pct": 45 },
-   { "candidato": "Cadu de Lula", "partido": "PT", "pct": 42 },
-   { "candidato": "Brancos/nulos/nenhum", "partido": null, "pct": 7 },
-   { "candidato": "Indecisos", "partido": null, "pct": 6 }
+   {
+    "candidato": "Allyson Bezerra",
+    "partido": "União Brasil",
+    "pct": 45
+   },
+   {
+    "candidato": "Cadu de Lula",
+    "partido": "PT",
+    "pct": 42
+   },
+   {
+    "candidato": "Brancos/nulos/nenhum",
+    "partido": null,
+    "pct": 7
+   },
+   {
+    "candidato": "Indecisos",
+    "partido": null,
+    "pct": 6
+   }
   ]
  },
  {
@@ -252,10 +392,68 @@
   },
   "observacao": "PRIMEIRA pesquisa de governador do TO com campo posterior ao 1º turno e com o confronto real, e a ÚNICA INVERSÃO da leva: Professora Dorinha GANHOU o 1º turno (45,52% dos válidos contra 43,94% de Vicentinho Júnior) e aparece agora ATRÁS por 7 pontos. Campo 10 a 13/10, 1.098 pessoas, margem 3, encomendada pela TV Anhanguera por meio da Centro Norte Comunicação. CORTE = VOTOS TOTAIS pelo critério forte: Vicentinho Júnior 49, Professora Dorinha 42, brancos/nulos/nenhum 4, indecisos 5 — fechamento em 100 exatos. RESSALVA DE REGISTRO, resolvida pela PRÓPRIA BASE: as fontes divergem entre TO-03829/2026 (duas delas) e TO-00371/2026 (uma). TO-00371/2026 já está na nossa base, na ficha Quaest de 1º turno do TO com campo até 22/09 — é o registro da rodada ANTERIOR, exatamente a armadilha catalogada de número do turno passado atribuído à rodada nova. Adotado TO-03829/2026. PESQUISA NÃO INGERIDA, com motivo: a Paraná Pesquisas divulgada em 19/10 (campo 14 a 17/10) dá Vicentinho 56,5 x Dorinha 43,5, mas é de VÁLIDOS, nenhuma fonte publicou as linhas de não-candidato nem o tamanho da amostra, e sem amostra não há peso de agregação; fica como pendência declarada, não entra inventada. SOBRE A SUSPENSÃO: a Real Time Big Data está suspensa nesta base no TO, então nenhuma rodada dela entra aqui. LIMITAÇÃO DE AMBIENTE: dados via WebSearch, corroborados em Jornal Opção, Cleber Toledo, Gazeta do Cerrado, Portal Gilberto Silva e Gazeta do Povo.",
   "resultados": [
-   { "candidato": "Vicentinho Júnior", "partido": "PSDB", "pct": 49 },
-   { "candidato": "Professora Dorinha", "partido": "União Brasil", "pct": 42 },
-   { "candidato": "Brancos/nulos/nenhum", "partido": null, "pct": 4 },
-   { "candidato": "Indecisos", "partido": null, "pct": 5 }
+   {
+    "candidato": "Vicentinho Júnior",
+    "partido": "PSDB",
+    "pct": 49
+   },
+   {
+    "candidato": "Professora Dorinha",
+    "partido": "União Brasil",
+    "pct": 42
+   },
+   {
+    "candidato": "Brancos/nulos/nenhum",
+    "partido": null,
+    "pct": 4
+   },
+   {
+    "candidato": "Indecisos",
+    "partido": null,
+    "pct": 5
+   }
+  ]
+ },
+ {
+  "id": "2026-10-16-poderdata-br-presidente-t2-flavio-lula",
+  "uf": "BR",
+  "cargo": "presidente",
+  "turno": 2,
+  "instituto": "PoderData",
+  "registroTSE": "BR-04258/2026",
+  "contratante": null,
+  "dataInicio": "2026-10-13",
+  "dataFim": "2026-10-15",
+  "publicadoEm": "2026-10-16",
+  "amostra": 3000,
+  "margem": 1.8,
+  "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
+  "fonte": {
+   "nome": "CNN Brasil",
+   "url": "https://www.cnnbrasil.com.br/eleicoes/poderdata-aya-flavio-e-lula-empatam-com-50-de-votos-validos-no-2o-turno/"
+  },
+  "observacao": "Rodada que faltava na série do instituto, encontrada na verificação da noite de 19/10. Campo 13 a 15/10 por telefone, 3.000 eleitores, margem 1,8, confiança 95%, registro BR-04258/2026. CORTE = VOTOS TOTAIS pelo critério forte: Flávio 47, Lula 47, brancos/nulos 4, não sabe 2 — fechamento em 100 exatos. TESTE DE DIVISÃO limpo e exato: 47/94 = 50,0 para cada um, reproduzindo a manchete de válidos (empate em 50 x 50) sem resíduo nenhum. TESTE DO DELTA, e ele identificou uma ficha NOSSA: a cobertura descreve uma rodada anterior do instituto como \"Flávio 53 x Lula 47\", e esses são os nossos próprios números de 05-07/10 (Lula 44, Flávio 49, brancos/nulos 5, não sabe 2) convertidos para válidos — 49/93 = 52,7 e 44/93 = 47,3. A fonte nova reimprime o que já gravamos. CONTRATANTE NULL POR REGRA: a pesquisa circula como \"PoderData/Aya\", mas o Aya Bancah aparece como parceiro na marca e nenhuma fonte o nomeia como contratante; as 12 fichas anteriores do instituto na base também têm contratante null. RODADAS AINDA FALTANDO na série, declaradas: a divulgada em 13/10 (campo 10-12/10, Flávio 51 x Lula 49 em válidos) e a divulgada em 19/10 (campo 16-18/10) — esta última NÃO entrou porque as linhas publicadas (Flávio 49, Lula 46, brancos/nulos 4, sem escolha 2) somam 101 e o excesso NÃO É LOCALIZÁVEL: tanto 49/46 quanto 49/45 reproduzem a manchete de válidos (52 x 48), e a diferença entre as duas leituras é exatamente 1 ponto em Lula, com o agregado nacional a 0,02 ponto do limiar do empate técnico. Adivinhar ali mudaria o que a tela afirma. LIMITAÇÃO DE AMBIENTE: dados via WebSearch (WebFetch bloqueado), conferidos em CNN Brasil, Poder360, Jovem Pan e Gazeta do Povo.",
+  "resultados": [
+   {
+    "candidato": "Flávio Bolsonaro",
+    "partido": "PL",
+    "pct": 47
+   },
+   {
+    "candidato": "Luiz Inácio Lula da Silva",
+    "partido": "PT",
+    "pct": 47
+   },
+   {
+    "candidato": "Brancos/nulos",
+    "partido": null,
+    "pct": 4
+   },
+   {
+    "candidato": "Não sabe",
+    "partido": null,
+    "pct": 2
+   }
   ]
  }
 ]
