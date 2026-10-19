@@ -172,6 +172,45 @@ describe('domain/aggregate', () => {
     expect(agregado.empateTecnico).toBe(true);
   });
 
+  /**
+   * A vantagem EXATAMENTE igual à margem é empate técnico pela regra, e era
+   * justamente aí que a conta falhava: `margemReferencia` é média ponderada,
+   * e com uma pesquisa só (3·peso)/peso dá 2.9999999999999996 em binário, de
+   * modo que 45 x 42 com margem 3 saía como "não é empate". Aconteceu no
+   * governo do RN, o 2º turno estadual mais apertado. O teste fixa a
+   * fronteira, não o caso confortável.
+   */
+  it('marca empateTecnico quando a vantagem é EXATAMENTE a margem, apesar do resíduo binário', () => {
+    const p = pesquisa({
+      margem: 3,
+      resultados: [
+        { candidato: 'Candidato A', partido: 'PT', pct: 45 },
+        { candidato: 'Candidato B', partido: 'PL', pct: 42 },
+        { candidato: 'Brancos/nulos', partido: null, pct: 7 },
+        { candidato: 'Indecisos', partido: null, pct: 6 },
+      ],
+    });
+    const agregado = agregarPesquisas([p], {}, HOJE)!;
+    expect(agregado.vantagem).toBe(3);
+    // A margem de referência NÃO é exatamente 3 — é isso que o epsilon cobre.
+    expect(agregado.margemReferencia).toBeCloseTo(3, 10);
+    expect(agregado.empateTecnico).toBe(true);
+  });
+
+  it('o epsilon do empate é estreito: 0,1 ponto acima da margem já não é empate', () => {
+    const p = pesquisa({
+      margem: 3,
+      resultados: [
+        { candidato: 'Candidato A', partido: 'PT', pct: 45.1 },
+        { candidato: 'Candidato B', partido: 'PL', pct: 42 },
+        { candidato: 'Brancos/nulos', partido: null, pct: 12.9 },
+      ],
+    });
+    const agregado = agregarPesquisas([p], {}, HOJE)!;
+    expect(agregado.vantagem).toBeCloseTo(3.1, 6);
+    expect(agregado.empateTecnico).toBe(false);
+  });
+
   it('não marca empateTecnico quando a vantagem supera a margem de referência', () => {
     const p = pesquisa({
       margem: 2,

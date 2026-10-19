@@ -316,8 +316,8 @@ function construirExploreCard(c: ExploreCard): HTMLElement {
 }
 
 function construirExplorar(casos: CasosDeUso): HTMLElement {
-  const overview = casos.getMapOverview();
-  const ufsComGovernador = overview.filter((u) => !u.semDados).length;
+  const mapaGovernadores = casos.getMapaGovernadores();
+  const ufsDecididas = mapaGovernadores.filter((u) => u.situacao === 'decidido').length;
 
   const presidencial = casos.getPresidentialAggregate();
   const porEstado = casos.getPresidentialByState();
@@ -330,8 +330,14 @@ function construirExplorar(casos: CasosDeUso): HTMLElement {
   const cards: readonly ExploreCard[] = [
     {
       titulo: 'Governadores',
-      descricao: 'O mapa do Brasil com a disputa de governador em cada estado, colorido pelo espectro de quem está à frente.',
-      dado: [numero(String(ufsComGovernador)), texto(' de '), numero(String(overview.length)), texto(' estados com pesquisa')],
+      descricao:
+        'O mapa do Brasil com o governador eleito onde as urnas já decidiram e a liderança nas pesquisas onde o 2º turno continua.',
+      dado: [
+        numero(String(ufsDecididas)),
+        texto(' de '),
+        numero(String(mapaGovernadores.length)),
+        texto(' estados decididos'),
+      ],
       href: '#/mapa',
     },
     {

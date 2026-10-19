@@ -146,10 +146,16 @@ describe('textoGovernador', () => {
   });
 });
 
-describe('map-view/ALERTA_MAPA_DE_PESQUISA', () => {
-  it('o mapa de pesquisas declara que não é o resultado', async () => {
-    const { ALERTA_MAPA_DE_PESQUISA } = await import('../map-view.js');
-    expect(ALERTA_MAPA_DE_PESQUISA).toContain('PESQUISAS, não do resultado');
-    expect(ALERTA_MAPA_DE_PESQUISA).toContain('4 de outubro');
+describe('map-view/EXPLICACAO_MAPA_HIBRIDO', () => {
+  it('declara as DUAS naturezas de dado que o mapa passou a misturar', async () => {
+    const { EXPLICACAO_MAPA_HIBRIDO } = await import('../map-view.js');
+    // O mapa deixou de ser só de pesquisa: tem de dizer que pinta resultado
+    // onde a eleição foi decidida e pesquisa onde não foi, e que a segunda
+    // coisa é estimativa.
+    expect(EXPLICACAO_MAPA_HIBRIDO).toContain('RESULTADO');
+    expect(EXPLICACAO_MAPA_HIBRIDO).toContain('PESQUISA');
+    expect(EXPLICACAO_MAPA_HIBRIDO).toContain('4 de outubro');
+    expect(EXPLICACAO_MAPA_HIBRIDO).toContain('25 de outubro');
+    expect(EXPLICACAO_MAPA_HIBRIDO).toContain('estimativa');
   });
 });

@@ -1160,14 +1160,54 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
   font-weight: 600;
 }
 
-/* Aviso no mapa de pesquisas de governador, que convive com o mapa de
-   resultados na aba Resultados. Borda declarada por inteiro: o bloco não tem
-   borda própria, e só `border-style` não renderiza nada. */
+/* Explicação do mapa híbrido de governadores: diz que a cor cheia é resultado
+   e a hachurada é pesquisa. Deixou de ser um ALERTA (borda tracejada de aviso)
+   quando o mapa parou de contradizer o resultado e passou a mostrá-lo — o que
+   está ali agora é instrução de leitura, e pintá-la de advertência treinaria o
+   leitor a ignorar os avisos que são de fato avisos. Borda declarada por
+   inteiro: o bloco não tem borda própria, e só `border-style` não renderiza. */
 .map-view__aviso-resultado {
-  border: 1px dashed var(--color-warning, #b45309);
+  border: 1px solid var(--color-border, #d4d4d8);
+  border-left: 3px solid var(--color-text-tertiary, #71717a);
   border-radius: var(--radius-md, 8px);
   padding: var(--space-2, 0.5rem) var(--space-3, 0.75rem);
   margin: var(--space-3, 0.75rem) 0 0;
   font-size: 0.875rem;
   max-width: 68ch;
+}
+
+/* Bloco de RESULTADO no topo do painel do estado. Fundo próprio e não apenas
+   um título: o painel mistura fato apurado e média de pesquisa, e sem
+   separação visual o leitor desce a tela sem perceber que mudou de natureza
+   de dado. */
+.state-panel__resultado {
+  border: 1px solid var(--color-border, #d4d4d8);
+  border-radius: var(--radius-md, 8px);
+  padding: var(--space-3, 0.75rem);
+  background: var(--color-surface-subtle, rgb(0 0 0 / 3%));
+}
+.state-panel__resultado-nome {
+  margin: 0;
+  font: var(--text-body);
+  font-weight: var(--font-variation-announce, 600);
+}
+.state-panel__resultado-partido {
+  font-weight: 400;
+  color: var(--color-text-subtle);
+}
+.state-panel__resultado-pct {
+  display: block;
+  margin-top: var(--space-1, 0.25rem);
+  font-variant-numeric: tabular-nums;
+}
+.state-panel__resultado-comparacao {
+  margin: var(--space-2, 0.5rem) 0 0;
+  font-size: 0.8125rem;
+  color: var(--color-text-subtle);
+}
+.state-panel__ressalva {
+  margin: var(--space-2, 0.5rem) 0 0;
+  padding-left: var(--space-2, 0.5rem);
+  border-left: 3px solid var(--color-warning, #b45309);
+  font-size: 0.8125rem;
 }

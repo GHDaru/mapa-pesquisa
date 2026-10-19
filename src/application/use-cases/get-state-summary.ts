@@ -1,6 +1,7 @@
 import type { Clock, Repositorios } from '../ports.js';
 import { type Agregado, agregarPesquisas } from '../../domain/aggregate.js';
 import { criarDisputa } from '../../domain/race.js';
+import { selecionarPesquisasDeGovernador } from './governor-poll-selection.js';
 
 export interface ResumoEstado {
   readonly uf: string;
@@ -10,19 +11,25 @@ export interface ResumoEstado {
 
 /**
  * Caso de uso: resumo de uma UF (agregados de governador e senador).
- * Para governador, usa o 2º turno quando há pesquisas dele (mais relevante
- * que o 1º turno, já definido); senador não tem 2º turno no Brasil.
+ *
+ * A escolha das pesquisas de governador vive em `governor-poll-selection.ts`,
+ * compartilhada com o mapa — a regra antiga ("2º turno sempre que houver,
+ * mais relevante que o 1º turno já definido") foi escrita antes de 4 de
+ * outubro e, lida depois, mostrava num estado decidido no 1º turno uma
+ * simulação de 2º turno que nunca aconteceu. Senador não tem 2º turno no
+ * Brasil, e por isso segue direto.
  */
 export function criarGetStateSummary(repos: Repositorios, clock: Clock) {
   return function getStateSummary(uf: string): ResumoEstado {
     const hoje = clock.hoje();
 
-    const pollsGovernadorTurno2 = repos.polls.porDisputa(criarDisputa(uf, 'governador', 2));
-    const pollsGovernador =
-      pollsGovernadorTurno2.length > 0
-        ? pollsGovernadorTurno2
-        : repos.polls.porDisputa(criarDisputa(uf, 'governador', 1));
-    const governador = agregarPesquisas(pollsGovernador, {}, hoje);
+    const doResultado =
+      repos.resultado.dados().governadores.find((g) => g.uf === uf) ?? null;
+    const governador = agregarPesquisas(
+      selecionarPesquisasDeGovernador(repos, uf, doResultado),
+      {},
+      hoje,
+    );
 
     const pollsSenador = repos.polls.porDisputa(criarDisputa(uf, 'senador', 1));
     const senador = agregarPesquisas(pollsSenador, {}, hoje);

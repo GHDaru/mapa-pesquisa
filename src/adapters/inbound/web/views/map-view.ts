@@ -1,7 +1,6 @@
 import brazilMapDados from '@svg-maps/brazil';
-import { MARGEM_REFERENCIA_PADRAO } from '../../../../domain/aggregate.js';
 import type { Espectro } from '../../../../domain/spectrum.js';
-import type { CasosDeUso, VisaoGeralUf } from '../../../../application/use-cases/index.js';
+import type { CasosDeUso, MapaGovernadorUf } from '../../../../application/use-cases/index.js';
 import {
   corEspectro,
   corEspectroSolido,
@@ -44,14 +43,21 @@ interface MapaSvg {
 const brazilMap = brazilMapDados as MapaSvg;
 
 /**
- * O que este mapa é, dito antes que o leitor conclua outra coisa: ele desenha
- * a liderança nas PESQUISAS de governador, e a eleição de 4 de outubro já
- * decidiu a maioria dos estados. Exportado para teste porque é afirmação
- * sobre o mundo, não enfeite.
+ * O que este mapa é, dito antes que o leitor conclua outra coisa.
+ *
+ * Ele mistura DOIS tipos de dado de naturezas diferentes — fato apurado onde
+ * as urnas decidiram, estimativa de pesquisa onde a disputa continua — e a
+ * mistura é a razão de ele existir assim: um mapa só de pesquisa afirmaria
+ * ignorar o que já foi decidido, e um mapa só de resultado deixaria seis
+ * estados em branco. O que não se pode é pintar os dois do mesmo jeito, e por
+ * isso a estimativa vem hachurada e o fato vem em cor cheia. Exportado para
+ * teste porque é afirmação sobre o mundo, não enfeite.
  */
-export const ALERTA_MAPA_DE_PESQUISA =
-  'Este mapa é das PESQUISAS, não do resultado: ele mostra quem liderava antes de 4 de outubro, ' +
-  'e as urnas já decidiram a maioria dos estados.';
+export const EXPLICACAO_MAPA_HIBRIDO =
+  'Este mapa mostra o RESULTADO onde a eleição já foi decidida e a PESQUISA onde ainda não foi. ' +
+  'Nos estados decididos em 4 de outubro a cor é do partido do governador eleito, em cor cheia. ' +
+  'Nos que vão ao 2º turno em 25 de outubro a cor é do partido de quem lidera as pesquisas, ' +
+  'hachurada — é estimativa, não resultado.';
 
 /** Nomes por UF (em português, já vêm assim de @svg-maps/brazil). */
 const NOME_POR_UF = new Map(brazilMap.locations.map((loc) => [loc.id.toUpperCase(), loc.name]));
@@ -121,18 +127,118 @@ function calcularBbox(d: string): Bbox {
   return { minX, minY, maxX, maxY };
 }
 
+/**
+ * O tooltip é montado com `innerHTML`, e nomes de candidato e de instituto vêm
+ * dos dados. Mesmo escape já usado em presidential-states-view.ts e
+ * timeline-chart.ts.
+ */
+function escaparHtml(valor: string): string {
+  return valor
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
 function areaBbox(b: Bbox): number {
   return (b.maxX - b.minX) * (b.maxY - b.minY);
 }
 
-function ariaLabelUf(nomeEstado: string, overview: VisaoGeralUf): string {
-  if (overview.semDados || !overview.liderGovernador) {
-    return `${nomeEstado}: sem pesquisas suficientes de governador nos últimos dias.`;
+/**
+ * Percentual de RESULTADO com a precisão que a fonte publicou. O resultado
+ * oficial é número exato, não estimativa: São Paulo saiu com 62,65% e
+ * arredondar para 62,6% apaga um dígito que existe. Mas o Maranhão foi
+ * publicado como 54%, e imprimir "54,00%" inventaria precisão no sentido
+ * contrário. Daí a mesma regra que a base usa para rótulos: diz o que a
+ * fonte disse, nem mais nem menos. Percentual de PESQUISA continua com uma
+ * casa, porque ali a segunda casa é ruído amostral.
+ */
+function formatarPctResultado(valor: number): string {
+  return formatarNumeroPt(valor, 2)
+    .replace(/0+$/, '')
+    .replace(/,$/, '');
+}
+
+/**
+ * Rótulo acessível de uma UF. Diz primeiro de que NATUREZA é o dado
+ * ("eleito" x "lidera as pesquisas"), porque é a informação que muda o que a
+ * frase significa, e só depois os números.
+ */
+export function ariaLabelUfMapa(nomeEstado: string, item: MapaGovernadorUf): string {
+  if (item.situacao === 'decidido' && item.eleito) {
+    const pct =
+      item.eleito.pctValidos === null
+        ? ''
+        : ` com ${formatarPctResultado(item.eleito.pctValidos)}% dos votos válidos`;
+    const ressalva = item.observacao ? ' Há uma ressalva sobre este estado.' : '';
+    return `${nomeEstado}: ${item.eleito.nome} (${item.eleito.partido}) eleito governador no 1º turno${pct}.${ressalva}`;
   }
-  const pontos = formatarNumeroPt(overview.vantagem);
-  const partido = overview.partido ?? 'sem partido';
-  const sufixo = overview.empateTecnico ? ', empate técnico' : '';
-  return `${nomeEstado}: ${overview.liderGovernador} (${partido}) lidera com ${pontos} pontos${sufixo}.`;
+  if (item.situacao === 'em-disputa' && item.disputa) {
+    const d = item.disputa;
+    const partido = d.partido ?? 'sem partido';
+    const sufixo = d.empateTecnico
+      ? ', empate técnico'
+      : ` por ${formatarNumeroPt(d.vantagem)} pontos`;
+    const contra = d.segundo ? ` sobre ${d.segundo}` : '';
+    return `${nomeEstado}: 2º turno em 25 de outubro. ${d.lider} (${partido}) lidera as pesquisas${contra}${sufixo}.`;
+  }
+  return `${nomeEstado}: 2º turno em 25 de outubro, sem pesquisa do confronto definido pelas urnas.`;
+}
+
+/**
+ * Frase do resumo acima do mapa: quantos estados as urnas decidiram e quantos
+ * continuam em disputa. Trata o singular e o caso de borda em que não há mais
+ * nenhuma disputa aberta (depois de 25/10 o mapa fica inteiro de resultado).
+ */
+export function rotuloSituacaoDoMapa(decididos: number, emDisputa: number): string {
+  const parteDecididos =
+    decididos === 1 ? '1 estado decidido nas urnas' : `${decididos} estados decididos nas urnas`;
+  if (emDisputa === 0) return `${parteDecididos}. O mapa de governadores está fechado.`;
+  const parteDisputa =
+    emDisputa === 1
+      ? '1 ainda vai ao 2º turno em 25 de outubro'
+      : `${emDisputa} ainda vão ao 2º turno em 25 de outubro`;
+  return `${parteDecididos}, ${parteDisputa}.`;
+}
+
+/**
+ * Frase do acerto das pesquisas nos estados já decididos. Exportada porque é
+ * a afirmação central da comparação que o mapa passou a fazer.
+ */
+export function rotuloAcertoDasPesquisas(acertos: number, total: number): string {
+  if (total === 0) return 'Nenhum estado decidido tem pesquisa anterior à eleição para comparar.';
+  if (acertos === total) {
+    return total === 1
+      ? 'No único estado decidido com pesquisa comparável, a última pesquisa apontou quem venceu.'
+      : `Nos ${total} estados decididos com pesquisa comparável, a última pesquisa de cada um apontou quem venceu em todos.`;
+  }
+  return `A última pesquisa antes da eleição apontou quem venceu em ${acertos} dos ${total} estados decididos com pesquisa comparável.`;
+}
+
+/**
+ * Comparação pesquisa x urna de uma UF, em uma frase. O percentual da
+ * pesquisa já vem convertido para base de válidos pelo caso de uso — dizer
+ * "a pesquisa dava 49%" ao lado de "teve 53% dos válidos" sem essa conversão
+ * compararia bases diferentes.
+ */
+export function textoComparacao(item: MapaGovernadorUf): string | null {
+  const c = item.comparacao;
+  if (!c || !item.eleito) return null;
+  const quem = c.acertouOLider
+    ? `acertou o vencedor (${c.liderNasPesquisas})`
+    : `apontava ${c.liderNasPesquisas}`;
+  const base = `Última pesquisa antes da eleição: ${c.instituto}, ${formatarData(c.dataReferencia)} — ${quem}.`;
+  if (c.pctEleitoNasPesquisasValidos === null || c.pctValidosUrnas === null) return base;
+  const diferenca =
+    c.erroEmPontos === null
+      ? ''
+      : ` Diferença de ${formatarNumeroPt(Math.abs(c.erroEmPontos))} ${
+          Math.abs(c.erroEmPontos) === 1 ? 'ponto' : 'pontos'
+        }${c.erroEmPontos > 0 ? ', a pesquisa subestimou' : ', a pesquisa superestimou'}.`;
+  return (
+    `${base} Ela dava ${formatarNumeroPt(c.pctEleitoNasPesquisasValidos)}% dos válidos a ` +
+    `${item.eleito.nome}, que teve ${formatarPctResultado(c.pctValidosUrnas)}%.${diferenca}`
+  );
 }
 
 /** Renderiza o mapa do Brasil (governadores 2026) dentro de `container`. */
@@ -143,19 +249,12 @@ export function renderMap(container: HTMLElement, casos: CasosDeUso): void {
   desligarOuvinteResize?.();
   desligarOuvinteResize = null;
 
-  const overviewLista = casos.getMapOverview();
-  const overviewPorUf = new Map(overviewLista.map((o) => [o.uf, o]));
-
-  // margemReferencia não vem no DTO do mapa (VisaoGeralUf) — busca-se o
-  // agregado completo por UF só para refinar a opacidade em 3 faixas
-  // (folga / corrida acirrada / empate), usando o mesmo caso de uso já
-  // exposto para o painel do estado.
-  const margemPorUf = new Map<string, number>();
-  for (const o of overviewLista) {
-    if (o.semDados) continue;
-    const resumo = casos.getStateSummary(o.uf);
-    if (resumo.governador) margemPorUf.set(o.uf, resumo.governador.margemReferencia);
-  }
+  const lista = casos.getMapaGovernadores();
+  const porUf = new Map(lista.map((o) => [o.uf, o]));
+  const decididos = lista.filter((o) => o.situacao === 'decidido');
+  const emDisputa = lista.filter((o) => o.situacao === 'em-disputa');
+  const comComparacao = decididos.filter((o) => o.comparacao !== null);
+  const acertos = comComparacao.filter((o) => o.comparacao!.acertouOLider).length;
 
   const secao = document.createElement('section');
   secao.className = 'map-view';
@@ -168,29 +267,29 @@ export function renderMap(container: HTMLElement, casos: CasosDeUso): void {
   const heading = document.createElement('h2');
   heading.id = 'map-view-heading';
   heading.className = 'map-view__heading';
-  heading.textContent = 'Governadores 2026 — quem liderava nas pesquisas';
+  heading.textContent = 'Governadores 2026 — o resultado das urnas e as disputas abertas';
   secao.appendChild(heading);
 
-  const intro = document.createElement('p');
-  intro.className = 'map-view__intro';
-  intro.textContent =
-    'A cor do estado mostra o espectro do partido do candidato que lidera a média ponderada de pesquisas para governador; quanto mais clara/transparente, menor a confiança na liderança. Passe o mouse para uma prévia ou clique/Enter para abrir os detalhes.';
-  secao.appendChild(intro);
+  const resumo = document.createElement('p');
+  resumo.className = 'map-view__intro';
+  resumo.textContent = `${rotuloSituacaoDoMapa(decididos.length, emDisputa.length)} ${rotuloAcertoDasPesquisas(
+    acertos,
+    comComparacao.length,
+  )}`;
+  secao.appendChild(resumo);
 
-  // Este mapa mede PESQUISA, e a eleição já aconteceu. Enquanto ele era a
-  // única tela de governadores, "quem lidera" bastava; com a aba Resultados
-  // ao lado, dois mapas do Brasil com cores diferentes nos mesmos estados
-  // convidam a ler este como se fosse o resultado. O aviso diz qual é qual.
-  const avisoResultado = document.createElement('p');
-  avisoResultado.className = 'map-view__aviso-resultado';
-  avisoResultado.append(
-    document.createTextNode(ALERTA_MAPA_DE_PESQUISA + ' '),
-  );
+  // O mapa passou a misturar fato e estimativa, e essa frase é o que impede a
+  // leitura errada: sem ela, a cor cheia de São Paulo e a cor hachurada do
+  // Distrito Federal parecem a mesma afirmação com força diferente, quando
+  // são afirmações de naturezas diferentes.
+  const explicacao = document.createElement('p');
+  explicacao.className = 'map-view__aviso-resultado';
+  explicacao.append(document.createTextNode(EXPLICACAO_MAPA_HIBRIDO + ' '));
   const linkResultado = document.createElement('a');
   linkResultado.href = '#/resultados';
-  linkResultado.textContent = 'Ver os governadores eleitos';
-  avisoResultado.append(linkResultado, document.createTextNode('.'));
-  secao.appendChild(avisoResultado);
+  linkResultado.textContent = 'Ver o fechamento do 1º turno';
+  explicacao.append(linkResultado, document.createTextNode('.'));
+  secao.appendChild(explicacao);
 
   const layout = document.createElement('div');
   layout.className = 'map-view__layout';
@@ -234,28 +333,59 @@ export function renderMap(container: HTMLElement, casos: CasosDeUso): void {
   }
 
   function conteudoTooltip(uf: string): string {
-    const overview = overviewPorUf.get(uf);
+    const item = porUf.get(uf);
     const nome = NOME_POR_UF.get(uf) ?? uf;
-    if (!overview || overview.semDados || !overview.liderGovernador) {
-      return `<strong>${nome}</strong><span class="map-tooltip__sub">Sem dados suficientes</span>`;
+    if (!item) {
+      return `<strong>${escaparHtml(nome)}</strong><span class="map-tooltip__sub">Sem dados</span>`;
     }
-    const resumo = casos.getStateSummary(uf);
-    const margem = margemPorUf.get(uf) ?? MARGEM_REFERENCIA_PADRAO;
-    const nivel = nivelConfianca(overview.vantagem, margem, false);
-    const ultima = resumo.governador?.ultimaPesquisa;
-    const nPesquisas = resumo.governador?.pesquisasUsadas.length ?? 0;
-    const rotuloPesquisas = nPesquisas === 1 ? '1 pesquisa' : `${nPesquisas} pesquisas`;
-    const linhaInstituto = ultima
-      ? `<span class="map-tooltip__meta">${ultima.instituto} · ${formatarData(
-          ultima.dataFim ?? ultima.publicadoEm ?? ultima.dataInicio ?? '',
-        )} · ${rotuloPesquisas}</span>`
-      : '';
-    return `
-      <strong>${nome}</strong>
-      <span class="map-tooltip__lider">${overview.liderGovernador} <span class="map-tooltip__partido">(${overview.partido ?? 'sem partido'})</span></span>
-      <span class="map-tooltip__vantagem">+${formatarNumeroPt(overview.vantagem)} pts — ${rotuloConfianca(nivel)}</span>
-      ${linhaInstituto}
-    `;
+
+    if (item.situacao === 'decidido' && item.eleito) {
+      const pct =
+        item.eleito.pctValidos === null
+          ? ''
+          : `<span class="map-tooltip__vantagem">${formatarPctResultado(
+              item.eleito.pctValidos,
+            )}% dos votos válidos</span>`;
+      const comparacao = textoComparacao(item);
+      const ressalva = item.observacao
+        ? `<span class="map-tooltip__meta">Com ressalva — ver os detalhes.</span>`
+        : '';
+      return `
+        <strong>${escaparHtml(nome)}</strong>
+        <span class="map-tooltip__sub">Eleito no 1º turno</span>
+        <span class="map-tooltip__lider">${escaparHtml(item.eleito.nome)} <span class="map-tooltip__partido">(${escaparHtml(
+          item.eleito.partido,
+        )})</span></span>
+        ${pct}
+        ${comparacao ? `<span class="map-tooltip__meta">${escaparHtml(comparacao)}</span>` : ''}
+        ${ressalva}
+      `;
+    }
+
+    if (item.situacao === 'em-disputa' && item.disputa) {
+      const d = item.disputa;
+      const nivel = nivelConfianca(d.vantagem, d.margemReferencia, false);
+      const rotuloPesquisas = d.pesquisas === 1 ? '1 pesquisa' : `${d.pesquisas} pesquisas`;
+      const linhaInstituto =
+        d.institutoUltima && d.dataUltima
+          ? `<span class="map-tooltip__meta">${escaparHtml(d.institutoUltima)} · ${formatarData(
+              d.dataUltima,
+            )} · ${rotuloPesquisas}</span>`
+          : '';
+      return `
+        <strong>${escaparHtml(nome)}</strong>
+        <span class="map-tooltip__sub">2º turno em 25 de outubro — pesquisa</span>
+        <span class="map-tooltip__lider">${escaparHtml(d.lider)} <span class="map-tooltip__partido">(${escaparHtml(
+          d.partido ?? 'sem partido',
+        )})</span></span>
+        <span class="map-tooltip__vantagem">+${formatarNumeroPt(d.vantagem)} pts — ${rotuloConfianca(
+          nivel,
+        )}</span>
+        ${linhaInstituto}
+      `;
+    }
+
+    return `<strong>${escaparHtml(nome)}</strong><span class="map-tooltip__sub">2º turno em 25 de outubro</span><span class="map-tooltip__meta">Sem pesquisa do confronto definido pelas urnas.</span>`;
   }
 
   /**
@@ -374,16 +504,23 @@ export function renderMap(container: HTMLElement, casos: CasosDeUso): void {
 
   for (const loc of locaisOrdenados) {
     const uf = loc.id.toUpperCase();
-    const overview = overviewPorUf.get(uf);
+    const item = porUf.get(uf);
     const bbox = calcularBbox(loc.path);
     const area = areaBbox(bbox);
     const cx = (bbox.minX + bbox.maxX) / 2;
     const cy = (bbox.minY + bbox.maxY) / 2;
 
-    const nivel: NivelConfianca = overview
-      ? nivelConfianca(overview.vantagem, margemPorUf.get(uf) ?? MARGEM_REFERENCIA_PADRAO, overview.semDados)
-      : 'semDados';
-    const espectro: Espectro = overview?.espectro ?? 'indefinido';
+    // Fato apurado entra em cor CHEIA; estimativa de pesquisa entra na faixa
+    // de confiança que ela merece. É a diferença que a hachura (abaixo)
+    // reforça: opacidade mede confiança, hachura marca que o dado é
+    // estimativa — dois canais, duas perguntas distintas.
+    const nivel: NivelConfianca =
+      item?.situacao === 'decidido'
+        ? 'solid'
+        : item?.situacao === 'em-disputa' && item.disputa
+          ? nivelConfianca(item.disputa.vantagem, item.disputa.margemReferencia, false)
+          : 'semDados';
+    const espectro: Espectro = item?.espectro ?? 'indefinido';
 
     const path = document.createElementNS(SVG_NS, 'path');
     path.setAttribute('d', loc.path);
@@ -394,11 +531,14 @@ export function renderMap(container: HTMLElement, casos: CasosDeUso): void {
     path.setAttribute('role', 'button');
     path.setAttribute('tabindex', '0');
     path.setAttribute('aria-haspopup', 'dialog');
-    path.setAttribute('aria-label', ariaLabelUf(loc.name, overview ?? semDadosFallback(uf)));
+    path.setAttribute('aria-label', ariaLabelUfMapa(loc.name, item ?? semDadosFallback(uf)));
+    if (item) path.dataset.situacao = item.situacao;
     grupoEstados.appendChild(path);
 
-    // Sobreposição de hachura: empate técnico (cor do espectro) ou sem dados (cinza neutro).
-    if (nivel === 'empate' || nivel === 'semDados') {
+    // Sobreposição de hachura: marca o que é ESTIMATIVA (estado ainda em
+    // disputa, cor do espectro) e o que não tem dado nenhum (cinza neutro).
+    // Estado decidido nunca recebe hachura — ali o número é apuração.
+    if (item?.situacao === 'em-disputa' || nivel === 'semDados') {
       const overlay = document.createElementNS(SVG_NS, 'path');
       overlay.setAttribute('d', loc.path);
       overlay.setAttribute('fill', 'url(#mapa-hachura)');
@@ -550,15 +690,15 @@ function ajustarAlturaMapa(mapWrap: HTMLElement): void {
   mapWrap.style.setProperty('--map-max-height', `${Math.max(280, disponivel)}px`);
 }
 
-function semDadosFallback(uf: string): VisaoGeralUf {
+function semDadosFallback(uf: string): MapaGovernadorUf {
   return {
     uf,
-    liderGovernador: null,
-    partido: null,
+    situacao: 'sem-dados',
     espectro: 'indefinido',
-    vantagem: 0,
-    empateTecnico: false,
-    semDados: true,
+    eleito: null,
+    disputa: null,
+    comparacao: null,
+    observacao: null,
   };
 }
 
@@ -571,7 +711,7 @@ function criarLegenda(): HTMLElement {
   grupoEspectro.className = 'legend-grupo';
   const tituloEspectro = document.createElement('h3');
   tituloEspectro.className = 'legend-grupo__titulo';
-  tituloEspectro.textContent = 'Espectro do partido líder';
+  tituloEspectro.textContent = 'Espectro do partido';
   grupoEspectro.appendChild(tituloEspectro);
   const listaEspectro = document.createElement('ul');
   listaEspectro.className = 'legend-lista';
@@ -584,11 +724,30 @@ function criarLegenda(): HTMLElement {
   grupoEspectro.appendChild(listaEspectro);
   legenda.appendChild(grupoEspectro);
 
+  // Grupo novo, e o primeiro que o leitor precisa: antes de saber QUANTO se
+  // confia num estado, ele precisa saber se aquele estado é resultado ou
+  // pesquisa. A hachura é o canal que carrega essa distinção.
+  const grupoNatureza = document.createElement('div');
+  grupoNatureza.className = 'legend-grupo';
+  const tituloNatureza = document.createElement('h3');
+  tituloNatureza.className = 'legend-grupo__titulo';
+  tituloNatureza.textContent = 'O que a cor afirma';
+  grupoNatureza.appendChild(tituloNatureza);
+  const listaNatureza = document.createElement('ul');
+  listaNatureza.className = 'legend-lista';
+  const itemEleito = criarItemLegenda('var(--spectrum-3-fill)', 'Eleito no 1º turno (resultado)');
+  listaNatureza.appendChild(itemEleito);
+  const itemDisputa = criarItemLegenda('var(--spectrum-3-fill)', 'Lidera as pesquisas do 2º turno (estimativa)');
+  itemDisputa.querySelector('.legend-swatch')!.classList.add('legend-swatch--hachura');
+  listaNatureza.appendChild(itemDisputa);
+  grupoNatureza.appendChild(listaNatureza);
+  legenda.appendChild(grupoNatureza);
+
   const grupoConfianca = document.createElement('div');
   grupoConfianca.className = 'legend-grupo';
   const tituloConfianca = document.createElement('h3');
   tituloConfianca.className = 'legend-grupo__titulo';
-  tituloConfianca.textContent = 'Confiança da liderança';
+  tituloConfianca.textContent = 'Confiança da liderança (só onde há disputa)';
   grupoConfianca.appendChild(tituloConfianca);
   const listaConfianca = document.createElement('ul');
   listaConfianca.className = 'legend-lista';

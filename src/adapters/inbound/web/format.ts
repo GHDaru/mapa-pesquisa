@@ -1,4 +1,5 @@
 import type { Espectro } from '../../../domain/spectrum.js';
+import { EPSILON_MARGEM } from '../../../domain/aggregate.js';
 
 /**
  * Helpers de formatação e de mapeamento para tokens CSS, usados pela UI
@@ -81,7 +82,9 @@ export function nivelConfianca(
   semDados: boolean,
 ): NivelConfianca {
   if (semDados) return 'semDados';
-  if (vantagem <= margemReferencia) return 'empate';
+  // Mesmo epsilon do domínio: sem ele esta função devolvia 'lean' na mesma UF
+  // que `empateTecnico` marcava como empate, e a cor contradizia o rótulo.
+  if (vantagem <= margemReferencia + EPSILON_MARGEM) return 'empate';
   if (vantagem < margemReferencia * 2) return 'lean';
   return 'solid';
 }

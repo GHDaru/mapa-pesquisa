@@ -8,6 +8,7 @@
  */
 
 import type { Espectro } from '../../../../domain/spectrum.js';
+import { EPSILON_MARGEM } from '../../../../domain/aggregate.js';
 
 /** Campos mínimos para ordenar a grade de miniaturas por estado. */
 export interface ItemEleitoral {
@@ -403,7 +404,7 @@ export function faixaVantagem(entrada: EntradaVantagem): FaixaVantagem {
   if (entrada.semDados) return 'semDados';
   const margem = entrada.margemReferencia;
   if (entrada.vantagem <= 0) return 'empate';
-  if (margem > 0 && entrada.vantagem <= margem) return 'empate';
+  if (margem > 0 && entrada.vantagem <= margem + EPSILON_MARGEM) return 'empate';
   return `lidera${degrauDaRazao(razaoVantagem(entrada.vantagem, margem))}` as FaixaVantagem;
 }
 

@@ -1,9 +1,10 @@
 import brazilMapDados from '@svg-maps/brazil';
-import type { CasosDeUso } from '../../../../application/use-cases/index.js';
+import type { CasosDeUso, MapaGovernadorUf } from '../../../../application/use-cases/index.js';
 import type { ResumoEstado } from '../../../../application/use-cases/get-state-summary.js';
 import type { Agregado, CandidatoAgregado } from '../../../../domain/aggregate.js';
 import type { Pesquisa } from '../../../../domain/poll.js';
 import { espectroDoPartido } from '../../../../domain/spectrum.js';
+import { textoComparacao } from './map-view.js';
 import {
   corEspectroSolido,
   formatarData,
@@ -100,6 +101,7 @@ export function abrirPainelEstado({ uf, casos, elementoOrigem }: AbrirPainelPara
   const resumo = casos.getStateSummary(uf);
   const partidos = casos.listParties();
   const nome = NOME_POR_UF.get(uf) ?? uf;
+  const noMapa = casos.getMapaGovernadores().find((g) => g.uf === uf) ?? null;
 
   const backdrop = document.createElement('div');
   backdrop.className = 'state-panel-backdrop';
@@ -112,7 +114,7 @@ export function abrirPainelEstado({ uf, casos, elementoOrigem }: AbrirPainelPara
   painel.setAttribute('role', 'dialog');
   painel.setAttribute('aria-modal', 'true');
   painel.setAttribute('aria-labelledby', 'state-panel-titulo');
-  painel.innerHTML = montarConteudo(uf, nome, resumo, partidos);
+  painel.innerHTML = montarConteudo(uf, nome, resumo, partidos, noMapa);
 
   backdrop.appendChild(painel);
   document.body.appendChild(backdrop);
@@ -131,6 +133,7 @@ function montarConteudo(
   nome: string,
   resumo: ResumoEstado,
   partidos: ReturnType<CasosDeUso['listParties']>,
+  noMapa: MapaGovernadorUf | null,
 ): string {
   return `
     <div class="state-panel__handle" aria-hidden="true"></div>
@@ -141,7 +144,8 @@ function montarConteudo(
       </button>
     </header>
     <div class="state-panel__corpo">
-      ${renderSecaoCargo('Governador', resumo.governador, partidos, {})}
+      ${blocoResultadoGovernador(noMapa)}
+      ${renderSecaoCargo(tituloSecaoGovernador(noMapa), resumo.governador, partidos, {})}
       ${renderSecaoCargo('Senador', resumo.senador, partidos, {
         rotuloVagas: '2 vagas',
         destacarDoisPrimeiros: true,
@@ -181,6 +185,85 @@ function renderRodape(resumo: ResumoEstado): string {
     .reverse();
   if (datas.length === 0) return '<p class="state-panel__ultima">Nenhuma pesquisa disponível para esta UF.</p>';
   return `<p class="state-panel__ultima">Última pesquisa em ${formatarData(datas[0]!)}.</p>`;
+}
+
+/**
+ * Percentual de resultado com a precisão da fonte — mesma razão de
+ * `formatarPctResultado` em map-view.ts: 62,65% é número exato e 54% não
+ * pode virar 54,00%.
+ */
+function pctResultado(valor: number): string {
+  return formatarNumeroPt(valor, 2)
+    .replace(/0+$/, '')
+    .replace(/,$/, '');
+}
+
+/**
+ * Bloco do RESULTADO no topo do painel. Vem antes das pesquisas porque é de
+ * outra natureza: nos estados decididos o painel abria listando médias de
+ * pesquisa como se a disputa estivesse em aberto. Onde a eleição continua, o
+ * bloco diz a data do 2º turno e quem são os dois que sobraram.
+ */
+export function blocoResultadoGovernador(item: MapaGovernadorUf | null): string {
+  if (!item) return '';
+
+  if (item.situacao === 'decidido' && item.eleito) {
+    const pct =
+      item.eleito.pctValidos === null
+        ? ''
+        : `<span class="state-panel__resultado-pct">${pctResultado(
+            item.eleito.pctValidos,
+          )}% dos votos válidos</span>`;
+    const comparacao = textoComparacao(item);
+    const ressalva = item.observacao
+      ? `<p class="state-panel__ressalva">${escaparHtml(item.observacao)}</p>`
+      : '';
+    return `
+      <section class="state-panel__resultado">
+        <div class="state-panel__secao-titulo">
+          <h3>Resultado do 1º turno</h3>
+          <span class="pill pill--neutro">eleito</span>
+        </div>
+        <p class="state-panel__resultado-nome">${escaparHtml(item.eleito.nome)}
+          <span class="state-panel__resultado-partido">(${escaparHtml(item.eleito.partido)})</span>
+        </p>
+        ${pct}
+        ${comparacao ? `<p class="state-panel__resultado-comparacao">${escaparHtml(comparacao)}</p>` : ''}
+        ${ressalva}
+      </section>
+    `;
+  }
+
+  const finalistas =
+    item.disputa?.segundo && item.disputa.lider
+      ? `<p class="state-panel__resultado-comparacao">Na frente das pesquisas: ${escaparHtml(
+          item.disputa.lider,
+        )}, sobre ${escaparHtml(item.disputa.segundo)}.</p>`
+      : '<p class="state-panel__resultado-comparacao">Sem pesquisa do confronto definido pelas urnas.</p>';
+  const ressalva = item.observacao
+    ? `<p class="state-panel__ressalva">${escaparHtml(item.observacao)}</p>`
+    : '';
+  return `
+    <section class="state-panel__resultado">
+      <div class="state-panel__secao-titulo">
+        <h3>2º turno em 25 de outubro</h3>
+        <span class="pill pill--neutro">em disputa</span>
+      </div>
+      ${finalistas}
+      ${ressalva}
+    </section>
+  `;
+}
+
+/**
+ * Título da seção de pesquisas de governador. Precisa dizer DE QUE MUNDO são
+ * as pesquisas listadas: num estado decidido elas descrevem a disputa que
+ * acabou, não a de hoje.
+ */
+export function tituloSecaoGovernador(item: MapaGovernadorUf | null): string {
+  if (item?.situacao === 'decidido') return 'Governador — pesquisas antes da eleição';
+  if (item?.situacao === 'em-disputa') return 'Governador — pesquisas do 2º turno';
+  return 'Governador';
 }
 
 function renderSecaoCargo(

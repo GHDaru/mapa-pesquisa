@@ -2,7 +2,7 @@ import { normalizarSigla } from './party.js';
 import { type Espectro, espectroDoPartido } from './spectrum.js';
 import type { Partido } from './party.js';
 import type { Agregado, NivelConfianca } from './aggregate.js';
-import { classificarConfianca } from './aggregate.js';
+import { EPSILON_MARGEM, classificarConfianca } from './aggregate.js';
 import { UFS } from './race.js';
 
 /**
@@ -174,7 +174,9 @@ export function projetarSenado(
         espectro: espectroDoPartido(candidato.partido, partidos),
         origem: 'projetada',
         confianca: vantagem != null ? classificarConfianca(vantagem, margemReferencia) : null,
-        ...(vantagem != null ? { empateTecnico: vantagem <= margemReferencia } : {}),
+        ...(vantagem != null
+          ? { empateTecnico: vantagem <= margemReferencia + EPSILON_MARGEM }
+          : {}),
       };
       assentos.push(assento);
     }

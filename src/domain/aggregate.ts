@@ -42,12 +42,31 @@ export function ehLinhaNaoCandidato(candidato: string, excluidos: ReadonlySet<st
 export type NivelConfianca = 'folga' | 'acirrada' | 'empate';
 
 /**
+ * Tolerância das comparações contra a margem de referência.
+ *
+ * `margemReferencia` é média PONDERADA das margens declaradas, e com uma
+ * única pesquisa de margem 3 a conta (3·peso)/peso devolve
+ * 2.9999999999999996 em binário. Sem epsilon, uma vantagem de exatamente 3
+ * pontos deixa de ser empate técnico — foi o que aconteceu com o governo do
+ * RN (45 x 42, margem 3), o 2º turno estadual mais apertado.
+ *
+ * Está exportada e não privada porque a MESMA comparação aparece em cinco
+ * lugares — aqui, no empate técnico, na projeção do Senado, na faixa de
+ * vantagem do mapa presidencial e no nível de confiança da camada de
+ * apresentação. Quando só o empate técnico foi corrigido, a cor do mapa
+ * passou a dizer "corrida acirrada" na mesma UF em que o texto dizia "empate
+ * técnico": a classificação e o rótulo vinham por caminhos diferentes. Um
+ * epsilon só, importado por todos, é o que impede as duas vias de divergir.
+ */
+export const EPSILON_MARGEM = 1e-9;
+
+/**
  * Classifica a confiança da liderança: `empate` quando a vantagem está
  * dentro da margem de referência, `acirrada` quando a supera mas fica abaixo
  * do dobro da margem, `folga` quando é igual ou maior que o dobro.
  */
 export function classificarConfianca(vantagem: number, margemReferencia: number): NivelConfianca {
-  if (vantagem <= margemReferencia) return 'empate';
+  if (vantagem <= margemReferencia + EPSILON_MARGEM) return 'empate';
   if (vantagem < margemReferencia * 2) return 'acirrada';
   return 'folga';
 }
@@ -380,7 +399,8 @@ export function agregarPesquisas(
       ? margens.reduce((s, m) => s + m.margem * m.peso, 0) / somaPesoMargens
       : MARGEM_REFERENCIA_PADRAO;
 
-  const empateTecnico = vantagem <= margemReferencia;
+  /** Ver EPSILON_MARGEM: sem ele, 3 pontos de vantagem com margem 3 não é empate. */
+  const empateTecnico = vantagem <= margemReferencia + EPSILON_MARGEM;
   const algumaNaoRegistrada = usadas.some((p) => p.registroTSE.naoRegistrada);
 
   return {

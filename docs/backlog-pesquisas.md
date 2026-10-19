@@ -3952,3 +3952,121 @@ O Vox segue sendo o **único** instituto que dá Lula à frente — e a vantagem
 A rodada nova do Vox publica "branco, nulo ou nenhum" e "indecisos"; a de 09/10 publicava "brancos/nulos" e "não sabe". Gravadas como cada fonte rotula. Uniformizar seria apagar informação sobre como o instituto apresentou cada rodada — e `normalizarLinhaNaoCandidato` já reduz as duas à mesma categoria no agregado.
 
 **838 pesquisas**, 764 testes, build limpo. Faltam 7 dias.
+
+---
+
+## 19/10 — o mapa passa a pintar o resultado, e a comparação encontra dois defeitos
+
+Pedido: encerrar o 1º turno com os dados oficiais, comparar as pesquisas com o que as urnas fizeram, pintar o mapa com o resultado onde a eleição foi decidida, com a pesquisa onde ainda não foi, e atualizar as pesquisas presidenciais do 2º turno.
+
+### Dez fichas novas (846 pesquisas)
+
+Nove de governador do 2º turno — e a entrada delas muda o que o mapa pode afirmar, porque até hoje **nenhuma** pesquisa de governador do 2º turno na base tinha campo posterior a 4/10: as que havia eram simulações pré-eleição, a mais recente de 01/10.
+
+| UF | Instituto | Campo | Resultado | Fecha em |
+|---|---|---|---|---|
+| BR | Nexus/FSB (BTG) | 16–18/10 | Flávio 46,5 x Lula 45,9 | 100,0 |
+| AC | Quaest | 09–12/10 | Mailza 49 x Alan Rick 32 | 100 |
+| AM | Quaest | 09–12/10 | Omar Aziz 51 x Maria do Carmo 37 | 100 |
+| DF | Quaest | 08–11/10 | Celina 53 x Grass 33 | 100 |
+| DF | Datafolha | 06–08/10 | Celina 55 x Grass 37 | 100 |
+| DF | Real Time Big Data | 09–13/10 | Celina 53 x Grass 36 | 100 |
+| DF | Igape | 16–17/10 | Celina 55,5 x Grass 35,9 | 100,0 |
+| ES | Quaest | 10–13/10 | Pazolini 47 x Ferraço 38 | 100 |
+| RN | Quaest | 09–12/10 | Allyson 45 x Cadu 42 | 100 |
+| TO | Quaest | 10–13/10 | Vicentinho 49 x Dorinha 42 | 100 |
+
+Todas no corte de **votos totais**, todas com as linhas de não-candidato publicadas, todas fechando em 100 — o critério forte, sem exceção nesta leva.
+
+**Corroboração interna, e é a mais forte do dia:** a ficha Quaest/DF de governador compartilha o registro **DF-08737/2026** com a ficha de presidente/DF que já estava na base, e os dois metadados coincidem exatamente (campo 08–11/10, 1.104 entrevistados, TV Globo). É a mesma rodada cobrindo dois cargos. As datas de campo da ficha nova foram confirmadas por dentro da própria base, não por uma segunda matéria.
+
+**Datafolha/DF: a aritmética resolveu um conflito de fontes.** As coberturas divergiam sobre os indecisos (3% numa, 5% noutra). Só a versão com 3% fecha em 100 (55 + 37 + 5 + 3); com 5% daria 102, impossível para percentuais sobre o total. Adotada a versão aritmeticamente forçada, conflito declarado.
+
+**Três fichas NÃO ingeridas, cada uma com motivo:**
+
+- **Futura/100% Cidades (19/10)** — as fontes divergem sobre o campo (16–17/10 em umas, 14–15/10 em outras) e uma mesma matéria chega a dizer "14 e 15 de setembro" no subtítulo. Período de campo é requisito de entrada, e aqui ele não se estabelece sem escolher entre fontes que se contradizem. Fica como pendência. (Custo numérico zero: a ficha é de válidos e seria descartada pela guarda de base no conjunto nacional, que é todo de totais.)
+- **Paraná Pesquisas/TO (campo 14–17/10)** — só válidos (56,5 x 43,5), nenhuma fonte publicou linhas de não-candidato nem o tamanho da amostra. Sem amostra não há peso de agregação.
+- **Affare/RN** — citada apenas via tabela da Wikipédia, que é agregador.
+
+**Ressalva de manchete, grave:** o Poder360 titulou "Alan Rick lidera corrida pelo governo do Acre no 2º turno, diz Quaest", **invertendo** o resultado. Seis outros veículos e o próprio detalhamento das linhas dão Mailza na frente por 17 pontos. Adotada a leitura majoritária e coerente com o detalhamento.
+
+**Observação de método:** n=1.098 aparece em AC, AM, ES e RN. Pareceu coincidência suspeita à primeira vista; é o desenho padrão da leva estadual da Quaest desta rodada.
+
+### Duas fichas removidas: eram de 2022
+
+A comparação pesquisa x urna acusou o Piauí com erro de **22 pontos** e líder invertido — Rafael Fonteles eleito com 70,9% dos válidos, enquanto a última pesquisa da base dava Sílvio Mendes na frente. Número absurdo demais para publicar sem verificar.
+
+As duas fichas Ipec do PI (`2026-09-30-ipec-pi-governador-t1` e `-t2-mendes-fonteles`) são da eleição de **2022**: a matéria da CNN que as originou é de 30/09/2022, a disputa Mendes x Fonteles é do ciclo anterior, e Sílvio Mendes **não foi candidato em 2026**. As outras pesquisas do PI na base (Datafolha, AtlasIntel) sempre deram Fonteles com 55–64% contra Joel Rodrigues, e as urnas confirmaram — eram as fichas Ipec que destoavam de tudo.
+
+Removidas do arquivo de origem; o lote de 30/09 foi auditado inteiro e o resto é legítimo (os nomes conferem com as disputas de 2026). Sem elas o PI lê corretamente: AtlasIntel de 28/09 apontou Fonteles, erro de **−0,2 ponto**. As fichas removidas ficam guardadas fora da base para registro.
+
+É uma classe de erro nova para o catálogo: **matéria de um ciclo eleitoral anterior lida como atual**. Prima do defeito "escrito num mundo, lido em outro", mas em dado, não em código. O que a pegou não foi revisão de ficha — foi a comparação com o resultado.
+
+### O mapa de governadores vira híbrido
+
+`#/mapa` deixou de ser "quem liderava nas pesquisas" com um aviso ao lado. Agora pinta, por UF:
+
+- **21 decididas** — cor cheia do partido do **eleito**, sem hachura. É apuração.
+- **6 em disputa** (AC, AM, DF, ES, RN, TO) — cor **hachurada** do partido de quem lidera as pesquisas de 2º turno, com opacidade pela confiança. É estimativa.
+
+Dois canais visuais, duas perguntas: **hachura diz a NATUREZA do dado, opacidade diz a CONFIANÇA**. Antes a hachura significava "empate técnico", o que misturava as duas coisas.
+
+Só entram pesquisas com campo **posterior a 4/10** e que testem o **confronto real** definido pelas urnas — simulação pré-eleição marcada como turno 2 não é a disputa em curso. A regra virou módulo próprio (`governor-poll-selection.ts`) **compartilhado pelo mapa e pelo painel do estado**, porque as duas telas abrem no mesmo clique e não podem discordar.
+
+O painel ganhou bloco de resultado no topo e título de seção que diz de que mundo são as pesquisas listadas ("Governador — pesquisas antes da eleição" / "— pesquisas do 2º turno").
+
+### Pesquisa x urna: 18 de 21
+
+| | |
+|---|---|
+| Acertaram o eleito | **18 de 21** UFs decididas com pesquisa comparável |
+| Erraram | **BA** (dava ACM Neto), **PA** (dava Hana Ghassan), **RJ** (dava Eduardo Paes) |
+| Erro absoluto mediano | **5,06 pontos** |
+| Maiores erros | RS +15,5 · PB +12,6 · RJ +9,4 |
+| Direção do erro | **18 de 21 SUBESTIMARAM o eleito** |
+
+O viés direcional é a estatística mais informativa, e é a mesma leitura do ranking nacional: erro espalhado nos dois sentidos é ruído amostral; erro concentrado num sentido é viés de campo.
+
+**Duas decisões de método, ambas conservadoras:**
+
+1. **Compara a ÚLTIMA pesquisa anterior à eleição, não o agregado.** A primeira versão usava o agregado e produziu erros absurdos, todos no mesmo sentido. A razão é aritmética: renormalizar para válidos exige dividir pela soma dos candidatos, e no agregado essa soma mistura **elencos diferentes** — um candidato testado por uma única pesquisa entra com o percentual inteiro e infla a base. Uma pesquisa só tem elenco coerente. É a mesma decisão que `poll-accuracy.ts` já tinha tomado para o ranking nacional; eu reinventei a conta em vez de reusar a doutrina, e paguei por isso.
+2. **Converte para válidos antes de comparar.** Percentual de pesquisa é sobre o total de entrevistados, percentual de urna é sobre votos válidos. Subtrair um do outro cru compara bases diferentes — armadilha já catalogada.
+
+**Identidade de candidato (`candidate-identity.ts`):** o resultado oficial de Alagoas traz "JHC" e as pesquisas traziam "João Henrique Caldas (JHC)" — a mesma pessoa, contada como erro de previsão porque os nomes não batiam como texto. A regra nova é deliberadamente estreita (nome completo, ou apelido entre parênteses); não casa por substring ("Zucco" dentro de "Zuccolotto") nem por primeiro nome (há dois Ricardos no ES). Na dúvida devolve `false`: declarar diferença é recuperável, fundir dois candidatos corromperia a comparação em silêncio.
+
+**Precisão por natureza do dado:** resultado oficial sai com a precisão que a fonte publicou (62,65% fica 62,65%; 54% não vira 54,00%); pesquisa sai com uma casa, porque a segunda é ruído amostral.
+
+### Décima primeira e décima segunda ocorrências da família de defeitos — e desta vez o gêmeo foi atrás do primeiro
+
+**O defeito:** `margemReferencia` é média **ponderada** das margens. Com uma única pesquisa de margem 3, `(3·peso)/peso` devolve **2.9999999999999996** em binário. Uma vantagem de exatamente 3 pontos não era empate técnico.
+
+Aconteceu no **RN** — 45 x 42, margem 3 —, o 2º turno estadual mais apertado, e justamente a UF em que a cobertura declara empate técnico.
+
+**O gêmeo, e como apareci nele:** corrigido o `empateTecnico`, a captura de tela mostrou o RN com a opacidade de "corrida acirrada" enquanto o rótulo acessível dizia "empate técnico". A cor e o texto vinham por caminhos diferentes — a quarta lição de método do projeto, aplicada de novo: *perguntar se o número e o desenho vêm pela mesma via*.
+
+A varredura **por forma de frase** (não por função) encontrou a mesma comparação em **cinco** lugares:
+
+1. `aggregate.ts` — `empateTecnico`
+2. `aggregate.ts` — `classificarConfianca` (**no mesmo arquivo que eu acabara de editar, e me escapou na primeira passada**)
+3. `senate.ts` — empate técnico da projeção do Senado
+4. `format.ts` — `nivelConfianca`, que dá a cor do mapa
+5. `presidential-states-layout.ts` — `faixaVantagem`, que pinta o mapa presidencial
+
+`EPSILON_MARGEM` passou a ser exportado do domínio e importado pelos cinco. Um epsilon só, importado por todos, é o que impede as vias de divergir.
+
+**Alcance medido:** na janela cheia, a correção mudava exatamente uma leitura (PI/governador/t2) — que depois deixou de existir junto com as fichas de 2022. Na visão do mapa, muda o RN. O epsilon é de tolerância binária, não de arredondamento: 0,1 ponto acima da margem continua liderança, e há teste fixando isso.
+
+### Onde o 1º turno continua aberto
+
+A rede desta máquina responde **403 ao CONNECT** para todo domínio externo — `tse.jus.br` e `resultados.tse.jus.br` inclusive. O WebFetch está bloqueado; só o WebSearch passa. Permanecem em aberto, com o campo que falta nomeado:
+
+- `presidente/PI` — falta `validosTotal`
+- `governador` em 11 UFs — AC, AP, DF, GO, MA, MS, MT, PI, RN, SE, TO
+- substituições não gastas: PR 99,17% → 99,72%, MG 99,88% → 100%
+- siglas de partido para PB e PA; conflito de sigla de Gelson Merísio (SC)
+- ficha `Ranking Brasil Inteligência`/MS com `dataFim: null`
+- nenhuma tela lê `Agregado.descartadasPorBase`
+
+A decisão sobre o **Instituto Veritá** segue com o usuário, sem mudança desde 06/10.
+
+**846 pesquisas**, 825 testes, build limpo. Faltam 6 dias.
