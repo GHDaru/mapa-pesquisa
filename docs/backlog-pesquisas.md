@@ -4116,3 +4116,57 @@ Sob o título **"1º turno"**. Uma eleição que as urnas decidiram **ao contrá
 Corrigido: o título passa a "1º turno — o que as pesquisas diziam antes de 4 de outubro", "Líder" vira "Liderava nas pesquisas", e entra uma linha nova dizendo o que as urnas fizeram. O resultado oficial vem do **mesmo caso de uso que alimenta a aba Projeção** — nenhuma segunda fonte de verdade. A nota reusa `mesmoCandidato`, então grafia diferente do mesmo nome não vira "erro", e ela se inverte sozinha para "As urnas confirmaram" quando o líder das pesquisas é quem venceu.
 
 **847 pesquisas**, 831 testes, build limpo. Faltam 6 dias.
+
+---
+
+## 20/10 — a estimativa de votos ganha uma segunda régua, ancorada no 1º turno
+
+Pedido: usar a abstenção do 1º turno para estimar os votos válidos do 2º e, a partir deles, os percentuais, com um flag para alternar.
+
+### O que a estimativa fazia, e por que isso ficou curto
+
+`estimarVotos` aplicava `eleitores × pct/100`: o percentual da pesquisa multiplicado pelo **eleitorado apto inteiro**, sem descontar abstenção. O próprio texto do painel confessava isso ("sem descontar abstenção"). Serve para dizer quantos eleitores do país estão com cada candidato, mas não produz nada comparável com um boletim de urna — e com 13,6 milhões de votos caindo em "não atribuídos", a tela convidava a ler lacuna de divulgação como indecisão do eleitor.
+
+### A régua nova
+
+`BaseDaEstimativa` passa a ter dois valores, e o painel traz um seletor entre eles:
+
+- **`eleitorado`** — o comportamento histórico, intacto.
+- **`validos-1o-turno`** — a base ancorada. Em cada UF, os percentuais são aplicados sobre os **votos válidos que aquela UF de fato registrou em 4 de outubro**.
+
+A simplificação que torna a conta robusta: os votos válidos apurados **já embutem, medidas e não supostas, a abstenção e a taxa de brancos e nulos daquela UF**. Não é preciso estimar abstenção para depois descontá-la — ela já está descontada no número que a urna produziu. A razão válidos/eleitorado varia de **72,88% (RJ) a 81,06% (RR)**, variação grande o bastante para que ancorar UF a UF seja melhor que aplicar uma média nacional.
+
+**Duas coisas mudam juntas, e separá-las seria o erro.** A base muda de eleitorado para válidos, e o denominador do percentual muda junto: pesquisa nesta base está no corte de TOTAL, onde os candidatos somam menos de 100. Aplicar percentual de total sobre votos válidos misturaria as duas bases e subestimaria os dois candidatos de uma vez. A base ancorada renormaliza sempre para que os candidatos somem 100 — que é o que "voto válido" significa. Há teste fixando exatamente isso.
+
+**Resíduo zero, e não por conveniência:** na base ancorada não existe "não atribuído", porque voto válido é, por definição, voto em candidato. Brancos, nulos e abstenção não sumiram — saíram da base, já descontados, e a tela os reporta à parte em vez de os apresentar como uma fatia de indecisão.
+
+### O resultado
+
+| | Ancorada (válidos) | Eleitorado |
+|---|---|---|
+| Base | **118.857.969** votos válidos | 157.827.925 eleitores |
+| Lula | 60,1 mi · **50,6%** | 72,8 mi · 46,2% |
+| Flávio | 58,7 mi · **49,4%** | 71,4 mi · 45,2% |
+| Não atribuídos | — | 13,6 mi (8,6%) |
+
+**Conferência externa:** 118.857.969 válidos estimados contra **119.300.788** realmente apurados no 1º turno — diferença de 443 mil, que é o Piauí (âncora substituta) mais o eleitorado do exterior, que não está em UF nenhuma. E a abstenção implícita de 20,71%, somada aos brancos e nulos nacionais, dá ≈38,7 milhões, contra os 39,1 milhões que a imprensa noticiou como "abstenções + brancos + nulos" do 1º turno.
+
+### Três decisões de honestidade
+
+1. **Sem âncora, não ancora.** UF sem âncora faz `estimarVotos` lançar erro, em vez de cair calada de volta no eleitorado e apresentar uma base como se fosse outra.
+2. **O Piauí é a única UF sem apuração presidencial de 1º turno.** Em vez de ficar de fora, recebe a razão válidos/eleitorado das 26 que têm, aplicada ao seu próprio eleitorado — e sai **nomeado na tela** como âncora estimada, não apurada.
+3. **Comparecimento parcial em vez de comparecimento falso.** MG e MA não publicaram brancos e nulos, então o comparecimento delas é desconhecido. A tela soma só onde se sabe, divide pelo eleitorado **daquelas** UFs e diz quais ficaram de fora: "20,7% nas 24 UFs em que ela é conhecida (84,6% do eleitorado); faltam MA, MG e PI". A ancoragem em si não depende disso — ela precisa só dos válidos.
+
+**Dado que foi buscado e NÃO foi gravado:** o TRE-MG publica comparecimento de 77,18% em Minas e a Jovem Pan dá 12.637.274 votos totais; `12.637.274 × (1 − 5,23%)` = 11.976.364 contra os **11.976.032** que a nossa apuração já guarda — diferença de 332 votos, uma confirmação forte da ficha. Mas brancos e nulos derivados de percentual arredondado carregam incerteza de ~3.000 votos cada, e gravá-los como absolutos seria inventar precisão. Ficam de fora, com o motivo registrado.
+
+### A unidade tem de ser a mesma em toda a tela
+
+Trocar a base e esquecer um rótulo produz contradição visível, e foi o que aconteceu na primeira versão: a barra exibia **38,1%** (percentual do eleitorado) ao lado de um número ancorado em válidos. Varrido: rótulo visível da barra, `aria-label`, vantagem agregada, linha tracejada de referência e a tabela de comparação com a média nacional — nessa última, **os dois lados** passam à base de válidos, senão a coluna "Diferença" subtrai grandezas diferentes.
+
+A linha tracejada ganhou o sentido que faltava: na base ancorada ela é **50% dos votos válidos — a marca da vitória**, que é a pergunta do 2º turno.
+
+### Uma divergência que a tela agora mostra em vez de esconder
+
+Na base de válidos, a agregação estadual dá **Lula 50,6 x Flávio 49,4**, enquanto a média NACIONAL do mesmo recorte dá **Flávio 51,0 x Lula 49,0**. A inversão não é efeito da mudança de base — ela já existia na base do eleitorado — e tem causa conhecida: **26 das 27 pesquisas estaduais medem o confronto como ele era ANTES de 4/10**, e só o Distrito Federal tem leitura posterior. A tabela de comparação, agora com os dois lados na mesma régua, exibe a diferença em vez de deixá-la implícita.
+
+**847 pesquisas**, 852 testes, build limpo.

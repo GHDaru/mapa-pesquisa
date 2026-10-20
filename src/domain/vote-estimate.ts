@@ -34,11 +34,59 @@ import type { Agregado } from './aggregate.js';
  * eleitorado — a UF entra em `ufsNormalizadas`.
  */
 
+/**
+ * Sobre o que os percentuais das pesquisas são aplicados.
+ *
+ * - `eleitorado`: base histórica, `eleitores × pct/100`. Trata cada eleitor
+ *   registrado como se fosse votar e usa o percentual sobre o TOTAL de
+ *   entrevistados. Serve para dizer "quantos eleitores do país estão com cada
+ *   candidato hoje", mas não é comparável com um resultado de urna.
+ * - `validos-1o-turno`: base ancorada no que de fato aconteceu em 4 de
+ *   outubro. Os votos VÁLIDOS do 1º turno em cada UF já embutem, medidos e
+ *   não supostos, a abstenção e os brancos e nulos daquela UF. Aplicando sobre
+ *   eles os percentuais em base de VÁLIDOS, o resultado sai na mesma moeda do
+ *   boletim do TSE — e os percentuais podem ser comparados diretamente com os
+ *   47,03% x 45,16% do 1º turno.
+ *
+ * A suposição da segunda base, dita por inteiro: **o 2º turno terá a mesma
+ * abstenção e a mesma taxa de brancos e nulos do 1º, UF a UF**. Historicamente
+ * o 2º turno costuma ter abstenção um pouco MAIOR, então a estimativa de
+ * votos absolutos tende a ficar um pouco alta; os PERCENTUAIS, que é o que a
+ * tela destaca, quase não se mexem com isso, porque abstenção que sobe
+ * proporcionalmente nos dois lados não muda a divisão entre eles.
+ */
+export type BaseDaEstimativa = 'eleitorado' | 'validos-1o-turno';
+
+/** O que o 1º turno mediu numa UF, e que serve de âncora para o 2º. */
+export interface AncoragemUf {
+  /** Votos válidos apurados na UF no 1º turno. É a base de votos da estimativa ancorada. */
+  readonly validosPrimeiroTurno: number;
+  /**
+   * Comparecimento apurado (válidos + brancos + nulos), quando a apuração traz
+   * brancos e nulos. `null` quando a fonte não os publicou — a ancoragem ainda
+   * funciona (ela só precisa dos válidos), mas a tela não pode anunciar a
+   * taxa de abstenção daquela UF.
+   */
+  readonly comparecimentoPrimeiroTurno: number | null;
+  /**
+   * `apuracao` quando os válidos vieram da apuração daquela UF;
+   * `substituto-nacional` quando a UF não tem apuração e os válidos foram
+   * estimados pela razão válidos/eleitorado das UFs que têm. A distinção não
+   * é decorativa: a segunda é suposição, e a tela a declara.
+   */
+  readonly origem: 'apuracao' | 'substituto-nacional';
+}
+
 export interface EstimativaVotosUfEntrada {
   readonly uf: string;
   readonly eleitores: number;
   /** Agregado da disputa presidencial (do turno/confronto em recorte) nessa UF, ou null sem pesquisa estadual. */
   readonly agregado: Agregado | null;
+  /**
+   * O que o 1º turno mediu nesta UF. Obrigatório quando a estimativa roda na
+   * base `validos-1o-turno`; ignorado na base `eleitorado`.
+   */
+  readonly ancoragem?: AncoragemUf | null;
 }
 
 export interface CandidatoEstimado {
@@ -101,6 +149,14 @@ export interface UfOrigemVotos {
   readonly foraDaJanela: boolean;
   /** Votos estimados por candidato nesta UF, com a origem de cada parcela (chave = nome do candidato). */
   readonly votosPorCandidato: Readonly<Record<string, VotosCandidatoUf>>;
+  /**
+   * O número sobre o qual os percentuais foram aplicados nesta UF: o
+   * eleitorado na base `eleitorado`, os votos válidos do 1º turno na base
+   * `validos-1o-turno`.
+   */
+  readonly baseDeVotos: number;
+  /** A âncora usada, quando a base é `validos-1o-turno`. */
+  readonly ancoragem: AncoragemUf | null;
 }
 
 export interface ComparacaoNacional {
@@ -164,6 +220,35 @@ export interface EstimativaVotos {
    * proporcionalmente para caber no eleitorado da UF.
    */
   readonly ufsNormalizadas: readonly string[];
+  /** Sobre o que os percentuais foram aplicados. Ver `BaseDaEstimativa`. */
+  readonly base: BaseDaEstimativa;
+  /**
+   * Soma das bases de todas as UFs: o eleitorado total na base `eleitorado`,
+   * os VOTOS VÁLIDOS ESTIMADOS do 2º turno na base `validos-1o-turno`.
+   */
+  readonly baseTotal: number;
+  /**
+   * O comparecimento do 1º turno, somado sobre as UFs em que ele é CONHECIDO,
+   * com o eleitorado dessas mesmas UFs ao lado.
+   *
+   * Parcial de propósito: três UFs não têm o dado (MG e MA não publicaram
+   * brancos e nulos; o PI não tem apuração presidencial), e somar o
+   * comparecimento delas como se fosse zero daria uma taxa nacional falsa.
+   * Somar só onde se sabe, dividir pelo eleitorado DAQUELAS UFs e dizer
+   * quantas ficaram de fora é a leitura que não mente. `null` só quando
+   * nenhuma UF tem o dado. A ancoragem em si NÃO depende disto — ela precisa
+   * só dos votos válidos.
+   */
+  readonly comparecimento: {
+    readonly votos: number;
+    readonly eleitoresCobertos: number;
+    readonly ufsSemDado: readonly string[];
+  } | null;
+  /**
+   * UFs cuja âncora não veio da apuração e foi estimada pela razão nacional.
+   * Suposição declarada, não dado.
+   */
+  readonly ufsComAncoragemSubstituta: readonly string[];
 }
 
 export class EstimativaVotosError extends Error {
@@ -241,7 +326,23 @@ function chaveComparacao(nome: string): string {
 export function estimarVotos(
   porUf: readonly EstimativaVotosUfEntrada[],
   agregadoNacional: Agregado | null,
+  opcoes: { readonly base?: BaseDaEstimativa } = {},
 ): EstimativaVotos {
+  const base: BaseDaEstimativa = opcoes.base ?? 'eleitorado';
+  const ancorado = base === 'validos-1o-turno';
+
+  // Sem âncora não se ancora: é melhor falhar alto do que cair em silêncio
+  // de volta no eleitorado e apresentar uma base como se fosse a outra.
+  if (ancorado) {
+    const semAncora = porUf.filter((u) => u.ancoragem == null);
+    if (semAncora.length > 0) {
+      throw new EstimativaVotosError(
+        `Não é possível ancorar a estimativa no 1º turno: ${semAncora.length} UF(s) sem âncora ` +
+          `(${semAncora.map((u) => u.uf).join(', ')}).`,
+      );
+    }
+  }
+
   const ufsSemAgregadoEstadual = porUf.filter((u) => u.agregado === null);
   if (agregadoNacional === null && ufsSemAgregadoEstadual.length > 0) {
     const lista = ufsSemAgregadoEstadual.map((u) => u.uf).join(', ');
@@ -262,6 +363,11 @@ export function estimarVotos(
   let eleitoradoComPesquisaEstadual = 0;
   let naoAtribuidosVotos = 0;
   let naoAtribuidosDeclaradosVotos = 0;
+  let baseTotal = 0;
+  let comparecimentoVotos = 0;
+  let comparecimentoEleitores = 0;
+  const ufsSemComparecimento: string[] = [];
+  const ufsComAncoragemSubstituta: string[] = [];
 
   for (const entrada of porUf) {
     eleitoradoTotal += entrada.eleitores;
@@ -319,21 +425,49 @@ export function estimarVotos(
     }
 
     const somaPctBruto = contribuicoes.reduce((soma, c) => soma + c.pct, 0);
-    const precisaNormalizar = somaPctBruto > 100;
+
+    /**
+     * Duas coisas mudam JUNTAS entre as bases, e separá-las seria o erro:
+     *
+     * - A base de votos. No eleitorado é o eleitorado; ancorada, são os votos
+     *   válidos do 1º turno daquela UF.
+     * - O denominador do percentual. Pesquisa nesta base está no corte de
+     *   TOTAL de entrevistados, e sobre o total os candidatos somam menos de
+     *   100 (o resto são brancos, nulos e indecisos). Aplicar esse percentual
+     *   sobre VÁLIDOS misturaria as duas bases e subestimaria os dois
+     *   candidatos de uma vez — por isso a base ancorada renormaliza SEMPRE
+     *   para que os candidatos somem 100, que é o que "votos válidos"
+     *   significa. A base `eleitorado` mantém o comportamento antigo:
+     *   normaliza só quando a soma passa de 100, para não espremer o resíduo.
+     */
+    const precisaNormalizar = ancorado ? somaPctBruto > 0 : somaPctBruto > 100;
     const fatorNormalizacao = precisaNormalizar ? 100 / somaPctBruto : 1;
-    if (precisaNormalizar) ufsNormalizadas.push(entrada.uf);
+    if (!ancorado && precisaNormalizar) ufsNormalizadas.push(entrada.uf);
+
+    const ancoragem = entrada.ancoragem ?? null;
+    const baseDeVotos = ancorado ? ancoragem!.validosPrimeiroTurno : entrada.eleitores;
+    baseTotal += baseDeVotos;
+    if (ancorado && ancoragem) {
+      if (ancoragem.origem === 'substituto-nacional') ufsComAncoragemSubstituta.push(entrada.uf);
+      if (ancoragem.comparecimentoPrimeiroTurno === null) {
+        ufsSemComparecimento.push(entrada.uf);
+      } else {
+        comparecimentoVotos += ancoragem.comparecimentoPrimeiroTurno;
+        comparecimentoEleitores += entrada.eleitores;
+      }
+    }
 
     const votosPorCandidato: Record<string, VotosCandidatoUf> = {};
     let somaVotosAtribuidosUf = 0;
 
     for (const c of contribuicoes) {
       const pctFinal = c.pct * fatorNormalizacao;
-      const votos = entrada.eleitores * (pctFinal / 100);
+      const votos = baseDeVotos * (pctFinal / 100);
       // A margem de erro é uma propriedade da pesquisa, não da parcela
       // normalizada de espaço no eleitorado — não aplica `fatorNormalizacao`
       // aqui, para não subestimar a incerteza justamente nas UFs onde o
       // agregado bruto excedeu 100% (ver `ufsNormalizadas`).
-      const margemVotos = entrada.eleitores * (c.margemPct / 100);
+      const margemVotos = baseDeVotos * (c.margemPct / 100);
       somaVotosAtribuidosUf += votos;
 
       votosPorCandidato[c.candidato] = { votos, origem: c.origem };
@@ -359,7 +493,11 @@ export function estimarVotos(
     // Parcela do eleitorado desta UF não coberta por nenhum candidato
     // (brancos, nulos, indecisos, outros): nunca negativa — quando a
     // normalização acima já usou 100% do eleitorado, fica em 0.
-    const residuoUf = Math.max(0, entrada.eleitores - somaVotosAtribuidosUf);
+    // Na base ancorada o resíduo é ZERO por definição: voto válido é, por
+    // definição, voto em candidato. Brancos, nulos e abstenção não sumiram —
+    // saíram da base, já descontados pela apuração do 1º turno, e a tela os
+    // reporta separadamente em vez de os misturar com os votos dos candidatos.
+    const residuoUf = ancorado ? 0 : Math.max(0, entrada.eleitores - somaVotosAtribuidosUf);
     naoAtribuidosVotos += residuoUf;
 
     // Quanto do resíduo desta UF as pesquisas realmente publicaram como linha
@@ -369,7 +507,7 @@ export function estimarVotos(
     const pctNaoCandidatoPublicado = agregadoDaUf.outros.reduce((soma, c) => soma + c.pct, 0);
     naoAtribuidosDeclaradosVotos += Math.min(
       residuoUf,
-      entrada.eleitores * (pctNaoCandidatoPublicado / 100),
+      baseDeVotos * (pctNaoCandidatoPublicado / 100),
     );
 
     porUfResultado.push({
@@ -378,6 +516,8 @@ export function estimarVotos(
       origem: origemUf,
       foraDaJanela: entrada.agregado?.foraDaJanela ?? false,
       votosPorCandidato,
+      baseDeVotos,
+      ancoragem: ancorado ? ancoragem : null,
     });
   }
 
@@ -404,11 +544,27 @@ export function estimarVotos(
     }))
     .sort((a, b) => b.votos - a.votos);
 
+  /**
+   * Os dois lados da comparação têm de estar na MESMA base, senão a coluna
+   * "Diferença" subtrai grandezas diferentes. Na base ancorada o estimado é
+   * percentual de voto VÁLIDO, então o percentual da média nacional também é
+   * renormalizado para válidos — dividido pela soma dos próprios candidatos
+   * do agregado nacional, que é a mesma conta que a imprensa faz para
+   * publicar a manchete de válidos.
+   */
+  const somaCandidatosNacional = agregadoNacional
+    ? agregadoNacional.candidatos.reduce((soma, c) => soma + c.pct, 0)
+    : 0;
   const comparacaoNacional: ComparacaoNacional[] = agregadoNacional
     ? agregadoNacional.candidatos.map((c) => {
         const chave = c.candidato.trim();
         const estimado = candidatos.find((cf) => cf.candidato === chave);
-        return { candidato: chave, pctNacional: c.pct, pctEstimado: estimado?.pctDoEleitorado ?? 0 };
+        const pctNacional =
+          ancorado && somaCandidatosNacional > 0 ? (c.pct / somaCandidatosNacional) * 100 : c.pct;
+        const pctEstimado = ancorado
+          ? (estimado?.pctDosVotosAtribuidos ?? 0)
+          : (estimado?.pctDoEleitorado ?? 0);
+        return { candidato: chave, pctNacional, pctEstimado };
       })
     : [];
 
@@ -427,5 +583,16 @@ export function estimarVotos(
     porUf: porUfResultado,
     comparacaoNacional,
     ufsNormalizadas,
+    base,
+    baseTotal,
+    comparecimento:
+      ancorado && comparecimentoEleitores > 0
+        ? {
+            votos: comparecimentoVotos,
+            eleitoresCobertos: comparecimentoEleitores,
+            ufsSemDado: ufsSemComparecimento,
+          }
+        : null,
+    ufsComAncoragemSubstituta,
   };
 }

@@ -175,7 +175,15 @@ const LULA_T1 = candidato('Luiz Inácio Lula da Silva', 62_585_490, 3_471_162);
 const FLAVIO_T1 = candidato('Flávio Bolsonaro', 54_824_865, 3_471_162);
 
 function uf(nome: string, votosPorCandidato: Record<string, VotosCandidatoUf>): UfOrigemVotos {
-  return { uf: nome, eleitores: 1_000_000, origem: 'estadual', foraDaJanela: false, votosPorCandidato };
+  return {
+    uf: nome,
+    eleitores: 1_000_000,
+    origem: 'estadual',
+    foraDaJanela: false,
+    votosPorCandidato,
+    baseDeVotos: 1_000_000,
+    ancoragem: null,
+  };
 }
 
 const estadual = (votos: number): VotosCandidatoUf => ({ votos, origem: 'estadual' });

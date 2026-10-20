@@ -1,6 +1,12 @@
 import type { Clock, Repositorios } from '../ports.js';
 import { agregarPesquisas } from '../../domain/aggregate.js';
-import { estimarVotos, type EstimativaVotos, type EstimativaVotosUfEntrada } from '../../domain/vote-estimate.js';
+import {
+  estimarVotos,
+  type AncoragemUf,
+  type BaseDaEstimativa,
+  type EstimativaVotos,
+  type EstimativaVotosUfEntrada,
+} from '../../domain/vote-estimate.js';
 import { criarDisputa, UF_NACIONAL, UFS } from '../../domain/race.js';
 import { CONFRONTO_LULA_FLAVIO, type Confronto, filtrarPorConfronto } from '../../domain/runoff.js';
 
@@ -12,6 +18,52 @@ export interface OpcoesVoteEstimate {
    * Cury, Lula x Caiado...) são descartadas — ver `domain/runoff.ts`.
    */
   readonly confronto?: Confronto;
+  /**
+   * Sobre o que aplicar os percentuais. Padrão `eleitorado` (comportamento
+   * histórico). Com `validos-1o-turno` a estimativa é ancorada na apuração de
+   * 4 de outubro: a abstenção e os brancos e nulos medidos em cada UF saem da
+   * base, e o que sobra — os votos válidos — é dividido pelos percentuais em
+   * base de válidos. Ver `BaseDaEstimativa` em `domain/vote-estimate.ts`.
+   */
+  readonly base?: BaseDaEstimativa;
+}
+
+/**
+ * Âncoras do 1º turno por UF, a partir da apuração presidencial de turno 1.
+ *
+ * A UF que não tem apuração não fica de fora e também não é inventada: recebe
+ * a razão válidos/eleitorado das UFs que TÊM apuração, aplicada ao seu
+ * próprio eleitorado, e sai marcada como `substituto-nacional` para a tela
+ * poder dizê-lo. Hoje isso atinge só o Piauí, única UF sem recorte
+ * presidencial de 1º turno.
+ */
+function montarAncoragens(
+  repos: Repositorios,
+): { readonly porUf: ReadonlyMap<string, AncoragemUf>; readonly razaoNacional: number | null } {
+  const recortes = repos.apuracao
+    .dados()
+    .recortes.filter((r) => r.cargo === 'presidente' && r.turno === 1 && r.uf !== null);
+
+  const porUf = new Map<string, AncoragemUf>();
+  let somaValidos = 0;
+  let somaEleitores = 0;
+
+  for (const r of recortes) {
+    if (r.validosTotal == null || r.validosTotal <= 0) continue;
+    const eleitorado = repos.electorate.porUf(r.uf!);
+    if (eleitorado == null) continue;
+    somaValidos += r.validosTotal;
+    somaEleitores += eleitorado.eleitores;
+    porUf.set(r.uf!, {
+      validosPrimeiroTurno: r.validosTotal,
+      comparecimentoPrimeiroTurno:
+        r.brancos != null && r.nulos != null ? r.validosTotal + r.brancos + r.nulos : null,
+      origem: 'apuracao',
+    });
+  }
+
+  const razaoNacional = somaEleitores > 0 ? somaValidos / somaEleitores : null;
+  return { porUf, razaoNacional };
 }
 
 /**
@@ -39,7 +91,12 @@ export function criarGetVoteEstimate(repos: Repositorios, clock: Clock) {
     opcoes: OpcoesVoteEstimate = {},
   ): EstimativaVotos | null {
     const hoje = clock.hoje();
+    const base: BaseDaEstimativa = opcoes.base ?? 'eleitorado';
     const confronto = turno === 2 ? (opcoes.confronto ?? CONFRONTO_LULA_FLAVIO) : null;
+    const { porUf: ancoragens, razaoNacional } =
+      base === 'validos-1o-turno'
+        ? montarAncoragens(repos)
+        : { porUf: new Map<string, AncoragemUf>(), razaoNacional: null };
     const recortar = (pesquisas: ReturnType<Repositorios['polls']['porDisputa']>) =>
       confronto ? filtrarPorConfronto(pesquisas, confronto) : pesquisas;
 
@@ -52,13 +109,24 @@ export function criarGetVoteEstimate(repos: Repositorios, clock: Clock) {
       if (eleitorado == null) continue; // sem eleitorado cadastrado: não dá para estimar a UF, exclui.
       const pollsUf = recortar(repos.polls.porDisputa(criarDisputa(uf, 'presidente', turno)));
       const agregado = agregarPesquisas(pollsUf, {}, hoje);
-      porUf.push({ uf, eleitores: eleitorado.eleitores, agregado });
+      const ancoragem =
+        base === 'validos-1o-turno'
+          ? (ancoragens.get(uf) ??
+            (razaoNacional === null
+              ? null
+              : {
+                  validosPrimeiroTurno: eleitorado.eleitores * razaoNacional,
+                  comparecimentoPrimeiroTurno: null,
+                  origem: 'substituto-nacional' as const,
+                }))
+          : null;
+      porUf.push({ uf, eleitores: eleitorado.eleitores, agregado, ancoragem });
     }
 
     if (porUf.length === 0) return null;
 
     try {
-      return estimarVotos(porUf, agregadoNacional);
+      return estimarVotos(porUf, agregadoNacional, { base });
     } catch {
       // Falta agregado estadual e nacional para alguma UF: sem dado
       // suficiente para uma estimativa honesta — retorna null em vez de

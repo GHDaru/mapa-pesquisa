@@ -3,6 +3,7 @@ import type { CasosDeUso } from '../../../../application/use-cases/index.js';
 import type { Partido } from '../../../../domain/party.js';
 import { espectroDoPartido, type Espectro } from '../../../../domain/spectrum.js';
 import type {
+  BaseDaEstimativa,
   CandidatoEstimado,
   EstimativaVotos,
   OrigemVotoCandidato,
@@ -56,7 +57,106 @@ import {
  * Lula x Flávio Bolsonaro). O turno escolhido aparece no título e no método,
  * para a tabela nunca ficar ambígua sobre de que eleição ela fala.
  */
-export function renderVoteEstimate(container: HTMLElement, casos: CasosDeUso, turno: Turno = 1): void {
+/**
+ * O seletor de base — o botão que troca a régua da estimativa.
+ *
+ * Existe porque as duas leituras respondem perguntas diferentes e nenhuma das
+ * duas é "a certa": o eleitorado total diz quantos eleitores do país estão com
+ * cada candidato; os votos válidos ancorados dizem como ficaria o boletim se a
+ * ida às urnas repetisse a de 4 de outubro. Deixar só uma esconderia metade.
+ */
+function criarSeletorDeBase(
+  atual: BaseDaEstimativa,
+  aoTrocar: (base: BaseDaEstimativa) => void,
+): HTMLElement {
+  const grupo = criarEl('div', {
+    className: 've-base',
+    attrs: { role: 'radiogroup', 'aria-label': 'Base de cálculo da estimativa' },
+  });
+  grupo.append(criarEl('span', { className: 've-base__rotulo', texto: 'Base de cálculo:' }));
+
+  for (const base of ['validos-1o-turno', 'eleitorado'] as const) {
+    const selecionado = base === atual;
+    const botao = criarEl('button', {
+      className: `ve-base__opcao${selecionado ? ' ve-base__opcao--ativa' : ''}`,
+      texto: rotuloBase(base),
+      attrs: {
+        type: 'button',
+        role: 'radio',
+        'aria-checked': selecionado ? 'true' : 'false',
+        ...(selecionado ? {} : { tabindex: '-1' }),
+      },
+    });
+    if (!selecionado) botao.addEventListener('click', () => aoTrocar(base));
+    grupo.append(botao);
+  }
+  return grupo;
+}
+
+/**
+ * A base com que a aba abre. No 1º turno a eleição já aconteceu e a estimativa
+ * é retrospectiva, então vale a base histórica; no 2º turno, que é o que está
+ * em jogo, abre ancorada no 1º turno — é a leitura comparável com um boletim
+ * de urna, e é a que o leitor quer ver primeiro.
+ */
+export function baseInicial(turno: Turno): BaseDaEstimativa {
+  return turno === 2 ? 'validos-1o-turno' : 'eleitorado';
+}
+
+export function rotuloBase(base: BaseDaEstimativa): string {
+  return base === 'validos-1o-turno'
+    ? 'Votos válidos, ancorado no 1º turno'
+    : 'Eleitorado total';
+}
+
+/** Unidade em que os percentuais daquela base são lidos. */
+export function rotuloUnidadeDaBase(base: BaseDaEstimativa): string {
+  return base === 'validos-1o-turno' ? '% dos votos válidos' : '% do eleitorado';
+}
+
+/**
+ * A frase que torna a base ancorada auditável: quantos votos válidos ela
+ * supõe, de onde sai a suposição e o que ela NÃO cobre. Sem isso o número
+ * parece apuração.
+ */
+export function textoDaAncoragem(e: EstimativaVotos): string | null {
+  if (e.base !== 'validos-1o-turno') return null;
+  const partes: string[] = [
+    `Os percentuais das pesquisas foram aplicados sobre ${formatarInteiro(e.baseTotal)} votos válidos ` +
+      'estimados — os votos válidos que cada estado de fato registrou em 4 de outubro, que já descontam ' +
+      'a abstenção e os brancos e nulos medidos ali.',
+  ];
+  if (e.comparecimento) {
+    const taxa = (e.comparecimento.votos / e.comparecimento.eleitoresCobertos) * 100;
+    const faltam = e.comparecimento.ufsSemDado;
+    const cobertura = (e.comparecimento.eleitoresCobertos / e.eleitoradoTotal) * 100;
+    partes.push(
+      `A abstenção do 1º turno foi de ${formatarNumeroPt(100 - taxa)}% nas ${
+        27 - faltam.length
+      } UFs em que ela é conhecida (${formatarNumeroPt(cobertura)}% do eleitorado)` +
+        (faltam.length > 0 ? `; faltam ${listaEmPortugues(faltam)}.` : '.'),
+    );
+  }
+  if (e.ufsComAncoragemSubstituta.length > 0) {
+    partes.push(
+      `${listaEmPortugues([...e.ufsComAncoragemSubstituta])} não tem apuração presidencial de 1º turno: ` +
+        'a âncora dessa UF foi estimada pela razão votos válidos/eleitorado das demais.',
+    );
+  }
+  partes.push(
+    'A suposição, por inteiro: o 2º turno terá a mesma abstenção e a mesma taxa de brancos e nulos do 1º. ' +
+      'Historicamente a abstenção do 2º turno é um pouco MAIOR, então os votos absolutos tendem a ficar ' +
+      'um pouco altos; a divisão percentual entre os dois quase não se mexe com isso.',
+  );
+  return partes.join(' ');
+}
+
+export function renderVoteEstimate(
+  container: HTMLElement,
+  casos: CasosDeUso,
+  turno: Turno = 1,
+  base: BaseDaEstimativa = baseInicial(turno),
+): void {
   container.innerHTML = '';
 
   const confronto = turno === 2 ? CONFRONTO_LULA_FLAVIO : null;
@@ -65,15 +165,23 @@ export function renderVoteEstimate(container: HTMLElement, casos: CasosDeUso, tu
 
   const raiz = criarEl('section', { className: 've-view', attrs: { 'aria-labelledby': 've-titulo' } });
 
-  const estimativa = casos.getVoteEstimate(turno);
+  const seletor = criarSeletorDeBase(base, (nova) =>
+    renderVoteEstimate(container, casos, turno, nova),
+  );
+
+  const estimativa = casos.getVoteEstimate(turno, { base });
   if (estimativa === null || estimativa.candidatos.length === 0) {
     raiz.append(
       criarEl('h1', { className: 've-title', texto: titulo, attrs: { id: 've-titulo' } }),
+      seletor,
       criarEl('p', {
         className: 've-empty',
         texto:
-          `Ainda não há dados suficientes de ${recorte} (eleitorado cadastrado e pesquisas presidenciais, ` +
-          'estaduais ou nacional) para calcular esta estimativa.',
+          base === 'validos-1o-turno'
+            ? `Ainda não há apuração de 1º turno suficiente para ancorar a estimativa de ${recorte}. ` +
+              'Troque a base acima para ver a estimativa sobre o eleitorado total.'
+            : `Ainda não há dados suficientes de ${recorte} (eleitorado cadastrado e pesquisas presidenciais, ` +
+              'estaduais ou nacional) para calcular esta estimativa.',
       }),
     );
     container.append(raiz);
@@ -82,7 +190,7 @@ export function renderVoteEstimate(container: HTMLElement, casos: CasosDeUso, tu
 
   const partidos = casos.listParties();
   const origens = origensPresentes(estimativa.candidatos);
-  const vantagem = calcularVantagemAgregada(estimativa.candidatos, estimativa.eleitoradoTotal);
+  const vantagem = calcularVantagemAgregada(estimativa.candidatos, estimativa.baseTotal, base);
   const dadosPorUf = coletarDadosAgregadosPorUf(casos, turno);
   // Referência honesta do salto dos não atribuídos no 2º turno: o número real
   // do 1º turno, não uma estimativa de quanto ele "deveria" ter subido.
@@ -90,9 +198,20 @@ export function renderVoteEstimate(container: HTMLElement, casos: CasosDeUso, tu
 
   const comAsterisco = temAsteriscoNaTabela(estimativa.porUf);
 
-  raiz.append(criarCabecalho(estimativa, titulo, recorte, origens, comAsterisco));
+  raiz.append(criarCabecalho(estimativa, titulo, recorte, origens, comAsterisco, seletor));
+  const ancoragem = textoDaAncoragem(estimativa);
+  if (ancoragem) {
+    raiz.append(
+      criarEl('p', { className: 've-ancoragem', texto: ancoragem, attrs: { role: 'note' } }),
+    );
+  }
   raiz.append(criarSecaoComparacaoBarras(estimativa, partidos, vantagem, origens));
-  raiz.append(criarBlocoNaoAtribuidos(estimativa, vantagem, turno, turnoAnterior));
+  // Na base ancorada não há resíduo: voto válido é voto em candidato, e
+  // abstenção/brancos/nulos saíram da base em vez de virarem uma fatia de
+  // "não atribuídos" que o leitor interpretaria como indecisão.
+  if (estimativa.base !== 'validos-1o-turno') {
+    raiz.append(criarBlocoNaoAtribuidos(estimativa, vantagem, turno, turnoAnterior));
+  }
   raiz.append(criarSecaoComparacao(estimativa));
   raiz.append(criarSecaoPorUf(estimativa, comAsterisco, dadosPorUf));
 
@@ -222,17 +341,26 @@ export interface VantagemAgregada {
  */
 export function calcularVantagemAgregada(
   candidatos: readonly CandidatoEstimado[],
-  eleitoradoTotal: number,
+  total: number,
+  base: BaseDaEstimativa = 'eleitorado',
 ): VantagemAgregada | null {
   const primeiro = candidatos[0];
   const segundo = candidatos[1];
   if (!primeiro || !segundo) return null;
 
   const votos = Math.max(0, primeiro.votos - segundo.votos);
-  const pontos = Math.max(0, primeiro.pctDoEleitorado - segundo.pctDoEleitorado);
+  // A vantagem tem de estar na MESMA unidade que a tela mostra ao lado dela.
+  // Na base ancorada isso é ponto de voto VÁLIDO — a unidade do boletim do
+  // TSE e dos 47,03% x 45,16% do 1º turno. Medi-la em pontos do eleitorado ali
+  // encolheria a diferença em ~25% e faria a tela comparar com a margem de
+  // erro na régua errada.
+  const pontos =
+    base === 'validos-1o-turno'
+      ? Math.max(0, primeiro.pctDosVotosAtribuidos - segundo.pctDosVotosAtribuidos)
+      : Math.max(0, primeiro.pctDoEleitorado - segundo.pctDoEleitorado);
   const margemPontos = Math.max(
-    margemPontosDoCandidato(primeiro, eleitoradoTotal),
-    margemPontosDoCandidato(segundo, eleitoradoTotal),
+    margemPontosDoCandidato(primeiro, total),
+    margemPontosDoCandidato(segundo, total),
   );
   const nivel = classificarConfianca(pontos, margemPontos);
 
@@ -296,18 +424,27 @@ function criarCabecalho(
   recorte: string,
   origens: OrigensPresentes,
   comAsterisco: boolean,
+  seletor: HTMLElement,
 ): HTMLElement {
   const parcela = e.eleitoradoTotal > 0 ? (e.eleitoradoComPesquisaEstadual / e.eleitoradoTotal) * 100 : 0;
 
   return criarEl('header', { className: 've-header' }, [
     criarEl('h1', { className: 've-title', texto: titulo, attrs: { id: 've-titulo' } }),
+    // Antes do método e das estatísticas: os dois já dependem da base, e ler
+    // "157,8 milhões" sem saber qual régua está ativa é ler o número errado.
+    seletor,
     criarEl('p', {
       className: 've-method',
       texto:
-        `Método em uma frase: cada UF contribui com o seu eleitorado apto — o total de eleitores registrados no ` +
-        'TSE, sem descontar abstenção (em 2022 o comparecimento nacional foi de cerca de 79%) — multiplicado pelo ' +
-        `percentual da própria pesquisa presidencial estadual de ${recorte}, ou pelo percentual do agregado ` +
-        'nacional do mesmo recorte quando falta pesquisa estadual.',
+        e.base === 'validos-1o-turno'
+          ? 'Método em uma frase: cada UF contribui com os VOTOS VÁLIDOS que de fato registrou em 4 de outubro — ' +
+            'abstenção, brancos e nulos já descontados pela apuração, não supostos — multiplicados pelo percentual ' +
+            `da própria pesquisa presidencial estadual de ${recorte}, renormalizado para a base de válidos, ou pelo ` +
+            'percentual do agregado nacional do mesmo recorte quando falta pesquisa estadual.'
+          : `Método em uma frase: cada UF contribui com o seu eleitorado apto — o total de eleitores registrados no ` +
+            'TSE, sem descontar abstenção (em 2022 o comparecimento nacional foi de cerca de 79%) — multiplicado pelo ' +
+            `percentual da própria pesquisa presidencial estadual de ${recorte}, ou pelo percentual do agregado ` +
+            'nacional do mesmo recorte quando falta pesquisa estadual.',
     }),
     // Só explica o complemento nacional quando ele existe de fato nesta tela
     // (no 2º turno nenhuma parcela vem dele), e só aponta para o "*" quando a
@@ -334,6 +471,9 @@ function criarEstatisticas(e: EstimativaVotos, parcela: number): HTMLElement {
     ]);
 
   return criarEl('dl', { className: 've-stats' }, [
+    e.base === 'validos-1o-turno'
+      ? item('Votos válidos estimados', formatarInteiro(e.baseTotal))
+      : null,
     item('Eleitorado total', formatarInteiro(e.eleitoradoTotal)),
     item('Coberto por pesquisa estadual', `${formatarPct(parcela)} · ${formatarInteiro(e.eleitoradoComPesquisaEstadual)}`),
     item('UFs com pesquisa estadual', `${e.ufsComPesquisa.length} de ${e.ufsComPesquisa.length + e.ufsSemPesquisa.length}`),
@@ -380,6 +520,7 @@ export function montarItensLegenda(
   origens: OrigensPresentes,
   comFaixa: boolean,
   metadeEleitorado: number | null,
+  base: BaseDaEstimativa = 'eleitorado',
 ): ItemLegenda[] {
   const itens: ItemLegenda[] = [];
   if (quantidadeDeOrigens(origens) > 1) {
@@ -400,7 +541,12 @@ export function montarItensLegenda(
   if (metadeEleitorado != null) {
     itens.push({
       classe: 've-legend-swatch--referencia',
-      texto: `Linha tracejada = 50% do eleitorado (${formatarMilhoes(metadeEleitorado)} de votos)`,
+      texto:
+        base === 'validos-1o-turno'
+          ? `Linha tracejada = 50% dos votos válidos — a marca da vitória (${formatarMilhoes(
+              metadeEleitorado,
+            )} de votos)`
+          : `Linha tracejada = 50% do eleitorado (${formatarMilhoes(metadeEleitorado)} de votos)`,
     });
   }
   return itens;
@@ -528,6 +674,7 @@ function criarLinhaComparacaoBarra(
   candidato: CandidatoEstimado,
   partidos: readonly Partido[],
   escalaGrafico: EscalaGrafico,
+  base: BaseDaEstimativa,
 ): HTMLElement {
   const espectro = resolverEspectro(candidato.partido, partidos);
   const seg = montarSegmentosBarra(candidato);
@@ -536,11 +683,15 @@ function criarLinhaComparacaoBarra(
   const referenciaAria =
     escalaGrafico.pctMetadeEleitorado == null
       ? ''
-      : ` Referência de 50% do eleitorado: ${formatarMilhoes(escalaGrafico.metadeEleitorado)} de votos.`;
+      : ` Referência de 50% ${
+          base === 'validos-1o-turno' ? 'dos votos válidos' : 'do eleitorado'
+        }: ${formatarMilhoes(escalaGrafico.metadeEleitorado)} de votos.`;
 
   const rotuloAria =
     `${candidato.candidato}: ${formatarMilhoes(candidato.votos)} de votos estimados, ` +
-    `${formatarPct(candidato.pctDoEleitorado)} do eleitorado. ` +
+    `${formatarPct(
+      base === 'validos-1o-turno' ? candidato.pctDosVotosAtribuidos : candidato.pctDoEleitorado,
+    )} ${base === 'validos-1o-turno' ? 'dos votos válidos' : 'do eleitorado'}. ` +
     `Faixa de incerteza (margem de erro agregada): ${formatarMilhoes(candidato.votosMin)} a ` +
     `${formatarMilhoes(candidato.votosMax)}. Composição: ${formatarPct(seg.pctEstadual)} de UFs com pesquisa ` +
     `estadual, ${formatarPct(seg.pctComplemento)} de complemento nacional em UFs com pesquisa, ` +
@@ -577,7 +728,11 @@ function criarLinhaComparacaoBarra(
 
   const valor = criarEl('span', {
     className: 've-chart-value',
-    texto: `${formatarMilhoes(candidato.votos)} · ${formatarPct(candidato.pctDoEleitorado)}`,
+    // O percentual VISÍVEL tem de ser o mesmo que o aria-label anuncia e o
+    // mesmo em que a vantagem é medida: na base ancorada, voto válido.
+    texto: `${formatarMilhoes(candidato.votos)} · ${formatarPct(
+      base === 'validos-1o-turno' ? candidato.pctDosVotosAtribuidos : candidato.pctDoEleitorado,
+    )}`,
   });
 
   return criarEl('div', { className: 've-chart-row' }, [
@@ -628,10 +783,10 @@ function criarSecaoComparacaoBarras(
   origens: OrigensPresentes,
 ): HTMLElement {
   const candidatos = e.candidatos; // já ordenados por votos desc.
-  const escala = calcularEscalaGrafico(candidatos, e.eleitoradoTotal);
+  const escala = calcularEscalaGrafico(candidatos, e.baseTotal);
 
   const chart = criarEl('div', { className: 've-chart' }, [
-    ...candidatos.map((c) => criarLinhaComparacaoBarra(c, partidos, escala)),
+    ...candidatos.map((c) => criarLinhaComparacaoBarra(c, partidos, escala, e.base)),
     vantagem ? criarLinhaVantagem(vantagem) : null,
   ]);
 
@@ -642,7 +797,12 @@ function criarSecaoComparacaoBarras(
       attrs: { id: 've-chart-heading' },
     }),
     criarLegendaBarra(
-      montarItensLegenda(origens, true, escala.pctMetadeEleitorado == null ? null : escala.metadeEleitorado),
+      montarItensLegenda(
+        origens,
+        true,
+        escala.pctMetadeEleitorado == null ? null : escala.metadeEleitorado,
+        e.base,
+      ),
     ),
     chart,
   ]);

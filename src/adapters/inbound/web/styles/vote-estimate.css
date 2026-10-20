@@ -567,3 +567,53 @@
     transition-duration: 0ms;
   }
 }
+
+/* Seletor de base da estimativa: troca a régua entre eleitorado total e votos
+   válidos ancorados no 1º turno. Controle de duas opções, não um interruptor
+   liga/desliga — nenhuma das duas bases é "o normal" e a outra "a alternativa",
+   elas respondem perguntas diferentes. */
+.ve-base {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2, 0.5rem);
+  margin: var(--space-3, 0.75rem) 0;
+}
+.ve-base__rotulo {
+  font: var(--text-body-sm);
+  color: var(--color-text-subtle);
+}
+.ve-base__opcao {
+  padding: var(--space-1, 0.25rem) var(--space-3, 0.75rem);
+  border: 1px solid var(--color-border, #d4d4d8);
+  border-radius: var(--radius-pill, 999px);
+  background: transparent;
+  color: var(--color-text);
+  font: var(--text-body-sm);
+  cursor: pointer;
+}
+.ve-base__opcao:hover {
+  border-color: var(--color-text-tertiary, #71717a);
+}
+.ve-base__opcao--ativa {
+  background: var(--color-text);
+  border-color: var(--color-text);
+  color: var(--color-surface, #fff);
+  cursor: default;
+}
+.ve-base__opcao:focus-visible {
+  outline: 2px solid var(--color-accent, #6b5bd6);
+  outline-offset: 2px;
+}
+
+/* A suposição da base ancorada, dita por inteiro ao lado do número. Fundo
+   próprio porque é ressalva de método, não legenda do gráfico. */
+.ve-ancoragem {
+  margin: var(--space-3, 0.75rem) 0;
+  padding: var(--space-3, 0.75rem);
+  border-left: 3px solid var(--color-text-tertiary, #71717a);
+  border-radius: var(--radius-sm, 4px);
+  background: var(--color-surface-subtle, rgb(0 0 0 / 3%));
+  font: var(--text-body-sm);
+  max-width: 78ch;
+}
