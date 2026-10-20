@@ -4170,3 +4170,48 @@ A linha tracejada ganhou o sentido que faltava: na base ancorada ela é **50% do
 Na base de válidos, a agregação estadual dá **Lula 50,6 x Flávio 49,4**, enquanto a média NACIONAL do mesmo recorte dá **Flávio 51,0 x Lula 49,0**. A inversão não é efeito da mudança de base — ela já existia na base do eleitorado — e tem causa conhecida: **26 das 27 pesquisas estaduais medem o confronto como ele era ANTES de 4/10**, e só o Distrito Federal tem leitura posterior. A tabela de comparação, agora com os dois lados na mesma régua, exibe a diferença em vez de deixá-la implícita.
 
 **847 pesquisas**, 852 testes, build limpo.
+
+---
+
+## 20/10 — quatro pesquisas, e a corrida sai do empate técnico pelo motivo menos óbvio
+
+Rodada diária. Faltam **5 dias** para o 2º turno.
+
+### As quatro fichas (848 → 851)
+
+| UF | Instituto | Campo | Resultado | Fecha em |
+|---|---|---|---|---|
+| BR | AtlasIntel/Bloomberg | 13–18/10 | Flávio 49,8 x Lula 47,6 | 100,0 |
+| BR | Real Time Big Data | 15–19/10 | Flávio 48 x Lula 45 | 100 |
+| ES | Real Time Big Data | 15–19/10 | Pazolini 46 x Ferraço 43 | 100 |
+| DF | Real Time Big Data | 15–19/10 | Celina 53 x Grass 37 | 100 |
+
+Todas no corte de totais, todas com as linhas de não-candidato publicadas, todas fechando em 100.
+
+**O teste do delta funcionou três vezes, e as três identificaram ficha NOSSA.** A matéria da Real Time descreve a rodada anterior do instituto como "Flávio oscilou de 46% para 48%, Lula permaneceu com 45%, brancos/nulos permaneceram em 5% e não sabem passou de 4% para 2%" — os quatro valores de partida são, linha por linha, a nossa ficha de 26–30/09. A mesma matéria diz que "em 1º de outubro Flávio tinha 51% dos válidos e Lula 49%", e a nossa ficha produz 46/91 = 50,55 e 45/91 = 49,45. E a cobertura da AtlasIntel cita a rodada anterior com Lula 45,7 e Flávio 51,1 — os nossos números de 03–08/10, cuja diferença é os 5,4 pontos que a matéria menciona e cuja divisão por válidos dá os 52,8 x 47,2 que ela atribui àquela rodada.
+
+**Armadilha evitada na AtlasIntel:** um resumo de busca atribuiu à ficha linhas de 4% de brancos/nulos e 2% de não sabe, o que daria soma **103,4**. Eram linhas de outra pesquisa misturadas no mesmo resumo — a leitura correta tem UMA linha de não-candidato (2,6), e é ela que fecha a conta em 100,0. A regra "acima de 100 tem de ser localizado" funcionou como detector, não como motivo de recusa.
+
+**Conflito de registro NÃO resolvido, e o campo ficou null:** no DF, a Gazeta do Povo informa DF-04637/2026 e o BPMoney informa DF-01691/2026 — duas fontes de peso, nenhum critério que desempate. Diferente do AC, onde o prefixo estadual resolvia, e do TO, onde o número divergente era o da rodada anterior e já estava na nossa base. Gravado null com o conflito declarado, em vez de escolher no palpite.
+
+**Não entrou:** a Real Time do TO divulgada hoje tem campo de **28/09 a 01/10** — anterior à eleição — e o TO está entre os sete estados onde o instituto está suspenso nesta base. Dois motivos independentes.
+
+### A corrida saiu do empate técnico — e não foi a corrida que se mexeu
+
+| | n | Vantagem | Margem de ref. | `empateTecnico` |
+|---|---|---|---|---|
+| Ontem | 12 | 1,8103 | 1,9852 | **true** |
+| Só com a Real Time | 13 | 1,9244 | 1,9866 | **true** |
+| Com a AtlasIntel também | **14** | **1,9592** | **1,8621** | **false** |
+
+Isolando a AtlasIntel: a vantagem subiu **0,0348** e a margem de referência caiu **0,1244**. Ou seja, **o que encerrou o empate técnico foi sobretudo a margem encolhendo, não a diferença entre os candidatos aumentando**.
+
+A causa é estrutural e vale declarar: `margemReferencia` é a média das margens DECLARADAS pelos institutos, ponderada por recência e amostra. A AtlasIntel declara **1 ponto** com 4.998 entrevistados — a maior amostra e a menor margem da leva —, então entra com peso alto puxando a média para baixo. Uma rodada só, de um instituto só, pode portanto virar o veredito de empate técnico sem que a disputa tenha mudado.
+
+**Pendência declarada, não resolvida hoje:** a sensibilidade do veredito à margem declarada de um único instituto é propriedade da convenção atual, não defeito de implementação. Mudar a convenção (usar mediana, ou derivar a margem da amostra em vez de aceitar a declarada) é decisão de método que não se toma às pressas a cinco dias da eleição — mas quem lê "saiu do empate" hoje precisa saber que o movimento veio mais da régua que do placar.
+
+### Governadores
+
+O **ES** encurtou: a Quaest de 10–13/10 dava Pazolini 47 x 38 (9 pontos), a Real Time de 15–19/10 dá 46 x 43 (3 pontos), com Ferraço subindo 5. O agregado da UF vai de 9,00 para **5,29** pontos. O **RN** segue sendo o único dos seis em empate técnico (3,00 contra margem 3,00 — o caso do `EPSILON_MARGEM`). O DF ganhou a quinta pesquisa e segue com folga de 17,9 pontos.
+
+**851 pesquisas**, 852 testes, build limpo.
