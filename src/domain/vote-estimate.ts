@@ -75,6 +75,14 @@ export interface AncoragemUf {
    * é decorativa: a segunda é suposição, e a tela a declara.
    */
   readonly origem: 'apuracao' | 'substituto-nacional';
+  /**
+   * Votos de cada candidato nesta UF no 1º turno, por nome, como a apuração
+   * os publicou. Vazio quando a UF não tem apuração (e aí não há percentual
+   * de 1º turno para mostrar ao lado da estimativa).
+   *
+   * Mora na âncora porque é exatamente isso: o que o 1º turno MEDIU nesta UF.
+   */
+  readonly votosPrimeiroTurno: Readonly<Record<string, number>>;
 }
 
 export interface EstimativaVotosUfEntrada {

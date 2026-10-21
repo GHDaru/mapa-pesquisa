@@ -32,6 +32,7 @@ const ANCORA: AncoragemUf = {
   validosPrimeiroTurno: 800_000,
   comparecimentoPrimeiroTurno: 850_000,
   origem: 'apuracao',
+  votosPrimeiroTurno: { A: 400_000, B: 350_000 },
 };
 
 /** Pesquisa no corte de TOTAL: os dois candidatos somam 90, o resto é não-candidato. */
@@ -107,6 +108,7 @@ describe('estimarVotos — base ancorada no 1º turno', () => {
         validosPrimeiroTurno: 700_000,
         comparecimentoPrimeiroTurno: null,
         origem: 'substituto-nacional',
+        votosPrimeiroTurno: {},
       },
     };
     const e = estimarVotos([UF_BASE, substituta], null, { base: 'validos-1o-turno' });
@@ -122,7 +124,12 @@ describe('estimarVotos — base ancorada no 1º turno', () => {
       ...UF_BASE,
       uf: 'MG',
       eleitores: 2_000_000,
-      ancoragem: { validosPrimeiroTurno: 1_500_000, comparecimentoPrimeiroTurno: null, origem: 'apuracao' },
+      ancoragem: {
+        validosPrimeiroTurno: 1_500_000,
+        comparecimentoPrimeiroTurno: null,
+        origem: 'apuracao',
+        votosPrimeiroTurno: {},
+      },
     };
     const e = estimarVotos([UF_BASE, semComparecimento], null, { base: 'validos-1o-turno' });
     expect(e.comparecimento).not.toBeNull();

@@ -59,6 +59,9 @@ function montarAncoragens(
       comparecimentoPrimeiroTurno:
         r.brancos != null && r.nulos != null ? r.validosTotal + r.brancos + r.nulos : null,
       origem: 'apuracao',
+      votosPrimeiroTurno: Object.fromEntries(
+        r.candidatos.map((c) => [c.candidato.trim(), c.votos]),
+      ),
     });
   }
 
@@ -118,6 +121,8 @@ export function criarGetVoteEstimate(repos: Repositorios, clock: Clock) {
                   validosPrimeiroTurno: eleitorado.eleitores * razaoNacional,
                   comparecimentoPrimeiroTurno: null,
                   origem: 'substituto-nacional' as const,
+                  // Sem apuração não há resultado de 1º turno para exibir.
+                  votosPrimeiroTurno: {},
                 }))
           : null;
       porUf.push({ uf, eleitores: eleitorado.eleitores, agregado, ancoragem });

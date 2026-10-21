@@ -1,6 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import type { EstimativaVotos, UfOrigemVotos } from '../../../../../domain/vote-estimate.js';
-import { ariaCadeiaUf, montarCadeiaPorUf, rotuloAbstencao } from '../vote-estimate-panel.js';
+import {
+  ariaCadeiaUf,
+  textosPrimeiroTurno,
+  montarCadeiaPorUf,
+  rotuloAbstencao,
+} from '../vote-estimate-panel.js';
 
 function uf(
   nome: string,
@@ -8,6 +13,7 @@ function uf(
   validos: number,
   comparecimento: number | null,
   votos: Record<string, number>,
+  votosPrimeiroTurno: Record<string, number> = {},
 ): UfOrigemVotos {
   return {
     uf: nome,
@@ -22,6 +28,7 @@ function uf(
       validosPrimeiroTurno: validos,
       comparecimentoPrimeiroTurno: comparecimento,
       origem: 'apuracao',
+      votosPrimeiroTurno,
     },
   };
 }
@@ -106,6 +113,112 @@ describe('montarCadeiaPorUf', () => {
   it('leva o partido de cada candidato, que é o que dá a cor do mapa', () => {
     const c = montarCadeiaPorUf(estimativa([uf('SP', 1000, 800, 900, { A: 500, B: 300 })]))!;
     expect(c[0]!.candidatos.map((x) => x.partido)).toEqual(['PT', 'PL']);
+  });
+});
+
+describe('montarCadeiaPorUf — percentuais do 1º turno', () => {
+  // SP real: Lula 9.498.712 e Flávio 12.918.448 de 24.882.948 válidos.
+  const sp = () =>
+    montarCadeiaPorUf(
+      estimativa([
+        uf(
+          'SP',
+          34_104_226,
+          24_882_948,
+          26_431_992,
+          { A: 11_526_835, B: 13_356_113 },
+          { A: 9_498_712, B: 12_918_448 },
+        ),
+      ]),
+    )![0]!;
+
+  // A lista vem ordenada por votos ESTIMADOS, então procura-se por nome.
+  const de = (nome: string) => sp().candidatos.find((c) => c.nome === nome)!;
+
+  it('calcula o percentual publicado sobre TODOS os válidos da UF', () => {
+    const a = de('A');
+    const b = de('B');
+    expect(a.pctPrimeiroTurno).toBeCloseTo((9_498_712 / 24_882_948) * 100, 6);
+    expect(b.pctPrimeiroTurno).toBeCloseTo((12_918_448 / 24_882_948) * 100, 6);
+    // Os dois NÃO somam 100: no 1º turno a cédula tinha mais nomes.
+    expect(a.pctPrimeiroTurno! + b.pctPrimeiroTurno!).toBeLessThan(100);
+  });
+
+  /**
+   * A segunda leitura é a comparável com a estimativa: recontada só entre os
+   * dois que passaram, ela soma 100, igual à coluna ao lado.
+   */
+  it('calcula também o percentual entre apenas os dois finalistas, e esse soma 100', () => {
+    const a = de('A');
+    const b = de('B');
+    const dois = 9_498_712 + 12_918_448;
+    expect(a.pctPrimeiroTurnoEntreOsDois).toBeCloseTo((9_498_712 / dois) * 100, 6);
+    expect(a.pctPrimeiroTurnoEntreOsDois! + b.pctPrimeiroTurnoEntreOsDois!).toBeCloseTo(100, 6);
+  });
+
+  /** As duas leituras contam histórias diferentes, e é por isso que ambas aparecem. */
+  it('a leitura crua e a recontada divergem — e a diferença é a herança, não movimento', () => {
+    const a = de('A');
+    expect(a.pctPrimeiroTurno).toBeLessThan(a.pctPrimeiroTurnoEntreOsDois!);
+  });
+
+  it('casa o nome mesmo com grafia diferente entre apuração e pesquisa', () => {
+    const c = montarCadeiaPorUf(
+      estimativa([uf('SP', 1000, 800, 900, { A: 500, B: 300 }, { a: 400, B: 200 })]),
+    )!;
+    // "a" na apuração contra "A" na pesquisa: mesmo candidato.
+    expect(c[0]!.candidatos[0]!.pctPrimeiroTurno).toBeCloseTo(50, 6);
+  });
+
+  it('fica em null onde a UF não tem apuração, em vez de zerar', () => {
+    const c = montarCadeiaPorUf(
+      estimativa([uf('PI', 2_708_160, 2_039_477, null, { A: 1_453_670, B: 585_807 }, {})], {
+        ufsComAncoragemSubstituta: ['PI'],
+      }),
+    )!;
+    expect(c[0]!.candidatos[0]!.pctPrimeiroTurno).toBeNull();
+    expect(c[0]!.candidatos[0]!.pctPrimeiroTurnoEntreOsDois).toBeNull();
+  });
+});
+
+describe('textosPrimeiroTurno', () => {
+  it('devolve null quando a UF não tem resultado de 1º turno', () => {
+    expect(
+      textosPrimeiroTurno({
+        nome: 'A',
+        partido: 'PT',
+        votos: 1,
+        pct: 50,
+        pctPrimeiroTurno: null,
+        pctPrimeiroTurnoEntreOsDois: null,
+      }),
+    ).toBeNull();
+  });
+
+  it('traz o publicado como principal e o recontado como secundário', () => {
+    const t = textosPrimeiroTurno({
+      nome: 'A',
+      partido: 'PT',
+      votos: 1,
+      pct: 46.3,
+      pctPrimeiroTurno: 38.2,
+      pctPrimeiroTurnoEntreOsDois: 42.4,
+    })!;
+    expect(t.principal).toBe('38,2%');
+    expect(t.secundario).toBe('42,4% entre os dois');
+  });
+
+  it('sem o recontado, fica só com o publicado', () => {
+    const t = textosPrimeiroTurno({
+      nome: 'A',
+      partido: 'PT',
+      votos: 1,
+      pct: 46.3,
+      pctPrimeiroTurno: 38.2,
+      pctPrimeiroTurnoEntreOsDois: null,
+    })!;
+    expect(t.principal).toBe('38,2%');
+    expect(t.secundario).toBeNull();
   });
 });
 

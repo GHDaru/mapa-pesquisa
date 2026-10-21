@@ -16,6 +16,7 @@ import {
   type NivelConfianca,
 } from '../../../../domain/aggregate.js';
 import { CONFRONTO_LULA_FLAVIO } from '../../../../domain/runoff.js';
+import { mesmoCandidato } from '../../../../domain/candidate-identity.js';
 import { formatarNumeroPt, formatarPct, formatarVantagem, pluralizar } from '../format.js';
 import {
   criarEl,
@@ -245,6 +246,22 @@ export interface CandidatoNaCadeia {
   readonly votos: number;
   /** % sobre os votos válidos estimados DA UF — normalizado para somar 100 no estado. */
   readonly pct: number;
+  /**
+   * % que o candidato teve nesta UF no 1º turno, sobre TODOS os votos válidos
+   * de lá — a base em que o resultado foi publicado. `null` onde a UF não tem
+   * apuração.
+   *
+   * **Não é comparável com `pct` por subtração**: no 1º turno a cédula tinha
+   * mais nomes, e boa parte da diferença entre as duas colunas é a
+   * redistribuição dos votos de quem não passou, não movimento de eleitor.
+   */
+  readonly pctPrimeiroTurno: number | null;
+  /**
+   * % que o candidato teve no 1º turno contando APENAS os votos dos dois que
+   * foram ao 2º turno. Esta sim fica na mesma base de `pct`, e é a que mede
+   * quanto a disputa andou desde 4 de outubro. `null` sem apuração na UF.
+   */
+  readonly pctPrimeiroTurnoEntreOsDois: number | null;
 }
 
 /**
@@ -286,14 +303,32 @@ export function montarCadeiaPorUf(e: EstimativaVotos): readonly CadeiaUf[] | nul
   return [...e.porUf]
     .map((uf): CadeiaUf => {
       const votantes = uf.ancoragem?.comparecimentoPrimeiroTurno ?? null;
-      const candidatos = candidatosOrdenadosDaUf(uf).map(
-        (c): CandidatoNaCadeia => ({
+      const ordenados = candidatosOrdenadosDaUf(uf);
+      const votos1T = uf.ancoragem?.votosPrimeiroTurno ?? {};
+      const validos1T = uf.ancoragem?.validosPrimeiroTurno ?? 0;
+      // Casamento por `mesmoCandidato` e não por igualdade de texto: a
+      // apuração e as pesquisas não são obrigadas a grafar o nome igual.
+      const votosDe = (nome: string): number | null => {
+        const achado = Object.entries(votos1T).find(([n]) => mesmoCandidato(n, nome));
+        return achado ? achado[1] : null;
+      };
+      const votosDosDois = ordenados
+        .map((c) => votosDe(c.nome))
+        .filter((v): v is number => v !== null)
+        .reduce((soma, v) => soma + v, 0);
+
+      const candidatos = ordenados.map((c): CandidatoNaCadeia => {
+        const v1 = votosDe(c.nome);
+        return {
           nome: c.nome,
           partido: partidoPorNome.get(c.nome) ?? null,
           votos: c.votos,
           pct: uf.baseDeVotos > 0 ? (c.votos / uf.baseDeVotos) * 100 : 0,
-        }),
-      );
+          pctPrimeiroTurno: v1 !== null && validos1T > 0 ? (v1 / validos1T) * 100 : null,
+          pctPrimeiroTurnoEntreOsDois:
+            v1 !== null && votosDosDois > 0 ? (v1 / votosDosDois) * 100 : null,
+        };
+      });
       return {
         uf: uf.uf,
         eleitores: uf.eleitores,
@@ -333,6 +368,41 @@ export function ariaCadeiaUf(nomeEstado: string, c: CadeiaUf): string {
   return `${partes.join('. ')}.`;
 }
 
+
+/**
+ * A célula do 1º turno: o percentual como ele foi publicado (sobre TODOS os
+ * válidos da UF) e, abaixo, o mesmo resultado recontado só entre os dois que
+ * passaram — que é a leitura comparável com a coluna da estimativa ao lado.
+ *
+ * As duas aparecem juntas porque sozinhas enganam de maneiras opostas: a
+ * primeira convida a subtrair bases diferentes ("Lula saiu de 38% para 46%,
+ * cresceu 8 pontos" — não cresceu, herdou), e a segunda, sozinha, não é o
+ * número que o leitor viu na noite da apuração.
+ */
+export function textosPrimeiroTurno(
+  c: CandidatoNaCadeia,
+): { readonly principal: string; readonly secundario: string | null } | null {
+  if (c.pctPrimeiroTurno === null) return null;
+  return {
+    principal: formatarPct(c.pctPrimeiroTurno),
+    secundario:
+      c.pctPrimeiroTurnoEntreOsDois === null
+        ? null
+        : `${formatarPct(c.pctPrimeiroTurnoEntreOsDois)} entre os dois`,
+  };
+}
+
+/** Monta a célula a partir dos textos acima. A conta está em `textosPrimeiroTurno`. */
+export function celulaPrimeiroTurno(c: CandidatoNaCadeia): HTMLElement | string {
+  const textos = textosPrimeiroTurno(c);
+  if (textos === null) return '—';
+  return criarEl('span', {}, [
+    textos.principal,
+    textos.secundario === null
+      ? null
+      : criarEl('span', { className: 've-cadeia-sub', texto: textos.secundario }),
+  ]);
+}
 
 /** Bounding box de um path do @svg-maps/brazil (só comandos m/z, sem curvas). */
 function bboxPath(d: string): { minX: number; minY: number; maxX: number; maxY: number } {
@@ -459,7 +529,11 @@ function criarSecaoCadeia(
     'Abstenção 1º turno',
     'Votantes estimados',
     'Válidos estimados',
-    ...colunasCandidato.flatMap((nome) => [`${nome} %`, `${nome} votos`]),
+    ...colunasCandidato.flatMap((nome) => [
+      `${nome} no 1º turno`,
+      `${nome} %`,
+      `${nome} votos`,
+    ]),
   ];
 
   const linhas = cadeia.map((c) => {
@@ -502,6 +576,9 @@ function criarSecaoCadeia(
       ...colunasCandidato.flatMap((nome) => {
         const cand = porNome.get(nome);
         return [
+          criarEl('td', { className: 've-col-num', attrs: { 'data-rotulo': `${nome} no 1º turno` } }, [
+            cand ? celulaPrimeiroTurno(cand) : '—',
+          ]),
           criarEl('td', {
             className: 've-col-num',
             texto: cand ? formatarPct(cand.pct) : '—',
@@ -532,6 +609,14 @@ function criarSecaoCadeia(
         'do comparecimento, tiram-se os brancos e nulos também medidos; e os votos válidos que sobram são ' +
         'divididos pelos percentuais da pesquisa daquele estado, renormalizados para somar 100 dentro da UF. ' +
         'Nenhum degrau é suposto — os dois primeiros vêm da apuração de 4 de outubro.',
+    }),
+    criarEl('p', {
+      className: 've-meta',
+      texto:
+        'A coluna "no 1º turno" traz o resultado real daquela UF em 4 de outubro, sobre TODOS os votos válidos ' +
+        'de lá — a base em que ele foi publicado. Abaixo dela, em menor, o mesmo resultado recontado só entre ' +
+        'os dois que passaram: é ESSA que está na mesma base da estimativa ao lado. Subtrair a primeira da ' +
+        'estimativa mede sobretudo a herança dos votos de quem não foi ao 2º turno, não movimento de eleitor.',
     }),
     criarMapaDaCadeia(cadeia, partidos),
     criarLegendaDoMapa(cadeia, partidos),

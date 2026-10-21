@@ -647,3 +647,14 @@
   stroke-width: 2.5px;
   pointer-events: none;
 }
+
+/* Segunda leitura do 1º turno (o resultado recontado só entre os dois que
+   passaram) na linha de baixo da própria célula: é a que fica na mesma base
+   da estimativa ao lado, mas é derivada, não o número publicado — por isso
+   abaixo e em tom menor, não lado a lado como se fossem equivalentes. */
+.ve-cadeia-sub {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--color-text-subtle);
+  font-variant-numeric: tabular-nums;
+}

@@ -4244,3 +4244,25 @@ Cada UF pintada pelo espectro do partido de quem tem **mais votos válidos estim
 Legenda: **Flávio à frente em 15 UFs, Lula em 12** — e, ainda assim, Lula à frente no total estimado (50,6%), porque lidera com folga nos colégios grandes do Nordeste e em Minas. Geografia e aritmética dizendo coisas diferentes na mesma tela, o que é exatamente o que um mapa por estado serve para mostrar.
 
 **865 testes**, build limpo.
+
+### 21/10, complemento — o 1º turno ao lado da estimativa
+
+Pedido: pôr os percentuais do 1º turno ao lado das estimativas na tabela.
+
+**A dificuldade é de BASE, e a tabela a resolve mostrando as duas leituras.** O percentual do 1º turno foi publicado sobre TODOS os votos válidos daquela UF, com a cédula cheia; a estimativa é sobre dois candidatos. Postos lado a lado sem ressalva, convidam a uma subtração que mede sobretudo a herança dos votos de quem não passou:
+
+| | Lula em SP |
+|---|---|
+| 1º turno, como publicado | **38,2%** |
+| 1º turno, recontado só entre os dois | **42,4%** |
+| Estimativa do 2º turno | **46,3%** |
+
+Ler "saiu de 38,2% para 46,3%, cresceu 8 pontos" é falso: a maior parte desses 8 pontos é redistribuição. O movimento real desde 4 de outubro é **42,4 → 46,3**, ou 3,9 pontos.
+
+Por isso a célula traz as duas: o número publicado em cima — é o que o leitor viu na noite da apuração — e, abaixo e em tom menor, o recontado entre os dois, que é o que fica na mesma régua da coluna ao lado. Sozinha, cada uma engana de um jeito diferente.
+
+**Onde o dado mora:** os votos do 1º turno por candidato entraram em `AncoragemUf.votosPrimeiroTurno`, que é literalmente "o que o 1º turno mediu nesta UF" — mesmo lugar dos válidos e do comparecimento. O casamento de nomes usa `mesmoCandidato`, não igualdade de texto: apuração e pesquisa não são obrigadas a grafar igual. O PI, sem apuração presidencial, mostra "—" nas duas colunas em vez de zero.
+
+**Lição de teste repetida:** os três primeiros testes do novo cálculo quebraram, e desta vez **o teste é que estava errado** — `candidatos` vem ordenado por votos ESTIMADOS, e o fixture tinha o segundo candidato na frente, de modo que `candidatos[0]` não era quem eu supunha. Passaram a buscar por nome. E `celulaPrimeiroTurno` precisou ser partida em duas: a conta pura (`textosPrimeiroTurno`, testável) e o invólucro DOM — a suíte roda em `environment: node` e `document.createElement` não existe lá.
+
+**873 testes**, build limpo.
