@@ -617,3 +617,33 @@
   font: var(--text-body-sm);
   max-width: 78ch;
 }
+
+/* Mapa da cadeia (aba de votos estimados). Mais simples que o mapa de
+   governadores de propósito: aqui ele é índice visual da tabela logo abaixo,
+   não uma tela própria — sem tooltip, sem painel, sem foco por estado, porque
+   o detalhe já está na linha correspondente. */
+.ve-mapa-wrap {
+  margin: var(--space-3, 0.75rem) 0;
+  max-width: 560px;
+}
+.ve-mapa-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.ve-mapa-uf {
+  stroke: var(--color-surface, #fff);
+  stroke-width: 1;
+  stroke-linejoin: round;
+}
+.ve-mapa-sigla {
+  font-size: 11px;
+  font-weight: 600;
+  text-anchor: middle;
+  dominant-baseline: central;
+  fill: var(--color-text, #18181b);
+  paint-order: stroke;
+  stroke: var(--color-surface, #fff);
+  stroke-width: 2.5px;
+  pointer-events: none;
+}

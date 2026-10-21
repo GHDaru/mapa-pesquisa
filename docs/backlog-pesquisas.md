@@ -4215,3 +4215,32 @@ A causa é estrutural e vale declarar: `margemReferencia` é a média das margen
 O **ES** encurtou: a Quaest de 10–13/10 dava Pazolini 47 x 38 (9 pontos), a Real Time de 15–19/10 dá 46 x 43 (3 pontos), com Ferraço subindo 5. O agregado da UF vai de 9,00 para **5,29** pontos. O **RN** segue sendo o único dos seis em empate técnico (3,00 contra margem 3,00 — o caso do `EPSILON_MARGEM`). O DF ganhou a quinta pesquisa e segue com folga de 17,9 pontos.
 
 **851 pesquisas**, 852 testes, build limpo.
+
+---
+
+## 21/10 — a conta inteira, estado a estado, com mapa
+
+Pedido: na análise por estado, uma tabela com eleitores, abstenção do 1º turno, percentual já normalizado para 100% da pesquisa daquele estado, votantes estimados e quantidade de votos por candidato; agrupada por estado, com um mapa, acrescentada à aba por estado.
+
+### A seção nova
+
+Entra em `#/presidente-estados` → aba **Votos estimados**, abaixo da comparação com a média nacional: **"Do eleitorado aos votos, estado a estado"**, com 27 linhas e uma coluna por degrau da conta.
+
+| UF | Eleitores | Abstenção 1º turno | Votantes estimados | Válidos estimados | Lula % · votos | Flávio % · votos |
+|---|---|---|---|---|---|---|
+| SP | 34.104.226 | 7.672.234 · 22,5% | 26.431.992 | 24.882.948 | 46,3% · 11.526.835 | 53,7% · 13.356.113 |
+| MG | 16.377.659 | — | — | 11.976.032 | 50,7% · 6.070.051 | 49,3% · 5.905.981 |
+
+**Por que uma seção nova e não mais colunas na tabela existente:** "Detalhe por UF" tem outra semântica — origem do dado, margem declarada, empate técnico da UF. A cadeia responde outra pergunta, e empilhar as duas numa tabela de nove colunas faria o leitor procurar o que não está junto.
+
+**A cadeia é conferível linha a linha**, e é esse o ponto: em SP, 34.104.226 − 7.672.234 = 26.431.992 votantes; 26.431.992 − 24.882.948 = 1.549.044 de brancos e nulos; e 11.526.835 + 13.356.113 = 24.882.948, exatamente os válidos. Nenhum degrau é suposto — os dois primeiros vêm da apuração de 4 de outubro, e só o último, a divisão entre os candidatos, vem de pesquisa.
+
+**Onde o degrau não existe, a célula diz "—" e o rodapé diz por quê:** MG, MA e PI não têm comparecimento conhecido (as duas primeiras não publicaram brancos e nulos; o PI não tem apuração presidencial). Os **válidos**, que são a base do cálculo, são conhecidos mesmo assim — por isso a linha continua completa à direita. A tabela marca o PI com "âncora estimada", e o `aria-label` do mapa repete a ressalva.
+
+### O mapa
+
+Cada UF pintada pelo espectro do partido de quem tem **mais votos válidos estimados** ali. **Não repete o mapa da outra aba**, que mostra liderança nas pesquisas em pontos: este mostra onde os votos estão, e o `aria-label` de cada estado carrega a cadeia inteira daquela UF, que é o conteúdo da linha correspondente — quem usa leitor de tela não precisa cruzar as duas coisas.
+
+Legenda: **Flávio à frente em 15 UFs, Lula em 12** — e, ainda assim, Lula à frente no total estimado (50,6%), porque lidera com folga nos colégios grandes do Nordeste e em Minas. Geografia e aritmética dizendo coisas diferentes na mesma tela, o que é exatamente o que um mapa por estado serve para mostrar.
+
+**865 testes**, build limpo.

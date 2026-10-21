@@ -1,4 +1,5 @@
 import '../styles/vote-estimate.css';
+import brazilMapDados from '@svg-maps/brazil';
 import type { CasosDeUso } from '../../../../application/use-cases/index.js';
 import type { Partido } from '../../../../domain/party.js';
 import { espectroDoPartido, type Espectro } from '../../../../domain/spectrum.js';
@@ -213,9 +214,349 @@ export function renderVoteEstimate(
     raiz.append(criarBlocoNaoAtribuidos(estimativa, vantagem, turno, turnoAnterior));
   }
   raiz.append(criarSecaoComparacao(estimativa));
+  const cadeia = montarCadeiaPorUf(estimativa);
+  if (cadeia) raiz.append(criarSecaoCadeia(cadeia, partidos, estimativa));
   raiz.append(criarSecaoPorUf(estimativa, comAsterisco, dadosPorUf));
 
   container.append(raiz);
+}
+
+
+/* ============ Do eleitorado aos votos, estado a estado ============ */
+
+/**
+ * Tipagem local do `@svg-maps/brazil` — o `.d.ts` da lib referencia um pacote
+ * de tipos que não está instalado. Mesma nota que map-view.ts e state-panel.ts.
+ */
+interface LocalidadeMapaVe {
+  readonly id: string;
+  readonly name: string;
+  readonly path: string;
+}
+interface MapaSvgVe {
+  readonly viewBox: string;
+  readonly locations: readonly LocalidadeMapaVe[];
+}
+const mapaBrasilVe = brazilMapDados as MapaSvgVe;
+
+export interface CandidatoNaCadeia {
+  readonly nome: string;
+  readonly partido: string | null;
+  readonly votos: number;
+  /** % sobre os votos válidos estimados DA UF — normalizado para somar 100 no estado. */
+  readonly pct: number;
+}
+
+/**
+ * A conta de uma UF, do eleitorado ao voto, com cada degrau visível.
+ *
+ * Existe porque o número final ("Lula 60,1 milhões") é o fim de uma cadeia de
+ * quatro passos, e quem lê só o fim não consegue conferir nenhum deles. Aqui a
+ * cadeia aparece inteira: quantos eleitores a UF tem, quantos não foram às
+ * urnas em 4 de outubro, quantos votaram, quantos votos valeram e como a
+ * pesquisa do estado divide esses votos válidos.
+ */
+export interface CadeiaUf {
+  readonly uf: string;
+  readonly eleitores: number;
+  /** Eleitores que não compareceram no 1º turno. `null` onde a apuração não publicou brancos e nulos. */
+  readonly abstencao: number | null;
+  /** Comparecimento do 1º turno — os que de fato foram votar. `null` junto com `abstencao`. */
+  readonly votantes: number | null;
+  /** Votos válidos estimados: a base sobre a qual os percentuais são aplicados. */
+  readonly validos: number;
+  /** true quando a âncora desta UF foi estimada pela razão nacional, não apurada. */
+  readonly ancoraSubstituta: boolean;
+  readonly candidatos: readonly CandidatoNaCadeia[];
+}
+
+/**
+ * Monta a cadeia de todas as UFs, da maior para a menor.
+ *
+ * Devolve `null` fora da base ancorada: sem âncora não existem "abstenção do
+ * 1º turno" nem "votos válidos estimados" para mostrar, e uma tabela com duas
+ * colunas vazias afirmaria que o dado falta quando na verdade a pergunta é
+ * que não se aplica.
+ */
+export function montarCadeiaPorUf(e: EstimativaVotos): readonly CadeiaUf[] | null {
+  if (e.base !== 'validos-1o-turno') return null;
+  const partidoPorNome = new Map(e.candidatos.map((c) => [c.candidato, c.partido]));
+  const substitutas = new Set(e.ufsComAncoragemSubstituta);
+
+  return [...e.porUf]
+    .map((uf): CadeiaUf => {
+      const votantes = uf.ancoragem?.comparecimentoPrimeiroTurno ?? null;
+      const candidatos = candidatosOrdenadosDaUf(uf).map(
+        (c): CandidatoNaCadeia => ({
+          nome: c.nome,
+          partido: partidoPorNome.get(c.nome) ?? null,
+          votos: c.votos,
+          pct: uf.baseDeVotos > 0 ? (c.votos / uf.baseDeVotos) * 100 : 0,
+        }),
+      );
+      return {
+        uf: uf.uf,
+        eleitores: uf.eleitores,
+        abstencao: votantes === null ? null : Math.max(0, uf.eleitores - votantes),
+        votantes,
+        validos: uf.baseDeVotos,
+        ancoraSubstituta: substitutas.has(uf.uf),
+        candidatos,
+      };
+    })
+    .sort((a, b) => b.eleitores - a.eleitores);
+}
+
+/** "3.740.385 · 22,8%" — o absoluto com a taxa ao lado; "—" quando a UF não tem o dado. */
+export function rotuloAbstencao(abstencao: number | null, eleitores: number): string {
+  if (abstencao === null || !(eleitores > 0)) return '—';
+  return `${formatarInteiro(abstencao)} · ${formatarPct((abstencao / eleitores) * 100)}`;
+}
+
+/**
+ * Rótulo acessível de uma UF no mapa: a cadeia inteira em uma frase, porque
+ * quem usa leitor de tela não tem a tabela ao lado para cruzar.
+ */
+export function ariaCadeiaUf(nomeEstado: string, c: CadeiaUf): string {
+  const partes = [`${nomeEstado}: ${formatarInteiro(c.eleitores)} eleitores`];
+  if (c.abstencao !== null) {
+    partes.push(
+      `abstenção de ${formatarPct((c.abstencao / c.eleitores) * 100)} no 1º turno`,
+      `${formatarInteiro(c.votantes ?? 0)} votantes estimados`,
+    );
+  }
+  partes.push(`${formatarInteiro(c.validos)} votos válidos estimados`);
+  for (const cand of c.candidatos.slice(0, 2)) {
+    partes.push(`${cand.nome} ${formatarPct(cand.pct)}, ${formatarInteiro(cand.votos)} votos`);
+  }
+  if (c.ancoraSubstituta) partes.push('âncora estimada, não apurada');
+  return `${partes.join('. ')}.`;
+}
+
+
+/** Bounding box de um path do @svg-maps/brazil (só comandos m/z, sem curvas). */
+function bboxPath(d: string): { minX: number; minY: number; maxX: number; maxY: number } {
+  const tokens = d
+    .trim()
+    .split(/[\s,]+/)
+    .filter((t) => t.length > 0 && !/^[a-zA-Z]+$/.test(t));
+  let x = 0;
+  let y = 0;
+  let minX = Infinity;
+  let minY = Infinity;
+  let maxX = -Infinity;
+  let maxY = -Infinity;
+  for (let i = 0; i + 1 < tokens.length; i += 2) {
+    x += Number.parseFloat(tokens[i]!);
+    y += Number.parseFloat(tokens[i + 1]!);
+    if (x < minX) minX = x;
+    if (x > maxX) maxX = x;
+    if (y < minY) minY = y;
+    if (y > maxY) maxY = y;
+  }
+  return { minX, minY, maxX, maxY };
+}
+
+/**
+ * Mapa da estimativa: cada UF pintada pelo espectro do partido de quem tem
+ * MAIS votos válidos estimados ali.
+ *
+ * Não repete o mapa da outra aba, que mostra a liderança nas pesquisas em
+ * pontos: este mostra onde os VOTOS estão, e seu `aria-label` carrega a cadeia
+ * inteira da UF (eleitores, abstenção, votantes, válidos e votos por
+ * candidato), que é o conteúdo da tabela logo abaixo.
+ */
+function criarMapaDaCadeia(cadeia: readonly CadeiaUf[], partidos: readonly Partido[]): HTMLElement {
+  const porUf = new Map(cadeia.map((c) => [c.uf, c]));
+  const nomePorUf = new Map(mapaBrasilVe.locations.map((l) => [l.id.toUpperCase(), l.name]));
+
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('viewBox', mapaBrasilVe.viewBox);
+  svg.setAttribute('class', 've-mapa-svg');
+  svg.setAttribute('role', 'group');
+  svg.setAttribute('aria-label', 'Mapa dos votos estimados por estado');
+
+  for (const loc of mapaBrasilVe.locations) {
+    const uf = loc.id.toUpperCase();
+    const c = porUf.get(uf);
+    const lider = c?.candidatos[0] ?? null;
+    const espectro = resolverEspectro(lider?.partido ?? null, partidos);
+
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', loc.path);
+    path.setAttribute('class', 've-mapa-uf');
+    path.style.fill = c ? tokenFillEspectro(espectro) : 'var(--spectrum-indefinido)';
+    path.setAttribute(
+      'aria-label',
+      c
+        ? ariaCadeiaUf(nomePorUf.get(uf) ?? uf, c)
+        : `${nomePorUf.get(uf) ?? uf}: sem estimativa.`,
+    );
+    svg.append(path);
+
+    const bbox = bboxPath(loc.path);
+    const texto = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    texto.setAttribute('x', String((bbox.minX + bbox.maxX) / 2));
+    texto.setAttribute('y', String((bbox.minY + bbox.maxY) / 2));
+    texto.setAttribute('class', 've-mapa-sigla');
+    texto.setAttribute('aria-hidden', 'true');
+    texto.textContent = uf;
+    svg.append(texto);
+  }
+
+  const wrap = criarEl('div', { className: 've-mapa-wrap' });
+  wrap.append(svg);
+  return wrap;
+}
+
+/** Legenda do mapa: um item por candidato que lidera em alguma UF. */
+function criarLegendaDoMapa(
+  cadeia: readonly CadeiaUf[],
+  partidos: readonly Partido[],
+): HTMLElement {
+  const vistos = new Map<string, { partido: string | null; ufs: number }>();
+  for (const c of cadeia) {
+    const lider = c.candidatos[0];
+    if (!lider) continue;
+    const atual = vistos.get(lider.nome) ?? { partido: lider.partido, ufs: 0 };
+    atual.ufs += 1;
+    vistos.set(lider.nome, atual);
+  }
+
+  return criarEl(
+    'p',
+    { className: 've-bar-legend' },
+    [...vistos.entries()]
+      .sort((a, b) => b[1].ufs - a[1].ufs)
+      .map(([nome, { partido, ufs }]) => {
+        const swatch = criarEl('span', { className: 've-legend-swatch' });
+        swatch.style.background = tokenFillEspectro(resolverEspectro(partido, partidos));
+        return criarEl('span', { className: 've-bar-legend__item' }, [
+          swatch,
+          `${nome} à frente em ${ufs} ${ufs === 1 ? 'UF' : 'UFs'}`,
+        ]);
+      }),
+  );
+}
+
+/**
+ * A tabela que mostra a conta inteira, estado a estado. Uma coluna por degrau
+ * da cadeia e, depois, duas colunas por candidato (percentual já normalizado
+ * para 100 dentro da UF, e a quantidade de votos que ele representa).
+ */
+function criarSecaoCadeia(
+  cadeia: readonly CadeiaUf[],
+  partidos: readonly Partido[],
+  e: EstimativaVotos,
+): HTMLElement {
+  // Os candidatos das colunas são os do agregado nacional, na ordem dele, para
+  // que a tabela tenha as MESMAS colunas em todas as linhas.
+  const colunasCandidato = e.candidatos.slice(0, 2).map((c) => c.candidato);
+
+  const cabecalhos = [
+    'UF',
+    'Eleitores',
+    'Abstenção 1º turno',
+    'Votantes estimados',
+    'Válidos estimados',
+    ...colunasCandidato.flatMap((nome) => [`${nome} %`, `${nome} votos`]),
+  ];
+
+  const linhas = cadeia.map((c) => {
+    const porNome = new Map(c.candidatos.map((x) => [x.nome, x]));
+    return criarEl('tr', {}, [
+      criarEl('td', { attrs: { 'data-rotulo': 'UF' } }, [
+        c.uf,
+        c.ancoraSubstituta
+          ? criarEl('span', {
+              className: 've-uf-empate',
+              texto: 'âncora estimada',
+              attrs: {
+                title:
+                  'Esta UF não tem apuração presidencial de 1º turno: os votos válidos foram ' +
+                  'estimados pela razão válidos/eleitorado das demais.',
+              },
+            })
+          : null,
+      ]),
+      criarEl('td', {
+        className: 've-col-num',
+        texto: formatarInteiro(c.eleitores),
+        attrs: { 'data-rotulo': 'Eleitores' },
+      }),
+      criarEl('td', {
+        className: 've-col-num',
+        texto: rotuloAbstencao(c.abstencao, c.eleitores),
+        attrs: { 'data-rotulo': 'Abstenção 1º turno' },
+      }),
+      criarEl('td', {
+        className: 've-col-num',
+        texto: c.votantes === null ? '—' : formatarInteiro(c.votantes),
+        attrs: { 'data-rotulo': 'Votantes estimados' },
+      }),
+      criarEl('td', {
+        className: 've-col-num',
+        texto: formatarInteiro(c.validos),
+        attrs: { 'data-rotulo': 'Válidos estimados' },
+      }),
+      ...colunasCandidato.flatMap((nome) => {
+        const cand = porNome.get(nome);
+        return [
+          criarEl('td', {
+            className: 've-col-num',
+            texto: cand ? formatarPct(cand.pct) : '—',
+            attrs: { 'data-rotulo': `${nome} %` },
+          }),
+          criarEl('td', {
+            className: 've-col-num',
+            texto: cand ? formatarInteiro(cand.votos) : '—',
+            attrs: { 'data-rotulo': `${nome} votos` },
+          }),
+        ];
+      }),
+    ]);
+  });
+
+  const semComparecimento = cadeia.filter((c) => c.votantes === null).map((c) => c.uf);
+
+  return criarEl('section', { attrs: { 'aria-labelledby': 've-cadeia-heading' } }, [
+    criarEl('h2', {
+      className: 've-section-title',
+      texto: 'Do eleitorado aos votos, estado a estado',
+      attrs: { id: 've-cadeia-heading' },
+    }),
+    criarEl('p', {
+      className: 've-meta',
+      texto:
+        'Cada linha é a conta inteira de uma UF: do eleitorado apto, tira-se a abstenção MEDIDA no 1º turno; ' +
+        'do comparecimento, tiram-se os brancos e nulos também medidos; e os votos válidos que sobram são ' +
+        'divididos pelos percentuais da pesquisa daquele estado, renormalizados para somar 100 dentro da UF. ' +
+        'Nenhum degrau é suposto — os dois primeiros vêm da apuração de 4 de outubro.',
+    }),
+    criarMapaDaCadeia(cadeia, partidos),
+    criarLegendaDoMapa(cadeia, partidos),
+    criarEl('div', { className: 've-table-wrap ve-stack-table-wrap ve-uf-table-wrap' }, [
+      criarEl('table', { className: 've-table' }, [
+        criarEl('thead', {}, [
+          criarEl(
+            'tr',
+            {},
+            cabecalhos.map((texto) => criarEl('th', { texto, attrs: { scope: 'col' } })),
+          ),
+        ]),
+        criarEl('tbody', {}, linhas),
+      ]),
+    ]),
+    semComparecimento.length > 0
+      ? criarEl('p', {
+          className: 've-meta',
+          texto:
+            `Abstenção e votantes aparecem como "—" em ${listaEmPortugues(semComparecimento)}: a apuração ` +
+            'dessas UFs não publicou brancos e nulos, então o comparecimento do 1º turno não é conhecido. ' +
+            'Os votos válidos, que são a base do cálculo, são conhecidos mesmo assim.',
+        })
+      : null,
+  ]);
 }
 
 /* ========================= Formatação ========================= */
