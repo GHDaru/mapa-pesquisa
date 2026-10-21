@@ -1,0 +1,128 @@
+[
+  {
+    "id": "2026-10-19-futura-br-presidente-t2-flavio-lula",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Futura/100% Cidades",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-10-16",
+    "dataFim": "2026-10-17",
+    "publicadoEm": "2026-10-19",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-504-dos-votos-validos-contra-496-de-lula-diz-pesquisa/"
+    },
+    "observacao": "Rodada que ficou de fora em 19/10 por divergência de campo entre fontes; a leitura direta do Poder360 resolve o campo em 16-17/10, e a CNN Brasil traz as MESMAS datas no bloco de metodologia (o 14-15/10 aparece só no subtítulo dela, erro de texto). CORTE = VOTOS TOTAIS: as quatro linhas publicadas somam 100,1, dentro da tolerância, e a divisão entre os dois reproduz exatamente os válidos divulgados (48,3/95,8 = 50,42 -> 50,4%; 47,5/95,8 = 49,58 -> 49,6%). REGISTRO NULO POR CONFLITO NÃO DESEMPATADO: o Poder360 informa BR-06715/2026 (também no compilado dele de 21/10) e a CNN Brasil informa BR-03764/2026; nenhum dos dois está na base como registro de outra rodada, e a consulta de pesquisas do TSE não é alcançável (pesqele.tse.jus.br não resolve; tse.jus.br responde 403 no WAF). Contratante NULO porque a própria ficha diz 'contratada pela Futura Consultoria e Assessoria', isto é, o próprio instituto; custo declarado de R$ 160.000. Confiança 95%.",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 48.3
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 47.5
+      },
+      {
+        "candidato": "Ninguém/branco/nulo",
+        "partido": null,
+        "pct": 2.4
+      },
+      {
+        "candidato": "Não sabe/não respondeu",
+        "partido": null,
+        "pct": 1.9
+      }
+    ]
+  },
+  {
+    "id": "2026-10-21-futura-br-presidente-t2-flavio-lula",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Futura/100% Cidades",
+    "registroTSE": "BR-06614/2026",
+    "contratante": "100% Cidades",
+    "dataInicio": "2026-10-19",
+    "dataFim": "2026-10-20",
+    "publicadoEm": "2026-10-21",
+    "amostra": 2000,
+    "margem": 2.2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-pesquisas/flavio-tem-511-dos-votos-validos-contra-489-de-lula-diz-futura/"
+    },
+    "observacao": "Rodada mais recente da base: campo 19-20/10, o único que atravessa inteiro a semana final. CORTE = VOTOS TOTAIS: as quatro linhas publicadas somam exatamente 100,0 e a divisão reproduz os válidos divulgados ao décimo (48,9/95,7 = 51,10 -> 51,1%; 46,8/95,7 = 48,90 -> 48,9%). CONTRATANTE RESOLVIDO NA FONTE: as fontes divergiam entre 'Futura/100% Cidades' e 'Futura/Apex', e o Poder360 diz que o estudo custou R$ 160.000 e foi PAGO PELO INSTITUTO 100% CIDADES - logo o contratante é o 100% Cidades, e 'Apex' não se sustenta. Note que isto DIFERE da rodada anterior (16-17/10), paga pela própria Futura: o contratante mudou entre rodadas do mesmo instituto, e por isso ele não se herda de uma ficha para a outra. Registro BR-06614/2026 em fonte única - ressalva declarada. Confiança 95%.",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 48.9
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 46.8
+      },
+      {
+        "candidato": "Ninguém/branco/nulo",
+        "partido": null,
+        "pct": 2.0
+      },
+      {
+        "candidato": "Não sabe/não respondeu",
+        "partido": null,
+        "pct": 2.3
+      }
+    ]
+  },
+  {
+    "id": "2026-10-16-gerp-br-presidente-t2-flavio-lula",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Gerp",
+    "registroTSE": "BR-05187/2026",
+    "contratante": null,
+    "dataInicio": "2026-10-14",
+    "dataFim": "2026-10-16",
+    "publicadoEm": "2026-10-16",
+    "amostra": 2400,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
+    "fonte": {
+      "nome": "Poder360",
+      "url": "https://www.poder360.com.br/poder-eleicoes-2026/flavio-tem-52-e-lula-48-dos-votos-validos-no-2o-turno-diz-gerp/"
+    },
+    "observacao": "PRIMEIRA rodada da Gerp com campo posterior ao 1º turno. CORTE = VOTOS TOTAIS: as linhas publicadas (50 / 45 / nenhum 2 / branco ou nulo 1) somam 98, abaixo de 100 e portanto explicável - o instituto não publica linha de indeciso nesta divulgação. RESSALVA DECLARADA, NÃO AJUSTADA: a divisão entre os dois dá 50/95 = 52,63 -> 53%, e o instituto divulga 52% x 48% nos válidos. A diferença de 0,6 ponto vem de os inteiros 50 e 45 já serem arredondados, com os válidos calculados sobre os números cheios - mesmo caso do Ipespe de 17/10. Os percentuais ficam como publicados. CUIDADO COM CONFLAÇÃO: existe uma rodada POSTERIOR da Gerp, divulgada em 21/10, que a imprensa também descreve com totais 50 x 45 mas válidos 53 x 47; ela NÃO entrou aqui por não ter ficha com registro localizada, e não deve ser confundida com esta. Contratante NULO: recursos próprios, custo declarado de R$ 10.000. Confiança 95%. PESO DESTA FICHA NO VEREDITO, MEDIDO EM 21/10: é ela, sozinha, que mantém a corrida FORA do empate técnico. Com as três fichas de hoje o agregado dá vantagem 2,0918 contra margem 1,9155; retirando SÓ esta, a vantagem cai a 1,8940 contra margem 1,9098 e `empateTecnico` volta a TRUE. As duas rodadas da Futura não fazem esse trabalho: sem a de 16-17/10 a vantagem SOBE a 2,1758 (ela ESTREITA o agregado, porque o seu intervalo entre os dois é de 0,8 ponto), e a de 19-20/10 é quase neutra na vantagem (2,0912). O motivo é o intervalo: a Gerp abre 5 pontos entre os dois (50 x 45), o mais largo da leva pós-eleição. Note que a ficha que decide o veredito é também a que carrega a ressalva aritmética acima — os válidos dela não reproduzem dos próprios totais publicados.",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 50
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 45
+      },
+      {
+        "candidato": "Nenhum deles",
+        "partido": null,
+        "pct": 2
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 1
+      }
+    ]
+  }
+]

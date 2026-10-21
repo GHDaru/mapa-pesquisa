@@ -4334,3 +4334,56 @@ O texto do painel ganhou a ressalva do **exterior**: nossos 20,8% são as 27 UFs
 **Lição.** Um número derivado de duas fontes passa por medido quando a diferença é pequena, e nenhum teste o acusa porque o agregado fecha. O que o acusou foi conferir uma linha contra a fonte: TO mostrava 217.111 e o arquivo dizia 216.827.
 
 **876 testes**, build limpo, 27 de 27 linhas conferidas contra `apuracao.json` na página renderizada.
+
+## 21/10, rodada diária — três fichas, dois defeitos nossos, e um veredito pendurado num instituto
+
+Primeira rodada com a rede liberada, e ela muda o método: **os veículos são alcançáveis por `curl --compressed`** (o `--compressed` importa — sem ele o texto vem como binário comprimido e parece lixo). O WebFetch segue barrado em g1.globo.com, mas o proxy está com `selective: false` e sem falhas. Fontes que respondem: Poder360, Metrópoles, Gazeta do Povo, **datafolha.folha.uol.com.br**. O TSE bloqueia a consulta de *pesquisas* no WAF dele (403); `pesqele.tse.jus.br` nem resolve. A divulgação de *resultados* continua aberta.
+
+### Entraram (3): 854 pesquisas, de 851
+
+| Instituto | Campo | n | Linhas publicadas | Soma | Válidos divulgados |
+|---|---|---|---|---|---|
+| Futura/100% Cidades | 16–17/10 | 2.000 | 48,3 / 47,5 / 2,4 / 1,9 | 100,1 | 50,4 × 49,6 ✓ |
+| Futura/100% Cidades | 19–20/10 | 2.000 | 48,9 / 46,8 / 2,0 / 2,3 | 100,0 | 51,1 × 48,9 ✓ |
+| Gerp | 14–16/10 | 2.400 | 50 / 45 / 2 / 1 | 98,0 | 52 × 48 **✗** |
+
+As duas Futura reproduzem os válidos ao décimo. A Gerp **não**: 50/95 = 52,63 → 53%, e o instituto publica 52%. Declarado, não ajustado — mesmo caso do Ipespe de 17/10, inteiros já arredondados com os válidos calculados sobre os números cheios.
+
+**A Futura de 16–17/10 era a pendência de 19/10**, recusada então por divergência de campo. A leitura direta resolveu: o Poder360 diz 16–17/10 e a CNN traz as mesmas datas **no bloco de metodologia** — o 14–15/10 aparece só no subtítulo dela. O registro, porém, **segue em `null`**: Poder360 diz BR-06715/2026, CNN diz BR-03764/2026, nenhum dos dois está na base como registro de outra rodada, e o TSE não é consultável. Nada desempata.
+
+**O contratante não se herda entre rodadas do mesmo instituto.** A de 16–17/10 foi "contratada pela Futura Consultoria e Assessoria" — o próprio instituto, logo `null`. A de 19–20/10 foi **paga pelo Instituto 100% Cidades** (R$ 160.000, dito na ficha), o que também resolve a divergência entre as fontes que a chamavam de "Futura/Apex": Apex não se sustenta.
+
+### Não entraram, com o motivo
+
+- **Quaest de 17–20/10 — NÃO EXISTE.** Uma busca a descreveu com n=2.154, 45 × 44. O compilado do Poder360 de 21/10 lista Quaest como **10–13/10, n=2.154, BR-08729/2026** — a rodada que já temos, com 46 × 44. O artigo do Metrópoles diz, em texto, que é "o primeiro realizado pela Quaest durante o 2º turno". **O detector foi a amostra idêntica**: o resumo colou o n da rodada existente em datas e números que não são dela. Décima vez que o teste do delta pega uma ficha.
+- **Gerp de 21/10** (válidos 53 × 47): sem ficha com registro localizada, e a imprensa a descreve com os **mesmos totais 50 × 45** da rodada de 14–16/10 — risco alto de conflação. Fica anotado na ficha da rodada que entrou.
+- **PoderData/Aya de 16–18/10** (n=3.000, BR-02586/2026): agora tenho campo e registro, mas o problema de 19/10 é outro e persiste — as linhas somam 101 e o excesso não é localizável.
+- **Veritá de 21/10** (válidos 50,7 × 49,3): instituto **barrado**, pendente de decisão humana desde 06/10.
+
+### Dois defeitos NOSSOS, achados ao conferir a base contra a ficha publicada
+
+**CNT/MDA: amostra errada, 2.002 → 2.014.** A própria Gazeta do Povo que citamos diz 2.014 duas vezes — na legenda da infografia e no bloco de metodologia do BR-00652/2026. O 2.002 gravado **é a amostra da Nexus/FSB, ingerida na mesma rodada de 16/10**: contaminação entre fichas vizinhas. E o artigo tem **dois** blocos de metodologia (2.014/BR-00652 e 2.007/BR-04756, de uma rodada anterior), o que é a armadilha que o produziu.
+
+**Datafolha: conflito de campo, declarado e não resolvido.** O compilado do Poder360 dá 13–14/10; temos 13–15/10. A fonte que citamos é uma **prévia das 00:01 de 15/10**, que diz que a pesquisa "**prevê** entrevistas entre os dias 13 e 15" — tempo futuro, evidência do campo *planejado*, não do realizado. Não inverti a data em cima de um compilado sem a ficha primária. Afeta só o peso de recência. O site do Datafolha ficou alcançável: é lá que isto se fecha.
+
+**E o registro da AtlasIntel de 13–18/10 foi localizado: BR-02418/2026**, pelo compilado, com campo e amostra batendo. Fecha a pendência de "registro não localizado" declarada quando ela entrou.
+
+### O veredito está pendurado numa ficha só
+
+| cenário | vantagem | margemRef | empate |
+|---|---|---|---|
+| estado atual | 2,0918 | 1,9155 | false |
+| sem Futura 16–17/10 | 2,1758 | 1,8970 | false |
+| sem Futura 19–20/10 | 2,0912 | 1,8939 | false |
+| **sem Gerp 14–16/10** | **1,8940** | **1,9098** | **TRUE** |
+| sem as três novas | 1,9590 | 1,8622 | false |
+
+A última linha reproduz o estado de ontem, o que valida o arnês de isolamento.
+
+**Hoje é a imagem espelhada de ontem, e igualmente frágil.** Em 20/10 a corrida saiu do empate técnico porque a **régua encolheu** (a AtlasIntel declara margem 1 com n=4.998). Hoje a vantagem subiu de verdade — 0,1326 — e a régua subiu também, 0,0534. Mas **retirar a Gerp devolve a corrida ao empate técnico**. Ela abre 5 pontos entre os dois (50 × 45), o intervalo mais largo da leva pós-eleição; as duas Futura fazem o contrário — sem a de 16–17/10 a vantagem *sobe*, porque o intervalo dela é de 0,8 ponto.
+
+E a ficha que sustenta o veredito é a mesma que carrega a ressalva aritmética. Não se trata de recusá-la: a ficha é legítima, com registro, metodologia e linhas publicadas. Trata-se de não contar "a corrida se abriu" quando um único instituto, com a ressalva mais frágil da leva, é o que separa o veredito do seu contrário.
+
+**Isso agrava a pendência de método declarada em 20/10** e já a torna visível por dois caminhos independentes: `margemReferencia` como média ponderada de margens *declaradas* é sensível a um instituto, e `empateTecnico` como limiar duro converte essa sensibilidade em veredito binário. A decisão de convenção segue sendo humana.
+
+**876 testes**, build limpo, 854 pesquisas (851 + 3, conferido).

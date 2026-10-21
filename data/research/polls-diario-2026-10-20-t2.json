@@ -1,165 +1,165 @@
 [
- {
-  "id": "2026-10-20-real-time-big-data-br-presidente-t2-flavio-lula",
-  "uf": "BR",
-  "cargo": "presidente",
-  "turno": 2,
-  "instituto": "Real Time Big Data",
-  "registroTSE": "BR-02952/2026",
-  "contratante": null,
-  "dataInicio": "2026-10-15",
-  "dataFim": "2026-10-19",
-  "publicadoEm": "2026-10-20",
-  "amostra": 2000,
-  "margem": 2,
-  "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
-  "fonte": {
-   "nome": "Jornale",
-   "url": "https://www.jornale.com.br/post/real-time-big-data-fl%C3%A1vio-tem-52-dos-votos-v%C3%A1lidos-e-lula-48-em-empate-t%C3%A9cnico"
+  {
+    "id": "2026-10-20-real-time-big-data-br-presidente-t2-flavio-lula",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-02952/2026",
+    "contratante": null,
+    "dataInicio": "2026-10-15",
+    "dataFim": "2026-10-19",
+    "publicadoEm": "2026-10-20",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
+    "fonte": {
+      "nome": "Jornale",
+      "url": "https://www.jornale.com.br/post/real-time-big-data-fl%C3%A1vio-tem-52-dos-votos-v%C3%A1lidos-e-lula-48-em-empate-t%C3%A9cnico"
+    },
+    "observacao": "PRIMEIRA rodada NACIONAL do instituto com campo posterior ao 1º turno; a anterior na base é de 26-30/09. Campo 15 a 19/10 por telefone com entrevistadores humanos, 2.000 eleitores, margem 2, confiança 95%, registro BR-02952/2026. O campo ATRAVESSA o debate da Band de 18/10. CORTE = VOTOS TOTAIS pelo critério forte: Flávio 48, Lula 45, brancos/nulos 5, não sabe/não respondeu 2 — fechamento em 100 exatos. TESTE DE DIVISÃO limpo: 48/93 = 51,61 e 45/93 = 48,39, reproduzindo a manchete de válidos (52 x 48). TESTE DO DELTA, e ele é o mais forte que já tivemos: a matéria descreve a rodada anterior do instituto como 'Flávio oscilou de 46% para 48%, Lula permaneceu com 45%, brancos/nulos permaneceram em 5% e não sabem passou de 4% para 2%' — os quatro valores de partida (46 / 45 / 5 / 4) são EXATAMENTE a nossa ficha de 26-30/09, linha por linha. E a mesma matéria dá uma SEGUNDA confirmação: diz que 'no levantamento divulgado em 1º de outubro Flávio tinha 51% dos válidos e Lula 49%', e a nossa ficha de 26-30/09 produz 46/91 = 50,55 e 45/91 = 49,45, que arredondam para 51 e 49. A fonte nova reimprime duas vezes o que já gravamos. SOBRE A SUSPENSÃO DO INSTITUTO: a Real Time Big Data está suspensa nesta base em PR, CE, MA, RN, AL, SE e TO — suspensão ESTADUAL; a rodada nacional nunca foi alvo, como o próprio alerta do projeto registra, e por isso esta ficha entra. CONTRATANTE: nenhuma fonte nomeia contratante; gravado null. RESSALVA DE REGISTRO: BR-02952/2026 veio de uma única fonte e não foi corroborado; gravado como publicado, com a limitação declarada, porque o PesqEle não é alcançável desta máquina. Cenário espontâneo (NÃO ingerido, contexto): Flávio 47, Lula 44. Recorte regional (contexto): Lula 62 x Flávio 31 no Nordeste, em votos totais. LIMITAÇÃO DE AMBIENTE: dados via WebSearch, WebFetch bloqueado pela política de rede.",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 48
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 45
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 5
+      },
+      {
+        "candidato": "Não sabe",
+        "partido": null,
+        "pct": 2
+      }
+    ]
   },
-  "observacao": "PRIMEIRA rodada NACIONAL do instituto com campo posterior ao 1º turno; a anterior na base é de 26-30/09. Campo 15 a 19/10 por telefone com entrevistadores humanos, 2.000 eleitores, margem 2, confiança 95%, registro BR-02952/2026. O campo ATRAVESSA o debate da Band de 18/10. CORTE = VOTOS TOTAIS pelo critério forte: Flávio 48, Lula 45, brancos/nulos 5, não sabe/não respondeu 2 — fechamento em 100 exatos. TESTE DE DIVISÃO limpo: 48/93 = 51,61 e 45/93 = 48,39, reproduzindo a manchete de válidos (52 x 48). TESTE DO DELTA, e ele é o mais forte que já tivemos: a matéria descreve a rodada anterior do instituto como 'Flávio oscilou de 46% para 48%, Lula permaneceu com 45%, brancos/nulos permaneceram em 5% e não sabem passou de 4% para 2%' — os quatro valores de partida (46 / 45 / 5 / 4) são EXATAMENTE a nossa ficha de 26-30/09, linha por linha. E a mesma matéria dá uma SEGUNDA confirmação: diz que 'no levantamento divulgado em 1º de outubro Flávio tinha 51% dos válidos e Lula 49%', e a nossa ficha de 26-30/09 produz 46/91 = 50,55 e 45/91 = 49,45, que arredondam para 51 e 49. A fonte nova reimprime duas vezes o que já gravamos. SOBRE A SUSPENSÃO DO INSTITUTO: a Real Time Big Data está suspensa nesta base em PR, CE, MA, RN, AL, SE e TO — suspensão ESTADUAL; a rodada nacional nunca foi alvo, como o próprio alerta do projeto registra, e por isso esta ficha entra. CONTRATANTE: nenhuma fonte nomeia contratante; gravado null. RESSALVA DE REGISTRO: BR-02952/2026 veio de uma única fonte e não foi corroborado; gravado como publicado, com a limitação declarada, porque o PesqEle não é alcançável desta máquina. Cenário espontâneo (NÃO ingerido, contexto): Flávio 47, Lula 44. Recorte regional (contexto): Lula 62 x Flávio 31 no Nordeste, em votos totais. LIMITAÇÃO DE AMBIENTE: dados via WebSearch, WebFetch bloqueado pela política de rede.",
-  "resultados": [
-   {
-    "candidato": "Flávio Bolsonaro",
-    "partido": "PL",
-    "pct": 48
-   },
-   {
-    "candidato": "Luiz Inácio Lula da Silva",
-    "partido": "PT",
-    "pct": 45
-   },
-   {
-    "candidato": "Brancos/nulos",
-    "partido": null,
-    "pct": 5
-   },
-   {
-    "candidato": "Não sabe",
-    "partido": null,
-    "pct": 2
-   }
-  ]
- },
- {
-  "id": "2026-10-19-atlasintel-br-presidente-t2-flavio-lula",
-  "uf": "BR",
-  "cargo": "presidente",
-  "turno": 2,
-  "instituto": "AtlasIntel",
-  "registroTSE": null,
-  "contratante": null,
-  "dataInicio": "2026-10-13",
-  "dataFim": "2026-10-18",
-  "publicadoEm": "2026-10-19",
-  "amostra": 4998,
-  "margem": 1,
-  "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
-  "fonte": {
-   "nome": "Brasil de Fato",
-   "url": "https://www.brasildefato.com.br/2026/10/19/lula-reduz-diferenca-e-marca-476-no-segundo-turno-contra-498-de-flavio-bolsonaro-aponta-pesquisa-atlasbloomberg/"
+  {
+    "id": "2026-10-19-atlasintel-br-presidente-t2-flavio-lula",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "AtlasIntel",
+    "registroTSE": "BR-02418/2026",
+    "contratante": null,
+    "dataInicio": "2026-10-13",
+    "dataFim": "2026-10-18",
+    "publicadoEm": "2026-10-19",
+    "amostra": 4998,
+    "margem": 1,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
+    "fonte": {
+      "nome": "Brasil de Fato",
+      "url": "https://www.brasildefato.com.br/2026/10/19/lula-reduz-diferenca-e-marca-476-no-segundo-turno-contra-498-de-flavio-bolsonaro-aponta-pesquisa-atlasbloomberg/"
+    },
+    "observacao": "Rodada AtlasIntel/Bloomberg divulgada em 19/10, campo 13 a 18/10, 4.998 entrevistados por recrutamento digital aleatório, margem 1 ponto, confiança 95%. É a MAIOR amostra da leva pós-eleição e, por isso, a de maior peso no agregado. CORTE = VOTOS TOTAIS pelo critério forte: Flávio 49,8, Lula 47,6, brancos/nulos/indecisos 2,6 — fechamento em 100,0 exatos. TESTE DE DIVISÃO limpo: 49,8/97,4 = 51,13 e 47,6/97,4 = 48,87, reproduzindo a manchete de válidos (51,1 x 48,9). ARMADILHA EVITADA: um resumo de busca atribuiu a esta ficha linhas de 4% de brancos/nulos e 2% de não sabe, o que daria soma 103,4 — eram linhas de OUTRA pesquisa misturadas no mesmo resumo. A leitura correta tem UMA linha de não-candidato (2,6), e é ela que fecha a conta. TESTE DO DELTA, e identifica ficha NOSSA: a cobertura diz que a diferença caiu de 5,4 para 2,2 pontos e cita a rodada anterior com Lula 45,7 e Flávio 51,1 — são exatamente os nossos números de 03-08/10 (n=5.026, BR-03663/2026), cuja diferença é 5,4 e cuja divisão por válidos dá 52,79 x 47,21, os 52,8 x 47,2 que a mesma matéria atribui àquela rodada. Confirmação dupla. CONTRATANTE NULL POR REGRA: a Gazeta do Povo registra que a pesquisa foi contratada pelo PRÓPRIO INSTITUTO — recursos próprios é null, e a Bloomberg aparece como parceira de divulgação, não como contratante. REGISTRO NÃO LOCALIZADO: a única fonte que traria o número tem o texto cortado ('Registro no TSE sob o nº'); gravado null em vez de inventado. LIMITAÇÃO DE AMBIENTE: dados via WebSearch, conferidos em Brasil de Fato, Gazeta do Povo e Times Brasil. REGISTRO LOCALIZADO EM 21/10: BR-02418/2026, pela ficha técnica que o Poder360 publica no compilado de 21/10, onde o campo (13 a 18/10) e a amostra (4.998) batem com esta ficha - era a pendência de 'registro não localizado' declarada quando ela entrou.",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 49.8
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 47.6
+      },
+      {
+        "candidato": "Brancos/nulos/indecisos",
+        "partido": null,
+        "pct": 2.6
+      }
+    ]
   },
-  "observacao": "Rodada AtlasIntel/Bloomberg divulgada em 19/10, campo 13 a 18/10, 4.998 entrevistados por recrutamento digital aleatório, margem 1 ponto, confiança 95%. É a MAIOR amostra da leva pós-eleição e, por isso, a de maior peso no agregado. CORTE = VOTOS TOTAIS pelo critério forte: Flávio 49,8, Lula 47,6, brancos/nulos/indecisos 2,6 — fechamento em 100,0 exatos. TESTE DE DIVISÃO limpo: 49,8/97,4 = 51,13 e 47,6/97,4 = 48,87, reproduzindo a manchete de válidos (51,1 x 48,9). ARMADILHA EVITADA: um resumo de busca atribuiu a esta ficha linhas de 4% de brancos/nulos e 2% de não sabe, o que daria soma 103,4 — eram linhas de OUTRA pesquisa misturadas no mesmo resumo. A leitura correta tem UMA linha de não-candidato (2,6), e é ela que fecha a conta. TESTE DO DELTA, e identifica ficha NOSSA: a cobertura diz que a diferença caiu de 5,4 para 2,2 pontos e cita a rodada anterior com Lula 45,7 e Flávio 51,1 — são exatamente os nossos números de 03-08/10 (n=5.026, BR-03663/2026), cuja diferença é 5,4 e cuja divisão por válidos dá 52,79 x 47,21, os 52,8 x 47,2 que a mesma matéria atribui àquela rodada. Confirmação dupla. CONTRATANTE NULL POR REGRA: a Gazeta do Povo registra que a pesquisa foi contratada pelo PRÓPRIO INSTITUTO — recursos próprios é null, e a Bloomberg aparece como parceira de divulgação, não como contratante. REGISTRO NÃO LOCALIZADO: a única fonte que traria o número tem o texto cortado ('Registro no TSE sob o nº'); gravado null em vez de inventado. LIMITAÇÃO DE AMBIENTE: dados via WebSearch, conferidos em Brasil de Fato, Gazeta do Povo e Times Brasil.",
-  "resultados": [
-   {
-    "candidato": "Flávio Bolsonaro",
-    "partido": "PL",
-    "pct": 49.8
-   },
-   {
-    "candidato": "Luiz Inácio Lula da Silva",
-    "partido": "PT",
-    "pct": 47.6
-   },
-   {
-    "candidato": "Brancos/nulos/indecisos",
-    "partido": null,
-    "pct": 2.6
-   }
-  ]
- },
- {
-  "id": "2026-10-20-real-time-big-data-es-governador-t2",
-  "uf": "ES",
-  "cargo": "governador",
-  "turno": 2,
-  "instituto": "Real Time Big Data",
-  "registroTSE": "ES-06599/2026",
-  "contratante": null,
-  "dataInicio": "2026-10-15",
-  "dataFim": "2026-10-19",
-  "publicadoEm": "2026-10-20",
-  "amostra": 1600,
-  "margem": 2,
-  "cenario": "estimulada, 2º turno: Lorenzo Pazolini x Ricardo Ferraço",
-  "fonte": {
-   "nome": "ES Brasil",
-   "url": "https://esbrasil.com.br/real-time-big-data-empate-pazolini-ferraco/"
+  {
+    "id": "2026-10-20-real-time-big-data-es-governador-t2",
+    "uf": "ES",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "ES-06599/2026",
+    "contratante": null,
+    "dataInicio": "2026-10-15",
+    "dataFim": "2026-10-19",
+    "publicadoEm": "2026-10-20",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Lorenzo Pazolini x Ricardo Ferraço",
+    "fonte": {
+      "nome": "ES Brasil",
+      "url": "https://esbrasil.com.br/real-time-big-data-empate-pazolini-ferraco/"
+    },
+    "observacao": "SEGUNDA pesquisa de governador do ES com campo pós-eleição (a primeira é a Quaest de 10-13/10) e a de campo MAIS RECENTE. Campo 15 a 19/10, 1.600 eleitores, margem 2, confiança 95%, registro ES-06599/2026. CORTE = VOTOS TOTAIS pelo critério forte: Pazolini 46, Ferraço 43, brancos/nulos 8, não sabe/não respondeu 3 — fechamento em 100 exatos. TESTE DE DIVISÃO limpo: 46/89 = 51,69 e 43/89 = 48,31, reproduzindo a manchete de válidos (52 x 48). MOVIMENTO: a Quaest de 10-13/10 dava 47 x 38 (9 pontos); esta dá 46 x 43 (3 pontos), com Ferraço subindo 5. SOBRE A SUSPENSÃO DO INSTITUTO: a Real Time Big Data está suspensa nesta base em PR, CE, MA, RN, AL, SE e TO — o ES NÃO está na lista. CONTRATANTE: nenhuma fonte nomeia contratante; gravado null. LIMITAÇÃO DE AMBIENTE: dados via WebSearch, conferidos em ES Brasil, O Liberal, Agora ES, Gazeta do Povo e BPMoney.",
+    "resultados": [
+      {
+        "candidato": "Lorenzo Pazolini",
+        "partido": "Republicanos",
+        "pct": 46
+      },
+      {
+        "candidato": "Ricardo Ferraço",
+        "partido": "MDB",
+        "pct": 43
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 8
+      },
+      {
+        "candidato": "Não sabe/não respondeu",
+        "partido": null,
+        "pct": 3
+      }
+    ]
   },
-  "observacao": "SEGUNDA pesquisa de governador do ES com campo pós-eleição (a primeira é a Quaest de 10-13/10) e a de campo MAIS RECENTE. Campo 15 a 19/10, 1.600 eleitores, margem 2, confiança 95%, registro ES-06599/2026. CORTE = VOTOS TOTAIS pelo critério forte: Pazolini 46, Ferraço 43, brancos/nulos 8, não sabe/não respondeu 3 — fechamento em 100 exatos. TESTE DE DIVISÃO limpo: 46/89 = 51,69 e 43/89 = 48,31, reproduzindo a manchete de válidos (52 x 48). MOVIMENTO: a Quaest de 10-13/10 dava 47 x 38 (9 pontos); esta dá 46 x 43 (3 pontos), com Ferraço subindo 5. SOBRE A SUSPENSÃO DO INSTITUTO: a Real Time Big Data está suspensa nesta base em PR, CE, MA, RN, AL, SE e TO — o ES NÃO está na lista. CONTRATANTE: nenhuma fonte nomeia contratante; gravado null. LIMITAÇÃO DE AMBIENTE: dados via WebSearch, conferidos em ES Brasil, O Liberal, Agora ES, Gazeta do Povo e BPMoney.",
-  "resultados": [
-   {
-    "candidato": "Lorenzo Pazolini",
-    "partido": "Republicanos",
-    "pct": 46
-   },
-   {
-    "candidato": "Ricardo Ferraço",
-    "partido": "MDB",
-    "pct": 43
-   },
-   {
-    "candidato": "Brancos/nulos",
-    "partido": null,
-    "pct": 8
-   },
-   {
-    "candidato": "Não sabe/não respondeu",
-    "partido": null,
-    "pct": 3
-   }
-  ]
- },
- {
-  "id": "2026-10-20-real-time-big-data-df-governador-t2",
-  "uf": "DF",
-  "cargo": "governador",
-  "turno": 2,
-  "instituto": "Real Time Big Data",
-  "registroTSE": null,
-  "contratante": null,
-  "dataInicio": "2026-10-15",
-  "dataFim": "2026-10-19",
-  "publicadoEm": "2026-10-20",
-  "amostra": 1600,
-  "margem": 2,
-  "cenario": "estimulada, 2º turno: Celina Leão x Leandro Grass",
-  "fonte": {
-   "nome": "BPMoney",
-   "url": "https://bpmoney.com.br/politica/pesquisa-realtime-big-data-segundo-turno-cinco-estados-df/"
-  },
-  "observacao": "A pesquisa de governador do DF com o campo MAIS RECENTE (15 a 19/10), 1.600 entrevistados, margem 2, confiança 95%. CORTE = VOTOS TOTAIS pelo critério forte: Celina Leão 53, Leandro Grass 37, brancos/nulos 8, não sabe/não respondeu 2 — fechamento em 100 exatos. TESTE DE DIVISÃO limpo: 53/90 = 58,89 e 37/90 = 41,11, reproduzindo a manchete de válidos (59 x 41). CONFLITO DE REGISTRO NÃO RESOLVIDO, e por isso o campo fica null: a Gazeta do Povo informa DF-04637/2026 e o BPMoney informa DF-01691/2026, duas fontes de peso dando números diferentes, sem critério que desempate — diferente do caso do AC, onde o prefixo estadual resolvia, e do caso do TO, onde o número divergente era o da rodada anterior e já estava na nossa base. Nenhum dos dois é o DF-01170/2026 da rodada anterior do mesmo instituto. Gravado null com o conflito declarado, em vez de escolher um no palpite. CONTRATANTE NULL POR REGRA: a cobertura diz que a pesquisa foi contratada pelo próprio instituto — recursos próprios é null. SOBRE A SUSPENSÃO: o DF não está na lista dos sete estados. LIMITAÇÃO DE AMBIENTE: dados via WebSearch, conferidos em BPMoney, Gazeta do Povo e NC News.",
-  "resultados": [
-   {
-    "candidato": "Celina Leão",
-    "partido": "PP",
-    "pct": 53
-   },
-   {
-    "candidato": "Leandro Grass",
-    "partido": "PT",
-    "pct": 37
-   },
-   {
-    "candidato": "Brancos/nulos",
-    "partido": null,
-    "pct": 8
-   },
-   {
-    "candidato": "Não sabe/não respondeu",
-    "partido": null,
-    "pct": 2
-   }
-  ]
- }
+  {
+    "id": "2026-10-20-real-time-big-data-df-governador-t2",
+    "uf": "DF",
+    "cargo": "governador",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": null,
+    "contratante": null,
+    "dataInicio": "2026-10-15",
+    "dataFim": "2026-10-19",
+    "publicadoEm": "2026-10-20",
+    "amostra": 1600,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Celina Leão x Leandro Grass",
+    "fonte": {
+      "nome": "BPMoney",
+      "url": "https://bpmoney.com.br/politica/pesquisa-realtime-big-data-segundo-turno-cinco-estados-df/"
+    },
+    "observacao": "A pesquisa de governador do DF com o campo MAIS RECENTE (15 a 19/10), 1.600 entrevistados, margem 2, confiança 95%. CORTE = VOTOS TOTAIS pelo critério forte: Celina Leão 53, Leandro Grass 37, brancos/nulos 8, não sabe/não respondeu 2 — fechamento em 100 exatos. TESTE DE DIVISÃO limpo: 53/90 = 58,89 e 37/90 = 41,11, reproduzindo a manchete de válidos (59 x 41). CONFLITO DE REGISTRO NÃO RESOLVIDO, e por isso o campo fica null: a Gazeta do Povo informa DF-04637/2026 e o BPMoney informa DF-01691/2026, duas fontes de peso dando números diferentes, sem critério que desempate — diferente do caso do AC, onde o prefixo estadual resolvia, e do caso do TO, onde o número divergente era o da rodada anterior e já estava na nossa base. Nenhum dos dois é o DF-01170/2026 da rodada anterior do mesmo instituto. Gravado null com o conflito declarado, em vez de escolher um no palpite. CONTRATANTE NULL POR REGRA: a cobertura diz que a pesquisa foi contratada pelo próprio instituto — recursos próprios é null. SOBRE A SUSPENSÃO: o DF não está na lista dos sete estados. LIMITAÇÃO DE AMBIENTE: dados via WebSearch, conferidos em BPMoney, Gazeta do Povo e NC News.",
+    "resultados": [
+      {
+        "candidato": "Celina Leão",
+        "partido": "PP",
+        "pct": 53
+      },
+      {
+        "candidato": "Leandro Grass",
+        "partido": "PT",
+        "pct": 37
+      },
+      {
+        "candidato": "Brancos/nulos",
+        "partido": null,
+        "pct": 8
+      },
+      {
+        "candidato": "Não sabe/não respondeu",
+        "partido": null,
+        "pct": 2
+      }
+    ]
+  }
 ]
