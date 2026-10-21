@@ -68,6 +68,29 @@ describe('textoDaAncoragem', () => {
     expect(t).toContain('MA, MG e PI');
   });
 
+  /**
+   * Com as 27 UFs apuradas, a taxa fica comparável com a que o TSE divulga — e
+   * um pouco menor, porque o total do TSE soma as seções do exterior. Sem essa
+   * ressalva, quem confere acha divergência onde não há.
+   */
+  it('ressalva o exterior quando nenhuma UF falta', () => {
+    const completo = {
+      ...BASE_ANCORADA,
+      comparecimento: {
+        votos: 124_934_069,
+        eleitoresCobertos: 157_827_925,
+        ufsSemDado: [],
+      },
+      eleitoradoTotal: 157_827_925,
+      ufsComAncoragemSubstituta: [],
+    } as unknown as EstimativaVotos;
+    const t = textoDaAncoragem(completo)!;
+    expect(t).toContain('20,8% nas 27 UFs');
+    expect(t).toContain('exterior');
+    expect(t).not.toContain('faltam');
+    expect(t).not.toContain('não tem apuração');
+  });
+
   it('nomeia a UF cuja âncora foi estimada', () => {
     expect(textoDaAncoragem(BASE_ANCORADA)!).toContain('PI não tem apuração');
   });

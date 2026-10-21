@@ -132,12 +132,25 @@ export function textoDaAncoragem(e: EstimativaVotos): string | null {
     const taxa = (e.comparecimento.votos / e.comparecimento.eleitoresCobertos) * 100;
     const faltam = e.comparecimento.ufsSemDado;
     const cobertura = (e.comparecimento.eleitoresCobertos / e.eleitoradoTotal) * 100;
-    partes.push(
-      `A abstenção do 1º turno foi de ${formatarNumeroPt(100 - taxa)}% nas ${
-        27 - faltam.length
-      } UFs em que ela é conhecida (${formatarNumeroPt(cobertura)}% do eleitorado)` +
-        (faltam.length > 0 ? `; faltam ${listaEmPortugues(faltam)}.` : '.'),
-    );
+    if (faltam.length > 0) {
+      partes.push(
+        `A abstenção do 1º turno foi de ${formatarNumeroPt(100 - taxa)}% nas ${
+          27 - faltam.length
+        } UFs em que ela é conhecida (${formatarNumeroPt(cobertura)}% do eleitorado); faltam ${listaEmPortugues(
+          faltam,
+        )}.`,
+      );
+    } else {
+      // Com as 27 UFs fechadas, o número passa a ser comparável com o que o
+      // TSE divulga — e fica um pouco MENOR que ele. A diferença não é erro:
+      // o total nacional do TSE inclui as seções do exterior, que não entram
+      // em nenhuma UF. Dizer isso aqui evita que quem confira ache divergência.
+      partes.push(
+        `A abstenção do 1º turno foi de ${formatarNumeroPt(100 - taxa)}% nas 27 UFs, agora todas ` +
+          'apuradas. O total que o TSE divulga é um pouco maior porque soma também as seções do ' +
+          'exterior, que não pertencem a nenhum estado e por isso não entram neste mapa.',
+      );
+    }
   }
   if (e.ufsComAncoragemSubstituta.length > 0) {
     partes.push(
@@ -276,10 +289,20 @@ export interface CandidatoNaCadeia {
 export interface CadeiaUf {
   readonly uf: string;
   readonly eleitores: number;
-  /** Eleitores que não compareceram no 1º turno. `null` onde a apuração não publicou brancos e nulos. */
+  /**
+   * Eleitores que não compareceram no 1º turno, como a apuração PUBLICOU —
+   * não `eleitores - votantes`. `null` onde a UF não tem apuração.
+   */
   readonly abstencao: number | null;
   /** Comparecimento do 1º turno — os que de fato foram votar. `null` junto com `abstencao`. */
   readonly votantes: number | null;
+  /**
+   * Base da TAXA de abstenção: os aptos nas seções daquela UF, como a apuração
+   * os contou (`abstencao + votantes`). Não é `eleitores`, e é de propósito —
+   * dividir a abstenção publicada pelo eleitorado registrado misturaria duas
+   * contagens e daria uma taxa que não é a oficial. `null` sem apuração.
+   */
+  readonly aptosApuracao: number | null;
   /** Votos válidos estimados: a base sobre a qual os percentuais são aplicados. */
   readonly validos: number;
   /** true quando a âncora desta UF foi estimada pela razão nacional, não apurada. */
@@ -303,6 +326,7 @@ export function montarCadeiaPorUf(e: EstimativaVotos): readonly CadeiaUf[] | nul
   return [...e.porUf]
     .map((uf): CadeiaUf => {
       const votantes = uf.ancoragem?.comparecimentoPrimeiroTurno ?? null;
+      const abstencao = uf.ancoragem?.abstencoesPrimeiroTurno ?? null;
       const ordenados = candidatosOrdenadosDaUf(uf);
       const votos1T = uf.ancoragem?.votosPrimeiroTurno ?? {};
       const validos1T = uf.ancoragem?.validosPrimeiroTurno ?? 0;
@@ -332,8 +356,9 @@ export function montarCadeiaPorUf(e: EstimativaVotos): readonly CadeiaUf[] | nul
       return {
         uf: uf.uf,
         eleitores: uf.eleitores,
-        abstencao: votantes === null ? null : Math.max(0, uf.eleitores - votantes),
+        abstencao,
         votantes,
+        aptosApuracao: abstencao !== null && votantes !== null ? abstencao + votantes : null,
         validos: uf.baseDeVotos,
         ancoraSubstituta: substitutas.has(uf.uf),
         candidatos,
@@ -343,9 +368,9 @@ export function montarCadeiaPorUf(e: EstimativaVotos): readonly CadeiaUf[] | nul
 }
 
 /** "3.740.385 · 22,8%" — o absoluto com a taxa ao lado; "—" quando a UF não tem o dado. */
-export function rotuloAbstencao(abstencao: number | null, eleitores: number): string {
-  if (abstencao === null || !(eleitores > 0)) return '—';
-  return `${formatarInteiro(abstencao)} · ${formatarPct((abstencao / eleitores) * 100)}`;
+export function rotuloAbstencao(abstencao: number | null, aptos: number | null): string {
+  if (abstencao === null || aptos === null || !(aptos > 0)) return '—';
+  return `${formatarInteiro(abstencao)} · ${formatarPct((abstencao / aptos) * 100)}`;
 }
 
 /**
@@ -354,9 +379,9 @@ export function rotuloAbstencao(abstencao: number | null, eleitores: number): st
  */
 export function ariaCadeiaUf(nomeEstado: string, c: CadeiaUf): string {
   const partes = [`${nomeEstado}: ${formatarInteiro(c.eleitores)} eleitores`];
-  if (c.abstencao !== null) {
+  if (c.abstencao !== null && c.aptosApuracao !== null && c.aptosApuracao > 0) {
     partes.push(
-      `abstenção de ${formatarPct((c.abstencao / c.eleitores) * 100)} no 1º turno`,
+      `abstenção de ${formatarPct((c.abstencao / c.aptosApuracao) * 100)} no 1º turno`,
       `${formatarInteiro(c.votantes ?? 0)} votantes estimados`,
     );
   }
@@ -560,7 +585,7 @@ function criarSecaoCadeia(
       }),
       criarEl('td', {
         className: 've-col-num',
-        texto: rotuloAbstencao(c.abstencao, c.eleitores),
+        texto: rotuloAbstencao(c.abstencao, c.aptosApuracao),
         attrs: { 'data-rotulo': 'Abstenção 1º turno' },
       }),
       criarEl('td', {
@@ -609,6 +634,16 @@ function criarSecaoCadeia(
         'do comparecimento, tiram-se os brancos e nulos também medidos; e os votos válidos que sobram são ' +
         'divididos pelos percentuais da pesquisa daquele estado, renormalizados para somar 100 dentro da UF. ' +
         'Nenhum degrau é suposto — os dois primeiros vêm da apuração de 4 de outubro.',
+    }),
+    criarEl('p', {
+      className: 've-meta',
+      texto:
+        'A coluna "eleitores" e a coluna "abstenção" vêm de duas contagens que não fecham por subtração, e ' +
+        'ficam assim de propósito: "eleitores" é o eleitorado registrado no domicílio, e a abstenção é a que a ' +
+        'apuração publicou, sobre os aptos NAS SEÇÕES daquela UF — base que inclui quem votou em trânsito para ' +
+        'presidente. É por isso que a taxa ao lado do número não é a abstenção dividida pelos eleitores da ' +
+        'primeira coluna. Preferimos a abstenção oficial com a base dela a uma subtração que daria um número ' +
+        'que ninguém publicou: em São Paulo as duas contas diferem em mais de 18 mil eleitores.',
     }),
     criarEl('p', {
       className: 've-meta',

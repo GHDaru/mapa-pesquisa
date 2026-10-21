@@ -14,6 +14,9 @@ function uf(
   comparecimento: number | null,
   votos: Record<string, number>,
   votosPrimeiroTurno: Record<string, number> = {},
+  // Por padrão a fixture usa a subtração ingênua, que serve para os casos em
+  // que a base não está sob teste; o teste da base passa o valor oficial.
+  abstencao: number | null = comparecimento === null ? null : eleitores - comparecimento,
 ): UfOrigemVotos {
   return {
     uf: nome,
@@ -27,6 +30,7 @@ function uf(
     ancoragem: {
       validosPrimeiroTurno: validos,
       comparecimentoPrimeiroTurno: comparecimento,
+      abstencoesPrimeiroTurno: abstencao,
       origem: 'apuracao',
       votosPrimeiroTurno,
     },
@@ -63,6 +67,44 @@ describe('montarCadeiaPorUf', () => {
     expect(c[0]!.abstencao).toBe(34_104_226 - 26_431_992);
     expect(c[0]!.votantes).toBe(26_431_992);
     expect(c[0]!.validos).toBe(24_882_948);
+  });
+
+  /**
+   * O número publicado vence a subtração. A apuração conta os aptos NAS SEÇÕES
+   * da UF — base que inclui quem votou em trânsito para presidente — e por isso
+   * `eleitores - comparecimento` dá outro número: em SP, 7.672.234 em vez dos
+   * 7.690.900 oficiais. A taxa tem de sair sobre a base da apuração
+   * (`aptosApuracao`), senão o % mistura as duas contagens.
+   */
+  it('usa a abstenção publicada e a base dela, não a subtração do eleitorado', () => {
+    const c = montarCadeiaPorUf(
+      estimativa([
+        uf(
+          'SP',
+          34_104_226,
+          24_882_948,
+          26_431_992,
+          { A: 11_526_835, B: 13_356_113 },
+          {},
+          7_690_900,
+        ),
+      ]),
+    )!;
+    expect(c[0]!.abstencao).toBe(7_690_900);
+    expect(c[0]!.aptosApuracao).toBe(7_690_900 + 26_431_992);
+    expect(c[0]!.aptosApuracao).not.toBe(c[0]!.eleitores);
+    expect(rotuloAbstencao(c[0]!.abstencao, c[0]!.aptosApuracao)).toBe('7.690.900 · 22,5%');
+    expect(ariaCadeiaUf('São Paulo', c[0]!)).toContain('abstenção de 22,5% no 1º turno');
+  });
+
+  /** Sem apuração não há abstenção publicada nem base para a taxa. */
+  it('não inventa base de abstenção na UF sem apuração', () => {
+    const c = montarCadeiaPorUf(
+      estimativa([uf('SP', 34_104_226, 24_882_948, null, { A: 11_526_835, B: 13_356_113 })]),
+    )!;
+    expect(c[0]!.abstencao).toBeNull();
+    expect(c[0]!.aptosApuracao).toBeNull();
+    expect(rotuloAbstencao(c[0]!.abstencao, c[0]!.aptosApuracao)).toBe('—');
   });
 
   /**
@@ -224,7 +266,7 @@ describe('textosPrimeiroTurno', () => {
 
 describe('rotuloAbstencao', () => {
   it('mostra o absoluto com a taxa ao lado', () => {
-    expect(rotuloAbstencao(7_672_234, 34_104_226)).toBe('7.672.234 · 22,5%');
+    expect(rotuloAbstencao(7_690_900, 34_122_892)).toBe('7.690.900 · 22,5%');
   });
 
   it('não inventa traço de porcentagem onde não há dado', () => {
@@ -233,6 +275,7 @@ describe('rotuloAbstencao', () => {
 
   it('não divide por zero', () => {
     expect(rotuloAbstencao(10, 0)).toBe('—');
+    expect(rotuloAbstencao(10, null)).toBe('—');
   });
 });
 

@@ -69,6 +69,15 @@ export interface AncoragemUf {
    */
   readonly comparecimentoPrimeiroTurno: number | null;
   /**
+   * Abstenção MEDIDA no 1º turno naquela UF, exatamente como a apuração a
+   * publicou — e não `eleitores - comparecimento`. As duas contas não dão o
+   * mesmo número: a apuração conta os aptos NAS SEÇÕES daquela UF, que
+   * incluem quem votou em trânsito para presidente, enquanto `eleitores`
+   * (electorate.json) é o eleitorado registrado no domicílio. Em SP a
+   * diferença passa de 18 mil. `null` junto com `comparecimentoPrimeiroTurno`.
+   */
+  readonly abstencoesPrimeiroTurno: number | null;
+  /**
    * `apuracao` quando os válidos vieram da apuração daquela UF;
    * `substituto-nacional` quando a UF não tem apuração e os válidos foram
    * estimados pela razão válidos/eleitorado das UFs que têm. A distinção não

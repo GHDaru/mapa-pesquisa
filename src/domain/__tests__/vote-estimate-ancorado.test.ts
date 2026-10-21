@@ -31,6 +31,7 @@ function agregado(
 const ANCORA: AncoragemUf = {
   validosPrimeiroTurno: 800_000,
   comparecimentoPrimeiroTurno: 850_000,
+  abstencoesPrimeiroTurno: 150_000,
   origem: 'apuracao',
   votosPrimeiroTurno: { A: 400_000, B: 350_000 },
 };
@@ -107,6 +108,7 @@ describe('estimarVotos — base ancorada no 1º turno', () => {
       ancoragem: {
         validosPrimeiroTurno: 700_000,
         comparecimentoPrimeiroTurno: null,
+        abstencoesPrimeiroTurno: null,
         origem: 'substituto-nacional',
         votosPrimeiroTurno: {},
       },
@@ -127,6 +129,7 @@ describe('estimarVotos — base ancorada no 1º turno', () => {
       ancoragem: {
         validosPrimeiroTurno: 1_500_000,
         comparecimentoPrimeiroTurno: null,
+        abstencoesPrimeiroTurno: null,
         origem: 'apuracao',
         votosPrimeiroTurno: {},
       },

@@ -4266,3 +4266,71 @@ Por isso a célula traz as duas: o número publicado em cima — é o que o leit
 **Lição de teste repetida:** os três primeiros testes do novo cálculo quebraram, e desta vez **o teste é que estava errado** — `candidatos` vem ordenado por votos ESTIMADOS, e o fixture tinha o segundo candidato na frente, de modo que `candidatos[0]` não era quem eu supunha. Passaram a buscar por nome. E `celulaPrimeiroTurno` precisou ser partida em duas: a conta pura (`textosPrimeiroTurno`, testável) e o invólucro DOM — a suíte roda em `environment: node` e `document.createElement` não existe lá.
 
 **873 testes**, build limpo.
+
+## 21/10 — a apuração inteira, lida da fonte oficial
+
+Pedido: *"Vi que faltam alguns dados do 1o turno. Não tem nenhum api oficial do tribunal?"* seguido de *"Mudei para acesso irrestrito"*.
+
+Tem, e é melhor do que uma API: a divulgação do TSE é **JSON estático, sem autenticação**. A receita, para as próximas rodadas:
+
+```
+config:  https://resultados.tse.jus.br/oficial/comum/config/ele-c.json
+arquivo: <base>/<ambiente>/<ciclo>/<cd_eleicao>/dados/<uf>/<uf>-c<cargo:4>-e<eleicao:6>-u.json
+```
+
+Códigos de 2026: **6257** federal 1º turno (presidente = cargo `0001`), **6259** estadual 1º turno (governador `0003`, senador `0005`), **6258** federal 2º turno, **6260** estadual 2º turno. O código da eleição vai **zero-preenchido em 6 dígitos** (`e006257`, não `e06257`) — foi o primeiro erro da madrugada.
+
+`data/apuracao.json` foi **reconstruído inteiro** a partir desses arquivos: **71 → 82 recortes**, todos a 100% das seções. Governador saiu de 22 para **27/27**, senador está em 27/27, presidente em 28 (BR + 27 UFs).
+
+### O que a comparação com a fonte revelou
+
+Dos 575 campos conferidos, **447 batiam** e **128 divergiam** — e cada uma das 128 se explicava pela nossa leitura ter sido feita antes da totalização. Mas três achados não eram só atraso:
+
+**"100% das seções" não é "totalização finalizada".** Doze recortes já marcados como 100% ainda diferiam da fonte em 3 a 280 votos. O campo que fecha de verdade é `tf: 's'`, não `s.pst: 100`. Estávamos lendo o indicador errado como se fosse definitivo.
+
+**RJ governador: a anulação do Garotinho.** Nossa leitura tinha válidos 8.669.038 e nulos 675.292; o TSE publica 8.394.627 e 949.703. A diferença é exatamente **274.411**, os votos do Garotinho, e ele não consta da lista final de candidatos da fonte. Tínhamos uma contabilidade pré-anulação sem saber.
+
+**Quatro correções de partido**, encontradas porque a comparação passou a ser feita pelo **número** da legenda e não pela sigla: Danilo Soares DC→Democrata, Samuel Costa Rede→PSB, Osvany Luz e Hélio Rodrigues Bolsonaro de Democracia Cristã→Democrata. Vinte e quatro siglas da fonte ("UNIÃO", "PODE", "DEMOCRATA") foram normalizadas pelo número via `parties.json` — casar por texto teria produzido 24 falsos conflitos e escondido estes 4 reais.
+
+**Cinco apelidos confirmados pelo nome civil**, não por semelhança: Leila Barros = LEILA DO VÔLEI, Evair de Mello = EVAIR DE MELO, José Medeiros = ZÉ MEDEIROS (e **não** Pedro Taques, que a busca por sobrenome teria casado), Bruno Bolsonaro Scheid = BRUNO SCHEID, Rosimayre Patrícia = ROSI AIRES.
+
+**As leituras que recusei em 19/10 estavam certas.** O TSE confirma TO Dorinha 386.260 × Vicentinho 372.848 ao voto, e no AC resolve a divergência 218.524 × 218.760 a favor do número maior.
+
+**A heurística de paridade do Senado, agora de fonte primária:** `senador.totalVotos / presidente.comparecimento` fica entre **1,9853** (DF) e **1,9991** (MA) — dois votos por eleitor que compareceu, como esperado. A razão válidos/válidos é outra coisa (1,66–1,90), porque brancos e nulos de senador são muito mais frequentes; confundir as duas era um risco real.
+
+### O efeito nas telas
+
+| | antes | depois |
+|---|---|---|
+| Cobertura nacional efetiva | 82,6% | **100,0000%** |
+| Âncora substituta | PI | **nenhuma** |
+| Comparecimento conhecido | 24 UFs | **27 UFs** |
+| Válidos estimados (2º turno) | 118.857.969 | **118.969.906** |
+| `margemReal` do ranking | 1,86726 | **1,865004** |
+
+O ranking de institutos segue com 16 institutos e 3 que acertaram o líder; o mapa de governadores, com 21 decididas, 6 em disputa e **18 acertos em 21** comparações.
+
+### Um erro que a tabela carregava desde ontem
+
+Com a abstenção oficial em mãos para as 27 UFs, a coluna "Abstenção 1º turno" revelou-se **derivada**, não medida: vinha de `eleitores − comparecimento`, misturando o eleitorado registrado de `electorate.json` (ref. 07/2026) com o comparecimento da apuração. A prosa ao lado já dizia "abstenção **MEDIDA** no 1º turno" — prometia o que não entregava.
+
+Em SP a conta derivada dava 7.672.234; a oficial é **7.690.900**. Diferença de **18.666 eleitores**.
+
+A causa é o **voto em trânsito**, e está na fonte: o eleitorado federal de cada UF é maior que o estadual, porque quem vota fora do domicílio vota para presidente, mas só para governador e senador se estiver no mesmo estado.
+
+```
+TO  presidente  aptos 1.182.023   governador  aptos 1.180.433
+SP  presidente  aptos 34.122.892  governador  aptos 34.081.699
+```
+
+A correção leva `abstencoesPrimeiroTurno` até `AncoragemUf` e calcula a taxa sobre `aptosApuracao` (= abstenção + comparecimento), que é a base em que o número foi publicado. **A linha deixa de fechar por subtração, e isso é deliberado** — preferir a abstenção oficial com a base dela a uma subtração que produz um número que ninguém publicou. A tabela ganhou um parágrafo dizendo exatamente isso, porque uma linha que não fecha sem explicação parece erro.
+
+Isso **invalida uma afirmação da entrada de ontem**: "a cadeia é conferível linha a linha ... 34.104.226 − 7.672.234 = 26.431.992". Não é mais, e não era para ser: os três degraus continuam cada um de fonte primária, mas os dois primeiros vêm de contagens de bases diferentes.
+
+**Nacionalmente as duas bases empatam** — 20,84% nas duas, com resíduo de 1.043 eleitores, porque o eleitor em trânsito é contado na UF que o recebe e segue registrado na de origem, e a soma cancela. O erro só existia por UF. Por isso o número agregado do painel não mudou, e por isso nenhum teste o pegou.
+
+O texto do painel ganhou a ressalva do **exterior**: nossos 20,8% são as 27 UFs, e o TSE publica 21,08% porque soma as seções do exterior, que não pertencem a nenhum estado. Sem dizer isso, quem conferisse acharia divergência.
+
+**Lição.** Um número derivado de duas fontes passa por medido quando a diferença é pequena, e nenhum teste o acusa porque o agregado fecha. O que o acusou foi conferir uma linha contra a fonte: TO mostrava 217.111 e o arquivo dizia 216.827.
+
+**876 testes**, build limpo, 27 de 27 linhas conferidas contra `apuracao.json` na página renderizada.
