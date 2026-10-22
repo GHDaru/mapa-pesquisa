@@ -1,5 +1,47 @@
 [
   {
+    "id": "2026-10-22-datafolha-br-presidente-t2-flavio-lula",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Datafolha",
+    "registroTSE": "BR-09709/2026",
+    "contratante": "Folha de S.Paulo e Grupo Globo",
+    "dataInicio": "2026-10-20",
+    "dataFim": "2026-10-22",
+    "publicadoEm": "2026-10-22",
+    "amostra": 2520,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/eleicoes/2026/10/22/que-horas-sai-a-pesquisa-datafolha-de-2-turno-entre-flavio-bolsonaro-e-lula.html"
+    },
+    "observacao": "Rodada mais recente da base e PRIMEIRA do Datafolha depois do debate de 18/10; campo 20-22/10, terminando no próprio dia da divulgação. CORTE = VOTOS TOTAIS: as quatro linhas publicadas somam exatamente 100. RESSALVA DECLARADA, NÃO AJUSTADA: 47/93 = 50,54 arredondaria para 51%, e o instituto publica EMPATE em 50% x 50% nos válidos - os inteiros 47 e 46 já são arredondados e os válidos saem dos números cheios, mesmo caso do Ipespe de 17/10 e da Gerp de 14-16/10. Os percentuais ficam como publicados. CUIDADO COM A FONTE: o artigo do O Povo foi PUBLICADO às 06:00 como prévia ('que horas sai', 'será divulgado a partir das 19 horas') e ATUALIZADO às 19:22 com os resultados em tempo passado ('o Datafolha divulgou'). O que foi ingerido é a parte atualizada; a prévia das 06:00 não traz resultado. CONFLITO DE AMOSTRA RESOLVIDO CONTRA A GAZETA DO POVO: ela publica 2.154 entrevistados para esta rodada, duas vezes, mas 2.154 é a assinatura da QUAEST (BR-08729/2026) e todas as rodadas desta série do Datafolha são de 2.520 (03/10 foi 4.006). É o mesmo defeito de contaminação entre fichas vizinhas que corrigi na NOSSA base em 21/10 (CNT/MDA carregando o 2.002 da Nexus) - aqui do lado do veículo. Gravado 2.520, com o O Povo como fonte. As duas fontes CONCORDAM em campo, margem, confiança, contratante, registro BR-09709/2026 e nas quatro linhas.",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 47
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 46
+      },
+      {
+        "candidato": "Brancos/nulos/nenhum",
+        "partido": null,
+        "pct": 5
+      },
+      {
+        "candidato": "Indecisos",
+        "partido": null,
+        "pct": 2
+      }
+    ]
+  },
+  {
     "id": "2026-10-21-futura-br-presidente-t2-flavio-lula",
     "uf": "BR",
     "cargo": "presidente",
@@ -410,48 +452,6 @@
     ]
   },
   {
-    "id": "2026-10-15-datafolha-br-presidente-t2-flavio-lula",
-    "uf": "BR",
-    "cargo": "presidente",
-    "turno": 2,
-    "instituto": "Datafolha",
-    "registroTSE": "BR-00466/2026",
-    "contratante": "Folha de S.Paulo e Grupo Globo",
-    "dataInicio": "2026-10-13",
-    "dataFim": "2026-10-15",
-    "publicadoEm": "2026-10-15",
-    "amostra": 2520,
-    "margem": 2,
-    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
-    "fonte": {
-      "nome": "Metrópoles",
-      "url": "https://www.metropoles.com/brasil/lula-x-flavio-datafolha-divulga-nova-pesquisa-de-2o-turno-hoje-15-10"
-    },
-    "observacao": "Segunda rodada Datafolha do 2º turno, divulgada em 15/10 (quinta-feira — dia da semana conferido, e 'a 10 dias do 2º turno' fecha com 25/10). CORTE INGERIDO = VOTOS TOTAIS pelas linhas publicadas: Flávio 47%, Lula 45%, brancos/nulos/nenhum 6%, indecisos 2%, somando exatamente 100. TESTE DE DIVISÃO: 47/92 = 51,09 -> 51 e 45/92 = 48,91 -> 49, reproduzindo a manchete de válidos (51 x 49, empate técnico na margem de 2). TESTE DO DELTA: a cobertura descreve a rodada anterior como Flávio 49 / Lula 45 / brancos-nulos 5 / indecisos 1 e válidos 52 x 48 — **idêntico, linha por linha, à ficha que já temos** (2026-10-08-datafolha-br-presidente-t2-lula-flavio). A variação é Flávio -2, Lula estável, bloco de não-candidato +2. É o teste do delta passando no caso mais forte possível: a fonte nova reimprime a rodada antiga exatamente como a gravamos. DIVERGÊNCIA DE CAMPO: um resumo de cobertura deu '13 e 14 de outubro' e outro, com citação direta, 'entre os dias 13 e 15 de outubro'; adotado 13 a 15/10, que é a leitura citada literalmente e é compatível com divulgação no próprio dia 15 (o Datafolha publica no mesmo dia). RESSALVA SOBRE O REGISTRO TSE: BR-00466/2026 está fora da sequência que as outras rodadas de outubro mostram (a Datafolha de 08/10 é BR-02949/2026 e a Quaest de 14/10 é BR-08729/2026); gravado como publicado, sem ajuste, mas a numeração não pôde ser conferida no PesqEle porque tse.jus.br também responde 403. CONTRATANTE: as fontes divergem entre 'Globo e Folha de S.Paulo' e 'apenas Folha'; gravada a grafia canônica das rodadas anteriores do mesmo instituto. LIMITAÇÃO DE AMBIENTE: tabela não lida na fonte; percentuais corroborados por Metrópoles, Gazeta do Povo, A Crítica e BHAZ. PENDÊNCIA DECLARADA EM 21/10 — CONFLITO DE CAMPO, NÃO RESOLVIDO: o compilado do Poder360 de 21/10 dá o campo desta rodada como 13 a 14/10, e não 13 a 15/10. A fonte citada aqui é uma PRÉVIA, publicada às 00:01 de 15/10, que diz que a pesquisa 'PREVÊ entrevistas ... entre os dias 13 e 15' — tempo futuro, portanto evidência do campo PLANEJADO e não do realizado. Não inverti a data em cima de um compilado sem a ficha primária; as datas ficam como estão e o conflito fica registrado. O campo afeta só o peso de recência. PARA A PRÓXIMA RODADA: datafolha.folha.uol.com.br ficou alcançável em 21/10 e é a fonte primária para fechar isto.",
-    "resultados": [
-      {
-        "candidato": "Flávio Bolsonaro",
-        "partido": "PL",
-        "pct": 47
-      },
-      {
-        "candidato": "Luiz Inácio Lula da Silva",
-        "partido": "PT",
-        "pct": 45
-      },
-      {
-        "candidato": "Brancos/nulos/nenhum",
-        "partido": null,
-        "pct": 6
-      },
-      {
-        "candidato": "Indecisos",
-        "partido": null,
-        "pct": 2
-      }
-    ]
-  },
-  {
     "id": "2026-10-16-cnt-mda-br-presidente-t2-flavio-lula",
     "uf": "BR",
     "cargo": "presidente",
@@ -572,6 +572,48 @@
       },
       {
         "candidato": "Não sabe",
+        "partido": null,
+        "pct": 2
+      }
+    ]
+  },
+  {
+    "id": "2026-10-15-datafolha-br-presidente-t2-flavio-lula",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Datafolha",
+    "registroTSE": "BR-00466/2026",
+    "contratante": "Folha de S.Paulo e Grupo Globo",
+    "dataInicio": "2026-10-13",
+    "dataFim": "2026-10-14",
+    "publicadoEm": "2026-10-15",
+    "amostra": 2520,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
+    "fonte": {
+      "nome": "Metrópoles",
+      "url": "https://www.metropoles.com/brasil/lula-x-flavio-datafolha-divulga-nova-pesquisa-de-2o-turno-hoje-15-10"
+    },
+    "observacao": "Segunda rodada Datafolha do 2º turno, divulgada em 15/10 (quinta-feira — dia da semana conferido, e 'a 10 dias do 2º turno' fecha com 25/10). CORTE INGERIDO = VOTOS TOTAIS pelas linhas publicadas: Flávio 47%, Lula 45%, brancos/nulos/nenhum 6%, indecisos 2%, somando exatamente 100. TESTE DE DIVISÃO: 47/92 = 51,09 -> 51 e 45/92 = 48,91 -> 49, reproduzindo a manchete de válidos (51 x 49, empate técnico na margem de 2). TESTE DO DELTA: a cobertura descreve a rodada anterior como Flávio 49 / Lula 45 / brancos-nulos 5 / indecisos 1 e válidos 52 x 48 — **idêntico, linha por linha, à ficha que já temos** (2026-10-08-datafolha-br-presidente-t2-lula-flavio). A variação é Flávio -2, Lula estável, bloco de não-candidato +2. É o teste do delta passando no caso mais forte possível: a fonte nova reimprime a rodada antiga exatamente como a gravamos. DIVERGÊNCIA DE CAMPO: um resumo de cobertura deu '13 e 14 de outubro' e outro, com citação direta, 'entre os dias 13 e 15 de outubro'; adotado 13 a 15/10, que é a leitura citada literalmente e é compatível com divulgação no próprio dia 15 (o Datafolha publica no mesmo dia). RESSALVA SOBRE O REGISTRO TSE: BR-00466/2026 está fora da sequência que as outras rodadas de outubro mostram (a Datafolha de 08/10 é BR-02949/2026 e a Quaest de 14/10 é BR-08729/2026); gravado como publicado, sem ajuste, mas a numeração não pôde ser conferida no PesqEle porque tse.jus.br também responde 403. CONTRATANTE: as fontes divergem entre 'Globo e Folha de S.Paulo' e 'apenas Folha'; gravada a grafia canônica das rodadas anteriores do mesmo instituto. LIMITAÇÃO DE AMBIENTE: tabela não lida na fonte; percentuais corroborados por Metrópoles, Gazeta do Povo, A Crítica e BHAZ. PENDÊNCIA DECLARADA EM 21/10 — CONFLITO DE CAMPO, NÃO RESOLVIDO: o compilado do Poder360 de 21/10 dá o campo desta rodada como 13 a 14/10, e não 13 a 15/10. A fonte citada aqui é uma PRÉVIA, publicada às 00:01 de 15/10, que diz que a pesquisa 'PREVÊ entrevistas ... entre os dias 13 e 15' — tempo futuro, portanto evidência do campo PLANEJADO e não do realizado. Não inverti a data em cima de um compilado sem a ficha primária; as datas ficam como estão e o conflito fica registrado. O campo afeta só o peso de recência. PARA A PRÓXIMA RODADA: datafolha.folha.uol.com.br ficou alcançável em 21/10 e é a fonte primária para fechar isto. PENDÊNCIA FECHADA EM 22/10 NA FONTE PRIMÁRIA — CAMPO CORRIGIDO DE 13-15 PARA 13-14/10: a release do próprio Datafolha diz, textualmente, 'o atual levantamento foi realizado nos DIAS 13 E 14 de outubro de 2026 com 2.520 entrevistas presenciais em 153 municípios', registro BR-00466/2026 (datafolha.folha.uol.com.br/eleicoes/2026/10/flavio-bolsonaro-pl-tem-47-e-tem-empate-tecnico-com-lula-pt-que-aparece-com-45.shtml). A Gazeta do Povo confirma de forma independente ('2.520 pessoas nos dias 13 e 14'), e o compilado do Poder360 já dizia o mesmo. O 13-15 veio da PRÉVIA do Metrópoles, das 00:01 de 15/10, que falava no futuro ('PREVÊ entrevistas ... entre os dias 13 e 15'): era o campo PLANEJADO, não o realizado. Três fontes contra uma prévia.",
+    "resultados": [
+      {
+        "candidato": "Flávio Bolsonaro",
+        "partido": "PL",
+        "pct": 47
+      },
+      {
+        "candidato": "Luiz Inácio Lula da Silva",
+        "partido": "PT",
+        "pct": 45
+      },
+      {
+        "candidato": "Brancos/nulos/nenhum",
+        "partido": null,
+        "pct": 6
+      },
+      {
+        "candidato": "Indecisos",
         "partido": null,
         "pct": 2
       }

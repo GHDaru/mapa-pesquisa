@@ -1,0 +1,28 @@
+[
+  {
+    "id": "2026-10-22-datafolha-br-presidente-t2-flavio-lula",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Datafolha",
+    "registroTSE": "BR-09709/2026",
+    "contratante": "Folha de S.Paulo e Grupo Globo",
+    "dataInicio": "2026-10-20",
+    "dataFim": "2026-10-22",
+    "publicadoEm": "2026-10-22",
+    "amostra": 2520,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
+    "fonte": {
+      "nome": "O Povo",
+      "url": "https://www.opovo.com.br/noticias/politica/eleicoes/2026/10/22/que-horas-sai-a-pesquisa-datafolha-de-2-turno-entre-flavio-bolsonaro-e-lula.html"
+    },
+    "observacao": "Rodada mais recente da base e PRIMEIRA do Datafolha depois do debate de 18/10; campo 20-22/10, terminando no próprio dia da divulgação. CORTE = VOTOS TOTAIS: as quatro linhas publicadas somam exatamente 100. RESSALVA DECLARADA, NÃO AJUSTADA: 47/93 = 50,54 arredondaria para 51%, e o instituto publica EMPATE em 50% x 50% nos válidos - os inteiros 47 e 46 já são arredondados e os válidos saem dos números cheios, mesmo caso do Ipespe de 17/10 e da Gerp de 14-16/10. Os percentuais ficam como publicados. CUIDADO COM A FONTE: o artigo do O Povo foi PUBLICADO às 06:00 como prévia ('que horas sai', 'será divulgado a partir das 19 horas') e ATUALIZADO às 19:22 com os resultados em tempo passado ('o Datafolha divulgou'). O que foi ingerido é a parte atualizada; a prévia das 06:00 não traz resultado. CONFLITO DE AMOSTRA RESOLVIDO CONTRA A GAZETA DO POVO: ela publica 2.154 entrevistados para esta rodada, duas vezes, mas 2.154 é a assinatura da QUAEST (BR-08729/2026) e todas as rodadas desta série do Datafolha são de 2.520 (03/10 foi 4.006). É o mesmo defeito de contaminação entre fichas vizinhas que corrigi na NOSSA base em 21/10 (CNT/MDA carregando o 2.002 da Nexus) - aqui do lado do veículo. Gravado 2.520, com o O Povo como fonte. As duas fontes CONCORDAM em campo, margem, confiança, contratante, registro BR-09709/2026 e nas quatro linhas.",
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 47 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 46 },
+      { "candidato": "Brancos/nulos/nenhum", "partido": null, "pct": 5 },
+      { "candidato": "Indecisos", "partido": null, "pct": 2 }
+    ]
+  }
+]

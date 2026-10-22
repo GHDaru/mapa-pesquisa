@@ -4387,3 +4387,44 @@ E a ficha que sustenta o veredito é a mesma que carrega a ressalva aritmética.
 **Isso agrava a pendência de método declarada em 20/10** e já a torna visível por dois caminhos independentes: `margemReferencia` como média ponderada de margens *declaradas* é sensível a um instituto, e `empateTecnico` como limiar duro converte essa sensibilidade em veredito binário. A decisão de convenção segue sendo humana.
 
 **876 testes**, build limpo, 854 pesquisas (851 + 3, conferido).
+
+## 22/10, rodada diária — o primeiro pós-debate, e a pendência do Datafolha fechada na fonte primária
+
+Uma ficha nova (854 → 855) e uma correção de campo em ficha antiga.
+
+### Entrou: Datafolha 20–22/10, o primeiro depois do debate de 18/10
+
+Campo 20–22/10 — termina **no próprio dia da divulgação** —, n=2.520, margem 2, BR-09709/2026, encomendada por Folha e Globo. Linhas de base total **47 / 46 / 5 / 2 = 100**, e válidos publicados em **empate exato, 50% × 50%**.
+
+Ressalva declarada: 47/93 = 50,54 arredondaria para 51%, não 50%. Terceiro caso da mesma família (Ipespe 17/10, Gerp 14–16/10): os inteiros publicados já são arredondados e os válidos saem dos números cheios. Percentuais mantidos.
+
+**A fonte é uma prévia que virou ficha.** O artigo do O Povo foi publicado às **06:00** como "que horas sai a pesquisa" — tempo futuro, "será divulgado a partir das 19 horas" — e **atualizado às 19:22** com os resultados em tempo passado, "o Datafolha divulgou". Ingeri só a parte atualizada. A lição de ontem ("prévia não é ficha") precisa desta metade: **o mesmo URL pode ser prévia às 6h e ficha às 19h — confira a hora de atualização, não só a de publicação.**
+
+**Conflito de amostra resolvido CONTRA a Gazeta do Povo.** Ela publica **2.154** entrevistados para esta rodada, duas vezes — na legenda e no bloco de metodologia. Mas 2.154 é a **assinatura da Quaest** (BR-08729/2026), e todas as rodadas desta série do Datafolha são de 2.520 (a de 03/10 foi 4.006). É exatamente o defeito que corrigi na **nossa** base ontem — CNT/MDA carregando o 2.002 da Nexus —, agora do lado do veículo. Gravado 2.520. As duas fontes concordam em tudo o mais: campo, margem, confiança, contratante, registro e as quatro linhas.
+
+### Pendência fechada: o campo do Datafolha de 15/10 era 13–14/10, não 13–15
+
+A release do **próprio Datafolha** diz, textualmente: *"o atual levantamento foi realizado nos **dias 13 e 14** de outubro de 2026 com 2.520 entrevistas presenciais em 153 municípios"*, registro BR-00466/2026. A Gazeta do Povo confirma independentemente, e o compilado do Poder360 já dizia o mesmo. **Três fontes contra uma prévia** — o 13–15 vinha do artigo das 00:01 de 15/10 que falava no futuro. Corrigido.
+
+Vale guardar o achado de método: **datafolha.folha.uol.com.br publica a release com a ficha completa**, e é indexável (`/eleicoes/2026/`). É a fonte primária para esse instituto, e foi ela que fechou isto.
+
+### Não entrou
+
+**Quaest de 22/10:** o artigo do O Povo linka "Quaest: rejeição de Lula cai 6 pontos, para 47%; Flávio tem 52%". Não localizei ficha, e os números de rejeição não batem com os da rodada de 10–13/10 (54/53), então pode ser rodada nova — mas **rejeição não é intenção de voto**, e sem ficha não entra. A mais recente da Quaest segue sendo a de 10–13/10, que já temos.
+
+### O veredito: ainda fora do empate, por 0,08 ponto, e ainda pendurado na Gerp
+
+| cenário | Flávio | Lula | vantagem | margemRef | n | empate |
+|---|---|---|---|---|---|---|
+| estado atual | 47,83 | 45,82 | **2,0037** | **1,9221** | 18 | false |
+| sem Datafolha 20–22/10 | 47,90 | 45,81 | 2,0921 | 1,9153 | 17 | false |
+| **sem Gerp 14–16/10** | 47,69 | 45,87 | **1,8168** | 1,9173 | 17 | **TRUE** |
+| sem as duas | 47,76 | 45,86 | 1,8937 | 1,9095 | 16 | TRUE |
+
+A linha "sem Datafolha" reproduz o estado de ontem (2,0921 contra 2,0918; a diferença mínima é o peso de recência, que mudou de dia) — arnês validado.
+
+**Duas leituras, e as duas importam.** A primeira: **o único levantamento com campo posterior ao debate estreitou a corrida** — a vantagem caiu 0,0884, de 2,0918 para 2,0037, e o Datafolha publica empate exato nos válidos. A segunda: a folga até o limiar do empate técnico é agora de **0,0816 ponto**, e **a dependência de um instituto só aumentou** — sem a Gerp a vantagem cai a 1,8168 contra margem 1,9173, mais longe do limiar do que ontem.
+
+Então "a corrida se abriu" continua sem lastro, e agora há um argumento adicional contra ela: a rodada mais nova aponta para o outro lado, e a ficha que sustenta o veredito tem campo de 14–16/10 — vai perdendo peso de recência a cada dia. **Com uma rodada a mais como a do Datafolha, ou só com o envelhecimento da Gerp, o veredito vira.** A pendência de método (margem declarada ponderada + limiar duro) segue humana e segue no caminho de decidir um veredito que os dados não decidem.
+
+**876 testes**, build limpo, 855 pesquisas (854 + 1, conferido).
