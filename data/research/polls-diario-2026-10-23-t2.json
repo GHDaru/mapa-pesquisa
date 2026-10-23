@@ -1,0 +1,80 @@
+[
+  {
+    "id": "2026-10-21-quaest-br-presidente-t2-flavio-lula",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Quaest",
+    "registroTSE": "BR-08535/2026",
+    "contratante": "Rede Globo",
+    "dataInicio": "2026-10-17",
+    "dataFim": "2026-10-20",
+    "publicadoEm": "2026-10-21",
+    "amostra": 2154,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-presidente-outubro-2026-segundo-turno-2/"
+    },
+    "observacao": "CORREÇÃO DE UM ERRO MEU DE 21/10. Nessa data eu RECUSEI esta rodada afirmando que ela 'NÃO EXISTE'. Ela existe: foi publicada em 21/10 às 10:24, com ficha completa - 2.154 entrevistados de 17 a 20/10, contratada pela Rede Globo, confiança 95%, margem 2, registro BR-08535/2026. O que me levou ao erro foram três coisas, e vale guardar cada uma. (1) O DETECTOR QUE USEI É FALSO: tratei a amostra idêntica à da rodada anterior (n=2.154 em 10-13/10) como sinal de resumo colado, mas a QUAEST REUSA O TAMANHO DA AMOSTRA entre rodadas - amostra repetida não é, por si, evidência de nada. (2) O compilado do Poder360 que li naquela noite ainda listava a Quaest em 10-13/10: ele estava DEFASADO em relação a uma release da manhã do mesmo dia, e eu tomei a ausência nele como prova de inexistência. (3) A frase do Metrópoles 'o primeiro realizado pela Quaest durante o 2º turno' era verdadeira sobre a rodada de 14/10 e não dizia nada sobre uma posterior. A lição: AUSÊNCIA EM COMPILADO É 'NÃO LOCALIZEI', NUNCA 'NÃO EXISTE' - e o certo naquele dia era declarar pendência, não negar a ficha. CORTE = VOTOS TOTAIS: as quatro linhas publicadas somam exatamente 100. A Quaest não publica válidos nesta divulgação; os 50,56 x 49,44 que circulam são recálculo do Poder360, que ele mesmo declara (45/89 = 50,56). A ficha traz também cenário ESPONTÂNEO (40 / 40 / 6 / 14), não ingerido, como de praxe.",
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 45 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 44 },
+      { "candidato": "Branco/nulo/não vai votar", "partido": null, "pct": 9 },
+      { "candidato": "Indecisos", "partido": null, "pct": 2 }
+    ]
+  },
+  {
+    "id": "2026-10-23-real-time-big-data-br-presidente-t2-flavio-lula",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Real Time Big Data",
+    "registroTSE": "BR-09670/2026",
+    "contratante": null,
+    "dataInicio": "2026-10-19",
+    "dataFim": "2026-10-22",
+    "publicadoEm": "2026-10-23",
+    "amostra": 2000,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-presidente-outubro-2026-segundo-turno-2/"
+    },
+    "observacao": "Rodada mais recente da base (campo 19-22/10, divulgada em 23/10 às 07:00) e a segunda do instituto com campo posterior ao 1º turno; a anterior é de 15-19/10. CORTE = VOTOS TOTAIS: as quatro linhas publicadas somam exatamente 100, e a divisão reproduz os válidos divulgados (49/94 = 52,13 -> 52%; 45/94 = 47,87 -> 48%). Contratante NULO: a ficha diz 'contratada pelo próprio instituto'. A SUSPENSÃO DO REAL TIME É ESTADUAL (PR, CE, MA, RN, AL, SE e TO) e nunca alcançou a rodada NACIONAL - esta entra. Confiança 95%.",
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 49 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 45 },
+      { "candidato": "Nulos/Branco", "partido": null, "pct": 5 },
+      { "candidato": "Não sabe/Não respondeu", "partido": null, "pct": 1 }
+    ]
+  },
+  {
+    "id": "2026-10-21-gerp-br-presidente-t2-flavio-lula",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Gerp",
+    "registroTSE": "BR-03835/2026",
+    "contratante": null,
+    "dataInicio": "2026-10-19",
+    "dataFim": "2026-10-21",
+    "publicadoEm": "2026-10-21",
+    "amostra": 2400,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/gerp-presidente-outubro-2026-segundo-turno-3/"
+    },
+    "observacao": "Esta é a 'Gerp de 21/10' que ficou de fora em 21 e 22/10 por falta de ficha com registro: localizada em 23/10 na Gazeta do Povo, publicada em 21/10 às 18:01, campo 19-21/10, n=2.400, margem 2, confiança 95%, registro BR-03835/2026, 'contratada pelo próprio instituto' (contratante NULO). O risco de conflação que eu havia declarado se confirma como risco e se dissolve como problema: ela tem MESMOS totais 50 x 45 da rodada de 14-16/10, mas campo e registro distintos - são duas rodadas, não uma. CORTE = VOTOS TOTAIS: as linhas somam 99, abaixo de 100 e explicável. E ela RESOLVE A RESSALVA DA RODADA ANTERIOR: com os mesmos 50 x 45, esta publica 53% x 47% nos válidos, que é exatamente o que a divisão dá (50/95 = 52,63 -> 53%), enquanto a de 14-16/10 publicava 52%. Ou seja, o 52 da rodada anterior era arredondamento do instituto sobre números cheios (ou engano dele), e não um método diferente de calcular válidos.",
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 50 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 45 },
+      { "candidato": "Nenhum deles", "partido": null, "pct": 2 },
+      { "candidato": "Não sabe", "partido": null, "pct": 2 }
+    ]
+  }
+]

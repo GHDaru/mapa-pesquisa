@@ -4428,3 +4428,50 @@ A linha "sem Datafolha" reproduz o estado de ontem (2,0921 contra 2,0918; a dife
 Então "a corrida se abriu" continua sem lastro, e agora há um argumento adicional contra ela: a rodada mais nova aponta para o outro lado, e a ficha que sustenta o veredito tem campo de 14–16/10 — vai perdendo peso de recência a cada dia. **Com uma rodada a mais como a do Datafolha, ou só com o envelhecimento da Gerp, o veredito vira.** A pendência de método (margem declarada ponderada + limiar duro) segue humana e segue no caminho de decidir um veredito que os dados não decidem.
 
 **876 testes**, build limpo, 855 pesquisas (854 + 1, conferido).
+
+## 23/10, rodada diária — um erro meu de 21/10 corrigido, e o veredito deixa de depender de uma ficha
+
+Três fichas (855 → 858), uma delas corrigindo uma recusa minha que estava errada.
+
+### O erro: a Quaest de 17–20/10 existe, e eu disse que não
+
+Em 21/10 recusei essa rodada afirmando que **"NÃO EXISTE"**, e levei a afirmação para o backlog e para o prompt da rotina. Ela existe. Foi publicada **em 21/10 às 10:24**, com ficha completa: 2.154 entrevistados de 17 a 20/10, contratada pela Rede Globo, margem 2, confiança 95%, **BR-08535/2026**, e linhas 45 / 44 / 9 / 2 = 100 — exatamente os números que a busca me deu naquele dia e que eu rejeitei.
+
+Três coisas me levaram ao erro, e cada uma vira regra:
+
+1. **O detector que usei é falso.** Tratei a amostra idêntica à da rodada anterior (n=2.154, de 10–13/10) como sinal de resumo colado. Mas **a Quaest reusa o tamanho da amostra entre rodadas** — amostra repetida não é, por si, evidência de nada. O que escrevi em 21/10 ("amostra repetida com datas novas é sinal de resumo colado") estava errado como regra e já me custou uma ficha.
+2. **Tomei ausência em compilado como prova de inexistência.** O compilado do Poder360 que li naquela noite ainda listava a Quaest em 10–13/10: estava **defasado** em relação a uma release da manhã do mesmo dia. **Ausência em compilado é "não localizei", nunca "não existe".**
+3. A frase do Metrópoles "o primeiro realizado pela Quaest durante o 2º turno" era verdadeira **sobre a rodada de 14/10** e não dizia nada sobre uma posterior. Li como se fosse sobre o instituto.
+
+O certo naquele dia era declarar pendência, não negar a ficha. **Recusar é uma decisão com custo, e precisa do mesmo rigor que aceitar.**
+
+### As outras duas
+
+**Real Time Big Data 19–22/10** (pub. 23/10 às 07:00), n=2.000, BR-09670/2026, próprio instituto: linhas **49 / 45 / 5 / 1 = 100**, válidos 52 × 48 reproduzindo exatamente (49/94 = 52,13). É a rodada com o campo mais recente da base. A suspensão do instituto é **estadual** e nunca alcançou a rodada nacional.
+
+**Gerp 19–21/10** (pub. 21/10 às 18:01), n=2.400, BR-03835/2026, próprio instituto: linhas **50 / 45 / 2 / 2 = 99**, válidos 53 × 47. É a "Gerp de 21/10" que eu havia deixado de fora duas vezes por falta de ficha com registro. O risco de conflação que declarei **se confirma como risco e se dissolve como problema**: ela tem os mesmos totais 50 × 45 da rodada de 14–16/10, mas campo e registro distintos — são duas rodadas.
+
+E ela **fecha a ressalva aritmética da rodada anterior**: com os mesmos 50 × 45, esta publica **53%**, que é o que a divisão dá (50/95 = 52,63 → 53), enquanto a de 14–16/10 publicava 52%. Logo o 52 de lá era arredondamento do instituto sobre números cheios, não um método diferente de calcular válidos.
+
+### Ainda faltando, com ficha técnica já em mãos
+
+O compilado de hoje traz campo, amostra e registro dos 17 levantamentos vigentes. Sete rodadas seguem fora, todas com metadados conhecidos — ingestão para a próxima rodada: **Vox Brasil 20–22/10** (n=2.100, BR-03259/2026 — e é o único que dá Lula à frente, então tem peso), **PoderData/Aya 19–21/10** (n=4.000, BR-07926/2026; a cobertura da Gazeta para PoderData publica **só válidos**, sem linhas de não-candidato, o que explica por que as rodadas desse instituto vêm falhando no teste de corte — buscar outra fonte), **Palver 16–20/10** (n=5.000, BR-04612/2026), **Instituto França 16–20/10** (n=3.000, BR-07896/2026), **Meio/Ideia 15–19/10** (n=1.500, BR-08251/2026), **DataTrends 15–17/10** (n=2.000, BR-04454/2026), **Indexa/Broadcast 13–14/10** (n=2.000, BR-04629/2026). O **Veritá 12–16/10** (n=15.554, BR-01107/2026) segue barrado, pendente de decisão humana.
+
+### O veredito ficou mais robusto, e a dependência mudou de natureza
+
+| cenário | Flávio | Lula | vantagem | margemRef | n | empate |
+|---|---|---|---|---|---|---|
+| estado atual | 47,87 | 45,62 | **2,2515** | **1,9359** | 21 | false |
+| sem as 3 novas | 47,83 | 45,82 | 2,0037 | 1,9221 | 18 | false |
+| sem Quaest 17–20 | 48,04 | 45,72 | 2,3255 | 1,9321 | 20 | false |
+| sem Real Time 19–22 | 47,80 | 45,66 | 2,1412 | 1,9319 | 20 | false |
+| sem Gerp 19–21 | 47,73 | 45,66 | 2,0703 | 1,9317 | 20 | false |
+| **sem AMBAS as Gerp** | 47,61 | 45,70 | **1,9112** | 1,9280 | 19 | **TRUE** |
+
+A segunda linha reproduz o estado de ontem ao décimo milésimo — arnês validado.
+
+**A folga até o limiar quadruplicou**, de 0,0816 para **0,3156**, e **nenhuma ficha isolada vira mais o veredito**. Ontem bastava remover a Gerp de 14–16/10; hoje é preciso remover **as duas** rodadas da Gerp. A dependência, portanto, **deixou de ser de uma ficha e passou a ser de um instituto** — o que é um grau a mais de robustez, mas não é independência: a Gerp é o instituto com o intervalo mais largo da leva, e sozinha ainda decide.
+
+A vantagem subiu 0,2478 no dia, e o isolamento mostra de onde: **a Gerp nova e a Real Time abrem** (+0,18 e +0,11 ao serem incluídas), e **a Quaest estreita** (retirá-la elevaria a vantagem a 2,3255). Ou seja, a rodada que eu havia recusado por engano é justamente a que puxa a corrida para o empate — o erro de 21/10 nos deixou dois dias com um agregado mais aberto do que os dados sustentavam.
+
+**876 testes**, build limpo, 858 pesquisas (855 + 3, conferido).
