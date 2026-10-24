@@ -4475,3 +4475,52 @@ A segunda linha reproduz o estado de ontem ao décimo milésimo — arnês valid
 A vantagem subiu 0,2478 no dia, e o isolamento mostra de onde: **a Gerp nova e a Real Time abrem** (+0,18 e +0,11 ao serem incluídas), e **a Quaest estreita** (retirá-la elevaria a vantagem a 2,3255). Ou seja, a rodada que eu havia recusado por engano é justamente a que puxa a corrida para o empate — o erro de 21/10 nos deixou dois dias com um agregado mais aberto do que os dados sustentavam.
 
 **876 testes**, build limpo, 858 pesquisas (855 + 3, conferido).
+
+## 24/10, véspera — a Colectta entra, a folga encolhe para 0,12, e cinco rodadas ficam documentadas para fechar
+
+Uma ficha (858 → 859), e um mapa preciso do que falta.
+
+### Entrou: Colectta 23/10, campo de um dia só, na véspera
+
+Primeira ficha deste instituto na base e a de **campo mais recente de todas**: um único dia, sexta 23/10, **3.000 entrevistas presenciais** em 101 municípios das 27 UFs, divulgada em 24/10. **BR-05601/2026** (protocolado em 18/10, divulgação liberada a partir de 24/10), encomendada pelo **Brazil Economy**, margem 2, confiança 95%.
+
+Linhas: **Lula 46,5 / Flávio 46,0 / branco-nulo-nenhum 4,4 / NS-NR 3,1 = 100,0**, e a divisão reproduz os válidos publicados ao décimo (46,5/92,5 = 50,27 → 50,3%). **É a segunda do 2º turno a dar Lula numericamente à frente**, ao lado da Vox.
+
+Entrou com três ressalvas declaradas, nenhuma impeditiva: o instituto **não aparece** no compilado de 18 levantamentos do Poder360 (mas pela regra corrigida ontem isso é "não localizei", e aqui há registro e várias fontes — CartaCapital, Congresso em Foco, Transmissão Política); **não tem histórico na nossa base**, logo não há teste do delta possível nem aferição no 1º turno; e **campo de um dia só com 3.000 presenciais em 101 municípios é operacionalmente agressivo**. A "diferença de 0,5 ponto" que algumas fontes citam não é conflito: 0,5 é a dos totais, 0,6 a dos válidos.
+
+### Cinco rodadas com válidos conhecidos e linhas faltando — o que exatamente falta em cada uma
+
+O compilado de hoje subiu para **18 levantamentos** e trouxe quatro rodadas novas. De todas elas tenho ficha técnica e válidos, mas **não as linhas de não-candidato**, e sem elas o teste de corte não fecha:
+
+| rodada | campo | n | registro | válidos publicados |
+|---|---|---|---|---|
+| CNT/MDA | 21–23/10 | 2.032 | BR-02136/2026 | Flávio 50,7 × 49,3 |
+| Instituto França | 21–23/10 | 1.537 | BR-04863/2026 | Flávio 51,4 × 48,6 |
+| Ipespe/Abrapel | 20–22/10 | 1.500 | BR-04350/2026 | Flávio 50,5 × 49,5 |
+| Alfa Inteligência | 18–22/10 | 2.700 | BR-08496/2026 | Flávio 52 × 48 |
+| Vox Brasil | 20–22/10 | 2.100 | BR-03259/2026 | **Lula 50,6 × 49,4** |
+
+**A Vox é o caso mais instrutivo.** Os totais dela são Lula 45,4 / Flávio 44,3, e 45,4/89,7 = 50,61 → exatamente os 50,6% publicados. Isso **prova que a base é total** (os dois candidatos somam 89,7, logo há 10,3 de não-candidato), mas **não me dá a repartição desses 10,3** — e a regra é não repartir residual. Então a base está provada e as linhas continuam faltando: é pendência, não recusa. Há também conflito de campo a resolver (o CartaCapital diz 17–23/10, as outras fontes 20–22/10).
+
+Seguem também fora: **PoderData/Aya 19–21/10** (BR-07926/2026; a cobertura da Gazeta para esse instituto publica **só válidos**, o que explica a sequência de recusas), **Palver 16–20/10**, **DataTrends 15–17/10**, **Meio/Ideia 15–19/10**, **Indexa/Broadcast 13–14/10**. E o **Veritá 12–16/10** (n=15.554, BR-01107/2026) segue barrado, pendente de decisão humana.
+
+**Achado de método:** o padrão de URL da Gazeta só existe para parte dos institutos — `cnt-mda` e `palver` respondem, mas `ipespe`, `vox-brasil`, `alfa-inteligencia` e `instituto-franca` não têm página nesse padrão. E a página `cnt-mda` sem sufixo é a rodada **antiga** (13–15/10), não a nova: **sufixo maior não é garantia de rodada mais nova quando o veículo não publicou a nova**.
+
+### A folga caiu de 0,32 para 0,12 — e numa ficha só
+
+| cenário | Flávio | Lula | vantagem | margemRef | n | empate |
+|---|---|---|---|---|---|---|
+| estado atual | 47,74 | 45,68 | **2,0563** | **1,9405** | 22 | false |
+| sem Colectta 23/10 | 47,87 | 45,62 | 2,2515 | 1,9359 | 21 | false |
+| **sem AMBAS as Gerp** | 47,48 | 45,76 | **1,7206** | 1,9337 | 20 | **TRUE** |
+| sem Gerp e sem Colectta | 47,61 | 45,70 | 1,9112 | 1,9280 | 19 | TRUE |
+
+A segunda linha reproduz o estado de ontem ao décimo milésimo — arnês validado.
+
+**A Colectta derrubou a vantagem 0,1952 sozinha**, a maior queda isolada de qualquer ficha até aqui. A razão é estrutural e vale guardar: **ela tem o campo mais recente de toda a leva** (um único dia, 23/10) e por isso recebe o maior peso de recência — uma ficha de campo novo move o agregado muito mais que uma de campo antigo, mesmo com amostra parecida.
+
+A folga até o limiar caiu de **0,3156 para 0,1158** em um dia, e a dependência da Gerp **se aprofundou**: sem as duas rodadas dela a vantagem cai a 1,7206 contra margem 1,9337 — 0,21 abaixo do limiar, contra 0,017 ontem.
+
+**E há um padrão que importa mais que o veredito:** as duas fichas que dão Lula à frente — Vox (20–22/10) e Colectta (23/10) — estão entre as de **campo mais recente**, e a Vox ainda não entrou. Quando entrar, a folga cai mais. O agregado segue fora do empate técnico, mas por uma margem que uma única ficha pendente pode consumir, e sustentado por um instituto só.
+
+**876 testes**, build limpo, 859 pesquisas (858 + 1, conferido).

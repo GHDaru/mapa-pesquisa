@@ -1,0 +1,28 @@
+[
+  {
+    "id": "2026-10-24-colectta-br-presidente-t2-flavio-lula",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Colectta",
+    "registroTSE": "BR-05601/2026",
+    "contratante": "Brazil Economy",
+    "dataInicio": "2026-10-23",
+    "dataFim": "2026-10-23",
+    "publicadoEm": "2026-10-24",
+    "amostra": 3000,
+    "margem": 2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula",
+    "fonte": {
+      "nome": "Congresso em Foco",
+      "url": "https://www.congressoemfoco.com.br/noticia/123594/lula-tem-50-3-e-flavio-49-7-dos-votos-validos-diz-colectta"
+    },
+    "observacao": "PRIMEIRA ficha deste instituto na base, e a de CAMPO MAIS RECENTE: um único dia, a sexta-feira 23/10, com 3.000 entrevistas PRESENCIAIS em 101 municípios das 27 UFs; divulgada na véspera, 24/10. É a SEGUNDA do 2º turno a dar Lula numericamente à frente, ao lado da Vox. CORTE = VOTOS TOTAIS: as quatro linhas publicadas somam exatamente 100,0 e a divisão reproduz os válidos divulgados ao décimo (46,5/92,5 = 50,27 -> 50,3%; 46,0/92,5 = 49,73 -> 49,7%). Registro BR-05601/2026, protocolado em 18/10 com divulgação liberada a partir de 24/10. Contratante Brazil Economy, que é quem ENCOMENDOU - não é parceria de divulgação. Confiança 95%, margem 2. CORROBORAÇÃO: os mesmos números em CartaCapital, Congresso em Foco e Transmissão Política, entre outros - não é fonte única. RESSALVAS DECLARADAS, que não impedem a entrada mas pesam na leitura: (1) o instituto NÃO APARECE no compilado de 18 levantamentos do Poder360 de 24/10 - pela regra corrigida em 23/10, ausência em compilado é 'não localizei', não 'não existe', e aqui há registro e várias fontes; (2) instituto SEM HISTÓRICO na nossa base, portanto sem teste do delta possível e sem aferição no 1º turno; (3) campo de UM DIA SÓ com 3.000 entrevistas presenciais em 101 municípios é operacionalmente agressivo, e a 'diferença de 0,5 ponto' que algumas fontes citam não é conflito: 0,5 é a dos totais (46,5 - 46,0) e 0,6 a dos válidos.",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 46.5 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 46.0 },
+      { "candidato": "Branco/nulo/nenhum", "partido": null, "pct": 4.4 },
+      { "candidato": "Não sabe/não respondeu", "partido": null, "pct": 3.1 }
+    ]
+  }
+]
