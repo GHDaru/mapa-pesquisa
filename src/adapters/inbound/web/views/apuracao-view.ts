@@ -34,6 +34,7 @@ import {
 } from '../../../outbound/tse/tse-client.js';
 import { simularApuracao } from '../../../outbound/tse/simulador.js';
 import parciaisImprensa from '../../../../../data/exterior-parciais-imprensa.json' with { type: 'json' };
+import serieDoRepositorio from '../../../../../data/apuracao-serie.json' with { type: 'json' };
 import {
   buscarExterior,
   CONTINENTES,
@@ -45,12 +46,14 @@ import {
   agregarPorRegiao,
   apuracaoRetida,
   baldeDeCincoMinutos,
+  FINALISTAS_2T,
   marcasDeHora,
   pontosDaSerie,
   faltaParaLiberar,
   fracaoDaBarra,
   margemApurada,
   montarCsv,
+  nomeCanonicoDaUrna,
   nomeCurto,
   nomeDoArquivoCsv,
   ordenarLinhas,
@@ -110,21 +113,11 @@ const NOME_EXTERIOR = 'Exterior';
  */
 const LIBERA_AS = 19;
 
-const FINALISTAS: readonly [string, string] = ['Flávio Bolsonaro', 'Luiz Inácio Lula da Silva'];
-
-/**
- * O nome de urna da fonte oficial traduzido para o nome canônico da base.
- *
- * Existe porque o TSE publica "FLAVIO BOLSONARO" e "LULA", e o ranking de
- * institutos casa pesquisa com apuração POR NOME — gravar o nome de urna
- * quebraria a comparação inteira.
- */
-function nomeCanonico(nomeDeUrna: string): string {
-  const n = nomeDeUrna.toUpperCase();
-  if (n.includes('FLAVIO') || n.includes('FLÁVIO')) return FINALISTAS[0];
-  if (n.includes('LULA') || n.includes('INACIO') || n.includes('INÁCIO')) return FINALISTAS[1];
-  return nomeDeUrna;
-}
+// Os dois vêm do módulo de layout porque o script que grava o histórico no
+// repositório usa exatamente os mesmos: duas cópias divergiriam, e a
+// divergência apareceria só como uma linha sumida do gráfico.
+const FINALISTAS = FINALISTAS_2T;
+const nomeCanonico = nomeCanonicoDaUrna;
 
 function resolverEspectro(partido: string | null, partidos: readonly Partido[]): Espectro {
   return espectroDoPartido(partido, partidos);
@@ -2051,23 +2044,51 @@ const CHAVE_SERIE = 'mapa-pesquisa:apuracao:serie:2t';
  * vazio, e um gráfico opcional não pode derrubar a apuração inteira.
  */
 function lerSerieGuardada(): readonly AmostraDaNoite[] {
+  // O histórico do REPOSITÓRIO é a base: ele vem no bundle, foi gravado pela
+  // rotina lendo o TSE, e por isso toda visita já começa com a noite inteira
+  // desenhada — quem chega às 22h vê as 19h de quem não estava aqui.
+  const doRepositorio = (serieDoRepositorio.amostras ?? []) as readonly AmostraDaNoite[];
+
+  let local: readonly AmostraDaNoite[] = [];
   try {
     const cru = window.localStorage.getItem(CHAVE_SERIE);
-    if (!cru) return [];
-    const dados: unknown = JSON.parse(cru);
-    if (!Array.isArray(dados)) return [];
-    return dados.filter(
-      (a): a is AmostraDaNoite =>
-        typeof a === 'object' && a != null && typeof (a as AmostraDaNoite).em === 'string',
-    );
+    if (cru) {
+      const dados: unknown = JSON.parse(cru);
+      if (Array.isArray(dados)) {
+        local = dados.filter(
+          (a): a is AmostraDaNoite =>
+            typeof a === 'object' && a != null && typeof (a as AmostraDaNoite).em === 'string',
+        );
+      }
+    }
   } catch {
-    return [];
+    local = [];
   }
+
+  // O local vence no empate de balde: ele é mais recente que a última
+  // publicação, e é ele que cobre o intervalo entre a rotina e agora.
+  let junta: readonly AmostraDaNoite[] = doRepositorio;
+  for (const a of local) junta = acrescentarAmostra(junta, a, 2000);
+  return junta;
 }
 
+/**
+ * Guarda no navegador apenas o que NÃO veio do repositório.
+ *
+ * Reescrever a série inteira faria o armazenamento local crescer com cópias
+ * do que já vem no bundle, e, pior, congelaria aqui um retrato do histórico
+ * publicado: se a rotina corrigisse um ponto, a correção nunca chegaria a
+ * quem já tivesse visitado a página.
+ */
 function guardarSerie(serie: readonly AmostraDaNoite[]): void {
+  const doRepositorio = new Set(
+    ((serieDoRepositorio.amostras ?? []) as readonly AmostraDaNoite[]).map((a) => a.em),
+  );
   try {
-    window.localStorage.setItem(CHAVE_SERIE, JSON.stringify(serie));
+    window.localStorage.setItem(
+      CHAVE_SERIE,
+      JSON.stringify(serie.filter((a) => !doRepositorio.has(a.em))),
+    );
   } catch {
     /* sem histórico é pior do que com, mas não é motivo para quebrar a tela. */
   }
@@ -2095,7 +2116,7 @@ function criarGraficoDaNoite(estado: Estado, partidos: readonly Partido[], p: Pr
       criarEl('p', {
         className: 'ap-meta',
         texto:
-          'O gráfico aparece a partir da segunda leitura. Ele é montado no seu navegador, de cinco em cinco minutos, enquanto esta página fica aberta — não existe servidor nosso guardando histórico, então ele começa agora e vive só aqui.',
+          'O gráfico aparece a partir da segunda leitura. O histórico publicado vem no site, gravado de cinco em cinco minutos por uma rotina que lê o TSE; enquanto esta página fica aberta, o seu navegador vai acrescentando o que acontece depois da última publicação.',
       }),
     );
     return sec;
@@ -2208,7 +2229,7 @@ function criarGraficoDaNoite(estado: Estado, partidos: readonly Partido[], p: Pr
   sec.append(
     criarEl('p', {
       className: 'ap-meta',
-      texto: `${estado.serie.length} ${estado.serie.length === 1 ? 'leitura' : 'leituras'} desde ${horaCurta(estado.serie[0]!.em)}, uma a cada cinco minutos. A linha tracejada é a contagem, e ela balança conforme os estados vão totalizando em ordens diferentes; a cheia é a projeção, montada estado a estado, que por isso fica firme desde cedo. As duas se encontram quando a apuração fecha — e aí a projeção está verificada contra o resultado. O eixo vai de 30% a 70% e é fixo, para a curva não mudar de forma sem o dado ter mudado. O histórico é montado no seu navegador: começa quando você abre a página e vive só aqui.`,
+      texto: `${estado.serie.length} ${estado.serie.length === 1 ? 'leitura' : 'leituras'} desde ${horaCurta(estado.serie[0]!.em)}, uma a cada cinco minutos. A linha tracejada é a contagem, e ela balança conforme os estados vão totalizando em ordens diferentes; a cheia é a projeção, montada estado a estado, que por isso fica firme desde cedo. As duas se encontram quando a apuração fecha — e aí a projeção está verificada contra o resultado. O eixo vai de 30% a 70% e é fixo, para a curva não mudar de forma sem o dado ter mudado. O histórico publicado vem no próprio site, gravado por uma rotina que lê o TSE, e o seu navegador acrescenta o que acontece depois da última publicação — por isso o gráfico já nasce com a noite inteira, mesmo para quem acabou de chegar.`,
     }),
   );
   return sec;

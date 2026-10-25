@@ -884,3 +884,30 @@ export function marcasDeHora(serie: readonly AmostraDaNoite[]): readonly { reado
   }
   return marcas;
 }
+
+/* ─────────────────── nomes de urna e nomes canônicos ──────────────────── */
+
+/** Os dois finalistas do 2º turno, na ordem fixa usada por toda a tela. */
+export const FINALISTAS_2T: readonly [string, string] = [
+  'Flávio Bolsonaro',
+  'Luiz Inácio Lula da Silva',
+];
+
+/**
+ * O nome de urna da fonte oficial traduzido para o nome canônico da base.
+ *
+ * O TSE publica "FLAVIO BOLSONARO" e "LULA". Gravar o nome de urna quebraria
+ * duas coisas de uma vez: o ranking de institutos, que casa pesquisa com
+ * apuração POR NOME, e o gráfico da noite, cujas séries são procuradas pelo
+ * nome canônico — uma série gravada como "LULA" simplesmente não apareceria.
+ *
+ * Mora aqui, e não dentro da view, porque o script que grava o histórico no
+ * repositório precisa da MESMA tradução. Duas cópias divergiriam, e a
+ * divergência só apareceria como uma linha que some do gráfico.
+ */
+export function nomeCanonicoDaUrna(nomeDeUrna: string): string {
+  const n = nomeDeUrna.toUpperCase();
+  if (n.includes('FLAVIO') || n.includes('FLÁVIO')) return FINALISTAS_2T[0];
+  if (n.includes('LULA') || n.includes('INACIO') || n.includes('INÁCIO')) return FINALISTAS_2T[1];
+  return nomeDeUrna;
+}

@@ -11,7 +11,8 @@
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "data:validate": "node --import tsx ingest/validate.ts",
-    "data:merge": "node --import tsx ingest/merge-research.ts"
+    "data:merge": "node --import tsx ingest/merge-research.ts",
+    "data:apuracao-serie": "node --import tsx ingest/amostrar-apuracao.ts"
   },
   "dependencies": {
     "@svg-maps/brazil": "^2.0.0"
