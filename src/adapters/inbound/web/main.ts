@@ -110,7 +110,7 @@ function montarLayout(atualizadoEm: string): { main: HTMLElement; nav: HTMLEleme
   // para funcionar no toque do celular, que é de onde virá a maioria.
   footer.innerHTML = `
     <p class="site-footer__autor">
-      <strong>Guilherme Daru</strong> — Dr. em Inteligência Artificial.
+      <strong>Gilsiley Henrique Daru</strong> — Dr. em Inteligência Artificial.
       Consultor em implantação e automatização de processos corporativos.
       <a href="mailto:ghdaru@ghdaru.com.br" rel="author">ghdaru@ghdaru.com.br</a>
     </p>

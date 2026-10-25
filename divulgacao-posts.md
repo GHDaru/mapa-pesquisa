@@ -120,7 +120,7 @@ automatizo processo de cliente — a diferença é que aqui o erro fica público
 Se a sua empresa tem decisão sendo tomada em cima de número que ninguém
 audita, é exatamente esse o problema que eu resolvo.
 
-Guilherme Daru — Dr. em Inteligência Artificial
+Gilsiley Henrique Daru — Dr. em Inteligência Artificial
 Consultor em implantação e automatização de processos corporativos
 ghdaru@ghdaru.com.br
 
