@@ -816,6 +816,18 @@ export function renderPresidentialStates(container: HTMLElement, casos: CasosDeU
   }
 
   container.appendChild(raiz);
+
+  // Quem chega pelo menu "Apuração ao vivo" pediu a apuração, não o preâmbulo
+  // das pesquisas — e no celular ela começa a 1.133px do topo, fora da
+  // primeira tela inteira. Então o endereço que nomeia o modo também leva até
+  // ele. É rolagem por ação explícita de navegação, que é o único caso em que
+  // ela é legítima: nada aqui rola sozinho quando o dado se atualiza.
+  if (modo === 'apuracao') {
+    const suave = !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    requestAnimationFrame(() => {
+      mapSection.scrollIntoView({ behavior: suave ? 'smooth' : 'auto', block: 'start' });
+    });
+  }
 }
 
 interface Abas {

@@ -14,6 +14,8 @@ import { renderMap } from './views/map-view.js';
  */
 import { rotaDoHash } from './views/presidential-states-layout.js';
 import { fecharPainelEstado } from './views/state-panel.js';
+import { linkAtivoDoMenu } from './navegacao.js';
+
 import './styles/tokens.css';
 import './styles/app.css';
 import './styles/views.css';
@@ -41,6 +43,12 @@ interface Rota {
 
 const ROTAS: readonly Rota[] = [
   { hash: '#/inicio', rotulo: 'Início' },
+  // A apuração ao vivo tem entrada própria no menu, embora não seja página:
+  // ela é um modo do mapa por estado, e o endereço leva direto a esse modo.
+  // Em noite de eleição é o que a maioria vem buscar, então ela fica no topo
+  // — e continua ao lado das pesquisas na mesma tela, que é o que permite
+  // comparar o que as urnas dizem com o que as pesquisas diziam.
+  { hash: '#/presidente-estados?mapa=apuracao', rotulo: 'Apuração ao vivo' },
   { hash: '#/projecao', rotulo: 'Projeção' },
   { hash: '#/resultados', rotulo: 'Resultados' },
   { hash: '#/mapa', rotulo: 'Governadores' },
@@ -187,10 +195,17 @@ async function renderPaginaOpcional(
 
 async function renderizarRota(main: HTMLElement, nav: HTMLElement, casos: CasosDeUso): Promise<void> {
   fecharPainelEstado();
-  const hashAtual = rotaDoHash(normalizarHash(window.location.hash));
+  const hashCompleto = normalizarHash(window.location.hash);
+  const hashAtual = rotaDoHash(hashCompleto);
 
+  // Dois itens do menu apontam para esta rota — o mapa de pesquisas e a
+  // apuração —, então quem acende é decidido pelos parâmetros, não pela rota.
+  const aceso = linkAtivoDoMenu(
+    [...nav.querySelectorAll<HTMLAnchorElement>('.site-nav__link')].map((l) => l.getAttribute('href') ?? ''),
+    hashCompleto,
+  );
   for (const link of nav.querySelectorAll<HTMLAnchorElement>('.site-nav__link')) {
-    const ativo = link.getAttribute('href') === hashAtual;
+    const ativo = link.getAttribute('href') === aceso;
     link.classList.toggle('site-nav__link--ativo', ativo);
     if (ativo) link.setAttribute('aria-current', 'page');
     else link.removeAttribute('aria-current');
