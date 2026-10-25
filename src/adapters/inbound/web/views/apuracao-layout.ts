@@ -762,3 +762,125 @@ export function notaDeFalhaDeLeitura(
     texto: `${falhas} de ${fontes.length} arquivos do TSE não responderam nesta leitura. Os números abaixo estão INCOMPLETOS: as unidades que faltaram ficam de fora da soma e da projeção, então o total aparece menor do que é. O botão Atualizar tenta de novo.`,
   };
 }
+
+/* ───────────────── a série da noite, de 5 em 5 minutos ─────────────────── */
+
+/**
+ * O histórico da apuração, amostrado de cinco em cinco minutos.
+ *
+ * Ele existe para mostrar a tese da tela acontecendo: o percentual APURADO
+ * balança a noite toda conforme os estados vão totalizando em ordens
+ * diferentes, enquanto a PROJEÇÃO, montada estado a estado, fica firme desde
+ * cedo. Lado a lado, as duas curvas provam o argumento melhor do que qualquer
+ * parágrafo — e quando elas se encontram no fim, a projeção fica verificada
+ * contra o resultado.
+ *
+ * A série é do NAVEGADOR de quem olha, e isso precisa ser dito na tela: ela
+ * começa quando a pessoa abre a página e vive só ali. Não há servidor nosso
+ * guardando nada, e quem abrir às 22h não verá as 19h de quem ficou a noite
+ * toda. Prometer um histórico que não existe seria pior do que declarar o que
+ * ele é.
+ */
+export interface AmostraDaNoite {
+  /** Início do balde de 5 minutos, em ISO. É a chave da amostra. */
+  readonly em: string;
+  readonly processado: number;
+  readonly porCandidato: readonly {
+    readonly candidato: string;
+    readonly pctApurado: number;
+    readonly pctProjetado: number;
+  }[];
+}
+
+/** O balde de cinco minutos a que um instante pertence. */
+export function baldeDeCincoMinutos(quando: Date, minutos = 5): string {
+  const ms = minutos * 60 * 1000;
+  return new Date(Math.floor(quando.getTime() / ms) * ms).toISOString();
+}
+
+/**
+ * Acrescenta uma amostra à série.
+ *
+ * Duas regras, e as duas existem para a curva não mentir:
+ *
+ * 1. **Uma amostra por balde.** Quem aperta Atualizar seis vezes no mesmo
+ *    minuto não cria seis pontos: o balde é substituído pelo valor mais
+ *    recente. Sem isso a linha ganharia densidade onde houve cliques, e não
+ *    onde houve apuração.
+ * 2. **Leitura sem voto não entra.** Uma falha de rede que devolve zero viraria
+ *    um mergulho a 0% no meio do gráfico, que se lê como "a apuração voltou
+ *    atrás" — coisa que não acontece.
+ */
+export function acrescentarAmostra(
+  serie: readonly AmostraDaNoite[],
+  nova: AmostraDaNoite,
+  limite = 400,
+): readonly AmostraDaNoite[] {
+  if (nova.processado <= 0) return serie;
+
+  const semOBalde = serie.filter((a) => a.em !== nova.em);
+  return [...semOBalde, nova].sort((a, b) => a.em.localeCompare(b.em)).slice(-limite);
+}
+
+/** Pontos de uma série para desenhar, já em fração de 0 a 1 dos eixos. */
+export interface PontoDaSerie {
+  readonly x: number;
+  readonly y: number;
+}
+
+/**
+ * Converte a série em pontos, com o eixo Y preso a uma janela fixa.
+ *
+ * A janela é FIXA (padrão de 30 a 70) e não ajustada aos dados: num gráfico
+ * que se redesenha a cada cinco minutos, eixo elástico faz a curva mudar de
+ * forma sem o dado ter mudado de valor, e quem olha duas vezes vê movimento
+ * que não houve. O preço é que um valor fora da janela fica achatado na
+ * borda, e por isso ele é clampado de propósito, não escondido.
+ */
+export function pontosDaSerie(
+  serie: readonly AmostraDaNoite[],
+  candidato: string,
+  campo: 'pctApurado' | 'pctProjetado',
+  janela: { readonly min: number; readonly max: number } = { min: 30, max: 70 },
+): readonly PontoDaSerie[] {
+  if (serie.length === 0) return [];
+  const t0 = new Date(serie[0]!.em).getTime();
+  const t1 = new Date(serie[serie.length - 1]!.em).getTime();
+  const span = Math.max(1, t1 - t0);
+
+  return serie
+    .map((a) => {
+      const c = a.porCandidato.find((x) => x.candidato === candidato);
+      if (!c) return null;
+      const valor = Math.max(janela.min, Math.min(janela.max, c[campo]));
+      return {
+        x: (new Date(a.em).getTime() - t0) / span,
+        y: 1 - (valor - janela.min) / (janela.max - janela.min),
+      };
+    })
+    .filter((p): p is PontoDaSerie => p != null);
+}
+
+/** As horas a marcar no eixo X, uma por hora cheia dentro da série. */
+export function marcasDeHora(serie: readonly AmostraDaNoite[]): readonly { readonly x: number; readonly rotulo: string }[] {
+  if (serie.length < 2) return [];
+  const t0 = new Date(serie[0]!.em).getTime();
+  const t1 = new Date(serie[serie.length - 1]!.em).getTime();
+  const span = Math.max(1, t1 - t0);
+
+  const marcas: { x: number; rotulo: string }[] = [];
+  const primeira = new Date(t0);
+  primeira.setMinutes(0, 0, 0);
+  for (let t = primeira.getTime(); t <= t1; t += 3600 * 1000) {
+    if (t < t0) continue;
+    marcas.push({
+      x: (t - t0) / span,
+      rotulo: new Date(t).toLocaleTimeString('pt-BR', {
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: FUSO_DE_BRASILIA,
+      }),
+    });
+  }
+  return marcas;
+}

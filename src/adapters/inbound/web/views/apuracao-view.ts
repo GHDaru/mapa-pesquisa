@@ -41,8 +41,12 @@ import {
 } from '../../../outbound/tse/exterior.js';
 import { bboxPath, criarEl, tokenFillEspectro } from './_shared.js';
 import {
+  acrescentarAmostra,
   agregarPorRegiao,
   apuracaoRetida,
+  baldeDeCincoMinutos,
+  marcasDeHora,
+  pontosDaSerie,
   faltaParaLiberar,
   fracaoDaBarra,
   margemApurada,
@@ -66,6 +70,7 @@ import {
   vantagemEntreOsDois,
   regiaoDaUf,
   REGIOES,
+  type AmostraDaNoite,
   type LinhaRegiao,
   type LinhaUf,
   type Ordenacao,
@@ -155,6 +160,8 @@ interface Estado {
   exteriorCarregando: boolean;
   exterior: readonly LinhaContinente[] | null;
   exteriorFalhas: number;
+  /** O histórico da noite, amostrado de 5 em 5 minutos no navegador. */
+  serie: readonly AmostraDaNoite[];
 }
 
 export interface OpcoesApuracao {
@@ -198,6 +205,7 @@ export async function renderApuracao(
     exteriorCarregando: false,
     exterior: null,
     exteriorFalhas: 0,
+    serie: lerSerieGuardada(),
   };
 
   const raiz = criarEl('section', { className: 'ap-raiz' });
@@ -257,6 +265,7 @@ export async function renderApuracao(
       estado.erro = e instanceof Error ? e.message : String(e);
     } finally {
       estado.carregando = false;
+      amostrar();
       desenhar();
       // Se o painel do exterior está aberto, ele acompanha o botão atualizar:
       // deixá-lo com números de dez minutos atrás, ao lado de números novos,
@@ -300,6 +309,36 @@ export async function renderApuracao(
     }
   }
 
+  /**
+   * Guarda uma amostra da leitura atual no balde de cinco minutos.
+   *
+   * Só no modo ao vivo: a simulação muda de semente a cada clique e produziria
+   * uma série serrilhada que não descreve noite nenhuma.
+   */
+  function amostrar(): void {
+    const p = estado.projecao;
+    if (!p || estado.modo !== 'ao-vivo' || p.validosApurados <= 0) return;
+    estado.serie = acrescentarAmostra(estado.serie, {
+      em: baldeDeCincoMinutos(new Date()),
+      processado: p.coberturaNacionalEfetiva ?? p.secoesTotalizadasPonderada,
+      porCandidato: p.candidatos.map((c) => ({
+        candidato: c.candidato,
+        pctApurado: c.pctApurado,
+        pctProjetado: c.pctProjetado,
+      })),
+    });
+    guardarSerie(estado.serie);
+  }
+
+  // Uma leitura a cada cinco minutos enquanto a página fica aberta: é o que
+  // faz a série existir sem ninguém ter de apertar Atualizar a noite toda.
+  const AMOSTRAGEM_MS = 5 * 60 * 1000;
+  window.setInterval(() => {
+    if (estado.modo === 'ao-vivo' && !estado.carregando && !apuracaoRetida(new Date(), LIBERA_AS)) {
+      void atualizar();
+    }
+  }, AMOSTRAGEM_MS);
+
   function desenhar(): void {
     raiz.innerHTML = '';
     raiz.append(criarCabecalho(estado, atualizar, desenhar, comTitulo));
@@ -335,6 +374,7 @@ export async function renderApuracao(
     raiz.append(criarBigNumbers(p, partidos, estado));
     raiz.append(criarMapaProgresso(p, partidos, estado, desenhar));
     raiz.append(criarPainelExterior(p, partidos, estado, desenhar, carregarExterior));
+    raiz.append(criarGraficoDaNoite(estado, partidos, p));
     raiz.append(criarTabela(p, partidos, estado, desenhar));
     raiz.append(criarFontes(estado));
   }
@@ -1993,4 +2033,183 @@ function criarAvisoDeEspera(): HTMLElement {
     }),
   );
   return aviso;
+}
+
+/* ──────────────── a evolução da noite, de 5 em 5 minutos ───────────────── */
+
+const CHAVE_SERIE = 'mapa-pesquisa:apuracao:serie:2t';
+
+/**
+ * A série vive no navegador de quem olha.
+ *
+ * Não há servidor nosso guardando isto: a página é estática. A consequência
+ * precisa ser dita na tela — o histórico começa quando a pessoa abre a
+ * página, e quem chegar às 22h não verá as 19h de quem ficou a noite toda.
+ *
+ * Toda leitura e toda escrita vão em `try`: em aba anônima, com dados do site
+ * bloqueados ou com a cota estourada, o acesso LANÇA em vez de devolver
+ * vazio, e um gráfico opcional não pode derrubar a apuração inteira.
+ */
+function lerSerieGuardada(): readonly AmostraDaNoite[] {
+  try {
+    const cru = window.localStorage.getItem(CHAVE_SERIE);
+    if (!cru) return [];
+    const dados: unknown = JSON.parse(cru);
+    if (!Array.isArray(dados)) return [];
+    return dados.filter(
+      (a): a is AmostraDaNoite =>
+        typeof a === 'object' && a != null && typeof (a as AmostraDaNoite).em === 'string',
+    );
+  } catch {
+    return [];
+  }
+}
+
+function guardarSerie(serie: readonly AmostraDaNoite[]): void {
+  try {
+    window.localStorage.setItem(CHAVE_SERIE, JSON.stringify(serie));
+  } catch {
+    /* sem histórico é pior do que com, mas não é motivo para quebrar a tela. */
+  }
+}
+
+/**
+ * O gráfico da noite: o apurado contra o projetado, por candidato.
+ *
+ * É o argumento da tela virando desenho. A linha do APURADO balança conforme
+ * os estados totalizam em ordens diferentes; a da PROJEÇÃO, montada estado a
+ * estado, fica firme desde cedo. Quando as duas se encontram no fim, a
+ * projeção fica verificada contra o resultado — e isso é mais convincente do
+ * que qualquer parágrafo de método.
+ *
+ * Por isso o traço distingue as duas: projeção é linha cheia, apurado é
+ * tracejado. Se as duas fossem iguais, o gráfico teria quatro linhas e nenhum
+ * significado.
+ */
+function criarGraficoDaNoite(estado: Estado, partidos: readonly Partido[], p: Projecao): HTMLElement {
+  const sec = criarEl('section', { className: 'ap-evo' });
+  sec.append(criarEl('h2', { className: 'ap-h2', texto: 'Como a noite evoluiu' }));
+
+  if (estado.serie.length < 2) {
+    sec.append(
+      criarEl('p', {
+        className: 'ap-meta',
+        texto:
+          'O gráfico aparece a partir da segunda leitura. Ele é montado no seu navegador, de cinco em cinco minutos, enquanto esta página fica aberta — não existe servidor nosso guardando histórico, então ele começa agora e vive só aqui.',
+      }),
+    );
+    return sec;
+  }
+
+  const L = 640;
+  const A = 230;
+  const m = { topo: 12, dir: 54, baixo: 26, esq: 34 };
+  const larg = L - m.esq - m.dir;
+  const alt = A - m.topo - m.baixo;
+  const JANELA = { min: 30, max: 70 };
+
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('viewBox', `0 0 ${L} ${A}`);
+  svg.setAttribute('class', 'ap-evo-svg');
+  svg.setAttribute('role', 'img');
+
+  const ns = 'http://www.w3.org/2000/svg';
+  const partidoPorCandidato = partidosDaProjecao(p);
+
+  // Grade e eixo Y, de 10 em 10 pontos. A linha dos 50% é a que decide.
+  for (let v = JANELA.min; v <= JANELA.max; v += 10) {
+    const y = m.topo + (1 - (v - JANELA.min) / (JANELA.max - JANELA.min)) * alt;
+    const linha = document.createElementNS(ns, 'line');
+    linha.setAttribute('x1', String(m.esq));
+    linha.setAttribute('x2', String(m.esq + larg));
+    linha.setAttribute('y1', String(y));
+    linha.setAttribute('y2', String(y));
+    linha.setAttribute('class', v === 50 ? 'ap-evo-grade is-50' : 'ap-evo-grade');
+    svg.append(linha);
+
+    const rot = document.createElementNS(ns, 'text');
+    rot.setAttribute('x', String(m.esq - 6));
+    rot.setAttribute('y', String(y + 3));
+    rot.setAttribute('class', 'ap-evo-eixo');
+    rot.setAttribute('text-anchor', 'end');
+    rot.textContent = `${v}%`;
+    svg.append(rot);
+  }
+
+  // Eixo do tempo, uma marca por hora cheia.
+  for (const marca of marcasDeHora(estado.serie)) {
+    const x = m.esq + marca.x * larg;
+    const tick = document.createElementNS(ns, 'line');
+    tick.setAttribute('x1', String(x));
+    tick.setAttribute('x2', String(x));
+    tick.setAttribute('y1', String(m.topo));
+    tick.setAttribute('y2', String(m.topo + alt));
+    tick.setAttribute('class', 'ap-evo-hora');
+    svg.append(tick);
+
+    const rot = document.createElementNS(ns, 'text');
+    rot.setAttribute('x', String(x));
+    rot.setAttribute('y', String(A - 8));
+    rot.setAttribute('class', 'ap-evo-eixo');
+    rot.setAttribute('text-anchor', 'middle');
+    rot.textContent = marca.rotulo;
+    svg.append(rot);
+  }
+
+  const caminho = (pontos: readonly { x: number; y: number }[]): string =>
+    pontos
+      .map((pt, i) => `${i === 0 ? 'M' : 'L'} ${m.esq + pt.x * larg} ${m.topo + pt.y * alt}`)
+      .join(' ');
+
+  for (const nome of FINALISTAS) {
+    const cor = tokenFillEspectro(resolverEspectro(partidoPorCandidato.get(nome) ?? null, partidos));
+    for (const campo of ['pctApurado', 'pctProjetado'] as const) {
+      const pontos = pontosDaSerie(estado.serie, nome, campo, JANELA);
+      if (pontos.length < 2) continue;
+      const linha = document.createElementNS(ns, 'path');
+      linha.setAttribute('d', caminho(pontos));
+      linha.setAttribute('class', `ap-evo-linha${campo === 'pctApurado' ? ' is-apurado' : ''}`);
+      linha.style.stroke = cor;
+      svg.append(linha);
+
+      // O rótulo no fim da linha: legenda que não obriga a procurar.
+      const ultimo = pontos[pontos.length - 1]!;
+      if (campo === 'pctProjetado') {
+        const rot = document.createElementNS(ns, 'text');
+        rot.setAttribute('x', String(m.esq + ultimo.x * larg + 6));
+        rot.setAttribute('y', String(m.topo + ultimo.y * alt + 3));
+        rot.setAttribute('class', 'ap-evo-rotulo');
+        rot.style.fill = cor;
+        rot.textContent = nomeCurto(nome);
+        svg.append(rot);
+      }
+    }
+  }
+
+  const ultima = estado.serie[estado.serie.length - 1]!;
+  svg.setAttribute(
+    'aria-label',
+    `Evolução desde ${horaCurta(estado.serie[0]!.em)}: ${ultima.porCandidato
+      .map((c) => `${nomeCurto(c.candidato)} ${formatarPct(c.pctApurado, 1)} apurado e ${formatarPct(c.pctProjetado, 1)} projetado`)
+      .join('; ')}.`,
+  );
+
+  const wrap = criarEl('div', { className: 'ap-evo-wrap' });
+  wrap.append(svg);
+  sec.append(wrap);
+
+  const leg = criarEl('p', { className: 'ap-evo-legenda' });
+  leg.append(criarEl('span', { className: 'ap-evo-amostra', texto: '———' }));
+  leg.append(criarEl('span', { texto: ' projeção  ' }));
+  leg.append(criarEl('span', { className: 'ap-evo-amostra is-tracejado', texto: '– – –' }));
+  leg.append(criarEl('span', { texto: ' apurado' }));
+  sec.append(leg);
+
+  sec.append(
+    criarEl('p', {
+      className: 'ap-meta',
+      texto: `${estado.serie.length} ${estado.serie.length === 1 ? 'leitura' : 'leituras'} desde ${horaCurta(estado.serie[0]!.em)}, uma a cada cinco minutos. A linha tracejada é a contagem, e ela balança conforme os estados vão totalizando em ordens diferentes; a cheia é a projeção, montada estado a estado, que por isso fica firme desde cedo. As duas se encontram quando a apuração fecha — e aí a projeção está verificada contra o resultado. O eixo vai de 30% a 70% e é fixo, para a curva não mudar de forma sem o dado ter mudado. O histórico é montado no seu navegador: começa quando você abre a página e vive só aqui.`,
+    }),
+  );
+  return sec;
 }

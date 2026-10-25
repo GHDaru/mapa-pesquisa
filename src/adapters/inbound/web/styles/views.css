@@ -1448,6 +1448,22 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
   letter-spacing: 0.06em; color: var(--color-text-muted);
 }
 
+/* ═══ a evolução da noite ═══════════════════════════════════════════════
+   Projeção em linha cheia, apurado em tracejado: é o traço que separa fato de
+   inferência aqui, do mesmo jeito que o selo separa no painel de cima. */
+.ap-evo { margin-top: 1.2rem; }
+.ap-evo-wrap { margin-top: 0.5rem; width: 100%; overflow: hidden; }
+.ap-evo-svg { width: 100%; height: auto; display: block; }
+.ap-evo-grade { stroke: var(--color-border); stroke-width: 1; }
+.ap-evo-grade.is-50 { stroke: var(--color-text); stroke-opacity: 0.45; }
+.ap-evo-hora { stroke: var(--color-border); stroke-width: 1; stroke-dasharray: 2 4; }
+.ap-evo-eixo { font-size: 10px; fill: var(--color-text-muted); font-variant-numeric: tabular-nums; }
+.ap-evo-linha { fill: none; stroke-width: 2.2; stroke-linejoin: round; stroke-linecap: round; }
+.ap-evo-linha.is-apurado { stroke-width: 1.8; stroke-dasharray: 5 4; opacity: 0.85; }
+.ap-evo-rotulo { font-size: 11px; font-weight: 700; }
+.ap-evo-legenda { margin: 0.3rem 0 0; font-size: 0.74rem; color: var(--color-text-muted); }
+.ap-evo-amostra { font-family: monospace; letter-spacing: -0.05em; }
+
 /* ═══ falha de leitura ══════════════════════════════════════════════════
    No topo e com cor de alerta: a diferença entre "a apuração não começou" e
    "não consegui ler" é invisível nos números, e precisa estar no texto. */

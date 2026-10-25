@@ -1,6 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import {
+  acrescentarAmostra,
   agregarPorRegiao,
+  baldeDeCincoMinutos,
+  marcasDeHora,
+  pontosDaSerie,
   apuracaoRetida,
   faltaParaLiberar,
   margemApurada,
@@ -22,6 +26,7 @@ import {
   semDado,
   somarNaoValidos,
   vantagemEntreOsDois,
+  type AmostraDaNoite,
   type LinhaUf,
 } from '../apuracao-layout.js';
 
@@ -752,5 +757,82 @@ describe('apuracao-layout: notaDeFalhaDeLeitura', () => {
     expect(nota?.total).toBe(false);
     expect(nota?.texto).toContain('3 de 28');
     expect(nota?.texto).toContain('INCOMPLETOS');
+  });
+});
+
+describe('apuracao-layout: a série da noite', () => {
+  const amostra = (em: string, processado: number, apA: number, projA: number): AmostraDaNoite => ({
+    em,
+    processado,
+    porCandidato: [
+      { candidato: 'A', pctApurado: apA, pctProjetado: projA },
+      { candidato: 'B', pctApurado: 100 - apA, pctProjetado: 100 - projA },
+    ],
+  });
+
+  it('agrupa o instante em baldes de cinco minutos', () => {
+    expect(baldeDeCincoMinutos(new Date('2026-10-25T19:02:34Z'))).toBe('2026-10-25T19:00:00.000Z');
+    expect(baldeDeCincoMinutos(new Date('2026-10-25T19:07:59Z'))).toBe('2026-10-25T19:05:00.000Z');
+    expect(baldeDeCincoMinutos(new Date('2026-10-25T19:05:00Z'))).toBe('2026-10-25T19:05:00.000Z');
+  });
+
+  it('seis atualizações no mesmo balde dão UM ponto, com o valor mais recente', () => {
+    let serie: readonly AmostraDaNoite[] = [];
+    for (const v of [51, 52, 53, 54, 55, 56]) {
+      serie = acrescentarAmostra(serie, amostra('2026-10-25T19:05:00.000Z', 10, v, 60));
+    }
+    expect(serie).toHaveLength(1);
+    expect(serie[0]!.porCandidato[0]!.pctApurado).toBe(56);
+  });
+
+  it('leitura sem voto não entra — seria um mergulho a zero que nunca aconteceu', () => {
+    const serie = acrescentarAmostra([], amostra('2026-10-25T19:05:00.000Z', 0, 0, 0));
+    expect(serie).toEqual([]);
+  });
+
+  it('mantém a ordem do tempo mesmo recebendo fora de ordem', () => {
+    let serie: readonly AmostraDaNoite[] = [];
+    serie = acrescentarAmostra(serie, amostra('2026-10-25T19:10:00.000Z', 10, 55, 60));
+    serie = acrescentarAmostra(serie, amostra('2026-10-25T19:00:00.000Z', 5, 51, 60));
+    expect(serie.map((a) => a.em)).toEqual([
+      '2026-10-25T19:00:00.000Z',
+      '2026-10-25T19:10:00.000Z',
+    ]);
+  });
+
+  it('não cresce sem limite: a noite inteira cabe, o excesso sai pelo começo', () => {
+    let serie: readonly AmostraDaNoite[] = [];
+    for (let i = 0; i < 10; i += 1) {
+      serie = acrescentarAmostra(serie, amostra(`2026-10-25T19:${String(i).padStart(2, '0')}:00.000Z`, 10, 50, 60), 4);
+    }
+    expect(serie).toHaveLength(4);
+    expect(serie[0]!.em).toBe('2026-10-25T19:06:00.000Z');
+  });
+
+  it('o eixo Y é fixo: o mesmo valor dá o mesmo ponto, série curta ou longa', () => {
+    const curta = [amostra('2026-10-25T19:00:00.000Z', 10, 55, 60), amostra('2026-10-25T19:05:00.000Z', 20, 55, 60)];
+    const longa = [...curta, amostra('2026-10-25T20:00:00.000Z', 90, 40, 60)];
+    const yCurta = pontosDaSerie(curta, 'A', 'pctApurado')[0]!.y;
+    const yLonga = pontosDaSerie(longa, 'A', 'pctApurado')[0]!.y;
+    expect(yCurta).toBeCloseTo(yLonga, 10);
+  });
+
+  it('valor fora da janela é achatado na borda, não escondido', () => {
+    const serie = [amostra('2026-10-25T19:00:00.000Z', 10, 95, 60), amostra('2026-10-25T19:05:00.000Z', 20, 95, 60)];
+    const p = pontosDaSerie(serie, 'A', 'pctApurado');
+    expect(p).toHaveLength(2);
+    expect(p[0]!.y).toBe(0);
+  });
+
+  it('marca as horas cheias dentro do intervalo', () => {
+    const serie = [
+      amostra('2026-10-25T21:50:00.000Z', 5, 55, 60),
+      amostra('2026-10-25T23:10:00.000Z', 80, 52, 53),
+    ];
+    expect(marcasDeHora(serie).map((m) => m.rotulo)).toEqual(['19:00', '20:00']);
+  });
+
+  it('série com um ponto só não desenha eixo de hora', () => {
+    expect(marcasDeHora([amostra('2026-10-25T19:00:00.000Z', 5, 55, 60)])).toEqual([]);
   });
 });
