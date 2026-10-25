@@ -104,7 +104,16 @@ function montarLayout(atualizadoEm: string): { main: HTMLElement; nav: HTMLEleme
 
   const footer = document.createElement('footer');
   footer.className = 'site-footer';
+  // A autoria vem primeiro e com `rel="author"`: quem chega por um link
+  // compartilhado precisa saber de quem é o trabalho antes de saber de onde
+  // veio o arquivo do mapa. O e-mail é `mailto:` de verdade, não texto solto,
+  // para funcionar no toque do celular, que é de onde virá a maioria.
   footer.innerHTML = `
+    <p class="site-footer__autor">
+      <strong>Guilherme Daru</strong> — Dr. em Inteligência Artificial.
+      Consultor em implantação e automatização de processos corporativos.
+      <a href="mailto:ghdaru@ghdaru.com.br" rel="author">ghdaru@ghdaru.com.br</a>
+    </p>
     <p>
       Mapa: <a href="https://github.com/VictorCazanov/svg-maps" target="_blank" rel="noopener noreferrer">@svg-maps/brazil</a>
       (CC BY 4.0)<span class="sr-only"> — abre em nova aba</span>.
