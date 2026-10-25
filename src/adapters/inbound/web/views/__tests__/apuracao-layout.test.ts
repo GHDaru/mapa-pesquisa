@@ -15,6 +15,7 @@ import {
   horaCurta,
   montarLinhas,
   notaDasFontes,
+  notaDeFalhaDeLeitura,
   notaDoEstagio,
   regiaoDaUf,
   REGIOES,
@@ -725,5 +726,31 @@ describe('apuracao-layout: nomearUnidades', () => {
       'PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO','ZZ',
     ];
     expect(nomearUnidades(todas)).toBe('27 estados e o exterior');
+  });
+});
+
+describe('apuracao-layout: notaDeFalhaDeLeitura', () => {
+  const ok = (n: number) => Array.from({ length: n }, () => ({ ok: true }));
+  const falha = (n: number) => Array.from({ length: n }, () => ({ ok: false }));
+
+  it('não avisa quando está tudo lido', () => {
+    expect(notaDeFalhaDeLeitura(ok(28))).toBeNull();
+  });
+
+  it('não avisa quando não houve leitura nenhuma ainda', () => {
+    expect(notaDeFalhaDeLeitura([])).toBeNull();
+  });
+
+  it('falha total é declarada como falha, não como apuração não começada', () => {
+    const nota = notaDeFalhaDeLeitura(falha(28));
+    expect(nota?.total).toBe(true);
+    expect(nota?.texto).toContain('não porque a apuração não começou');
+  });
+
+  it('falha parcial avisa que o total está menor do que é', () => {
+    const nota = notaDeFalhaDeLeitura([...ok(25), ...falha(3)]);
+    expect(nota?.total).toBe(false);
+    expect(nota?.texto).toContain('3 de 28');
+    expect(nota?.texto).toContain('INCOMPLETOS');
   });
 });

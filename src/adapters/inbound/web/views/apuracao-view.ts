@@ -59,6 +59,7 @@ import {
   montarLinhas,
   nomearUnidades,
   notaDasFontes,
+  notaDeFalhaDeLeitura,
   notaDoEstagio,
   semDado,
   somarNaoValidos,
@@ -319,6 +320,17 @@ export async function renderApuracao(
     }
     if (estado.modo === 'ao-vivo' && apuracaoRetida(new Date(), LIBERA_AS)) {
       raiz.append(criarAvisoDeEspera());
+    }
+    // O aviso de falha vem ANTES dos números, não depois do mapa: quem vê
+    // zero no topo e não entende por quê conclui que o site quebrou e sai.
+    const falha = notaDeFalhaDeLeitura(estado.fontes);
+    if (falha) {
+      const aviso = criarEl('p', {
+        className: `ap-falha${falha.total ? ' is-total' : ''}`,
+        texto: falha.texto,
+        attrs: { role: 'status' },
+      });
+      raiz.append(aviso);
     }
     raiz.append(criarBigNumbers(p, partidos, estado));
     raiz.append(criarMapaProgresso(p, partidos, estado, desenhar));

@@ -722,3 +722,43 @@ export function faltaParaLiberar(agora: Date, liberaAs = 19): number {
   const horas = liberaAs - horaDeBrasilia(agora);
   return horas <= 0 ? 0 : Math.ceil(horas * 3600 * 1000);
 }
+
+/* ──────────────── quando o TSE não responde ───────────────────────────── */
+
+/**
+ * O aviso de leitura falha, no topo e não no rodapé.
+ *
+ * Numa noite de apuração o TSE responde 429 (excesso de requisições) com
+ * facilidade, e quando isso acontece com TODAS as UFs a tela fica com zeros e
+ * sem os cartões dos candidatos — que é indistinguível de "a apuração não
+ * começou". O motivo existia, mas no rodapé, depois do mapa e da tabela: quem
+ * olha o topo e vê zero não desce para descobrir por quê, conclui que o site
+ * quebrou, e vai embora.
+ *
+ * `null` quando não há o que avisar. Falha parcial também avisa: a projeção
+ * fica menor sem as UFs que faltaram, e isso muda o número do topo.
+ */
+export interface FalhaDeLeitura {
+  readonly total: boolean;
+  readonly texto: string;
+}
+
+export function notaDeFalhaDeLeitura(
+  fontes: readonly { readonly ok: boolean }[],
+): FalhaDeLeitura | null {
+  if (fontes.length === 0) return null;
+  const falhas = fontes.filter((f) => !f.ok).length;
+  if (falhas === 0) return null;
+
+  if (falhas === fontes.length) {
+    return {
+      total: true,
+      texto:
+        'Não consegui ler nenhum arquivo do TSE nesta tentativa. Os números abaixo estão zerados por isso, e não porque a apuração não começou. Em noite de eleição o servidor do TSE recusa requisições demais vindas do mesmo lugar: esperar alguns segundos e usar o botão Atualizar costuma resolver.',
+    };
+  }
+  return {
+    total: false,
+    texto: `${falhas} de ${fontes.length} arquivos do TSE não responderam nesta leitura. Os números abaixo estão INCOMPLETOS: as unidades que faltaram ficam de fora da soma e da projeção, então o total aparece menor do que é. O botão Atualizar tenta de novo.`,
+  };
+}

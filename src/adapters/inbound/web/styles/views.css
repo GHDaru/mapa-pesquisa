@@ -1448,6 +1448,17 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
   letter-spacing: 0.06em; color: var(--color-text-muted);
 }
 
+/* ═══ falha de leitura ══════════════════════════════════════════════════
+   No topo e com cor de alerta: a diferença entre "a apuração não começou" e
+   "não consegui ler" é invisível nos números, e precisa estar no texto. */
+.ap-falha {
+  margin: 0.8rem 0; padding: 0.7rem 0.9rem; border-radius: 10px;
+  font-size: 0.84rem; line-height: 1.45;
+  background: var(--color-surface-2); color: var(--color-text);
+  border: 1px solid var(--color-border); border-left: 4px solid var(--color-text-muted);
+}
+.ap-falha.is-total { border-left-color: var(--color-danger); }
+
 /* ═══ a espera até a liberação ══════════════════════════════════════════
    Alto contraste e no topo: é a primeira coisa que explica por que todo o
    resto está zerado. Sem ele, um mapa inteiro cinza às 18h se lê como falha
