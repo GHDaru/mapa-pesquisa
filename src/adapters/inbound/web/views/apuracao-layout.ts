@@ -170,3 +170,140 @@ export function vantagemEntreOsDois(
     pontos: a.pctProjetado - b.pctProjetado,
   };
 }
+
+/* ───────────────────────────── por região ─────────────────────────────── */
+
+/**
+ * As cinco regiões do IBGE.
+ *
+ * Elas existem aqui como visão AUXILIAR do mesmo dado por estado, não como
+ * fonte nova: toda linha de região é a soma das UFs dela. A utilidade é que o
+ * voto brasileiro tem geografia forte — Nordeste e Sul puxam para lados
+ * opostos há três eleições —, e vinte e sete linhas escondem esse desenho que
+ * cinco linhas mostram de primeira.
+ */
+export const REGIOES: readonly { readonly nome: string; readonly ufs: readonly string[] }[] = [
+  { nome: 'Norte', ufs: ['AC', 'AM', 'AP', 'PA', 'RO', 'RR', 'TO'] },
+  { nome: 'Nordeste', ufs: ['AL', 'BA', 'CE', 'MA', 'PB', 'PE', 'PI', 'RN', 'SE'] },
+  { nome: 'Centro-Oeste', ufs: ['DF', 'GO', 'MS', 'MT'] },
+  { nome: 'Sudeste', ufs: ['ES', 'MG', 'RJ', 'SP'] },
+  { nome: 'Sul', ufs: ['PR', 'RS', 'SC'] },
+];
+
+/** Região de uma UF, ou `null` para sigla desconhecida. */
+export function regiaoDaUf(uf: string): string | null {
+  const alvo = uf.toUpperCase();
+  return REGIOES.find((r) => r.ufs.includes(alvo))?.nome ?? null;
+}
+
+/** Uma linha da tabela por região: mesma forma de `LinhaUf`, com as UFs dentro. */
+export interface LinhaRegiao extends Omit<LinhaUf, 'uf'> {
+  readonly regiao: string;
+  readonly ufs: readonly string[];
+  /** UFs da região que ainda não têm nenhuma seção apurada. */
+  readonly ufsSemApuracao: readonly string[];
+}
+
+/**
+ * Soma as UFs de cada região.
+ *
+ * Duas decisões que mudam o número:
+ *
+ * 1. O **% apurado da região é ponderado pelo eleitorado**, não a média das
+ *    UFs. Sem isso, Roraima a 100% e São Paulo a 10% dariam "55% apurado" no
+ *    Sudeste-equivalente — uma média de porcentagens entre bases de tamanhos
+ *    diferentes, que é o erro aritmético mais comum desta tela inteira.
+ * 2. **UF sem nenhuma apuração não entra na soma de votos**, mas é NOMEADA.
+ *    Somar zero votos dela empurraria a região inteira para baixo como se ali
+ *    ninguém tivesse votado; omiti-la sem dizer esconderia que a leitura da
+ *    região está incompleta.
+ *
+ * Brancos, nulos e abstenções só somam onde a fonte publicou: se nenhuma UF da
+ * região publicou, o campo fica `null` em vez de virar zero — zero é um número
+ * e significaria "não houve", que é outra afirmação.
+ */
+export function agregarPorRegiao(
+  linhas: readonly LinhaUf[],
+  ordem: readonly [string, string],
+): readonly LinhaRegiao[] {
+  const porUf = new Map(linhas.map((l) => [l.uf, l]));
+
+  return REGIOES.map((reg): LinhaRegiao => {
+    const dentro = reg.ufs.map((uf) => porUf.get(uf)).filter((l): l is LinhaUf => l != null);
+    const comDado = dentro.filter((l) => !semDado(l));
+    const semApuracao = dentro.filter((l) => semDado(l)).map((l) => l.uf);
+
+    const eleitores = dentro.reduce<number | null>(
+      (acc, l) => (l.eleitores == null ? acc : (acc ?? 0) + l.eleitores),
+      null,
+    );
+
+    // Ponderação pelo eleitorado DAS UFs COM DADO. O denominador tem de ser o
+    // mesmo conjunto do numerador, senão a região parece mais atrasada do que
+    // está só porque uma UF sem cadastro de eleitorado entrou no de baixo.
+    const pesoTotal = comDado.reduce((s, l) => s + (l.eleitores ?? 0), 0);
+    const processado =
+      comDado.length === 0
+        ? 0
+        : pesoTotal > 0
+          ? comDado.reduce((s, l) => s + l.processado * (l.eleitores ?? 0), 0) / pesoTotal
+          : comDado.reduce((s, l) => s + l.processado, 0) / comDado.length;
+
+    const somarCampo = (campo: 'brancos' | 'nulos' | 'abstencoes'): number | null =>
+      comDado.reduce<number | null>(
+        (acc, l) => (l[campo] == null ? acc : (acc ?? 0) + l[campo]),
+        null,
+      );
+
+    const porCandidato = ordem.map((nome) => {
+      const celulas = comDado.flatMap((l) => l.porCandidato.filter((c) => c.candidato === nome));
+      const votosApurados = celulas.reduce((s, c) => s + c.votosApurados, 0);
+      const votosProjetados = celulas.reduce((s, c) => s + c.votosProjetados, 0);
+      return { candidato: nome, pct: 0, votosApurados, votosProjetados };
+    });
+
+    // O percentual da região sai da SOMA dos votos, nunca da média dos
+    // percentuais das UFs: os estados têm tamanhos muito diferentes.
+    const projetadoTotal = porCandidato.reduce((s, c) => s + c.votosProjetados, 0);
+    const comPct = porCandidato.map((c) => ({
+      ...c,
+      pct: projetadoTotal > 0 ? (c.votosProjetados / projetadoTotal) * 100 : 0,
+    }));
+
+    const melhor = [...comPct].sort((a, b) => b.votosProjetados - a.votosProjetados)[0];
+
+    return {
+      regiao: reg.nome,
+      ufs: reg.ufs,
+      ufsSemApuracao: semApuracao,
+      eleitores,
+      processado,
+      finalizada: comDado.length === dentro.length && dentro.length > 0 && dentro.every((l) => l.finalizada),
+      // Sem voto nenhum não há líder: a região fica cinza, como a UF fica.
+      lider: melhor && melhor.votosProjetados > 0 ? melhor.candidato : null,
+      porCandidato: comPct,
+      brancos: somarCampo('brancos'),
+      nulos: somarCampo('nulos'),
+      abstencoes: somarCampo('abstencoes'),
+      validosApurados: comDado.reduce((s, l) => s + l.validosApurados, 0),
+    };
+  });
+}
+
+/**
+ * Brancos, nulos e abstenções somados em todas as UFs com apuração.
+ *
+ * Vão para a tira discreta do topo, e discreta é a palavra certa: eles são
+ * contagem crua do que já entrou, não projeção, então não podem ter o mesmo
+ * peso visual dos percentuais dos candidatos — que são projetados — sem que a
+ * tela passe a comparar duas coisas de natureza diferente lado a lado.
+ */
+export function somarNaoValidos(linhas: readonly LinhaUf[]): {
+  readonly brancos: number | null;
+  readonly nulos: number | null;
+  readonly abstencoes: number | null;
+} {
+  const soma = (campo: 'brancos' | 'nulos' | 'abstencoes'): number | null =>
+    linhas.reduce<number | null>((acc, l) => (l[campo] == null ? acc : (acc ?? 0) + l[campo]), null);
+  return { brancos: soma('brancos'), nulos: soma('nulos'), abstencoes: soma('abstencoes') };
+}

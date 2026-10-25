@@ -41,7 +41,6 @@ interface Rota {
 
 const ROTAS: readonly Rota[] = [
   { hash: '#/inicio', rotulo: 'Início' },
-  { hash: '#/ao-vivo', rotulo: 'Apuração ao vivo' },
   { hash: '#/projecao', rotulo: 'Projeção' },
   { hash: '#/resultados', rotulo: 'Resultados' },
   { hash: '#/mapa', rotulo: 'Governadores' },
@@ -219,8 +218,11 @@ async function renderizarRota(main: HTMLElement, nav: HTMLElement, casos: CasosD
       await renderPaginaOpcional(main, casos, './views/resultado-view.ts', 'renderResultado');
       break;
     case '#/ao-vivo':
-      await renderPaginaOpcional(main, casos, './views/apuracao-view.ts', 'renderApuracao');
-      break;
+      // A apuração deixou de ser página e virou um modo do mapa por estado.
+      // O endereço antigo continua valendo como atalho — ele já circulou — e
+      // aponta para o mapa já no modo certo, em vez de dar tela em branco.
+      window.location.hash = '#/presidente-estados?mapa=apuracao';
+      return;
     case '#/projecao':
       await renderPaginaOpcional(main, casos, './views/projecao-view.ts', 'renderProjecao');
       break;

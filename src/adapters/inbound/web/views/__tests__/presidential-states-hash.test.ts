@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import {
+  hashDoMapa,
   hashDoTurno,
+  mapaDoHash,
   rotaDoHash,
   ROTA_PRESIDENTE_ESTADOS,
   turnoDoHash,
@@ -60,5 +62,64 @@ describe('presidential-states-layout: rotaDoHash (usada pelo roteador)', () => {
     expect(rotaDoHash('#/mapa')).toBe('#/mapa');
     expect(rotaDoHash('#/inicio')).toBe('#/inicio');
     expect(rotaDoHash('')).toBe('');
+  });
+});
+
+/**
+ * Modo de mapa no endereço. A apuração ao vivo é mais um modo DESTA tela, e
+ * não uma página: foi o pedido explícito — "é mais uma no mapa, não criar
+ * outra página". Mas um modo sem endereço não é compartilhável e não sobrevive
+ * ao reload, que numa noite de apuração é o gesto mais frequente que existe.
+ * Daí o parâmetro, com a mesma regra do turno: o padrão não aparece na URL.
+ */
+describe('presidential-states-layout: mapaDoHash', () => {
+  it('lê o modo pedido', () => {
+    expect(mapaDoHash('#/presidente-estados?mapa=apuracao')).toBe('apuracao');
+    expect(mapaDoHash('#/presidente-estados?mapa=eleitorado')).toBe('eleitorado');
+  });
+
+  it('"quem lidera" é o padrão e dispensa parâmetro', () => {
+    expect(mapaDoHash('#/presidente-estados')).toBe('lideranca');
+    expect(mapaDoHash('#/presidente-estados?mapa=lideranca')).toBe('lideranca');
+    expect(mapaDoHash('')).toBe('lideranca');
+  });
+
+  it('valor desconhecido não impede a tela de montar', () => {
+    expect(mapaDoHash('#/presidente-estados?mapa=inexistente')).toBe('lideranca');
+    expect(mapaDoHash('#/presidente-estados?mapa=')).toBe('lideranca');
+  });
+
+  it('turno e modo convivem na mesma query, em qualquer ordem', () => {
+    expect(mapaDoHash('#/presidente-estados?turno=2&mapa=apuracao')).toBe('apuracao');
+    expect(mapaDoHash('#/presidente-estados?mapa=apuracao&turno=2')).toBe('apuracao');
+    expect(turnoDoHash('#/presidente-estados?mapa=apuracao&turno=2')).toBe(2);
+  });
+});
+
+describe('presidential-states-layout: hashDoMapa', () => {
+  it('omite o que é padrão e escreve só o que foge dele', () => {
+    expect(hashDoMapa(1, 'lideranca')).toBe(ROTA_PRESIDENTE_ESTADOS);
+    expect(hashDoMapa(2, 'lideranca')).toBe('#/presidente-estados?turno=2');
+    expect(hashDoMapa(1, 'apuracao')).toBe('#/presidente-estados?mapa=apuracao');
+    expect(hashDoMapa(2, 'apuracao')).toBe('#/presidente-estados?turno=2&mapa=apuracao');
+  });
+
+  it('concorda com hashDoTurno quando o mapa é o padrão', () => {
+    expect(hashDoMapa(1, 'lideranca')).toBe(hashDoTurno(1));
+    expect(hashDoMapa(2, 'lideranca')).toBe(hashDoTurno(2));
+  });
+
+  it('é a volta exata das duas leituras (ida e volta)', () => {
+    for (const turno of [1, 2] as const) {
+      for (const mapa of ['lideranca', 'eleitorado', 'apuracao'] as const) {
+        const hash = hashDoMapa(turno, mapa);
+        expect(turnoDoHash(hash)).toBe(turno);
+        expect(mapaDoHash(hash)).toBe(mapa);
+      }
+    }
+  });
+
+  it('o roteador continua enxergando a mesma rota', () => {
+    expect(rotaDoHash(hashDoMapa(2, 'apuracao'))).toBe(ROTA_PRESIDENTE_ESTADOS);
   });
 });

@@ -1,11 +1,16 @@
 import { describe, expect, it } from 'vitest';
 import {
+  agregarPorRegiao,
   fracaoDaBarra,
   montarLinhas,
   notaDasFontes,
   notaDoEstagio,
+  regiaoDaUf,
+  REGIOES,
   semDado,
+  somarNaoValidos,
   vantagemEntreOsDois,
+  type LinhaUf,
 } from '../apuracao-layout.js';
 
 const cand = (candidato: string, votosProjetados: number, pctProjetado: number) => ({
@@ -139,5 +144,173 @@ describe('fracaoDaBarra e semDado', () => {
   it('trata 0% como sem dado', () => {
     expect(semDado({ processado: 0 })).toBe(true);
     expect(semDado({ processado: 0.4 })).toBe(false);
+  });
+});
+
+/* ───────────────────────────── por região ─────────────────────────────── */
+
+function linha(
+  uf: string,
+  opcoes: {
+    eleitores?: number | null;
+    processado?: number;
+    a?: number;
+    b?: number;
+    brancos?: number | null;
+    nulos?: number | null;
+    abstencoes?: number | null;
+    finalizada?: boolean;
+  } = {},
+): LinhaUf {
+  const a = opcoes.a ?? 0;
+  const b = opcoes.b ?? 0;
+  const fracao = (opcoes.processado ?? 100) / 100;
+  return {
+    uf,
+    eleitores: opcoes.eleitores === undefined ? 1_000_000 : opcoes.eleitores,
+    processado: opcoes.processado ?? 100,
+    finalizada: opcoes.finalizada ?? false,
+    lider: a === b ? null : a > b ? 'A' : 'B',
+    porCandidato: [
+      { candidato: 'A', pct: 0, votosApurados: Math.round(a * fracao), votosProjetados: a },
+      { candidato: 'B', pct: 0, votosApurados: Math.round(b * fracao), votosProjetados: b },
+    ],
+    brancos: opcoes.brancos === undefined ? null : opcoes.brancos,
+    nulos: opcoes.nulos === undefined ? null : opcoes.nulos,
+    abstencoes: opcoes.abstencoes === undefined ? null : opcoes.abstencoes,
+    validosApurados: Math.round((a + b) * fracao),
+  };
+}
+
+describe('apuracao-layout: regiões', () => {
+  it('mapeia as 27 unidades da federação, sem sobra nem repetição', () => {
+    const todas = REGIOES.flatMap((r) => r.ufs);
+    expect(todas).toHaveLength(27);
+    expect(new Set(todas).size).toBe(27);
+    expect(regiaoDaUf('SP')).toBe('Sudeste');
+    expect(regiaoDaUf('DF')).toBe('Centro-Oeste');
+    expect(regiaoDaUf('ba')).toBe('Nordeste');
+    expect(regiaoDaUf('XX')).toBeNull();
+  });
+
+  it('soma os votos das UFs da região', () => {
+    const regioes = agregarPorRegiao(
+      [
+        linha('SP', { a: 600, b: 400 }),
+        linha('RJ', { a: 100, b: 300 }),
+        linha('MG', { a: 300, b: 200 }),
+        linha('ES', { a: 0, b: 100 }),
+      ],
+      ['A', 'B'],
+    );
+    const sudeste = regioes.find((r) => r.regiao === 'Sudeste')!;
+    expect(sudeste.porCandidato.find((c) => c.candidato === 'A')!.votosProjetados).toBe(1000);
+    expect(sudeste.porCandidato.find((c) => c.candidato === 'B')!.votosProjetados).toBe(1000);
+    expect(sudeste.eleitores).toBe(4_000_000);
+  });
+
+  it('o percentual da região sai da soma dos votos, não da média dos percentuais das UFs', () => {
+    // Uma UF enorme 90/10 e uma minúscula 10/90. A média das porcentagens
+    // daria 50/50; a soma dos votos diz quase 90/10 — e é esta que é verdade.
+    const regioes = agregarPorRegiao(
+      [linha('SP', { a: 900_000, b: 100_000 }), linha('ES', { a: 10, b: 90 })],
+      ['A', 'B'],
+    );
+    const sudeste = regioes.find((r) => r.regiao === 'Sudeste')!;
+    expect(sudeste.porCandidato.find((c) => c.candidato === 'A')!.pct).toBeCloseTo(89.99, 1);
+    expect(sudeste.lider).toBe('A');
+  });
+
+  it('o % apurado é ponderado pelo eleitorado, não a média das UFs', () => {
+    // RR a 100% com 300 mil eleitores e SP a 10% com 34 milhões: a média
+    // simples diria 55% apurado no conjunto, o que é falso por uma ordem de
+    // grandeza. Ponderado, fica rente aos 10% de São Paulo.
+    const regioes = agregarPorRegiao(
+      [
+        linha('SP', { eleitores: 34_000_000, processado: 10, a: 100, b: 100 }),
+        linha('ES', { eleitores: 300_000, processado: 100, a: 100, b: 100 }),
+      ],
+      ['A', 'B'],
+    );
+    const sudeste = regioes.find((r) => r.regiao === 'Sudeste')!;
+    expect(sudeste.processado).toBeGreaterThan(10);
+    expect(sudeste.processado).toBeLessThan(11.5);
+  });
+
+  it('UF sem nenhuma apuração não entra na soma, mas é nomeada', () => {
+    const regioes = agregarPorRegiao(
+      [
+        linha('SP', { a: 600, b: 400, processado: 50 }),
+        linha('RJ', { a: 0, b: 0, processado: 0 }),
+      ],
+      ['A', 'B'],
+    );
+    const sudeste = regioes.find((r) => r.regiao === 'Sudeste')!;
+    expect(sudeste.ufsSemApuracao).toEqual(['RJ']);
+    expect(sudeste.porCandidato.find((c) => c.candidato === 'A')!.votosProjetados).toBe(600);
+    // O RJ a 0% não pode puxar o processado da região para 25%.
+    expect(sudeste.processado).toBe(50);
+  });
+
+  it('região sem nenhum voto não ganha líder', () => {
+    const regioes = agregarPorRegiao([linha('SP', { a: 0, b: 0, processado: 0 })], ['A', 'B']);
+    expect(regioes.find((r) => r.regiao === 'Sudeste')!.lider).toBeNull();
+  });
+
+  it('brancos/nulos/abstenções ficam null quando ninguém publicou, e somam quando alguém publica', () => {
+    const semNada = agregarPorRegiao([linha('SP', { a: 10, b: 5 })], ['A', 'B']);
+    expect(semNada.find((r) => r.regiao === 'Sudeste')!.brancos).toBeNull();
+
+    const comUm = agregarPorRegiao(
+      [linha('SP', { a: 10, b: 5, brancos: 7 }), linha('RJ', { a: 1, b: 1 })],
+      ['A', 'B'],
+    );
+    expect(comUm.find((r) => r.regiao === 'Sudeste')!.brancos).toBe(7);
+  });
+
+  it('só é finalizada quando todas as UFs da região terminaram', () => {
+    const parcial = agregarPorRegiao(
+      [
+        linha('PR', { a: 10, b: 5, finalizada: true }),
+        linha('SC', { a: 10, b: 5, finalizada: true }),
+        linha('RS', { a: 10, b: 5, finalizada: false }),
+      ],
+      ['A', 'B'],
+    );
+    expect(parcial.find((r) => r.regiao === 'Sul')!.finalizada).toBe(false);
+
+    const toda = agregarPorRegiao(
+      [
+        linha('PR', { a: 10, b: 5, finalizada: true }),
+        linha('SC', { a: 10, b: 5, finalizada: true }),
+        linha('RS', { a: 10, b: 5, finalizada: true }),
+      ],
+      ['A', 'B'],
+    );
+    expect(toda.find((r) => r.regiao === 'Sul')!.finalizada).toBe(true);
+  });
+
+  it('as cinco regiões aparecem mesmo sem dado nenhum', () => {
+    const vazio = agregarPorRegiao([], ['A', 'B']);
+    expect(vazio.map((r) => r.regiao)).toEqual(['Norte', 'Nordeste', 'Centro-Oeste', 'Sudeste', 'Sul']);
+    expect(vazio.every((r) => r.lider === null && r.processado === 0)).toBe(true);
+  });
+});
+
+describe('apuracao-layout: somarNaoValidos', () => {
+  it('soma o que foi publicado e devolve null para o que ninguém publicou', () => {
+    const totais = somarNaoValidos([
+      linha('SP', { brancos: 10, nulos: 20 }),
+      linha('RJ', { brancos: 5, nulos: 1, abstencoes: 3 }),
+    ]);
+    expect(totais).toEqual({ brancos: 15, nulos: 21, abstencoes: 3 });
+  });
+
+  it('zero não substitui ausência — null continua null', () => {
+    expect(somarNaoValidos([linha('SP'), linha('RJ')])).toEqual({
+      brancos: null,
+      nulos: null,
+      abstencoes: null,
+    });
   });
 });

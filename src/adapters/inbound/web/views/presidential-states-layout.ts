@@ -748,6 +748,37 @@ export function hashDoTurno(turno: 1 | 2): string {
   return turno === 2 ? `${ROTA_PRESIDENTE_ESTADOS}?turno=2` : ROTA_PRESIDENTE_ESTADOS;
 }
 
+/**
+ * Modo de mapa pedido pelo hash (`#/presidente-estados?mapa=apuracao`).
+ *
+ * A apuração ao vivo é mais um modo deste mapa, não uma página; mas ela
+ * precisa de endereço próprio, senão não há como mandar o link de "veja a
+ * apuração" para alguém, nem como um reload numa noite de eleição devolver o
+ * leitor ao que ele estava olhando. Valor desconhecido cai em `lideranca`:
+ * um parâmetro errado não deve impedir a tela de montar.
+ */
+export function mapaDoHash(hash: string): 'lideranca' | 'eleitorado' | 'apuracao' {
+  const inicioQuery = hash.indexOf('?');
+  if (inicioQuery < 0) return 'lideranca';
+  const pedido = new URLSearchParams(hash.slice(inicioQuery + 1)).get('mapa');
+  if (pedido === 'apuracao') return 'apuracao';
+  if (pedido === 'eleitorado') return 'eleitorado';
+  return 'lideranca';
+}
+
+/**
+ * Hash canônico de turno + modo de mapa. `lideranca` é o padrão e não aparece
+ * no endereço, do mesmo jeito que o 1º turno não aparece: o parâmetro existe
+ * para o que foge do padrão.
+ */
+export function hashDoMapa(turno: 1 | 2, mapa: 'lideranca' | 'eleitorado' | 'apuracao'): string {
+  const params = new URLSearchParams();
+  if (turno === 2) params.set('turno', '2');
+  if (mapa !== 'lideranca') params.set('mapa', mapa);
+  const query = params.toString();
+  return query ? `${ROTA_PRESIDENTE_ESTADOS}?${query}` : ROTA_PRESIDENTE_ESTADOS;
+}
+
 /** Parte de rota de um hash, sem os parâmetros: `#/presidente-estados?turno=2` → `#/presidente-estados`. */
 export function rotaDoHash(hash: string): string {
   const inicioQuery = hash.indexOf('?');

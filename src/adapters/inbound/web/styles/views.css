@@ -1277,7 +1277,11 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
 .ap-tabela { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
 .ap-tabela th, .ap-tabela td { padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--color-border); text-align: left; white-space: nowrap; }
 .ap-tabela thead th { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-muted); font-weight: 600; }
-.ap-num { text-align: right; font-variant-numeric: tabular-nums; }
+/* `.ap-tabela td` tem especificidade (0,1,1) e vencia `.ap-num` (0,1,0): com
+   isso TODO número da tabela ficava alinhado à esquerda, apesar da regra, e
+   uma coluna de 27 valores virava uma parede irregular em que não dava para
+   ver que um estado tem o dobro de votos do outro sem ler dígito a dígito. */
+.ap-tabela td.ap-num, .ap-tabela th.ap-num { text-align: right; font-variant-numeric: tabular-nums; }
 .ap-proc { min-width: 92px; }
 .ap-proc-barra { margin-top: 3px; height: 4px; border-radius: 999px; background: var(--color-surface-2); overflow: hidden; }
 .ap-proc-fill { height: 100%; background: var(--color-text-muted); }
@@ -1307,7 +1311,12 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
 .ap-mapa-vazio, .ap-mapa-cheio { stroke: none; }
 .ap-mapa-contorno { fill: none; stroke: var(--color-text); stroke-opacity: 0.45; stroke-width: 0.9; stroke-linejoin: round; pointer-events: none; }
 .ap-mapa-frente { stroke: var(--color-text); stroke-width: 1.1; opacity: 0.7; stroke-dasharray: 2 1.6; }
-.ap-mapa-trilho { fill: var(--color-canvas); stroke: var(--color-text); stroke-opacity: 0.5; stroke-width: 0.35; }
+/* Trilho OPACO, na cor do papel — não um cinza translúcido sobre o estado.
+   A regra translúcida que estava aqui deixava trilho e nível quase da mesma
+   cor sobre um estado saturado (medido: 1,25:1 de contraste), e com isso o
+   medidor sumia: um estado com 15% apurado tinha o mesmo peso visual de um
+   com 95%, que é justo o que ele existe para distinguir. */
+.ap-mapa-trilho { fill: var(--color-canvas); fill-opacity: 0.94; stroke: var(--color-text); stroke-opacity: 0.55; stroke-width: 0.35; }
 .ap-mapa-nivel { opacity: 1; }
 
 .ap-legenda { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 0.6rem; font-size: 0.76rem; color: var(--color-text-muted); }
@@ -1318,6 +1327,25 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
 .ap-leg-sem { background: var(--spectrum-indefinido); border-color: transparent; }
 
 /* --- faixa de estado no topo: vantagem e % apurado como DADO ------------ */
+/* A tira discreta: vantagem, brancos, nulos, abstenções. Discreta é
+   deliberado — são contagem crua do que já entrou, e não podem ter o peso dos
+   percentuais dos candidatos, que são projetados: lado a lado no mesmo corpo,
+   a tela passaria a comparar duas coisas de naturezas diferentes. */
+.ap-tira { display: flex; flex-wrap: wrap; gap: 0.35rem 1.4rem; margin-top: 0.85rem;
+  padding-top: 0.7rem; border-top: 1px solid var(--color-border); font-size: 0.8rem; }
+.ap-tira-item { display: inline-flex; align-items: baseline; gap: 0.4rem; min-width: 0; }
+.ap-tira-rotulo { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--color-text-muted); }
+.ap-tira-valor { font-weight: 650; font-variant-numeric: tabular-nums; }
+.ap-tira-nota { color: var(--color-text-muted); font-variant-numeric: tabular-nums; }
+.ap-tira-vantagem { flex-basis: 100%; }
+@media (min-width: 720px) { .ap-tira-vantagem { flex-basis: auto; margin-right: 0.6rem; } }
+
+/* Apuração e hora têm o MESMO corpo dos percentuais dos candidatos: são a
+   condição que qualifica os outros dois números, não a legenda deles. O que
+   os distingue é a moldura mais discreta, não o tamanho. */
+.ap-cartao-condicao { --cor: var(--color-text-muted); }
+.ap-cartao-condicao .ap-cartao-pct { color: var(--color-text); }
+
 .ap-faixa-estado { display: flex; flex-wrap: wrap; gap: 1.75rem; margin-top: 0.9rem; }
 .ap-fe-item { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; }
 .ap-fe-rotulo { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--color-text-muted); }
@@ -1365,6 +1393,15 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
 
 /* --- medidor do mapa: trilho visível, largura fixa, número ao lado ------ */
 .ap-modo-mapa { margin: 0.5rem auto 0; display: flex; justify-content: center; }
-.ap-mapa-trilho { fill: var(--color-text); fill-opacity: 0.16; stroke: var(--color-text); stroke-opacity: 0.4; stroke-width: 0.35; }
+/* Recorte por região: as divisas estaduais continuam lá, mas fracas, para o
+   olho ler cinco blocos e não vinte e sete áreas. Apagá-las de vez seria pior:
+   o leitor perderia a referência de onde fica o seu estado dentro do bloco. */
+.ap-mapa-contorno-fraco { stroke-opacity: 0.25; }
+.ap-mapa-sigla-regiao { font-size: 7.4px; letter-spacing: 0.02em; }
+.ap-mapa-pct-regiao { font-size: 7px; }
+
+.ap-linha-nome { display: block; font-weight: 700; }
+.ap-linha-nota { display: block; font-size: 0.68rem; font-weight: 400; color: var(--color-text-muted); white-space: normal; max-width: 15ch; }
+
 .ap-mapa-pct { font-size: 5.2px; font-weight: 700; fill: var(--color-text); dominant-baseline: alphabetic;
   paint-order: stroke; stroke: var(--color-canvas); stroke-width: 1.6px; }

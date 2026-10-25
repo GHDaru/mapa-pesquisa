@@ -30,6 +30,7 @@ import { buscarApuracao, type FonteLida } from '../../../outbound/tse/tse-client
 import { simularApuracao } from '../../../outbound/tse/simulador.js';
 import { bboxPath, criarEl, tokenFillEspectro } from './_shared.js';
 import {
+  agregarPorRegiao,
   fracaoDaBarra,
   formatarInt,
   formatarPct,
@@ -38,7 +39,11 @@ import {
   notaDasFontes,
   notaDoEstagio,
   semDado,
+  somarNaoValidos,
   vantagemEntreOsDois,
+  regiaoDaUf,
+  REGIOES,
+  type LinhaRegiao,
   type LinhaUf,
 } from './apuracao-layout.js';
 
@@ -80,10 +85,19 @@ function resolverEspectro(partido: string | null, partidos: readonly Partido[]):
 
 type Modo = 'ao-vivo' | 'simulacao';
 
+/**
+ * Por estado ou por região. As duas leem o MESMO dado — a região é a soma das
+ * UFs dela, não uma fonte nova —, mas respondem a perguntas diferentes: 27
+ * linhas respondem "como está o meu estado" e 5 respondem "qual é o desenho
+ * do país", que o voto brasileiro tem forte e que a lista por UF dissolve.
+ */
+type Recorte = 'estados' | 'regioes';
+
 type ModoMapa = 'medidor' | 'preenchimento';
 
 interface Estado {
   modo: Modo;
+  recorte: Recorte;
   modoMapa: ModoMapa;
   avancoSimulado: number;
   projecao: Projecao | null;
@@ -93,13 +107,29 @@ interface Estado {
   lidoEm: string | null;
 }
 
-export async function renderApuracao(main: HTMLElement, casos: CasosDeUso): Promise<void> {
+export interface OpcoesApuracao {
+  /**
+   * `false` esconde o `<h1>` próprio. A apuração vive DENTRO do mapa por
+   * estado, como mais um modo ao lado de "Quem lidera" e "Eleitorado" — e lá
+   * a página já tem título. Um segundo `<h1>` no meio do documento quebraria
+   * a hierarquia para quem navega por cabeçalhos.
+   */
+  readonly titulo?: boolean;
+}
+
+export async function renderApuracao(
+  main: HTMLElement,
+  casos: CasosDeUso,
+  opcoes: OpcoesApuracao = {},
+): Promise<void> {
+  const comTitulo = opcoes.titulo !== false;
   const partidos = casos.listParties();
   const aoVivo = casos.getApuracaoAoVivo();
   const apuracao1T = aoVivo.apuracaoPrimeiroTurno;
 
   const estado: Estado = {
     modo: 'ao-vivo',
+    recorte: 'estados',
     modoMapa: 'medidor',
     avancoSimulado: 0.35,
     projecao: null,
@@ -155,7 +185,7 @@ export async function renderApuracao(main: HTMLElement, casos: CasosDeUso): Prom
 
   function desenhar(): void {
     raiz.innerHTML = '';
-    raiz.append(criarCabecalho(estado, atualizar));
+    raiz.append(criarCabecalho(estado, atualizar, desenhar, comTitulo));
     if (estado.erro) {
       raiz.append(
         criarEl('p', {
@@ -171,7 +201,7 @@ export async function renderApuracao(main: HTMLElement, casos: CasosDeUso): Prom
       );
       return;
     }
-    raiz.append(criarBigNumbers(p, partidos));
+    raiz.append(criarBigNumbers(p, partidos, estado));
     raiz.append(criarMapaProgresso(p, partidos, estado, desenhar));
     raiz.append(criarTabela(p, estado));
     raiz.append(criarFontes(estado));
@@ -183,9 +213,15 @@ export async function renderApuracao(main: HTMLElement, casos: CasosDeUso): Prom
 
 /* ───────────────────────── cabeçalho e controles ───────────────────────── */
 
-function criarCabecalho(estado: Estado, atualizar: () => Promise<void>): HTMLElement {
+function criarCabecalho(
+  estado: Estado,
+  atualizar: () => Promise<void>,
+  redesenhar: () => void,
+  comTitulo: boolean,
+): HTMLElement {
   const topo = criarEl('header', { className: 'ap-topo' });
-  topo.append(criarEl('h1', { className: 'ap-titulo', texto: 'Apuração ao vivo' }));
+  if (comTitulo) topo.append(criarEl('h1', { className: 'ap-titulo', texto: 'Apuração ao vivo' }));
+  else topo.append(criarEl('h3', { className: 'ap-titulo ap-titulo-embutido', texto: 'Apuração ao vivo' }));
 
   const controles = criarEl('div', { className: 'ap-controles' });
 
@@ -204,6 +240,32 @@ function criarCabecalho(estado: Estado, atualizar: () => Promise<void>): HTMLEle
     grupo.append(b);
   }
   controles.append(grupo);
+
+  // O recorte governa o mapa E a tabela, então ele fica no cabeçalho, junto
+  // dos outros controles da tela inteira — e não dentro do mapa, que daria a
+  // entender que só o mapa muda.
+  const grupoRecorte = criarEl('div', {
+    className: 'ap-modo',
+    attrs: { role: 'group', 'aria-label': 'Recorte dos números' },
+  });
+  for (const [rec, rotulo] of [['estados', 'Estados'], ['regioes', 'Regiões']] as const) {
+    const b = criarEl('button', {
+      className: `ap-modo-botao${estado.recorte === rec ? ' is-ativo' : ''}`,
+      texto: rotulo,
+      attrs: { type: 'button', 'aria-pressed': String(estado.recorte === rec) },
+    });
+    b.addEventListener('click', () => {
+      if (estado.recorte === rec) return;
+      estado.recorte = rec;
+      // Só redesenha: o dado é o mesmo, a região é soma das UFs. Buscar de
+      // novo no TSE para trocar de recorte seria pedir ao servidor o que já
+      // está na memória, e numa noite de apuração isso multiplica requisição
+      // por nada.
+      redesenhar();
+    });
+    grupoRecorte.append(b);
+  }
+  controles.append(grupoRecorte);
 
   if (estado.modo === 'simulacao') {
     const faixa = criarEl('label', { className: 'ap-faixa' });
@@ -233,80 +295,141 @@ function criarCabecalho(estado: Estado, atualizar: () => Promise<void>): HTMLEle
 
 /* ───────────────────────────── big numbers ─────────────────────────────── */
 
-function criarBigNumbers(p: Projecao, partidos: readonly Partido[]): HTMLElement {
+/**
+ * A primeira linha é O QUE ESTÁ CONTADO AGORA.
+ *
+ * A tela começou pela projeção, e isso estava invertido: projeção é
+ * inferência sobre o que falta, contagem é fato. Numa noite de apuração o
+ * leitor pergunta primeiro "como está agora" — e a resposta a essa pergunta
+ * não pode estar um degrau abaixo de uma estimativa.
+ *
+ * Por isso a linha de cima tem quatro números do mesmo tamanho, e os quatro
+ * descrevem o mesmo instante: os dois percentuais APURADOS, quanto já foi
+ * apurado, e a hora da leitura. Os três primeiros não significam nada sem o
+ * quarto — 50,6% às 17h12 com 3% apurado e 50,6% às 22h40 com 97% apurado são
+ * afirmações de força completamente diferente —, então eles ficam lado a lado,
+ * no mesmo peso, e não um no título e o outro no rodapé.
+ *
+ * A projeção vem logo abaixo, nomeada como projeção. Brancos, nulos e
+ * abstenções ficam discretos de propósito: são contagem crua do que entrou e
+ * não disputam a leitura com os percentuais dos candidatos.
+ */
+function criarBigNumbers(p: Projecao, partidos: readonly Partido[], estado: Estado): HTMLElement {
   const sec = criarEl('section', { className: 'ap-bignumbers' });
-  const ordenados = [...p.candidatos].sort((a, b) => b.votosProjetados - a.votosProjetados);
+  const ordenados = [...p.candidatos].sort((a, b) => b.votosApurados - a.votosApurados);
+  const processado = p.coberturaNacionalEfetiva ?? p.secoesTotalizadasPonderada;
+  const houveVoto = p.validosApurados > 0;
 
-  const cartoes = criarEl('div', { className: 'ap-cartoes' });
+  /* ── linha 1: agora ── */
+  const agora = criarEl('div', { className: 'ap-cartoes ap-cartoes-agora' });
   for (const [i, c] of ordenados.entries()) {
     const espectro = resolverEspectro(c.partido, partidos);
-    const cartao = criarEl('div', {
-      className: `ap-cartao${i === 0 ? ' is-lider' : ''}`,
-    });
+    const cartao = criarEl('div', { className: `ap-cartao${i === 0 && houveVoto ? ' is-lider' : ''}` });
     cartao.style.setProperty('--cor', tokenFillEspectro(espectro));
     cartao.append(criarEl('p', { className: 'ap-cartao-nome', texto: c.candidato }));
-    cartao.append(criarEl('p', { className: 'ap-cartao-pct', texto: formatarPct(c.pctProjetado, 2) }));
+    cartao.append(criarEl('p', { className: 'ap-cartao-pct', texto: formatarPct(c.pctApurado, 2) }));
     cartao.append(
-      criarEl('p', {
-        className: 'ap-cartao-votos',
-        texto: `${formatarInt(c.votosProjetados)} votos projetados`,
-      }),
+      criarEl('p', { className: 'ap-cartao-votos', texto: `${formatarInt(c.votosApurados)} votos apurados` }),
     );
     cartao.append(
       criarEl('p', {
         className: 'ap-cartao-apurado',
-        texto: `${formatarInt(c.votosApurados)} já apurados · ${formatarPct(c.pctApurado, 2)}`,
+        texto: `Projeção: ${formatarPct(c.pctProjetado, 2)} · ${formatarInt(c.votosProjetados)} votos`,
       }),
     );
     const barra = criarEl('div', { className: 'ap-cartao-barra' });
     const preenche = criarEl('div', { className: 'ap-cartao-barra-fill' });
-    preenche.style.width = `${Math.max(0, Math.min(100, c.pctProjetado))}%`;
+    preenche.style.width = `${Math.max(0, Math.min(100, c.pctApurado))}%`;
     barra.append(preenche);
     cartao.append(barra);
-    cartoes.append(cartao);
+    agora.append(cartao);
   }
-  sec.append(cartoes);
 
-  const processado = p.coberturaNacionalEfetiva ?? p.secoesTotalizadasPonderada;
-  const v = vantagemEntreOsDois(ordenados);
-  const resumo = criarEl('div', { className: 'ap-resumo' });
-
-  // O "% apurado" sai do parágrafo e vira número.
-  //
-  // Ele estava dentro da prosa de metodologia, e o crítico pegou: é a condição
-  // que qualifica TODOS os percentuais acima — 51% com 3% apurado e 51% com
-  // 95% apurado não dizem a mesma coisa — e virara nota de rodapé. Condição de
-  // leitura tem de ter o peso de dado, ao lado do dado que ela qualifica.
-  const faixa = criarEl('div', { className: 'ap-faixa-estado' });
-  // Com zero voto contado não existe líder, e a ordenação por votos devolve
-  // um empate em 0 como se fosse vantagem. Dizer "fulano à frente por 0
-  // votos" é nomear uma liderança que ninguém mediu — o mesmo erro que o
-  // mapa evita deixando as UFs cinza.
-  if (v && v.votos > 0) {
-    const bloco = criarEl('div', { className: 'ap-fe-item' });
-    bloco.append(criarEl('span', { className: 'ap-fe-rotulo', texto: 'Vantagem' }));
-    bloco.append(
-      criarEl('span', {
-        className: 'ap-fe-valor',
-        texto: `${formatarInt(v.votos)} votos`,
-      }),
-    );
-    bloco.append(
-      criarEl('span', { className: 'ap-fe-nota', texto: `${formatarPct(v.pontos, 2)} · ${v.lider}` }),
-    );
-    faixa.append(bloco);
-  }
-  const blocoProc = criarEl('div', { className: 'ap-fe-item' });
-  blocoProc.append(criarEl('span', { className: 'ap-fe-rotulo', texto: 'Seções apuradas' }));
-  blocoProc.append(criarEl('span', { className: 'ap-fe-valor', texto: formatarPct(processado) }));
-  const trilhoTopo = criarEl('div', { className: 'ap-fe-barra' });
-  const nivelTopo = criarEl('div', { className: 'ap-fe-barra-fill' });
+  // Apuração e hora como números grandes, no mesmo tamanho dos candidatos:
+  // eles são a condição de leitura dos outros dois, não uma legenda deles.
+  const cartaoProc = criarEl('div', { className: 'ap-cartao ap-cartao-condicao' });
+  cartaoProc.append(criarEl('p', { className: 'ap-cartao-nome', texto: 'Apuração' }));
+  cartaoProc.append(criarEl('p', { className: 'ap-cartao-pct', texto: formatarPct(processado) }));
+  cartaoProc.append(
+    criarEl('p', { className: 'ap-cartao-votos', texto: `${formatarInt(p.validosApurados)} votos válidos contados` }),
+  );
+  cartaoProc.append(
+    criarEl('p', {
+      className: 'ap-cartao-apurado',
+      texto:
+        p.ufsSemApuracao.length > 0
+          ? `${p.ufsSemApuracao.length} ${p.ufsSemApuracao.length === 1 ? 'estado ainda sem seção' : 'estados ainda sem seção'}`
+          : 'Todos os estados já têm seção apurada',
+    }),
+  );
+  const trilhoTopo = criarEl('div', { className: 'ap-cartao-barra' });
+  const nivelTopo = criarEl('div', { className: 'ap-cartao-barra-fill' });
   nivelTopo.style.width = `${fracaoDaBarra(processado) * 100}%`;
   trilhoTopo.append(nivelTopo);
-  blocoProc.append(trilhoTopo);
-  faixa.append(blocoProc);
-  resumo.append(faixa);
-  resumo.append(
+  cartaoProc.append(trilhoTopo);
+  agora.append(cartaoProc);
+
+  const cartaoHora = criarEl('div', { className: 'ap-cartao ap-cartao-condicao' });
+  cartaoHora.append(criarEl('p', { className: 'ap-cartao-nome', texto: 'Atualizado às' }));
+  cartaoHora.append(criarEl('p', { className: 'ap-cartao-pct', texto: horaCurta(estado.lidoEm) }));
+  cartaoHora.append(
+    criarEl('p', {
+      className: 'ap-cartao-votos',
+      texto: estado.carregando ? 'buscando agora…' : 'horário desta leitura',
+    }),
+  );
+  cartaoHora.append(
+    criarEl('p', {
+      className: 'ap-cartao-apurado',
+      texto: estado.modo === 'simulacao' ? 'MODO SIMULAÇÃO — não é a apuração' : 'direto do TSE, sem intermediário',
+    }),
+  );
+  agora.append(cartaoHora);
+  sec.append(agora);
+
+  /* ── tira discreta: vantagem e o que não é voto em candidato ── */
+  const v = vantagemEntreOsDois([...p.candidatos].sort((a, b) => b.votosProjetados - a.votosProjetados));
+  const totais = somarNaoValidos(montarLinhas(p.porUf, FINALISTAS));
+  const tira = criarEl('div', { className: 'ap-tira' });
+
+  // Com zero voto contado não existe líder, e a ordenação por votos devolve
+  // um empate em 0 como se fosse vantagem. Dizer "fulano à frente por 0
+  // votos" é nomear uma liderança que ninguém mediu.
+  if (v && v.votos > 0) {
+    const item = criarEl('span', { className: 'ap-tira-item ap-tira-vantagem' });
+    item.append(criarEl('span', { className: 'ap-tira-rotulo', texto: 'Vantagem projetada' }));
+    item.append(
+      criarEl('span', {
+        className: 'ap-tira-valor',
+        texto: `${formatarInt(v.votos)} votos · ${formatarPct(v.pontos, 2)} · ${v.lider}`,
+      }),
+    );
+    tira.append(item);
+  }
+  for (const [rotulo, valor] of [
+    ['Brancos', totais.brancos],
+    ['Nulos', totais.nulos],
+    ['Abstenções', totais.abstencoes],
+  ] as const) {
+    const item = criarEl('span', { className: 'ap-tira-item' });
+    item.append(criarEl('span', { className: 'ap-tira-rotulo', texto: rotulo }));
+    item.append(criarEl('span', { className: 'ap-tira-valor', texto: formatarInt(valor) }));
+    // A taxa precisa do denominador do MESMO instante: comparecimento já
+    // contado, não eleitorado inteiro — senão a taxa de branco cai a cada
+    // seção que entra e parece estar diminuindo sozinha.
+    if (valor != null && rotulo !== 'Abstenções' && p.validosApurados > 0) {
+      item.append(
+        criarEl('span', {
+          className: 'ap-tira-nota',
+          texto: formatarPct((valor / (p.validosApurados + valor)) * 100, 2),
+        }),
+      );
+    }
+    tira.append(item);
+  }
+  sec.append(tira);
+
+  sec.append(
     criarEl('p', {
       className: 'ap-meta',
       texto: notaDoEstagio({
@@ -316,7 +439,6 @@ function criarBigNumbers(p: Projecao, partidos: readonly Partido[]): HTMLElement
       }),
     }),
   );
-  sec.append(resumo);
   return sec;
 }
 
@@ -329,16 +451,61 @@ function criarMapaProgresso(
   redesenhar: () => void,
 ): HTMLElement {
   const medidor = estado.modoMapa === 'medidor';
+  const porRegiao = estado.recorte === 'regioes';
   const porUf = new Map(p.porUf.map((u) => [u.uf, u]));
   const nomePorUf = new Map(mapaBrasil.locations.map((l) => [l.id.toUpperCase(), l.name]));
 
+  // No recorte por região, cada UF é pintada com o resultado DA REGIÃO dela.
+  // O desenho continua sendo o dos estados — não existe polígono de região
+  // neste mapa —, mas a cor, o medidor e o rótulo passam a ser do bloco: as
+  // divisas internas ficam fracas e o rótulo vai para o centro da região, de
+  // modo que o olho leia cinco áreas e não vinte e sete.
+  const regioes = porRegiao ? agregarPorRegiao(montarLinhas(p.porUf, FINALISTAS), FINALISTAS) : [];
+  const regiaoPorNome = new Map(regioes.map((r) => [r.regiao, r]));
+
+  /** O que pinta e rotula uma UF: ela mesma, ou a região a que pertence. */
+  function areaDe(uf: string): {
+    readonly lider: string | null;
+    readonly partidoDoLider: string | null;
+    readonly processado: number;
+    readonly nome: string;
+  } | null {
+    if (porRegiao) {
+      const nome = regiaoDaUf(uf);
+      const r = nome ? regiaoPorNome.get(nome) : undefined;
+      if (!r || !nome) return null;
+      // O partido vem de qualquer UF da região que tenha o candidato: o
+      // candidato é o mesmo no país inteiro, só a ficha é por recorte.
+      const partido =
+        p.porUf
+          .flatMap((u) => u.candidatos)
+          .find((c) => c.candidato === r.lider)?.partido ?? null;
+      return { lider: r.lider, partidoDoLider: partido, processado: r.processado, nome };
+    }
+    const u = porUf.get(uf);
+    if (!u) return null;
+    return {
+      lider: u.lider,
+      partidoDoLider: u.candidatos.find((c) => c.candidato === u.lider)?.partido ?? null,
+      processado: u.secoesTotalizadas,
+      nome: nomePorUf.get(uf) ?? uf,
+    };
+  }
+
   const sec = criarEl('section', { className: 'ap-mapa-sec' });
-  sec.append(criarEl('h2', { className: 'ap-h2', texto: 'Onde cada estado está' }));
+  sec.append(
+    criarEl('h2', {
+      className: 'ap-h2',
+      texto: porRegiao ? 'Onde cada região está' : 'Onde cada estado está',
+    }),
+  );
   sec.append(
     criarEl('p', {
       className: 'ap-meta',
       texto: medidor
-        ? 'A cor do estado diz quem lidera ali. Quanto já foi apurado é dito pela barra sob a sigla, que é um medidor e não parte do desenho do país. Estado sem nenhuma seção fica cinza e sem líder: pintar liderança que ninguém mediu seria inventar.'
+        ? porRegiao
+          ? 'A cor diz quem lidera na REGIÃO: os estados de um mesmo bloco ganham a mesma cor, e as divisas entre eles ficam fracas. O medidor no centro do bloco diz quanto já foi apurado na região inteira, ponderado pelo eleitorado — não a média das UFs, que com estados de tamanhos tão diferentes seria outra conta e outro número. Região sem nenhuma seção fica cinza e sem líder.'
+          : 'A cor do estado diz quem lidera ali. Quanto já foi apurado é dito pela barra sob a sigla, que é um medidor e não parte do desenho do país. Estado sem nenhuma seção fica cinza e sem líder: pintar liderança que ninguém mediu seria inventar.'
         : 'A cor cheia é de quem lidera, e ela avança da esquerda para a direita conforme as seções entram; o que falta fica hachurado na mesma cor. Quatro críticos cegos leram este desenho como divisão geográfica do estado, não como andamento — ele está aqui porque foi o pedido, e o modo "medidor" ao lado é a alternativa que eles apontaram.',
     }),
   );
@@ -436,28 +603,28 @@ function criarMapaProgresso(
 
   for (const [indice, loc] of mapaBrasil.locations.entries()) {
     const uf = loc.id.toUpperCase();
-    const u = porUf.get(uf);
+    const area = areaDe(uf);
     const bbox = bboxPath(loc.path);
     const grupo = document.createElementNS('http://www.w3.org/2000/svg', 'g');
 
-    if (!u || semDado({ processado: u.secoesTotalizadas })) {
+    if (!area || semDado({ processado: area.processado })) {
       const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       path.setAttribute('d', loc.path);
       path.setAttribute('class', 'ap-mapa-uf');
       path.style.fill = 'var(--spectrum-indefinido)';
-      path.setAttribute('aria-label', `${nomePorUf.get(uf) ?? uf}: nenhuma seção apurada.`);
+      path.setAttribute(
+        'aria-label',
+        `${area?.nome ?? nomePorUf.get(uf) ?? uf}: nenhuma seção apurada.`,
+      );
       grupo.append(path);
       const borda = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       borda.setAttribute('d', loc.path);
       borda.setAttribute('class', 'ap-mapa-contorno');
       grupo.append(borda);
     } else {
-      const espectro = resolverEspectro(
-        u.candidatos.find((c) => c.candidato === u.lider)?.partido ?? null,
-        partidos,
-      );
+      const espectro = resolverEspectro(area.partidoDoLider, partidos);
       const cor = tokenFillEspectro(espectro);
-      const fracao = fracaoDaBarra(u.secoesTotalizadas);
+      const fracao = fracaoDaBarra(area.processado);
       const corte = bbox.minX + (bbox.maxX - bbox.minX) * fracao;
       const idClip = `ap-clip-${uf}`;
 
@@ -514,73 +681,79 @@ function criarMapaProgresso(
       }
       }
 
-      // Contorno por cima, para o estado continuar sendo um estado.
+      // Contorno por cima, para o estado continuar sendo um estado — e fraco
+      // quando o recorte é por região, para que o bloco leia como um bloco
+      // sem que as divisas estaduais desapareçam de vez.
       const contorno = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       contorno.setAttribute('d', loc.path);
-      contorno.setAttribute('class', 'ap-mapa-contorno');
+      contorno.setAttribute('class', porRegiao ? 'ap-mapa-contorno ap-mapa-contorno-fraco' : 'ap-mapa-contorno');
       grupo.append(contorno);
 
       grupo.setAttribute(
         'aria-label',
-        `${nomePorUf.get(uf) ?? uf}: ${formatarPct(u.secoesTotalizadas)} apurado, ${u.lider ?? '—'} à frente.`,
+        porRegiao
+          ? `${nomePorUf.get(uf) ?? uf}, região ${area.nome}: ${formatarPct(area.processado)} apurado na região, ${area.lider ?? '—'} à frente.`
+          : `${area.nome}: ${formatarPct(area.processado)} apurado, ${area.lider ?? '—'} à frente.`,
       );
     }
 
-    const cx = (bbox.minX + bbox.maxX) / 2;
-    const cy = (bbox.minY + bbox.maxY) / 2;
-    const texto = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    texto.setAttribute('x', String(cx));
-    texto.setAttribute('y', String(cy - 1.5));
-    texto.setAttribute('class', 'ap-mapa-sigla');
-    texto.setAttribute('aria-hidden', 'true');
-    texto.textContent = uf;
-    grupo.append(texto);
-
-    // O MEDIDOR sob a sigla.
-    //
-    // Quatro críticos cegos, em rodadas independentes, leram o preenchimento
-    // do polígono como divisão geográfica e não como andamento — e o quarto
-    // fechou o argumento: estado pequeno não tem área suficiente para que uma
-    // fração seja lida como número, então a barra tem de ser o canal, não o
-    // reforço. Ela ganha trilho visível, largura FIXA (não proporcional ao
-    // estado, senão a comparação entre UFs some) e o número ao lado.
-    if (u && !semDado({ processado: u.secoesTotalizadas })) {
-      const corDoLider = tokenFillEspectro(
-        resolverEspectro(u.candidatos.find((c) => c.candidato === u.lider)?.partido ?? null, partidos),
-      );
-      const larg = 17;
-      const alt = 4.2;
-      const bx = cx - larg / 2;
-      const by = cy + 1.9;
-      const trilho = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-      trilho.setAttribute('x', String(bx));
-      trilho.setAttribute('y', String(by));
-      trilho.setAttribute('width', String(larg));
-      trilho.setAttribute('height', String(alt));
-      trilho.setAttribute('rx', String(alt / 2));
-      trilho.setAttribute('class', 'ap-mapa-trilho');
-      trilho.setAttribute('aria-hidden', 'true');
-      grupo.append(trilho);
-      const nivel = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-      nivel.setAttribute('x', String(bx));
-      nivel.setAttribute('y', String(by));
-      nivel.setAttribute('width', String(larg * fracaoDaBarra(u.secoesTotalizadas)));
-      nivel.setAttribute('height', String(alt));
-      nivel.setAttribute('rx', String(alt / 2));
-      nivel.setAttribute('class', 'ap-mapa-nivel');
-      nivel.style.fill = corDoLider;
-      nivel.setAttribute('aria-hidden', 'true');
-      grupo.append(nivel);
-      const num = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-      num.setAttribute('x', String(bx + larg + 1.6));
-      num.setAttribute('y', String(by + alt));
-      num.setAttribute('class', 'ap-mapa-pct');
-      num.setAttribute('aria-hidden', 'true');
-      num.textContent = `${Math.round(u.secoesTotalizadas)}%`;
-      grupo.append(num);
+    // Rótulo e medidor. Por estado, um por UF; por região, um por região, e
+    // os dois saem da MESMA função para que não divirjam com o tempo.
+    if (!porRegiao) {
+      rotularArea(grupo, {
+        cx: (bbox.minX + bbox.maxX) / 2,
+        cy: (bbox.minY + bbox.maxY) / 2,
+        rotulo: uf,
+        processado: area && !semDado({ processado: area.processado }) ? area.processado : null,
+        cor: area ? tokenFillEspectro(resolverEspectro(area.partidoDoLider, partidos)) : null,
+        escala: 1,
+      });
     }
 
     svg.append(grupo);
+  }
+
+  // Um rótulo por região, no centro de massa dos estados dela.
+  //
+  // Centro de massa, e não média simples dos centros: o Norte tem o Amazonas
+  // e o Amapá, e uma média simples puxaria o rótulo do Norte para um canto
+  // onde ele não descreve a região. A área da caixa de cada UF é a melhor
+  // aproximação de peso disponível aqui, já que o mapa não traz área real.
+  if (porRegiao) {
+    const caixaPorUf = new Map(
+      mapaBrasil.locations.map((l) => [l.id.toUpperCase(), bboxPath(l.path)] as const),
+    );
+    for (const reg of REGIOES) {
+      const r = regiaoPorNome.get(reg.nome);
+      if (!r) continue;
+      const caixas = reg.ufs.map((uf) => caixaPorUf.get(uf)).filter((b) => b != null);
+      if (caixas.length === 0) continue;
+      let peso = 0;
+      let somaX = 0;
+      let somaY = 0;
+      for (const b of caixas) {
+        const area = Math.max(1e-6, (b.maxX - b.minX) * (b.maxY - b.minY));
+        peso += area;
+        somaX += ((b.minX + b.maxX) / 2) * area;
+        somaY += ((b.minY + b.maxY) / 2) * area;
+      }
+      const grupo = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      grupo.setAttribute(
+        'aria-label',
+        `${reg.nome}: ${formatarPct(r.processado)} apurado, ${r.lider ?? 'sem líder ainda'}.`,
+      );
+      const partido =
+        p.porUf.flatMap((u) => u.candidatos).find((c) => c.candidato === r.lider)?.partido ?? null;
+      rotularArea(grupo, {
+        cx: somaX / peso,
+        cy: somaY / peso,
+        rotulo: reg.nome,
+        processado: r.lider == null ? null : r.processado,
+        cor: tokenFillEspectro(resolverEspectro(partido, partidos)),
+        escala: 1.7,
+      });
+      svg.append(grupo);
+    }
   }
 
   const wrap = criarEl('div', { className: 'ap-mapa-wrap' });
@@ -588,6 +761,77 @@ function criarMapaProgresso(
   sec.append(wrap);
   sec.append(criarLegendaDoMapa());
   return sec;
+}
+
+/**
+ * O rótulo com o MEDIDOR embaixo.
+ *
+ * Quatro críticos cegos, em rodadas independentes, leram o preenchimento do
+ * polígono como divisão geográfica e não como andamento — e o quarto fechou o
+ * argumento: área pequena não comporta uma fração legível como número, então
+ * a barra tem de ser o canal, não o reforço. Daí trilho visível, largura FIXA
+ * (não proporcional à área, senão a comparação entre áreas some) e o número ao
+ * lado. Um quinto crítico mediu que o trilho tinha 1,25:1 de contraste contra
+ * o próprio estado e o medidor sumia; o trilho é opaco por isso.
+ *
+ * `processado: null` desenha só o rótulo: área sem nenhuma seção não ganha
+ * medidor, porque um medidor em zero e um medidor ausente dizem coisas
+ * diferentes e só a segunda é verdade ali.
+ */
+function rotularArea(
+  grupo: SVGElement,
+  o: {
+    readonly cx: number;
+    readonly cy: number;
+    readonly rotulo: string;
+    readonly processado: number | null;
+    readonly cor: string | null;
+    readonly escala: number;
+  },
+): void {
+  const ns = 'http://www.w3.org/2000/svg';
+  const texto = document.createElementNS(ns, 'text');
+  texto.setAttribute('x', String(o.cx));
+  texto.setAttribute('y', String(o.cy - 1.5 * o.escala));
+  texto.setAttribute('class', o.escala > 1 ? 'ap-mapa-sigla ap-mapa-sigla-regiao' : 'ap-mapa-sigla');
+  texto.setAttribute('aria-hidden', 'true');
+  texto.textContent = o.rotulo;
+  grupo.append(texto);
+
+  if (o.processado == null) return;
+
+  const larg = 17 * o.escala;
+  const alt = 4.2 * o.escala;
+  const bx = o.cx - larg / 2;
+  const by = o.cy + 1.9 * o.escala;
+  const trilho = document.createElementNS(ns, 'rect');
+  trilho.setAttribute('x', String(bx));
+  trilho.setAttribute('y', String(by));
+  trilho.setAttribute('width', String(larg));
+  trilho.setAttribute('height', String(alt));
+  trilho.setAttribute('rx', String(alt / 2));
+  trilho.setAttribute('class', 'ap-mapa-trilho');
+  trilho.setAttribute('aria-hidden', 'true');
+  grupo.append(trilho);
+
+  const nivel = document.createElementNS(ns, 'rect');
+  nivel.setAttribute('x', String(bx));
+  nivel.setAttribute('y', String(by));
+  nivel.setAttribute('width', String(larg * fracaoDaBarra(o.processado)));
+  nivel.setAttribute('height', String(alt));
+  nivel.setAttribute('rx', String(alt / 2));
+  nivel.setAttribute('class', 'ap-mapa-nivel');
+  if (o.cor) nivel.style.fill = o.cor;
+  nivel.setAttribute('aria-hidden', 'true');
+  grupo.append(nivel);
+
+  const num = document.createElementNS(ns, 'text');
+  num.setAttribute('x', String(bx + larg + 1.6 * o.escala));
+  num.setAttribute('y', String(by + alt));
+  num.setAttribute('class', o.escala > 1 ? 'ap-mapa-pct ap-mapa-pct-regiao' : 'ap-mapa-pct');
+  num.setAttribute('aria-hidden', 'true');
+  num.textContent = `${Math.round(o.processado)}%`;
+  grupo.append(num);
 }
 
 /** Legenda explícita: sem ela, hachura é só textura. */
@@ -609,9 +853,21 @@ function criarLegendaDoMapa(): HTMLElement {
 /* ──────────────────────────── tabela por estado ────────────────────────── */
 
 function criarTabela(p: Projecao, estado: Estado): HTMLElement {
-  const linhas = montarLinhas(p.porUf, FINALISTAS);
+  const porUf = montarLinhas(p.porUf, FINALISTAS);
+  const porRegiao = estado.recorte === 'regioes';
+  // A tabela de região é a MESMA tabela, com as UFs somadas: mesma ordem de
+  // colunas, mesmas unidades, mesma aritmética. O leitor que troca de recorte
+  // não deveria ter de reaprender a ler.
+  const linhas: readonly (LinhaUf | LinhaRegiao)[] = porRegiao
+    ? agregarPorRegiao(porUf, FINALISTAS)
+    : porUf;
   const sec = criarEl('section', { className: 'ap-tabela-sec' });
-  sec.append(criarEl('h2', { className: 'ap-h2', texto: 'Estado a estado' }));
+  sec.append(
+    criarEl('h2', {
+      className: 'ap-h2',
+      texto: porRegiao ? 'Região a região' : 'Estado a estado',
+    }),
+  );
 
   const tabela = criarEl('table', { className: 'ap-tabela' });
   const thead = criarEl('thead');
@@ -623,7 +879,7 @@ function criarTabela(p: Projecao, estado: Estado): HTMLElement {
   // aparecia o voto contado de um candidato e não o do outro, que é o pior
   // jeito de cortar — convida à leitura errada em vez de só esconder.
   const colunas = [
-    'UF', 'Eleitores', '% apurado',
+    porRegiao ? 'Região' : 'UF', 'Eleitores', '% apurado',
     `% ${FINALISTAS[0]}`, `Projeção ${FINALISTAS[0]}`, `Votos ${FINALISTAS[0]}`,
     `% ${FINALISTAS[1]}`, `Projeção ${FINALISTAS[1]}`, `Votos ${FINALISTAS[1]}`,
     'Brancos', 'Nulos', 'Abstenções', 'Hora',
@@ -649,9 +905,27 @@ function criarTabela(p: Projecao, estado: Estado): HTMLElement {
   return sec;
 }
 
-function criarLinha(l: LinhaUf, estado: Estado): HTMLElement {
+function criarLinha(l: LinhaUf | LinhaRegiao, estado: Estado): HTMLElement {
   const tr = criarEl('tr');
-  tr.append(criarEl('th', { texto: l.uf, attrs: { scope: 'row' } }));
+  const cabeca = criarEl('th', { attrs: { scope: 'row' } });
+  if ('regiao' in l) {
+    cabeca.append(criarEl('span', { className: 'ap-linha-nome', texto: l.regiao }));
+    // Quais UFs entraram, e quais ficaram de fora por não ter seção nenhuma.
+    // Sem isso, uma região aparece completa quando não está — que é o jeito
+    // mais silencioso de uma soma mentir.
+    cabeca.append(
+      criarEl('span', {
+        className: 'ap-linha-nota',
+        texto:
+          l.ufsSemApuracao.length > 0
+            ? `${l.ufs.length - l.ufsSemApuracao.length} de ${l.ufs.length} UFs · sem seção: ${l.ufsSemApuracao.join(', ')}`
+            : `${l.ufs.length} UFs`,
+      }),
+    );
+  } else {
+    cabeca.textContent = l.uf;
+  }
+  tr.append(cabeca);
   const celula = (texto: string, rotulo: string): HTMLElement =>
     criarEl('td', { className: 'ap-num', texto, attrs: { 'data-rotulo': rotulo } });
 

@@ -145,6 +145,22 @@
   flex-direction: column;
   gap: var(--space-5);
 }
+
+/* `display` declarado vence o `display: none` que o atributo `hidden` traz do
+   user-agent — sem isto, o mapa de pesquisas escondido para dar lugar à
+   apuração continuava ocupando uma faixa vazia acima dela. */
+.ps-map-layout[hidden],
+.ps-apuracao-wrap[hidden] {
+  display: none;
+}
+
+/* A apuração entra como mais um modo deste mapa, então ela herda a largura da
+   seção e não precisa de moldura própria: a moldura já é a do painel. */
+.ps-apuracao-wrap > .ap-raiz {
+  margin: 0;
+  padding: 0;
+  max-width: none;
+}
 @media (min-width: 1024px) {
   .ps-map-layout {
     flex-direction: row;

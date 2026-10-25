@@ -55,7 +55,8 @@ import {
   faixaVantagem,
   formaDoPonto,
   formatarEleitorado,
-  hashDoTurno,
+  hashDoMapa,
+  mapaDoHash,
   LIMIARES_VANTAGEM,
   marcaDeAreaDaFaixa,
   notaSomaDoPainel,
@@ -206,7 +207,14 @@ function itemFallback(uf: string): PresidencialUf {
   };
 }
 
-type ModoMapa = 'lideranca' | 'eleitorado';
+/**
+ * O terceiro modo, `apuracao`, não é pesquisa: é contagem oficial do TSE.
+ * Ele mora aqui, e não numa página própria, porque é mais uma LEITURA DO
+ * MESMO MAPA — ao lado de quem lidera nas pesquisas e do tamanho do
+ * eleitorado —, e separar as três em páginas obrigaria o leitor a sair e
+ * voltar para comparar o que as urnas dizem com o que as pesquisas diziam.
+ */
+type ModoMapa = 'lideranca' | 'eleitorado' | 'apuracao';
 type Partidos = ReturnType<CasosDeUso['listParties']>;
 
 /**
@@ -661,7 +669,9 @@ export function renderPresidentialStates(container: HTMLElement, casos: CasosDeU
   const cabecalho = criarCabecalho(dados, (novoTurno) => aplicarTurno(novoTurno));
   raiz.appendChild(cabecalho.el);
 
-  let modo: ModoMapa = 'lideranca';
+  // O modo vem do endereço (`#/presidente-estados?mapa=apuracao`), para a
+  // apuração ter link próprio sem ser página própria.
+  let modo: ModoMapa = mapaDoHash(window.location.hash);
 
   const mapSection = document.createElement('section');
   mapSection.className = 'ps-map-section';
@@ -674,8 +684,9 @@ export function renderPresidentialStates(container: HTMLElement, casos: CasosDeU
   mapSection.appendChild(mapHeading);
 
   mapSection.appendChild(
-    criarToggleModo((novoModo) => {
+    criarToggleModo(modo, (novoModo) => {
       modo = novoModo;
+      window.history.replaceState(null, '', hashDoMapa(turno, novoModo));
       redesenharMapa();
     }),
   );
@@ -692,7 +703,45 @@ export function renderPresidentialStates(container: HTMLElement, casos: CasosDeU
   legendWrap.className = 'ps-map-legend-col';
   mapLayout.appendChild(legendWrap);
 
+  // A apuração ao vivo mora num container irmão do mapa de pesquisas, não
+  // dentro dele: ela traz big numbers, tabela e botão, e não cabe no espaço
+  // reservado ao SVG. O módulo entra por import dinâmico e só na primeira vez
+  // que alguém escolhe o modo — quem nunca abre a apuração não baixa o
+  // cliente do TSE nem o simulador.
+  const apuracaoWrap = document.createElement('div');
+  apuracaoWrap.className = 'ps-apuracao-wrap';
+  apuracaoWrap.hidden = true;
+  mapSection.appendChild(apuracaoWrap);
+  let apuracaoMontada = false;
+
+  function montarApuracao(): void {
+    if (apuracaoMontada) return;
+    apuracaoMontada = true;
+    apuracaoWrap.textContent = 'Carregando a apuração…';
+    void import('./apuracao-view.js')
+      .then(({ renderApuracao }) => {
+        apuracaoWrap.textContent = '';
+        return renderApuracao(apuracaoWrap, casos, { titulo: false });
+      })
+      .catch((erro: unknown) => {
+        // Falha de carregamento não pode deixar o painel mudo: o leitor
+        // precisa saber que não há dado em vez de olhar um espaço vazio.
+        console.warn('Falha ao carregar a apuração ao vivo:', erro);
+        apuracaoMontada = false;
+        apuracaoWrap.textContent =
+          'Não foi possível carregar a apuração agora. Escolha o modo de novo para tentar outra vez.';
+      });
+  }
+
   function redesenharMapa(): void {
+    const naApuracao = modo === 'apuracao';
+    mapLayout.hidden = naApuracao;
+    apuracaoWrap.hidden = !naApuracao;
+    if (naApuracao) {
+      montarApuracao();
+      return;
+    }
+
     mapWrap.innerHTML = '';
     legendWrap.innerHTML = '';
 
@@ -750,7 +799,7 @@ export function renderPresidentialStates(container: HTMLElement, casos: CasosDeU
     // ser o do turno escolhido (compartilhável, sobrevive ao reload) sem
     // disparar `hashchange` — que faria o roteador de main.ts remontar a tela
     // inteira e perder a aba e o scroll de quem só apertou um botão.
-    window.history.replaceState(null, '', hashDoTurno(turno));
+    window.history.replaceState(null, '', hashDoMapa(turno, modo));
     dados = casos.getPresidentialByState(turno);
     ufPorSigla = new Map(dados.ufs.map((u) => [u.uf, u] as const));
     recorte = recorteDe(dados);
@@ -1018,13 +1067,14 @@ function criarGrupoAlternancia<T>(
   return group;
 }
 
-function criarToggleModo(onChange: (modo: ModoMapa) => void): HTMLElement {
+function criarToggleModo(inicial: ModoMapa, onChange: (modo: ModoMapa) => void): HTMLElement {
   return criarGrupoAlternancia<ModoMapa>(
     [
       { valor: 'lideranca', rotulo: 'Quem lidera' },
       { valor: 'eleitorado', rotulo: 'Eleitorado' },
+      { valor: 'apuracao', rotulo: 'Apuração ao vivo' },
     ],
-    'lideranca',
+    inicial,
     'Modo do mapa',
     onChange,
   );
