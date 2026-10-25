@@ -197,3 +197,49 @@ export async function buscarApuracao(
     fontes: leituras.map((l) => l.fonte),
   };
 }
+
+/**
+ * Uma apuração zerada, com a forma de uma leitura de verdade.
+ *
+ * Serve para a tela ficar montada e honesta enquanto a apuração está retida:
+ * mapa, tabela e big numbers aparecem com "nenhuma seção apurada" em vez de
+ * sumirem. Os candidatos entram com zero votos para que os cartões tenham
+ * nome — cartão sem nome não diz o que está zerado.
+ *
+ * A fonte declarada é o endereço REAL que será lido quando a retenção acabar,
+ * e a observação diz que nada foi lido ainda. Um recorte zerado que dissesse
+ * ter vindo do TSE seria uma leitura inventada.
+ */
+export function apuracaoZerada(opcoes: {
+  readonly ufs: readonly string[];
+  readonly cargo: CargoApuracao;
+  readonly turno: 1 | 2;
+  readonly candidatos: readonly { readonly candidato: string; readonly partido: string | null }[];
+  readonly esfera?: 'federal' | 'estadual';
+  readonly agora?: () => Date;
+}): DadosApuracao {
+  const esfera = opcoes.esfera ?? (opcoes.cargo === 'presidente' ? 'federal' : 'estadual');
+  const eleicao = ELEICOES[esfera][opcoes.turno];
+  const agora = (opcoes.agora ?? (() => new Date()))().toISOString();
+
+  return {
+    atualizadoEm: agora,
+    recortes: opcoes.ufs.map((uf) => ({
+      cargo: opcoes.cargo,
+      uf: uf === 'BR' ? null : uf,
+      turno: opcoes.turno,
+      secoesTotalizadas: 0,
+      candidatos: opcoes.candidatos.map((c) => ({ ...c, votos: 0 })),
+      validosTotal: null,
+      brancos: null,
+      nulos: null,
+      abstencoes: null,
+      fonte: {
+        nome: 'TSE — Divulgação de Resultados (ainda não lido)',
+        url: urlDoRecorte(uf, opcoes.cargo, eleicao),
+      },
+      observacao:
+        'NADA FOI LIDO. Recorte zerado, montado para a tela ficar de pé enquanto a apuração está retida por decisão de quem publica a página. O endereço acima é o que será lido na liberação.',
+    })),
+  };
+}

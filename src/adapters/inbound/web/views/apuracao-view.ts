@@ -26,7 +26,12 @@ import type { CasosDeUso } from '../../../../application/use-cases/index.js';
 import type { DadosApuracao, Projecao } from '../../../../domain/apuracao.js';
 import { espectroDoPartido, type Espectro } from '../../../../domain/spectrum.js';
 import type { Partido } from '../../../../domain/party.js';
-import { buscarApuracao, ELEICOES, type FonteLida } from '../../../outbound/tse/tse-client.js';
+import {
+  apuracaoZerada,
+  buscarApuracao,
+  ELEICOES,
+  type FonteLida,
+} from '../../../outbound/tse/tse-client.js';
 import { simularApuracao } from '../../../outbound/tse/simulador.js';
 import parciaisImprensa from '../../../../../data/exterior-parciais-imprensa.json' with { type: 'json' };
 import {
@@ -37,6 +42,8 @@ import {
 import { bboxPath, criarEl, tokenFillEspectro } from './_shared.js';
 import {
   agregarPorRegiao,
+  apuracaoRetida,
+  faltaParaLiberar,
   fracaoDaBarra,
   margemApurada,
   montarCsv,
@@ -50,6 +57,7 @@ import {
   horaCurta,
   montarDicaDaUf,
   montarLinhas,
+  nomearUnidades,
   notaDasFontes,
   notaDoEstagio,
   semDado,
@@ -85,6 +93,16 @@ const UFS = [
 
 /** Nome legível do exterior: 'ZZ' não diz nada a quem lê. */
 const NOME_EXTERIOR = 'Exterior';
+
+/**
+ * Hora em que a apuração deixa de ficar zerada, em horário de Brasília.
+ *
+ * É decisão de quem publica a página, não limitação técnica: os arquivos do
+ * TSE já estão no ar e o código já sabe lê-los. Por isso a tela DIZ que está
+ * segurando, com a hora — zero calado se lê como "ninguém votou" ou "o site
+ * quebrou", e as duas leituras são falsas.
+ */
+const LIBERA_AS = 19;
 
 const FINALISTAS: readonly [string, string] = ['Flávio Bolsonaro', 'Luiz Inácio Lula da Silva'];
 
@@ -206,6 +224,23 @@ export async function renderApuracao(
           ok: true,
         }));
         estado.lidoEm = dados.atualizadoEm;
+      } else if (apuracaoRetida(new Date(), LIBERA_AS)) {
+        // Retido: nada é buscado. Não adianta ler e esconder — o número
+        // apareceria no painel de rede de quem abrisse as ferramentas, e a
+        // página estaria segurando com uma mão e entregando com a outra.
+        const dados = apuracaoZerada({
+          ufs: UFS,
+          cargo: 'presidente',
+          turno: 2,
+          candidatos: FINALISTAS.map((candidato) => ({
+            candidato,
+            partido: candidato === FINALISTAS[0] ? 'PL' : 'PT',
+          })),
+        });
+        estado.projecao = projetar(dados);
+        estado.fontes = [];
+        estado.lidoEm = null;
+        estado.exterior = null;
       } else {
         const { dados, fontes } = await buscarApuracao((url) => fetch(url, { cache: 'no-store' }), {
           ufs: UFS,
@@ -225,7 +260,13 @@ export async function renderApuracao(
       // Se o painel do exterior está aberto, ele acompanha o botão atualizar:
       // deixá-lo com números de dez minutos atrás, ao lado de números novos,
       // seria pior do que não tê-lo.
-      if (estado.exteriorAberto && estado.modo === 'ao-vivo') void carregarExterior();
+      if (
+        estado.exteriorAberto &&
+        estado.modo === 'ao-vivo' &&
+        !apuracaoRetida(new Date(), LIBERA_AS)
+      ) {
+        void carregarExterior();
+      }
     }
   }
 
@@ -238,6 +279,7 @@ export async function renderApuracao(
    */
   async function carregarExterior(): Promise<void> {
     if (estado.modo === 'simulacao') return;
+    if (apuracaoRetida(new Date(), LIBERA_AS)) return;
     estado.exteriorCarregando = true;
     desenhar();
     try {
@@ -275,12 +317,34 @@ export async function renderApuracao(
       );
       return;
     }
+    if (estado.modo === 'ao-vivo' && apuracaoRetida(new Date(), LIBERA_AS)) {
+      raiz.append(criarAvisoDeEspera());
+    }
     raiz.append(criarBigNumbers(p, partidos, estado));
     raiz.append(criarMapaProgresso(p, partidos, estado, desenhar));
     raiz.append(criarPainelExterior(p, partidos, estado, desenhar, carregarExterior));
     raiz.append(criarTabela(p, partidos, estado, desenhar));
     raiz.append(criarFontes(estado));
   }
+
+  // Na hora da liberação a página se atualiza sozinha. Sem isto, quem deixou
+  // a aba aberta esperando as 19h continuaria vendo zeros depois delas, e
+  // concluiria que a apuração não começou.
+  // O despertador se reagenda se acordar cedo: aba em segundo plano tem o
+  // temporizador estrangulado pelo navegador, e um disparo único que chegasse
+  // adiantado deixaria a página zerada para sempre.
+  function agendarLiberacao(): void {
+    const espera = faltaParaLiberar(new Date(), LIBERA_AS);
+    if (espera <= 0) return;
+    window.setTimeout(() => {
+      if (apuracaoRetida(new Date(), LIBERA_AS)) {
+        agendarLiberacao();
+        return;
+      }
+      if (estado.modo === 'ao-vivo') void atualizar();
+    }, espera + 500);
+  }
+  agendarLiberacao();
 
   desenhar();
   await atualizar();
@@ -476,8 +540,8 @@ function criarBigNumbers(p: Projecao, partidos: readonly Partido[], estado: Esta
       className: 'ap-cartao-apurado',
       texto:
         p.ufsSemApuracao.length > 0
-          ? `${p.ufsSemApuracao.length} ${p.ufsSemApuracao.length === 1 ? 'estado ainda sem seção' : 'estados ainda sem seção'}`
-          : 'Todos os estados já têm seção apurada',
+          ? `${nomearUnidades(p.ufsSemApuracao)} ainda sem seção`
+          : 'Todas as unidades já têm seção apurada',
     }),
   );
   const trilhoTopo = criarEl('div', { className: 'ap-cartao-barra' });
@@ -1697,9 +1761,18 @@ function criarPainelExterior(
     texto: estado.exteriorAberto ? 'Esconder os continentes' : 'Abrir por continente',
     attrs: { type: 'button', 'aria-expanded': String(estado.exteriorAberto) },
   });
+  if (estado.modo === 'ao-vivo' && apuracaoRetida(new Date(), LIBERA_AS)) {
+    botao.disabled = true;
+    botao.textContent = `Por continente, a partir das ${LIBERA_AS}h`;
+  }
   botao.addEventListener('click', () => {
     estado.exteriorAberto = !estado.exteriorAberto;
-    if (estado.exteriorAberto && estado.exterior == null && estado.modo === 'ao-vivo') {
+    if (
+      estado.exteriorAberto &&
+      estado.exterior == null &&
+      estado.modo === 'ao-vivo' &&
+      !apuracaoRetida(new Date(), LIBERA_AS)
+    ) {
       void carregar();
       return;
     }
@@ -1716,8 +1789,12 @@ function criarPainelExterior(
   // sozinhas no instante em que a primeira seção do exterior é totalizada: a
   // partir dali existe número oficial, e manter a estimativa ao lado dele só
   // criaria dúvida sobre qual dos dois ler.
+  // Durante a espera, o bloco de imprensa também fica de fora. Segurar a
+  // apuração e ao lado publicar "Lula 133 mil × Flávio 89 mil" seria segurar
+  // com uma mão e entregar com a outra — e a parcial de imprensa é número de
+  // voto como qualquer outro.
   const totalizacaoComecou = zz != null && !semDado({ processado: zz.secoesTotalizadas });
-  if (estado.modo === 'ao-vivo' && !totalizacaoComecou) {
+  if (estado.modo === 'ao-vivo' && !totalizacaoComecou && !apuracaoRetida(new Date(), LIBERA_AS)) {
     sec.append(criarParciaisDeImprensa());
   }
 
@@ -1877,4 +1954,31 @@ function criarParciaisDeImprensa(): HTMLElement {
     }),
   );
   return bloco;
+}
+
+/**
+ * O aviso de que a apuração está retida.
+ *
+ * Ele existe porque a alternativa — zeros sem explicação — é pior do que não
+ * mostrar nada: um mapa inteiro cinza às 18h se lê como falha da página ou
+ * como "ninguém votou", e as duas conclusões são falsas. O aviso diz o que
+ * está acontecendo, a partir de quando muda, e que a espera é escolha de quem
+ * publica, não impedimento do TSE.
+ */
+function criarAvisoDeEspera(): HTMLElement {
+  const aviso = criarEl('section', { className: 'ap-espera', attrs: { role: 'status' } });
+  aviso.append(
+    criarEl('p', {
+      className: 'ap-espera-titulo',
+      texto: `A apuração aparece aqui a partir das ${LIBERA_AS}h`,
+    }),
+  );
+  aviso.append(
+    criarEl('p', {
+      className: 'ap-espera-texto',
+      texto:
+        'Até lá a página fica zerada de propósito. Não é falha nem ausência de dado: é escolha de quem publica. Nada está sendo lido do TSE enquanto isso — nem por baixo —, e na hora a página se atualiza sozinha, sem precisar recarregar. Para ver a mecânica funcionando antes disso, use o modo Simulação, que trabalha sobre o resultado real do 1º turno.',
+    }),
+  );
+  return aviso;
 }

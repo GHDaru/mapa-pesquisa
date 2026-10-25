@@ -350,10 +350,29 @@ export function projetarApuracao(
   });
   porUf.sort((a, b) => a.uf.localeCompare(b.uf));
 
-  const ufsComDado = new Set(porUf.map((u) => u.uf));
-  const ufsSemApuracao = eleitorado
-    .map((e) => e.uf)
-    .filter((uf) => !ufsComDado.has(uf))
+  /*
+   * "Sem apuração" é UF SEM NENHUMA SEÇÃO TOTALIZADA, e não apenas UF ausente
+   * do arquivo.
+   *
+   * Antes a conta era só de ausência, e por isso bastava o TSE publicar o
+   * recorte — ainda zerado, como faz desde antes de a contagem começar — para
+   * a UF deixar de ser contada aqui. A consequência aparecia na tela como
+   * contradição no mesmo quadro: o mapa inteiro cinza dizendo "nenhuma seção
+   * apurada" ao lado de um cartão afirmando "todos os estados já têm seção
+   * apurada". O texto que consome este campo sempre disse "ainda não têm
+   * NENHUMA SEÇÃO apurada" — era o domínio que estava fora de passo com o
+   * próprio significado que publicava.
+   *
+   * As duas situações entram, porque para quem lê elas são a mesma: não há
+   * voto dali nesta leitura.
+   */
+  const ufsComApuracao = new Set(
+    porUf.filter((u) => u.secoesTotalizadas > 0).map((u) => u.uf),
+  );
+  const ufsSemApuracao = [
+    ...new Set([...eleitorado.map((e) => e.uf), ...porUf.map((u) => u.uf)]),
+  ]
+    .filter((uf) => !ufsComApuracao.has(uf))
     .sort();
 
   const eleitoradoCoberto = porUf.reduce((t, u) => t + (u.eleitores ?? 0), 0);

@@ -72,6 +72,23 @@ export function montarLinhas(
  * Enquanto a cobertura é baixa, dizer o número sem dizer isso convida à
  * leitura errada — e é o erro clássico de noite de eleição.
  */
+/**
+ * Como nomear um conjunto de unidades sem apuração.
+ *
+ * O exterior está entre elas e não é um estado: dizer "28 estados" erra por
+ * uma palavra, e numa tela cujo argumento inteiro é não afirmar o que não se
+ * mediu, errar por uma palavra também conta.
+ */
+export function nomearUnidades(ufs: readonly string[]): string {
+  const temExterior = ufs.includes('ZZ');
+  const estados = ufs.filter((uf) => uf !== 'ZZ').length;
+  if (!temExterior) {
+    return `${estados} ${estados === 1 ? 'estado' : 'estados'}`;
+  }
+  if (estados === 0) return 'o exterior';
+  return `${estados} ${estados === 1 ? 'estado' : 'estados'} e o exterior`;
+}
+
 export function notaDoEstagio(opcoes: {
   readonly processadoNacional: number;
   readonly ufsSemApuracao: readonly string[];
@@ -85,10 +102,10 @@ export function notaDoEstagio(opcoes: {
   }
   const faltam =
     opcoes.ufsSemApuracao.length > 0
-      ? ` ${opcoes.ufsSemApuracao.length} ${
-          opcoes.ufsSemApuracao.length === 1 ? 'estado ainda não tem' : 'estados ainda não têm'
+      ? ` ${nomearUnidades(opcoes.ufsSemApuracao)} ainda ${
+          opcoes.ufsSemApuracao.length === 1 ? 'não tem' : 'não têm'
         } nenhuma seção apurada, e ${
-          opcoes.ufsSemApuracao.length === 1 ? 'ele fica' : 'eles ficam'
+          opcoes.ufsSemApuracao.length === 1 ? 'fica' : 'ficam'
         } de fora da projeção.`
       : '';
   const cautela =
@@ -660,4 +677,48 @@ export function montarDicaDaUf(opcoes: {
             regiao.lider ? `, ${nomeCurto(regiao.lider)} à frente` : ''
           }.`,
   };
+}
+
+/* ─────────────────────── a espera até as 19h ───────────────────────────── */
+
+/**
+ * A apuração fica zerada até a hora combinada.
+ *
+ * É uma decisão de quem publica a página, não uma limitação técnica: os
+ * arquivos do TSE já estão no ar e a página já sabe lê-los. Por isso a tela
+ * precisa DIZER que está segurando, com a hora, em vez de mostrar zeros
+ * calados — zero calado se lê como "ninguém votou" ou "o site quebrou", e as
+ * duas leituras são falsas.
+ *
+ * A comparação é feita em horário de Brasília, pelo mesmo motivo que o resto
+ * da tela: "19h" aqui é 19h de Brasília para todo mundo, inclusive para quem
+ * abre a página de outro fuso.
+ */
+export function horaDeBrasilia(agora: Date): number {
+  const partes = new Intl.DateTimeFormat('pt-BR', {
+    timeZone: FUSO_DE_BRASILIA,
+    hour: '2-digit',
+    minute: '2-digit',
+    // Os SEGUNDOS entram porque sem eles a conta de quanto falta erra por até
+    // um minuto inteiro: às 18h59m55 a hora era lida como 18,9833 (ou seja,
+    // 18h59m00) e o despertador da liberação era marcado para 60 segundos
+    // adiante em vez de 5. Numa liberação marcada na hora cheia, atrasar um
+    // minuto é a diferença entre virar na hora e parecer travado.
+    second: '2-digit',
+    hour12: false,
+  }).formatToParts(agora);
+  const campo = (tipo: string): number =>
+    Number(partes.find((p) => p.type === tipo)?.value ?? '0');
+  return campo('hour') + campo('minute') / 60 + campo('second') / 3600;
+}
+
+/** `true` enquanto a apuração deve aparecer zerada. */
+export function apuracaoRetida(agora: Date, liberaAs = 19): boolean {
+  return horaDeBrasilia(agora) < liberaAs;
+}
+
+/** Quantos milissegundos faltam para a liberação, ou 0 se já passou. */
+export function faltaParaLiberar(agora: Date, liberaAs = 19): number {
+  const horas = liberaAs - horaDeBrasilia(agora);
+  return horas <= 0 ? 0 : Math.ceil(horas * 3600 * 1000);
 }

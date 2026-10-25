@@ -1448,6 +1448,19 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
   letter-spacing: 0.06em; color: var(--color-text-muted);
 }
 
+/* ═══ a espera até a liberação ══════════════════════════════════════════
+   Alto contraste e no topo: é a primeira coisa que explica por que todo o
+   resto está zerado. Sem ele, um mapa inteiro cinza às 18h se lê como falha
+   da página. */
+.ap-espera {
+  margin: 0.8rem 0; padding: 0.8rem 1rem;
+  border: 1px solid var(--color-border); border-left: 4px solid var(--color-text);
+  border-radius: 10px; background: var(--color-surface-2);
+}
+.ap-espera-titulo { margin: 0; font-size: 1rem; font-weight: 700; }
+.ap-espera-texto { margin: 0.3rem 0 0; font-size: 0.82rem; color: var(--color-text-muted); }
+.ap-btn-secundario[disabled] { opacity: 0.55; cursor: not-allowed; }
+
 /* ═══ parciais de imprensa ══════════════════════════════════════════════
    Tracejado e em corpo menor: é informação de terceiro, de horário fixo, que
    convive por pouco tempo ao lado de número oficial. Ela não pode parecer

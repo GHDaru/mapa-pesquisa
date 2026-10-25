@@ -1,10 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import {
   agregarPorRegiao,
+  apuracaoRetida,
+  faltaParaLiberar,
   margemApurada,
   montarCsv,
   montarDicaDaUf,
   nomeCurto,
+  nomearUnidades,
   nomeDoArquivoCsv,
   ordenarLinhas,
   pctApuradoNaLinha,
@@ -665,5 +668,62 @@ describe('apuracao-layout: montarDicaDaUf', () => {
     });
     expect(dica.candidatos).toHaveLength(2);
     expect(dica.nota).toBe('Região Sudeste: 44,9% apurado, A à frente.');
+  });
+});
+
+describe('apuracao-layout: a espera até as 19h', () => {
+  it('retém antes da hora e libera a partir dela, no horário de Brasília', () => {
+    expect(apuracaoRetida(new Date('2026-10-25T18:59:00-03:00'))).toBe(true);
+    expect(apuracaoRetida(new Date('2026-10-25T19:00:00-03:00'))).toBe(false);
+    expect(apuracaoRetida(new Date('2026-10-25T21:30:00-03:00'))).toBe(false);
+  });
+
+  it('a hora é a de Brasília mesmo para quem abre de outro fuso', () => {
+    // 21:59 UTC é 18:59 em Brasília: ainda retido, mesmo que o relógio de
+    // quem olha já tenha passado das 19h.
+    expect(apuracaoRetida(new Date('2026-10-25T21:59:00Z'))).toBe(true);
+    expect(apuracaoRetida(new Date('2026-10-25T22:00:00Z'))).toBe(false);
+  });
+
+  it('conta quanto falta, e zera depois da hora', () => {
+    const umaHora = 3600 * 1000;
+    expect(faltaParaLiberar(new Date('2026-10-25T18:00:00-03:00'))).toBe(umaHora);
+    expect(faltaParaLiberar(new Date('2026-10-25T19:00:00-03:00'))).toBe(0);
+    expect(faltaParaLiberar(new Date('2026-10-25T23:00:00-03:00'))).toBe(0);
+  });
+
+  it('conta com precisão de segundo — não arredondando para o minuto', () => {
+    // Sem os segundos, 18h59m55 era lido como 18h59m00 e o despertador da
+    // liberação ia para 60 segundos adiante em vez de 5: a página passava um
+    // minuto inteiro depois das 19h ainda zerada, parecendo travada.
+    expect(faltaParaLiberar(new Date('2026-10-25T18:59:55-03:00'))).toBe(5000);
+    expect(faltaParaLiberar(new Date('2026-10-25T18:59:30-03:00'))).toBe(30000);
+    expect(faltaParaLiberar(new Date('2026-10-25T18:30:00-03:00'))).toBe(30 * 60 * 1000);
+  });
+
+  it('o limite é parâmetro, não número solto no código', () => {
+    expect(apuracaoRetida(new Date('2026-10-25T17:30:00-03:00'), 17)).toBe(false);
+    expect(apuracaoRetida(new Date('2026-10-25T17:30:00-03:00'), 18)).toBe(true);
+  });
+});
+
+describe('apuracao-layout: nomearUnidades', () => {
+  it('conta estados quando só há estados', () => {
+    expect(nomearUnidades(['SP', 'RJ'])).toBe('2 estados');
+    expect(nomearUnidades(['SP'])).toBe('1 estado');
+  });
+
+  it('não chama o exterior de estado', () => {
+    expect(nomearUnidades(['SP', 'RJ', 'ZZ'])).toBe('2 estados e o exterior');
+    expect(nomearUnidades(['SP', 'ZZ'])).toBe('1 estado e o exterior');
+    expect(nomearUnidades(['ZZ'])).toBe('o exterior');
+  });
+
+  it('as 28 unidades viram "27 estados e o exterior"', () => {
+    const todas = [
+      'AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB',
+      'PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO','ZZ',
+    ];
+    expect(nomearUnidades(todas)).toBe('27 estados e o exterior');
   });
 });

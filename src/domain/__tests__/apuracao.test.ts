@@ -469,3 +469,62 @@ describe('quem de fato foi ao 2º turno', () => {
     expect(finalistasDecididos(nacional(100, [REAL[0]!]))).toBeNull();
   });
 });
+
+describe('projetarApuracao: "sem apuração" é sem seção, não apenas UF ausente', () => {
+  const eleitorado = [
+    { uf: 'SP', eleitores: 34_000_000, referencia: '2026-07', fonte: { nome: 'x', url: 'y' } },
+    { uf: 'RJ', eleitores: 12_000_000, referencia: '2026-07', fonte: { nome: 'x', url: 'y' } },
+    { uf: 'MG', eleitores: 16_000_000, referencia: '2026-07', fonte: { nome: 'x', url: 'y' } },
+  ];
+
+  function recorte(uf: string, secoes: number, votos: number) {
+    return {
+      cargo: 'presidente' as const,
+      uf,
+      turno: 2 as const,
+      secoesTotalizadas: secoes,
+      candidatos: [{ candidato: 'A', partido: 'PL', votos }],
+      validosTotal: votos > 0 ? votos : null,
+      brancos: null,
+      nulos: null,
+      abstencoes: null,
+      fonte: { nome: 'TSE', url: 'https://exemplo' },
+    };
+  }
+
+  it('UF publicada mas com zero seção conta como sem apuração', () => {
+    // É exatamente o que o TSE publica antes de a contagem começar: o recorte
+    // existe, zerado. Contá-lo como "tem apuração" fazia a tela afirmar que
+    // todos os estados já tinham seção, com o mapa inteiro cinza ao lado.
+    const p = projetarApuracao(
+      { atualizadoEm: '2026-10-25T20:00:00Z', recortes: [recorte('SP', 0, 0), recorte('RJ', 0, 0), recorte('MG', 0, 0)] },
+      'presidente',
+      2,
+      eleitorado,
+    );
+    expect([...p.ufsSemApuracao]).toEqual(['MG', 'RJ', 'SP']);
+  });
+
+  it('UF ausente do arquivo continua contando como sem apuração', () => {
+    const p = projetarApuracao(
+      { atualizadoEm: '2026-10-25T20:00:00Z', recortes: [recorte('SP', 50, 1000)] },
+      'presidente',
+      2,
+      eleitorado,
+    );
+    expect([...p.ufsSemApuracao]).toEqual(['MG', 'RJ']);
+  });
+
+  it('UF com qualquer seção apurada sai da lista', () => {
+    const p = projetarApuracao(
+      {
+        atualizadoEm: '2026-10-25T20:00:00Z',
+        recortes: [recorte('SP', 0.1, 5), recorte('RJ', 0, 0), recorte('MG', 0, 0)],
+      },
+      'presidente',
+      2,
+      eleitorado,
+    );
+    expect([...p.ufsSemApuracao]).toEqual(['MG', 'RJ']);
+  });
+});
