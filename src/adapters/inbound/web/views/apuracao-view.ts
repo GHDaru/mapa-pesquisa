@@ -176,6 +176,14 @@ export async function renderApuracao(
   const partidos = casos.listParties();
   const aoVivo = casos.getApuracaoAoVivo();
   const apuracao1T = aoVivo.apuracaoPrimeiroTurno;
+  const eleitoresPorUf: ReadonlyMap<string, number | null> = new Map(
+    aoVivo.eleitorado.map((e) => [e.uf, e.eleitores] as [string, number | null]),
+  );
+  const abstencao1TPorUf: ReadonlyMap<string, number | null> = new Map(
+    apuracao1T.recortes
+      .filter((r) => r.cargo === 'presidente' && r.turno === 1 && r.uf != null && r.uf !== 'BR')
+      .map((r) => [r.uf as string, r.abstencoes ?? null] as [string, number | null]),
+  );
 
   const estado: Estado = {
     modo: 'ao-vivo',
@@ -365,7 +373,7 @@ export async function renderApuracao(
       raiz.append(aviso);
     }
     raiz.append(criarBigNumbers(p, partidos, estado));
-    raiz.append(criarMapaProgresso(p, partidos, estado, desenhar));
+    raiz.append(criarMapaProgresso(p, partidos, estado, desenhar, abstencao1TPorUf, eleitoresPorUf));
     raiz.append(criarPainelExterior(p, partidos, estado, desenhar, carregarExterior));
     raiz.append(criarGraficoDaNoite(estado, partidos, p));
     raiz.append(criarTabela(p, partidos, estado, desenhar));
@@ -777,6 +785,13 @@ function criarMapaProgresso(
   partidos: readonly Partido[],
   estado: Estado,
   redesenhar: () => void,
+  /**
+   * Abstenção do 1º turno por UF, do resultado oficial e fechado. É o único
+   * termo de comparação honesto para a abstenção de hoje: mesma eleição,
+   * mesmo eleitorado, contagem encerrada.
+   */
+  abstencao1TPorUf: ReadonlyMap<string, number | null>,
+  eleitoresPorUf: ReadonlyMap<string, number | null>,
 ): HTMLElement {
   const medidor = estado.modoMapa === 'medidor';
   const porRegiao = estado.recorte === 'regioes';
@@ -887,6 +902,10 @@ function criarMapaProgresso(
 
   const linhasPorUf = new Map(montarLinhas(p.porUf, FINALISTAS).map((l) => [l.uf, l]));
 
+  // O eleitorado NÃO vem da projeção: ele é dado fechado, e tirá-lo de lá o
+  // fazia sumir junto com a leitura quando o TSE não respondia — levando
+  // embora a taxa de abstenção do 1º turno, que nada tem a ver com hoje.
+
   function preencherDica(uf: string): void {
     const regiaoDoEstado = porRegiao ? regiaoDaUf(uf) : null;
     const r = regiaoDoEstado ? regiaoPorNome.get(regiaoDoEstado) : undefined;
@@ -894,6 +913,8 @@ function criarMapaProgresso(
       nome: nomePorUf.get(uf) ?? uf,
       linha: linhasPorUf.get(uf) ?? null,
       ordem: FINALISTAS,
+      abstencao1T: abstencao1TPorUf.get(uf) ?? null,
+      eleitores: eleitoresPorUf.get(uf) ?? null,
       regiao:
         r && regiaoDoEstado
           ? { nome: regiaoDoEstado, processado: r.processado, lider: r.lider }
@@ -911,6 +932,45 @@ function criarMapaProgresso(
       dica.append(linhaC);
     }
     dica.append(criarEl('span', { className: 'ap-dica-proc', texto: conteudo.processado }));
+
+    // A abstenção, com as duas leituras empilhadas e rotuladas. O "parcial"
+    // ao lado do número de hoje não é enfeite: sem ele, um número menor que o
+    // do 1º turno se lê como queda da abstenção, quando é só contagem
+    // inacabada.
+    const abs = conteudo.abstencoes;
+    if (abs.primeiroTurno != null || abs.agora != null) {
+      const bloco = criarEl('div', { className: 'ap-dica-abs' });
+      bloco.append(criarEl('span', { className: 'ap-dica-abs-titulo', texto: 'Abstenção' }));
+      if (abs.primeiroTurno != null) {
+        const l = criarEl('span', { className: 'ap-dica-abs-linha' });
+        l.append(criarEl('span', { className: 'ap-dica-abs-rotulo', texto: '1º turno' }));
+        l.append(
+          criarEl('span', {
+            className: 'ap-dica-abs-valor',
+            texto: abs.primeiroTurnoTaxa
+              ? `${abs.primeiroTurno} · ${abs.primeiroTurnoTaxa}`
+              : abs.primeiroTurno,
+          }),
+        );
+        bloco.append(l);
+      }
+      if (abs.agora != null) {
+        const l = criarEl('span', { className: 'ap-dica-abs-linha' });
+        l.append(criarEl('span', { className: 'ap-dica-abs-rotulo', texto: 'agora' }));
+        l.append(
+          criarEl('span', {
+            className: 'ap-dica-abs-valor',
+            texto: abs.agoraTaxa ? `${abs.agora} · ${abs.agoraTaxa}` : abs.agora,
+          }),
+        );
+        if (abs.agoraParcial) {
+          l.append(criarEl('span', { className: 'ap-dica-abs-aviso', texto: 'parcial' }));
+        }
+        bloco.append(l);
+      }
+      dica.append(bloco);
+    }
+
     if (conteudo.nota) dica.append(criarEl('span', { className: 'ap-dica-nota', texto: conteudo.nota }));
   }
 

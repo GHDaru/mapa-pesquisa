@@ -1429,6 +1429,24 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
   font-size: 0.74rem; font-variant-numeric: tabular-nums;
 }
 .ap-dica-nota { font-size: 0.7rem; color: var(--color-text-muted); }
+.ap-dica-abs {
+  margin-top: 0.3rem; padding-top: 0.3rem; border-top: 1px solid var(--color-border);
+  display: flex; flex-direction: column; gap: 0.1rem;
+}
+.ap-dica-abs-titulo {
+  font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.07em;
+  color: var(--color-text-muted);
+}
+.ap-dica-abs-linha { display: flex; align-items: baseline; gap: 0.35rem; font-size: 0.74rem; }
+.ap-dica-abs-rotulo { color: var(--color-text-muted); min-width: 4.2em; }
+.ap-dica-abs-valor { font-variant-numeric: tabular-nums; font-weight: 600; }
+/* "parcial" fica preso ao número de hoje: é a única coisa que impede a
+   comparação com o 1º turno de virar "a abstenção caiu". */
+.ap-dica-abs-aviso {
+  font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--color-text-muted); border: 1px dashed var(--color-border);
+  border-radius: 999px; padding: 0 0.3rem;
+}
 
 /* O estado sob o cursor ganha contorno forte: sem isso, com a dica aberta não
    dá para saber de qual estado ela fala — e no Sudeste os vizinhos são

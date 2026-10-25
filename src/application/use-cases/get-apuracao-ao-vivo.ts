@@ -46,6 +46,15 @@ export interface ApuracaoAoVivo {
    * conhecido, então a convergência é verificável e não uma promessa.
    */
   readonly apuracaoPrimeiroTurno: DadosApuracao;
+  /**
+   * O eleitorado por unidade, incluindo o exterior.
+   *
+   * Vai junto porque a tela precisa dele mesmo quando a leitura do TSE falha
+   * ou ainda não começou: ele é o denominador da taxa de abstenção do 1º
+   * turno, que é dado fechado e não tem por que sumir só porque a apuração de
+   * hoje não respondeu.
+   */
+  readonly eleitorado: readonly Eleitorado[];
 }
 
 export function criarGetApuracaoAoVivo(repos: Repositorios) {
@@ -54,6 +63,7 @@ export function criarGetApuracaoAoVivo(repos: Repositorios) {
     return {
       projetar: (dados, turno) => projetarApuracao(dados, 'presidente', turno, eleitorado),
       apuracaoPrimeiroTurno: repos.apuracao.dados(),
+      eleitorado,
     };
   };
 }

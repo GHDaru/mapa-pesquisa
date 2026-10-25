@@ -836,3 +836,87 @@ describe('apuracao-layout: a série da noite', () => {
     expect(marcasDeHora([amostra('2026-10-25T19:00:00.000Z', 5, 55, 60)])).toEqual([]);
   });
 });
+
+describe('apuracao-layout: a abstenção na dica', () => {
+  const ORDEM: readonly [string, string] = ['A', 'B'];
+
+  it('traz a do 1º turno com taxa, porque ela é final', () => {
+    const dica = montarDicaDaUf({
+      nome: 'São Paulo',
+      linha: linha('SP', { processado: 50, a: 600, b: 400, abstencoes: 1_000_000 }),
+      ordem: ORDEM,
+      regiao: null,
+      abstencao1T: 7_690_900,
+      eleitores: 34_104_226,
+    });
+    expect(dica.abstencoes.primeiroTurno).toBe('7.690.900');
+    expect(dica.abstencoes.primeiroTurnoTaxa).toBe('22,6%');
+  });
+
+  it('a de agora sai SEM taxa enquanto o estado não encerra', () => {
+    const dica = montarDicaDaUf({
+      nome: 'São Paulo',
+      linha: linha('SP', { processado: 50, a: 600, b: 400, abstencoes: 1_000_000 }),
+      ordem: ORDEM,
+      regiao: null,
+      abstencao1T: 7_690_900,
+      eleitores: 34_104_226,
+    });
+    // Com 50% apurado, 1.000.000 / 34.104.226 daria 2,9% — um número que
+    // sugeriria colapso da abstenção, quando ela só não acabou de ser contada.
+    expect(dica.abstencoes.agora).toBe('1.000.000');
+    expect(dica.abstencoes.agoraTaxa).toBeNull();
+    expect(dica.abstencoes.agoraParcial).toBe(true);
+  });
+
+  it('quando o estado encerra, a taxa de agora passa a valer', () => {
+    const dica = montarDicaDaUf({
+      nome: 'Sergipe',
+      linha: linha('SE', { processado: 100, a: 10, b: 5, abstencoes: 400_000, finalizada: true }),
+      ordem: ORDEM,
+      regiao: null,
+      abstencao1T: 380_000,
+      eleitores: 1_600_000,
+    });
+    expect(dica.abstencoes.agoraTaxa).toBe('25,0%');
+    expect(dica.abstencoes.agoraParcial).toBe(false);
+  });
+
+  it('sem denominador não inventa taxa', () => {
+    const dica = montarDicaDaUf({
+      nome: 'Acre',
+      linha: linha('AC', { processado: 100, a: 10, b: 5, abstencoes: 100, finalizada: true }),
+      ordem: ORDEM,
+      regiao: null,
+      abstencao1T: 90,
+      eleitores: null,
+    });
+    expect(dica.abstencoes.primeiroTurnoTaxa).toBeNull();
+    expect(dica.abstencoes.agoraTaxa).toBeNull();
+  });
+
+  it('estado sem seção mostra a do 1º turno e nada de agora', () => {
+    const dica = montarDicaDaUf({
+      nome: 'Roraima',
+      linha: linha('RR', { processado: 0, a: 0, b: 0 }),
+      ordem: ORDEM,
+      regiao: null,
+      abstencao1T: 120_000,
+      eleitores: 400_000,
+    });
+    expect(dica.abstencoes.primeiroTurno).toBe('120.000');
+    expect(dica.abstencoes.agora).toBeNull();
+    expect(dica.abstencoes.agoraParcial).toBe(false);
+  });
+
+  it('sem o 1º turno em mãos, o campo fica vazio em vez de zero', () => {
+    const dica = montarDicaDaUf({
+      nome: 'São Paulo',
+      linha: linha('SP', { processado: 50, a: 600, b: 400 }),
+      ordem: ORDEM,
+      regiao: null,
+    });
+    expect(dica.abstencoes.primeiroTurno).toBeNull();
+    expect(dica.abstencoes.agora).toBeNull();
+  });
+});

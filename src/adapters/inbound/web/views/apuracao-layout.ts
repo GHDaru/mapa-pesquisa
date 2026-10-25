@@ -633,6 +633,25 @@ export interface DicaDaUf {
   readonly titulo: string;
   readonly processado: string;
   readonly candidatos: readonly { readonly nome: string; readonly pct: string; readonly votos: string }[];
+  /**
+   * Abstenção: a do 1º turno, que é final, e a de agora, que é parcial.
+   *
+   * As duas NÃO se comparam enquanto a apuração corre, e é por isso que esta
+   * estrutura separa o número do rótulo em vez de entregar uma frase pronta:
+   * com 70% apurado, a abstenção contada é mais ou menos 70% da que vai
+   * existir, e pô-la ao lado de um número final convida à conclusão de que a
+   * abstenção despencou. Ela não despencou — ela ainda não acabou de ser
+   * contada. A taxa sobre o eleitorado só é dita onde o denominador é do
+   * mesmo tamanho do numerador: no 1º turno sempre, e no 2º só quando aquele
+   * estado encerra.
+   */
+  readonly abstencoes: {
+    readonly primeiroTurno: string | null;
+    readonly primeiroTurnoTaxa: string | null;
+    readonly agora: string | null;
+    readonly agoraTaxa: string | null;
+    readonly agoraParcial: boolean;
+  };
   readonly nota: string | null;
 }
 
@@ -642,14 +661,36 @@ export function montarDicaDaUf(opcoes: {
   readonly ordem: readonly [string, string];
   /** Região do estado, quando o mapa está no recorte por região. */
   readonly regiao: { readonly nome: string; readonly processado: number; readonly lider: string | null } | null;
+  /** Abstenção do 1º turno naquele estado, já fechada. */
+  readonly abstencao1T?: number | null;
+  /** Eleitores aptos, denominador das duas taxas. */
+  readonly eleitores?: number | null;
 }): DicaDaUf {
   const { linha, regiao } = opcoes;
+
+  const taxa = (quantos: number | null | undefined): string | null =>
+    quantos == null || opcoes.eleitores == null || opcoes.eleitores <= 0
+      ? null
+      : formatarPct((quantos / opcoes.eleitores) * 100, 1);
+
+  const encerrada = linha?.finalizada === true;
+  const abstencoes = {
+    primeiroTurno: opcoes.abstencao1T == null ? null : formatarInt(opcoes.abstencao1T),
+    primeiroTurnoTaxa: taxa(opcoes.abstencao1T),
+    agora: linha?.abstencoes == null ? null : formatarInt(linha.abstencoes),
+    // A taxa de agora só sai quando o estado encerrou: antes disso o
+    // numerador é parcial e o denominador não, e a divisão mentiria para
+    // baixo em proporção ao que falta contar.
+    agoraTaxa: encerrada ? taxa(linha?.abstencoes) : null,
+    agoraParcial: !encerrada,
+  };
 
   if (linha == null || semDado(linha)) {
     return {
       titulo: opcoes.nome,
       processado: 'nenhuma seção apurada',
       candidatos: [],
+      abstencoes: { ...abstencoes, agora: null, agoraTaxa: null, agoraParcial: false },
       nota:
         regiao == null
           ? null
@@ -670,6 +711,7 @@ export function montarDicaDaUf(opcoes: {
         votos: formatarInt(c?.votosApurados),
       };
     }),
+    abstencoes,
     nota:
       regiao == null
         ? null
