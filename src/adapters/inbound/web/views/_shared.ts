@@ -334,3 +334,26 @@ export function avisoForaDaJanela(
     `Em vez de estimar, usamos a pesquisa mais recente disponível: o número é real, mas antigo — e vem marcado ${onde}.`
   );
 }
+
+/** Bounding box de um path do @svg-maps/brazil (só comandos m/z, sem curvas). */
+export function bboxPath(d: string): { minX: number; minY: number; maxX: number; maxY: number } {
+  const tokens = d
+    .trim()
+    .split(/[\s,]+/)
+    .filter((t) => t.length > 0 && !/^[a-zA-Z]+$/.test(t));
+  let x = 0;
+  let y = 0;
+  let minX = Infinity;
+  let minY = Infinity;
+  let maxX = -Infinity;
+  let maxY = -Infinity;
+  for (let i = 0; i + 1 < tokens.length; i += 2) {
+    x += Number.parseFloat(tokens[i]!);
+    y += Number.parseFloat(tokens[i + 1]!);
+    if (x < minX) minX = x;
+    if (x > maxX) maxX = x;
+    if (y < minY) minY = y;
+    if (y > maxY) maxY = y;
+  }
+  return { minX, minY, maxX, maxY };
+}

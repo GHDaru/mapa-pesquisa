@@ -19,6 +19,7 @@ import { CONFRONTO_LULA_FLAVIO } from '../../../../domain/runoff.js';
 import { mesmoCandidato } from '../../../../domain/candidate-identity.js';
 import { formatarNumeroPt, formatarPct, formatarVantagem, pluralizar } from '../format.js';
 import {
+  bboxPath,
   criarEl,
   formatarData,
   listaEmPortugues,
@@ -429,28 +430,6 @@ export function celulaPrimeiroTurno(c: CandidatoNaCadeia): HTMLElement | string 
   ]);
 }
 
-/** Bounding box de um path do @svg-maps/brazil (só comandos m/z, sem curvas). */
-function bboxPath(d: string): { minX: number; minY: number; maxX: number; maxY: number } {
-  const tokens = d
-    .trim()
-    .split(/[\s,]+/)
-    .filter((t) => t.length > 0 && !/^[a-zA-Z]+$/.test(t));
-  let x = 0;
-  let y = 0;
-  let minX = Infinity;
-  let minY = Infinity;
-  let maxX = -Infinity;
-  let maxY = -Infinity;
-  for (let i = 0; i + 1 < tokens.length; i += 2) {
-    x += Number.parseFloat(tokens[i]!);
-    y += Number.parseFloat(tokens[i + 1]!);
-    if (x < minX) minX = x;
-    if (x > maxX) maxX = x;
-    if (y < minY) minY = y;
-    if (y > maxY) maxY = y;
-  }
-  return { minX, minY, maxX, maxY };
-}
 
 /**
  * Mapa da estimativa: cada UF pintada pelo espectro do partido de quem tem

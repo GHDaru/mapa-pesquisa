@@ -106,6 +106,21 @@ export interface ProjecaoUf {
   /** Eleitores aptos da UF, quando cadastrado em data/electorate.json. */
   readonly eleitores: number | null;
   readonly lider: string | null;
+  /**
+   * Brancos, nulos e abstenções COMO APURADOS — não projetados.
+   *
+   * Ficam crus de propósito. Projetá-los exigiria a mesma premissa que a
+   * projeção de voto faz, e eles não são o que a tela promete: o big number
+   * diz "votos projetados", e estes três são contexto do que já entrou. Quem
+   * quiser a taxa divide pelo que também já entrou, não pelo projetado.
+   *
+   * `null` quando a fonte não publicou o campo naquele recorte.
+   */
+  readonly brancos: number | null;
+  readonly nulos: number | null;
+  readonly abstencoes: number | null;
+  /** `tf === 's'` na fonte: totalização encerrada, não só 100% das seções. */
+  readonly finalizada: boolean;
 }
 
 export interface MargemProjetada {
@@ -325,6 +340,12 @@ export function projetarApuracao(
       validosProjetados: p.validosProjetados,
       eleitores: eleitoresPorUf.get(r.uf as string) ?? null,
       lider: p.candidatos[0]?.candidato ?? null,
+      brancos: r.brancos ?? null,
+      nulos: r.nulos ?? null,
+      abstencoes: r.abstencoes ?? null,
+      // A fonte do 1º turno não carrega `finalizada`; só o cliente do TSE o
+      // preenche. Sem o campo, o honesto é dizer que não está encerrada.
+      finalizada: (r as { finalizada?: boolean }).finalizada === true,
     };
   });
   porUf.sort((a, b) => a.uf.localeCompare(b.uf));

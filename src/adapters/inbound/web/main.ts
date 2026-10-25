@@ -41,6 +41,7 @@ interface Rota {
 
 const ROTAS: readonly Rota[] = [
   { hash: '#/inicio', rotulo: 'Início' },
+  { hash: '#/ao-vivo', rotulo: 'Apuração ao vivo' },
   { hash: '#/projecao', rotulo: 'Projeção' },
   { hash: '#/resultados', rotulo: 'Resultados' },
   { hash: '#/mapa', rotulo: 'Governadores' },
@@ -216,6 +217,9 @@ async function renderizarRota(main: HTMLElement, nav: HTMLElement, casos: CasosD
       break;
     case '#/resultados':
       await renderPaginaOpcional(main, casos, './views/resultado-view.ts', 'renderResultado');
+      break;
+    case '#/ao-vivo':
+      await renderPaginaOpcional(main, casos, './views/apuracao-view.ts', 'renderApuracao');
       break;
     case '#/projecao':
       await renderPaginaOpcional(main, casos, './views/projecao-view.ts', 'renderProjecao');
