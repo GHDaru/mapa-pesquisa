@@ -80,8 +80,11 @@ function resolverEspectro(partido: string | null, partidos: readonly Partido[]):
 
 type Modo = 'ao-vivo' | 'simulacao';
 
+type ModoMapa = 'medidor' | 'preenchimento';
+
 interface Estado {
   modo: Modo;
+  modoMapa: ModoMapa;
   avancoSimulado: number;
   projecao: Projecao | null;
   fontes: readonly FonteLida[];
@@ -97,6 +100,7 @@ export async function renderApuracao(main: HTMLElement, casos: CasosDeUso): Prom
 
   const estado: Estado = {
     modo: 'ao-vivo',
+    modoMapa: 'medidor',
     avancoSimulado: 0.35,
     projecao: null,
     fontes: [],
@@ -168,7 +172,7 @@ export async function renderApuracao(main: HTMLElement, casos: CasosDeUso): Prom
       return;
     }
     raiz.append(criarBigNumbers(p, partidos));
-    raiz.append(criarMapaProgresso(p, partidos));
+    raiz.append(criarMapaProgresso(p, partidos, estado, desenhar));
     raiz.append(criarTabela(p, estado));
     raiz.append(criarFontes(estado));
   }
@@ -318,7 +322,13 @@ function criarBigNumbers(p: Projecao, partidos: readonly Partido[]): HTMLElement
 
 /* ─────────────────────── mapa preenchido por progresso ─────────────────── */
 
-function criarMapaProgresso(p: Projecao, partidos: readonly Partido[]): HTMLElement {
+function criarMapaProgresso(
+  p: Projecao,
+  partidos: readonly Partido[],
+  estado: Estado,
+  redesenhar: () => void,
+): HTMLElement {
+  const medidor = estado.modoMapa === 'medidor';
   const porUf = new Map(p.porUf.map((u) => [u.uf, u]));
   const nomePorUf = new Map(mapaBrasil.locations.map((l) => [l.id.toUpperCase(), l.name]));
 
@@ -327,10 +337,27 @@ function criarMapaProgresso(p: Projecao, partidos: readonly Partido[]): HTMLElem
   sec.append(
     criarEl('p', {
       className: 'ap-meta',
-      texto:
-        'A cor cheia é de quem lidera, e ela avança da esquerda para a direita conforme as seções entram. O que ainda não foi contado fica hachurado, não colorido — um estado pela metade tem metade de cor e metade de hachura, e a barrinha ao lado da sigla repete a mesma fração em número. Estado sem nenhuma seção fica cinza liso e sem líder: pintar liderança que ninguém mediu seria inventar.',
+      texto: medidor
+        ? 'A cor do estado diz quem lidera ali. Quanto já foi apurado é dito pela barra sob a sigla, que é um medidor e não parte do desenho do país. Estado sem nenhuma seção fica cinza e sem líder: pintar liderança que ninguém mediu seria inventar.'
+        : 'A cor cheia é de quem lidera, e ela avança da esquerda para a direita conforme as seções entram; o que falta fica hachurado na mesma cor. Quatro críticos cegos leram este desenho como divisão geográfica do estado, não como andamento — ele está aqui porque foi o pedido, e o modo "medidor" ao lado é a alternativa que eles apontaram.',
     }),
   );
+
+  const sel = criarEl('div', { className: 'ap-modo ap-modo-mapa', attrs: { role: 'group', 'aria-label': 'Como o mapa mostra o andamento' } });
+  for (const [m, rot] of [['medidor', 'Cor + medidor'], ['preenchimento', 'Preenchimento']] as const) {
+    const b = criarEl('button', {
+      className: `ap-modo-botao${estado.modoMapa === m ? ' is-ativo' : ''}`,
+      texto: rot,
+      attrs: { type: 'button', 'aria-pressed': String(estado.modoMapa === m) },
+    });
+    b.addEventListener('click', () => {
+      if (estado.modoMapa === m) return;
+      estado.modoMapa = m;
+      redesenhar();
+    });
+    sel.append(b);
+  }
+  sec.append(sel);
 
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.setAttribute('viewBox', mapaBrasil.viewBox);
@@ -435,14 +462,21 @@ function criarMapaProgresso(p: Projecao, partidos: readonly Partido[]): HTMLElem
       const idClip = `ap-clip-${uf}`;
 
       // A parte NÃO contada, por baixo: hachura neutra no estado inteiro.
-      const idHach = hachuraDe(uf, cor, indice);
       const base = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       base.setAttribute('d', loc.path);
       base.setAttribute('class', 'ap-mapa-uf ap-mapa-vazio');
-      base.setAttribute('fill', `url(#${idHach})`);
+      if (medidor) {
+        // Cor cheia: o polígono responde SÓ "quem lidera". O quanto foi
+        // contado sai do desenho do país e vai para o medidor, que é a
+        // forma que existe para dizer fração.
+        base.style.fill = cor;
+      } else {
+        base.setAttribute('fill', `url(#${hachuraDe(uf, cor, indice)})`);
+      }
       grupo.append(base);
 
       // A parte contada, por cima, recortada até onde a apuração chegou.
+      if (!medidor) {
       const clip = document.createElementNS('http://www.w3.org/2000/svg', 'clipPath');
       clip.setAttribute('id', idClip);
       const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
@@ -478,6 +512,7 @@ function criarMapaProgresso(p: Projecao, partidos: readonly Partido[]): HTMLElem
         defs.append(recorte);
         grupo.append(linha);
       }
+      }
 
       // Contorno por cima, para o estado continuar sendo um estado.
       const contorno = document.createElementNS('http://www.w3.org/2000/svg', 'path');
@@ -501,33 +536,48 @@ function criarMapaProgresso(p: Projecao, partidos: readonly Partido[]): HTMLElem
     texto.textContent = uf;
     grupo.append(texto);
 
-    // A barrinha sob a sigla: a MESMA fração dita outra vez, como quantidade.
-    // Encodar progresso só no preenchimento do polígono não bastou — a forma
-    // do estado atrapalha a leitura. Uma barra reta não tem esse problema.
+    // O MEDIDOR sob a sigla.
+    //
+    // Quatro críticos cegos, em rodadas independentes, leram o preenchimento
+    // do polígono como divisão geográfica e não como andamento — e o quarto
+    // fechou o argumento: estado pequeno não tem área suficiente para que uma
+    // fração seja lida como número, então a barra tem de ser o canal, não o
+    // reforço. Ela ganha trilho visível, largura FIXA (não proporcional ao
+    // estado, senão a comparação entre UFs some) e o número ao lado.
     if (u && !semDado({ processado: u.secoesTotalizadas })) {
       const corDoLider = tokenFillEspectro(
         resolverEspectro(u.candidatos.find((c) => c.candidato === u.lider)?.partido ?? null, partidos),
       );
-      const larg = Math.min(20, Math.max(11, (bbox.maxX - bbox.minX) * 0.55));
+      const larg = 17;
+      const alt = 4.2;
+      const bx = cx - larg / 2;
+      const by = cy + 1.9;
       const trilho = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-      trilho.setAttribute('x', String(cx - larg / 2));
-      trilho.setAttribute('y', String(cy + 1.8));
+      trilho.setAttribute('x', String(bx));
+      trilho.setAttribute('y', String(by));
       trilho.setAttribute('width', String(larg));
-      trilho.setAttribute('height', '3.6');
-      trilho.setAttribute('rx', '1.8');
+      trilho.setAttribute('height', String(alt));
+      trilho.setAttribute('rx', String(alt / 2));
       trilho.setAttribute('class', 'ap-mapa-trilho');
       trilho.setAttribute('aria-hidden', 'true');
       grupo.append(trilho);
       const nivel = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-      nivel.setAttribute('x', String(cx - larg / 2));
-      nivel.setAttribute('y', String(cy + 1.8));
+      nivel.setAttribute('x', String(bx));
+      nivel.setAttribute('y', String(by));
       nivel.setAttribute('width', String(larg * fracaoDaBarra(u.secoesTotalizadas)));
-      nivel.setAttribute('height', '3.6');
-      nivel.setAttribute('rx', '1.8');
+      nivel.setAttribute('height', String(alt));
+      nivel.setAttribute('rx', String(alt / 2));
       nivel.setAttribute('class', 'ap-mapa-nivel');
       nivel.style.fill = corDoLider;
       nivel.setAttribute('aria-hidden', 'true');
       grupo.append(nivel);
+      const num = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      num.setAttribute('x', String(bx + larg + 1.6));
+      num.setAttribute('y', String(by + alt));
+      num.setAttribute('class', 'ap-mapa-pct');
+      num.setAttribute('aria-hidden', 'true');
+      num.textContent = `${Math.round(u.secoesTotalizadas)}%`;
+      grupo.append(num);
     }
 
     svg.append(grupo);

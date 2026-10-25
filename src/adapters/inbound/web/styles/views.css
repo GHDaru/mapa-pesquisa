@@ -1362,3 +1362,9 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
   .ap-tabela td.ap-proc { grid-template-columns: 1fr auto; }
   .ap-tabela .ap-proc-barra { grid-column: 1 / -1; margin-top: 0.15rem; }
 }
+
+/* --- medidor do mapa: trilho visível, largura fixa, número ao lado ------ */
+.ap-modo-mapa { margin: 0.5rem auto 0; display: flex; justify-content: center; }
+.ap-mapa-trilho { fill: var(--color-text); fill-opacity: 0.16; stroke: var(--color-text); stroke-opacity: 0.4; stroke-width: 0.35; }
+.ap-mapa-pct { font-size: 5.2px; font-weight: 700; fill: var(--color-text); dominant-baseline: alphabetic;
+  paint-order: stroke; stroke: var(--color-canvas); stroke-width: 1.6px; }
