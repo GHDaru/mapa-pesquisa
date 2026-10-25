@@ -735,9 +735,9 @@ function criarMapaProgresso(
       className: 'ap-meta',
       texto: medidor
         ? porRegiao
-          ? 'A cor diz quem lidera na REGIÃO: os estados de um mesmo bloco ganham a mesma cor, e as divisas entre eles ficam fracas. Tudo aqui é soma — os votos de cada candidato são a soma dos estados da região, a projeção é a soma das projeções deles, e o percentual é o que já foi apurado dividido pelo total da região. Região sem nenhuma seção fica cinza e sem líder.'
-          : 'A cor do estado diz quem lidera ali. Quanto já foi apurado é dito pela barra sob a sigla, que é um medidor e não parte do desenho do país. Estado sem nenhuma seção fica cinza e sem líder: pintar liderança que ninguém mediu seria inventar.'
-        : 'A cor cheia é de quem lidera, e ela avança da esquerda para a direita conforme as seções entram; o que falta fica hachurado na mesma cor. O número ao lado de cada sigla é o percentual exato — ele existe porque estados pequenos como PB, AL, SE, ES, RJ e DF não têm área suficiente para que uma fração seja lida como número. Quatro críticos cegos leram este desenho como divisão geográfica do estado, e não como andamento; o modo "Cor + medidor" ao lado é a alternativa que eles apontaram, com o polígono em cor cheia respondendo só quem lidera.',
+          ? 'Passe o mouse num estado para ver como ele está agora, ou clique para prender a leitura. A cor diz quem lidera na REGIÃO: os estados de um mesmo bloco ganham a mesma cor, e as divisas entre eles ficam fracas. Tudo aqui é soma — os votos de cada candidato são a soma dos estados da região, a projeção é a soma das projeções deles, e o percentual é o que já foi apurado dividido pelo total da região. Região sem nenhuma seção fica cinza e sem líder.'
+          : 'Passe o mouse num estado para ver como ele está agora, ou clique para prender a leitura. A cor do estado diz quem lidera ali. Quanto já foi apurado é dito pela barra sob a sigla, que é um medidor e não parte do desenho do país. Estado sem nenhuma seção fica cinza e sem líder: pintar liderança que ninguém mediu seria inventar.'
+        : 'Passe o mouse num estado para ver como ele está agora, ou clique para prender a leitura. A cor cheia é de quem lidera, e ela avança da esquerda para a direita conforme as seções entram; o que falta fica hachurado na mesma cor. O número ao lado de cada sigla é o percentual exato — ele existe porque estados pequenos como PB, AL, SE, ES, RJ e DF não têm área suficiente para que uma fração seja lida como número. Quatro críticos cegos leram este desenho como divisão geográfica do estado, e não como andamento; o modo "Cor + medidor" ao lado é a alternativa que eles apontaram, com o polígono em cor cheia respondendo só quem lidera.',
     }),
   );
 
@@ -815,14 +815,59 @@ function criarMapaProgresso(
     dica.style.top = `${Math.max(0, Math.min(top, window.innerHeight - altura))}px`;
   }
 
+  /**
+   * A dica pode ficar PRESA num estado.
+   *
+   * Passar o mouse responde de relance e some quando o mouse sai, o que serve
+   * para varrer o mapa mas não para ler com calma nem para comparar — e no
+   * celular não existe "passar o mouse": o toque abre e o próximo toque em
+   * qualquer lugar fechava. Clicar prende a leitura naquele estado: ela para
+   * de seguir o cursor, sobrevive a sair do mapa, e só sai com um novo clique
+   * no mesmo estado, um clique fora, ou Esc.
+   *
+   * Enquanto está presa, passar o mouse por outro estado NÃO troca o conteúdo
+   * — seria o contrário de prender. Clicar em outro estado, sim: a intenção
+   * de clicar é inequívoca.
+   */
+  let ufPresa: string | null = null;
+
+  function marcarPresa(): void {
+    for (const g of svg.querySelectorAll('g[data-uf]')) {
+      g.classList.toggle('is-presa', g.getAttribute('data-uf') === ufPresa);
+    }
+  }
+
   function mostrarDica(uf: string, x: number, y: number): void {
     preencherDica(uf);
+    if (ufPresa === uf) {
+      dica.append(
+        criarEl('span', { className: 'ap-dica-presa', texto: 'presa — clique de novo ou Esc para soltar' }),
+      );
+    }
     dica.hidden = false;
     posicionarDica(x, y);
   }
 
   function esconderDica(): void {
+    if (ufPresa != null) return;
     dica.hidden = true;
+  }
+
+  function soltar(): void {
+    ufPresa = null;
+    marcarPresa();
+    dica.hidden = true;
+  }
+
+  function alternarPresa(uf: string, alvo: Element): void {
+    if (ufPresa === uf) {
+      soltar();
+      return;
+    }
+    ufPresa = uf;
+    marcarPresa();
+    const r = alvo.getBoundingClientRect();
+    mostrarDica(uf, r.left + r.width / 2, r.top + r.height / 2);
   }
 
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -1022,21 +1067,39 @@ function criarMapaProgresso(
     // para leitor de tela, então a dica é reforço visual e fica `aria-hidden`
     // pelo CSS do papel `tooltip` ligado por `aria-describedby`.
     grupo.setAttribute('tabindex', '0');
+    grupo.setAttribute('data-uf', uf);
     grupo.setAttribute('aria-describedby', 'ap-dica');
     grupo.addEventListener('pointerenter', (e) => {
+      if (ufPresa != null) return;
       const ev = e as PointerEvent;
       mostrarDica(uf, ev.clientX, ev.clientY);
     });
     grupo.addEventListener('pointermove', (e) => {
+      if (ufPresa != null) return;
       const ev = e as PointerEvent;
       if (!dica.hidden) posicionarDica(ev.clientX, ev.clientY);
     });
     grupo.addEventListener('pointerleave', esconderDica);
+    grupo.addEventListener('click', (e) => {
+      e.stopPropagation();
+      alternarPresa(uf, grupo);
+    });
     grupo.addEventListener('focus', () => {
+      if (ufPresa != null) return;
       const r = grupo.getBoundingClientRect();
       mostrarDica(uf, r.left + r.width / 2, r.top + r.height / 2);
     });
     grupo.addEventListener('blur', esconderDica);
+    grupo.addEventListener('keydown', (e) => {
+      const ev = e as KeyboardEvent;
+      if (ev.key === 'Enter' || ev.key === ' ') {
+        ev.preventDefault();
+        alternarPresa(uf, grupo);
+      } else if (ev.key === 'Escape' && ufPresa != null) {
+        ev.preventDefault();
+        soltar();
+      }
+    });
 
     svg.append(grupo);
   }
@@ -1084,9 +1147,16 @@ function criarMapaProgresso(
   const wrap = criarEl('div', { className: 'ap-mapa-wrap' });
   wrap.append(dica);
   wrap.append(svg);
-  // Sair do mapa inteiro fecha a dica: no celular, um toque fora é o único
-  // jeito de fechá-la, já que não existe "sair com o mouse".
   wrap.addEventListener('pointerleave', esconderDica);
+  // Clicar no mapa fora de qualquer estado solta a dica presa. É o gesto que
+  // as pessoas tentam primeiro para fechar, e no celular é o único que sobra.
+  wrap.addEventListener('click', () => {
+    if (ufPresa != null) soltar();
+  });
+  // Esc também, com o foco em qualquer lugar do mapa.
+  wrap.addEventListener('keydown', (e) => {
+    if ((e as KeyboardEvent).key === 'Escape' && ufPresa != null) soltar();
+  });
   sec.append(wrap);
   sec.append(criarLegendaDoMapa());
   return sec;

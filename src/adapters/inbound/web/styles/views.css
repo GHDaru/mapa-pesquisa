@@ -1437,7 +1437,16 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
 .ap-mapa-svg g:focus-visible .ap-mapa-contorno {
   stroke: var(--color-text); stroke-width: 1.4; stroke-opacity: 1;
 }
-.ap-mapa-svg g { outline: none; cursor: default; }
+.ap-mapa-svg g { outline: none; cursor: pointer; }
+/* O estado preso fica marcado mesmo sem o cursor em cima — é o que diz de
+   quem é a leitura que ficou na tela. */
+.ap-mapa-svg g.is-presa .ap-mapa-contorno {
+  stroke: var(--color-text); stroke-width: 1.8; stroke-opacity: 1;
+}
+.ap-dica-presa {
+  margin-top: 0.2rem; font-size: 0.66rem; text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--color-text-muted);
+}
 
 /* ═══ parciais de imprensa ══════════════════════════════════════════════
    Tracejado e em corpo menor: é informação de terceiro, de horário fixo, que
