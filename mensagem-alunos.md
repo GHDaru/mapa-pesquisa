@@ -52,7 +52,7 @@ O placar na tela diz **A 61% × B 39%**. O A parece estar atropelando.
 Mas nada disso aconteceu. O A não ganhou voto nenhum a mais. O que aconteceu é
 que a contagem estava **cheia de Alfa e vazia de Beta** — e Alfa é terra do A.
 Conforme Beta for entrando, o placar vai virar sozinho, e no fim o B ganha com
-54%.
+56%.
 
 **Isso não é hipótese.** Foi o que aconteceu em 2022: o Nordeste totalizou
 primeiro, a vantagem de um dos candidatos encolheu a noite toda conforme São
