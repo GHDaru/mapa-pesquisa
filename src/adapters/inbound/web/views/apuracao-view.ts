@@ -32,6 +32,13 @@ import { bboxPath, criarEl, tokenFillEspectro } from './_shared.js';
 import {
   agregarPorRegiao,
   fracaoDaBarra,
+  margemApurada,
+  montarCsv,
+  nomeCurto,
+  nomeDoArquivoCsv,
+  ordenarLinhas,
+  ORDENACOES,
+  pctApuradoNaLinha,
   formatarInt,
   formatarPct,
   horaCurta,
@@ -45,6 +52,7 @@ import {
   REGIOES,
   type LinhaRegiao,
   type LinhaUf,
+  type Ordenacao,
 } from './apuracao-layout.js';
 
 interface LocalidadeMapa {
@@ -98,6 +106,9 @@ type ModoMapa = 'medidor' | 'preenchimento';
 interface Estado {
   modo: Modo;
   recorte: Recorte;
+  ordem: Ordenacao;
+  /** `resumo` esconde as colunas de conferência; `tudo` traz todas. */
+  colunas: 'resumo' | 'tudo';
   modoMapa: ModoMapa;
   avancoSimulado: number;
   projecao: Projecao | null;
@@ -130,6 +141,8 @@ export async function renderApuracao(
   const estado: Estado = {
     modo: 'ao-vivo',
     recorte: 'estados',
+    ordem: 'eleitorado',
+    colunas: 'resumo',
     modoMapa: 'medidor',
     avancoSimulado: 0.35,
     projecao: null,
@@ -203,7 +216,7 @@ export async function renderApuracao(
     }
     raiz.append(criarBigNumbers(p, partidos, estado));
     raiz.append(criarMapaProgresso(p, partidos, estado, desenhar));
-    raiz.append(criarTabela(p, estado));
+    raiz.append(criarTabela(p, partidos, estado, desenhar));
     raiz.append(criarFontes(estado));
   }
 
@@ -504,7 +517,7 @@ function criarMapaProgresso(
       className: 'ap-meta',
       texto: medidor
         ? porRegiao
-          ? 'A cor diz quem lidera na REGIÃO: os estados de um mesmo bloco ganham a mesma cor, e as divisas entre eles ficam fracas. O medidor no centro do bloco diz quanto já foi apurado na região inteira, ponderado pelo eleitorado — não a média das UFs, que com estados de tamanhos tão diferentes seria outra conta e outro número. Região sem nenhuma seção fica cinza e sem líder.'
+          ? 'A cor diz quem lidera na REGIÃO: os estados de um mesmo bloco ganham a mesma cor, e as divisas entre eles ficam fracas. Tudo aqui é soma — os votos de cada candidato são a soma dos estados da região, a projeção é a soma das projeções deles, e o percentual é o que já foi apurado dividido pelo total da região. Região sem nenhuma seção fica cinza e sem líder.'
           : 'A cor do estado diz quem lidera ali. Quanto já foi apurado é dito pela barra sob a sigla, que é um medidor e não parte do desenho do país. Estado sem nenhuma seção fica cinza e sem líder: pintar liderança que ninguém mediu seria inventar.'
         : 'A cor cheia é de quem lidera, e ela avança da esquerda para a direita conforme as seções entram; o que falta fica hachurado na mesma cor. Quatro críticos cegos leram este desenho como divisão geográfica do estado, não como andamento — ele está aqui porque foi o pedido, e o modo "medidor" ao lado é a alternativa que eles apontaram.',
     }),
@@ -852,62 +865,178 @@ function criarLegendaDoMapa(): HTMLElement {
 
 /* ──────────────────────────── tabela por estado ────────────────────────── */
 
-function criarTabela(p: Projecao, estado: Estado): HTMLElement {
+/**
+ * Meia-largura da barra de vantagem, em pontos percentuais. FIXA.
+ *
+ * Fixa, e nunca derivada do máximo do momento: numa tela que se atualiza
+ * sozinha, escala elástica faz a barra ENCOLHER enquanto a vantagem cresce,
+ * porque o máximo cresceu junto. Quem olha duas vezes lê o contrário do que
+ * aconteceu.
+ */
+const ESCALA_VANTAGEM_PP = 45;
+
+function criarTabela(
+  p: Projecao,
+  partidos: readonly Partido[],
+  estado: Estado,
+  redesenhar: () => void,
+): HTMLElement {
   const porUf = montarLinhas(p.porUf, FINALISTAS);
   const porRegiao = estado.recorte === 'regioes';
   // A tabela de região é a MESMA tabela, com as UFs somadas: mesma ordem de
   // colunas, mesmas unidades, mesma aritmética. O leitor que troca de recorte
   // não deveria ter de reaprender a ler.
-  const linhas: readonly (LinhaUf | LinhaRegiao)[] = porRegiao
+  const todas: readonly (LinhaUf | LinhaRegiao)[] = porRegiao
     ? agregarPorRegiao(porUf, FINALISTAS)
     : porUf;
+  const linhas = ordenarLinhas(todas, estado.ordem);
+  const tudo = estado.colunas === 'tudo';
+  const apuradoNacional = p.coberturaNacionalEfetiva ?? p.secoesTotalizadasPonderada;
+
   const sec = criarEl('section', { className: 'ap-tabela-sec' });
-  sec.append(
+  sec.dataset.colunas = estado.colunas;
+
+  const topo = criarEl('div', { className: 'ap-tabela-topo' });
+  topo.append(
     criarEl('h2', {
       className: 'ap-h2',
       texto: porRegiao ? 'Região a região' : 'Estado a estado',
     }),
   );
+  topo.append(criarBotaoCsv(linhas, estado, apuradoNacional));
+  sec.append(topo);
 
+  sec.append(
+    criarEl('p', {
+      className: 'ap-meta',
+      texto:
+        'Os percentuais desta tabela são os APURADOS: a conta sai dos votos já contados, não da projeção. A vantagem também. As projeções ficam nas colunas que se chamam projeção, em "todos os números".',
+    }),
+  );
+
+  /* ── controles: ordem e colunas ── */
+  const ctrl = criarEl('div', { className: 'ap-tabela-ctrl' });
+
+  const rotuloOrdem = criarEl('label', { className: 'ap-ctrl' });
+  rotuloOrdem.append(criarEl('span', { texto: 'Ordenar' }));
+  const sel = criarEl('select', { className: 'ap-select' }) as HTMLSelectElement;
+  for (const o of ORDENACOES) {
+    const opt = criarEl('option', { texto: o.rotulo, attrs: { value: o.valor } }) as HTMLOptionElement;
+    if (o.valor === estado.ordem) opt.selected = true;
+    sel.append(opt);
+  }
+  sel.addEventListener('change', () => {
+    estado.ordem = sel.value as Ordenacao;
+    redesenhar();
+  });
+  rotuloOrdem.append(sel);
+  ctrl.append(rotuloOrdem);
+
+  const btnColunas = criarEl('button', {
+    className: 'ap-btn-secundario',
+    texto: tudo ? 'Mostrar só a leitura' : 'Mostrar todos os números',
+    attrs: { type: 'button', 'aria-pressed': String(tudo) },
+  });
+  btnColunas.addEventListener('click', () => {
+    estado.colunas = tudo ? 'resumo' : 'tudo';
+    redesenhar();
+  });
+  ctrl.append(btnColunas);
+  sec.append(ctrl);
+
+  /* ── a tabela ── */
   const tabela = criarEl('table', { className: 'ap-tabela' });
+  tabela.append(
+    criarEl('caption', {
+      className: 'ap-sr',
+      texto: porRegiao
+        ? 'As cinco regiões, uma por linha: quanto já foi apurado, o percentual de cada candidato nos votos contados e a vantagem entre eles.'
+        : 'As unidades da federação, uma por linha: quanto já foi apurado, o percentual de cada candidato nos votos contados e a vantagem entre eles.',
+    }),
+  );
+
   const thead = criarEl('thead');
   const trh = criarEl('tr');
-  // As colunas de um mesmo candidato ficam JUNTAS.
-  //
-  // Antes elas vinham intercaladas por indicador (% dos dois, depois projeção
-  // dos dois, depois votos dos dois) e o corte da tela caía no meio de um par:
-  // aparecia o voto contado de um candidato e não o do outro, que é o pior
-  // jeito de cortar — convida à leitura errada em vez de só esconder.
-  const colunas = [
-    porRegiao ? 'Região' : 'UF', 'Eleitores', '% apurado',
-    `% ${FINALISTAS[0]}`, `Projeção ${FINALISTAS[0]}`, `Votos ${FINALISTAS[0]}`,
-    `% ${FINALISTAS[1]}`, `Projeção ${FINALISTAS[1]}`, `Votos ${FINALISTAS[1]}`,
-    'Brancos', 'Nulos', 'Abstenções', 'Hora',
+  // As colunas de um mesmo candidato ficam JUNTAS, e os rótulos dizem o que a
+  // célula é: "% apurado" para contagem, "Projeção" para inferência. O
+  // cabeçalho dizia só "% Fulano" sobre um valor projetado — projeção com
+  // rótulo de contagem é o erro clássico de noite de eleição na célula.
+  const colunas: readonly {
+    readonly rotulo: string;
+    readonly extra?: boolean;
+    readonly num?: boolean;
+    readonly soLargo?: boolean;
+  }[] = [
+    { rotulo: porRegiao ? 'Região' : 'UF' },
+    { rotulo: 'Eleitores', num: true, extra: true },
+    { rotulo: 'Apurado', num: true },
+    { rotulo: `% ${nomeCurto(FINALISTAS[0])}`, num: true },
+    { rotulo: `% ${nomeCurto(FINALISTAS[1])}`, num: true },
+    { rotulo: 'Vantagem' },
+    // O saldo sai da leitura no celular: as seis colunas não cabiam em 358px
+    // e ele ficava cortado fora da tela, ilegível e inalcançável — pior que
+    // ausente, porque o leitor vê que falta alguma coisa e não alcança.
+    { rotulo: 'Saldo de votos', num: true, soLargo: true },
+    { rotulo: `Projeção ${FINALISTAS[0]}`, num: true, extra: true },
+    { rotulo: `Votos ${FINALISTAS[0]}`, num: true, extra: true },
+    { rotulo: `Projeção ${FINALISTAS[1]}`, num: true, extra: true },
+    { rotulo: `Votos ${FINALISTAS[1]}`, num: true, extra: true },
+    { rotulo: 'Brancos', num: true, extra: true },
+    { rotulo: 'Nulos', num: true, extra: true },
+    { rotulo: 'Abstenções', num: true, extra: true },
   ];
-  for (const c of colunas) trh.append(criarEl('th', { texto: c, attrs: { scope: 'col' } }));
+  for (const c of colunas) {
+    const th = criarEl('th', { texto: c.rotulo, attrs: { scope: 'col' } });
+    if (c.extra) th.classList.add('ap-extra');
+    if (c.soLargo) th.classList.add('ap-so-largo');
+    if (c.num) th.classList.add('ap-num');
+    trh.append(th);
+  }
   thead.append(trh);
   tabela.append(thead);
 
   const tbody = criarEl('tbody');
-  for (const l of linhas) tbody.append(criarLinha(l, estado));
+  const partidoPorCandidato = partidosDaProjecao(p);
+  const corDoCandidato = (nome: string | null): string =>
+    tokenFillEspectro(resolverEspectro(nome ? partidoPorCandidato.get(nome) ?? null : null, partidos));
+  for (const l of linhas) tbody.append(criarLinha(l, corDoCandidato));
   tabela.append(tbody);
 
-  sec.append(
-    criarEl('p', {
-      className: 'ap-meta ap-rolagem',
-      texto:
-        'A tabela é mais larga que a tela: arraste para o lado para ver brancos, nulos, abstenções e a hora da leitura. As três colunas de cada candidato andam juntas, para o corte nunca separar um do outro.',
-    }),
-  );
   const wrap = criarEl('div', { className: 'ap-tabela-wrap' });
   wrap.append(tabela);
   sec.append(wrap);
+  sec.append(criarLegendaDaTabela());
   return sec;
 }
 
-function criarLinha(l: LinhaUf | LinhaRegiao, estado: Estado): HTMLElement {
+/** O partido de cada finalista, para a cor da barra sair do espectro. */
+function partidosDaProjecao(p: Projecao): ReadonlyMap<string, string | null> {
+  const m = new Map<string, string | null>();
+  for (const c of p.candidatos) m.set(c.candidato, c.partido);
+  for (const u of p.porUf) for (const c of u.candidatos) if (!m.has(c.candidato)) m.set(c.candidato, c.partido);
+  return m;
+}
+
+function criarLegendaDaTabela(): HTMLElement {
+  return criarEl('p', {
+    className: 'ap-meta',
+    texto: `A barra de vantagem sai do centro: para um lado é ${FINALISTAS[0]}, para o outro é ${FINALISTAS[1]}, sempre no mesmo lado para cada um — a escala é fixa em ${ESCALA_VANTAGEM_PP} pontos para cada lado, de modo que a barra não encolha quando a vantagem crescer. A marca "pode virar" é um teste exato, sem modelo: a vantagem atual em votos é menor que tudo o que ainda pode entrar naquela linha.`,
+  });
+}
+
+function criarLinha(l: LinhaUf | LinhaRegiao, corDoCandidato: (nome: string | null) => string): HTMLElement {
   const tr = criarEl('tr');
+  const m = margemApurada(l);
+  const vazia = semDado(l);
+
+  /* ── a unidade ── */
   const cabeca = criarEl('th', { attrs: { scope: 'row' } });
+  // O filete na cor de quem lidera. Cor nunca sozinha: o nome do líder está
+  // escrito por extenso na coluna de vantagem, ao lado.
+  cabeca.style.setProperty(
+    '--cor-lider',
+    m.lider ? corDoCandidato(m.lider) : 'var(--spectrum-indefinido)',
+  );
   if ('regiao' in l) {
     cabeca.append(criarEl('span', { className: 'ap-linha-nome', texto: l.regiao }));
     // Quais UFs entraram, e quais ficaram de fora por não ter seção nenhuma.
@@ -923,34 +1052,153 @@ function criarLinha(l: LinhaUf | LinhaRegiao, estado: Estado): HTMLElement {
       }),
     );
   } else {
-    cabeca.textContent = l.uf;
+    cabeca.append(criarEl('span', { className: 'ap-linha-nome', texto: l.uf }));
   }
   tr.append(cabeca);
-  const celula = (texto: string, rotulo: string): HTMLElement =>
-    criarEl('td', { className: 'ap-num', texto, attrs: { 'data-rotulo': rotulo } });
 
-  tr.append(celula(formatarInt(l.eleitores), 'Eleitores'));
+  const celula = (texto: string, rotulo: string, classe?: string): HTMLElement => {
+    const td = criarEl('td', { className: 'ap-num', texto, attrs: { 'data-rotulo': rotulo } });
+    if (classe) td.classList.add(classe);
+    return td;
+  };
 
-  const tdProc = criarEl('td', { className: 'ap-num ap-proc', attrs: { 'data-rotulo': '% apurado' } });
-  const mini = criarEl('div', { className: 'ap-proc-barra' });
-  const miniFill = criarEl('div', { className: 'ap-proc-fill' });
+  tr.append(celula(formatarInt(l.eleitores), 'Eleitores', 'ap-extra'));
+
+  /* ── apurado: número e barra lado a lado ── */
+  const tdProc = criarEl('td', { className: 'ap-num ap-proc', attrs: { 'data-rotulo': 'Apurado' } });
+  const cel = criarEl('div', { className: 'ap-proc-cel' });
+  cel.append(
+    criarEl('span', {
+      className: 'ap-proc-num',
+      texto: vazia ? 'sem seção' : formatarPct(l.processado),
+    }),
+  );
+  const mini = criarEl('span', { className: 'ap-proc-barra' });
+  const miniFill = criarEl('i', { className: 'ap-proc-fill' });
   miniFill.style.width = `${fracaoDaBarra(l.processado) * 100}%`;
   mini.append(miniFill);
-  tdProc.append(criarEl('span', { texto: formatarPct(l.processado) }));
-  tdProc.append(mini);
+  cel.append(mini);
+  tdProc.append(cel);
+  if (l.finalizada) {
+    tdProc.append(criarEl('span', { className: 'ap-fim', texto: 'encerrada' }));
+  }
   tr.append(tdProc);
 
-  for (const c of l.porCandidato) {
-    tr.append(celula(formatarPct(c.pct, 2), `% ${c.candidato}`));
-    tr.append(celula(formatarInt(c.votosProjetados), `Projeção ${c.candidato}`));
-    tr.append(celula(formatarInt(c.votosApurados), `Votos ${c.candidato}`));
+  /* ── os percentuais APURADOS ── */
+  for (const nome of FINALISTAS) {
+    tr.append(celula(formatarPct(pctApuradoNaLinha(l, nome), 1), `% ${nomeCurto(nome)}`));
   }
 
-  tr.append(celula(formatarInt(l.brancos), 'Brancos'));
-  tr.append(celula(formatarInt(l.nulos), 'Nulos'));
-  tr.append(celula(formatarInt(l.abstencoes), 'Abstenções'));
-  tr.append(celula(horaCurta(estado.lidoEm), 'Hora'));
+  /* ── vantagem: barra divergente a partir do zero ── */
+  const tdVant = criarEl('td', { className: 'ap-vant', attrs: { 'data-rotulo': 'Vantagem' } });
+  if (vazia || m.lider == null) {
+    tdVant.append(criarEl('span', { className: 'ap-vant-rotulo is-vazio', texto: '—' }));
+  } else {
+    const paraOPrimeiro = m.lider === FINALISTAS[0];
+    tdVant.append(
+      criarEl('span', {
+        className: 'ap-vant-rotulo',
+        // Pontos, não "%": a diferença entre dois percentuais é medida em
+        // pontos, e escrever "%" aqui confundiria a margem com a votação.
+        //
+        // E abaixo de 0,05 ponto o arredondamento imprimiria "+0,0" ao lado
+        // de um líder nomeado, que se lê como "lidera por nada". A margem
+        // existe — a casa decimal é que não a alcança —, então ali o rótulo
+        // passa a dizer os votos, que é onde ela aparece.
+        texto:
+          Math.abs(m.pontos) < 0.05
+            ? `${nomeCurto(m.lider)} por ${formatarInt(Math.abs(m.votos))} votos`
+            : `${nomeCurto(m.lider)} +${Math.abs(m.pontos).toFixed(1).replace('.', ',')}`,
+      }),
+    );
+    const box = criarEl('span', { className: 'ap-vant-box' });
+    box.dataset.lado = paraOPrimeiro ? 'dir' : 'esq';
+    box.style.setProperty('--mag', String(Math.min(1, Math.abs(m.pontos) / ESCALA_VANTAGEM_PP)));
+    box.style.setProperty('--cor', corDoCandidato(m.lider));
+    box.append(criarEl('i', { className: 'ap-vant-eixo' }), criarEl('i', { className: 'ap-vant-barra' }));
+    tdVant.append(box);
+    if (m.podeVirar) {
+      tdVant.append(criarEl('span', { className: 'ap-pode-virar', texto: 'pode virar' }));
+    }
+  }
+  tr.append(tdVant);
+
+  tr.append(
+    celula(
+      vazia || m.votos === 0 ? '—' : `${m.votos > 0 ? '+' : '−'}${formatarInt(Math.abs(m.votos))}`,
+      'Saldo de votos',
+      'ap-so-largo',
+    ),
+  );
+
+  /* ── conferência ── */
+  for (const nome of FINALISTAS) {
+    const c = l.porCandidato.find((x) => x.candidato === nome);
+    tr.append(celula(formatarInt(c?.votosProjetados), `Projeção ${nome}`, 'ap-extra'));
+    tr.append(celula(formatarInt(c?.votosApurados), `Votos ${nome}`, 'ap-extra'));
+  }
+  tr.append(celula(formatarInt(l.brancos), 'Brancos', 'ap-extra'));
+  tr.append(celula(formatarInt(l.nulos), 'Nulos', 'ap-extra'));
+  tr.append(celula(formatarInt(l.abstencoes), 'Abstenções', 'ap-extra'));
   return tr;
+}
+
+/* ──────────────────────────── baixar em CSV ────────────────────────────── */
+
+/**
+ * O botão diz a hora da leitura dentro do próprio rótulo.
+ *
+ * Não é enfeite: um CSV de apuração é uma foto, e quem baixa dois na mesma
+ * noite precisa saber qual é qual antes de clicar. A hora e o percentual
+ * apurado também vão para o nome do arquivo e para dentro de cada linha.
+ */
+function criarBotaoCsv(
+  linhas: readonly (LinhaUf | LinhaRegiao)[],
+  estado: Estado,
+  apuradoNacional: number,
+): HTMLElement {
+  const botao = criarEl('button', {
+    className: 'ap-btn-csv',
+    attrs: { type: 'button' },
+  });
+  botao.append(criarEl('span', { texto: 'Baixar CSV' }));
+  botao.append(
+    criarEl('span', {
+      className: 'ap-btn-csv-hora',
+      texto: estado.lidoEm ? ` · leitura de ${horaCurta(estado.lidoEm)}` : '',
+    }),
+  );
+
+  botao.addEventListener('click', () => {
+    const csv = montarCsv({
+      linhas,
+      candidatos: FINALISTAS,
+      lidoEm: estado.lidoEm,
+      apuradoNacional,
+      simulacao: estado.modo === 'simulacao',
+      recorte: estado.recorte,
+    });
+    const nome = nomeDoArquivoCsv({
+      lidoEm: estado.lidoEm,
+      apuradoNacional,
+      simulacao: estado.modo === 'simulacao',
+      recorte: estado.recorte,
+      turno: 2,
+    });
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = nome;
+    document.body.append(a);
+    a.click();
+    a.remove();
+    // Sem revogar, cada download deixa o arquivo inteiro preso na memória da
+    // aba — e numa noite de apuração são muitos downloads na mesma aba.
+    setTimeout(() => URL.revokeObjectURL(url), 0);
+  });
+
+  return botao;
 }
 
 /* ───────────────────────────── fontes lidas ────────────────────────────── */

@@ -207,16 +207,18 @@ export interface LinhaRegiao extends Omit<LinhaUf, 'uf'> {
 /**
  * Soma as UFs de cada região.
  *
- * Duas decisões que mudam o número:
+ * A regra é soma: tudo que a região tem, somado, e o percentual sai direto da
+ * divisão do que foi apurado pelo total da região — sem ponderar nada. A
+ * ponderação some porque ela era conta a mais fazendo o mesmo serviço: dividir
+ * a soma pela soma JÁ pesa cada UF pelo tamanho dela, e pesa pelo voto que
+ * realmente apareceu, não pelo eleitorado cadastrado em julho. O que ela
+ * continua impedindo é a média das porcentagens, que com estados de tamanhos
+ * tão diferentes seria outro número e estaria errado.
  *
- * 1. O **% apurado da região é ponderado pelo eleitorado**, não a média das
- *    UFs. Sem isso, Roraima a 100% e São Paulo a 10% dariam "55% apurado" no
- *    Sudeste-equivalente — uma média de porcentagens entre bases de tamanhos
- *    diferentes, que é o erro aritmético mais comum desta tela inteira.
- * 2. **UF sem nenhuma apuração não entra na soma de votos**, mas é NOMEADA.
- *    Somar zero votos dela empurraria a região inteira para baixo como se ali
- *    ninguém tivesse votado; omiti-la sem dizer esconderia que a leitura da
- *    região está incompleta.
+ * Uma decisão fica: **UF sem nenhuma apuração não entra na soma de votos**,
+ * mas é NOMEADA. Somar zero votos dela empurraria a região para baixo como se
+ * ali ninguém tivesse votado; omiti-la sem dizer esconderia que a leitura da
+ * região está incompleta.
  *
  * Brancos, nulos e abstenções só somam onde a fonte publicou: se nenhuma UF da
  * região publicou, o campo fica `null` em vez de virar zero — zero é um número
@@ -237,17 +239,6 @@ export function agregarPorRegiao(
       (acc, l) => (l.eleitores == null ? acc : (acc ?? 0) + l.eleitores),
       null,
     );
-
-    // Ponderação pelo eleitorado DAS UFs COM DADO. O denominador tem de ser o
-    // mesmo conjunto do numerador, senão a região parece mais atrasada do que
-    // está só porque uma UF sem cadastro de eleitorado entrou no de baixo.
-    const pesoTotal = comDado.reduce((s, l) => s + (l.eleitores ?? 0), 0);
-    const processado =
-      comDado.length === 0
-        ? 0
-        : pesoTotal > 0
-          ? comDado.reduce((s, l) => s + l.processado * (l.eleitores ?? 0), 0) / pesoTotal
-          : comDado.reduce((s, l) => s + l.processado, 0) / comDado.length;
 
     const somarCampo = (campo: 'brancos' | 'nulos' | 'abstencoes'): number | null =>
       comDado.reduce<number | null>(
@@ -271,6 +262,12 @@ export function agregarPorRegiao(
     }));
 
     const melhor = [...comPct].sort((a, b) => b.votosProjetados - a.votosProjetados)[0];
+
+    // O percentual apurado da região: o que já foi contado dividido pelo total
+    // da região. Soma sobre soma, sem peso nenhum — a divisão já pesa cada UF
+    // pelo tamanho do voto que ela tem.
+    const apuradoTotal = comPct.reduce((s, c) => s + c.votosApurados, 0);
+    const processado = projetadoTotal > 0 ? (apuradoTotal / projetadoTotal) * 100 : 0;
 
     return {
       regiao: reg.nome,
@@ -306,4 +303,281 @@ export function somarNaoValidos(linhas: readonly LinhaUf[]): {
   const soma = (campo: 'brancos' | 'nulos' | 'abstencoes'): number | null =>
     linhas.reduce<number | null>((acc, l) => (l[campo] == null ? acc : (acc ?? 0) + l[campo]), null);
   return { brancos: soma('brancos'), nulos: soma('nulos'), abstencoes: soma('abstencoes') };
+}
+
+/* ──────────────────── a leitura de cada linha da tabela ────────────────── */
+
+/**
+ * A margem COMO APURADA, e se o que falta ainda pode virar a linha.
+ *
+ * O ponto da função é que a tabela mostrava `pctProjetado` sob um cabeçalho
+ * que dizia "% Fulano". Projeção com rótulo de contagem é o erro clássico de
+ * noite de eleição impresso na célula: um estado com 20% apurado exibia
+ * "63,61%" com duas casas, tipograficamente idêntico a um com 95%, e quem lê
+ * entende "63,61% das urnas contadas disseram isso". Aqui a margem sai dos
+ * votos JÁ CONTADOS, e a projeção continua existindo em coluna que se chama
+ * projeção.
+ *
+ * `podeVirar` é um teste binário e exato, sem modelo nenhum: a vantagem atual
+ * em votos é menor que o total que ainda pode entrar naquela linha? Se for,
+ * aquele estado ainda pode mudar de lado; se não for, está decidido ali.
+ */
+export interface MargemDaLinha {
+  readonly lider: string | null;
+  readonly pontos: number;
+  readonly votos: number;
+  readonly restantes: number;
+  readonly podeVirar: boolean;
+}
+
+export function margemApurada(l: Pick<LinhaUf, 'porCandidato'>): MargemDaLinha {
+  const [a, b] = l.porCandidato;
+  if (!a || !b) return { lider: null, pontos: 0, votos: 0, restantes: 0, podeVirar: true };
+
+  const apurados = a.votosApurados + b.votosApurados;
+  const projetados = a.votosProjetados + b.votosProjetados;
+  const restantes = Math.max(0, projetados - apurados);
+  if (apurados <= 0) return { lider: null, pontos: 0, votos: 0, restantes, podeVirar: true };
+
+  const saldo = a.votosApurados - b.votosApurados;
+  return {
+    lider: saldo === 0 ? null : saldo > 0 ? a.candidato : b.candidato,
+    pontos: (saldo / apurados) * 100,
+    votos: saldo,
+    restantes,
+    podeVirar: Math.abs(saldo) <= restantes,
+  };
+}
+
+/** Percentual APURADO de um candidato na linha — contagem, não projeção. */
+export function pctApuradoNaLinha(
+  l: Pick<LinhaUf, 'porCandidato'>,
+  candidato: string,
+): number | null {
+  const total = l.porCandidato.reduce((s, c) => s + c.votosApurados, 0);
+  if (total <= 0) return null;
+  const c = l.porCandidato.find((x) => x.candidato === candidato);
+  return c ? (c.votosApurados / total) * 100 : null;
+}
+
+export type Ordenacao = 'eleitorado' | 'alfabetica' | 'mais-apurados' | 'menos-apurados' | 'margem';
+
+export const ORDENACOES: readonly { readonly valor: Ordenacao; readonly rotulo: string }[] = [
+  { valor: 'eleitorado', rotulo: 'Eleitorado' },
+  { valor: 'alfabetica', rotulo: 'Alfabética' },
+  { valor: 'menos-apurados', rotulo: 'Menos apurados' },
+  { valor: 'mais-apurados', rotulo: 'Mais apurados' },
+  { valor: 'margem', rotulo: 'Maior margem' },
+];
+
+/**
+ * Reordena sem mexer na ordem FIXA das colunas de candidato.
+ *
+ * "Menos apurados" existe porque responde sozinha a pergunta que a tabela não
+ * respondia de jeito nenhum — quais estados ainda não terminaram —, e que na
+ * ordem por eleitorado exige varrer 27 barrinhas de 4px.
+ */
+export function ordenarLinhas<T extends LinhaUf | LinhaRegiao>(
+  linhas: readonly T[],
+  ordem: Ordenacao,
+): readonly T[] {
+  const chave = (l: T): string => ('regiao' in l ? l.regiao : l.uf);
+  const copia = [...linhas];
+  switch (ordem) {
+    case 'alfabetica':
+      return copia.sort((a, b) => chave(a).localeCompare(chave(b), 'pt-BR'));
+    case 'mais-apurados':
+      return copia.sort((a, b) => b.processado - a.processado);
+    case 'menos-apurados':
+      return copia.sort((a, b) => a.processado - b.processado);
+    case 'margem':
+      return copia.sort(
+        (a, b) => Math.abs(margemApurada(b).pontos) - Math.abs(margemApurada(a).pontos),
+      );
+    case 'eleitorado':
+    default:
+      return copia.sort((a, b) => (b.eleitores ?? 0) - (a.eleitores ?? 0));
+  }
+}
+
+/* ──────────────────────────── exportação em CSV ────────────────────────── */
+
+/**
+ * O CSV da leitura.
+ *
+ * Duas regras de dialeto, as duas para o arquivo abrir certo no Excel em
+ * português do Brasil, que é onde ele vai ser aberto:
+ *
+ * - separador `;` e decimal com vírgula. Com decimal vírgula, separar por
+ *   vírgula faria cada número virar duas colunas;
+ * - **nenhum separador de milhar**. `formatarInt` usa `toLocaleString('pt-BR')`
+ *   e devolve `34.104.226`; numa célula de planilha isso é texto, ou pior, um
+ *   número errado. Aqui vai `34104226`.
+ *
+ * E uma regra que não é de dialeto, é de honestidade: a hora da leitura e o
+ * percentual apurado viajam DENTRO do arquivo, em toda linha. Um CSV de
+ * apuração sem isso é uma armadilha — daqui a uma hora ele está errado e nada
+ * no arquivo diz a partir de quando.
+ */
+export interface OpcoesCsv {
+  readonly linhas: readonly (LinhaUf | LinhaRegiao)[];
+  readonly candidatos: readonly [string, string];
+  readonly lidoEm: string | null;
+  readonly apuradoNacional: number;
+  readonly simulacao: boolean;
+  readonly recorte: 'estados' | 'regioes';
+}
+
+function campoCsv(valor: string): string {
+  return /[";\n\r]/.test(valor) ? `"${valor.replace(/"/g, '""')}"` : valor;
+}
+
+function inteiroCsv(n: number | null | undefined): string {
+  return n == null || !Number.isFinite(n) ? '' : String(Math.round(n));
+}
+
+function decimalCsv(n: number | null | undefined, casas = 2): string {
+  return n == null || !Number.isFinite(n) ? '' : n.toFixed(casas).replace('.', ',');
+}
+
+/** Chave da coluna de candidato, sem acento e sem espaço. */
+function chaveDe(nome: string): string {
+  return nome
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '_')
+    .replace(/^_|_$/g, '');
+}
+
+export function montarCsv(o: OpcoesCsv): string {
+  const [a, b] = o.candidatos;
+  const ka = chaveDe(a);
+  const kb = chaveDe(b);
+  const unidade = o.recorte === 'regioes' ? 'regiao' : 'uf';
+
+  const cabecalho = [
+    'lido_em_local',
+    'modo',
+    unidade,
+    'eleitores',
+    'secoes_apuradas_pct',
+    'finalizada',
+    'lider',
+    // O sinal é sempre em relação ao PRIMEIRO candidato: positivo é vantagem
+    // dele, negativo é do segundo. Uma coluna "margem" sem dono no nome
+    // obriga quem abre a planilha a adivinhar o referencial, e metade vai
+    // adivinhar errado.
+    `margem_pontos_${ka}_menos_${kb}`,
+    `margem_votos_${ka}_menos_${kb}`,
+    'ainda_pode_virar',
+    `pct_apurado_${ka}`,
+    `votos_apurados_${ka}`,
+    `votos_projetados_${ka}`,
+    `pct_apurado_${kb}`,
+    `votos_apurados_${kb}`,
+    `votos_projetados_${kb}`,
+    'validos_apurados',
+    'brancos',
+    'nulos',
+    'abstencoes',
+    'apurado_br_pct',
+    'lido_em_iso',
+  ];
+
+  // `toLocaleString('pt-BR')` devolve "25/10/2026, 14:07:09" — com vírgula, e
+  // a vírgula impede o Excel de reconhecer a célula como data e hora. Aqui o
+  // carimbo sai no formato que ele lê.
+  const hora = o.lidoEm ? new Date(o.lidoEm) : null;
+  const dois = (n: number): string => String(n).padStart(2, '0');
+  const local =
+    hora && !Number.isNaN(hora.getTime())
+      ? `${dois(hora.getDate())}/${dois(hora.getMonth() + 1)}/${hora.getFullYear()} ${dois(hora.getHours())}:${dois(hora.getMinutes())}:${dois(hora.getSeconds())}`
+      : '';
+  const iso = o.lidoEm ?? '';
+  const modo = o.simulacao ? 'SIMULACAO' : 'apuracao-tse';
+
+  const linhas = o.linhas.map((l) => {
+    const m = margemApurada(l);
+    const ca = l.porCandidato.find((c) => c.candidato === a);
+    const cb = l.porCandidato.find((c) => c.candidato === b);
+    const vazia = semDado(l);
+    return [
+      local,
+      modo,
+      'regiao' in l ? l.regiao : l.uf,
+      inteiroCsv(l.eleitores),
+      decimalCsv(l.processado, 1),
+      l.finalizada ? 'sim' : 'nao',
+      m.lider ?? '',
+      vazia ? '' : decimalCsv(m.pontos),
+      vazia ? '' : inteiroCsv(m.votos),
+      vazia ? '' : m.podeVirar ? 'sim' : 'nao',
+      decimalCsv(pctApuradoNaLinha(l, a)),
+      inteiroCsv(ca?.votosApurados),
+      inteiroCsv(ca?.votosProjetados),
+      decimalCsv(pctApuradoNaLinha(l, b)),
+      inteiroCsv(cb?.votosApurados),
+      inteiroCsv(cb?.votosProjetados),
+      inteiroCsv(l.validosApurados),
+      inteiroCsv(l.brancos),
+      inteiroCsv(l.nulos),
+      inteiroCsv(l.abstencoes),
+      decimalCsv(o.apuradoNacional, 1),
+      iso,
+    ];
+  });
+
+  // BOM: sem ele o Excel estraga "Abstenções" e "Inácio". CRLF por RFC 4180.
+  return (
+    '﻿' +
+    [cabecalho, ...linhas].map((campos) => campos.map(campoCsv).join(';')).join('\r\n') +
+    '\r\n'
+  );
+}
+
+/**
+ * O nome do arquivo carrega a hora E o percentual apurado.
+ *
+ * Com dois downloads na mesma pasta numa noite de apuração, é o que diz qual
+ * é o mais completo sem abrir os dois. E em simulação o nome começa por
+ * `SIMULACAO-`: a tarja de aviso da tela não viaja dentro do arquivo, o nome
+ * viaja — um CSV simulado solto numa redação é exatamente a armadilha.
+ */
+export function nomeDoArquivoCsv(o: {
+  readonly lidoEm: string | null;
+  readonly apuradoNacional: number;
+  readonly simulacao: boolean;
+  readonly recorte: 'estados' | 'regioes';
+  readonly turno: 1 | 2;
+}): string {
+  const d = o.lidoEm ? new Date(o.lidoEm) : new Date();
+  const base = Number.isNaN(d.getTime()) ? new Date() : d;
+  const dois = (n: number): string => String(n).padStart(2, '0');
+  const carimbo = `${base.getFullYear()}-${dois(base.getMonth() + 1)}-${dois(base.getDate())}-${dois(base.getHours())}${dois(base.getMinutes())}`;
+  const pct = `${o.apuradoNacional.toFixed(1).replace('.', '-')}pc`;
+  return `${o.simulacao ? 'SIMULACAO-' : ''}apuracao-presidente-${o.turno}t-${o.recorte}-${carimbo}-${pct}.csv`;
+}
+
+/**
+ * O nome curto para caber em cabeçalho de coluna e em rótulo de barra.
+ *
+ * Numa tela de 390px, "% Luiz Inácio Lula da Silva" quebra em quatro linhas e
+ * empurra o resto da tabela para fora. A regra é a do uso corrente: o nome
+ * pelo qual a pessoa é chamada, que em português é o primeiro nome — exceto
+ * quando há um apelido consagrado no meio do nome completo, e aí é ele.
+ *
+ * A lista de apelidos não é hard-code de uma eleição: ela só reconhece
+ * palavras que já estão DENTRO do nome recebido. Se o nome não traz nenhuma,
+ * cai no primeiro nome, que funciona para qualquer candidato.
+ */
+const APELIDOS_CONSAGRADOS = ['lula', 'ciro', 'dilma', 'tiririca', 'pelé'];
+
+export function nomeCurto(nome: string): string {
+  const partes = nome.trim().split(/\s+/);
+  if (partes.length === 0) return nome;
+  const semAcento = (t: string): string =>
+    t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  const apelido = partes.find((pt) => APELIDOS_CONSAGRADOS.includes(semAcento(pt)));
+  return apelido ?? partes[0] ?? nome;
 }

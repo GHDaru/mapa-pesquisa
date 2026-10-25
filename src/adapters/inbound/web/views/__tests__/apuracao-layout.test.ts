@@ -1,6 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import {
   agregarPorRegiao,
+  margemApurada,
+  montarCsv,
+  nomeCurto,
+  nomeDoArquivoCsv,
+  ordenarLinhas,
+  pctApuradoNaLinha,
   fracaoDaBarra,
   montarLinhas,
   notaDasFontes,
@@ -221,20 +227,37 @@ describe('apuracao-layout: regiões', () => {
     expect(sudeste.lider).toBe('A');
   });
 
-  it('o % apurado é ponderado pelo eleitorado, não a média das UFs', () => {
-    // RR a 100% com 300 mil eleitores e SP a 10% com 34 milhões: a média
-    // simples diria 55% apurado no conjunto, o que é falso por uma ordem de
-    // grandeza. Ponderado, fica rente aos 10% de São Paulo.
+  it('o % apurado é apurado sobre total da região — soma dividida por soma', () => {
+    // SP com 20 milhões de votos a 10% apurado e ES com 2 milhões a 100%:
+    // 2M + 2M contados de 22M = 18,2%. A média das porcentagens diria 55%,
+    // falso por três vezes. A divisão da soma pela soma já pesa cada UF pelo
+    // tamanho do voto dela — não precisa de ponderação nenhuma por fora.
     const regioes = agregarPorRegiao(
       [
-        linha('SP', { eleitores: 34_000_000, processado: 10, a: 100, b: 100 }),
-        linha('ES', { eleitores: 300_000, processado: 100, a: 100, b: 100 }),
+        linha('SP', { processado: 10, a: 10_000_000, b: 10_000_000 }),
+        linha('ES', { processado: 100, a: 1_000_000, b: 1_000_000 }),
       ],
       ['A', 'B'],
     );
     const sudeste = regioes.find((r) => r.regiao === 'Sudeste')!;
-    expect(sudeste.processado).toBeGreaterThan(10);
-    expect(sudeste.processado).toBeLessThan(11.5);
+    expect(sudeste.processado).toBeCloseTo(18.18, 1);
+  });
+
+  it('a projeção da região é a soma da projeção dos estados, exatamente', () => {
+    const linhas = [
+      linha('SP', { processado: 40, a: 9_000_000, b: 7_000_000 }),
+      linha('MG', { processado: 70, a: 4_000_000, b: 3_000_000 }),
+      linha('RJ', { processado: 55, a: 3_000_000, b: 4_000_000 }),
+      linha('ES', { processado: 90, a: 1_000_000, b: 900_000 }),
+    ];
+    const sudeste = agregarPorRegiao(linhas, ['A', 'B']).find((r) => r.regiao === 'Sudeste')!;
+    for (const nome of ['A', 'B'] as const) {
+      const soma = linhas.reduce(
+        (s, l) => s + l.porCandidato.find((c) => c.candidato === nome)!.votosProjetados,
+        0,
+      );
+      expect(sudeste.porCandidato.find((c) => c.candidato === nome)!.votosProjetados).toBe(soma);
+    }
   });
 
   it('UF sem nenhuma apuração não entra na soma, mas é nomeada', () => {
@@ -248,8 +271,8 @@ describe('apuracao-layout: regiões', () => {
     const sudeste = regioes.find((r) => r.regiao === 'Sudeste')!;
     expect(sudeste.ufsSemApuracao).toEqual(['RJ']);
     expect(sudeste.porCandidato.find((c) => c.candidato === 'A')!.votosProjetados).toBe(600);
-    // O RJ a 0% não pode puxar o processado da região para 25%.
-    expect(sudeste.processado).toBe(50);
+    // Só SP entra na soma, e SP está a 50%: 500 contados de 1.000 projetados.
+    expect(sudeste.processado).toBeCloseTo(50, 5);
   });
 
   it('região sem nenhum voto não ganha líder', () => {
@@ -312,5 +335,221 @@ describe('apuracao-layout: somarNaoValidos', () => {
       nulos: null,
       abstencoes: null,
     });
+  });
+});
+
+/* ───────────────── margem apurada, ordenação e exportação ──────────────── */
+
+describe('apuracao-layout: margemApurada', () => {
+  it('sai dos votos JÁ CONTADOS, não da projeção', () => {
+    // 20% apurado: contados 600 x 400 (60/40). Projetado 3.000 x 2.000.
+    // A margem tem de dizer 20 pontos a partir dos 1.000 contados.
+    const l = linha('SP', { processado: 20, a: 3000, b: 2000 });
+    const m = margemApurada(l);
+    expect(m.lider).toBe('A');
+    expect(m.votos).toBe(200);
+    expect(m.pontos).toBeCloseTo(20, 5);
+  });
+
+  it('"ainda pode virar" é o teste exato: vantagem menor que o que falta entrar', () => {
+    // Vantagem de 200 votos, faltam 4.000: pode virar.
+    expect(margemApurada(linha('SP', { processado: 20, a: 3000, b: 2000 })).podeVirar).toBe(true);
+    // Tudo contado: não falta nada, não vira.
+    expect(margemApurada(linha('SP', { processado: 100, a: 3000, b: 2000 })).podeVirar).toBe(false);
+  });
+
+  it('sem voto contado não há líder nem margem', () => {
+    const m = margemApurada(linha('SP', { processado: 0, a: 1000, b: 500 }));
+    expect(m.lider).toBeNull();
+    expect(m.pontos).toBe(0);
+    expect(m.podeVirar).toBe(true);
+  });
+
+  it('empate exato não nomeia líder', () => {
+    expect(margemApurada(linha('SP', { processado: 100, a: 500, b: 500 })).lider).toBeNull();
+  });
+});
+
+describe('apuracao-layout: pctApuradoNaLinha', () => {
+  it('divide pelos válidos APURADOS, não pelos projetados', () => {
+    const l = linha('SP', { processado: 50, a: 600, b: 400 });
+    expect(pctApuradoNaLinha(l, 'A')).toBeCloseTo(60, 5);
+    expect(pctApuradoNaLinha(l, 'B')).toBeCloseTo(40, 5);
+  });
+
+  it('devolve null sem voto contado — e não zero, que seria uma afirmação', () => {
+    expect(pctApuradoNaLinha(linha('SP', { processado: 0, a: 10, b: 10 }), 'A')).toBeNull();
+  });
+});
+
+describe('apuracao-layout: ordenarLinhas', () => {
+  const linhas = [
+    linha('SP', { eleitores: 34_000_000, processado: 20, a: 600, b: 400 }),
+    linha('RR', { eleitores: 350_000, processado: 100, a: 900, b: 100 }),
+    linha('BA', { eleitores: 11_000_000, processado: 60, a: 400, b: 600 }),
+  ];
+
+  it('não altera o arranjo recebido', () => {
+    const antes = linhas.map((l) => l.uf);
+    ordenarLinhas(linhas, 'alfabetica');
+    expect(linhas.map((l) => l.uf)).toEqual(antes);
+  });
+
+  it('ordena por eleitorado, alfabética e pelos dois sentidos de apuração', () => {
+    expect(ordenarLinhas(linhas, 'eleitorado').map((l) => l.uf)).toEqual(['SP', 'BA', 'RR']);
+    expect(ordenarLinhas(linhas, 'alfabetica').map((l) => l.uf)).toEqual(['BA', 'RR', 'SP']);
+    expect(ordenarLinhas(linhas, 'menos-apurados').map((l) => l.uf)).toEqual(['SP', 'BA', 'RR']);
+    expect(ordenarLinhas(linhas, 'mais-apurados').map((l) => l.uf)).toEqual(['RR', 'BA', 'SP']);
+  });
+
+  it('por margem usa o módulo: o maior é o mais desequilibrado, de qualquer lado', () => {
+    expect(ordenarLinhas(linhas, 'margem').map((l) => l.uf)).toEqual(['RR', 'SP', 'BA']);
+  });
+});
+
+describe('apuracao-layout: montarCsv', () => {
+  const base = {
+    linhas: [linha('SP', { eleitores: 34_104_226, processado: 63, a: 1000, b: 600, brancos: 50 })],
+    candidatos: ['A', 'B'] as [string, string],
+    lidoEm: '2026-10-25T21:49:12.000Z',
+    apuradoNacional: 37.25,
+    simulacao: false,
+    recorte: 'estados' as const,
+  };
+
+  it('abre com BOM e separa por ponto e vírgula, para o Excel pt-BR', () => {
+    const csv = montarCsv(base);
+    expect(csv.startsWith('﻿')).toBe(true);
+    expect(csv.split('\r\n')[0]!.split(';').length).toBeGreaterThan(20);
+  });
+
+  it('NÃO usa separador de milhar — é o que estraga o número na planilha', () => {
+    const csv = montarCsv(base);
+    expect(csv).toContain(';34104226;');
+    expect(csv).not.toContain('34.104.226');
+  });
+
+  it('usa vírgula como decimal', () => {
+    expect(montarCsv(base)).toContain(';63,0;');
+  });
+
+  it('a data e hora saem sem vírgula, senão o Excel não a lê como data', () => {
+    const csv = montarCsv(base);
+    const primeiroCampo = csv.trimEnd().split('\r\n')[1]!.split(';')[0]!;
+    expect(primeiroCampo).toMatch(/^\d{2}\/\d{2}\/\d{4} \d{2}:\d{2}:\d{2}$/);
+    expect(primeiroCampo).not.toContain(',');
+  });
+
+  it('a hora e o percentual apurado viajam DENTRO do arquivo, em toda linha', () => {
+    const csv = montarCsv(base);
+    const linhasCsv = csv.trimEnd().split('\r\n');
+    expect(linhasCsv[0]).toContain('lido_em_iso');
+    expect(linhasCsv[0]).toContain('margem_pontos_a_menos_b');
+    expect(linhasCsv[0]).toContain('apurado_br_pct');
+    for (const l of linhasCsv.slice(1)) {
+      expect(l).toContain('2026-10-25T21:49:12.000Z');
+      expect(l).toContain(';37,3;');
+    }
+  });
+
+  it('o modo simulação fica marcado em toda linha, não só na tela', () => {
+    const csv = montarCsv({ ...base, simulacao: true });
+    for (const l of csv.trimEnd().split('\r\n').slice(1)) expect(l).toContain(';SIMULACAO;');
+  });
+
+  it('os percentuais do CSV são os APURADOS, iguais aos da tela', () => {
+    // 63% de 1.600 projetados: 630 x 378 contados → 62,5% x 37,5%.
+    const csv = montarCsv(base);
+    const dados = csv.trimEnd().split('\r\n')[1]!.split(';');
+    const cab = csv.split('\r\n')[0]!.split(';');
+    expect(dados[cab.indexOf('pct_apurado_a')]).toBe('62,50');
+    expect(dados[cab.indexOf('pct_apurado_b')]).toBe('37,50');
+  });
+
+  it('escapa o ponto e vírgula que aparece DENTRO de um campo', () => {
+    // O nome do candidato chega ao arquivo pela coluna do líder. Sem aspas,
+    // um ponto e vírgula ali partiria a linha em duas colunas e desalinharia
+    // tudo o que vem depois.
+    const comPontoEVirgula: LinhaUf = {
+      uf: 'SP',
+      eleitores: 100,
+      processado: 100,
+      finalizada: true,
+      lider: 'Fulano; o segundo',
+      porCandidato: [
+        { candidato: 'Fulano; o segundo', pct: 0, votosApurados: 10, votosProjetados: 10 },
+        { candidato: 'Beltrano', pct: 0, votosApurados: 5, votosProjetados: 5 },
+      ],
+      brancos: null,
+      nulos: null,
+      abstencoes: null,
+      validosApurados: 15,
+    };
+    const csv = montarCsv({
+      ...base,
+      linhas: [comPontoEVirgula],
+      candidatos: ['Fulano; o segundo', 'Beltrano'],
+    });
+    expect(csv).toContain('"Fulano; o segundo"');
+    // E a linha continua com o mesmo número de colunas do cabeçalho.
+    const linhasCsv = csv.trimEnd().split('\r\n');
+    const colunas = (l: string): number => l.split(';').length;
+    expect(colunas(linhasCsv[1]!)).toBe(colunas(linhasCsv[0]!) + 1); // +1 do ; dentro das aspas
+    expect(linhasCsv[1]!.match(/"/g)).toHaveLength(2);
+  });
+
+  it('campo ausente sai vazio, nunca zero: zero é uma afirmação', () => {
+    const csv = montarCsv({ ...base, linhas: [linha('SP', { a: 10, b: 5 })] });
+    const cab = csv.split('\r\n')[0]!.split(';');
+    const dados = csv.trimEnd().split('\r\n')[1]!.split(';');
+    expect(dados[cab.indexOf('brancos')]).toBe('');
+  });
+
+  it('troca o nome da coluna de unidade conforme o recorte', () => {
+    expect(montarCsv(base).split(';')[2]).toBe('uf');
+    expect(montarCsv({ ...base, recorte: 'regioes' }).split(';')[2]).toBe('regiao');
+  });
+});
+
+describe('apuracao-layout: nomeDoArquivoCsv', () => {
+  it('carrega o percentual apurado, para dizer qual download é o mais completo', () => {
+    const nome = nomeDoArquivoCsv({
+      lidoEm: '2026-10-25T21:49:12.000Z',
+      apuradoNacional: 37.2,
+      simulacao: false,
+      recorte: 'estados',
+      turno: 2,
+    });
+    expect(nome).toContain('37-2pc');
+    expect(nome.endsWith('.csv')).toBe(true);
+  });
+
+  it('simulação é declarada no nome: a tarja da tela não viaja no arquivo', () => {
+    const nome = nomeDoArquivoCsv({
+      lidoEm: null,
+      apuradoNacional: 0,
+      simulacao: true,
+      recorte: 'regioes',
+      turno: 2,
+    });
+    expect(nome.startsWith('SIMULACAO-')).toBe(true);
+    expect(nome).toContain('regioes');
+  });
+});
+
+describe('apuracao-layout: nomeCurto', () => {
+  it('usa o apelido consagrado quando ele está dentro do nome', () => {
+    expect(nomeCurto('Luiz Inácio Lula da Silva')).toBe('Lula');
+  });
+
+  it('cai no primeiro nome para qualquer outro candidato', () => {
+    expect(nomeCurto('Flávio Bolsonaro')).toBe('Flávio');
+    expect(nomeCurto('Ratinho Júnior')).toBe('Ratinho');
+    expect(nomeCurto('Simone Tebet')).toBe('Simone');
+  });
+
+  it('não quebra com nome de uma palavra só nem com espaços sobrando', () => {
+    expect(nomeCurto('Tiririca')).toBe('Tiririca');
+    expect(nomeCurto('  Fernando  Haddad ')).toBe('Fernando');
   });
 });

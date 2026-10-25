@@ -1273,18 +1273,69 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
   dominant-baseline: middle; paint-order: stroke; stroke: var(--color-surface-1); stroke-width: 2.5px;
 }
 
+/* A tabela não vive dentro de um cartão: `.ps-apuracao-wrap > .ap-raiz` tira a
+   moldura de propósito, então o papel atrás dela é --color-canvas, e NÃO
+   --color-surface-1. A célula grudada tem de usar o mesmo papel, senão ela
+   aparece como uma faixa cinza solta em cima do fundo branco. */
+.ap-tabela-sec { --ap-papel: var(--color-canvas); }
+.ap-tabela-topo { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.75rem; }
+.ap-tabela-ctrl { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0.75rem; margin: 0.6rem 0 0; }
+.ap-ctrl { display: flex; flex-direction: column; gap: 0.2rem; }
+.ap-ctrl > span { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--color-text-muted); }
+.ap-select, .ap-btn-secundario, .ap-btn-csv {
+  font: inherit; font-size: 0.85rem; min-height: 40px; padding: 0 0.7rem; cursor: pointer;
+  color: var(--color-text); background: var(--color-surface-1);
+  border: 1px solid var(--color-border); border-radius: 8px;
+}
+.ap-btn-csv { font-weight: 600; background: var(--color-surface-2); }
+.ap-btn-csv-hora { color: var(--color-text-muted); font-weight: 400; }
+.ap-btn-secundario[aria-pressed="true"] { border-color: var(--color-text); font-weight: 600; }
+.ap-select:focus-visible, .ap-btn-secundario:focus-visible, .ap-btn-csv:focus-visible {
+  outline: 2px solid var(--color-text); outline-offset: 2px;
+}
+.ap-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
 .ap-tabela-wrap { overflow-x: auto; margin-top: 0.75rem; }
-.ap-tabela { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
-.ap-tabela th, .ap-tabela td { padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--color-border); text-align: left; white-space: nowrap; }
-.ap-tabela thead th { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-muted); font-weight: 600; }
+.ap-tabela { width: 100%; border-collapse: collapse; font-size: 0.8rem; background: var(--ap-papel); }
+.ap-tabela th, .ap-tabela td { padding: 0.35rem 0.6rem; border-bottom: 1px solid var(--color-border); text-align: left; white-space: nowrap; }
+.ap-tabela thead th { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text-muted); font-weight: 600; white-space: normal; }
+
+/* As colunas de conferência só aparecem quando alguém pede. Treze colunas
+   obrigavam a tabela a rolar de lado com um parágrafo pedindo desculpa — e o
+   leitor não descobre o que não vê. */
+.ap-tabela-sec[data-colunas="resumo"] .ap-extra { display: none; }
 /* `.ap-tabela td` tem especificidade (0,1,1) e vencia `.ap-num` (0,1,0): com
    isso TODO número da tabela ficava alinhado à esquerda, apesar da regra, e
    uma coluna de 27 valores virava uma parede irregular em que não dava para
    ver que um estado tem o dobro de votos do outro sem ler dígito a dígito. */
 .ap-tabela td.ap-num, .ap-tabela th.ap-num { text-align: right; font-variant-numeric: tabular-nums; }
-.ap-proc { min-width: 92px; }
-.ap-proc-barra { margin-top: 3px; height: 4px; border-radius: 999px; background: var(--color-surface-2); overflow: hidden; }
-.ap-proc-fill { height: 100%; background: var(--color-text-muted); }
+/* Número e barra LADO A LADO: empilhada, a barra de 4px lia como sublinhado
+   do número, e não como escala. O trilho tem contorno próprio para existir
+   mesmo a 0% — barra invisível e barra vazia dizem coisas diferentes. */
+.ap-proc { min-width: 118px; }
+.ap-proc-cel { display: flex; align-items: center; justify-content: flex-end; gap: 0.45rem; }
+.ap-proc-num { font-variant-numeric: tabular-nums; }
+.ap-proc-barra { display: block; flex: none; width: 54px; height: 7px; border-radius: 999px;
+  background: var(--color-surface-2); box-shadow: inset 0 0 0 1px var(--color-border); overflow: hidden; }
+.ap-proc-fill { display: block; height: 100%; background: var(--color-text-muted); }
+.ap-fim { display: block; font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-muted); }
+
+/* A vantagem sai do centro: lado fixo por candidato, nunca por quem lidera —
+   lado é um canal redundante e não cromático, então quem não distingue as
+   cores continua lendo a tabela. */
+.ap-vant { min-width: 150px; }
+.ap-vant-rotulo { display: block; font-weight: 600; font-variant-numeric: tabular-nums; font-size: 0.78rem; }
+.ap-vant-rotulo.is-vazio { color: var(--color-text-muted); font-weight: 400; }
+.ap-vant-box { position: relative; display: block; width: 130px; height: 9px; margin-top: 2px; }
+.ap-vant-eixo { position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; margin-left: -0.5px;
+  background: var(--color-text); opacity: 0.35; }
+.ap-vant-barra { position: absolute; top: 0; bottom: 0; width: calc(var(--mag, 0) * 50%); background: var(--cor); border-radius: 2px; }
+.ap-vant-box[data-lado="dir"] .ap-vant-barra { left: 50%; }
+.ap-vant-box[data-lado="esq"] .ap-vant-barra { right: 50%; }
+.ap-pode-virar { display: block; font-size: 0.66rem; color: var(--color-text-muted); }
+
+.ap-linha-nome { display: block; font-weight: 700; }
+.ap-linha-nota { display: block; font-size: 0.68rem; font-weight: 400; color: var(--color-text-muted); white-space: normal; max-width: 16ch; }
 
 .ap-fontes-det { margin-top: 0.6rem; font-size: 0.78rem; }
 .ap-fontes-lista { list-style: none; padding: 0; margin: 0.5rem 0 0; display: flex; flex-direction: column; gap: 0.3rem; }
@@ -1354,41 +1405,69 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
 .ap-fe-barra { margin-top: 0.3rem; width: 150px; max-width: 100%; height: 5px; border-radius: 999px; background: var(--color-surface-2); overflow: hidden; }
 .ap-fe-barra-fill { height: 100%; background: var(--color-text-muted); }
 
-/* --- tabela: UF fixa e sinal de que há mais à direita ------------------- */
-.ap-rolagem { font-style: normal; }
+/* --- tabela: unidade fixa à esquerda, cabeçalho fixo no topo ------------ */
 .ap-tabela-wrap { position: relative; }
-.ap-tabela th[scope="row"] { position: sticky; left: 0; background: var(--color-surface-1); z-index: 1; font-weight: 700; }
-.ap-tabela thead th:first-child { position: sticky; left: 0; background: var(--color-surface-1); z-index: 2; }
+.ap-tabela th[scope="row"] { position: sticky; left: 0; background: var(--ap-papel); z-index: 1; font-weight: 700;
+  border-left: 3px solid var(--cor-lider, var(--spectrum-indefinido)); }
+.ap-tabela thead th { position: sticky; top: 0; z-index: 2; background: var(--ap-papel);
+  box-shadow: 0 1px 0 var(--color-border); }
+.ap-tabela thead th:first-child { left: 0; z-index: 3; }
+.ap-tabela tbody tr:hover > * { background: var(--color-surface-2); }
 
-/* --- no celular a tabela vira um cartão por estado ---------------------- */
+/* O cabeçalho fixo não funciona dentro de um contêiner que rola de lado sem
+   altura — e é exatamente nesse modo que ele estaria grudado em nada. */
+.ap-tabela-sec[data-colunas="tudo"] .ap-tabela thead th { position: static; box-shadow: none; }
+.ap-tabela-sec[data-colunas="tudo"] .ap-tabela tbody th[scope="row"] { position: sticky; }
+
+/* --- celular: tabela de verdade no resumo, cartão só em "todos os números" */
 /*
-   Treze colunas em 390px seriam cinco telas de arrasto, e o leitor não
-   descobre o que não vê. Cada linha vira um cartão com rótulo ao lado do
-   valor — os `data-rotulo` que as células já carregam existem para isto.
+   O cartão por estado era pior do que a tabela que ele substituía: 27 cartões
+   de doze pares rótulo/valor davam mais de dez mil pixels de rolagem, e o
+   `display: block` ainda tirava a tabela da árvore de acessibilidade — some o
+   papel de tabela, somem as linhas contadas, some a relação do `scope`. No
+   resumo são cinco colunas, que cabem numa tela de 390px como tabela mesmo.
 */
 @media (max-width: 760px) {
-  .ap-rolagem { display: none; }
-  .ap-tabela-wrap { overflow-x: visible; }
-  .ap-tabela, .ap-tabela tbody, .ap-tabela tr, .ap-tabela td { display: block; width: auto; }
-  .ap-tabela thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-  .ap-tabela tr {
-    border: 1px solid var(--color-border); border-radius: 10px;
-    padding: 0.7rem 0.85rem; margin-bottom: 0.7rem; background: var(--color-surface-1);
+  .ap-tabela-sec[data-colunas="resumo"] .ap-tabela-wrap { overflow-x: visible; }
+  .ap-tabela-sec[data-colunas="resumo"] .ap-tabela { font-size: 0.74rem; }
+  .ap-tabela-sec[data-colunas="resumo"] .ap-tabela th,
+  .ap-tabela-sec[data-colunas="resumo"] .ap-tabela td { padding: 0.3rem 0.28rem; }
+  .ap-tabela-sec[data-colunas="resumo"] .ap-proc { min-width: 0; }
+  .ap-tabela-sec[data-colunas="resumo"] .ap-proc-barra { display: none; }
+  .ap-tabela-sec[data-colunas="resumo"] .ap-vant { min-width: 0; }
+  .ap-tabela-sec[data-colunas="resumo"] .ap-vant-box { width: 60px; }
+  .ap-tabela-sec[data-colunas="resumo"] .ap-linha-nota { max-width: 9ch; font-size: 0.62rem; }
+  /* Seis colunas somavam 390px numa tela de 358: o saldo ficava cortado fora
+     da borda, sem rolagem que o alcançasse. Ele volta em "todos os números". */
+  .ap-tabela-sec[data-colunas="resumo"] .ap-so-largo { display: none; }
+  .ap-btn-csv, .ap-btn-secundario, .ap-select { width: 100%; }
+  .ap-ctrl { flex: 1 1 100%; }
+
+  /* Em "todos os números" a linha vira cartão: aí são catorze colunas, e
+     catorze colunas em 390px não existem de jeito nenhum. */
+  .ap-tabela-sec[data-colunas="tudo"] .ap-tabela-wrap { overflow-x: visible; }
+  .ap-tabela-sec[data-colunas="tudo"] .ap-tabela,
+  .ap-tabela-sec[data-colunas="tudo"] .ap-tabela tbody,
+  .ap-tabela-sec[data-colunas="tudo"] .ap-tabela tr,
+  .ap-tabela-sec[data-colunas="tudo"] .ap-tabela td { display: block; width: auto; }
+  .ap-tabela-sec[data-colunas="tudo"] .ap-tabela thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .ap-tabela-sec[data-colunas="tudo"] .ap-tabela tr {
+    border: 1px solid var(--color-border); border-left: 3px solid var(--cor-lider, var(--spectrum-indefinido));
+    border-radius: 10px; padding: 0.7rem 0.85rem; margin-bottom: 0.7rem; background: var(--color-surface-1);
   }
-  .ap-tabela th[scope="row"] {
-    display: block; position: static; font-size: 1.05rem; font-weight: 700;
+  .ap-tabela-sec[data-colunas="tudo"] .ap-tabela th[scope="row"] {
+    display: block; position: static; border-left: 0; font-size: 1.05rem; font-weight: 700;
     padding: 0 0 0.45rem; border-bottom: 1px solid var(--color-border); margin-bottom: 0.45rem;
   }
-  .ap-tabela td {
+  .ap-tabela-sec[data-colunas="tudo"] .ap-tabela td {
     display: grid; grid-template-columns: 1fr auto; gap: 0.75rem;
     align-items: baseline; padding: 0.2rem 0; border: 0; white-space: normal; text-align: right;
   }
-  .ap-tabela td::before {
-    content: attr(data-rotulo); text-align: left; color: var(--color-text-muted);
-    font-size: 0.74rem; min-width: 0;
+  .ap-tabela-sec[data-colunas="tudo"] .ap-tabela td::before {
+    content: attr(data-rotulo); text-align: left; color: var(--color-text-muted); font-size: 0.74rem;
   }
-  .ap-tabela td.ap-proc { grid-template-columns: 1fr auto; }
-  .ap-tabela .ap-proc-barra { grid-column: 1 / -1; margin-top: 0.15rem; }
+  .ap-tabela-sec[data-colunas="tudo"] .ap-proc-cel,
+  .ap-tabela-sec[data-colunas="tudo"] .ap-vant-box { margin-left: auto; }
 }
 
 /* --- medidor do mapa: trilho visível, largura fixa, número ao lado ------ */
@@ -1399,9 +1478,6 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
 .ap-mapa-contorno-fraco { stroke-opacity: 0.25; }
 .ap-mapa-sigla-regiao { font-size: 7.4px; letter-spacing: 0.02em; }
 .ap-mapa-pct-regiao { font-size: 7px; }
-
-.ap-linha-nome { display: block; font-weight: 700; }
-.ap-linha-nota { display: block; font-size: 0.68rem; font-weight: 400; color: var(--color-text-muted); white-space: normal; max-width: 15ch; }
 
 .ap-mapa-pct { font-size: 5.2px; font-weight: 700; fill: var(--color-text); dominant-baseline: alphabetic;
   paint-order: stroke; stroke: var(--color-canvas); stroke-width: 1.6px; }
