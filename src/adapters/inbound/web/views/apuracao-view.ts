@@ -329,31 +329,74 @@ function criarCabecalho(
  */
 function criarBigNumbers(p: Projecao, partidos: readonly Partido[], estado: Estado): HTMLElement {
   const sec = criarEl('section', { className: 'ap-bignumbers' });
-  const ordenados = [...p.candidatos].sort((a, b) => b.votosApurados - a.votosApurados);
+  // Ordem FIXA dos finalistas, e não por quem está à frente: ordenar por voto
+  // faria os dois cartões trocarem de lugar no meio da noite, e um cartão que
+  // muda de posição é lido errado — é a mesma razão pela qual as colunas da
+  // tabela têm ordem fixa.
+  const ordenados = FINALISTAS.map((nome) => p.candidatos.find((c) => c.candidato === nome)).filter(
+    (c): c is (typeof p.candidatos)[number] => c != null,
+  );
+  // Quem recebe o destaque é o líder PROJETADO, o mesmo que o painel nomeia.
+  // Acender o cartão do líder na contagem enquanto o painel aponta o outro
+  // poria a tela dizendo duas coisas ao mesmo tempo — e é justamente quando
+  // os dois divergem que a projeção tem algo a dizer.
+  const liderProjetado =
+    [...p.candidatos].sort((a, b) => b.votosProjetados - a.votosProjetados)[0]?.candidato ?? null;
   const processado = p.coberturaNacionalEfetiva ?? p.secoesTotalizadasPonderada;
   const houveVoto = p.validosApurados > 0;
 
   /* ── linha 1: agora ── */
   const agora = criarEl('div', { className: 'ap-cartoes ap-cartoes-agora' });
-  for (const [i, c] of ordenados.entries()) {
+  for (const c of ordenados) {
     const espectro = resolverEspectro(c.partido, partidos);
-    const cartao = criarEl('div', { className: `ap-cartao${i === 0 && houveVoto ? ' is-lider' : ''}` });
+    const cartao = criarEl('div', {
+      className: `ap-cartao${houveVoto && c.candidato === liderProjetado ? ' is-lider' : ''}`,
+    });
     cartao.style.setProperty('--cor', tokenFillEspectro(espectro));
     cartao.append(criarEl('p', { className: 'ap-cartao-nome', texto: c.candidato }));
-    cartao.append(criarEl('p', { className: 'ap-cartao-pct', texto: formatarPct(c.pctApurado, 2) }));
-    cartao.append(
-      criarEl('p', { className: 'ap-cartao-votos', texto: `${formatarInt(c.votosApurados)} votos apurados` }),
+
+    // Os dois números do mesmo tamanho, lado a lado: o contado e o projetado.
+    //
+    // A projeção estava numa linha de rodapé do cartão, em corpo de nota, e
+    // isso a subdimensionava justamente no momento em que ela vale mais: com
+    // 30% apurado, o número que responde "quem ganha" é o projetado, não o
+    // contado — o contado ainda está sendo decidido pela ORDEM em que os
+    // estados totalizam. Mas elas são de naturezas diferentes, então o
+    // tamanho é igual e o TRATAMENTO não: a projeção fica tracejada e
+    // nomeada como estimativa, para nunca passar por contagem.
+    const par = criarEl('div', { className: 'ap-cartao-par' });
+
+    const ladoAgora = criarEl('div', { className: 'ap-cartao-lado' });
+    ladoAgora.append(criarEl('p', { className: 'ap-cartao-etiqueta', texto: 'Contado' }));
+    ladoAgora.append(criarEl('p', { className: 'ap-cartao-pct', texto: formatarPct(c.pctApurado, 2) }));
+    ladoAgora.append(
+      criarEl('p', { className: 'ap-cartao-votos', texto: `${formatarInt(c.votosApurados)} votos` }),
     );
-    cartao.append(
-      criarEl('p', {
-        className: 'ap-cartao-apurado',
-        texto: `Projeção: ${formatarPct(c.pctProjetado, 2)} · ${formatarInt(c.votosProjetados)} votos`,
-      }),
+    par.append(ladoAgora);
+
+    const ladoProj = criarEl('div', { className: 'ap-cartao-lado ap-cartao-lado-proj' });
+    ladoProj.append(criarEl('p', { className: 'ap-cartao-etiqueta', texto: 'Projeção' }));
+    ladoProj.append(
+      criarEl('p', { className: 'ap-cartao-pct', texto: formatarPct(c.pctProjetado, 2) }),
     );
+    ladoProj.append(
+      criarEl('p', { className: 'ap-cartao-votos', texto: `${formatarInt(c.votosProjetados)} votos` }),
+    );
+    par.append(ladoProj);
+    cartao.append(par);
+
+    // A barra traz os dois: o preenchido é o contado, e a marca é onde a
+    // projeção diz que ele vai parar.
     const barra = criarEl('div', { className: 'ap-cartao-barra' });
     const preenche = criarEl('div', { className: 'ap-cartao-barra-fill' });
     preenche.style.width = `${Math.max(0, Math.min(100, c.pctApurado))}%`;
     barra.append(preenche);
+    if (houveVoto) {
+      const marca = criarEl('i', { className: 'ap-cartao-barra-marca' });
+      marca.style.left = `${Math.max(0, Math.min(100, c.pctProjetado))}%`;
+      marca.title = `Projeção: ${formatarPct(c.pctProjetado, 2)}`;
+      barra.append(marca);
+    }
     cartao.append(barra);
     agora.append(cartao);
   }
@@ -400,25 +443,13 @@ function criarBigNumbers(p: Projecao, partidos: readonly Partido[], estado: Esta
   agora.append(cartaoHora);
   sec.append(agora);
 
+  /* ── o painel da projeção ── */
+  sec.append(criarPainelProjecao(p, partidos, processado));
+
   /* ── tira discreta: vantagem e o que não é voto em candidato ── */
-  const v = vantagemEntreOsDois([...p.candidatos].sort((a, b) => b.votosProjetados - a.votosProjetados));
   const totais = somarNaoValidos(montarLinhas(p.porUf, FINALISTAS));
   const tira = criarEl('div', { className: 'ap-tira' });
 
-  // Com zero voto contado não existe líder, e a ordenação por votos devolve
-  // um empate em 0 como se fosse vantagem. Dizer "fulano à frente por 0
-  // votos" é nomear uma liderança que ninguém mediu.
-  if (v && v.votos > 0) {
-    const item = criarEl('span', { className: 'ap-tira-item ap-tira-vantagem' });
-    item.append(criarEl('span', { className: 'ap-tira-rotulo', texto: 'Vantagem projetada' }));
-    item.append(
-      criarEl('span', {
-        className: 'ap-tira-valor',
-        texto: `${formatarInt(v.votos)} votos · ${formatarPct(v.pontos, 2)} · ${v.lider}`,
-      }),
-    );
-    tira.append(item);
-  }
   for (const [rotulo, valor] of [
     ['Brancos', totais.brancos],
     ['Nulos', totais.nulos],
@@ -441,18 +472,120 @@ function criarBigNumbers(p: Projecao, partidos: readonly Partido[], estado: Esta
     tira.append(item);
   }
   sec.append(tira);
+  return sec;
+}
 
-  sec.append(
+/**
+ * O painel da projeção: o número que o resto da internet não dá.
+ *
+ * Durante a apuração, o percentual contado responde "o que já entrou" — e
+ * quem o lê como "quem ganha" cai na armadilha clássica, porque ele é
+ * enviesado pela ORDEM em que os estados totalizam. Quem responde "quem
+ * ganha" é a projeção, e ela estava escondida numa linha de rodapé.
+ *
+ * O painel existe para ela ter peso de manchete sem virar uma. Daí ele
+ * sempre carregar, no mesmo bloco e sem precisar de clique: quanto foi
+ * apurado, quantos estados estão de fora, e se o resultado já está
+ * matematicamente definido — que é a única frase aqui que não é estimativa.
+ */
+function criarPainelProjecao(
+  p: Projecao,
+  partidos: readonly Partido[],
+  processado: number,
+): HTMLElement {
+  const painel = criarEl('section', {
+    className: 'ap-proj',
+    attrs: { 'aria-label': 'Projeção do resultado' },
+  });
+
+  const ordenados = [...p.candidatos].sort((a, b) => b.votosProjetados - a.votosProjetados);
+  const v = vantagemEntreOsDois(ordenados);
+  const definido = p.margem?.matematicamenteDefinido === true;
+
+  const topo = criarEl('div', { className: 'ap-proj-topo' });
+  topo.append(
+    criarEl('h2', {
+      className: 'ap-proj-titulo',
+      texto: definido ? 'Resultado matematicamente definido' : 'Projeção do resultado final',
+    }),
+  );
+  topo.append(
+    criarEl('span', {
+      className: 'ap-proj-selo',
+      texto: definido ? 'não é mais estimativa' : 'estimativa, não contagem',
+    }),
+  );
+  painel.append(topo);
+
+  // Sem voto contado não há projeção: a tela diz isso em vez de desenhar um
+  // empate em zero, que pareceria uma medida e não é nenhuma.
+  if (!v || v.votos <= 0 || p.validosApurados <= 0) {
+    painel.append(
+      criarEl('p', {
+        className: 'ap-proj-vazio',
+        texto:
+          'A projeção aparece aqui assim que a primeira seção for totalizada. Antes disso não há o que projetar — e inventar um número para preencher o espaço seria pior do que deixá-lo vazio.',
+      }),
+    );
+    return painel;
+  }
+
+  const corDoLider = tokenFillEspectro(
+    resolverEspectro(ordenados.find((c) => c.candidato === v.lider)?.partido ?? null, partidos),
+  );
+
+  const manchete = criarEl('p', { className: 'ap-proj-manchete' });
+  manchete.style.setProperty('--cor', corDoLider);
+  manchete.append(criarEl('strong', { className: 'ap-proj-lider', texto: v.lider }));
+  manchete.append(
+    criarEl('span', {
+      className: 'ap-proj-vantagem',
+      texto: definido
+        ? ` vence por ${formatarInt(v.votos)} votos (${formatarPct(v.pontos, 2)})`
+        : ` à frente por ${formatarInt(v.votos)} votos (${formatarPct(v.pontos, 2)})`,
+    }),
+  );
+  painel.append(manchete);
+
+  // A barra de 50%: num 2º turno é a linha que decide, e vê-la é mais rápido
+  // do que comparar dois percentuais.
+  const duelo = criarEl('div', { className: 'ap-proj-duelo' });
+  for (const [i, c] of ordenados.slice(0, 2).entries()) {
+    const faixa = criarEl('div', { className: `ap-proj-faixa${i === 0 ? ' is-lider' : ''}` });
+    faixa.style.setProperty(
+      '--cor',
+      tokenFillEspectro(resolverEspectro(c.partido, partidos)),
+    );
+    faixa.style.setProperty('--pct', String(Math.max(0, Math.min(100, c.pctProjetado))));
+    faixa.append(criarEl('span', { className: 'ap-proj-faixa-nome', texto: nomeCurto(c.candidato) }));
+    const trilho = criarEl('span', { className: 'ap-proj-faixa-trilho' });
+    trilho.append(criarEl('i', { className: 'ap-proj-faixa-fill' }));
+    faixa.append(trilho);
+    faixa.append(
+      criarEl('span', { className: 'ap-proj-faixa-pct', texto: formatarPct(c.pctProjetado, 2) }),
+    );
+    duelo.append(faixa);
+  }
+  painel.append(duelo);
+
+  painel.append(
     criarEl('p', {
-      className: 'ap-meta',
+      className: 'ap-proj-nota',
       texto: notaDoEstagio({
         processadoNacional: processado,
         ufsSemApuracao: p.ufsSemApuracao,
-        definido: p.margem?.matematicamenteDefinido === true,
+        definido,
       }),
     }),
   );
-  return sec;
+  painel.append(
+    criarEl('p', {
+      className: 'ap-proj-metodo',
+      texto:
+        'A projeção é montada estado a estado — cada UF é escalada pelo que falta nela e só depois as UFs são somadas. É o contrário de extrapolar o percentual nacional, que durante o parcial diz mais sobre a ordem em que os estados totalizam do que sobre o voto.',
+    }),
+  );
+  return painel;
 }
 
 /* ─────────────────────── mapa preenchido por progresso ─────────────────── */
