@@ -1305,10 +1305,10 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
 .ap-hachura-fundo { fill: var(--color-canvas); }
 .ap-hachura-risco { stroke: var(--color-text-muted); stroke-width: 2.1; opacity: 0.85; }
 .ap-mapa-vazio, .ap-mapa-cheio { stroke: none; }
-.ap-mapa-contorno { fill: none; stroke: var(--color-surface-1); stroke-width: 0.8; }
-.ap-mapa-frente { stroke: var(--color-text); stroke-width: 0.9; opacity: 0.55; }
-.ap-mapa-trilho { fill: var(--color-canvas); stroke: var(--color-text-muted); stroke-width: 0.4; opacity: 0.95; }
-.ap-mapa-nivel { fill: var(--color-text); opacity: 0.85; }
+.ap-mapa-contorno { fill: none; stroke: var(--color-text); stroke-opacity: 0.45; stroke-width: 0.9; stroke-linejoin: round; pointer-events: none; }
+.ap-mapa-frente { stroke: var(--color-text); stroke-width: 1.1; opacity: 0.7; stroke-dasharray: 2 1.6; }
+.ap-mapa-trilho { fill: var(--color-canvas); stroke: var(--color-text); stroke-opacity: 0.5; stroke-width: 0.35; }
+.ap-mapa-nivel { opacity: 1; }
 
 .ap-legenda { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 0.6rem; font-size: 0.76rem; color: var(--color-text-muted); }
 .ap-legenda-item { display: inline-flex; align-items: center; gap: 0.35rem; }

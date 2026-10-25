@@ -274,7 +274,11 @@ function criarBigNumbers(p: Projecao, partidos: readonly Partido[]): HTMLElement
   // 95% apurado não dizem a mesma coisa — e virara nota de rodapé. Condição de
   // leitura tem de ter o peso de dado, ao lado do dado que ela qualifica.
   const faixa = criarEl('div', { className: 'ap-faixa-estado' });
-  if (v) {
+  // Com zero voto contado não existe líder, e a ordenação por votos devolve
+  // um empate em 0 como se fosse vantagem. Dizer "fulano à frente por 0
+  // votos" é nomear uma liderança que ninguém mediu — o mesmo erro que o
+  // mapa evita deixando as UFs cinza.
+  if (v && v.votos > 0) {
     const bloco = criarEl('div', { className: 'ap-fe-item' });
     bloco.append(criarEl('span', { className: 'ap-fe-rotulo', texto: 'Vantagem' }));
     bloco.append(
@@ -335,6 +339,44 @@ function criarMapaProgresso(p: Projecao, partidos: readonly Partido[]): HTMLElem
   svg.setAttribute('aria-label', 'Mapa da apuração por estado');
 
   const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+
+  /**
+   * Hachura POR UF, tingida na cor de quem lidera ali.
+   *
+   * Uma hachura única e neutra para o mapa inteiro virava um lençol contínuo:
+   * os riscos atravessavam fronteiras, o estado deixava de ter forma própria e
+   * o vermelho da Bahia encostava no do Piauí sem fronteira visível — não dava
+   * para dizer de quem era aquela cor. Tingida, a parte que falta continua
+   * pertencendo ao líder daquele estado; com a origem deslocada por UF, os
+   * riscos deixam de se alinhar de um estado para o outro.
+   */
+  function hachuraDe(uf: string, cor: string, i: number): string {
+    const id = `ap-hach-${uf}`;
+    const pat = document.createElementNS('http://www.w3.org/2000/svg', 'pattern');
+    pat.setAttribute('id', id);
+    pat.setAttribute('width', '5');
+    pat.setAttribute('height', '5');
+    pat.setAttribute('patternUnits', 'userSpaceOnUse');
+    pat.setAttribute('patternTransform', `rotate(45) translate(${(i % 5) * 1.1} 0)`);
+    const g = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    g.setAttribute('width', '5');
+    g.setAttribute('height', '5');
+    g.setAttribute('fill', cor);
+    g.setAttribute('fill-opacity', '0.14');
+    pat.append(g);
+    const l = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    l.setAttribute('x1', '0');
+    l.setAttribute('y1', '0');
+    l.setAttribute('x2', '0');
+    l.setAttribute('y2', '5');
+    l.setAttribute('stroke', cor);
+    l.setAttribute('stroke-opacity', '0.5');
+    l.setAttribute('stroke-width', '2');
+    pat.append(l);
+    defs.append(pat);
+    return id;
+  }
+
   // Hachura única para "ainda não contado".
   //
   // O primeiro desenho pintava o que falta com um TOM CLARO DA MESMA COR do
@@ -365,7 +407,7 @@ function criarMapaProgresso(p: Projecao, partidos: readonly Partido[]): HTMLElem
   defs.append(hachura);
   svg.append(defs);
 
-  for (const loc of mapaBrasil.locations) {
+  for (const [indice, loc] of mapaBrasil.locations.entries()) {
     const uf = loc.id.toUpperCase();
     const u = porUf.get(uf);
     const bbox = bboxPath(loc.path);
@@ -378,6 +420,10 @@ function criarMapaProgresso(p: Projecao, partidos: readonly Partido[]): HTMLElem
       path.style.fill = 'var(--spectrum-indefinido)';
       path.setAttribute('aria-label', `${nomePorUf.get(uf) ?? uf}: nenhuma seção apurada.`);
       grupo.append(path);
+      const borda = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      borda.setAttribute('d', loc.path);
+      borda.setAttribute('class', 'ap-mapa-contorno');
+      grupo.append(borda);
     } else {
       const espectro = resolverEspectro(
         u.candidatos.find((c) => c.candidato === u.lider)?.partido ?? null,
@@ -389,10 +435,11 @@ function criarMapaProgresso(p: Projecao, partidos: readonly Partido[]): HTMLElem
       const idClip = `ap-clip-${uf}`;
 
       // A parte NÃO contada, por baixo: hachura neutra no estado inteiro.
+      const idHach = hachuraDe(uf, cor, indice);
       const base = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       base.setAttribute('d', loc.path);
       base.setAttribute('class', 'ap-mapa-uf ap-mapa-vazio');
-      base.setAttribute('fill', 'url(#ap-hachura)');
+      base.setAttribute('fill', `url(#${idHach})`);
       grupo.append(base);
 
       // A parte contada, por cima, recortada até onde a apuração chegou.
@@ -458,6 +505,9 @@ function criarMapaProgresso(p: Projecao, partidos: readonly Partido[]): HTMLElem
     // Encodar progresso só no preenchimento do polígono não bastou — a forma
     // do estado atrapalha a leitura. Uma barra reta não tem esse problema.
     if (u && !semDado({ processado: u.secoesTotalizadas })) {
+      const corDoLider = tokenFillEspectro(
+        resolverEspectro(u.candidatos.find((c) => c.candidato === u.lider)?.partido ?? null, partidos),
+      );
       const larg = Math.min(20, Math.max(11, (bbox.maxX - bbox.minX) * 0.55));
       const trilho = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
       trilho.setAttribute('x', String(cx - larg / 2));
@@ -475,6 +525,7 @@ function criarMapaProgresso(p: Projecao, partidos: readonly Partido[]): HTMLElem
       nivel.setAttribute('height', '3.6');
       nivel.setAttribute('rx', '1.8');
       nivel.setAttribute('class', 'ap-mapa-nivel');
+      nivel.style.fill = corDoLider;
       nivel.setAttribute('aria-hidden', 'true');
       grupo.append(nivel);
     }
