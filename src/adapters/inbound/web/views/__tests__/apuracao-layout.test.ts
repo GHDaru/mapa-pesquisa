@@ -3,6 +3,7 @@ import {
   agregarPorRegiao,
   margemApurada,
   montarCsv,
+  montarDicaDaUf,
   nomeCurto,
   nomeDoArquivoCsv,
   ordenarLinhas,
@@ -599,5 +600,70 @@ describe('apuracao-layout: horaCurta', () => {
   it('não quebra com valor ausente ou inválido', () => {
     expect(horaCurta(null)).toBe('—');
     expect(horaCurta('não é data')).toBe('—');
+  });
+});
+
+describe('apuracao-layout: montarDicaDaUf', () => {
+  const ORDEM: readonly [string, string] = ['A', 'B'];
+
+  it('mostra os percentuais do MOMENTO, não os projetados', () => {
+    // 50% apurado: contados 300 x 200, dos projetados 600 x 400.
+    const dica = montarDicaDaUf({
+      nome: 'São Paulo',
+      linha: linha('SP', { processado: 50, a: 600, b: 400 }),
+      ordem: ORDEM,
+      regiao: null,
+    });
+    expect(dica.titulo).toBe('São Paulo');
+    expect(dica.processado).toBe('50,0% computado');
+    expect(dica.candidatos.map((c) => `${c.nome} ${c.pct}`)).toEqual(['A 60,0%', 'B 40,0%']);
+    expect(dica.candidatos.map((c) => c.votos)).toEqual(['300', '200']);
+  });
+
+  it('mantém a ordem fixa dos candidatos, mesmo quando o segundo lidera', () => {
+    const dica = montarDicaDaUf({
+      nome: 'Bahia',
+      linha: linha('BA', { processado: 100, a: 100, b: 900 }),
+      ordem: ORDEM,
+      regiao: null,
+    });
+    expect(dica.candidatos.map((c) => c.nome)).toEqual(['A', 'B']);
+  });
+
+  it('estado sem seção não recebe percentual nenhum — nem zero', () => {
+    const dica = montarDicaDaUf({
+      nome: 'Roraima',
+      linha: linha('RR', { processado: 0, a: 10, b: 10 }),
+      ordem: ORDEM,
+      regiao: null,
+    });
+    expect(dica.processado).toBe('nenhuma seção apurada');
+    expect(dica.candidatos).toEqual([]);
+  });
+
+  it('estado que ainda não apareceu na leitura também não inventa número', () => {
+    const dica = montarDicaDaUf({ nome: 'Acre', linha: null, ordem: ORDEM, regiao: null });
+    expect(dica.candidatos).toEqual([]);
+  });
+
+  it('diz quando a apuração do estado encerrou', () => {
+    const dica = montarDicaDaUf({
+      nome: 'Sergipe',
+      linha: linha('SE', { processado: 100, a: 10, b: 5, finalizada: true }),
+      ordem: ORDEM,
+      regiao: null,
+    });
+    expect(dica.processado).toContain('apuração encerrada');
+  });
+
+  it('no recorte por região, traz o estado E o bloco a que ele pertence', () => {
+    const dica = montarDicaDaUf({
+      nome: 'São Paulo',
+      linha: linha('SP', { processado: 50, a: 600, b: 400 }),
+      ordem: ORDEM,
+      regiao: { nome: 'Sudeste', processado: 44.9, lider: 'A' },
+    });
+    expect(dica.candidatos).toHaveLength(2);
+    expect(dica.nota).toBe('Região Sudeste: 44,9% apurado, A à frente.');
   });
 });

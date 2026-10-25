@@ -48,6 +48,7 @@ import {
   formatarInt,
   formatarPct,
   horaCurta,
+  montarDicaDaUf,
   montarLinhas,
   notaDasFontes,
   notaDoEstagio,
@@ -756,6 +757,74 @@ function criarMapaProgresso(
   }
   sec.append(sel);
 
+  // A dica do mapa. Uma só, reaproveitada por todos os estados: 27 elementos
+  // escondidos seriam 27 nós a manter em sincronia com o dado a cada leitura.
+  const dica = criarEl('div', {
+    className: 'ap-dica',
+    attrs: { role: 'tooltip', id: 'ap-dica' },
+  });
+  dica.hidden = true;
+
+  const linhasPorUf = new Map(montarLinhas(p.porUf, FINALISTAS).map((l) => [l.uf, l]));
+
+  function preencherDica(uf: string): void {
+    const regiaoDoEstado = porRegiao ? regiaoDaUf(uf) : null;
+    const r = regiaoDoEstado ? regiaoPorNome.get(regiaoDoEstado) : undefined;
+    const conteudo = montarDicaDaUf({
+      nome: nomePorUf.get(uf) ?? uf,
+      linha: linhasPorUf.get(uf) ?? null,
+      ordem: FINALISTAS,
+      regiao:
+        r && regiaoDoEstado
+          ? { nome: regiaoDoEstado, processado: r.processado, lider: r.lider }
+          : null,
+    });
+
+    dica.textContent = '';
+    dica.append(criarEl('strong', { className: 'ap-dica-titulo', texto: conteudo.titulo }));
+    for (const c of conteudo.candidatos) {
+      const linhaC = criarEl('span', { className: 'ap-dica-linha' });
+      linhaC.style.setProperty('--cor', corDoCandidatoNoMapa(c.nome));
+      linhaC.append(criarEl('span', { className: 'ap-dica-nome', texto: c.nome }));
+      linhaC.append(criarEl('span', { className: 'ap-dica-pct', texto: c.pct }));
+      linhaC.append(criarEl('span', { className: 'ap-dica-votos', texto: `${c.votos} votos` }));
+      dica.append(linhaC);
+    }
+    dica.append(criarEl('span', { className: 'ap-dica-proc', texto: conteudo.processado }));
+    if (conteudo.nota) dica.append(criarEl('span', { className: 'ap-dica-nota', texto: conteudo.nota }));
+  }
+
+  /** A cor de cada finalista pelo nome curto, para a dica casar com o mapa. */
+  function corDoCandidatoNoMapa(nomeCurtoDoCandidato: string): string {
+    const inteiro = FINALISTAS.find((n) => nomeCurto(n) === nomeCurtoDoCandidato);
+    const partido = inteiro
+      ? p.porUf.flatMap((u) => u.candidatos).find((c) => c.candidato === inteiro)?.partido ?? null
+      : null;
+    return tokenFillEspectro(resolverEspectro(partido, partidos));
+  }
+
+  function posicionarDica(x: number, y: number): void {
+    const margem = 14;
+    const largura = dica.offsetWidth || 190;
+    const altura = dica.offsetHeight || 96;
+    let left = x + margem;
+    if (left + largura > window.innerWidth) left = x - margem - largura;
+    let top = y + margem;
+    if (top + altura > window.innerHeight) top = y - margem - altura;
+    dica.style.left = `${Math.max(0, Math.min(left, window.innerWidth - largura))}px`;
+    dica.style.top = `${Math.max(0, Math.min(top, window.innerHeight - altura))}px`;
+  }
+
+  function mostrarDica(uf: string, x: number, y: number): void {
+    preencherDica(uf);
+    dica.hidden = false;
+    posicionarDica(x, y);
+  }
+
+  function esconderDica(): void {
+    dica.hidden = true;
+  }
+
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.setAttribute('viewBox', mapaBrasil.viewBox);
   svg.setAttribute('class', 'ap-mapa-svg');
@@ -949,6 +1018,26 @@ function criarMapaProgresso(
       });
     }
 
+    // Mouse, teclado e toque. O `aria-label` do grupo já descreve o estado
+    // para leitor de tela, então a dica é reforço visual e fica `aria-hidden`
+    // pelo CSS do papel `tooltip` ligado por `aria-describedby`.
+    grupo.setAttribute('tabindex', '0');
+    grupo.setAttribute('aria-describedby', 'ap-dica');
+    grupo.addEventListener('pointerenter', (e) => {
+      const ev = e as PointerEvent;
+      mostrarDica(uf, ev.clientX, ev.clientY);
+    });
+    grupo.addEventListener('pointermove', (e) => {
+      const ev = e as PointerEvent;
+      if (!dica.hidden) posicionarDica(ev.clientX, ev.clientY);
+    });
+    grupo.addEventListener('pointerleave', esconderDica);
+    grupo.addEventListener('focus', () => {
+      const r = grupo.getBoundingClientRect();
+      mostrarDica(uf, r.left + r.width / 2, r.top + r.height / 2);
+    });
+    grupo.addEventListener('blur', esconderDica);
+
     svg.append(grupo);
   }
 
@@ -993,7 +1082,11 @@ function criarMapaProgresso(
   }
 
   const wrap = criarEl('div', { className: 'ap-mapa-wrap' });
+  wrap.append(dica);
   wrap.append(svg);
+  // Sair do mapa inteiro fecha a dica: no celular, um toque fora é o único
+  // jeito de fechá-la, já que não existe "sair com o mouse".
+  wrap.addEventListener('pointerleave', esconderDica);
   sec.append(wrap);
   sec.append(criarLegendaDoMapa());
   return sec;

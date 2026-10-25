@@ -599,3 +599,65 @@ export function nomeCurto(nome: string): string {
   const apelido = partes.find((pt) => APELIDOS_CONSAGRADOS.includes(semAcento(pt)));
   return apelido ?? partes[0] ?? nome;
 }
+
+/* ───────────────────── o que o mouse mostra num estado ─────────────────── */
+
+/**
+ * O conteúdo da dica que aparece ao passar o mouse num estado.
+ *
+ * Tudo aqui é do MOMENTO: percentual sobre os votos já contados, e não sobre
+ * a projeção. É o que a pergunta "como está esse estado agora" quer dizer, e
+ * é o único número do estado que não depende de premissa nenhuma.
+ *
+ * Estado sem seção apurada não ganha percentual — nem zero, que seria uma
+ * afirmação sobre o voto de lá. Ele diz que não começou, e pronto.
+ */
+export interface DicaDaUf {
+  readonly titulo: string;
+  readonly processado: string;
+  readonly candidatos: readonly { readonly nome: string; readonly pct: string; readonly votos: string }[];
+  readonly nota: string | null;
+}
+
+export function montarDicaDaUf(opcoes: {
+  readonly nome: string;
+  readonly linha: LinhaUf | null;
+  readonly ordem: readonly [string, string];
+  /** Região do estado, quando o mapa está no recorte por região. */
+  readonly regiao: { readonly nome: string; readonly processado: number; readonly lider: string | null } | null;
+}): DicaDaUf {
+  const { linha, regiao } = opcoes;
+
+  if (linha == null || semDado(linha)) {
+    return {
+      titulo: opcoes.nome,
+      processado: 'nenhuma seção apurada',
+      candidatos: [],
+      nota:
+        regiao == null
+          ? null
+          : `Região ${regiao.nome}: ${formatarPct(regiao.processado)} apurado${
+              regiao.lider ? `, ${nomeCurto(regiao.lider)} à frente` : ''
+            }.`,
+    };
+  }
+
+  return {
+    titulo: opcoes.nome,
+    processado: `${formatarPct(linha.processado)} computado${linha.finalizada ? ' · apuração encerrada' : ''}`,
+    candidatos: opcoes.ordem.map((nome) => {
+      const c = linha.porCandidato.find((x) => x.candidato === nome);
+      return {
+        nome: nomeCurto(nome),
+        pct: formatarPct(pctApuradoNaLinha(linha, nome), 1),
+        votos: formatarInt(c?.votosApurados),
+      };
+    }),
+    nota:
+      regiao == null
+        ? null
+        : `Região ${regiao.nome}: ${formatarPct(regiao.processado)} apurado${
+            regiao.lider ? `, ${nomeCurto(regiao.lider)} à frente` : ''
+          }.`,
+  };
+}

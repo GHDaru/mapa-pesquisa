@@ -1403,6 +1403,42 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
 .ap-ext-meta { margin: 0; font-size: 0.68rem; color: var(--color-text-muted); font-variant-numeric: tabular-nums; }
 .ap-ext-votos { margin: 0.15rem 0 0; font-size: 0.7rem; font-variant-numeric: tabular-nums; }
 
+/* ═══ a dica do mapa ════════════════════════════════════════════════════
+   `fixed` e com coordenadas de viewport, nunca `absolute` dentro do wrapper:
+   o SVG do mapa é mais alto que muitas janelas, e posicionar em relação a ele
+   jogaria a dica para fora da tela nos estados de baixo. */
+.ap-dica[hidden] { display: none; }
+.ap-dica {
+  position: fixed; z-index: 20; max-width: 230px; pointer-events: none;
+  display: flex; flex-direction: column; gap: 0.15rem;
+  padding: 0.55rem 0.7rem; border-radius: 10px;
+  background: var(--color-surface-1); border: 1px solid var(--color-border);
+  box-shadow: 0 6px 22px rgb(0 0 0 / 0.18);
+  font-size: 0.8rem;
+}
+.ap-dica-titulo { font-size: 0.86rem; font-weight: 700; }
+.ap-dica-linha { display: grid; grid-template-columns: 1fr auto; gap: 0.2rem 0.5rem; align-items: baseline; }
+.ap-dica-nome { color: var(--cor); font-weight: 650; }
+.ap-dica-pct { font-weight: 700; font-variant-numeric: tabular-nums; }
+.ap-dica-votos {
+  grid-column: 1 / -1; font-size: 0.7rem; color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.ap-dica-proc {
+  margin-top: 0.2rem; padding-top: 0.25rem; border-top: 1px solid var(--color-border);
+  font-size: 0.74rem; font-variant-numeric: tabular-nums;
+}
+.ap-dica-nota { font-size: 0.7rem; color: var(--color-text-muted); }
+
+/* O estado sob o cursor ganha contorno forte: sem isso, com a dica aberta não
+   dá para saber de qual estado ela fala — e no Sudeste os vizinhos são
+   pequenos e colados. */
+.ap-mapa-svg g:hover .ap-mapa-contorno,
+.ap-mapa-svg g:focus-visible .ap-mapa-contorno {
+  stroke: var(--color-text); stroke-width: 1.4; stroke-opacity: 1;
+}
+.ap-mapa-svg g { outline: none; cursor: default; }
+
 /* ═══ parciais de imprensa ══════════════════════════════════════════════
    Tracejado e em corpo menor: é informação de terceiro, de horário fixo, que
    convive por pouco tempo ao lado de número oficial. Ela não pode parecer
