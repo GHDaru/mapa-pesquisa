@@ -13,9 +13,14 @@ https://ghdaru.github.io/mapa-pesquisa/#/presidente-estados?mapa=apuracao
 Todo site de notícia mostra o percentual nacional parcial. **Esse número
 engana** — e não é por má-fé, é matemática.
 
-O site faz diferente: ele pega **cada estado separado**, vê quanto já foi
-apurado ali, e projeta aquele estado para 100%. Só depois soma os 27 estados
-(mais o exterior).
+O site faz diferente, e a regra é uma divisão só:
+
+**votos contados no estado ÷ fração já computada = votos projetados do estado**
+
+Um estado com 400 mil votos contados e 40% computado projeta 1 milhão:
+400.000 ÷ 0,40. Faz isso candidato a candidato, em cada uma das 27 UFs e no
+exterior, cada um com o fator dele — **e só então soma**. A ordem das operações
+é o segredo inteiro.
 
 Passem o mouse num estado — ou cliquem, que a leitura fica presa — para ver os
 números dele. E comparem a linha "Contado" com a linha "Projeção" nos cartões
@@ -59,16 +64,34 @@ primeiro, a vantagem de um dos candidatos encolheu a noite toda conforme São
 Paulo entrava, e muita gente achou que estava assistindo a uma virada. Não
 estava. Estava assistindo à ordem de chegada dos estados.
 
-### A solução: projetar estado por estado
+### A solução: uma divisão, aplicada no lugar certo
 
-O site não extrapola o número nacional. Ele faz assim:
+A regra inteira cabe numa linha:
+
+> **votos contados no estado ÷ fração já computada = votos projetados do estado**
+
+Na prática:
 
 1. Olha **um estado de cada vez**.
-2. Vê quanto daquele estado já foi contado. Digamos 40%.
-3. Multiplica os votos de lá por `1 ÷ 0,40` — ou seja, por 2,5. É o "gerar os
-   100%" daquele estado.
+2. Vê quanto daquele estado já foi contado. Digamos 40% — ou seja, 0,40.
+3. Divide os votos de cada candidato naquele estado por 0,40. (Dividir por
+   0,40 é o mesmo que multiplicar por 2,5. É o "gerar os 100%" daquele estado.)
 4. Faz isso para os 27 estados **e para o exterior**, cada um com o fator dele.
 5. **Só então soma tudo.**
+
+Repare que não há modelo, estatística avançada nem pesquisa envolvida: é uma
+divisão. O que faz toda a diferença é o **passo 5 vir depois do passo 3**. Se
+você somar primeiro e dividir depois, está de volta ao número que engana.
+
+**Exercício:** peguem São Paulo na tabela, dividam os votos contados de um
+candidato pela fração apurada, e comparem com a coluna de projeção dele. Vai
+bater — mas com uma diferença de uns 0,07%, e **essa diferença é a lição
+seguinte**: a tabela mostra o percentual arredondado para uma casa (57,9%),
+enquanto a conta por trás usa o valor cheio (57,942%). Dividir por 0,579 dá
+12.180.473; dividindo por 0,57942 dá 12.171.605, que é o que a página mostra.
+Arredondar antes de dividir muda o resultado — por pouco aqui, mas muda. Para
+conferir com precisão total, baixem o CSV, que traz os números sem
+arredondamento.
 
 No exemplo acima: Alfa está a 100%, então fica como está (800 mil × 1 e 200 mil
 × 1). Beta está a 10%, então multiplica por 10: 3,6 milhões para A e 5,4

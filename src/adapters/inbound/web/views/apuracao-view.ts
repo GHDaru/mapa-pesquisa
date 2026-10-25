@@ -640,11 +640,22 @@ function criarPainelProjecao(
       }),
     }),
   );
+  // A conta, escrita por extenso.
+  //
+  // Ela é uma divisão, e dizê-la em vez de descrevê-la muda o que o leitor
+  // pode fazer com a página: com a fórmula à vista, qualquer pessoa confere a
+  // projeção de qualquer estado com a calculadora do celular, usando dois
+  // números que estão na mesma tela. Método que não dá para conferir é
+  // promessa; método que dá para refazer é método.
+  const formula = criarEl('p', { className: 'ap-proj-formula' });
+  formula.append(criarEl('strong', { texto: 'votos contados no estado ÷ fração já computada = votos projetados do estado' }));
+  painel.append(formula);
+
   painel.append(
     criarEl('p', {
       className: 'ap-proj-metodo',
       texto:
-        'A projeção é montada estado a estado — cada UF é escalada pelo que falta nela e só depois as UFs são somadas. É o contrário de extrapolar o percentual nacional, que durante o parcial diz mais sobre a ordem em que os estados totalizam do que sobre o voto.',
+        'Um estado com 400 mil votos contados e 40% computado projeta 1 milhão: 400.000 ÷ 0,40. A conta é feita candidato a candidato, dentro de cada UF, com o fator daquela UF — e só depois os estados são somados. É o contrário de extrapolar o percentual nacional, que durante o parcial diz mais sobre a ordem em que os estados totalizam do que sobre o voto. A premissa, que é o que faz disto projeção e não contagem: as seções que faltam no estado se parecem com as que já foram contadas lá.',
     }),
   );
   return painel;
