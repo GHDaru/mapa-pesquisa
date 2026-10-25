@@ -1403,6 +1403,26 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
 .ap-ext-meta { margin: 0; font-size: 0.68rem; color: var(--color-text-muted); font-variant-numeric: tabular-nums; }
 .ap-ext-votos { margin: 0.15rem 0 0; font-size: 0.7rem; font-variant-numeric: tabular-nums; }
 
+/* ═══ parciais de imprensa ══════════════════════════════════════════════
+   Tracejado e em corpo menor: é informação de terceiro, de horário fixo, que
+   convive por pouco tempo ao lado de número oficial. Ela não pode parecer
+   contagem, e some sozinha quando a contagem começa. */
+.ap-imprensa {
+  margin-top: 0.8rem; padding: 0.7rem 0.85rem;
+  border: 1px dashed var(--color-border); border-radius: 10px;
+  background: var(--color-surface-1);
+}
+.ap-imprensa-topo { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 0.8rem; }
+.ap-imprensa-titulo { margin: 0; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; }
+.ap-imprensa-nota { margin: 0.45rem 0 0; font-size: 0.76rem; color: var(--color-text-muted); }
+.ap-imprensa-lista { list-style: none; margin: 0.6rem 0 0; padding: 0; display: grid; gap: 0.55rem; }
+.ap-imprensa-item { border-left: 2px solid var(--color-border); padding-left: 0.6rem; }
+.ap-imprensa-cabeca { margin: 0; font-size: 0.76rem; }
+.ap-imprensa-hora { font-variant-numeric: tabular-nums; font-weight: 650; }
+.ap-imprensa-base { color: var(--color-text-muted); }
+.ap-imprensa-numeros { margin: 0.1rem 0 0; font-size: 0.86rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.ap-imprensa-detalhe { margin: 0.1rem 0 0; font-size: 0.72rem; color: var(--color-text-muted); }
+
 /* ═══ o painel da projeção ══════════════════════════════════════════════
    Ele tem moldura própria e cor de acento porque é o número que responde
    "quem ganha" enquanto a contagem não fecha — e estava numa linha de rodapé

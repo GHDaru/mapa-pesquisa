@@ -8,6 +8,7 @@ import {
   ordenarLinhas,
   pctApuradoNaLinha,
   fracaoDaBarra,
+  horaCurta,
   montarLinhas,
   notaDasFontes,
   notaDoEstagio,
@@ -583,5 +584,20 @@ describe('apuracao-layout: o exterior no recorte por região', () => {
     expect(regioes.map((r) => r.regiao)).toEqual([
       'Norte', 'Nordeste', 'Centro-Oeste', 'Sudeste', 'Sul',
     ]);
+  });
+});
+
+describe('apuracao-layout: horaCurta', () => {
+  it('mostra sempre o horário de Brasília, não o de quem está olhando', () => {
+    // 19:30 em Brasília é 22:30 UTC. Sem fixar o fuso, um leitor fora do país
+    // via a hora do relógio dele ao lado de marcos de Brasília ("as urnas
+    // fecham às 17h") e concluía que a página estava horas fora.
+    expect(horaCurta('2026-10-25T22:30:00Z')).toBe('19:30:00');
+    expect(horaCurta('2026-10-25T19:30:00-03:00')).toBe('19:30:00');
+  });
+
+  it('não quebra com valor ausente ou inválido', () => {
+    expect(horaCurta(null)).toBe('—');
+    expect(horaCurta('não é data')).toBe('—');
   });
 });

@@ -28,6 +28,7 @@ import { espectroDoPartido, type Espectro } from '../../../../domain/spectrum.js
 import type { Partido } from '../../../../domain/party.js';
 import { buscarApuracao, ELEICOES, type FonteLida } from '../../../outbound/tse/tse-client.js';
 import { simularApuracao } from '../../../outbound/tse/simulador.js';
+import parciaisImprensa from '../../../../../data/exterior-parciais-imprensa.json' with { type: 'json' };
 import {
   buscarExterior,
   CONTINENTES,
@@ -491,7 +492,7 @@ function criarBigNumbers(p: Projecao, partidos: readonly Partido[], estado: Esta
   cartaoHora.append(
     criarEl('p', {
       className: 'ap-cartao-votos',
-      texto: estado.carregando ? 'buscando agora…' : 'horário desta leitura',
+      texto: estado.carregando ? 'buscando agora…' : 'horário de Brasília',
     }),
   );
   cartaoHora.append(
@@ -1264,11 +1265,15 @@ function criarLinha(l: LinhaUf | LinhaRegiao, corDoCandidato: (nome: string | nu
     // Quais UFs entraram, e quais ficaram de fora por não ter seção nenhuma.
     // Sem isso, uma região aparece completa quando não está — que é o jeito
     // mais silencioso de uma soma mentir.
+    // O exterior é a sexta linha deste recorte, mas não é uma região nem uma
+    // UF: contá-lo como "1 UFs" seria errado de duas maneiras na mesma frase.
+    const ehExterior = l.regiao === 'Exterior';
     cabeca.append(
       criarEl('span', {
         className: 'ap-linha-nota',
-        texto:
-          l.ufsSemApuracao.length > 0
+        texto: ehExterior
+          ? '186 postos, 1.351 seções'
+          : l.ufsSemApuracao.length > 0
             ? `${l.ufs.length - l.ufsSemApuracao.length} de ${l.ufs.length} UFs · sem seção: ${l.ufsSemApuracao.join(', ')}`
             : `${l.ufs.length} UFs`,
       }),
@@ -1529,6 +1534,19 @@ function criarPainelExterior(
   topo.append(botao);
   sec.append(topo);
 
+  // As parciais de imprensa, SÓ enquanto o TSE não publica e SÓ ao vivo.
+  //
+  // Elas somam boletins de urna que o próprio TSE disponibiliza, antes de a
+  // totalização começar — não são boato, mas também não são a apuração. Ficam
+  // num bloco à parte, com o horário e o veículo de cada leitura, e somem
+  // sozinhas no instante em que a primeira seção do exterior é totalizada: a
+  // partir dali existe número oficial, e manter a estimativa ao lado dele só
+  // criaria dúvida sobre qual dos dois ler.
+  const totalizacaoComecou = zz != null && !semDado({ processado: zz.secoesTotalizadas });
+  if (estado.modo === 'ao-vivo' && !totalizacaoComecou) {
+    sec.append(criarParciaisDeImprensa());
+  }
+
   if (!estado.exteriorAberto) return sec;
 
   if (estado.modo === 'simulacao') {
@@ -1618,4 +1636,71 @@ function criarCaixaContinente(
     );
   }
   return caixa;
+}
+
+/**
+ * O bloco das parciais de imprensa.
+ *
+ * Ele é deliberadamente feio de ler como manchete: três leituras, três
+ * horários, bases diferentes, e a mais antiga contradizendo as outras duas.
+ * Isso não é defeito de apresentação — é o estado real da informação neste
+ * momento, e achatar as três numa só linha seria escolher uma delas sem ter
+ * motivo para escolher. A contradição fica à vista porque ela é o próprio
+ * aviso de que ainda não há resultado.
+ */
+function criarParciaisDeImprensa(): HTMLElement {
+  const bloco = criarEl('section', { className: 'ap-imprensa' });
+
+  const topo = criarEl('div', { className: 'ap-imprensa-topo' });
+  topo.append(
+    criarEl('h3', { className: 'ap-imprensa-titulo', texto: 'Enquanto o TSE não publica' }),
+  );
+  topo.append(
+    criarEl('span', { className: 'ap-proj-selo', texto: 'imprensa, não é a apuração' }),
+  );
+  bloco.append(topo);
+
+  bloco.append(
+    criarEl('p', {
+      className: 'ap-imprensa-nota',
+      texto:
+        'A divulgação oficial do TSE ainda marca zero seção totalizada nos 186 postos do exterior, Tóquio e Sydney inclusive, que votaram horas atrás. Estes veículos somaram por conta própria os boletins de urna que o TSE disponibiliza. São fotografias de horários diferentes: não se comparam entre si, não se somam, e nada daqui entra em projeção, big number ou mapa.',
+    }),
+  );
+
+  const lista = criarEl('ul', { className: 'ap-imprensa-lista' });
+  for (const leitura of parciaisImprensa.leituras) {
+    const item = criarEl('li', { className: 'ap-imprensa-item' });
+
+    const cabeca = criarEl('p', { className: 'ap-imprensa-cabeca' });
+    const link = criarEl('a', {
+      texto: leitura.veiculo,
+      attrs: { href: leitura.url, target: '_blank', rel: 'noopener noreferrer' },
+    });
+    cabeca.append(link);
+    cabeca.append(criarEl('span', { className: 'ap-imprensa-hora', texto: ` · ${leitura.hora}` }));
+    cabeca.append(criarEl('span', { className: 'ap-imprensa-base', texto: ` · base: ${leitura.base}` }));
+    item.append(cabeca);
+
+    const numeros = criarEl('p', { className: 'ap-imprensa-numeros' });
+    numeros.textContent = leitura.candidatos
+      .map(
+        (c) =>
+          `${nomeCurto(c.candidato)} ${formatarInt(c.votos)}${c.pct == null ? '' : ` (${formatarPct(c.pct, 1)})`}`,
+      )
+      .join('  ·  ');
+    item.append(numeros);
+
+    item.append(criarEl('p', { className: 'ap-imprensa-detalhe', texto: leitura.nota }));
+    lista.append(item);
+  }
+  bloco.append(lista);
+
+  bloco.append(
+    criarEl('p', {
+      className: 'ap-imprensa-nota',
+      texto: `Capturado às ${horaCurta(parciaisImprensa.capturadoEm)}. Este bloco desaparece sozinho assim que a primeira seção do exterior for totalizada — a partir dali há número oficial, e é ele que vale.`,
+    }),
+  );
+  return bloco;
 }

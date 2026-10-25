@@ -126,14 +126,30 @@ export function formatarPct(n: number | null | undefined, casas = 1): string {
 }
 
 /**
- * O rótulo de hora de uma leitura. Curto porque fica repetido na tabela: numa
- * noite de apuração o que importa é o minuto, não o dia.
+ * O rótulo de hora de uma leitura, SEMPRE em horário de Brasília.
+ *
+ * Sem fixar o fuso, `toLocaleTimeString` usa o relógio de quem está olhando:
+ * um leitor em Lisboa via "00:35" onde a captura dizia 19:30, e um em Tóquio
+ * veria outra coisa ainda. Numa noite de eleição brasileira todos os marcos
+ * são de Brasília — as urnas fecham às 17h, o TSE publica a partir dali —, e
+ * uma hora em outro fuso ao lado desses marcos não é só confusa: ela faz o
+ * leitor concluir que a página está adiantada ou atrasada em horas.
+ *
+ * Curto porque fica repetido na tela: numa apuração importa o minuto, não o
+ * dia.
  */
+export const FUSO_DE_BRASILIA = 'America/Sao_Paulo';
+
 export function horaCurta(iso: string | null | undefined): string {
   if (!iso) return '—';
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return '—';
-  return d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  return d.toLocaleTimeString('pt-BR', {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    timeZone: FUSO_DE_BRASILIA,
+  });
 }
 
 /**

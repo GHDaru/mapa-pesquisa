@@ -1,0 +1,39 @@
+{
+  "observacao": "Parciais do voto no exterior somadas pela IMPRENSA a partir dos boletins de urna que o TSE disponibiliza, ANTES de a totalização oficial começar. Não são a apuração: a divulgação oficial do TSE (o arquivo `zz` que esta página lê) marcava 0 seções totalizadas em todos os 186 postos no momento desta captura, inclusive em Tóquio e Sydney, que votaram horas antes. Os números são fotografias de horários diferentes e NÃO são comparáveis entre si nem somáveis: cada veículo parou a contagem num instante, e um deles publica base que não declara como válidos. Nada daqui entra em projeção, soma ou big number — este bloco existe só para preencher a janela em que o TSE ainda não publicou, e some sozinho assim que ele publicar.",
+  "capturadoEm": "2026-10-25T19:30:00-03:00",
+  "leituras": [
+    {
+      "veiculo": "Metrópoles",
+      "hora": "16:00",
+      "base": "votos válidos",
+      "candidatos": [
+        { "candidato": "Luiz Inácio Lula da Silva", "votos": 133084, "pct": 59.7 },
+        { "candidato": "Flávio Bolsonaro", "votos": 89829, "pct": 40.3 }
+      ],
+      "nota": "222.913 votos válidos somados. Levantamento próprio a partir de boletins de urna disponibilizados pelo TSE.",
+      "url": "https://www.metropoles.com/mundo/votacao-no-exterior-apuracao-2o-turno-flavio-lula"
+    },
+    {
+      "veiculo": "Mixvale",
+      "hora": "15:26",
+      "base": "válidos para Lula; o veículo não declara a base de Flávio",
+      "candidatos": [
+        { "candidato": "Luiz Inácio Lula da Silva", "votos": 95976, "pct": null },
+        { "candidato": "Flávio Bolsonaro", "votos": 65717, "pct": null }
+      ],
+      "nota": "Lula liderando em 40 países ou territórios e Flávio em 12. Soma dos boletins de urna divulgados pelo TSE até o horário.",
+      "url": "https://www.mixvale.com.br/2026/10/25/votacao-no-exterior-no-2o-turno-tem-lula-a-frente-em-40-paises-e-flavio-bolsonaro-com-vitoria-em-12-locais/"
+    },
+    {
+      "veiculo": "Times Brasil",
+      "hora": "11:41",
+      "base": "não declarada",
+      "candidatos": [
+        { "candidato": "Flávio Bolsonaro", "votos": 34056, "pct": null },
+        { "candidato": "Luiz Inácio Lula da Silva", "votos": 16585, "pct": null }
+      ],
+      "nota": "Nesta leitura, a mais antiga das três, Flávio soma mais votos e Lula lidera em mais países — dez contra oito. É o exemplo de por que estas parciais não se comparam: quatro horas depois a ordem se inverte, porque postos diferentes entraram na conta.",
+      "url": "https://timesbrasil.com.br/brasil/decisao-2026-flavio-soma-339-mil-votos-no-exterior-em-parcial-lula-tem-157-mil/"
+    }
+  ]
+}
