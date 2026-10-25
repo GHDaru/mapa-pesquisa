@@ -263,21 +263,46 @@ function criarBigNumbers(p: Projecao, partidos: readonly Partido[]): HTMLElement
   }
   sec.append(cartoes);
 
+  const processado = p.coberturaNacionalEfetiva ?? p.secoesTotalizadasPonderada;
   const v = vantagemEntreOsDois(ordenados);
   const resumo = criarEl('div', { className: 'ap-resumo' });
+
+  // O "% apurado" sai do parágrafo e vira número.
+  //
+  // Ele estava dentro da prosa de metodologia, e o crítico pegou: é a condição
+  // que qualifica TODOS os percentuais acima — 51% com 3% apurado e 51% com
+  // 95% apurado não dizem a mesma coisa — e virara nota de rodapé. Condição de
+  // leitura tem de ter o peso de dado, ao lado do dado que ela qualifica.
+  const faixa = criarEl('div', { className: 'ap-faixa-estado' });
   if (v) {
-    resumo.append(
-      criarEl('p', {
-        className: 'ap-resumo-vantagem',
-        texto: `${v.lider} à frente por ${formatarInt(v.votos)} votos (${formatarPct(v.pontos, 2)})`,
+    const bloco = criarEl('div', { className: 'ap-fe-item' });
+    bloco.append(criarEl('span', { className: 'ap-fe-rotulo', texto: 'Vantagem' }));
+    bloco.append(
+      criarEl('span', {
+        className: 'ap-fe-valor',
+        texto: `${formatarInt(v.votos)} votos`,
       }),
     );
+    bloco.append(
+      criarEl('span', { className: 'ap-fe-nota', texto: `${formatarPct(v.pontos, 2)} · ${v.lider}` }),
+    );
+    faixa.append(bloco);
   }
+  const blocoProc = criarEl('div', { className: 'ap-fe-item' });
+  blocoProc.append(criarEl('span', { className: 'ap-fe-rotulo', texto: 'Seções apuradas' }));
+  blocoProc.append(criarEl('span', { className: 'ap-fe-valor', texto: formatarPct(processado) }));
+  const trilhoTopo = criarEl('div', { className: 'ap-fe-barra' });
+  const nivelTopo = criarEl('div', { className: 'ap-fe-barra-fill' });
+  nivelTopo.style.width = `${fracaoDaBarra(processado) * 100}%`;
+  trilhoTopo.append(nivelTopo);
+  blocoProc.append(trilhoTopo);
+  faixa.append(blocoProc);
+  resumo.append(faixa);
   resumo.append(
     criarEl('p', {
       className: 'ap-meta',
       texto: notaDoEstagio({
-        processadoNacional: p.coberturaNacionalEfetiva ?? p.secoesTotalizadasPonderada,
+        processadoNacional: processado,
         ufsSemApuracao: p.ufsSemApuracao,
         definido: p.margem?.matematicamenteDefinido === true,
       }),
@@ -299,7 +324,7 @@ function criarMapaProgresso(p: Projecao, partidos: readonly Partido[]): HTMLElem
     criarEl('p', {
       className: 'ap-meta',
       texto:
-        'A cor é de quem lidera naquele estado. O preenchimento, da esquerda para a direita, é quanto daquele estado já foi apurado — um estado pela metade aparece metade pintado. Estado ainda sem seção fica cinza, sem líder: pintar liderança que ninguém mediu seria inventar.',
+        'A cor cheia é de quem lidera, e ela avança da esquerda para a direita conforme as seções entram. O que ainda não foi contado fica hachurado, não colorido — um estado pela metade tem metade de cor e metade de hachura, e a barrinha ao lado da sigla repete a mesma fração em número. Estado sem nenhuma seção fica cinza liso e sem líder: pintar liderança que ninguém mediu seria inventar.',
     }),
   );
 
@@ -310,19 +335,49 @@ function criarMapaProgresso(p: Projecao, partidos: readonly Partido[]): HTMLElem
   svg.setAttribute('aria-label', 'Mapa da apuração por estado');
 
   const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+  // Hachura única para "ainda não contado".
+  //
+  // O primeiro desenho pintava o que falta com um TOM CLARO DA MESMA COR do
+  // líder, e isso falhou de três jeitos ao mesmo tempo: o estado parecia
+  // partido geograficamente em duas regiões, as bordas verticais de estados
+  // vizinhos se alinhavam formando listras que atravessavam o país como fuso
+  // horário, e no Nordeste os tons claros se fundiam num borrão em que não
+  // dava para ver quem liderava. Hachura neutra resolve os três: ela não é cor
+  // de candidato, não compete com a matiz, e diz "vazio" em vez de "outro".
+  const hachura = document.createElementNS('http://www.w3.org/2000/svg', 'pattern');
+  hachura.setAttribute('id', 'ap-hachura');
+  hachura.setAttribute('width', '4');
+  hachura.setAttribute('height', '4');
+  hachura.setAttribute('patternUnits', 'userSpaceOnUse');
+  hachura.setAttribute('patternTransform', 'rotate(45)');
+  const fundo = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  fundo.setAttribute('width', '4');
+  fundo.setAttribute('height', '4');
+  fundo.setAttribute('class', 'ap-hachura-fundo');
+  hachura.append(fundo);
+  const risco = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+  risco.setAttribute('x1', '0');
+  risco.setAttribute('y1', '0');
+  risco.setAttribute('x2', '0');
+  risco.setAttribute('y2', '4');
+  risco.setAttribute('class', 'ap-hachura-risco');
+  hachura.append(risco);
+  defs.append(hachura);
   svg.append(defs);
 
   for (const loc of mapaBrasil.locations) {
     const uf = loc.id.toUpperCase();
     const u = porUf.get(uf);
     const bbox = bboxPath(loc.path);
-    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    path.setAttribute('d', loc.path);
-    path.setAttribute('class', 'ap-mapa-uf');
+    const grupo = document.createElementNS('http://www.w3.org/2000/svg', 'g');
 
     if (!u || semDado({ processado: u.secoesTotalizadas })) {
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', loc.path);
+      path.setAttribute('class', 'ap-mapa-uf');
       path.style.fill = 'var(--spectrum-indefinido)';
       path.setAttribute('aria-label', `${nomePorUf.get(uf) ?? uf}: nenhuma seção apurada.`);
+      grupo.append(path);
     } else {
       const espectro = resolverEspectro(
         u.candidatos.find((c) => c.candidato === u.lider)?.partido ?? null,
@@ -330,51 +385,124 @@ function criarMapaProgresso(p: Projecao, partidos: readonly Partido[]): HTMLElem
       );
       const cor = tokenFillEspectro(espectro);
       const fracao = fracaoDaBarra(u.secoesTotalizadas);
-      // Gradiente com DOIS stops no mesmo offset: corte seco, não degradê.
-      // Um degradê leria como incerteza espacial, e o que se quer dizer aqui é
-      // "esta fração do estado já foi contada" — uma fronteira, não um borrão.
-      const id = `ap-grad-${uf}`;
-      const grad = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
-      grad.setAttribute('id', id);
-      grad.setAttribute('gradientUnits', 'userSpaceOnUse');
-      grad.setAttribute('x1', String(bbox.minX));
-      grad.setAttribute('x2', String(bbox.maxX));
-      grad.setAttribute('y1', '0');
-      grad.setAttribute('y2', '0');
-      for (const [offset, corStop, opacidade] of [
-        [0, cor, '1'],
-        [fracao, cor, '1'],
-        [fracao, cor, '0.18'],
-        [1, cor, '0.18'],
-      ] as const) {
-        const stop = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
-        stop.setAttribute('offset', String(offset));
-        stop.setAttribute('stop-color', corStop);
-        stop.setAttribute('stop-opacity', opacidade);
-        grad.append(stop);
+      const corte = bbox.minX + (bbox.maxX - bbox.minX) * fracao;
+      const idClip = `ap-clip-${uf}`;
+
+      // A parte NÃO contada, por baixo: hachura neutra no estado inteiro.
+      const base = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      base.setAttribute('d', loc.path);
+      base.setAttribute('class', 'ap-mapa-uf ap-mapa-vazio');
+      base.setAttribute('fill', 'url(#ap-hachura)');
+      grupo.append(base);
+
+      // A parte contada, por cima, recortada até onde a apuração chegou.
+      const clip = document.createElementNS('http://www.w3.org/2000/svg', 'clipPath');
+      clip.setAttribute('id', idClip);
+      const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      rect.setAttribute('x', String(bbox.minX));
+      rect.setAttribute('y', String(bbox.minY - 1));
+      rect.setAttribute('width', String(Math.max(0, corte - bbox.minX)));
+      rect.setAttribute('height', String(bbox.maxY - bbox.minY + 2));
+      clip.append(rect);
+      defs.append(clip);
+
+      const cheio = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      cheio.setAttribute('d', loc.path);
+      cheio.setAttribute('class', 'ap-mapa-uf ap-mapa-cheio');
+      cheio.style.fill = cor;
+      cheio.setAttribute('clip-path', `url(#${idClip})`);
+      grupo.append(cheio);
+
+      // A fronteira da apuração, marcada: é ela que diz "aqui parou a contagem"
+      // em vez de "aqui muda o terreno".
+      if (fracao > 0.02 && fracao < 0.98) {
+        const linha = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        linha.setAttribute('x1', String(corte));
+        linha.setAttribute('x2', String(corte));
+        linha.setAttribute('y1', String(bbox.minY));
+        linha.setAttribute('y2', String(bbox.maxY));
+        linha.setAttribute('class', 'ap-mapa-frente');
+        linha.setAttribute('clip-path', `url(#ap-recorte-${uf})`);
+        const recorte = document.createElementNS('http://www.w3.org/2000/svg', 'clipPath');
+        recorte.setAttribute('id', `ap-recorte-${uf}`);
+        const forma = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        forma.setAttribute('d', loc.path);
+        recorte.append(forma);
+        defs.append(recorte);
+        grupo.append(linha);
       }
-      defs.append(grad);
-      path.style.fill = `url(#${id})`;
-      path.setAttribute(
+
+      // Contorno por cima, para o estado continuar sendo um estado.
+      const contorno = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      contorno.setAttribute('d', loc.path);
+      contorno.setAttribute('class', 'ap-mapa-contorno');
+      grupo.append(contorno);
+
+      grupo.setAttribute(
         'aria-label',
         `${nomePorUf.get(uf) ?? uf}: ${formatarPct(u.secoesTotalizadas)} apurado, ${u.lider ?? '—'} à frente.`,
       );
     }
-    svg.append(path);
 
+    const cx = (bbox.minX + bbox.maxX) / 2;
+    const cy = (bbox.minY + bbox.maxY) / 2;
     const texto = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    texto.setAttribute('x', String((bbox.minX + bbox.maxX) / 2));
-    texto.setAttribute('y', String((bbox.minY + bbox.maxY) / 2));
+    texto.setAttribute('x', String(cx));
+    texto.setAttribute('y', String(cy - 1.5));
     texto.setAttribute('class', 'ap-mapa-sigla');
     texto.setAttribute('aria-hidden', 'true');
     texto.textContent = uf;
-    svg.append(texto);
+    grupo.append(texto);
+
+    // A barrinha sob a sigla: a MESMA fração dita outra vez, como quantidade.
+    // Encodar progresso só no preenchimento do polígono não bastou — a forma
+    // do estado atrapalha a leitura. Uma barra reta não tem esse problema.
+    if (u && !semDado({ processado: u.secoesTotalizadas })) {
+      const larg = Math.min(20, Math.max(11, (bbox.maxX - bbox.minX) * 0.55));
+      const trilho = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      trilho.setAttribute('x', String(cx - larg / 2));
+      trilho.setAttribute('y', String(cy + 1.8));
+      trilho.setAttribute('width', String(larg));
+      trilho.setAttribute('height', '3.6');
+      trilho.setAttribute('rx', '1.8');
+      trilho.setAttribute('class', 'ap-mapa-trilho');
+      trilho.setAttribute('aria-hidden', 'true');
+      grupo.append(trilho);
+      const nivel = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      nivel.setAttribute('x', String(cx - larg / 2));
+      nivel.setAttribute('y', String(cy + 1.8));
+      nivel.setAttribute('width', String(larg * fracaoDaBarra(u.secoesTotalizadas)));
+      nivel.setAttribute('height', '3.6');
+      nivel.setAttribute('rx', '1.8');
+      nivel.setAttribute('class', 'ap-mapa-nivel');
+      nivel.setAttribute('aria-hidden', 'true');
+      grupo.append(nivel);
+    }
+
+    svg.append(grupo);
   }
 
   const wrap = criarEl('div', { className: 'ap-mapa-wrap' });
   wrap.append(svg);
   sec.append(wrap);
+  sec.append(criarLegendaDoMapa());
   return sec;
+}
+
+/** Legenda explícita: sem ela, hachura é só textura. */
+function criarLegendaDoMapa(): HTMLElement {
+  const leg = criarEl('div', { className: 'ap-legenda' });
+  for (const [classe, rotulo] of [
+    ['ap-leg-cheio', 'já apurado (na cor de quem lidera)'],
+    ['ap-leg-vazio', 'falta apurar'],
+    ['ap-leg-sem', 'sem nenhuma seção'],
+  ] as const) {
+    const item = criarEl('span', { className: 'ap-legenda-item' });
+    item.append(criarEl('span', { className: `ap-leg-amostra ${classe}` }));
+    item.append(criarEl('span', { texto: rotulo }));
+    leg.append(item);
+  }
+  return leg;
 }
 
 /* ──────────────────────────── tabela por estado ────────────────────────── */
@@ -387,11 +515,16 @@ function criarTabela(p: Projecao, estado: Estado): HTMLElement {
   const tabela = criarEl('table', { className: 'ap-tabela' });
   const thead = criarEl('thead');
   const trh = criarEl('tr');
+  // As colunas de um mesmo candidato ficam JUNTAS.
+  //
+  // Antes elas vinham intercaladas por indicador (% dos dois, depois projeção
+  // dos dois, depois votos dos dois) e o corte da tela caía no meio de um par:
+  // aparecia o voto contado de um candidato e não o do outro, que é o pior
+  // jeito de cortar — convida à leitura errada em vez de só esconder.
   const colunas = [
     'UF', 'Eleitores', '% apurado',
-    `% ${FINALISTAS[0]}`, `% ${FINALISTAS[1]}`,
-    `Projeção ${FINALISTAS[0]}`, `Projeção ${FINALISTAS[1]}`,
-    `Votos ${FINALISTAS[0]}`, `Votos ${FINALISTAS[1]}`,
+    `% ${FINALISTAS[0]}`, `Projeção ${FINALISTAS[0]}`, `Votos ${FINALISTAS[0]}`,
+    `% ${FINALISTAS[1]}`, `Projeção ${FINALISTAS[1]}`, `Votos ${FINALISTAS[1]}`,
     'Brancos', 'Nulos', 'Abstenções', 'Hora',
   ];
   for (const c of colunas) trh.append(criarEl('th', { texto: c, attrs: { scope: 'col' } }));
@@ -402,6 +535,13 @@ function criarTabela(p: Projecao, estado: Estado): HTMLElement {
   for (const l of linhas) tbody.append(criarLinha(l, estado));
   tabela.append(tbody);
 
+  sec.append(
+    criarEl('p', {
+      className: 'ap-meta ap-rolagem',
+      texto:
+        'A tabela é mais larga que a tela: arraste para o lado para ver brancos, nulos, abstenções e a hora da leitura. As três colunas de cada candidato andam juntas, para o corte nunca separar um do outro.',
+    }),
+  );
   const wrap = criarEl('div', { className: 'ap-tabela-wrap' });
   wrap.append(tabela);
   sec.append(wrap);
@@ -425,11 +565,11 @@ function criarLinha(l: LinhaUf, estado: Estado): HTMLElement {
   tdProc.append(mini);
   tr.append(tdProc);
 
-  for (const c of l.porCandidato) tr.append(celula(formatarPct(c.pct, 2), `% ${c.candidato}`));
-  for (const c of l.porCandidato)
+  for (const c of l.porCandidato) {
+    tr.append(celula(formatarPct(c.pct, 2), `% ${c.candidato}`));
     tr.append(celula(formatarInt(c.votosProjetados), `Projeção ${c.candidato}`));
-  for (const c of l.porCandidato)
     tr.append(celula(formatarInt(c.votosApurados), `Votos ${c.candidato}`));
+  }
 
   tr.append(celula(formatarInt(l.brancos), 'Brancos'));
   tr.append(celula(formatarInt(l.nulos), 'Nulos'));
