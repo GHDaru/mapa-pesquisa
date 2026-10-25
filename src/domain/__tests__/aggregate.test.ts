@@ -790,7 +790,17 @@ describe('domain/aggregate — base, nos dados reais', () => {
     }
   });
 
-  it('o agregado nacional de 2º turno não descarta nada: as oito são de totais', async () => {
+  /**
+   * Este teste já afirmou "o agregado nacional de 2º turno não descarta nada:
+   * as oito são de totais" — e quebrou em 25/10, quando seis rodadas que
+   * publicam SÓ válidos (Vox, CNT/MDA, Instituto França, Ipespe, Alfa e
+   * PoderData) entraram na base. **O código estava certo e o teste errado**:
+   * ele fixava um RETRATO do conjunto de dados, não um invariante, e todo
+   * retrato de dado real tem prazo de validade. Reescrito como invariante: o
+   * que precisa valer é que o descarte seja exatamente o conjunto das
+   * pesquisas em base de válidos, qualquer que seja o tamanho dele.
+   */
+  it('no agregado nacional de 2º turno, o descarte é exatamente o conjunto em base de válidos', async () => {
     const { carregarDados } = await import('../../adapters/outbound/json/carregar-dados.js');
     const { criarDisputa, UF_NACIONAL } = await import('../race.js');
     const { filtrarPorConfronto, CONFRONTO_LULA_FLAVIO } = await import('../runoff.js');
@@ -800,7 +810,15 @@ describe('domain/aggregate — base, nos dados reais', () => {
       CONFRONTO_LULA_FLAVIO,
     );
     const ag = agregarPesquisas(polls, {}, new Date('2026-10-17T12:00:00Z'))!;
-    expect(ag.descartadasPorBase).toEqual([]);
+    const emValidos = polls.filter((p) => baseDaPesquisa(p, new Set<string>()) === 'validos');
+    expect(new Set(ag.descartadasPorBase.map((p) => p.id))).toEqual(
+      new Set(emValidos.map((p) => p.id)),
+    );
+    // E nenhuma das usadas pode estar em base de válidos, senão a mistura
+    // que a guarda existe para impedir teria passado.
+    for (const p of ag.pesquisasUsadas) {
+      expect(baseDaPesquisa(p, new Set<string>()), p.id).toBe('totais');
+    }
   });
 });
 

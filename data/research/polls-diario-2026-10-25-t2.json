@@ -1,0 +1,98 @@
+[
+  {
+    "id": "2026-10-23-vox-brasil-br-presidente-t2-flavio-lula-validos",
+    "uf": "BR", "cargo": "presidente", "turno": 2,
+    "instituto": "Vox Brasil",
+    "registroTSE": "BR-03259/2026",
+    "contratante": null,
+    "dataInicio": "2026-10-20", "dataFim": "2026-10-22", "publicadoEm": "2026-10-23",
+    "amostra": 2100, "margem": 2.15,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula — base de VOTOS VÁLIDOS",
+    "fonte": { "nome": "Metrópoles", "url": "https://www.metropoles.com/brasil/vox-brasil-no-2o-turno-lula-tem-5086-e-flavio-4914-dos-votos-validos" },
+    "observacao": "BASE DE VÁLIDOS, declarada no próprio recorte. Entrou assim porque é o que a fonte publica: os válidos (Lula 50,6 x Flávio 49,4). Os votos TOTAIS desta rodada são Lula 45,4 e Flávio 44,3, e 45,4/89,7 = 50,61 -> 50,6%, o que PROVA que há 10,3 de não-candidato - mas a repartição desses 10,3 entre brancos, nulos e indecisos não foi publicada em fonte nenhuma que eu localizei, e residual não se reparte. Por isso a ficha entra em válidos, não em totais. CONSEQUÊNCIA CONHECIDA E DESEJADA: `separarPorBase` vai descartá-la do agregado nacional, que está em base de totais, e ela aparecerá em `descartadasPorBase` - sem mexer na vantagem nem no `empateTecnico`. O VALOR DELA É OUTRO: `medirAcertoDasPesquisas` recebe as pesquisas CRUAS, então esta ficha CONTA para o ranking de institutos depois da apuração, e válidos é exatamente a base em que o resultado é publicado. É UMA DAS DUAS ÚNICAS que dão Lula à frente. CONFLITO DE CAMPO DECLARADO: o CartaCapital diz 17-23/10; a ficha técnica do compilado do Poder360 e as demais fontes dizem 20-22/10 com n=2.100, e adotei esta. Contratante NÃO LOCALIZADO - `null`, nunca inferido. Confiança 95%.",
+    "resultados": [
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 50.6 },
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 49.4 }
+    ]
+  },
+  {
+    "id": "2026-10-24-cnt-mda-br-presidente-t2-flavio-lula-validos",
+    "uf": "BR", "cargo": "presidente", "turno": 2,
+    "instituto": "CNT/MDA",
+    "registroTSE": "BR-02136/2026",
+    "contratante": null,
+    "dataInicio": "2026-10-21", "dataFim": "2026-10-23", "publicadoEm": "2026-10-24",
+    "amostra": 2032, "margem": 2.2,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula — base de VOTOS VÁLIDOS",
+    "fonte": { "nome": "Poder360 (ficha técnica do compilado)", "url": "https://www.poder360.com.br/poder-eleicoes-2026/saiba-como-estao-lula-e-flavio-nas-pesquisas-a-1-dia-da-eleicao/" },
+    "observacao": "BASE DE VÁLIDOS. Rodada de campo mais recente da CNT/MDA, distinta da de 13-15/10 que já está na base (aquela é n=2.014, BR-00652/2026, contratada pela própria CNT). As linhas de não-candidato desta rodada não foram localizadas: a página da Gazeta do Povo e a do Estado de Minas no padrão conhecido ainda traziam a rodada ANTERIOR, e nenhuma fonte publicou os totais da nova. Entrou em válidos, que é o que está publicado. Será descartada do agregado de totais por `separarPorBase` e conta para o ranking pós-apuração. Contratante NÃO LOCALIZADO para esta rodada - `null`, e NÃO herdado da rodada anterior, porque contratante não se herda entre rodadas do mesmo instituto. Confiança 95%.",
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 50.7 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 49.3 }
+    ]
+  },
+  {
+    "id": "2026-10-24-instituto-franca-br-presidente-t2-flavio-lula-validos",
+    "uf": "BR", "cargo": "presidente", "turno": 2,
+    "instituto": "Instituto França",
+    "registroTSE": "BR-04863/2026",
+    "contratante": null,
+    "dataInicio": "2026-10-21", "dataFim": "2026-10-23", "publicadoEm": "2026-10-24",
+    "amostra": 1537, "margem": 2.5,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula — base de VOTOS VÁLIDOS",
+    "fonte": { "nome": "Poder360 (ficha técnica do compilado)", "url": "https://www.poder360.com.br/poder-eleicoes-2026/saiba-como-estao-lula-e-flavio-nas-pesquisas-a-1-dia-da-eleicao/" },
+    "observacao": "BASE DE VÁLIDOS. Rodada NOVA: em 23/10 o compilado trazia o Instituto França com campo 16-20/10 e n=3.000 (BR-07896/2026); em 24/10 passou a trazer 21-23/10 com n=1.537 e registro BR-04863/2026 - são duas rodadas distintas, e esta é a mais recente. Linhas de não-candidato não localizadas; entrou em válidos. Será descartada do agregado de totais e conta para o ranking. Contratante NÃO LOCALIZADO - `null`. Confiança 95%. É a rodada com a MAIOR vantagem para Flávio entre as de campo 21-23/10.",
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 51.4 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 48.6 }
+    ]
+  },
+  {
+    "id": "2026-10-23-ipespe-br-presidente-t2-flavio-lula-validos",
+    "uf": "BR", "cargo": "presidente", "turno": 2,
+    "instituto": "Ipespe",
+    "registroTSE": "BR-04350/2026",
+    "contratante": null,
+    "dataInicio": "2026-10-20", "dataFim": "2026-10-22", "publicadoEm": "2026-10-23",
+    "amostra": 1500, "margem": 2.6,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula — base de VOTOS VÁLIDOS",
+    "fonte": { "nome": "Poder360 (ficha técnica do compilado)", "url": "https://www.poder360.com.br/poder-eleicoes-2026/saiba-como-estao-lula-e-flavio-nas-pesquisas-a-1-dia-da-eleicao/" },
+    "observacao": "BASE DE VÁLIDOS. Terceira rodada do Ipespe na base (as outras: 06-08/10 BR-00933/2026 e 13-15/10 BR-00223/2026, ambas em totais). Linhas de não-candidato desta rodada não localizadas; entrou em válidos. Será descartada do agregado de totais e conta para o ranking. Contratante NÃO LOCALIZADO - `null`; o 'Abrapel' que aparece junto ao nome no compilado é como o veículo rotula o instituto, e NÃO gravei como contratante sem a ficha dizer que contratou. Instituto gravado como 'Ipespe', o nome canônico já usado nas outras duas fichas. Confiança 95%.",
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 50.5 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 49.5 }
+    ]
+  },
+  {
+    "id": "2026-10-23-alfa-inteligencia-br-presidente-t2-flavio-lula-validos",
+    "uf": "BR", "cargo": "presidente", "turno": 2,
+    "instituto": "Alfa Inteligência",
+    "registroTSE": "BR-08496/2026",
+    "contratante": null,
+    "dataInicio": "2026-10-18", "dataFim": "2026-10-22", "publicadoEm": "2026-10-23",
+    "amostra": 2700, "margem": 1.9,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula — base de VOTOS VÁLIDOS",
+    "fonte": { "nome": "Poder360 (ficha técnica do compilado)", "url": "https://www.poder360.com.br/poder-eleicoes-2026/saiba-como-estao-lula-e-flavio-nas-pesquisas-a-1-dia-da-eleicao/" },
+    "observacao": "BASE DE VÁLIDOS. PRIMEIRA ficha deste instituto na base - ele apareceu no compilado só em 24/10, quando a lista subiu de 17 para 18 levantamentos. Sem histórico na nossa base, portanto sem teste do delta possível e sem aferição no 1º turno. Linhas de não-candidato não localizadas; entrou em válidos. Será descartada do agregado de totais e conta para o ranking. Contratante NÃO LOCALIZADO - `null`. Confiança 95%. Junto com a Gerp, é a que abre a MAIOR vantagem para Flávio (52 x 48).",
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 52 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 48 }
+    ]
+  },
+  {
+    "id": "2026-10-22-poderdata-br-presidente-t2-flavio-lula-validos",
+    "uf": "BR", "cargo": "presidente", "turno": 2,
+    "instituto": "PoderData",
+    "registroTSE": "BR-07926/2026",
+    "contratante": null,
+    "dataInicio": "2026-10-19", "dataFim": "2026-10-21", "publicadoEm": "2026-10-22",
+    "amostra": 4000, "margem": 1.6,
+    "cenario": "estimulada, 2º turno: Flávio Bolsonaro x Lula — base de VOTOS VÁLIDOS",
+    "fonte": { "nome": "Poder360", "url": "https://www.poder360.com.br/poderdata/flavio-tem-51-e-lula-tem-49-dos-votos-validos-diz-poderdata-aya/" },
+    "observacao": "BASE DE VÁLIDOS, e aqui está a RESOLUÇÃO DE UMA PENDÊNCIA ANTIGA. As rodadas da PoderData vinham sendo recusadas por falharem no teste de corte, e eu vinha registrando isso como falha de FONTE - 'buscar outra fonte para as linhas'. A leitura direta da matéria do próprio instituto (a PoderData é a pesquisa do Grupo Poder360) mostra que o diagnóstico estava errado: ele NÃO PUBLICA linhas nacionais de não-candidato. Publica os válidos, e usa 'votos totais' apenas em recortes demográficos (sexo, faixa, região). Então não há outra fonte a buscar: a base publicada é válidos, e é assim que a ficha entra. MARGEM: 1,6 ponto, e NÃO os 2 que eu havia suposto - a menor da leva depois da AtlasIntel, coerente com n=4.000. CONTRATANTE NULO: a matéria diz que 'o levantamento teve PARCERIA DE DIVULGAÇÃO com o Aya Bancah', e parceria de divulgação não é contratante - é a mesma regra da Record no Igape/DF e da Bloomberg na AtlasIntel. Será descartada do agregado de totais e conta para o ranking. Confiança 95%.",
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 51 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 49 }
+    ]
+  }
+]

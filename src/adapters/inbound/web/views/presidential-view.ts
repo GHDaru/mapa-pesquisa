@@ -15,6 +15,7 @@ import {
   formatarNumero,
   formatarPct,
   formatarPeriodo,
+  listaEmPortugues,
   tokenFillEspectro,
 } from './_shared.js';
 import { nomeCurto } from './candidate-names.js';
@@ -272,6 +273,33 @@ export function notaPrimeiroTurnoEncerrado(
   return `${abertura}: em 4 de outubro ${primeiro} terminou à frente de ${segundo}${pontos}.`;
 }
 
+/**
+ * A ressalva das pesquisas que o agregado DESCARTOU por estarem em outra base.
+ *
+ * `separarPorBase` tira do agregado as pesquisas de base de VÁLIDOS quando o
+ * conjunto mistura bases — e isso tem de ser dito. Até 25/10 a lista vinha
+ * sempre vazia e a tela calava sem consequência; naquele dia seis rodadas
+ * reais e registradas (Vox, CNT/MDA, Instituto França, Ipespe, Alfa e
+ * PoderData) entraram na base publicando SÓ válidos, e o silêncio passaria a
+ * esconder seis pesquisas do leitor. Excluir é defensável; excluir sem dizer,
+ * não.
+ *
+ * Devolve `null` quando não há nada a declarar, para não gerar frase vazia.
+ */
+export function notaDescartadasPorBase(descartadas: readonly { instituto: string }[]): string | null {
+  if (descartadas.length === 0) return null;
+  const institutos = [...new Set(descartadas.map((p) => p.instituto))];
+  const quantas =
+    descartadas.length === 1
+      ? '1 pesquisa ficou fora'
+      : `${descartadas.length} pesquisas ficaram fora`;
+  return (
+    ` ${quantas} desta média por publicarem apenas votos válidos, base diferente da usada aqui ` +
+    `(${listaEmPortugues(institutos)}): misturar as duas subestimaria os dois candidatos de uma vez. ` +
+    `Elas estão na base de pesquisas e contam na comparação com o resultado.`
+  );
+}
+
 function criarCartaoTurno1(
   turno1: Agregado | null,
   espectroDe: (partido: string | null) => Espectro,
@@ -330,7 +358,7 @@ function criarCartaoTurno1(
         turno1.foraDaJanela ? ' (nenhuma pesquisa recente: usando a mais recente disponível)' : ''
       }. Margem de referência ponderada: ± ${formatarNumero(turno1.margemReferencia)} pontos.${
         turno1.algumaNaoRegistrada ? ' Inclui pesquisa sem registro no TSE (ver tabela abaixo).' : ''
-      }`,
+      }${notaDescartadasPorBase(turno1.descartadasPorBase) ?? ''}`,
     }),
   );
 
@@ -452,7 +480,9 @@ function criarCartaoTurno2(
       className: 'pv-meta',
       texto: `${agregado.pesquisasUsadas.length} ${
         agregado.pesquisasUsadas.length === 1 ? 'pesquisa' : 'pesquisas'
-      } · última em ${agregado.ultimaPesquisa.dataFim ?? agregado.ultimaPesquisa.publicadoEm ?? '—'}. Margem de referência ponderada: ± ${formatarNumero(agregado.margemReferencia)} pontos.`,
+      } · última em ${agregado.ultimaPesquisa.dataFim ?? agregado.ultimaPesquisa.publicadoEm ?? '—'}. Margem de referência ponderada: ± ${formatarNumero(agregado.margemReferencia)} pontos.${
+        notaDescartadasPorBase(agregado.descartadasPorBase) ?? ''
+      }`,
     }),
   );
 

@@ -4524,3 +4524,46 @@ A folga até o limiar caiu de **0,3156 para 0,1158** em um dia, e a dependência
 **E há um padrão que importa mais que o veredito:** as duas fichas que dão Lula à frente — Vox (20–22/10) e Colectta (23/10) — estão entre as de **campo mais recente**, e a Vox ainda não entrou. Quando entrar, a folga cai mais. O agregado segue fora do empate técnico, mas por uma margem que uma única ficha pendente pode consumir, e sustentado por um instituto só.
 
 **876 testes**, build limpo, 859 pesquisas (858 + 1, conferido).
+
+## 25/10, dia da eleição — as seis que faltavam entram, e a guarda de base deixa de ser silenciosa
+
+Pedido do usuário: ingerir as seis antes de as urnas fecharem. Entraram todas (859 → **865**), e isso forçou a resolução de uma pendência que estava declarada há nove dias.
+
+### O destravamento: a base publicada é VÁLIDOS
+
+Eu vinha tratando essas seis como bloqueadas por falta das linhas de não-candidato. **O erro era de enquadramento:** eu insistia em montá-las em base de TOTAIS, quando o que os institutos publicam é a base de **VÁLIDOS** — e válidos é uma base legítima, que `baseDaPesquisa` reconhece (soma ~100 sem linha de não-candidato).
+
+| rodada | campo | n | margem | registro | válidos |
+|---|---|---|---|---|---|
+| CNT/MDA | 21–23/10 | 2.032 | 2,2 | BR-02136/2026 | Flávio 50,7 × 49,3 |
+| Instituto França | 21–23/10 | 1.537 | 2,5 | BR-04863/2026 | Flávio 51,4 × 48,6 |
+| Vox Brasil | 20–22/10 | 2.100 | 2,15 | BR-03259/2026 | **Lula 50,6 × 49,4** |
+| Ipespe | 20–22/10 | 1.500 | 2,6 | BR-04350/2026 | Flávio 50,5 × 49,5 |
+| Alfa Inteligência | 18–22/10 | 2.700 | 1,9 | BR-08496/2026 | Flávio 52 × 48 |
+| PoderData | 19–21/10 | 4.000 | **1,6** | BR-07926/2026 | Flávio 51 × 49 |
+
+**A PoderData fecha uma pendência com um diagnóstico corrigido.** Eu havia registrado as recusas dela como falha de FONTE — "buscar outra fonte para as linhas". A leitura direta da matéria do próprio instituto mostra que não há fonte a buscar: **a PoderData não publica linhas nacionais de não-candidato**. Publica válidos, e usa "votos totais" só em recortes demográficos. E a margem é **1,6**, não os 2 que eu havia suposto — a menor da leva depois da AtlasIntel, coerente com n=4.000. O contratante é `null`: a matéria diz "parceria de divulgação com o Aya Bancah", e parceria de divulgação não é contratante.
+
+Nas seis o contratante ficou `null` por **não localizado**, nunca inferido — inclusive no Ipespe, onde o "Abrapel" que o compilado cola ao nome é rótulo do veículo, não declaração de contratação.
+
+### A consequência, e por que ela não podia ficar calada
+
+`separarPorBase` descartou as seis do agregado nacional, que está em base de totais. **O agregado não se moveu**: segue Flávio 47,74 × Lula 45,68, vantagem 2,0563, margem 1,9405, n=22, `empateTecnico` false. Isso é o comportamento desenhado — misturar as bases subestimaria os dois candidatos de uma vez.
+
+Mas `descartadasPorBase` **saiu de zero para seis pela primeira vez**, e a pendência "nenhuma tela lê `descartadasPorBase`", declarada desde 17/10, deixou de ser teórica: o site passaria a excluir seis pesquisas reais e registradas **em silêncio**. Excluir é defensável; excluir sem dizer, não — e é exatamente a família de defeito que este projeto caça.
+
+Então a pendência foi fechada: `notaDescartadasPorBase` declara, nos cartões de 1º e de 2º turno, quantas ficaram fora, **quais institutos**, por que, e que elas contam na comparação com o resultado. Conferido na página renderizada, com os seis nomes.
+
+### O valor real das seis não é o agregado — é o ranking
+
+`medirAcertoDasPesquisas` recebe as pesquisas **cruas**, não o agregado. Então as seis **contam para o ranking de institutos** depois da apuração. E mais: **válidos é exatamente a base em que o resultado é publicado**, então para pontuar erro elas estão na base nativa, sem conversão.
+
+Com elas, o ranking do 2º turno passa a ter a **última rodada de 12 institutos** em vez de 6 — e inclui as duas únicas que dão Lula à frente.
+
+### Um teste que quebrou, e estava errado
+
+O teste `o agregado nacional de 2º turno não descarta nada: as oito são de totais` falhou. **O código estava certo; o teste fixava um retrato do conjunto de dados, não um invariante** — e todo retrato de dado real tem prazo de validade. Reescrito como invariante: o descarte tem de ser **exatamente** o conjunto das pesquisas em base de válidos, qualquer que seja o tamanho, e nenhuma das usadas pode estar em válidos. Agora ele cobre o caminho não-vazio em dados reais, que nunca cobria.
+
+Terceira vez na série que um teste quebra e o errado é o teste.
+
+**880 testes**, build limpo, 865 pesquisas (859 + 6, conferido).

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { rotuloJanelaCenario, rotuloSituacaoCenario } from '../presidential-view.js';
+import { rotuloJanelaCenario, rotuloSituacaoCenario, notaDescartadasPorBase } from '../presidential-view.js';
 
 /**
  * Os cartões de cenário de 2º turno, depois que as urnas decidiram quem passou.
@@ -66,5 +66,43 @@ describe('de quando fala o número do cartão de 2º turno', () => {
     // hipótese — dizer isso em cada cartão seria ruído.
     expect(rotuloJanelaCenario('inclui-pre-1o-turno', 'superado', 11)).toBeNull();
     expect(rotuloJanelaCenario('inclui-pre-1o-turno', 'indefinido', 55)).toBeNull();
+  });
+});
+
+describe('notaDescartadasPorBase', () => {
+  /** Vazio é o caso normal: não pode gerar frase nenhuma. */
+  it('não declara nada quando nada foi descartado', () => {
+    expect(notaDescartadasPorBase([])).toBeNull();
+  });
+
+  /**
+   * Excluir é defensável; excluir sem dizer, não. Em 25/10 seis rodadas reais
+   * e registradas entraram publicando só válidos e a guarda de base as tirou
+   * do agregado — sem esta frase, o leitor não saberia que elas existem.
+   */
+  it('nomeia os institutos, diz quantas e por quê', () => {
+    const t = notaDescartadasPorBase([
+      { instituto: 'Vox Brasil' },
+      { instituto: 'CNT/MDA' },
+      { instituto: 'PoderData' },
+    ])!;
+    expect(t).toContain('3 pesquisas ficaram fora');
+    expect(t).toContain('apenas votos válidos');
+    expect(t).toContain('Vox Brasil, CNT/MDA e PoderData');
+    expect(t).toContain('subestimaria os dois candidatos');
+    expect(t).toContain('contam na comparação com o resultado');
+  });
+
+  it('concorda no singular', () => {
+    const t = notaDescartadasPorBase([{ instituto: 'Ipespe' }])!;
+    expect(t).toContain('1 pesquisa ficou fora');
+    expect(t).not.toContain('pesquisas ficaram');
+  });
+
+  /** Duas rodadas do mesmo instituto não devem citá-lo duas vezes. */
+  it('não repete instituto que descartou mais de uma rodada', () => {
+    const t = notaDescartadasPorBase([{ instituto: 'Gerp' }, { instituto: 'Gerp' }])!;
+    expect(t).toContain('2 pesquisas ficaram fora');
+    expect(t.match(/Gerp/g)).toHaveLength(1);
   });
 });
