@@ -117,9 +117,25 @@ describe('simulador de apuração — a metade mensurável', () => {
     }
   });
 
-  /** As 27 UFs têm de estar lá: UF sumida vira cobertura silenciosamente menor. */
-  it('cobre as 27 UFs', () => {
+  /**
+   * Nenhum recorte pode sumir no caminho: recorte ausente vira cobertura
+   * silenciosamente menor, que é o defeito mais difícil de notar numa tela de
+   * apuração — o total simplesmente fica menor e nada reclama.
+   *
+   * A asserção é contra o PRÓPRIO dado de entrada, e não contra o número 27.
+   * Ela travava 27 e quebrou quando o exterior entrou na base — o código
+   * estava certo e o teste é que descrevia o mundo antigo. Hoje são 28
+   * unidades (as 27 UFs mais o exterior, que o TSE publica como "ZZ"), e
+   * amanhã o invariante continua valendo sem ninguém ter de vir aqui.
+   */
+  it('cobre todas as unidades que existem no 1º turno, inclusive o exterior', () => {
     const { dados } = simularApuracao(real, FINALISTAS, { avanco: 0.5 });
-    expect(new Set(dados.recortes.map((r) => r.uf)).size).toBe(27);
+    const esperadas = new Set(
+      real.recortes
+        .filter((r) => r.cargo === 'presidente' && r.turno === 1 && r.uf != null && r.uf !== 'BR')
+        .map((r) => r.uf),
+    );
+    expect(new Set(dados.recortes.map((r) => r.uf))).toEqual(esperadas);
+    expect(esperadas.has('ZZ')).toBe(true);
   });
 });

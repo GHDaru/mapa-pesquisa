@@ -26,8 +26,13 @@ import type { CasosDeUso } from '../../../../application/use-cases/index.js';
 import type { DadosApuracao, Projecao } from '../../../../domain/apuracao.js';
 import { espectroDoPartido, type Espectro } from '../../../../domain/spectrum.js';
 import type { Partido } from '../../../../domain/party.js';
-import { buscarApuracao, type FonteLida } from '../../../outbound/tse/tse-client.js';
+import { buscarApuracao, ELEICOES, type FonteLida } from '../../../outbound/tse/tse-client.js';
 import { simularApuracao } from '../../../outbound/tse/simulador.js';
+import {
+  buscarExterior,
+  CONTINENTES,
+  type LinhaContinente,
+} from '../../../outbound/tse/exterior.js';
 import { bboxPath, criarEl, tokenFillEspectro } from './_shared.js';
 import {
   agregarPorRegiao,
@@ -66,10 +71,18 @@ interface MapaSvg {
 }
 const mapaBrasil = brazilMapDados as MapaSvg;
 
+// 'ZZ' é o EXTERIOR, que o TSE publica como se fosse uma UF: 1.351 seções e
+// 916.683 eleitores aptos — mais que onze das 27 unidades da federação. Sem
+// ele, a projeção somava 27 recortes e chamava o resultado de nacional
+// deixando quase um milhão de eleitores de fora, sem dizer.
 const UFS = [
   'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG',
   'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO',
+  'ZZ',
 ];
+
+/** Nome legível do exterior: 'ZZ' não diz nada a quem lê. */
+const NOME_EXTERIOR = 'Exterior';
 
 const FINALISTAS: readonly [string, string] = ['Flávio Bolsonaro', 'Luiz Inácio Lula da Silva'];
 
@@ -116,6 +129,11 @@ interface Estado {
   carregando: boolean;
   erro: string | null;
   lidoEm: string | null;
+  /** O painel do exterior é visão auxiliar: só busca quando alguém abre. */
+  exteriorAberto: boolean;
+  exteriorCarregando: boolean;
+  exterior: readonly LinhaContinente[] | null;
+  exteriorFalhas: number;
 }
 
 export interface OpcoesApuracao {
@@ -143,13 +161,22 @@ export async function renderApuracao(
     recorte: 'estados',
     ordem: 'eleitorado',
     colunas: 'resumo',
-    modoMapa: 'medidor',
+    // O preenchimento abre primeiro: é o desenho pedido, e quem pediu não
+    // achou o botão do outro modo — se quem especificou não acha, o leitor
+    // não acha. O medidor deixou de ser a alternativa escondida e passou a
+    // aparecer NOS DOIS modos, que resolve a objeção dos críticos (estado
+    // pequeno não comporta fração de área legível) sem tirar o preenchimento.
+    modoMapa: 'preenchimento',
     avancoSimulado: 0.35,
     projecao: null,
     fontes: [],
     carregando: false,
     erro: null,
     lidoEm: null,
+    exteriorAberto: false,
+    exteriorCarregando: false,
+    exterior: null,
+    exteriorFalhas: 0,
   };
 
   const raiz = criarEl('section', { className: 'ap-raiz' });
@@ -193,6 +220,38 @@ export async function renderApuracao(
     } finally {
       estado.carregando = false;
       desenhar();
+      // Se o painel do exterior está aberto, ele acompanha o botão atualizar:
+      // deixá-lo com números de dez minutos atrás, ao lado de números novos,
+      // seria pior do que não tê-lo.
+      if (estado.exteriorAberto && estado.modo === 'ao-vivo') void carregarExterior();
+    }
+  }
+
+  /**
+   * Lê os 186 postos do exterior e soma por continente.
+   *
+   * Em simulação não há o que ler: o simulador trabalha sobre os recortes de
+   * UF do 1º turno, e não existe simulação posto a posto. A tela diz isso em
+   * vez de mostrar uma quebra vazia que pareceria apuração parada.
+   */
+  async function carregarExterior(): Promise<void> {
+    if (estado.modo === 'simulacao') return;
+    estado.exteriorCarregando = true;
+    desenhar();
+    try {
+      const { linhas, falhas } = await buscarExterior((url) => fetch(url, { cache: 'no-store' }), {
+        eleicao: ELEICOES.federal[2],
+        ordem: FINALISTAS,
+        nomeCanonico,
+      });
+      estado.exterior = linhas;
+      estado.exteriorFalhas = falhas;
+    } catch (e) {
+      console.warn('Falha ao ler o exterior posto a posto:', e);
+      estado.exterior = null;
+    } finally {
+      estado.exteriorCarregando = false;
+      desenhar();
     }
   }
 
@@ -216,6 +275,7 @@ export async function renderApuracao(
     }
     raiz.append(criarBigNumbers(p, partidos, estado));
     raiz.append(criarMapaProgresso(p, partidos, estado, desenhar));
+    raiz.append(criarPainelExterior(p, partidos, estado, desenhar, carregarExterior));
     raiz.append(criarTabela(p, partidos, estado, desenhar));
     raiz.append(criarFontes(estado));
   }
@@ -609,6 +669,29 @@ function criarMapaProgresso(
   const regioes = porRegiao ? agregarPorRegiao(montarLinhas(p.porUf, FINALISTAS), FINALISTAS) : [];
   const regiaoPorNome = new Map(regioes.map((r) => [r.regiao, r]));
 
+  // A caixa de cada UF, e a caixa de cada região (união das caixas das UFs
+  // dela). A caixa da região é o que faz o preenchimento correr pelo BLOCO
+  // inteiro: cortado UF a UF, cada estado ganhava a própria linha de corte e
+  // a região virava um listrado — o desenho dizia "cinco listras", não "uma
+  // região pela metade".
+  const caixaPorUf = new Map(
+    mapaBrasil.locations.map((l) => [l.id.toUpperCase(), bboxPath(l.path)] as const),
+  );
+  const caixaPorRegiao = new Map(
+    REGIOES.map((reg) => {
+      const caixas = reg.ufs.map((uf) => caixaPorUf.get(uf)).filter((b) => b != null);
+      return [
+        reg.nome,
+        {
+          minX: Math.min(...caixas.map((b) => b.minX)),
+          maxX: Math.max(...caixas.map((b) => b.maxX)),
+          minY: Math.min(...caixas.map((b) => b.minY)),
+          maxY: Math.max(...caixas.map((b) => b.maxY)),
+        },
+      ] as const;
+    }),
+  );
+
   /** O que pinta e rotula uma UF: ela mesma, ou a região a que pertence. */
   function areaDe(uf: string): {
     readonly lider: string | null;
@@ -652,7 +735,7 @@ function criarMapaProgresso(
         ? porRegiao
           ? 'A cor diz quem lidera na REGIÃO: os estados de um mesmo bloco ganham a mesma cor, e as divisas entre eles ficam fracas. Tudo aqui é soma — os votos de cada candidato são a soma dos estados da região, a projeção é a soma das projeções deles, e o percentual é o que já foi apurado dividido pelo total da região. Região sem nenhuma seção fica cinza e sem líder.'
           : 'A cor do estado diz quem lidera ali. Quanto já foi apurado é dito pela barra sob a sigla, que é um medidor e não parte do desenho do país. Estado sem nenhuma seção fica cinza e sem líder: pintar liderança que ninguém mediu seria inventar.'
-        : 'A cor cheia é de quem lidera, e ela avança da esquerda para a direita conforme as seções entram; o que falta fica hachurado na mesma cor. Quatro críticos cegos leram este desenho como divisão geográfica do estado, não como andamento — ele está aqui porque foi o pedido, e o modo "medidor" ao lado é a alternativa que eles apontaram.',
+        : 'A cor cheia é de quem lidera, e ela avança da esquerda para a direita conforme as seções entram; o que falta fica hachurado na mesma cor. O número ao lado de cada sigla é o percentual exato — ele existe porque estados pequenos como PB, AL, SE, ES, RJ e DF não têm área suficiente para que uma fração seja lida como número. Quatro críticos cegos leram este desenho como divisão geográfica do estado, e não como andamento; o modo "Cor + medidor" ao lado é a alternativa que eles apontaram, com o polígono em cor cheia respondendo só quem lidera.',
     }),
   );
 
@@ -771,7 +854,10 @@ function criarMapaProgresso(
       const espectro = resolverEspectro(area.partidoDoLider, partidos);
       const cor = tokenFillEspectro(espectro);
       const fracao = fracaoDaBarra(area.processado);
-      const corte = bbox.minX + (bbox.maxX - bbox.minX) * fracao;
+      // No recorte por região o corte é medido na caixa da REGIÃO, não na do
+      // estado: é o que faz o avanço atravessar o bloco como uma coisa só.
+      const caixaDoCorte = (porRegiao ? caixaPorRegiao.get(area.nome) : undefined) ?? bbox;
+      const corte = caixaDoCorte.minX + (caixaDoCorte.maxX - caixaDoCorte.minX) * fracao;
       const idClip = `ap-clip-${uf}`;
 
       // A parte NÃO contada, por baixo: hachura neutra no estado inteiro.
@@ -793,9 +879,9 @@ function criarMapaProgresso(
       const clip = document.createElementNS('http://www.w3.org/2000/svg', 'clipPath');
       clip.setAttribute('id', idClip);
       const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-      rect.setAttribute('x', String(bbox.minX));
+      rect.setAttribute('x', String(caixaDoCorte.minX));
       rect.setAttribute('y', String(bbox.minY - 1));
-      rect.setAttribute('width', String(Math.max(0, corte - bbox.minX)));
+      rect.setAttribute('width', String(Math.max(0, corte - caixaDoCorte.minX)));
       rect.setAttribute('height', String(bbox.maxY - bbox.minY + 2));
       clip.append(rect);
       defs.append(clip);
@@ -845,6 +931,12 @@ function criarMapaProgresso(
 
     // Rótulo e medidor. Por estado, um por UF; por região, um por região, e
     // os dois saem da MESMA função para que não divirjam com o tempo.
+    //
+    // O medidor é desenhado nos DOIS modos de mapa, e não só no que leva o
+    // nome dele: é o que cobre PB, AL, SE, ES, RJ e DF, pequenos demais para
+    // que uma fração de ÁREA seja lida como número. No preenchimento, o
+    // desenho responde "mais ou menos quanto" e o número ao lado da sigla
+    // responde "exatamente quanto".
     if (!porRegiao) {
       rotularArea(grupo, {
         cx: (bbox.minX + bbox.maxX) / 2,
@@ -866,9 +958,6 @@ function criarMapaProgresso(
   // onde ele não descreve a região. A área da caixa de cada UF é a melhor
   // aproximação de peso disponível aqui, já que o mapa não traz área real.
   if (porRegiao) {
-    const caixaPorUf = new Map(
-      mapaBrasil.locations.map((l) => [l.id.toUpperCase(), bboxPath(l.path)] as const),
-    );
     for (const reg of REGIOES) {
       const r = regiaoPorNome.get(reg.nome);
       if (!r) continue;
@@ -1185,7 +1274,13 @@ function criarLinha(l: LinhaUf | LinhaRegiao, corDoCandidato: (nome: string | nu
       }),
     );
   } else {
-    cabeca.append(criarEl('span', { className: 'ap-linha-nome', texto: l.uf }));
+    // 'ZZ' é o código do TSE para o exterior e não diz nada a quem lê.
+    cabeca.append(
+      criarEl('span', { className: 'ap-linha-nome', texto: l.uf === 'ZZ' ? NOME_EXTERIOR : l.uf }),
+    );
+    if (l.uf === 'ZZ') {
+      cabeca.append(criarEl('span', { className: 'ap-linha-nota', texto: '186 postos, 1.351 seções' }));
+    }
   }
   tr.append(cabeca);
 
@@ -1366,4 +1461,161 @@ function criarFontes(estado: Estado): HTMLElement {
   det.append(lista);
   sec.append(det);
   return sec;
+}
+
+/* ─────────────────────── o exterior, por continente ────────────────────── */
+
+/**
+ * O exterior tem geografia própria, e ela é informativa: no 1º turno de 2026
+ * o voto de fora foi para Lula (47,57% x 43,49%), ao contrário do país. Mas
+ * ele não cabe no mapa do Brasil — não tem polígono —, então vem como painel
+ * ao lado dele, em caixas pequenas, uma por continente.
+ *
+ * O painel é FECHADO por padrão porque abri-lo custa 186 requisições, uma por
+ * posto, já que o TSE publica a quebra do exterior cidade a cidade e nada
+ * mais: nem país, nem continente. O total do exterior não depende disso — ele
+ * já entra na projeção nacional pelo recorte `zz`, fechado, de graça.
+ */
+function criarPainelExterior(
+  p: Projecao,
+  partidos: readonly Partido[],
+  estado: Estado,
+  redesenhar: () => void,
+  carregar: () => Promise<void>,
+): HTMLElement {
+  const sec = criarEl('section', { className: 'ap-ext' });
+
+  const topo = criarEl('div', { className: 'ap-ext-topo' });
+  topo.append(criarEl('h2', { className: 'ap-h2', texto: 'Voto no exterior' }));
+
+  const zz = p.porUf.find((u) => u.uf === 'ZZ');
+  const resumo = criarEl('p', { className: 'ap-ext-resumo' });
+  if (zz && !semDado({ processado: zz.secoesTotalizadas })) {
+    const m = margemApurada({
+      porCandidato: FINALISTAS.map((nome) => {
+        const c = zz.candidatos.find((x) => x.candidato === nome);
+        return {
+          candidato: nome,
+          pct: 0,
+          votosApurados: c?.votosApurados ?? 0,
+          votosProjetados: c?.votosProjetados ?? 0,
+        };
+      }),
+    });
+    resumo.textContent =
+      m.lider == null
+        ? `${formatarPct(zz.secoesTotalizadas)} apurado, sem líder ainda.`
+        : `${formatarPct(zz.secoesTotalizadas)} apurado · ${nomeCurto(m.lider)} à frente por ${formatarInt(Math.abs(m.votos))} votos.`;
+  } else {
+    resumo.textContent = `916.683 eleitores aptos em 1.351 seções, distribuídas por 186 postos. ${
+      zz ? 'Nenhuma seção apurada ainda.' : 'Sem leitura do exterior nesta rodada.'
+    }`;
+  }
+  topo.append(resumo);
+
+  const botao = criarEl('button', {
+    className: 'ap-btn-secundario',
+    texto: estado.exteriorAberto ? 'Esconder os continentes' : 'Abrir por continente',
+    attrs: { type: 'button', 'aria-expanded': String(estado.exteriorAberto) },
+  });
+  botao.addEventListener('click', () => {
+    estado.exteriorAberto = !estado.exteriorAberto;
+    if (estado.exteriorAberto && estado.exterior == null && estado.modo === 'ao-vivo') {
+      void carregar();
+      return;
+    }
+    redesenhar();
+  });
+  topo.append(botao);
+  sec.append(topo);
+
+  if (!estado.exteriorAberto) return sec;
+
+  if (estado.modo === 'simulacao') {
+    sec.append(
+      criarEl('p', {
+        className: 'ap-meta',
+        texto:
+          'A quebra por continente não é simulada. O simulador trabalha sobre os recortes de UF do 1º turno — o exterior inteiro é um deles —, e não existe simulação posto a posto. Em "Ao vivo (TSE)" o painel lê os 186 postos de verdade.',
+      }),
+    );
+    return sec;
+  }
+
+  if (estado.exteriorCarregando || estado.exterior == null) {
+    sec.append(
+      criarEl('p', {
+        className: 'ap-meta',
+        texto: estado.exteriorCarregando
+          ? 'Lendo os 186 postos do exterior, um arquivo cada…'
+          : 'Não consegui ler os postos agora. Feche e abra o painel para tentar de novo.',
+      }),
+    );
+    return sec;
+  }
+
+  const partidoPorCandidato = partidosDaProjecao(p);
+  const corDoCandidato = (nome: string | null): string =>
+    tokenFillEspectro(resolverEspectro(nome ? partidoPorCandidato.get(nome) ?? null : null, partidos));
+
+  const grade = criarEl('div', { className: 'ap-ext-grade' });
+  for (const linha of estado.exterior) {
+    grade.append(criarCaixaContinente(linha, corDoCandidato));
+  }
+  sec.append(grade);
+
+  sec.append(
+    criarEl('p', {
+      className: 'ap-meta',
+      texto:
+        estado.exteriorFalhas > 0
+          ? `${estado.exteriorFalhas} de ${estado.exterior.reduce((s, l) => s + l.postos, 0)} postos não responderam e ficaram de fora desta leitura — o continente deles aparece com menos voto do que tem.`
+          : `Todos os ${estado.exterior.reduce((s, l) => s + l.postos, 0)} postos responderam. O percentual de cada continente é seções totalizadas sobre seções existentes, somadas: não é média dos postos, que entre Tóquio e Artigas daria outro número. Aqui não há projeção — o exterior já entra projetado no total nacional, e esta quebra só descreve onde o voto está sendo contado.`,
+    }),
+  );
+  return sec;
+}
+
+/** Uma caixinha de continente: cor de quem lidera e quanto já foi apurado. */
+function criarCaixaContinente(
+  linha: LinhaContinente,
+  corDoCandidato: (nome: string | null) => string,
+): HTMLElement {
+  const caixa = criarEl('div', { className: 'ap-ext-caixa' });
+  const semVoto = linha.lider == null;
+  caixa.style.setProperty(
+    '--cor',
+    semVoto ? 'var(--spectrum-indefinido)' : corDoCandidato(linha.lider),
+  );
+
+  caixa.append(criarEl('p', { className: 'ap-ext-nome', texto: linha.continente }));
+  caixa.append(
+    criarEl('p', {
+      className: 'ap-ext-lider',
+      texto: semVoto ? 'sem seção apurada' : nomeCurto(linha.lider ?? ''),
+    }),
+  );
+
+  const trilho = criarEl('div', { className: 'ap-ext-barra' });
+  const nivel = criarEl('i', { className: 'ap-ext-barra-fill' });
+  nivel.style.width = `${fracaoDaBarra(linha.processado) * 100}%`;
+  trilho.append(nivel);
+  caixa.append(trilho);
+
+  caixa.append(
+    criarEl('p', {
+      className: 'ap-ext-meta',
+      texto: `${formatarPct(linha.processado)} · ${linha.postosLidos} de ${linha.postos} postos`,
+    }),
+  );
+  if (!semVoto) {
+    const votos = [...linha.votos].sort((a, b) => b.votos - a.votos);
+    caixa.append(
+      criarEl('p', {
+        className: 'ap-ext-votos',
+        texto: votos.map((v) => `${nomeCurto(v.candidato)} ${formatarInt(v.votos)}`).join(' · '),
+      }),
+    );
+  }
+  return caixa;
 }

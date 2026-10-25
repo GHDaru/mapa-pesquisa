@@ -1,0 +1,754 @@
+{
+  "fonte": {
+    "nome": "TSE — Divulgação de Resultados, índice de municípios da eleição 6258 (2º turno, presidente)",
+    "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/config/mun-e006258-cm.json",
+    "lidoEm": "15/10/2026 09:38:00"
+  },
+  "observacao": "A lista de postos do exterior como o TSE a publica, copiada sem alteração. Serve de contraprova para o mapeamento posto -> continente de src/adapters/outbound/tse/exterior.ts: o teste exige que os dois conjuntos sejam IGUAIS, para que nenhum posto caia num \"outros\" silencioso nem sobre no mapeamento um posto que o TSE não publica. O TSE publica o nome da cidade e nada mais — nem país, nem continente.",
+  "postos": [
+    {
+      "codigo": "29173",
+      "nome": "KATMANDU"
+    },
+    {
+      "codigo": "29254",
+      "nome": "ABIDJÃ"
+    },
+    {
+      "codigo": "29262",
+      "nome": "ABU DHABI"
+    },
+    {
+      "codigo": "29270",
+      "nome": "ACCRA"
+    },
+    {
+      "codigo": "29289",
+      "nome": "AMÃ"
+    },
+    {
+      "codigo": "29297",
+      "nome": "ANCARA"
+    },
+    {
+      "codigo": "29300",
+      "nome": "ARGEL"
+    },
+    {
+      "codigo": "29319",
+      "nome": "ARTIGAS"
+    },
+    {
+      "codigo": "29327",
+      "nome": "ASSUNÇÃO"
+    },
+    {
+      "codigo": "29335",
+      "nome": "ATENAS"
+    },
+    {
+      "codigo": "29343",
+      "nome": "BANGKOK"
+    },
+    {
+      "codigo": "29351",
+      "nome": "BARCELONA"
+    },
+    {
+      "codigo": "29360",
+      "nome": "BEIRUTE"
+    },
+    {
+      "codigo": "29378",
+      "nome": "BELGRADO"
+    },
+    {
+      "codigo": "29386",
+      "nome": "BERLIM"
+    },
+    {
+      "codigo": "29394",
+      "nome": "BISSAU"
+    },
+    {
+      "codigo": "29408",
+      "nome": "BOGOTÁ"
+    },
+    {
+      "codigo": "29416",
+      "nome": "BOSTON"
+    },
+    {
+      "codigo": "29424",
+      "nome": "BRIDGETOWN"
+    },
+    {
+      "codigo": "29432",
+      "nome": "BRUXELAS"
+    },
+    {
+      "codigo": "29440",
+      "nome": "BUCARESTE"
+    },
+    {
+      "codigo": "29459",
+      "nome": "BUDAPESTE"
+    },
+    {
+      "codigo": "29467",
+      "nome": "BUENOS AIRES"
+    },
+    {
+      "codigo": "29475",
+      "nome": "CAIENA"
+    },
+    {
+      "codigo": "29483",
+      "nome": "CAIRO"
+    },
+    {
+      "codigo": "29491",
+      "nome": "CAMBERRA"
+    },
+    {
+      "codigo": "29505",
+      "nome": "CARACAS"
+    },
+    {
+      "codigo": "29513",
+      "nome": "CHICAGO"
+    },
+    {
+      "codigo": "29521",
+      "nome": "CHUY"
+    },
+    {
+      "codigo": "29530",
+      "nome": "CIDADE DO CABO"
+    },
+    {
+      "codigo": "29548",
+      "nome": "SINGAPURA"
+    },
+    {
+      "codigo": "29556",
+      "nome": "CIUDAD DEL ESTE"
+    },
+    {
+      "codigo": "29564",
+      "nome": "CIUDAD GUAYANA"
+    },
+    {
+      "codigo": "29572",
+      "nome": "COCHABAMBA"
+    },
+    {
+      "codigo": "29580",
+      "nome": "CONCEPCIÓN"
+    },
+    {
+      "codigo": "29599",
+      "nome": "COPENHAGUE"
+    },
+    {
+      "codigo": "29602",
+      "nome": "CÓRDOBA"
+    },
+    {
+      "codigo": "29610",
+      "nome": "DACAR"
+    },
+    {
+      "codigo": "29629",
+      "nome": "DACCA"
+    },
+    {
+      "codigo": "29637",
+      "nome": "DAMASCO"
+    },
+    {
+      "codigo": "29645",
+      "nome": "DÍLI"
+    },
+    {
+      "codigo": "29653",
+      "nome": "DOHA"
+    },
+    {
+      "codigo": "29661",
+      "nome": "DUBLIN"
+    },
+    {
+      "codigo": "29670",
+      "nome": "ENCARNACIÓN"
+    },
+    {
+      "codigo": "29688",
+      "nome": "ESTOCOLMO"
+    },
+    {
+      "codigo": "29696",
+      "nome": "FRANKFURT"
+    },
+    {
+      "codigo": "29700",
+      "nome": "GENEBRA"
+    },
+    {
+      "codigo": "29718",
+      "nome": "GEORGETOWN"
+    },
+    {
+      "codigo": "29742",
+      "nome": "HAMAMATSU"
+    },
+    {
+      "codigo": "29750",
+      "nome": "HANÓI"
+    },
+    {
+      "codigo": "29769",
+      "nome": "HARARE"
+    },
+    {
+      "codigo": "29777",
+      "nome": "HAVANA"
+    },
+    {
+      "codigo": "29785",
+      "nome": "HELSINQUE"
+    },
+    {
+      "codigo": "29793",
+      "nome": "HONG KONG"
+    },
+    {
+      "codigo": "29807",
+      "nome": "HOUSTON"
+    },
+    {
+      "codigo": "29815",
+      "nome": "IAUNDÊ"
+    },
+    {
+      "codigo": "29823",
+      "nome": "IQUITOS"
+    },
+    {
+      "codigo": "29831",
+      "nome": "ISLAMABADE"
+    },
+    {
+      "codigo": "29840",
+      "nome": "JACARTA"
+    },
+    {
+      "codigo": "29858",
+      "nome": "KIEV"
+    },
+    {
+      "codigo": "29874",
+      "nome": "KINSHASA"
+    },
+    {
+      "codigo": "29882",
+      "nome": "KUAITE"
+    },
+    {
+      "codigo": "29890",
+      "nome": "KUALA LUMPUR"
+    },
+    {
+      "codigo": "29904",
+      "nome": "LA PAZ"
+    },
+    {
+      "codigo": "29912",
+      "nome": "LAGOS"
+    },
+    {
+      "codigo": "29939",
+      "nome": "LIBREVILLE"
+    },
+    {
+      "codigo": "29947",
+      "nome": "LIMA"
+    },
+    {
+      "codigo": "29955",
+      "nome": "LISBOA"
+    },
+    {
+      "codigo": "29963",
+      "nome": "LOMÉ"
+    },
+    {
+      "codigo": "29971",
+      "nome": "LONDRES"
+    },
+    {
+      "codigo": "29980",
+      "nome": "LOS ANGELES"
+    },
+    {
+      "codigo": "29998",
+      "nome": "LUANDA"
+    },
+    {
+      "codigo": "30066",
+      "nome": "MADRI"
+    },
+    {
+      "codigo": "30074",
+      "nome": "MANÁGUA"
+    },
+    {
+      "codigo": "30082",
+      "nome": "MANILA"
+    },
+    {
+      "codigo": "30090",
+      "nome": "MAPUTO"
+    },
+    {
+      "codigo": "30104",
+      "nome": "MEXICO"
+    },
+    {
+      "codigo": "30112",
+      "nome": "MIAMI"
+    },
+    {
+      "codigo": "30120",
+      "nome": "MILÃO"
+    },
+    {
+      "codigo": "30147",
+      "nome": "MONTEVIDÉU"
+    },
+    {
+      "codigo": "30155",
+      "nome": "MONTREAL"
+    },
+    {
+      "codigo": "30163",
+      "nome": "MOSCOU"
+    },
+    {
+      "codigo": "30171",
+      "nome": "MUMBAI"
+    },
+    {
+      "codigo": "30180",
+      "nome": "MUNIQUE"
+    },
+    {
+      "codigo": "30198",
+      "nome": "NAGÓIA"
+    },
+    {
+      "codigo": "30201",
+      "nome": "NAIRÓBI"
+    },
+    {
+      "codigo": "30210",
+      "nome": "NOVA DELHI"
+    },
+    {
+      "codigo": "30228",
+      "nome": "NOVA YORK"
+    },
+    {
+      "codigo": "30244",
+      "nome": "OSLO"
+    },
+    {
+      "codigo": "30252",
+      "nome": "OTTAWA"
+    },
+    {
+      "codigo": "30260",
+      "nome": "PANAMA"
+    },
+    {
+      "codigo": "30279",
+      "nome": "PARAMARIBO"
+    },
+    {
+      "codigo": "30287",
+      "nome": "PARIS"
+    },
+    {
+      "codigo": "30295",
+      "nome": "PASO LOS LIBRES"
+    },
+    {
+      "codigo": "30309",
+      "nome": "PEDRO JUAN CABALLERO"
+    },
+    {
+      "codigo": "30317",
+      "nome": "PEQUIM"
+    },
+    {
+      "codigo": "30325",
+      "nome": "PORT OF SPAIN"
+    },
+    {
+      "codigo": "30333",
+      "nome": "PORTO PRÍNCIPE"
+    },
+    {
+      "codigo": "30341",
+      "nome": "PORTO"
+    },
+    {
+      "codigo": "30350",
+      "nome": "PRAGA"
+    },
+    {
+      "codigo": "30368",
+      "nome": "PRAIA"
+    },
+    {
+      "codigo": "30376",
+      "nome": "PRETÓRIA"
+    },
+    {
+      "codigo": "30392",
+      "nome": "QUITO"
+    },
+    {
+      "codigo": "30406",
+      "nome": "RABAT"
+    },
+    {
+      "codigo": "30414",
+      "nome": "RAMALLAH"
+    },
+    {
+      "codigo": "30422",
+      "nome": "RIADE"
+    },
+    {
+      "codigo": "30430",
+      "nome": "RIO BRANCO"
+    },
+    {
+      "codigo": "30449",
+      "nome": "ROMA"
+    },
+    {
+      "codigo": "30457",
+      "nome": "AMSTERDÃ"
+    },
+    {
+      "codigo": "30465",
+      "nome": "SALTO DEL GUAIRÁ"
+    },
+    {
+      "codigo": "30473",
+      "nome": "SANTA CRUZ DE LA SIERRA"
+    },
+    {
+      "codigo": "30481",
+      "nome": "SANTIAGO"
+    },
+    {
+      "codigo": "30490",
+      "nome": "SÃO DOMINGOS"
+    },
+    {
+      "codigo": "30503",
+      "nome": "SÃO FRANCISCO"
+    },
+    {
+      "codigo": "30511",
+      "nome": "SÃO JOSÉ"
+    },
+    {
+      "codigo": "30520",
+      "nome": "SÃO SALVADOR"
+    },
+    {
+      "codigo": "30538",
+      "nome": "SEUL"
+    },
+    {
+      "codigo": "30546",
+      "nome": "SÓFIA"
+    },
+    {
+      "codigo": "30562",
+      "nome": "SYDNEY"
+    },
+    {
+      "codigo": "30570",
+      "nome": "TAIPÉ"
+    },
+    {
+      "codigo": "30597",
+      "nome": "TEERÃ"
+    },
+    {
+      "codigo": "30600",
+      "nome": "TEGUCIGALPA"
+    },
+    {
+      "codigo": "30619",
+      "nome": "TEL AVIV"
+    },
+    {
+      "codigo": "30627",
+      "nome": "TÓQUIO"
+    },
+    {
+      "codigo": "30635",
+      "nome": "TORONTO"
+    },
+    {
+      "codigo": "30651",
+      "nome": "CANTÃO"
+    },
+    {
+      "codigo": "30669",
+      "nome": "GABORONE"
+    },
+    {
+      "codigo": "30686",
+      "nome": "TRÍPOLI"
+    },
+    {
+      "codigo": "30708",
+      "nome": "TUNIS"
+    },
+    {
+      "codigo": "30740",
+      "nome": "VARSÓVIA"
+    },
+    {
+      "codigo": "30767",
+      "nome": "VIENA"
+    },
+    {
+      "codigo": "30783",
+      "nome": "WASHINGTON"
+    },
+    {
+      "codigo": "30805",
+      "nome": "WELLINGTON"
+    },
+    {
+      "codigo": "30821",
+      "nome": "WINDHOEK"
+    },
+    {
+      "codigo": "30848",
+      "nome": "XANGAI"
+    },
+    {
+      "codigo": "30864",
+      "nome": "ZURIQUE"
+    },
+    {
+      "codigo": "30902",
+      "nome": "HARTFORD"
+    },
+    {
+      "codigo": "30929",
+      "nome": "COLOMBO"
+    },
+    {
+      "codigo": "30961",
+      "nome": "FARO"
+    },
+    {
+      "codigo": "30988",
+      "nome": "SARAJEVO"
+    },
+    {
+      "codigo": "38881",
+      "nome": "BELMOPAN"
+    },
+    {
+      "codigo": "38903",
+      "nome": "CONACRI"
+    },
+    {
+      "codigo": "38920",
+      "nome": "COTONOU"
+    },
+    {
+      "codigo": "38962",
+      "nome": "DAR ES SALAAM"
+    },
+    {
+      "codigo": "38989",
+      "nome": "IEREVAN"
+    },
+    {
+      "codigo": "39004",
+      "nome": "MENDOZA"
+    },
+    {
+      "codigo": "39020",
+      "nome": "ZAGREB"
+    },
+    {
+      "codigo": "39063",
+      "nome": "VANCOUVER"
+    },
+    {
+      "codigo": "39080",
+      "nome": "ATLANTA"
+    },
+    {
+      "codigo": "39102",
+      "nome": "MASCATE"
+    },
+    {
+      "codigo": "39128",
+      "nome": "BAKU"
+    },
+    {
+      "codigo": "39160",
+      "nome": "LIUBLIANA"
+    },
+    {
+      "codigo": "39187",
+      "nome": "BRAZZAVILLE"
+    },
+    {
+      "codigo": "39209",
+      "nome": "BRATISLAVA"
+    },
+    {
+      "codigo": "39225",
+      "nome": "SÃO TOMÉ"
+    },
+    {
+      "codigo": "39241",
+      "nome": "ASTANA"
+    },
+    {
+      "codigo": "39263",
+      "nome": "MALABO"
+    },
+    {
+      "codigo": "39284",
+      "nome": "UAGADUGU"
+    },
+    {
+      "codigo": "39306",
+      "nome": "ISTAMBUL"
+    },
+    {
+      "codigo": "39322",
+      "nome": "NICOSIA"
+    },
+    {
+      "codigo": "98000",
+      "nome": "GUATEMALA"
+    },
+    {
+      "codigo": "99104",
+      "nome": "TBILISI"
+    },
+    {
+      "codigo": "99139",
+      "nome": "TIRANA"
+    },
+    {
+      "codigo": "99147",
+      "nome": "SAINT JOHNS"
+    },
+    {
+      "codigo": "99155",
+      "nome": "PUERTO IGUAZÚ"
+    },
+    {
+      "codigo": "99171",
+      "nome": "BAGDÁ"
+    },
+    {
+      "codigo": "99180",
+      "nome": "NASSAU"
+    },
+    {
+      "codigo": "99198",
+      "nome": "ABUJA"
+    },
+    {
+      "codigo": "99210",
+      "nome": "COBIJA"
+    },
+    {
+      "codigo": "99236",
+      "nome": "PUERTO QUIJARRO"
+    },
+    {
+      "codigo": "99244",
+      "nome": "RIVERA"
+    },
+    {
+      "codigo": "99279",
+      "nome": "SANTA ELENA DE UAIRÉN"
+    },
+    {
+      "codigo": "99287",
+      "nome": "LUSACA"
+    },
+    {
+      "codigo": "99295",
+      "nome": "PYONGYANG"
+    },
+    {
+      "codigo": "99317",
+      "nome": "TALIN"
+    },
+    {
+      "codigo": "99325",
+      "nome": "ADIS ABEBA"
+    },
+    {
+      "codigo": "99333",
+      "nome": "ST GEORGES DE LOYAPOCK"
+    },
+    {
+      "codigo": "99341",
+      "nome": "LILONGUE"
+    },
+    {
+      "codigo": "99350",
+      "nome": "BAMAKO"
+    },
+    {
+      "codigo": "99376",
+      "nome": "YANGON"
+    },
+    {
+      "codigo": "99384",
+      "nome": "CASTRIES"
+    },
+    {
+      "codigo": "99430",
+      "nome": "KINGSTON-JAMAICA"
+    },
+    {
+      "codigo": "99473",
+      "nome": "BAREIN"
+    },
+    {
+      "codigo": "99490",
+      "nome": "ORLANDO"
+    },
+    {
+      "codigo": "99503",
+      "nome": "EDIMBURGO"
+    },
+    {
+      "codigo": "99511",
+      "nome": "MARSELHA"
+    }
+  ]
+}

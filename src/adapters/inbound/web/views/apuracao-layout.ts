@@ -229,8 +229,10 @@ export function agregarPorRegiao(
   ordem: readonly [string, string],
 ): readonly LinhaRegiao[] {
   const porUf = new Map(linhas.map((l) => [l.uf, l]));
+  const blocos: readonly { readonly nome: string; readonly ufs: readonly string[] }[] =
+    porUf.has('ZZ') ? [...REGIOES, { nome: 'Exterior', ufs: ['ZZ'] }] : REGIOES;
 
-  return REGIOES.map((reg): LinhaRegiao => {
+  return blocos.map((reg): LinhaRegiao => {
     const dentro = reg.ufs.map((uf) => porUf.get(uf)).filter((l): l is LinhaUf => l != null);
     const comDado = dentro.filter((l) => !semDado(l));
     const semApuracao = dentro.filter((l) => semDado(l)).map((l) => l.uf);

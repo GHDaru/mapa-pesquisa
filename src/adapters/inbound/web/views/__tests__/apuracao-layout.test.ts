@@ -553,3 +553,35 @@ describe('apuracao-layout: nomeCurto', () => {
     expect(nomeCurto('  Fernando  Haddad ')).toBe('Fernando');
   });
 });
+
+describe('apuracao-layout: o exterior no recorte por região', () => {
+  it('ganha linha própria em vez de sumir — ele não pertence a região nenhuma', () => {
+    const linhas = [
+      linha('SP', { a: 600, b: 400 }),
+      linha('ZZ', { a: 100, b: 200, eleitores: 916_683 }),
+    ];
+    const regioes = agregarPorRegiao(linhas, ['A', 'B']);
+    const ext = regioes.find((r) => r.regiao === 'Exterior');
+    expect(ext).toBeDefined();
+    expect(ext!.porCandidato.find((c) => c.candidato === 'B')!.votosProjetados).toBe(200);
+    expect(ext!.lider).toBe('B');
+    expect(ext!.eleitores).toBe(916_683);
+  });
+
+  it('o voto do exterior NÃO é somado a nenhuma região do IBGE', () => {
+    const regioes = agregarPorRegiao(
+      [linha('SP', { a: 600, b: 400 }), linha('ZZ', { a: 1_000_000, b: 1 })],
+      ['A', 'B'],
+    );
+    for (const r of regioes.filter((x) => x.regiao !== 'Exterior')) {
+      expect(r.porCandidato.find((c) => c.candidato === 'A')!.votosProjetados).toBeLessThan(1_000_000);
+    }
+  });
+
+  it('sem exterior na base, a tabela continua com as cinco regiões e nada mais', () => {
+    const regioes = agregarPorRegiao([linha('SP', { a: 1, b: 1 })], ['A', 'B']);
+    expect(regioes.map((r) => r.regiao)).toEqual([
+      'Norte', 'Nordeste', 'Centro-Oeste', 'Sudeste', 'Sul',
+    ]);
+  });
+});

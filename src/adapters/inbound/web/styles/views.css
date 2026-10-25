@@ -1378,6 +1378,31 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
 .ap-leg-sem { background: var(--spectrum-indefinido); border-color: transparent; }
 
 /* --- faixa de estado no topo: vantagem e % apurado como DADO ------------ */
+/* ═══ o exterior, por continente ════════════════════════════════════════
+   Caixas pequenas, ao lado do mapa e não dentro dele: o exterior não tem
+   polígono para ser pintado, e inventar um lugar para ele no desenho do
+   Brasil seria pior do que dar-lhe um painel próprio. */
+.ap-ext { margin-top: 1rem; }
+.ap-ext-topo { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 0.9rem; }
+.ap-ext-resumo { margin: 0; flex: 1 1 18rem; font-size: 0.84rem; color: var(--color-text-muted); }
+.ap-ext-grade {
+  margin-top: 0.75rem; display: grid; gap: 0.6rem;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+.ap-ext-caixa {
+  border: 1px solid var(--color-border); border-left: 3px solid var(--cor);
+  border-radius: 8px; padding: 0.55rem 0.7rem; background: var(--color-surface-1); min-width: 0;
+}
+.ap-ext-nome { margin: 0; font-size: 0.78rem; font-weight: 700; }
+.ap-ext-lider { margin: 0.1rem 0 0; font-size: 0.82rem; color: var(--cor); font-weight: 650; }
+.ap-ext-barra {
+  margin: 0.35rem 0 0.25rem; height: 6px; border-radius: 999px;
+  background: var(--color-surface-2); box-shadow: inset 0 0 0 1px var(--color-border); overflow: hidden;
+}
+.ap-ext-barra-fill { display: block; height: 100%; background: var(--cor); }
+.ap-ext-meta { margin: 0; font-size: 0.68rem; color: var(--color-text-muted); font-variant-numeric: tabular-nums; }
+.ap-ext-votos { margin: 0.15rem 0 0; font-size: 0.7rem; font-variant-numeric: tabular-nums; }
+
 /* ═══ o painel da projeção ══════════════════════════════════════════════
    Ele tem moldura própria e cor de acento porque é o número que responde
    "quem ganha" enquanto a contagem não fecha — e estava numa linha de rodapé
