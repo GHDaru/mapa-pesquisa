@@ -4,6 +4,23 @@ Link: https://ghdaru.github.io/mapa-pesquisa/#/presidente-estados?mapa=apuracao
 
 ---
 
+## Um parágrafo (para mandar e pronto)
+
+Pessoal, pus no ar a apuração ao vivo do 2º turno, e ela faz uma coisa que os
+sites de notícia não fazem: em vez de mostrar o percentual nacional parcial —
+que engana, porque enquanto a contagem está cheia de uns estados e vazia de
+outros ele diz mais sobre a ordem de chegada do que sobre o voto —, ela projeta
+cada estado separadamente, com uma divisão só: votos contados no estado ÷
+fração já computada = votos projetados do estado. Um estado com 400 mil votos e
+40% computado projeta 1 milhão, e **só depois** os 27 estados e o exterior são
+somados. O segredo inteiro é essa ordem: somar primeiro e dividir depois
+devolve o número que engana. Entrem, passem o mouse num estado (ou cliquem,
+que a leitura fica presa), comparem "Contado" com "Projeção" nos cartões de
+cima, e confiram a conta vocês mesmos com a calculadora do celular:
+https://ghdaru.github.io/mapa-pesquisa/#/presidente-estados?mapa=apuracao
+
+---
+
 ## Versão curta (WhatsApp / Telegram)
 
 Pessoal, deixei no ar a apuração ao vivo com uma coisa que vale a aula de hoje:
