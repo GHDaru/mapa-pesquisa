@@ -1,0 +1,28 @@
+[
+  {
+    "id": "2026-10-21-palver-br-presidente-t2-lula-flavio",
+    "uf": "BR",
+    "cargo": "presidente",
+    "turno": 2,
+    "instituto": "Palver",
+    "registroTSE": "BR-04612/2026",
+    "contratante": null,
+    "dataInicio": "2026-10-18",
+    "dataFim": "2026-10-20",
+    "publicadoEm": "2026-10-21",
+    "amostra": 5000,
+    "margem": 2.4,
+    "cenario": "estimulada, 2º turno Lula x Flávio Bolsonaro",
+    "fonte": {
+      "nome": "Gazeta do Povo",
+      "url": "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/palver-presidente-outubro-2026-segundo-turno/"
+    },
+    "resultados": [
+      { "candidato": "Flávio Bolsonaro", "partido": "PL", "pct": 50 },
+      { "candidato": "Luiz Inácio Lula da Silva", "partido": "PT", "pct": 48 },
+      { "candidato": "Branco/Nulo/Não vai votar", "partido": null, "pct": 1 },
+      { "candidato": "Indecisos", "partido": null, "pct": 0 }
+    ],
+    "observacao": "Base do TOTAL: as linhas de não-candidato vêm publicadas (Branco/Nulo/Não vai votar 1, Indecisos 0), somando 99 com os candidatos — abaixo de 100 por arredondamento do instituto, sem invalidar o corte. Contratante null: a página declara \"contratada pelo próprio instituto\". CONFLITO DE CAMPO DECLARADO: esta ficha, a única com registro e metodologia que consegui ler, diz campo de 18 a 20/10; o compilado do Poder360 registrava 16 a 20/10. Fiquei com 18–20/10 e deixo o conflito dito; não afeta o ranking, que ordena por dataFim, igual nas duas versões. FONTE ÚNICA: busquei corroboração no Poder360 (403), CNN Brasil e Metrópoles (sem resultado para Palver) — negativo é \"não localizei\", não \"não existe\". Delta contra a rodada anterior da Palver na nossa base (30/09–03/10): Flávio 49→50, Lula 44→48, e o não-candidato caiu de 7 para 1, que é a compressão esperada de véspera mas é o maior salto da série do instituto. n=5.000 em todas as rodadas da Palver, assinatura do próprio instituto."
+  }
+]

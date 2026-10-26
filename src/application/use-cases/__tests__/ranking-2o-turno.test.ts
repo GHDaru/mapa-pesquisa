@@ -17,7 +17,8 @@ import { dataReferenciaDaPesquisa } from '../../../domain/poll-accuracy.js';
  * 17/10, quando a guarda de base protegia o agregado e não a série.
  */
 describe('ranking do 2º turno, nos dados reais', () => {
-  const casos = criarCasosDeUso(carregarDados(), { hoje: () => new Date('2026-10-26T12:00:00Z') });
+  const repos = carregarDados();
+  const casos = criarCasosDeUso(repos, { hoje: () => new Date('2026-10-26T12:00:00Z') });
   const projecao = casos.getProjecao('presidente', 'auto') as unknown as {
     readonly acerto: {
       readonly institutos: readonly { readonly instituto: string; readonly dataReferencia: string }[];
@@ -71,11 +72,20 @@ describe('ranking do 2º turno, nos dados reais', () => {
     expect(new Set(urls).size).toBe(urls.length);
     expect(urls.length).toBeGreaterThanOrEqual(28);
 
-    // E a linha que difere continua visível como grupo próprio: RR está sozinha
-    // sob o rótulo de totalização ainda aberta.
-    const aberta = dados.fontes.filter((f) => f.nome.includes('AINDA ABERTA'));
-    expect(aberta).toHaveLength(1);
-    expect(aberta[0]!.recortes.map((r) => r.uf)).toEqual(['RR']);
+    // E uma linha que difira continua ganhando grupo próprio. A versão
+    // anterior desta asserção dizia "RR está sozinha sob o rótulo de
+    // totalização aberta" — verdade em 26/10 às 04h, falsa às 23h, quando RR
+    // declarou tf="s" e os 29 recortes passaram a ter o mesmo rótulo. Era o
+    // defeito da casa num TESTE: estado do mundo escrito como invariante.
+    // O que é invariante é o agrupamento ser POR RÓTULO, sem mesclar rótulos
+    // diferentes nem partir um rótulo em dois grupos.
+    const rotulosDistintos = new Set(
+      repos.apuracao
+        .dados()
+        .recortes.filter((r) => r.cargo === 'presidente' && r.turno === 2)
+        .map((r) => r.fonte.nome),
+    );
+    expect(dados.fontes.length).toBe(rotulosDistintos.size);
   });
 
   it('a margem real do 2º turno é a do 2º turno, não a do 1º', () => {

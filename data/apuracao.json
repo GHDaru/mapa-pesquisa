@@ -6215,10 +6215,10 @@
       "nulos": 3241,
       "abstencoes": 92943,
       "fonte": {
-        "nome": "TSE — Divulgação de Resultados, arquivo oficial com 100% das seções mas totalização AINDA ABERTA (tf=\"n\")",
+        "nome": "TSE — Divulgação de Resultados, arquivo oficial de totalização FINALIZADA (tf=\"s\")",
         "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/dados/rr/rr-c0001-e006258-u.json"
       },
-      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026. ATENÇÃO: tf=\"n\" — 100% das seções apuradas, mas a totalização NÃO foi declarada encerrada. No 1º turno, 12 recortes nesta mesma condição ainda diferiram de 3 a 280 votos do definitivo; este recorte deve ser relido quando tf virar \"s\". validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
+      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026 e RELIDO às 23:05 de 26/10, quando tf virou \"s\". A leitura provisória (100% das seções com tf=\"n\") trazia exatamente estes números: nenhum voto mudou na declaração de encerramento. A ressalva existia porque no 1º turno 12 recortes nessa condição diferiram de 3 a 280 votos do definitivo — aqui não diferiu, e é isso que a releitura estabelece. Fechamento conferido: 219.675 + 83.505 = 303.180 = \"vvc\", e 303.180 + 2.176 + 3.241 = 308.597 = comparecimento. validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
     },
     {
       "cargo": "presidente",
