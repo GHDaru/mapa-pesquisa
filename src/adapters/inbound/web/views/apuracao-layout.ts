@@ -724,17 +724,38 @@ export function montarDicaDaUf(opcoes: {
 /* ─────────────────────── a espera até as 19h ───────────────────────────── */
 
 /**
- * A apuração fica zerada até a hora combinada.
+ * `true` quando TODAS as unidades declararam totalização encerrada (`tf='s'`).
  *
- * É uma decisão de quem publica a página, não uma limitação técnica: os
- * arquivos do TSE já estão no ar e a página já sabe lê-los. Por isso a tela
- * precisa DIZER que está segurando, com a hora, em vez de mostrar zeros
- * calados — zero calado se lê como "ninguém votou" ou "o site quebrou", e as
- * duas leituras são falsas.
+ * Serve para a página parar de reler o TSE. Com a retenção das 19h removida,
+ * o laço de cinco minutos passaria a buscar os 28 arquivos para sempre, de
+ * cada aba aberta, numa contagem que não muda mais — e o TSE devolve 429 com
+ * facilidade, de modo que insistir atrapalha quem ainda precisa ler.
  *
- * A comparação é feita em horário de Brasília, pelo mesmo motivo que o resto
- * da tela: "19h" aqui é 19h de Brasília para todo mundo, inclusive para quem
- * abre a página de outro fuso.
+ * A régua é `finalizada`, não `processado === 100`: é a armadilha nº 1 da
+ * fonte. No 1º turno, 12 recortes com 100% das seções ainda diferiram de 3 a
+ * 280 votos do definitivo, e no 2º turno RR ficou em 100% com `tf='n'`.
+ * Enquanto uma unidade não fecha, reler é exatamente o certo — e quando ela
+ * fechar, as abas abertas param sozinhas, sem precisar de nova publicação.
+ */
+export function apuracaoEncerrada(
+  unidades: readonly { readonly finalizada: boolean }[],
+): boolean {
+  return unidades.length > 0 && unidades.every((u) => u.finalizada);
+}
+
+/**
+ * A hora de Brasília como número decimal.
+ *
+ * Existia para a retenção das 19h, que foi removida em 26/10 com a eleição
+ * encerrada: `apuracaoRetida` comparava só a HORA DO DIA, sem data, então a
+ * partir de 26/10 a página zerava todo dia da meia-noite às 19h e dizia "a
+ * apuração aparece aqui a partir das 19h" sobre uma apuração que já havia
+ * terminado. É o mesmo defeito de sempre — regra escrita para uma noite, lida
+ * todos os dias depois.
+ *
+ * Fica porque é a única régua de "que hora é no Brasil" do módulo, e porque o
+ * resto da tela também fala em horário de Brasília para quem abre de outro
+ * fuso.
  */
 export function horaDeBrasilia(agora: Date): number {
   const partes = new Intl.DateTimeFormat('pt-BR', {
@@ -752,17 +773,6 @@ export function horaDeBrasilia(agora: Date): number {
   const campo = (tipo: string): number =>
     Number(partes.find((p) => p.type === tipo)?.value ?? '0');
   return campo('hour') + campo('minute') / 60 + campo('second') / 3600;
-}
-
-/** `true` enquanto a apuração deve aparecer zerada. */
-export function apuracaoRetida(agora: Date, liberaAs = 19): boolean {
-  return horaDeBrasilia(agora) < liberaAs;
-}
-
-/** Quantos milissegundos faltam para a liberação, ou 0 se já passou. */
-export function faltaParaLiberar(agora: Date, liberaAs = 19): number {
-  const horas = liberaAs - horaDeBrasilia(agora);
-  return horas <= 0 ? 0 : Math.ceil(horas * 3600 * 1000);
 }
 
 /* ──────────────── quando o TSE não responde ───────────────────────────── */

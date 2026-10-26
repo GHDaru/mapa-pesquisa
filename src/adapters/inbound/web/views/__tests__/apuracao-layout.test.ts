@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import {
+  apuracaoEncerrada,
+  horaDeBrasilia,
   acrescentarAmostra,
   agregarPorRegiao,
   baldeDeCincoMinutos,
   marcasDeHora,
   pontosDaSerie,
-  apuracaoRetida,
-  faltaParaLiberar,
   margemApurada,
   montarCsv,
   montarDicaDaUf,
@@ -677,39 +677,44 @@ describe('apuracao-layout: montarDicaDaUf', () => {
   });
 });
 
-describe('apuracao-layout: a espera até as 19h', () => {
-  it('retém antes da hora e libera a partir dela, no horário de Brasília', () => {
-    expect(apuracaoRetida(new Date('2026-10-25T18:59:00-03:00'))).toBe(true);
-    expect(apuracaoRetida(new Date('2026-10-25T19:00:00-03:00'))).toBe(false);
-    expect(apuracaoRetida(new Date('2026-10-25T21:30:00-03:00'))).toBe(false);
+describe('apuracao-layout: apuracaoEncerrada', () => {
+  it('só encerra quando TODAS declararam tf="s"', () => {
+    expect(apuracaoEncerrada([{ finalizada: true }, { finalizada: true }])).toBe(true);
+    expect(apuracaoEncerrada([{ finalizada: true }, { finalizada: false }])).toBe(false);
   });
 
-  it('a hora é a de Brasília mesmo para quem abre de outro fuso', () => {
-    // 21:59 UTC é 18:59 em Brasília: ainda retido, mesmo que o relógio de
-    // quem olha já tenha passado das 19h.
-    expect(apuracaoRetida(new Date('2026-10-25T21:59:00Z'))).toBe(true);
-    expect(apuracaoRetida(new Date('2026-10-25T22:00:00Z'))).toBe(false);
+  it('a régua é `finalizada`, não 100% das seções — é a armadilha nº 1 da fonte', () => {
+    // RR fechou o 2º turno com 100% das seções e tf="n". Parar de reler ali
+    // congelaria a página num número que o TSE ainda podia corrigir: no 1º
+    // turno, 12 recortes nessa condição diferiram de 3 a 280 votos.
+    expect(apuracaoEncerrada([{ finalizada: false }])).toBe(false);
   });
 
-  it('conta quanto falta, e zera depois da hora', () => {
-    const umaHora = 3600 * 1000;
-    expect(faltaParaLiberar(new Date('2026-10-25T18:00:00-03:00'))).toBe(umaHora);
-    expect(faltaParaLiberar(new Date('2026-10-25T19:00:00-03:00'))).toBe(0);
-    expect(faltaParaLiberar(new Date('2026-10-25T23:00:00-03:00'))).toBe(0);
+  it('lista vazia NÃO é apuração encerrada', () => {
+    // Senão, uma leitura que falhou inteira — 28 arquivos em 429 — pararia o
+    // laço justamente quando ele é mais necessário.
+    expect(apuracaoEncerrada([])).toBe(false);
+  });
+});
+
+describe('apuracao-layout: horaDeBrasilia', () => {
+  // A retenção das 19h foi REMOVIDA em 26/10. Ela comparava só a hora do dia,
+  // sem data, então com a eleição encerrada a página passou a zerar todo dia
+  // da meia-noite às 19h, anunciando "a apuração aparece aqui a partir das
+  // 19h" sobre uma apuração que já terminara. O que fica testado é a régua de
+  // hora, que o resto da tela usa.
+  it('lê a hora no fuso de Brasília, não no de quem olha', () => {
+    // 21:59 UTC é 18:59 em Brasília.
+    expect(horaDeBrasilia(new Date('2026-10-25T21:59:00Z'))).toBeCloseTo(18 + 59 / 60, 4);
+    expect(horaDeBrasilia(new Date('2026-10-25T22:00:00Z'))).toBeCloseTo(19, 4);
   });
 
-  it('conta com precisão de segundo — não arredondando para o minuto', () => {
-    // Sem os segundos, 18h59m55 era lido como 18h59m00 e o despertador da
-    // liberação ia para 60 segundos adiante em vez de 5: a página passava um
-    // minuto inteiro depois das 19h ainda zerada, parecendo travada.
-    expect(faltaParaLiberar(new Date('2026-10-25T18:59:55-03:00'))).toBe(5000);
-    expect(faltaParaLiberar(new Date('2026-10-25T18:59:30-03:00'))).toBe(30000);
-    expect(faltaParaLiberar(new Date('2026-10-25T18:30:00-03:00'))).toBe(30 * 60 * 1000);
-  });
-
-  it('o limite é parâmetro, não número solto no código', () => {
-    expect(apuracaoRetida(new Date('2026-10-25T17:30:00-03:00'), 17)).toBe(false);
-    expect(apuracaoRetida(new Date('2026-10-25T17:30:00-03:00'), 18)).toBe(true);
+  it('tem resolução de segundo, não de minuto', () => {
+    // Sem os segundos, 18h59m55 era lido como 18h59m00 — um minuto de erro.
+    expect(horaDeBrasilia(new Date('2026-10-25T18:59:55-03:00'))).toBeCloseTo(
+      18 + 59 / 60 + 55 / 3600,
+      4,
+    );
   });
 });
 
