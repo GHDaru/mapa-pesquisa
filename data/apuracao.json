@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-10-25T19:22:33.360014Z",
+  "atualizadoEm": "2026-10-26T04:12:33.518Z",
   "recortes": [
     {
       "cargo": "presidente",
@@ -5571,6 +5571,789 @@
         "url": "https://resultados.tse.jus.br/oficial/ele2026/6259/dados/to/to-c0005-e006259-u.json"
       },
       "observacao": "Arquivo oficial do TSE (divulgação de resultados), eleição 6259, lido em 21/10/2026. Totalização FINALIZADA (campo tf=\"s\") com 100,00% das seções. SUBSTITUI a leitura anterior, que vinha de cobertura de imprensa. validosTotal = campo \"vvc\" (válidos computados), que é o denominador dos percentuais oficiais; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\". RESSALVA: esta UF tem 0 voto(s) anulado(s) e 3254 sub judice; o total de válidos LÍQUIDO (\"vv\") é 1650411, e é por isso que vvc e vv diferem aqui. Os percentuais oficiais usam vvc. Base da abstenção: o TSE a calcula sobre os aptos em seções INSTALADAS (1180433), não sobre o total de aptos (1180433) — a diferença são as seções não instaladas."
+    },
+    {
+      "cargo": "presidente",
+      "uf": null,
+      "turno": 2,
+      "secoesTotalizadas": 100,
+      "validosTotal": 124082273,
+      "candidatos": [
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 64256232
+        },
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 59826041
+        }
+      ],
+      "brancos": 1430496,
+      "nulos": 2723305,
+      "abstencoes": 30509005,
+      "fonte": {
+        "nome": "TSE — Divulgação de Resultados, arquivo oficial de totalização FINALIZADA (tf=\"s\")",
+        "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/dados/br/br-c0001-e006258-u.json"
+      },
+      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026. Totalização FINALIZADA (tf=\"s\"). validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "AC",
+      "turno": 2,
+      "secoesTotalizadas": 100,
+      "validosTotal": 432228,
+      "candidatos": [
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 287715
+        },
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 144513
+        }
+      ],
+      "brancos": 5016,
+      "nulos": 16410,
+      "abstencoes": 160061,
+      "fonte": {
+        "nome": "TSE — Divulgação de Resultados, arquivo oficial de totalização FINALIZADA (tf=\"s\")",
+        "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/dados/ac/ac-c0001-e006258-u.json"
+      },
+      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026. Totalização FINALIZADA (tf=\"s\"). validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "AL",
+      "turno": 2,
+      "secoesTotalizadas": 100,
+      "validosTotal": 1896761,
+      "candidatos": [
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 1152621
+        },
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 744140
+        }
+      ],
+      "brancos": 16983,
+      "nulos": 37888,
+      "abstencoes": 490449,
+      "fonte": {
+        "nome": "TSE — Divulgação de Resultados, arquivo oficial de totalização FINALIZADA (tf=\"s\")",
+        "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/dados/al/al-c0001-e006258-u.json"
+      },
+      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026. Totalização FINALIZADA (tf=\"s\"). validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "AP",
+      "turno": 2,
+      "secoesTotalizadas": 100,
+      "validosTotal": 421642,
+      "candidatos": [
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 222968
+        },
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 198674
+        }
+      ],
+      "brancos": 3320,
+      "nulos": 5013,
+      "abstencoes": 146935,
+      "fonte": {
+        "nome": "TSE — Divulgação de Resultados, arquivo oficial de totalização FINALIZADA (tf=\"s\")",
+        "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/dados/ap/ap-c0001-e006258-u.json"
+      },
+      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026. Totalização FINALIZADA (tf=\"s\"). validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "AM",
+      "turno": 2,
+      "secoesTotalizadas": 100,
+      "validosTotal": 2121028,
+      "candidatos": [
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 1145783
+        },
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 975245
+        }
+      ],
+      "brancos": 18324,
+      "nulos": 52707,
+      "abstencoes": 606602,
+      "fonte": {
+        "nome": "TSE — Divulgação de Resultados, arquivo oficial de totalização FINALIZADA (tf=\"s\")",
+        "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/dados/am/am-c0001-e006258-u.json"
+      },
+      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026. Totalização FINALIZADA (tf=\"s\"). validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "BA",
+      "turno": 2,
+      "secoesTotalizadas": 100,
+      "validosTotal": 9094019,
+      "candidatos": [
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 6485258
+        },
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 2608761
+        }
+      ],
+      "brancos": 92721,
+      "nulos": 235307,
+      "abstencoes": 1890844,
+      "fonte": {
+        "nome": "TSE — Divulgação de Resultados, arquivo oficial de totalização FINALIZADA (tf=\"s\")",
+        "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/dados/ba/ba-c0001-e006258-u.json"
+      },
+      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026. Totalização FINALIZADA (tf=\"s\"). validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "CE",
+      "turno": 2,
+      "secoesTotalizadas": 100,
+      "validosTotal": 5855602,
+      "candidatos": [
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 4036124
+        },
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 1819478
+        }
+      ],
+      "brancos": 56386,
+      "nulos": 112855,
+      "abstencoes": 971678,
+      "fonte": {
+        "nome": "TSE — Divulgação de Resultados, arquivo oficial de totalização FINALIZADA (tf=\"s\")",
+        "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/dados/ce/ce-c0001-e006258-u.json"
+      },
+      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026. Totalização FINALIZADA (tf=\"s\"). validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "DF",
+      "turno": 2,
+      "secoesTotalizadas": 100,
+      "validosTotal": 1804766,
+      "candidatos": [
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 979542
+        },
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 825224
+        }
+      ],
+      "brancos": 22386,
+      "nulos": 41128,
+      "abstencoes": 390715,
+      "fonte": {
+        "nome": "TSE — Divulgação de Resultados, arquivo oficial de totalização FINALIZADA (tf=\"s\")",
+        "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/dados/df/df-c0001-e006258-u.json"
+      },
+      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026. Totalização FINALIZADA (tf=\"s\"). validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "ES",
+      "turno": 2,
+      "secoesTotalizadas": 100,
+      "validosTotal": 2296469,
+      "candidatos": [
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 1294504
+        },
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 1001965
+        }
+      ],
+      "brancos": 33080,
+      "nulos": 79665,
+      "abstencoes": 582301,
+      "fonte": {
+        "nome": "TSE — Divulgação de Resultados, arquivo oficial de totalização FINALIZADA (tf=\"s\")",
+        "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/dados/es/es-c0001-e006258-u.json"
+      },
+      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026. Totalização FINALIZADA (tf=\"s\"). validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "GO",
+      "turno": 2,
+      "secoesTotalizadas": 100,
+      "validosTotal": 3930889,
+      "candidatos": [
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 2345334
+        },
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 1585555
+        }
+      ],
+      "brancos": 43214,
+      "nulos": 73177,
+      "abstencoes": 1033105,
+      "fonte": {
+        "nome": "TSE — Divulgação de Resultados, arquivo oficial de totalização FINALIZADA (tf=\"s\")",
+        "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/dados/go/go-c0001-e006258-u.json"
+      },
+      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026. Totalização FINALIZADA (tf=\"s\"). validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "MA",
+      "turno": 2,
+      "secoesTotalizadas": 100,
+      "validosTotal": 4038202,
+      "candidatos": [
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 2808231
+        },
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 1229971
+        }
+      ],
+      "brancos": 30855,
+      "nulos": 58714,
+      "abstencoes": 1055278,
+      "fonte": {
+        "nome": "TSE — Divulgação de Resultados, arquivo oficial de totalização FINALIZADA (tf=\"s\")",
+        "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/dados/ma/ma-c0001-e006258-u.json"
+      },
+      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026. Totalização FINALIZADA (tf=\"s\"). validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "MT",
+      "turno": 2,
+      "secoesTotalizadas": 100,
+      "validosTotal": 2045266,
+      "candidatos": [
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 1351099
+        },
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 694167
+        }
+      ],
+      "brancos": 15431,
+      "nulos": 24637,
+      "abstencoes": 552545,
+      "fonte": {
+        "nome": "TSE — Divulgação de Resultados, arquivo oficial de totalização FINALIZADA (tf=\"s\")",
+        "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/dados/mt/mt-c0001-e006258-u.json"
+      },
+      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026. Totalização FINALIZADA (tf=\"s\"). validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "MS",
+      "turno": 2,
+      "secoesTotalizadas": 100,
+      "validosTotal": 1556865,
+      "candidatos": [
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 927892
+        },
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 628973
+        }
+      ],
+      "brancos": 14958,
+      "nulos": 22637,
+      "abstencoes": 429977,
+      "fonte": {
+        "nome": "TSE — Divulgação de Resultados, arquivo oficial de totalização FINALIZADA (tf=\"s\")",
+        "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/dados/ms/ms-c0001-e006258-u.json"
+      },
+      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026. Totalização FINALIZADA (tf=\"s\"). validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "MG",
+      "turno": 2,
+      "secoesTotalizadas": 100,
+      "validosTotal": 12592885,
+      "candidatos": [
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 6351099
+        },
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 6241786
+        }
+      ],
+      "brancos": 164141,
+      "nulos": 287177,
+      "abstencoes": 3327941,
+      "fonte": {
+        "nome": "TSE — Divulgação de Resultados, arquivo oficial de totalização FINALIZADA (tf=\"s\")",
+        "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/dados/mg/mg-c0001-e006258-u.json"
+      },
+      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026. Totalização FINALIZADA (tf=\"s\"). validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "PA",
+      "turno": 2,
+      "secoesTotalizadas": 100,
+      "validosTotal": 4890389,
+      "candidatos": [
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 2690449
+        },
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 2199940
+        }
+      ],
+      "brancos": 36501,
+      "nulos": 62683,
+      "abstencoes": 1272490,
+      "fonte": {
+        "nome": "TSE — Divulgação de Resultados, arquivo oficial de totalização FINALIZADA (tf=\"s\")",
+        "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/dados/pa/pa-c0001-e006258-u.json"
+      },
+      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026. Totalização FINALIZADA (tf=\"s\"). validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "PB",
+      "turno": 2,
+      "secoesTotalizadas": 100,
+      "validosTotal": 2659269,
+      "candidatos": [
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 1794059
+        },
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 865210
+        }
+      ],
+      "brancos": 25943,
+      "nulos": 58348,
+      "abstencoes": 504874,
+      "fonte": {
+        "nome": "TSE — Divulgação de Resultados, arquivo oficial de totalização FINALIZADA (tf=\"s\")",
+        "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/dados/pb/pb-c0001-e006258-u.json"
+      },
+      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026. Totalização FINALIZADA (tf=\"s\"). validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "PR",
+      "turno": 2,
+      "secoesTotalizadas": 100,
+      "validosTotal": 6857948,
+      "candidatos": [
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 4291444
+        },
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 2566504
+        }
+      ],
+      "brancos": 82572,
+      "nulos": 118819,
+      "abstencoes": 1554289,
+      "fonte": {
+        "nome": "TSE — Divulgação de Resultados, arquivo oficial de totalização FINALIZADA (tf=\"s\")",
+        "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/dados/pr/pr-c0001-e006258-u.json"
+      },
+      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026. Totalização FINALIZADA (tf=\"s\"). validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "PE",
+      "turno": 2,
+      "secoesTotalizadas": 100,
+      "validosTotal": 5950067,
+      "candidatos": [
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 4117513
+        },
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 1832554
+        }
+      ],
+      "brancos": 56758,
+      "nulos": 119642,
+      "abstencoes": 1096760,
+      "fonte": {
+        "nome": "TSE — Divulgação de Resultados, arquivo oficial de totalização FINALIZADA (tf=\"s\")",
+        "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/dados/pe/pe-c0001-e006258-u.json"
+      },
+      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026. Totalização FINALIZADA (tf=\"s\"). validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "PI",
+      "turno": 2,
+      "secoesTotalizadas": 100,
+      "validosTotal": 2179848,
+      "candidatos": [
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 1653989
+        },
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 525859
+        }
+      ],
+      "brancos": 16137,
+      "nulos": 43845,
+      "abstencoes": 464865,
+      "fonte": {
+        "nome": "TSE — Divulgação de Resultados, arquivo oficial de totalização FINALIZADA (tf=\"s\")",
+        "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/dados/pi/pi-c0001-e006258-u.json"
+      },
+      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026. Totalização FINALIZADA (tf=\"s\"). validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "RJ",
+      "turno": 2,
+      "secoesTotalizadas": 100,
+      "validosTotal": 9734426,
+      "candidatos": [
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 5169033
+        },
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 4565393
+        }
+      ],
+      "brancos": 111682,
+      "nulos": 231341,
+      "abstencoes": 2780077,
+      "fonte": {
+        "nome": "TSE — Divulgação de Resultados, arquivo oficial de totalização FINALIZADA (tf=\"s\")",
+        "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/dados/rj/rj-c0001-e006258-u.json"
+      },
+      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026. Totalização FINALIZADA (tf=\"s\"). validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "RN",
+      "turno": 2,
+      "secoesTotalizadas": 100,
+      "validosTotal": 2151005,
+      "candidatos": [
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 1413596
+        },
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 737409
+        }
+      ],
+      "brancos": 19939,
+      "nulos": 61879,
+      "abstencoes": 427044,
+      "fonte": {
+        "nome": "TSE — Divulgação de Resultados, arquivo oficial de totalização FINALIZADA (tf=\"s\")",
+        "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/dados/rn/rn-c0001-e006258-u.json"
+      },
+      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026. Totalização FINALIZADA (tf=\"s\"). validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "RS",
+      "turno": 2,
+      "secoesTotalizadas": 100,
+      "validosTotal": 6698930,
+      "candidatos": [
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 3874378
+        },
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 2824552
+        }
+      ],
+      "brancos": 89463,
+      "nulos": 101245,
+      "abstencoes": 1632680,
+      "fonte": {
+        "nome": "TSE — Divulgação de Resultados, arquivo oficial de totalização FINALIZADA (tf=\"s\")",
+        "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/dados/rs/rs-c0001-e006258-u.json"
+      },
+      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026. Totalização FINALIZADA (tf=\"s\"). validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "RO",
+      "turno": 2,
+      "secoesTotalizadas": 100,
+      "validosTotal": 968828,
+      "candidatos": [
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 674382
+        },
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 294446
+        }
+      ],
+      "brancos": 8361,
+      "nulos": 11300,
+      "abstencoes": 277437,
+      "fonte": {
+        "nome": "TSE — Divulgação de Resultados, arquivo oficial de totalização FINALIZADA (tf=\"s\")",
+        "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/dados/ro/ro-c0001-e006258-u.json"
+      },
+      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026. Totalização FINALIZADA (tf=\"s\"). validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "RR",
+      "turno": 2,
+      "secoesTotalizadas": 100,
+      "validosTotal": 303180,
+      "candidatos": [
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 219675
+        },
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 83505
+        }
+      ],
+      "brancos": 2176,
+      "nulos": 3241,
+      "abstencoes": 92943,
+      "fonte": {
+        "nome": "TSE — Divulgação de Resultados, arquivo oficial com 100% das seções mas totalização AINDA ABERTA (tf=\"n\")",
+        "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/dados/rr/rr-c0001-e006258-u.json"
+      },
+      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026. ATENÇÃO: tf=\"n\" — 100% das seções apuradas, mas a totalização NÃO foi declarada encerrada. No 1º turno, 12 recortes nesta mesma condição ainda diferiram de 3 a 280 votos do definitivo; este recorte deve ser relido quando tf virar \"s\". validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "SC",
+      "turno": 2,
+      "secoesTotalizadas": 100,
+      "validosTotal": 4638385,
+      "candidatos": [
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 3220071
+        },
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 1418314
+        }
+      ],
+      "brancos": 48674,
+      "nulos": 75244,
+      "abstencoes": 972384,
+      "fonte": {
+        "nome": "TSE — Divulgação de Resultados, arquivo oficial de totalização FINALIZADA (tf=\"s\")",
+        "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/dados/sc/sc-c0001-e006258-u.json"
+      },
+      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026. Totalização FINALIZADA (tf=\"s\"). validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "SP",
+      "turno": 2,
+      "secoesTotalizadas": 100,
+      "validosTotal": 26258452,
+      "candidatos": [
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 14139178
+        },
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 12119274
+        }
+      ],
+      "brancos": 389606,
+      "nulos": 716331,
+      "abstencoes": 6759202,
+      "fonte": {
+        "nome": "TSE — Divulgação de Resultados, arquivo oficial de totalização FINALIZADA (tf=\"s\")",
+        "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/dados/sp/sp-c0001-e006258-u.json"
+      },
+      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026. Totalização FINALIZADA (tf=\"s\"). validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "SE",
+      "turno": 2,
+      "secoesTotalizadas": 100,
+      "validosTotal": 1422395,
+      "candidatos": [
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 989041
+        },
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 433354
+        }
+      ],
+      "brancos": 13135,
+      "nulos": 31129,
+      "abstencoes": 273434,
+      "fonte": {
+        "nome": "TSE — Divulgação de Resultados, arquivo oficial de totalização FINALIZADA (tf=\"s\")",
+        "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/dados/se/se-c0001-e006258-u.json"
+      },
+      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026. Totalização FINALIZADA (tf=\"s\"). validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "TO",
+      "turno": 2,
+      "secoesTotalizadas": 100,
+      "validosTotal": 910878,
+      "candidatos": [
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 467916
+        },
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 442962
+        }
+      ],
+      "brancos": 8059,
+      "nulos": 35826,
+      "abstencoes": 227278,
+      "fonte": {
+        "nome": "TSE — Divulgação de Resultados, arquivo oficial de totalização FINALIZADA (tf=\"s\")",
+        "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/dados/to/to-c0001-e006258-u.json"
+      },
+      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026. Totalização FINALIZADA (tf=\"s\"). validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
+    },
+    {
+      "cargo": "presidente",
+      "uf": "ZZ",
+      "turno": 2,
+      "secoesTotalizadas": 100,
+      "validosTotal": 371651,
+      "candidatos": [
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "partido": "PT",
+          "votos": 200154
+        },
+        {
+          "candidato": "Flávio Bolsonaro",
+          "partido": "PL",
+          "votos": 171497
+        }
+      ],
+      "brancos": 4675,
+      "nulos": 5117,
+      "abstencoes": 534817,
+      "fonte": {
+        "nome": "TSE — Divulgação de Resultados, arquivo oficial de totalização FINALIZADA (tf=\"s\")",
+        "url": "https://resultados.tse.jus.br/oficial/ele2026/6258/dados/zz/zz-c0001-e006258-u.json"
+      },
+      "observacao": "Arquivo oficial do TSE, eleição 6258 (2º turno), lido em 26/10/2026. Totalização FINALIZADA (tf=\"s\"). validosTotal = \"vvc\"; brancos = \"vb\"; nulos = \"tvn\"; abstenções = \"a\"; partido casado pelo NÚMERO via parties.json."
     }
   ]
 }

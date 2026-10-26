@@ -5,20 +5,13 @@
   "governadores": [
     {
       "uf": "AC",
-      "situacao": "segundo-turno",
-      "finalistas": [
-        {
-          "nome": "Mailza Assis",
-          "partido": "PP",
-          "pctValidos": 49.76
-        },
-        {
-          "nome": "Alan Rick",
-          "partido": "Republicanos",
-          "pctValidos": 32.27
-        }
-      ],
-      "eleito": null
+      "situacao": "eleito",
+      "finalistas": [],
+      "eleito": {
+        "nome": "Mailza Assis",
+        "partido": "PP",
+        "pctValidos": 66.21
+      }
     },
     {
       "uf": "AL",
@@ -32,20 +25,13 @@
     },
     {
       "uf": "AM",
-      "situacao": "segundo-turno",
-      "finalistas": [
-        {
-          "nome": "Omar Aziz",
-          "partido": "PSD",
-          "pctValidos": 40.63
-        },
-        {
-          "nome": "Professora Maria do Carmo",
-          "partido": "PL",
-          "pctValidos": 24.49
-        }
-      ],
-      "eleito": null
+      "situacao": "eleito",
+      "finalistas": [],
+      "eleito": {
+        "nome": "Omar Aziz",
+        "partido": "PSD",
+        "pctValidos": 61.42
+      }
     },
     {
       "uf": "AP",
@@ -80,37 +66,23 @@
     },
     {
       "uf": "DF",
-      "situacao": "segundo-turno",
-      "finalistas": [
-        {
-          "nome": "Celina Leão",
-          "partido": "PP",
-          "pctValidos": 49.93
-        },
-        {
-          "nome": "Leandro Grass",
-          "partido": "PT",
-          "pctValidos": 34.47
-        }
-      ],
-      "eleito": null
+      "situacao": "eleito",
+      "finalistas": [],
+      "eleito": {
+        "nome": "Celina Leão",
+        "partido": "PP",
+        "pctValidos": 57.18
+      }
     },
     {
       "uf": "ES",
-      "situacao": "segundo-turno",
-      "finalistas": [
-        {
-          "nome": "Lorenzo Pazolini",
-          "partido": "Republicanos",
-          "pctValidos": 49.65
-        },
-        {
-          "nome": "Ricardo Ferraço",
-          "partido": "MDB",
-          "pctValidos": 34.06
-        }
-      ],
-      "eleito": null
+      "situacao": "eleito",
+      "finalistas": [],
+      "eleito": {
+        "nome": "Lorenzo Pazolini",
+        "partido": "Republicanos",
+        "pctValidos": 52.17
+      }
     },
     {
       "uf": "GO",
@@ -128,7 +100,7 @@
       "eleito": {
         "nome": "Eduardo Braide",
         "partido": "PSD",
-        "pctValidos": 54.0
+        "pctValidos": 54
       },
       "finalistas": []
     },
@@ -225,20 +197,13 @@
     },
     {
       "uf": "RN",
-      "situacao": "segundo-turno",
-      "finalistas": [
-        {
-          "nome": "Allyson Bezerra",
-          "partido": "União Brasil",
-          "pctValidos": null
-        },
-        {
-          "nome": "Cadu de Lula",
-          "partido": "PT",
-          "pctValidos": null
-        }
-      ],
-      "eleito": null
+      "situacao": "eleito",
+      "finalistas": [],
+      "eleito": {
+        "nome": "Cadu de Lula",
+        "partido": "PT",
+        "pctValidos": 50.77
+      }
     },
     {
       "uf": "RO",
@@ -302,20 +267,13 @@
     },
     {
       "uf": "TO",
-      "situacao": "segundo-turno",
-      "finalistas": [
-        {
-          "nome": "Professora Dorinha",
-          "partido": "União Brasil",
-          "pctValidos": 45.52
-        },
-        {
-          "nome": "Vicentinho Júnior",
-          "partido": "PSDB",
-          "pctValidos": 43.94
-        }
-      ],
-      "eleito": null
+      "situacao": "eleito",
+      "finalistas": [],
+      "eleito": {
+        "nome": "Vicentinho Júnior",
+        "partido": "PSDB",
+        "pctValidos": 64.52
+      }
     }
   ],
   "camara": {

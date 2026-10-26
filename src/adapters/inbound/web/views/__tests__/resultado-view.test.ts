@@ -158,4 +158,23 @@ describe('map-view/EXPLICACAO_MAPA_HIBRIDO', () => {
     expect(EXPLICACAO_MAPA_HIBRIDO).toContain('25 de outubro');
     expect(EXPLICACAO_MAPA_HIBRIDO).toContain('estimativa');
   });
+
+  it('com disputa aberta, a explicação é a híbrida', async () => {
+    const { explicacaoDoMapaHibrido, EXPLICACAO_MAPA_HIBRIDO } = await import('../map-view.js');
+    expect(explicacaoDoMapaHibrido(6)).toBe(EXPLICACAO_MAPA_HIBRIDO);
+  });
+
+  it('sem disputa aberta, não promete hachura de pesquisa nem fala no futuro', async () => {
+    const { explicacaoDoMapaHibrido, tituloDoMapaDeGovernadores } = await import('../map-view.js');
+    const t = explicacaoDoMapaHibrido(0);
+    // O defeito era este: a frase fixa dizia "os que VÃO ao 2º turno em 25 de
+    // outubro", no futuro, sobre data passada, e prometia uma hachura que o
+    // mapa não desenha mais.
+    expect(t).not.toContain('vão ao 2º turno');
+    expect(t).not.toContain('hachurada');
+    expect(t).toContain('27 estados');
+    expect(t).toContain('decididas');
+    expect(tituloDoMapaDeGovernadores(0)).not.toContain('disputas abertas');
+    expect(tituloDoMapaDeGovernadores(6)).toContain('disputas abertas');
+  });
 });

@@ -59,6 +59,39 @@ export const EXPLICACAO_MAPA_HIBRIDO =
   'Nos que vão ao 2º turno em 25 de outubro a cor é do partido de quem lidera as pesquisas, ' +
   'hachurada — é estimativa, não resultado.';
 
+/**
+ * A explicação do mapa **depende de ainda haver disputa aberta**, e a partir
+ * de 26/10 não há: os 27 governadores estão decididos.
+ *
+ * A frase fixa prometia uma hachura de pesquisa que o mapa não desenha mais, e
+ * o fazia no futuro ("os que VÃO ao 2º turno em 25 de outubro") sobre uma data
+ * já passada. Nenhum teste quebrava: o texto continuava verdadeiro como regra
+ * e falso como descrição do que está na tela. É a assinatura do defeito que já
+ * apareceu no título do resultado final — afirmação escrita à mão sobre um
+ * estado do mundo que muda sozinho.
+ */
+export function explicacaoDoMapaHibrido(emDisputa: number): string {
+  if (emDisputa === 0) {
+    return (
+      'Este mapa mostra o RESULTADO das urnas nos 27 estados: a cor é do partido do ' +
+      'governador eleito, em cor cheia. Não há mais estimativa de pesquisa aqui — as seis ' +
+      'disputas que foram ao 2º turno em 25 de outubro estão decididas, e onde há fato ' +
+      'apurado o projeto não pinta pesquisa.'
+    );
+  }
+  return EXPLICACAO_MAPA_HIBRIDO;
+}
+
+/**
+ * O título diz "e as disputas abertas" só quando existem. Mesma razão da
+ * função acima: prometer no cabeçalho uma seção que o mapa não tem.
+ */
+export function tituloDoMapaDeGovernadores(emDisputa: number): string {
+  return emDisputa === 0
+    ? 'Governadores 2026 — o resultado das urnas nos 27 estados'
+    : 'Governadores 2026 — o resultado das urnas e as disputas abertas';
+}
+
 /** Nomes por UF (em português, já vêm assim de @svg-maps/brazil). */
 const NOME_POR_UF = new Map(brazilMap.locations.map((loc) => [loc.id.toUpperCase(), loc.name]));
 
@@ -267,7 +300,7 @@ export function renderMap(container: HTMLElement, casos: CasosDeUso): void {
   const heading = document.createElement('h2');
   heading.id = 'map-view-heading';
   heading.className = 'map-view__heading';
-  heading.textContent = 'Governadores 2026 — o resultado das urnas e as disputas abertas';
+  heading.textContent = tituloDoMapaDeGovernadores(emDisputa.length);
   secao.appendChild(heading);
 
   const resumo = document.createElement('p');
@@ -284,7 +317,7 @@ export function renderMap(container: HTMLElement, casos: CasosDeUso): void {
   // são afirmações de naturezas diferentes.
   const explicacao = document.createElement('p');
   explicacao.className = 'map-view__aviso-resultado';
-  explicacao.append(document.createTextNode(EXPLICACAO_MAPA_HIBRIDO + ' '));
+  explicacao.append(document.createTextNode(explicacaoDoMapaHibrido(emDisputa.length) + ' '));
   const linkResultado = document.createElement('a');
   linkResultado.href = '#/resultados';
   linkResultado.textContent = 'Ver o fechamento do 1º turno';

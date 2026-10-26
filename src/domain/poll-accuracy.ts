@@ -114,9 +114,18 @@ function diasEntre(deIso: string, ateIso: string): number {
   return Math.round((ate - de) / 86_400_000);
 }
 
-function dataReferenciaDa(p: Pesquisa): string {
+/**
+ * A data que representa a pesquisa: fim do campo, senão publicação, senão
+ * início. Exportada porque quem decide QUAIS pesquisas pontuar precisa da
+ * mesma régua de quem as ordena — duas definições de "quando" divergiriam, e
+ * a divergência só apareceria como ficha entrando ou saindo do ranking sem
+ * motivo visível.
+ */
+export function dataReferenciaDaPesquisa(p: Pesquisa): string {
   return p.dataFim ?? p.publicadoEm ?? p.dataInicio ?? '';
 }
+
+const dataReferenciaDa = dataReferenciaDaPesquisa;
 
 /**
  * Renormaliza as linhas de candidato de UMA pesquisa para somar 100 — a base

@@ -246,12 +246,36 @@ export function rotuloErroDoInstituto(i: AcertoDoInstituto): string {
       Math.abs(i.erroNaMargem) < 0.05
         ? 'margem exata'
         : i.erroNaMargem > 0
-          ? `exagerou a margem do 1º em ${abs}`
-          : `subestimou a margem do 1º em ${abs}`,
+          // "do 1º" era ambíguo a partir de 25/10: numa tela do 2º turno lê-se
+          // como "a margem do 1º TURNO", não "a margem do 1º colocado". "do
+          // líder" não tem a segunda leitura.
+          ? `exagerou a margem do líder em ${abs}`
+          : `subestimou a margem do líder em ${abs}`,
     );
   }
   if (!i.acertouOLider) partes.push('apontou outro candidato em primeiro');
   return partes.join(' · ');
+}
+
+/**
+ * O recorte do ranking, dito na tela.
+ *
+ * No 2º turno o ranking EXCLUI as rodadas com campo anterior a 04/10, porque
+ * ali "Lula x Flávio" era um 2º turno hipotético. A exclusão muda quantas
+ * fichas aparecem e quem aparece, então ela é obrigada a estar visível: um
+ * filtro que só existe no código é um número sem a condição que o qualifica —
+ * exatamente o que esta tela foi feita para não fazer. No 1º turno não há
+ * recorte a declarar, e inventar uma frase ali seria ruído.
+ */
+export function rotuloRecorteDoRanking(turno: 1 | 2): string | null {
+  if (turno !== 2) return null;
+  return (
+    'Só entram as rodadas com campo encerrado DEPOIS de 4 de outubro. Antes disso ' +
+    '"Lula x Flávio" era um 2º turno hipotético — o eleitor não sabia quem passaria —, ' +
+    'e cobrar dessas rodadas o resultado real é cobrar de uma medição a resposta de ' +
+    'outra pergunta. A exclusão distorcia nos dois sentidos: das 20 fichas que entravam, ' +
+    '6 eram de setembro e começo de outubro, três delas acertando o líder por tabela.'
+  );
 }
 
 /**
@@ -539,6 +563,7 @@ function montarAcerto(dados: ProjecaoComparada): HTMLElement | null {
     ]),
   );
   const mediana = a.erroMedianoDoCampo;
+  const recorte = rotuloRecorteDoRanking(dados.projecao.turno);
   const direcao = rotuloDirecaoDoErro(
     a.subestimaramAMargem,
     a.superestimaramAMargem,
@@ -551,6 +576,7 @@ function montarAcerto(dados: ProjecaoComparada): HTMLElement | null {
     // instituto acertou e os outros erraram, quando o que houve foi erro
     // conjunto numa só direção.
     direcao ? criarEl('p', { className: 'pj-vies', texto: direcao }) : null,
+    recorte ? criarEl('p', { className: 'pj-nota pj-nota--destaque', texto: recorte }) : null,
     criarEl('p', {
       className: 'pj-nota',
       texto:
@@ -710,12 +736,33 @@ export function pjMontarConteudo(dados: ProjecaoComparada, agora: Date = new Dat
         criarEl(
           'ul',
           { className: 'pj-fontes' },
+          // Um item por RÓTULO, com os arquivos daquele rótulo como links de
+          // UF ao lado. 28 links com o mesmo texto não são 28 procedências:
+          // são a mesma, repetida, e a repetição escondia a linha que difere.
           dados.fontes.map((f) =>
+            // Sem caso especial para um arquivo só: era por ali que RR, o
+            // único recorte com a totalização aberta, saía sem dizer que era
+            // RR — a linha que mais importa ficava a mais anônima das duas.
             criarEl('li', {}, [
-              criarEl('a', {
-                texto: f.nome,
-                attrs: { href: f.url, target: '_blank', rel: 'noopener noreferrer' },
-              }),
+              criarEl('span', { texto: `${f.nome} — ` }),
+              f.recortes.length === 1
+                ? null
+                : criarEl('span', {
+                    className: 'pj-fontes-contagem',
+                    texto: `${f.recortes.length} arquivos: `,
+                  }),
+              ...f.recortes.flatMap((r, i) => [
+                i === 0 ? null : criarEl('span', { texto: ', ' }),
+                criarEl('a', {
+                  texto: r.uf,
+                  attrs: {
+                    href: r.url,
+                    target: '_blank',
+                    rel: 'noopener noreferrer',
+                    title: `${f.nome} — ${r.uf}`,
+                  },
+                }),
+              ]),
             ]),
           ),
         ),

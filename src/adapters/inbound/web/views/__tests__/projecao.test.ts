@@ -11,7 +11,9 @@ import {
   rotuloErroCandidato,
   rotuloErroDoInstituto,
   rotuloErroMedio,
+  rotuloDistanciaDaEleicao,
   rotuloPorUf,
+  rotuloRecorteDoRanking,
   rotuloTurno,
   rotuloVeredito,
   textoContrasteNacional,
@@ -480,5 +482,32 @@ describe('concordância também em rotuloCobertura', () => {
   it('com mais de uma, segue no plural', () => {
     const t = comSemApuracao(['PI', 'PB']);
     expect(t).toContain('essas UFs ficam fora da projeção, não são completadas');
+  });
+});
+
+describe('rotuloRecorteDoRanking', () => {
+  it('no 2º turno declara a exclusão das rodadas pré-04/10 na tela', () => {
+    const t = rotuloRecorteDoRanking(2)!;
+    expect(t).toContain('DEPOIS de 4 de outubro');
+    expect(t).toContain('hipotético');
+    // A frase tem de dizer o TAMANHO do recorte: "excluímos algumas" não
+    // permite ao leitor julgar se a exclusão mudou o ranking.
+    expect(t).toContain('20');
+    expect(t).toContain('6');
+  });
+
+  it('no 1º turno não há recorte a declarar', () => {
+    // Inventar a frase ali afirmaria um filtro que não existe.
+    expect(rotuloRecorteDoRanking(1)).toBeNull();
+  });
+});
+
+describe('rotuloDistanciaDaEleicao, contra a data do turno medido', () => {
+  it('não lê o campo da véspera do 2º turno como "no dia da eleição"', () => {
+    // Era o defeito: `medirAcertoDasPesquisas` usava 04/10 por padrão, então
+    // uma pesquisa de 22/10 dava diasAntes = -18 e caía no ramo `<= 0`. As 14
+    // fichas do 2º turno sairiam todas com a mesma frase, falsa nas 14.
+    expect(rotuloDistanciaDaEleicao(3)).toBe('campo encerrado 3 dias antes');
+    expect(rotuloDistanciaDaEleicao(-18)).toBe('campo encerrado no dia da eleição');
   });
 });

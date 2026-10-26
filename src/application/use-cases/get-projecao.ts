@@ -2,6 +2,8 @@ import type { Clock, Repositorios } from '../ports.js';
 import { agregarPesquisas, ehLinhaNaoCandidato } from '../../domain/aggregate.js';
 import {
   type AcertoDasPesquisas,
+  DATA_PRIMEIRO_TURNO,
+  dataReferenciaDaPesquisa,
   medirAcertoDasPesquisas,
 } from '../../domain/poll-accuracy.js';
 import {
@@ -105,7 +107,13 @@ export interface ProjecaoComparada {
    */
   readonly erroAbsolutoMedio: number | null;
   /** Fontes dos recortes usados, sem repetição. A tela é obrigada a citá-las. */
-  readonly fontes: readonly { readonly nome: string; readonly url: string }[];
+  readonly fontes: readonly {
+    readonly nome: string;
+    /** O primeiro arquivo do grupo — mantido para quem só quer um link. */
+    readonly url: string;
+    /** Todos os arquivos com este MESMO rótulo, um por recorte, ordenados por UF. */
+    readonly recortes: readonly { readonly uf: string; readonly url: string }[];
+  }[];
   /**
    * Ressalvas das fichas usadas. É onde fica registrado, por exemplo, que um
    * valor foi derivado de percentual em vez de publicado em absoluto — e isso
@@ -258,12 +266,38 @@ export function criarGetProjecao(repos: Repositorios, clock: Clock) {
           };
         });
 
-    // Fontes e ressalvas dos recortes do cargo/turno em questão.
+    /*
+     * Fontes e ressalvas dos recortes do cargo/turno em questão.
+     *
+     * **Agrupadas por rótulo, e a ressalva deduplicada.** No fechamento do 2º
+     * turno os 29 recortes trazem 28 arquivos distintos com o MESMO rótulo e a
+     * MESMA ressalva, e a tela imprimia 28 links idênticos seguidos de 29
+     * parágrafos idênticos. Cada arquivo continua citável — é o que torna a
+     * conta conferível —, mas repetir a mesma frase 29 vezes não acrescenta
+     * procedência: esconde a única linha que difere, que é RR com a
+     * totalização ainda aberta.
+     */
     const usados = dados.recortes.filter((r) => r.cargo === cargo && r.turno === turno);
-    const fontes = [...new Map(usados.map((r) => [r.fonte.url, r.fonte])).values()];
-    const observacoes = usados
-      .map((r) => r.observacao)
-      .filter((o): o is string => typeof o === 'string' && o.trim().length > 0);
+    const porUrl = [...new Map(usados.map((r) => [r.fonte.url, r] as const)).values()];
+    const grupos = new Map<string, { nome: string; itens: { uf: string; url: string }[] }>();
+    for (const r of porUrl) {
+      const grupo = grupos.get(r.fonte.nome);
+      const item = { uf: r.uf ?? 'BR', url: r.fonte.url };
+      if (grupo) grupo.itens.push(item);
+      else grupos.set(r.fonte.nome, { nome: r.fonte.nome, itens: [item] });
+    }
+    const fontes = [...grupos.values()].map((g) => ({
+      nome: g.nome,
+      url: g.itens[0]!.url,
+      recortes: g.itens.sort((a, b) => a.uf.localeCompare(b.uf)),
+    }));
+    const observacoes = [
+      ...new Set(
+        usados
+          .map((r) => r.observacao)
+          .filter((o): o is string => typeof o === 'string' && o.trim().length > 0),
+      ),
+    ];
 
     const erros = comparacao.map((c) => c.erro).filter((e): e is number => e != null);
     const erroAbsolutoMedio =
@@ -276,10 +310,43 @@ export function criarGetProjecao(repos: Repositorios, clock: Clock) {
       const pctResultado = new Map(
         baseComparacao.map((c) => [c.candidato, c.pctProjetado] as const),
       );
+      /*
+       * No 2º turno, só pontua pesquisa com campo POSTERIOR ao 1º turno.
+       *
+       * É a mesma descontinuidade que o agregado já respeita, e que aqui
+       * estava sendo ignorada: antes de 04/10 as rodadas de "Lula x Flávio"
+       * mediam um 2º turno HIPOTÉTICO, com o eleitor sem saber quem passaria.
+       * Pontuar essas contra o resultado real é cobrar de uma medição a
+       * resposta de outra pergunta — e distorce nos DOIS sentidos. Medido no
+       * fechamento de 25/10: das 20 fichas que entravam, 6 eram de setembro;
+       * três delas "acertaram" o líder por tabela e inflavam o placar, outras
+       * três erraram e inflavam o erro. Com a guarda, o recorte honesto são
+       * as 14 de campo posterior.
+       *
+       * É o mesmo defeito que já apareceu em 17/10, quando a guarda de base
+       * protegia o agregado e não a série: a regra existia num lugar só.
+       */
+      const paraPontuar =
+        turno === 2
+          ? pesquisasDoRecorte.filter((p) => dataReferenciaDaPesquisa(p) > DATA_PRIMEIRO_TURNO)
+          : pesquisasDoRecorte;
+
+      /*
+       * A eleição contra a qual a distância do campo é medida é a do TURNO
+       * medido. `medirAcertoDasPesquisas` tem `DATA_PRIMEIRO_TURNO` como
+       * padrão, e com ele uma pesquisa de 22/10 dava `diasAntes` = -18, que
+       * `rotuloDistanciaDaEleicao` lê como "campo encerrado no dia da
+       * eleição": as 14 fichas do 2º turno sairiam com essa frase, falsa nas
+       * 14, e sem nada que apontasse o erro — o número tem a cara certa. A
+       * data vem do arquivo de resultado, não de constante, porque data de
+       * eleição é dado.
+       */
+      const datas = repos.resultado.dados();
       acerto = medirAcertoDasPesquisas(
-        pesquisasDoRecorte,
+        paraPontuar,
         pctResultado,
         (rotulo) => ehLinhaNaoCandidato(rotulo, new Set<string>()),
+        turno === 2 ? datas.turno2 : datas.turno1,
       );
     }
 

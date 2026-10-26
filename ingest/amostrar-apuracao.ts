@@ -76,10 +76,25 @@ async function principal(): Promise<void> {
   });
 
   const lidos = fontes.filter((f) => f.ok).length;
-  if (lidos === 0) {
-    // Leitura totalmente falha não vira ponto: seria um mergulho a zero no
-    // gráfico, que se lê como "a apuração voltou atrás".
-    console.error(`Nenhum dos ${fontes.length} arquivos do TSE respondeu. Nada gravado.`);
+  if (lidos < fontes.length) {
+    /*
+     * Leitura INCOMPLETA não vira ponto — e não só a totalmente falha.
+     *
+     * Isto custou um ponto errado na série real: numa rodada o TSE devolveu
+     * 26 dos 28 arquivos, e a amostra foi gravada como "98,34% apurado, Lula
+     * 52,00%" quando o estado verdadeiro era 100,00% e 51,79%. As duas
+     * unidades que faltaram não deixaram buraco visível: elas saíram da soma
+     * E do denominador, então o resultado pareceu um número plausível, só que
+     * de um país menor. No gráfico isso vira um degrau que não aconteceu.
+     *
+     * É o mesmo defeito que a tela já declara ("N de 28 não responderam, os
+     * números estão incompletos"), e que aqui era pior, porque o arquivo é
+     * versionado: o degrau ficaria no histórico para sempre.
+     */
+    const faltaram = fontes.filter((f) => !f.ok).map((f) => f.uf).join(', ');
+    console.error(
+      `Leitura incompleta: ${lidos} de ${fontes.length} arquivos. Faltaram: ${faltaram}. Nada gravado — amostra parcial viraria um degrau falso no gráfico.`,
+    );
     process.exitCode = 1;
     return;
   }
