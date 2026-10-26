@@ -1,6 +1,6 @@
 {
   "observacao": "Histórico da apuração do 2º turno, amostrado de cinco em cinco minutos. Cada ponto traz, por candidato, o percentual APURADO (sobre os votos já contados) e o PROJETADO (contagem de cada UF dividida pela fração computada nela, somadas depois). Gravado por ingest/amostrar-apuracao.ts, lendo os arquivos oficiais da divulgação do TSE. Leitura falha ou sem voto não vira ponto: seria um mergulho a zero que nunca aconteceu.",
-  "atualizadoEm": "2026-10-26T00:29:56.412Z",
+  "atualizadoEm": "2026-10-26T00:57:10.290Z",
   "amostras": [
     {
       "em": "2026-10-25T22:20:00.000Z",
@@ -127,6 +127,22 @@
           "candidato": "Flávio Bolsonaro",
           "pctApurado": 48.23794063387841,
           "pctProjetado": 48.22632981955461
+        }
+      ]
+    },
+    {
+      "em": "2026-10-26T00:55:00.000Z",
+      "processado": 99.96967506638083,
+      "porCandidato": [
+        {
+          "candidato": "Luiz Inácio Lula da Silva",
+          "pctApurado": 51.78132525079335,
+          "pctProjetado": 51.78167021857276
+        },
+        {
+          "candidato": "Flávio Bolsonaro",
+          "pctApurado": 48.21867474920665,
+          "pctProjetado": 48.21832978142724
         }
       ]
     }
