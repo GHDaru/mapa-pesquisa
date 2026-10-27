@@ -5,7 +5,9 @@ import {
   DATA_PRIMEIRO_TURNO,
   dataReferenciaDaPesquisa,
   medirAcertoDasPesquisas,
+  pctValidosDaPesquisa,
 } from '../../domain/poll-accuracy.js';
+import type { Pesquisa } from '../../domain/poll.js';
 import {
   type CargoApuracao,
   type Projecao,
@@ -76,6 +78,19 @@ export function pctValidosDasPesquisas(
   return new Map(candidatos.map((c) => [c.candidato, (c.pct / soma) * 100]));
 }
 
+/**
+ * Quantas fichas a guarda do 2º turno considerou, pontuou e excluiu — contado
+ * do dado, para a tela nunca mais guardar essa contagem à mão. `null` no 1º
+ * turno, onde não há recorte a declarar.
+ */
+export interface RecorteDoRanking {
+  readonly consideradas: number;
+  readonly pontuadas: number;
+  readonly excluidas: number;
+  /** Das excluídas, quantas apontavam em 1º quem de fato venceu. */
+  readonly excluidasQueAcertaramOLider: number;
+}
+
 export interface ProjecaoComparada {
   readonly projecao: Projecao;
   /** `true` quando não há nenhum recorte de apuração para o cargo/turno. */
@@ -135,6 +150,7 @@ export interface ProjecaoComparada {
    * não publicar nada.
    */
   readonly acerto: AcertoDasPesquisas | null;
+  readonly recorteDoRanking: RecorteDoRanking | null;
 }
 
 /**
@@ -306,6 +322,7 @@ export function criarGetProjecao(repos: Repositorios, clock: Clock) {
     // O ranking de institutos só sai com a apuração encerrada. Contra parcial,
     // ele mediria o viés de ordem de apuração e o atribuiria aos institutos.
     let acerto: AcertoDasPesquisas | null = null;
+    let recorteDoRanking: RecorteDoRanking | null = null;
     if (apuracaoEncerrada && cargo === 'presidente') {
       const pctResultado = new Map(
         baseComparacao.map((c) => [c.candidato, c.pctProjetado] as const),
@@ -332,6 +349,53 @@ export function criarGetProjecao(repos: Repositorios, clock: Clock) {
           : pesquisasDoRecorte;
 
       /*
+       * Quantas fichas a guarda tira, CONTADO DO DADO.
+       *
+       * A frase da tela trazia "das 20 fichas que entravam, 6 eram de
+       * setembro" escrito à mão. Em 26/10 a ingestão da Palver de 18–20/10 deu
+       * àquele instituto uma ficha pós-eleição, e ele saiu do conjunto
+       * excluído: viraram 5. A tela passou a publicar um número errado, e
+       * nenhum teste quebrou, porque o número era prosa. É o mesmo defeito que
+       * este projeto cataloga desde 06/10, agora causado pela nossa própria
+       * ingestão — a correção não é trocar 6 por 5, é a tela parar de guardar
+       * contagem à mão.
+       *
+       * Conta sobre a ÚLTIMA ficha de cada instituto, que é a unidade do
+       * ranking: contar rodadas daria outro número, maior, e não seria o que a
+       * frase afirma.
+       */
+      const ultimaPorInstituto = (lista: readonly Pesquisa[]): Map<string, Pesquisa> => {
+        const m = new Map<string, Pesquisa>();
+        for (const p of lista) {
+          const atual = m.get(p.instituto);
+          if (!atual || dataReferenciaDaPesquisa(p) > dataReferenciaDaPesquisa(atual)) {
+            m.set(p.instituto, p);
+          }
+        }
+        return m;
+      };
+      if (turno === 2) {
+        const semGuarda = ultimaPorInstituto(pesquisasDoRecorte);
+        const comGuarda = ultimaPorInstituto(paraPontuar);
+        const excluidas = [...semGuarda.entries()].filter(([i]) => !comGuarda.has(i));
+        const liderReal = [...baseComparacao]
+          .sort((a, b) => b.pctProjetado - a.pctProjetado)[0]?.candidato;
+        const acertaram = excluidas.filter(([, p]) => {
+          const pct = pctValidosDaPesquisa(p, (rotulo) =>
+            ehLinhaNaoCandidato(rotulo, new Set<string>()),
+          );
+          const lider = [...pct.entries()].sort((a, b) => b[1] - a[1])[0]?.[0];
+          return lider != null && lider === liderReal;
+        }).length;
+        recorteDoRanking = {
+          consideradas: semGuarda.size,
+          pontuadas: comGuarda.size,
+          excluidas: excluidas.length,
+          excluidasQueAcertaramOLider: acertaram,
+        };
+      }
+
+      /*
        * A eleição contra a qual a distância do campo é medida é a do TURNO
        * medido. `medirAcertoDasPesquisas` tem `DATA_PRIMEIRO_TURNO` como
        * padrão, e com ele uma pesquisa de 22/10 dava `diasAntes` = -18, que
@@ -355,6 +419,7 @@ export function criarGetProjecao(repos: Repositorios, clock: Clock) {
       semDados,
       apuracaoEncerrada,
       acerto,
+      recorteDoRanking,
       apenasNacional: projecao.porUf.length === 0 && projecao.nacionalCru !== null,
       destaque,
       apuracaoAtualizadaEm: repos.apuracao.atualizadoEm(),

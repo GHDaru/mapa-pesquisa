@@ -486,19 +486,50 @@ describe('concordância também em rotuloCobertura', () => {
 });
 
 describe('rotuloRecorteDoRanking', () => {
+  const recorte = {
+    consideradas: 20,
+    pontuadas: 15,
+    excluidas: 5,
+    excluidasQueAcertaramOLider: 3,
+  };
+
   it('no 2º turno declara a exclusão das rodadas pré-04/10 na tela', () => {
-    const t = rotuloRecorteDoRanking(2)!;
+    const t = rotuloRecorteDoRanking(2, recorte)!;
     expect(t).toContain('DEPOIS de 4 de outubro');
     expect(t).toContain('hipotético');
     // A frase tem de dizer o TAMANHO do recorte: "excluímos algumas" não
     // permite ao leitor julgar se a exclusão mudou o ranking.
-    expect(t).toContain('20');
-    expect(t).toContain('6');
+    expect(t).toContain('5 das 20 fichas');
+    expect(t).toContain('3 delas apontando o vencedor');
+  });
+
+  it('as contagens vêm do dado, não do texto', () => {
+    // O defeito de 26/10: a frase trazia "6" escrito à mão, e a ingestão de
+    // uma rodada nova da Palver tornou o número 5 sem quebrar teste nenhum.
+    // Mudar o dado tem de mudar a frase.
+    const outro = rotuloRecorteDoRanking(2, { ...recorte, excluidas: 6, pontuadas: 14 })!;
+    expect(outro).toContain('6 das 20 fichas');
+    expect(outro).not.toContain('5 das 20 fichas');
+  });
+
+  it('concorda em número quando sobra uma só, e quando nenhuma acerta', () => {
+    const uma = rotuloRecorteDoRanking(2, {
+      consideradas: 16,
+      pontuadas: 15,
+      excluidas: 1,
+      excluidasQueAcertaramOLider: 1,
+    })!;
+    expect(uma).toContain('1 das 16 fichas que entrariam tinha campo anterior');
+    expect(uma).toContain('uma delas apontando o vencedor');
+    const zero = rotuloRecorteDoRanking(2, { ...recorte, excluidasQueAcertaramOLider: 0 })!;
+    expect(zero).toContain('nenhuma delas apontando o vencedor');
   });
 
   it('no 1º turno não há recorte a declarar', () => {
     // Inventar a frase ali afirmaria um filtro que não existe.
-    expect(rotuloRecorteDoRanking(1)).toBeNull();
+    expect(rotuloRecorteDoRanking(1, recorte)).toBeNull();
+    // E sem contagem também não: frase sem número não qualifica nada.
+    expect(rotuloRecorteDoRanking(2, null)).toBeNull();
   });
 });
 

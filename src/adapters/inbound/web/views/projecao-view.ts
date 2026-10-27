@@ -3,6 +3,7 @@ import type { CasosDeUso } from '../../../../application/use-cases/index.js';
 import type {
   ComparacaoPesquisaApuracao,
   ProjecaoComparada,
+  RecorteDoRanking,
 } from '../../../../application/use-cases/get-projecao.js';
 import type { MargemProjetada, Projecao } from '../../../../domain/apuracao.js';
 import type { AcertoDoInstituto } from '../../../../domain/poll-accuracy.js';
@@ -266,15 +267,35 @@ export function rotuloErroDoInstituto(i: AcertoDoInstituto): string {
  * filtro que só existe no código é um número sem a condição que o qualifica —
  * exatamente o que esta tela foi feita para não fazer. No 1º turno não há
  * recorte a declarar, e inventar uma frase ali seria ruído.
+ *
+ * **As contagens vêm do dado, nunca escritas aqui.** A versão anterior trazia
+ * "das 20 fichas que entravam, 6 eram de setembro" à mão. Em 26/10 a ingestão
+ * de uma rodada nova da Palver deu àquele instituto uma ficha pós-eleição, ele
+ * saiu do conjunto excluído, e a tela passou a publicar 6 onde o dado dizia 5
+ * — sem quebrar teste, porque era prosa. Quem escreve contagem em frase assina
+ * esse defeito; o conserto é não escrever.
  */
-export function rotuloRecorteDoRanking(turno: 1 | 2): string | null {
-  if (turno !== 2) return null;
+export function rotuloRecorteDoRanking(
+  turno: 1 | 2,
+  recorte: RecorteDoRanking | null,
+): string | null {
+  if (turno !== 2 || recorte == null) return null;
+  const { consideradas, excluidas, excluidasQueAcertaramOLider: acertaram } = recorte;
+  const quantas =
+    excluidas === 1
+      ? `1 das ${consideradas} fichas que entrariam tinha campo anterior`
+      : `${excluidas} das ${consideradas} fichas que entrariam tinham campo anterior`;
+  const porTabela =
+    acertaram === 0
+      ? 'nenhuma delas apontando o vencedor'
+      : acertaram === 1
+        ? 'uma delas apontando o vencedor por tabela'
+        : `${acertaram} delas apontando o vencedor por tabela`;
   return (
     'Só entram as rodadas com campo encerrado DEPOIS de 4 de outubro. Antes disso ' +
     '"Lula x Flávio" era um 2º turno hipotético — o eleitor não sabia quem passaria —, ' +
     'e cobrar dessas rodadas o resultado real é cobrar de uma medição a resposta de ' +
-    'outra pergunta. A exclusão distorcia nos dois sentidos: das 20 fichas que entravam, ' +
-    '6 eram de setembro e começo de outubro, três delas acertando o líder por tabela.'
+    `outra pergunta. A exclusão distorcia nos dois sentidos: ${quantas}, ${porTabela}.`
   );
 }
 
@@ -563,7 +584,7 @@ function montarAcerto(dados: ProjecaoComparada): HTMLElement | null {
     ]),
   );
   const mediana = a.erroMedianoDoCampo;
-  const recorte = rotuloRecorteDoRanking(dados.projecao.turno);
+  const recorte = rotuloRecorteDoRanking(dados.projecao.turno, dados.recorteDoRanking);
   const direcao = rotuloDirecaoDoErro(
     a.subestimaramAMargem,
     a.superestimaramAMargem,
