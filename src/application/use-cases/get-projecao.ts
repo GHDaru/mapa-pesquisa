@@ -261,9 +261,32 @@ export function criarGetProjecao(repos: Repositorios, clock: Clock) {
           )
         : todasDoRecorte;
 
+    /*
+     * **A guarda de 04/10 vale para TUDO que compara pesquisa com resultado**,
+     * não só para o ranking.
+     *
+     * Terceira aparição do mesmo defeito, e a mais embaraçosa, porque fui eu
+     * que deixei: em 09/10 a regra entrou no agregado da manchete, em 26/10 no
+     * ranking de institutos, e a tabela "o que as pesquisas diziam, e o que
+     * deu" ficou de fora. Ela agregava as 100 fichas do confronto, **71 delas
+     * com campo anterior a 04/10** — quando "Lula x Flávio" era um 2º turno
+     * hipotético e o eleitor não sabia quem passaria. Com 38,9% do peso vindo
+     * dali, o erro publicado saía 0,38 ponto menor do que o do agregado que a
+     * própria página classifica: −5,3824 em vez de −5,7592 na margem.
+     *
+     * Dois números do mesmo projeto para a mesma pergunta, e o mais favorável
+     * era o publicado. A lição de 17/10 escrita de novo: **regra de recorte
+     * tem de nascer perguntando quantos lugares precisam dela** — aqui eram
+     * três, e eu só achei dois.
+     */
+    const paraComparar =
+      turno === 2
+        ? pesquisasDoRecorte.filter((p) => dataReferenciaDaPesquisa(p) > DATA_PRIMEIRO_TURNO)
+        : pesquisasDoRecorte;
+
     let pctPorCandidato = new Map<string, number>();
-    if (pesquisasDoRecorte.length > 0) {
-      const agregado = agregarPesquisas(pesquisasDoRecorte, {}, clock.hoje());
+    if (paraComparar.length > 0) {
+      const agregado = agregarPesquisas(paraComparar, {}, clock.hoje());
       // Sem pesquisa do recorte não há comparação a fazer — o mapa fica vazio e
       // cada `erro` sai `null`, em vez de 0, que leria como acerto exato.
       if (agregado) pctPorCandidato = pctValidosDasPesquisas(agregado.candidatos);
@@ -343,10 +366,9 @@ export function criarGetProjecao(repos: Repositorios, clock: Clock) {
        * É o mesmo defeito que já apareceu em 17/10, quando a guarda de base
        * protegia o agregado e não a série: a regra existia num lugar só.
        */
-      const paraPontuar =
-        turno === 2
-          ? pesquisasDoRecorte.filter((p) => dataReferenciaDaPesquisa(p) > DATA_PRIMEIRO_TURNO)
-          : pesquisasDoRecorte;
+      // Mesma lista que alimenta a comparação, de propósito: duas filtragens
+      // com a mesma intenção são duas que podem divergir.
+      const paraPontuar = paraComparar;
 
       /*
        * Quantas fichas a guarda tira, CONTADO DO DADO.

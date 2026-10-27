@@ -478,6 +478,14 @@ function montarComparacao(dados: ProjecaoComparada): HTMLElement | null {
         'a apuração publica. O ranking do agregado já não inclui brancos, nulos e ' +
         'indecisos, que são contados em separado, então a renormalização move pouco: ela ' +
         'torna a base exata em vez de aproximada.' +
+        // O recorte tem de ser dito AQUI também, não só na seção do ranking: é
+        // esta tabela que publica "as pesquisas erraram por tanto", e um erro
+        // sem o conjunto que o produziu não é verificável.
+        (dados.projecao.turno === 2
+          ? ' Entram só as rodadas com campo encerrado depois de 4 de outubro — antes ' +
+            'disso o confronto era hipotético. Com as rodadas antigas incluídas o erro ' +
+            'publicado sairia menor, e seria o erro de outra pergunta.'
+          : '') +
         (contagem
           ? ' A comparação aqui é contra uma CONTAGEM PARCIAL e é provisória: a ordem ' +
             'dos candidatos pode mudar conforme os estados terminam de totalizar.'

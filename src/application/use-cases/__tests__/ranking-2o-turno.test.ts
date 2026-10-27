@@ -88,6 +88,35 @@ describe('ranking do 2º turno, nos dados reais', () => {
     expect(dados.fontes.length).toBe(rotulosDistintos.size);
   });
 
+  it('a tabela de comparação respeita a MESMA guarda do ranking', () => {
+    // Era o terceiro lugar que precisava da regra, e ficou de fora: a
+    // comparação agregava as 100 fichas do confronto, 71 com campo anterior a
+    // 04/10, e publicava erro 0,38 ponto menor que o do agregado que a própria
+    // página classifica. Dois números do mesmo projeto para a mesma pergunta.
+    const dados = casos.getProjecao('presidente', 'auto') as unknown as {
+      readonly comparacao: readonly {
+        readonly candidato: string;
+        readonly pctPesquisas: number | null;
+        readonly pctProjetado: number;
+      }[];
+    };
+    const porNome = new Map(dados.comparacao.map((c) => [c.candidato, c]));
+    const lula = porNome.get('Luiz Inácio Lula da Silva')!;
+    const flavio = porNome.get('Flávio Bolsonaro')!;
+
+    // Renormalizado para válidos, o agregado com guarda dá Lula 48,9056 x
+    // Flávio 51,0944. Sem guarda daria 49,0940 x 50,9060 — o teste distingue
+    // os dois, que é o ponto.
+    const soma = lula.pctPesquisas! + flavio.pctPesquisas!;
+    expect((100 * lula.pctPesquisas!) / soma).toBeCloseTo(48.9056, 3);
+    expect((100 * flavio.pctPesquisas!) / soma).toBeCloseTo(51.0944, 3);
+
+    // E o erro na margem é o da guarda: −5,7592, não −5,3824.
+    const margemPesquisas = (100 * (lula.pctPesquisas! - flavio.pctPesquisas!)) / soma;
+    const margemReal = lula.pctProjetado - flavio.pctProjetado;
+    expect(margemPesquisas - margemReal).toBeCloseTo(-5.7592, 3);
+  });
+
   it('a margem real do 2º turno é a do 2º turno, não a do 1º', () => {
     // 1,865004 é a margem do 1º turno. Reusá-la foi erro previsto no
     // procedimento da rotina, e é o tipo de número que passa despercebido
