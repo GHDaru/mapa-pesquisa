@@ -1,3 +1,4 @@
+import { analiseRepoFake } from './_resultado-fake.js';
 import { describe, expect, it } from 'vitest';
 import { criarPartido } from '../../../domain/party.js';
 import { criarPesquisa, type DadosPesquisa, type Pesquisa } from '../../../domain/poll.js';
@@ -44,6 +45,7 @@ function repos(pesquisas: Pesquisa[], resultado: DadosResultado): Repositorios {
     electorate: { todos: () => [], porUf: () => undefined },
     apuracao: criarApuracaoRepositoryJson({ atualizadoEm: '2026-01-01T00:00:00Z', recortes: [] }),
     resultado: { dados: () => resultado },
+    analise: analiseRepoFake,
   };
 }
 

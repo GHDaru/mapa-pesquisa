@@ -1701,3 +1701,397 @@ th[aria-sort='descending'] .pv-table-sort-btn::after {
 
 .ap-mapa-pct { font-size: 5.2px; font-weight: 700; fill: var(--color-text); dominant-baseline: alphabetic;
   paint-order: stroke; stroke: var(--color-canvas); stroke-width: 1.6px; }
+
+/* ============================ TELA DE ANÁLISE ============================
+   Mapa em destaque com o painel da área ao lado, cortes abaixo, e a seção da
+   hipótese do gerador por último. As rampas de cor estão em tokens.css; aqui
+   só a estrutura. */
+.analise {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6, 1.5rem);
+}
+.analise-cabecalho {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 0.75rem);
+}
+.analise-lede {
+  max-width: 68ch;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+.analise-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: var(--space-3, 0.75rem);
+}
+.analise-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+  padding: var(--space-4, 1rem);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md, 8px);
+}
+.analise-tile__rotulo,
+.analise-tile__sub {
+  font-size: 0.8125rem;
+  color: var(--color-text-subtle);
+}
+.analise-tile__numero {
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.analise-controles {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2, 0.5rem);
+}
+.analise-segmentado {
+  display: inline-flex;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md, 8px);
+}
+.analise-segmentado__botao {
+  font: inherit;
+  font-size: 0.8125rem;
+  padding: 0.4rem 0.8rem;
+  background: var(--color-surface-2);
+  color: var(--color-text-subtle);
+  border: 0;
+  cursor: pointer;
+}
+.analise-segmentado__botao + .analise-segmentado__botao {
+  border-left: 1px solid var(--color-border);
+}
+.analise-segmentado__botao[aria-pressed='true'] {
+  background: var(--color-surface-4);
+  color: var(--color-text);
+  font-weight: 600;
+}
+.analise-seletor,
+.analise-busca,
+.analise-chip {
+  font: inherit;
+  font-size: 0.8125rem;
+  padding: 0.4rem 0.55rem;
+  background: var(--color-surface-2);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md, 8px);
+  min-width: 0;
+}
+.analise-busca {
+  width: 16rem;
+  max-width: 100%;
+}
+.analise-chip {
+  cursor: pointer;
+  background: var(--color-surface-4);
+}
+
+.analise-duplo {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  gap: var(--space-4, 1rem);
+  align-items: stretch;
+}
+@media (max-width: 60rem) {
+  .analise-duplo {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.analise-cartao {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 0.5rem);
+  min-width: 0;
+  padding: var(--space-5, 1.25rem);
+  background: var(--color-surface-1);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md, 8px);
+}
+.analise-cartao__titulo {
+  margin: 0;
+  font-size: 1.0625rem;
+}
+.analise-subtitulo {
+  margin: var(--space-3, 0.75rem) 0 0;
+  font-size: 0.9375rem;
+  color: var(--color-text);
+}
+.analise-nota {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--color-text-subtle);
+}
+
+.analise-mapa {
+  position: relative;
+  min-width: 0;
+  min-height: 10rem;
+}
+.analise-mapa svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.analise-area {
+  stroke: var(--color-surface-1);
+  stroke-width: 0.4;
+  cursor: pointer;
+}
+.analise-area--ativa {
+  stroke: var(--color-text);
+  stroke-width: 2;
+}
+.analise-bordas path {
+  fill: none;
+  stroke: var(--analise-malha-borda);
+  stroke-width: 0.7;
+  pointer-events: none;
+}
+.analise-dica {
+  position: absolute;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  max-width: 15rem;
+  padding: 0.35rem 0.55rem;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  background: var(--color-surface-4);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm, 6px);
+  box-shadow: 0 6px 20px rgb(0 0 0 / 35%);
+}
+.analise-dica__nome {
+  color: var(--color-text-subtle);
+}
+.analise-dica__valor {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text);
+}
+.analise-legenda {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15rem 0.65rem;
+  font-size: 0.75rem;
+  color: var(--color-text-subtle);
+  font-variant-numeric: tabular-nums;
+}
+.analise-legenda__titulo {
+  color: var(--color-text-muted);
+}
+.analise-legenda__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.analise-legenda__cor {
+  display: inline-block;
+  width: 1rem;
+  height: 0.625rem;
+  border-radius: 2px;
+}
+
+.analise-painel__nome {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+.analise-kv {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.25rem var(--space-3, 0.75rem);
+  margin: 0;
+  font-size: 0.8125rem;
+}
+.analise-kv dt {
+  color: var(--color-text-subtle);
+  min-width: 0;
+}
+.analise-kv dd {
+  margin: 0;
+  text-align: right;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text);
+}
+.analise-barra {
+  display: flex;
+  gap: 2px;
+  width: 100%;
+  height: 2.125rem;
+}
+.analise-barra__parte {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 2px;
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: #ffffff;
+}
+.analise-chaves {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 0.75rem;
+  font-size: 0.75rem;
+  color: var(--color-text-subtle);
+}
+.analise-chave {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.analise-chave__cor {
+  display: inline-block;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 2px;
+}
+
+.analise-filas {
+  display: grid;
+  grid-template-columns: minmax(6rem, 11rem) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.3rem var(--space-3, 0.75rem);
+  font-size: 0.8125rem;
+}
+.analise-fila__rotulo {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font: inherit;
+  text-align: left;
+  color: var(--color-text);
+  background: none;
+  border: 0;
+  padding: 0;
+}
+button.analise-fila__rotulo {
+  cursor: pointer;
+}
+.analise-fila__trilho {
+  position: relative;
+  display: block;
+  height: 0.8125rem;
+  background: var(--color-surface-3);
+  border-radius: 2px;
+}
+.analise-fila__barra {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border-radius: 2px;
+}
+.analise-fila__valor {
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text);
+}
+
+.analise-tabela-caixa {
+  overflow: auto;
+  max-height: 30rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md, 8px);
+}
+.analise-tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+.analise-tabela th,
+.analise-tabela td {
+  padding: 0.3rem 0.5rem;
+  text-align: right;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--color-border);
+}
+.analise-tabela th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--color-surface-2);
+  color: var(--color-text-muted);
+  font-weight: 600;
+  /* O cabeçalho pode quebrar; a célula de número, não. Sem isto uma coluna
+     de rótulo comprido empurra a tabela para fora do cartão e a última
+     coluna sai cortada. */
+  white-space: normal;
+  vertical-align: bottom;
+  min-width: 4.5rem;
+}
+.analise-tabela th:first-child,
+.analise-tabela td:first-child {
+  text-align: left;
+}
+.analise-tabela__linha {
+  cursor: pointer;
+}
+.analise-tabela__linha--ativa {
+  background: var(--color-surface-3);
+}
+
+.analise-dispersao {
+  min-width: 0;
+}
+.analise-dispersao svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.analise-eixo text,
+.analise-eixo__rotulo {
+  font-size: 11px;
+  fill: var(--color-text-subtle);
+}
+.analise-grade {
+  stroke: var(--color-border);
+  stroke-width: 1;
+}
+.analise-previsao {
+  stroke: var(--color-text-tertiary);
+  stroke-width: 2;
+  stroke-dasharray: 6 5;
+}
+.analise-ponto {
+  fill: var(--color-accent);
+  stroke: var(--color-surface-1);
+  stroke-width: 2;
+}
+.analise-ponto__rotulo {
+  font-size: 11px;
+  fill: var(--color-text);
+}
+
+.analise-metodo__item {
+  margin: 0;
+  max-width: 76ch;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--color-text-subtle);
+}
+.analise-metodo__item strong {
+  color: var(--color-text);
+}

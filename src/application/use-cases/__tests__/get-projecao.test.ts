@@ -1,4 +1,4 @@
-import { resultadoRepoFake } from './_resultado-fake.js';
+import { analiseRepoFake, resultadoRepoFake } from './_resultado-fake.js';
 import { describe, expect, it } from 'vitest';
 import { criarGetProjecao, LIMIAR_APURACAO_ENCERRADA } from '../get-projecao.js';
 import { criarApuracaoRepositoryJson } from '../../../adapters/outbound/json/apuracao-repository.js';
@@ -87,6 +87,7 @@ function repos(apuracao: DadosApuracao, pesquisas: readonly DadosPesquisa[]): Re
     ] as never),
     apuracao: criarApuracaoRepositoryJson(apuracao),
         resultado: resultadoRepoFake,
+        analise: analiseRepoFake,
   };
 }
 

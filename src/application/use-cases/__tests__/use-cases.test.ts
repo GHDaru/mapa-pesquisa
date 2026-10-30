@@ -1,4 +1,4 @@
-import { resultadoRepoFake } from './_resultado-fake.js';
+import { analiseRepoFake, resultadoRepoFake } from './_resultado-fake.js';
 import { beforeAll, describe, expect, it } from 'vitest';
 import { criarEleitorado, type Eleitorado } from '../../../domain/electorate.js';
 import { criarPartido, type Partido } from '../../../domain/party.js';
@@ -245,6 +245,7 @@ beforeAll(() => {
     electorate: electorateRepoFake(eleitorado),
     apuracao: apuracaoRepoVazio(),
         resultado: resultadoRepoFake,
+        analise: analiseRepoFake,
   };
 
   casos = criarCasosDeUso(repos, CLOCK);
@@ -555,6 +556,7 @@ describe('use-cases/getVoteEstimate', () => {
       electorate: electorateRepoFake([]),
       apuracao: apuracaoRepoVazio(),
         resultado: resultadoRepoFake,
+        analise: analiseRepoFake,
     };
     const casosSemEleitorado = criarCasosDeUso(reposSemEleitorado, CLOCK);
     expect(casosSemEleitorado.getVoteEstimate()).toBeNull();
@@ -573,6 +575,7 @@ describe('use-cases/getVoteEstimate', () => {
       ]),
       apuracao: apuracaoRepoVazio(),
         resultado: resultadoRepoFake,
+        analise: analiseRepoFake,
       parties: partyRepoFake(PARTIDOS),
       senateSeats: senateSeatRepoFake([]),
       meta: metaRepoFake('2026-09-13'),

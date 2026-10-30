@@ -4,7 +4,7 @@ import { disputaId, type Disputa } from '../../../domain/race.js';
 import type { GovernadorUf } from '../../../domain/resultado.js';
 import { criarApuracaoRepositoryJson } from '../../../adapters/outbound/json/apuracao-repository.js';
 import type { Repositorios } from '../../ports.js';
-import { RESULTADO_VAZIO } from './_resultado-fake.js';
+import { analiseRepoFake, RESULTADO_VAZIO } from './_resultado-fake.js';
 import { selecionarPesquisasDeGovernador } from '../governor-poll-selection.js';
 
 function pesquisa(
@@ -34,6 +34,7 @@ function repos(pesquisas: Pesquisa[]): Repositorios {
     electorate: { todos: () => [], porUf: () => undefined },
     apuracao: criarApuracaoRepositoryJson({ atualizadoEm: '2026-01-01T00:00:00Z', recortes: [] }),
     resultado: { dados: () => RESULTADO_VAZIO },
+    analise: analiseRepoFake,
   };
 }
 

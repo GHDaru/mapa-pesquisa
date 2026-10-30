@@ -2,6 +2,7 @@ import type { DadosApuracao } from '../domain/apuracao.js';
 import type { Eleitorado } from '../domain/electorate.js';
 import type { Partido } from '../domain/party.js';
 import type { Pesquisa } from '../domain/poll.js';
+import type { DadosAnalise } from '../domain/migracao.js';
 import type { DadosResultado } from '../domain/resultado.js';
 import type { Disputa } from '../domain/race.js';
 import type { CadeiraSenado } from '../domain/senate.js';
@@ -55,6 +56,16 @@ export interface ResultadoRepository {
   dados(): DadosResultado;
 }
 
+/**
+ * Análise da migração entre turnos (data/analise/*.json). Carrega SOB DEMANDA
+ * — são ~2 MB de contagens por município e de contornos de mapa, que só
+ * interessam a quem abre a tela de análise. Por isso o port é assíncrono: se
+ * fosse import estático, todo visitante da home pagaria por ele.
+ */
+export interface AnaliseRepository {
+  carregar(): Promise<DadosAnalise>;
+}
+
 export interface Repositorios {
   polls: PollRepository;
   parties: PartyRepository;
@@ -63,6 +74,7 @@ export interface Repositorios {
   electorate: EleitoradoRepository;
   apuracao: ApuracaoRepository;
   resultado: ResultadoRepository;
+  analise: AnaliseRepository;
 }
 
 /** Relógio injetável — permite testes determinísticos dos casos de uso. */

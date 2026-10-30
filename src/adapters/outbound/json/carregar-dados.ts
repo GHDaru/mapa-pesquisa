@@ -12,6 +12,7 @@ import { criarPartyRepositoryJson } from './party-repository.js';
 import { criarPollRepositoryJson } from './poll-repository.js';
 import { criarResultadoRepositoryJson } from './resultado-repository.js';
 import { criarSenateSeatRepositoryJson } from './senate-seat-repository.js';
+import { criarAnaliseRepositoryJson } from './analise-repository.js';
 
 // Import estático dos dados versionados no repositório (embutidos no bundle
 // pelo Vite; resolvidos pelo tsc via `resolveJsonModule`). Um agente separado
@@ -38,5 +39,8 @@ export function carregarDados(): Repositorios {
     electorate: criarEleitoradoRepositoryJson(electorateJson as unknown as DadosEleitorado[]),
     apuracao: criarApuracaoRepositoryJson(apuracaoJson as unknown as DadosApuracao),
     resultado: criarResultadoRepositoryJson(resultadoJson as unknown as DadosResultado),
+    // Sem dados embutidos: este repositório só importa data/analise/*.json
+    // quando alguém pede, e o Vite o separa num chunk próprio.
+    analise: criarAnaliseRepositoryJson(),
   };
 }

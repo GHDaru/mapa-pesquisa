@@ -1,4 +1,4 @@
-import type { ResultadoRepository } from '../../ports.js';
+import type { AnaliseRepository, ResultadoRepository } from '../../ports.js';
 import type { DadosResultado } from '../../../domain/resultado.js';
 
 /**
@@ -16,3 +16,14 @@ export const RESULTADO_VAZIO: DadosResultado = {
 };
 
 export const resultadoRepoFake: ResultadoRepository = { dados: () => RESULTADO_VAZIO };
+
+/**
+ * Análise ausente para os testes que não exercem a tela de análise. Rejeita
+ * com mensagem clara em vez de devolver dados vazios: um teste que chegue a
+ * pedir a análise sem querer deve falhar dizendo isso, não seguir com um
+ * país de zeros.
+ */
+export const analiseRepoFake: AnaliseRepository = {
+  carregar: () =>
+    Promise.reject(new Error('analiseRepoFake: este teste não deveria carregar a análise.')),
+};

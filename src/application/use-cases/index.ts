@@ -6,6 +6,7 @@ import { criarGetMeta } from './get-meta.js';
 import { criarGetPollsDatabase } from './get-polls-database.js';
 import { criarGetProjecao } from './get-projecao.js';
 import { criarGetResultado } from './get-resultado.js';
+import { criarGetAnaliseMigracao } from './get-analise-migracao.js';
 import { criarGetApuracaoAoVivo } from './get-apuracao-ao-vivo.js';
 import { criarGetPresidentialAggregate } from './get-presidential-aggregate.js';
 import { criarGetPresidentialByState } from './get-presidential-by-state.js';
@@ -16,6 +17,7 @@ import { criarGetVoteEstimate } from './get-vote-estimate.js';
 import { criarListParties } from './list-parties.js';
 import { criarProjectSenate } from './project-senate.js';
 
+export * from './get-analise-migracao.js';
 export * from './get-daily-digest.js';
 export * from './get-map-governadores.js';
 export * from './get-map-overview.js';
@@ -49,6 +51,7 @@ export interface CasosDeUso {
   readonly getProjecao: ReturnType<typeof criarGetProjecao>;
   readonly getResultado: ReturnType<typeof criarGetResultado>;
   readonly getApuracaoAoVivo: ReturnType<typeof criarGetApuracaoAoVivo>;
+  readonly getAnaliseMigracao: ReturnType<typeof criarGetAnaliseMigracao>;
 }
 
 /** Fábrica dos casos de uso, com repositórios e relógio injetados. */
@@ -70,5 +73,6 @@ export function criarCasosDeUso(repos: Repositorios, clock: Clock): CasosDeUso {
     getProjecao: criarGetProjecao(repos, clock),
     getResultado: criarGetResultado(repos),
     getApuracaoAoVivo: criarGetApuracaoAoVivo(repos),
+    getAnaliseMigracao: criarGetAnaliseMigracao(repos.analise),
   };
 }

@@ -124,6 +124,37 @@
 @media (prefers-color-scheme: light) {
   :root:not([data-theme='dark']) {
     color-scheme: light;
+    --analise-div-1: #d97b24;
+    --analise-div-2: #e8a86a;
+    --analise-div-3: #f3d3b0;
+    --analise-div-4: #e9eaee;
+    --analise-div-5: #bcc1ec;
+    --analise-div-6: #8b93dd;
+    --analise-div-7: #4a54b8;
+    --analise-seq-1: #ecedf8;
+    --analise-seq-2: #d7daf0;
+    --analise-seq-3: #bcc1e6;
+    --analise-seq-4: #9ba2d8;
+    --analise-seq-5: #7a82c6;
+    --analise-seq-6: #5b63ad;
+    --analise-seq-7: #3d4490;
+    --analise-seq2-1: #fdf0e3;
+    --analise-seq2-2: #f8dcc0;
+    --analise-seq2-3: #f0c195;
+    --analise-seq2-4: #e5a267;
+    --analise-seq2-5: #d2823d;
+    --analise-seq2-6: #ad6627;
+    --analise-seq2-7: #83491a;
+    --analise-origem-1: #4a54b8;
+    --analise-origem-2: #c87a28;
+    --analise-origem-3: #1e8a36;
+    --analise-origem-4: #9a7c1c;
+    --analise-origem-5: #c25580;
+    --analise-origem-6: #2a7fd0;
+    --analise-origem-7: #7a4fb0;
+    --analise-sem-dado: #e6e8eb;
+    --analise-malha-borda: #9aa0aa;
+
     --color-text: #0f1011;
     --color-text-muted: #44464b;
     --color-text-subtle: #62666d;
@@ -174,6 +205,37 @@
 /* Alternância manual (hook para um futuro botão de tema) */
 :root[data-theme='light'] {
   color-scheme: light;
+  --analise-div-1: #d97b24;
+  --analise-div-2: #e8a86a;
+  --analise-div-3: #f3d3b0;
+  --analise-div-4: #e9eaee;
+  --analise-div-5: #bcc1ec;
+  --analise-div-6: #8b93dd;
+  --analise-div-7: #4a54b8;
+  --analise-seq-1: #ecedf8;
+  --analise-seq-2: #d7daf0;
+  --analise-seq-3: #bcc1e6;
+  --analise-seq-4: #9ba2d8;
+  --analise-seq-5: #7a82c6;
+  --analise-seq-6: #5b63ad;
+  --analise-seq-7: #3d4490;
+  --analise-seq2-1: #fdf0e3;
+  --analise-seq2-2: #f8dcc0;
+  --analise-seq2-3: #f0c195;
+  --analise-seq2-4: #e5a267;
+  --analise-seq2-5: #d2823d;
+  --analise-seq2-6: #ad6627;
+  --analise-seq2-7: #83491a;
+  --analise-origem-1: #4a54b8;
+  --analise-origem-2: #c87a28;
+  --analise-origem-3: #1e8a36;
+  --analise-origem-4: #9a7c1c;
+  --analise-origem-5: #c25580;
+  --analise-origem-6: #2a7fd0;
+  --analise-origem-7: #7a4fb0;
+  --analise-sem-dado: #e6e8eb;
+  --analise-malha-borda: #9aa0aa;
+
   --color-text: #0f1011;
   --color-text-muted: #44464b;
   --color-text-subtle: #62666d;
@@ -213,4 +275,47 @@
 }
 :root[data-theme='dark'] {
   color-scheme: dark;
+}
+
+/* ====== Rampas da tela de análise (ver views/analise-layout.ts) ======
+   Sete faixas, que é o limite onde faixas vizinhas ainda se distinguem a
+   olho. `div` é divergente (laranja ↔ neutro ↔ azul do acento), `seq` e
+   `seq2` são sequenciais de um matiz só, e `origem` são as sete origens de
+   voto da barra de composição. Os passos sobem em luminosidade de forma
+   monótona, para a ordem ser legível também em tons de cinza. */
+:root {
+  --analise-div-1: #f2994a;
+  --analise-div-2: #c57f42;
+  --analise-div-3: #8a6038;
+  --analise-div-4: #35373d;
+  --analise-div-5: #4a5296;
+  --analise-div-6: #6b76d8;
+  --analise-div-7: #9aa3f0;
+
+  --analise-seq-1: #1e2030;
+  --analise-seq-2: #262b4a;
+  --analise-seq-3: #313865;
+  --analise-seq-4: #3e4782;
+  --analise-seq-5: #4e59a3;
+  --analise-seq-6: #6670c6;
+  --analise-seq-7: #8e97e8;
+
+  --analise-seq2-1: #271d14;
+  --analise-seq2-2: #3b2a1a;
+  --analise-seq2-3: #553a21;
+  --analise-seq2-4: #714c28;
+  --analise-seq2-5: #96632f;
+  --analise-seq2-6: #c08040;
+  --analise-seq2-7: #eda258;
+
+  --analise-origem-1: #5e6ad2;
+  --analise-origem-2: #f2994a;
+  --analise-origem-3: #27a644;
+  --analise-origem-4: #c9a227;
+  --analise-origem-5: #e06c9f;
+  --analise-origem-6: #4ea7fc;
+  --analise-origem-7: #9b6fd4;
+
+  --analise-sem-dado: #202124;
+  --analise-malha-borda: #4a4d55;
 }

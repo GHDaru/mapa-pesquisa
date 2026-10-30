@@ -51,6 +51,9 @@ const ROTAS: readonly Rota[] = [
   { hash: '#/presidente-estados?mapa=apuracao', rotulo: 'Apuração ao vivo' },
   { hash: '#/projecao', rotulo: 'Projeção' },
   { hash: '#/resultados', rotulo: 'Resultados' },
+  // A análise fecha a eleição: o que se mediu dos dois turnos depois do
+  // resultado, inclusive os testes da hipótese de fraude na urna.
+  { hash: '#/analise', rotulo: 'Análise' },
   { hash: '#/mapa', rotulo: 'Governadores' },
   { hash: '#/presidente', rotulo: 'Presidente' },
   { hash: '#/presidente-estados', rotulo: 'Presidente por estado' },
@@ -247,6 +250,9 @@ async function renderizarRota(main: HTMLElement, nav: HTMLElement, casos: CasosD
       // aponta para o mapa já no modo certo, em vez de dar tela em branco.
       window.location.hash = '#/presidente-estados?mapa=apuracao';
       return;
+    case '#/analise':
+      await renderPaginaOpcional(main, casos, './views/analise-view.ts', 'renderAnalise');
+      break;
     case '#/projecao':
       await renderPaginaOpcional(main, casos, './views/projecao-view.ts', 'renderProjecao');
       break;
